@@ -90,6 +90,7 @@
     bottom: 100px;
     transition: .3s ease;
     padding: 12px;
+    box-shadow: 0 4px 32px rgb(0 0 0 / 8%);
 }
 .modal-sedding-notification_show{
     left: 4px;
@@ -139,4 +140,9 @@
 }
 .modal-sedding{
     margin-left: 12px;
+}
+@media (max-width: 992px) {
+    .sedding-notification-mobile{
+        display: none;
+    }
 }

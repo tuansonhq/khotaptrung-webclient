@@ -144,7 +144,7 @@
                                         <span>Mã ID</span>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct id-finter-nick">
-                                        <input autocomplete="off" class="input-defautf-ct id" name="id" type="text" placeholder="Nhập mã số">
+                                        <input autocomplete="off" class="input-defautf-ct id" data-query="id" type="text" placeholder="Nhập mã số">
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +156,7 @@
                                         <span>Dịch vụ</span>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct service-finter-nick">
-                                        <select class="wide service key" name="slug_category">
+                                        <select class="wide service key" data-query="slug_category">
                                             <option value="">Chọn</option>
                                             @foreach($datacate as $val)
                                                 <option value="{{ $val->id }}">{{ $val->title }}</option>
@@ -172,7 +172,7 @@
                                         <span>Trạng thái</span>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
-                                        <select class="wide status" name="status">
+                                        <select class="wide status" data-query="status">
                                             <option value="">Chọn</option>
                                             <option value="0">Đã hủy</option>
                                             <option value="1">Đang chờ xử lý</option>
@@ -195,7 +195,7 @@
                                                 <span>Từ ngày</span>
                                             </div>
                                             <div class="col-md-12 left-right body-title-detail-select-ct">
-                                                <input autocomplete="off" name="started_at" class="input-defautf-ct started_at" type="text" placeholder="Chọn">
+                                                <input autocomplete="off" data-query="started_at" class="input-defautf-ct started_at" type="text" placeholder="Chọn">
                                             </div>
                                         </div>
 
@@ -208,7 +208,7 @@
                                                 <span>Đến ngày</span>
                                             </div>
                                             <div class="col-md-12 left-right body-title-detail-select-ct" style="position: relative">
-                                                <input autocomplete="off" class="input-defautf-ct ended_at" name="ended_at" type="text" placeholder="Chọn">
+                                                <input autocomplete="off" class="input-defautf-ct ended_at" data-query="ended_at" type="text" placeholder="Chọn">
                                             </div>
                                         </div>
                                     </div>

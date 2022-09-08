@@ -624,6 +624,7 @@ View::composer('frontend.widget.__menu_profile_desktop', function ($view) {
 
 });
 
+
 View::composer('frontend.widget.__menu_transaction', function ($view) {
 
     $url_menu_transaction = '/menu-transaction';
@@ -663,12 +664,15 @@ View::composer('frontend.pages.article.widget.__danh__muc', function ($view) {
         return $datacate = $result_Api->response_data->datacategory??null;
     });
 
-    return $view->with('data', $datacate);
+
+    return $view->with('datacate', $datacate);
+
 });
 
 View::composer('frontend.widget.__menu__category__article__clone', function ($view) {
 
     $data = \Cache::rememberForever('__menu__category__article__clone', function() {
+
         $url = '/get-category';
         $method = "GET";
         $val = array();

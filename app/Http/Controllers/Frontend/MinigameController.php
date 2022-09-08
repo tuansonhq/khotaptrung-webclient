@@ -174,7 +174,6 @@ class MinigameController extends Controller
                     $data['module'] = explode('-', $group->module)[0];
                     $data['page'] = 1;
                     $result_Api_logs = DirectAPI::_makeRequest($url_logs,$data,$method);
-
                     if (isset($result_Api_logs) && $result_Api_logs->response_code == 200 ) {
                         $data_view = [
                             'result'=>$result,
@@ -559,6 +558,114 @@ class MinigameController extends Controller
             }
         }else{
             return redirect('login');
+        }
+    }
+
+    public function getWithdrawItemAjax(Request $request,$game_type)
+    {
+        if(!empty(Session::get('jwt'))){
+            try {
+                $method = "GET";
+                $data = array();
+                $data['token'] = Session::get('jwt');
+                $data['secret_key'] = config('api.secret_key');
+                $data['domain'] = \Request::server("HTTP_HOST");
+                $url = '/minigame/get-withdraw-item';
+                $data['page'] = $request->page;
+                $data['game_type'] = $game_type;
+                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+                if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                    $result = $result_Api->response_data;
+                    if (isset($result->status) && $result->status == 4) {
+                        return response()->json([
+                            'status'=>'LOGIN'
+                        ]);
+                    } else {
+                        $history = null;
+                        if($result->withdraw_history->total>0){
+                            $perPage = $result->withdraw_history->per_page??0;
+                            $total = $result->withdraw_history->total??0;
+                            $history = new LengthAwarePaginator("" , $total, $perPage);
+                            $history->setPath($request->url());
+                        }
+                        return response()->json([
+                            'status'=>1,
+                            'history'=>$history,
+                            'result'=>$result,
+                            'game_type'=>config('constants.game_type.'.$game_type),
+                        ]);
+                    }
+                }
+            }
+            catch(\Exception $e){
+                logger($e);
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+        } else{
+            return response()->json([
+                'status'=>'LOGIN'
+            ]);
+        }
+    }
+
+    public function sendWithDrawItem(Request $request)
+    {
+        if(!empty(Session::get('jwt'))){
+            $this->validate($request, [
+                'idgame' => 'required',
+                'package' => 'required'
+
+            ], [
+                'idgame.required' => "Vui lòng nhập ID trong game để rút tiền",
+                'package.required' => "Vui lòng chọn gói muốn rút"
+
+            ]);
+            try{
+                $game_type = $request->game_type;
+                $method = "POST";
+                $data = array();
+                $data['token'] = Session::get('jwt');
+                $data['secret_key'] = config('api.secret_key');
+                $data['domain'] = \Request::server("HTTP_HOST");
+                $url = '/minigame/post-withdraw-item';
+                $data['type'] = $game_type;
+                $data['package'] = $request->package;
+                $data['idgame'] = $request->idgame;
+                $data['phone'] = $request->phone;
+                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
+                if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                    $result = $result_Api->response_data;
+                    if (isset($result->status) && $result->status == 4) {
+                        return response()->json(['status'=>'LOGIN',]);
+                    } else if(isset($result->status) && $result->status == 0){
+                        return response()->json([
+                            'status'=>0,
+                            'msg'=>$result->msg,
+                        ]);
+                    } else {
+                        return response()->json([
+                            'status'=>1,
+                            'msg'=>$result->msg,
+                        ]);
+                    }
+                } else {
+                    logger('withdrawitem: '.$result_Api->response_data->msg);
+                    return response()->json([
+                        'status'=>0,
+                        'message'=>$result_Api->response_data->msg,
+                    ]);
+                }
+            }
+            catch(\Exception $e){
+                logger($e);
+                return response()->json([
+                    'status'=>0,
+                    'message'=>$e->getMessage(),
+                ]);
+            }
+        }else{
+            return response()->json(['status'=>'LOGIN',]);
         }
     }
 
