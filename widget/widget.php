@@ -648,6 +648,21 @@ View::composer('frontend.widget.__menu__category__article', function ($view) {
         return $data = $result_Api->response_data->datacategory??null;
     });
 
+    return $view->with('data', $data);
+});
+
+View::composer('frontend.widget.__menu__category__article_theme_3', function ($view) {
+
+    $data = \Cache::rememberForever('__menu__category__article', function() {
+        $url = '/get-category';
+        $method = "GET";
+        $val = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+        return $data = $result_Api->response_data->datacategory??null;
+    });
+
     return $view->with('data_category', $data);
 });
 
