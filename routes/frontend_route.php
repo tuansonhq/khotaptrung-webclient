@@ -231,6 +231,9 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])->name('postWithdrawItem');
                 Route::post('/withdrawitemajax-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItemAjax'])->name('postWithdrawItemAjax');
 
+                Route::get('/withdrawitemajax-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItemAjax'])->name('getWithdrawItemAjax');
+                Route::post('/postwithdrawitemajax-{game_type}',[\App\Http\Controllers\Frontend\MinigameController::class,'sendWithDrawItem']);
+
                 Route::group(['middleware' => ['intend']], function () {
                     Route::get('/minigame', [\App\Http\Controllers\Frontend\MinigameController::class , 'getCategory'])->name('getCategory');
                     Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])->name('getIndex');

@@ -653,17 +653,17 @@ View::composer('frontend.widget.__menu__category__article', function ($view) {
 
 View::composer('frontend.pages.article.widget.__danh__muc', function ($view) {
 
-    $data = \Cache::rememberForever('__danh__muc', function() {
+    $datacate = \Cache::rememberForever('__danh__muc', function() {
         $url = '/get-category';
         $method = "GET";
         $val = array();
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-        return $data = $result_Api->response_data->datacategory??null;
+        return $datacate = $result_Api->response_data->datacategory??null;
     });
 
-    return $view->with('data', $data);
+    return $view->with('data', $datacate);
 });
 
 View::composer('frontend.widget.__menu__category__article__clone', function ($view) {

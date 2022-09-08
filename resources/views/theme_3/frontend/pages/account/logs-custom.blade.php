@@ -157,7 +157,7 @@
                                     </div>
                                     <div
                                         class="col-12 left-right background-nick-col-bottom-ct transaction-finter-nick">
-                                        <input type="text" name="serial" class="input-defautf-ct serial"
+                                        <input type="text" data-query="serial" class="input-defautf-ct serial"
                                                placeholder="Mã tài khoản">
                                     </div>
                                 </div>
@@ -170,7 +170,7 @@
                                             <span>Game</span>
                                         </div>
                                         <div class="col-12 left-right background-nick-col-bottom-ct game-finter-nick">
-                                            <select class="wide game key" name="key">
+                                            <select class="wide game key" data-query="key">
                                                 <option value="">Chọn</option>
                                                 @foreach($datacategory as $val)
                                                     <option value="{{ $val->slug }}">{{ $val->title }}</option>
@@ -187,8 +187,14 @@
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
 
-                                        {{Form::select('status',array(''=>'Chọn')+config('module.acc.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'wide status'))}}
+                                        <select class="wide" data-query="status">
+                                            <option value="">Chọn</option>
+                                            @forelse(config('module.acc.status') as $key  => $item)
+                                                <option value="{{ $key }}"> {{ $item }}</option>
+                                            @empty
 
+                                            @endforelse
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -214,7 +220,7 @@
                                                 <span>Từ ngày</span>
                                             </div>
                                             <div class="col-md-12 left-right body-title-detail-select-ct">
-                                                <input autocomplete="off" name="started_at" class="input-defautf-ct started_at" type="text" placeholder="Chọn">
+                                                <input autocomplete="off" data-query="started_at" class="input-defautf-ct started_at" type="text" placeholder="Chọn">
                                             </div>
                                         </div>
 
@@ -227,7 +233,7 @@
                                                 <span>Đến ngày</span>
                                             </div>
                                             <div class="col-md-12 left-right body-title-detail-select-ct" style="position: relative">
-                                                <input autocomplete="off" class="input-defautf-ct ended_at" name="ended_at" type="text" placeholder="Chọn">
+                                                <input autocomplete="off" class="input-defautf-ct ended_at" data-query="ended_at" type="text" placeholder="Chọn">
                                             </div>
                                         </div>
                                     </div>
