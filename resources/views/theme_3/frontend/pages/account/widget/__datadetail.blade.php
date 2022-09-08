@@ -1008,8 +1008,12 @@
                                 <div class="acc-holder ">
                                     @foreach(explode('|',$data->image_extension) as $key => $val)
 
-                                    <div class="acc-holder_slides ">
-                                        <div class="acc-holder_badge">{{$key+1}}</div>
+                                    <div class="acc-holder_slides " >
+                                        <a class="acc-holder_expand" data-fancybox="galleryAccount" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                            <i class="__icon__profile --sm__profile --link__profile --link--acc" style="--path : url(/assets/frontend/theme_3/image/svg/expand-acc.svg)"></i>
+{{--                                            <img src="/assets/frontend/theme_3/image/svg/expand-acc.svg" alt="">--}}
+                                        </a>
+                                        <div class="acc-holder_badge">{{$key+1}} / {{count(explode('|',$data->image_extension))}}</div>
                                         <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" />
                                     </div>
                                     @endforeach

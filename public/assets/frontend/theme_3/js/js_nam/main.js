@@ -427,13 +427,22 @@ $(document).ready(function (e) {
     });
 
     $(document).on('scroll', function () {
-
-        if ($(this).scrollTop() > 600) {
-            $('.go-to-top').fadeIn();
-        } else {
-            $('.go-to-top').fadeOut();
+        if($(window).width() > 992) {
+            if ($(this).scrollTop() > 600) {
+                $('.go-to-top').fadeIn();
+            } else {
+                $('.go-to-top').fadeOut();
+            }
         }
-
+        $(window).resize(function() {
+            if($(window).width() > 992) {
+                if ($(this).scrollTop() > 600) {
+                    $('.go-to-top').fadeIn();
+                } else {
+                    $('.go-to-top').fadeOut();
+                }
+            }
+        });
     });
 
     // $('body').on('click','.openChargeSuccess',function(e){
@@ -483,6 +492,38 @@ $(document).ready(function (e) {
                 { id: "prev", position: "center" },
                 { id: "counter", position: "center" },
                 { id: "next", position: "center" },
+                "close",
+            ],
+
+        },
+
+    });
+
+    Fancybox.bind('[data-fancybox="galleryAccount"]', {
+        infinite: true,
+        Thumbs : false,
+        toolbar         : false,
+        dragToClose: true,
+        animated: true,
+        closeButton: "top",
+        openSpeed: 300,
+        Image: {
+            zoom: true,
+            // zoom: 200
+        },
+        caption: function (fancybox, carousel, slide) {
+            return (
+                `${slide.index + 1} / ${carousel.slides.length} <br />` + slide.caption
+            );
+        },
+        slideshow: true,
+        Toolbar: {
+
+            display: [
+                { id: "prev", position: "center" },
+                { id: "counter", position: "center" },
+                { id: "next", position: "center" },
+                { id: "zoom", position: "center" },
                 "close",
             ],
 
