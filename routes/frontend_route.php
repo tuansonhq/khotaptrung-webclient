@@ -78,6 +78,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
 
             Route::group(['middleware' => ['intend']], function () {
+                Route::get('/', [HomeController::class , "index"])->middleware('intend');
 
                 Route::get('/tin-tuc', [ArticleController::class , "getList"]);
                 Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"]);
