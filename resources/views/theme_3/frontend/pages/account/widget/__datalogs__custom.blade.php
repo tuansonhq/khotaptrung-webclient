@@ -10,7 +10,7 @@
         @if(isset($data) && count($data) > 0)
             @foreach ($data as $item)
                 <tr>
-                    <td>{{ date('d/m/Y',strtotime($item->created_at)) }}<br>{{ date('H:i:s',strtotime($item->created_at)) }}</td>
+                    <td>{{ date('d/m/Y',strtotime($item->published_at)) }}<br>{{ date('H:i:s',strtotime($item->published_at)) }}</td>
                     <td>
                         @if(isset($item->randId))
                             #{{ $item->randId }}
