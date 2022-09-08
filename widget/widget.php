@@ -654,7 +654,7 @@ View::composer('frontend.widget.__menu__category__article', function ($view) {
 
 View::composer('frontend.widget.__menu__category__article_theme_3', function ($view) {
 
-    $data = \Cache::rememberForever('__menu__category__article', function() {
+    $data = \Cache::rememberForever('__menu__category__article_theme_3', function() {
         $url = '/get-category';
         $method = "GET";
         $val = array();
