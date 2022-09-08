@@ -123,7 +123,6 @@ $(document).ready(function () {
         //Filter item html
         filterCount = 0;
         let html = '';
-
         //Get data of each input in form and append into the formData object => if null then remove the null property
         let transaction_type = $('#transactionTypeInput').val();
         let transaction_status = $('#transactionStatusInput').val();

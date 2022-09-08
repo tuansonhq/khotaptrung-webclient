@@ -11,7 +11,7 @@
                             @if($item->status == 1)
                                 @if($data->display_type == 2)
                                     <div class="col-auto body-detail-nick-col-ct">
-                                        <a href="javascript:void(0)" class="list-item-nick-hover">
+                                        <a href="javascript:void(0)" class="list-item-nick-hover buy-random-acc" data-id="{{ $item->randId }}">
                                             <div class="row marginauto list-item-nick-hover-row">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct nick-item-cover-overlay">
                                                     @if(isset($data->params->thumb_default) && isset($data->params))
@@ -24,8 +24,9 @@
                                                         @endif
                                                     @endif
                                                 </div>
-                                                <div class="col-md-12 left-right list-item-nick">
-                                                    <div class="row marginauto list-item-nick-body">
+
+                                                <div class="col-md-12 left-right list-item-nick " >
+                                                    <div class="row marginauto list-item-nick-body ">
                                                         <div class="col-md-12 left-right text-left body-detail-account-col-span-ct">
                                                             <span>ID: {{ $item->randId }}</span>
                                                         </div>
@@ -64,7 +65,7 @@
                                                             </ul>
                                                         </div>
 
-                                                        <button class="button-secondary list-item-nick-button buy-random-acc" data-id="{{ $item->randId }}">Mua ngay</button>
+                                                        <button class="button-secondary list-item-nick-button " data-id="{{ $item->randId }}">Mua ngay</button>
                                                     </div>
                                                 </div>
                                             </div>

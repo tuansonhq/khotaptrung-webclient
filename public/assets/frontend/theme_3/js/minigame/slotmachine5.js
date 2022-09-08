@@ -57,7 +57,7 @@ $(document).ready(function(e) {
     $('body').delegate('#start-played', 'click', function() {
 
         if (roll_check) {
-            fakeLoop();
+            // fakeLoop();
             roll_check = false;
             saleoffpass = $("#saleoffpass").val();
             typeRoll = "real";
@@ -77,9 +77,11 @@ $(document).ready(function(e) {
                 success: function(data) {
                     if (data.status == 4) {
                         location.href='/login?return_url='+window.location.href;
+                        return;
                     } else if (data.status == 3) {
                         roll_check = true;
-                        $('#naptheModal').modal('show')
+                        $('#naptheModal').modal('show');
+                        return;
                     } else if (data.status == 0) {
                         roll_check = true;
                         $('#noticeModal .content-popup').text(data.msg);
