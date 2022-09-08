@@ -52,26 +52,240 @@
             </a>
             <p>Chi tiết tin tức</p>
         </div>
-        <div class="card --custom p-3 mb-3">
-            <article id="article--detail">
-                <h1 class="article--title">
-                    {{$data -> title}}
-                </h1>
-                <div class="article--info">
-                    {{ formatDateTime($data->created_at) }}
+        <div class="row mb-0 mb-lg-3">
+            <div class="col-12 col-lg-8" id="article-detail-left">
+                <div class="card --custom p-3">
+                    <article id="article--detail">
+                        <h1 class="article--title">
+                            {{$data -> title}}
+                        </h1>
+                        <div class="article--info">
+                            {{ formatDateTime($data->created_at) }}
+                        </div>
+                        <div class="article--thumbnail py-4">
+                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" class="article--thumbnail__image py-3">
+                        </div>
+                        <div class="article--content pb-3">
+                            <div class="article--content__text pb-2">
+                                {!! $data->content !!}
+                            </div>
+                        </div>
+                    </article>
                 </div>
-                <div class="article--thumbnail py-4">
-                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" class="article--thumbnail__image py-3">
-                </div>
-                <div class="article--content pb-3">
-                    <div class="article--content__text pb-2">
-                        {!! $data->content !!}
+            </div>
+            <div class="col-12 col-lg-4" id="article-detail-right">
+                <div class="card --custom" id="article-related-minigames">
+                    <div class="card--header">
+                        <div class="card--header__title">
+                            Minigame liên quan
+                        </div>
+                    </div>
+                    <div class="acc-related">
+                        <div class="row">
+                            <div class="col-6 acc-related--thumbnail-container">
+                                <div class="acc-related--thumbnail">
+                                    <a href="javascript:void(0);">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/image_51.png" alt="" class="acc-related--thumbnail__image">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-6 acc-related--info">
+                                <div class="acc-related--info-name">
+                                    Acc liên quan siêu vip
+                                </div>
+                                <div class="acc-related--info-sale">
+                                    Đã bán: 68,9K
+                                </div>
+                                <div class="acc-related--info-price">
+                                    15.000đ
+                                </div>
+                                <div class="acc-related--info-price-sale-price">
+                                    <span>30.000đ</span>
+                                    <div class="item-product__sticker-percent">
+                                        -50%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acc-related">
+                        <div class="row">
+                            <div class="col-6 acc-related--thumbnail-container">
+                                <div class="acc-related--thumbnail">
+                                    <a href="javascript:void(0);">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/image_51.png" alt="" class="acc-related--thumbnail__image">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-6 acc-related--info">
+                                <div class="acc-related--info-name">
+                                    Acc liên quan siêu vip
+                                </div>
+                                <div class="acc-related--info-sale">
+                                    Đã bán: 68,9K
+                                </div>
+                                <div class="acc-related--info-price">
+                                    15.000đ
+                                </div>
+                                <div class="acc-related--info-price-sale-price">
+                                    <span>30.000đ</span>
+                                    <div class="item-product__sticker-percent">
+                                        -50%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acc-related">
+                        <div class="row">
+                            <div class="col-6 acc-related--thumbnail-container">
+                                <div class="acc-related--thumbnail">
+                                    <a href="javascript:void(0);">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/image_51.png" alt="" class="acc-related--thumbnail__image">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-6 acc-related--info">
+                                <div class="acc-related--info-name">
+                                    Acc liên quan siêu vip
+                                </div>
+                                <div class="acc-related--info-sale">
+                                    Đã bán: 68,9K
+                                </div>
+                                <div class="acc-related--info-price">
+                                    15.000đ
+                                </div>
+                                <div class="acc-related--info-price-sale-price">
+                                    <span>30.000đ</span>
+                                    <div class="item-product__sticker-percent">
+                                        -50%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acc-related">
+                        <div class="row">
+                            <div class="col-6 acc-related--thumbnail-container">
+                                <div class="acc-related--thumbnail">
+                                    <a href="javascript:void(0);">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/image_51.png" alt="" class="acc-related--thumbnail__image">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-6 acc-related--info">
+                                <div class="acc-related--info-name">
+                                    Acc liên quan siêu vip
+                                </div>
+                                <div class="acc-related--info-sale">
+                                    Đã bán: 68,9K
+                                </div>
+                                <div class="acc-related--info-price">
+                                    15.000đ
+                                </div>
+                                <div class="acc-related--info-price-sale-price">
+                                    <span>30.000đ</span>
+                                    <div class="item-product__sticker-percent">
+                                        -50%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </article>
+
+                <div class="card --custom" id="article-giftcode">
+                    <div class="card--header">
+                        <div class="card--header__title">
+                            Giftcode
+                        </div>
+                    </div>
+                    <div class="acc-related">
+                        <div class="row">
+                            <div class="col-3 acc-related--thumbnail-container">
+                                <div class="acc-related--thumbnail">
+                                    <a href="javascript:void(0);">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/image_52.png" alt="" class="acc-related--thumbnail__image">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-9 acc-related--info">
+                                <div class="acc-related--info-name">
+                                    Ngôi sao giải trí
+                                </div>
+                                <div class="acc-related--info-sale">
+                                    Số lượng: 494/500
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acc-related">
+                        <div class="row">
+                            <div class="col-3 acc-related--thumbnail-container">
+                                <div class="acc-related--thumbnail">
+                                    <a href="javascript:void(0);">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/image_52.png" alt="" class="acc-related--thumbnail__image">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-9 acc-related--info">
+                                <div class="acc-related--info-name">
+                                    Giang hồ Kì hiệp 3D sắp ra mắt
+                                </div>
+                                <div class="acc-related--info-sale">
+                                    Số lượng: 494/500
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acc-related">
+                        <div class="row">
+                            <div class="col-3 acc-related--thumbnail-container">
+                                <div class="acc-related--thumbnail">
+                                    <a href="javascript:void(0);">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/image_52.png" alt="" class="acc-related--thumbnail__image">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-9 acc-related--info">
+                                <div class="acc-related--info-name">
+                                    Cửu thiên Mobile sắp ra mắt
+                                </div>
+                                <div class="acc-related--info-sale">
+                                    Số lượng: 494/500
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acc-related">
+                        <div class="row">
+                            <div class="col-3 acc-related--thumbnail-container">
+                                <div class="acc-related--thumbnail">
+                                    <a href="javascript:void(0);">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/image_52.png" alt="" class="acc-related--thumbnail__image">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-9 acc-related--info">
+                                <div class="acc-related--info-name">
+                                    Loạn chiến 3Q sắp ra mắt
+                                </div>
+                                <div class="acc-related--info-sale">
+                                    Số lượng: 494/500
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="article-detail-advertise" class="d-none d-lg-block">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/image_60.png" alt="">
+                </div>
+
+            </div>
         </div>
 {{--        Cùng chủ đề--}}
-      @include('frontend.widget.__bai__viet__lien__quan')
+        @include('frontend.widget.__bai__viet__lien__quan')
     </div>
     @endif
 @endsection
