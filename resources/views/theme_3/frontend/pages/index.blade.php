@@ -91,15 +91,8 @@
             @include('frontend.widget.__tin__tuc')
             @include('frontend.widget.__abount__us')
 
-
-
         </div>
     @endif
-    <div class="modal-sedding-notification sedding-notification-mobile" id="sedding-notification" >
-        <div class="close-sedding">
-            <i class="fas fa-times"></i>
-        </div>
-    </div>
 
 {{--    <div class="menu-side-item" style="">--}}
 {{--        <a href="#" class=" go-top" style="display: inline;">--}}
@@ -113,7 +106,8 @@
     @include('theme_3.frontend.widget.modal.__success_charge_atm')
     @include('theme_3.frontend.widget.modal.__success_wallet_card')
     <script src="/assets/frontend/theme_3/js/js_phu/purchase_card.js?v={{time()}}"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/modal_sedding.js?v={{time()}}"></script>
+    <script src="https://cdnjs.com/libraries/handlebars.js"></script>
+    <script src="https://github.com/wycats/handlebars.js"></script>
     <script src="/assets/frontend/theme_3/js/charge/charge_home.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick-random.js?v={{time()}}"></script>
     @if(\App\Library\AuthFrontendCustom::check())
