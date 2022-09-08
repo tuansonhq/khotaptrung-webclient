@@ -85,6 +85,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/dich-vu', [ServiceController::class, "getList"]);
                 Route::get('/dich-vu/{slug}', [ServiceController::class, "getDetail"]);
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);
+                Route::get('/minigame', [\App\Http\Controllers\Frontend\MinigameController::class , 'getCategory'])->name('getCategory');
+                Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
+                Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
+                Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
             });
             Route::get('/show-bot', [ServiceController::class , "showBot"]);
             Route::get('/lich-su-tra-gop',function(){
@@ -97,9 +101,7 @@ Route::group(array('middleware' => ['theme']) , function (){
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
                 Route::group(['middleware' => ['intend']], function (){
 
-                    Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
-                    Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
-                    Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
+
                     Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
                     Route::get('/mua-the-{card}-{value}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showDetailCard'])->name('showDetailCard');
                     Route::get('/mua-the-{card}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showListCard'])->name('showListCard');
@@ -235,7 +237,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::post('/postwithdrawitemajax-{game_type}',[\App\Http\Controllers\Frontend\MinigameController::class,'sendWithDrawItem']);
 
                 Route::group(['middleware' => ['intend']], function () {
-                    Route::get('/minigame', [\App\Http\Controllers\Frontend\MinigameController::class , 'getCategory'])->name('getCategory');
+
                     Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])->name('getIndex');
 
                 });
