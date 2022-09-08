@@ -1,4 +1,4 @@
-@if(isset($data) && count($data) > 0)
+@if(isset($datacate) && count($datacate) > 0)
 
     <div class="col-lg-3 col-md-12 col-xs-12">
         <div class="news_content_category">
@@ -10,14 +10,14 @@
                 <li><i class="fas fa-chevron-right"></i> <a href="/tin-tuc" class="btn-tatca">
                         @php
                             $count = 0;
-                            foreach ($data as $val){
+                            foreach ($datacate as $val){
                                 $count = $count + $val->count_item;
                             }
                         @endphp
                         Tất cả ({{ $count }})</a>
                 </li>
 
-                @foreach($data as $val)
+                @foreach($datacate as $val)
                     <li><i class="fas fa-chevron-right"></i> <a href="/tin-tuc/{{ $val->slug }}" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item }})</a> </li>
                 @endforeach
             </ul>
