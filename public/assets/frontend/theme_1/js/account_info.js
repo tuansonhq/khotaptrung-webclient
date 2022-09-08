@@ -200,5 +200,10 @@ $(document).ready(function(){
         return text.slice(0, count) + (text.length > count ? "..." : "");
     }
 
+
+    // let config =  JSON.parse($('#array-auto').val());
+
+    // $('#content').autoLink(config);
+
 });
 
