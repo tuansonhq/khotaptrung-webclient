@@ -668,6 +668,7 @@ class MinigameController extends Controller
             return response()->json(['status'=>'LOGIN',]);
         }
     }
+
     public function postWithdrawItemAjax(Request $request){
         try{
             if(empty(Session::get('jwt'))){
