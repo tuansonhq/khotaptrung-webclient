@@ -11,11 +11,12 @@
                     @php
                         $count = 0;
                         foreach ($data as $val){
-                            $count = $count + $val->count_item;
+                            $count = $count + $val->count_item??0;
                         }
                     @endphp
                  Tất cả ({{ $count }})</a>
             </li>
+
                 @foreach($data as $val)
                     <li><i class="fas fa-chevron-right"></i> <a href="/tin-tuc/{{ $val->slug }}" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item??0 }})</a> </li>
                 @endforeach
