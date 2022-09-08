@@ -77,9 +77,11 @@ $(document).ready(function(e) {
                 success: function(data) {
                     if (data.status == 4) {
                         location.href='/login?return_url='+window.location.href;
+                        return;
                     } else if (data.status == 3) {
                         roll_check = true;
-                        $('#naptheModal').modal('show')
+                        $('#naptheModal').modal('show');
+                        return;
                     } else if (data.status == 0) {
                         roll_check = true;
                         $('#noticeModal .content-popup').text(data.msg);

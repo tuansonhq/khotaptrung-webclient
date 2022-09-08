@@ -138,6 +138,7 @@
                             </div>
                             @break
                             @case('slotmachine5')
+
                             <div class="rotation">
                                 <div class="item_play_spin_five_record" style="background-image: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}})" >
                                     <div class="item_five_record_inner">
@@ -151,6 +152,7 @@
                             </div>
                             @break
                             @case('squarewheel')
+
                             <div class="item_square" style="display: flex; flex-wrap: wrap;" >
                                 <table id="squaredesktop" class="square">
                                     <tr>
@@ -196,6 +198,7 @@
                             @case('smashwheel')
                             @case('rungcay')
                             @case('gieoque')
+
                             <div class="rotation">
                                 <div class="rotation-button rotation-button-quanhuy" id="start-played">
                                     <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="">
