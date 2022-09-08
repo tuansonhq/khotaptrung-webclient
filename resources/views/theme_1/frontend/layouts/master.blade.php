@@ -80,7 +80,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/sweetalert.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
-
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/auto-link.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
@@ -193,6 +193,9 @@
 
 </head>
 <body>
+<input id="array-auto" type="hidden" value="{{ setting('sys_theme_auto_link') && setting('sys_theme_auto_link') != '' ? setting('sys_theme_auto_link') : '' }}">
+
+
 @if(setting('sys_google_tag_manager_body') != '')
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{setting('sys_google_tag_manager_body') }}"
