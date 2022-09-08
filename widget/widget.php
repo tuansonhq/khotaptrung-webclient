@@ -648,7 +648,7 @@ View::composer('frontend.widget.__menu__category__article', function ($view) {
         return $data = $result_Api->response_data->datacategory??null;
     });
 
-    return $view->with('data', $data);
+    return $view->with('data_category', $data);
 });
 
 View::composer('frontend.pages.article.widget.__danh__muc', function ($view) {

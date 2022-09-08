@@ -457,7 +457,12 @@ $(document).ready(function (e) {
     //
     //     $('#successWalletCardModal').modal('show');
     // })
+    // Fancybox.defaults.infinite = 0;
     Fancybox.bind('[data-fancybox="gallerycoverDetail"]', {
+        infinite: true,
+        thumbs : {
+            autoStart : true,
+        },
         dragToClose: true,
         animated: true,
         closeButton: "top",
@@ -466,9 +471,14 @@ $(document).ready(function (e) {
             zoom: false,
             // zoom: 200
         },
-
+        caption: function (fancybox, carousel, slide) {
+            return (
+                `${slide.index + 1} / ${carousel.slides.length} <br />` + slide.caption
+            );
+        },
         slideshow: true,
         Toolbar: {
+
             display: [
                 { id: "prev", position: "center" },
                 { id: "counter", position: "center" },
