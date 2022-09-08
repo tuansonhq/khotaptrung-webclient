@@ -2930,7 +2930,7 @@ header nav.heading .header-container{
 }
 @keyframes heartbeat {
     50% {
-        transform: scale(1.1);
+        transform: scale(1.04);
     }
 }
 

@@ -2039,6 +2039,231 @@ a:hover .__icon.--path__custom:after {
     display: flex;
     flex-wrap: wrap;
 }
+
+#modal-withdraw-items .modal-dialog {
+    max-width: 925px;
+    margin: auto;
+}
+#modal-withdraw-items .modal-content {
+    border: unset;
+    border-radius: 12px;
+}
+#modal-withdraw-items .modal-header {
+    padding: 12px 24px;
+    border-bottom-color:#E4E5F0;
+}
+#modal-withdraw-items .modal-header .modal-title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.5;
+    color: #1B1D29;
+}
+#modal-withdraw-items .nav.nav-tabs {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    border-bottom: none;
+    padding: 12px 0;
+}
+#modal-withdraw-items .nav.nav-tabs .nav-item {
+    display: table-cell;
+    text-align: center;
+}
+#modal-withdraw-items .nav-tabs .nav-link {
+    border-bottom: 1px solid #E4E5F0;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #82869E;
+    font-weight: 400;
+}
+#modal-withdraw-items .nav-tabs .nav-link.active {
+    color: #F67600;
+    font-weight: 700;
+}
+#modal-withdraw-items .nav-tabs .nav-item.show .nav-link,
+#modal-withdraw-items .nav-tabs .nav-link.active,
+#modal-withdraw-items.nav-tabs .nav-link:focus,
+#modal-withdraw-items .nav-tabs .nav-link:hover {
+    border-color: transparent;
+    border-bottom: 2px solid #F67600;
+}
+#modal-withdraw-items .close {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+}
+#modal-withdraw-items .close:before {
+    content: '';
+    position: absolute;
+    width: 100%;height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url('/assets/frontend/theme_3/image/icons/close.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#modal-withdraw-items .card-body {
+    padding: 16px;
+}
+#modal-withdraw-items .tab-content {
+    padding: 12px 16px 16px 16px;
+}
+
+#modal-withdraw-items .swiper-withdraw {
+    overflow: hidden;
+    margin-top: 20px;
+}
+#modal-withdraw-items .button-primary {
+    width: 368px;
+    padding: 12px;
+    margin-top: 28px;
+}
+#modal-withdraw-items .input-form::placeholder {
+    color: #82869E;
+}
+#modal-withdraw-items .card {
+    border-radius: 8px;
+}
+
+#modal-withdraw-items .is-loading {
+    position: relative;
+}
+#modal-withdraw-items .is-loading:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,.75);
+    z-index: 15;
+}
+#modal-withdraw-items .is-loading:after {
+    content: 'Đang xử lí...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-weight: 700;
+    z-index: 16;
+}
+.item-thumb {
+    position: relative;
+    width: 60px;
+    height:60px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    align-self: center;
+}
+.item-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.label-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+    cursor: pointer;
+    width: 100%;height: 100%;
+    padding: 12px;
+}
+.label-item .item-info {
+    margin-left: 8px;
+}
+.select-withdraw {
+    margin-bottom: 16px;
+}
+[name='game_type']:checked + .label-item{
+    border: 1px solid #E4E5F0;
+    background-color: #FEF1E6;
+    border-radius: 8px;
+    padding: 11px;
+}
+
+#modal-withdraw-items hr {
+    border-top: 1px solid #E4E5F0;
+    margin: 16px -16px;
+}
+#wrap-game-type .swiper-slide {
+    height: auto;
+}
+.user-info {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -8px;
+}
+.user-info > div{
+    padding: 0 8px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#formDataService .card-block {
+    border-radius: 12px;
+}
+#formDataService .body-title-detail-ct {
+    padding-top: 0;
+}
+.existing-items {
+    background-image: url('/assets/frontend/theme_3/image/bg-item-prosession.png');
+    width: 100%;
+    height: 72px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    text-align: right;
+    padding: 12px;
+}
+.existing-items  .number_item {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #F67600;
+}
+/*Text*/
+.t-color-title {
+    color: #1B1D29;
+}
+.t-sub-1 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.5;
+}
+.t-sub-2 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+}
+.t-body-1 {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/*toogle password*/
+.toggle-password {
+    position: relative;
+}
+.toggle-password .eye {
+    position: absolute;
+    right: 8px;
+    width: 24px;height: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: url(/assets/frontend/theme_3/image/images_1/eye-hide.svg);
+    cursor: pointer;
+}
+.toggle-password .eye.show{
+    background-image: url(/assets/frontend/theme_3/image/images_1/eye-show.svg);
+}
+
+
 @media screen and (max-width: 1200px) {
 
     /* New layout news page */
@@ -2499,6 +2724,47 @@ a:hover .__icon.--path__custom:after {
     }
 }
 
+@media screen and (max-width: 992px) {
+    #modal-withdraw-items .modal-dialog {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+    #modal-withdraw-items .modal-dialog .modal-content {
+        overflow: hidden;
+    }
+    .user-info > div {
+        width: 100%
+    }
+    .user-info > div:not(:last-child) {
+        margin-bottom: 12px;
+    }
+    #modal-withdraw-items .nav-tabs .nav-link {
+        font-size: 16px;
+    }
+    #modal-withdraw-items .swiper-withdraw {
+
+    }
+    #modal-withdraw-items .card,
+    #modal-withdraw-items .card-body
+    {
+        all: unset;
+    }
+    .select-withdraw {
+        margin-bottom: 12px;
+    }
+    #modal-withdraw-items .swiper-withdraw {
+        overflow: visible;
+    }
+    #modal-withdraw-items .button-primary {
+        width: 100%;
+    }
+    .existing-items {
+        border-radius: 0;
+        margin-bottom: 12px;
+        text-align: right;
+        padding: 12px;
+    }
+}
 @media (max-width: 767px) {
     #content-store-card .cards__item.card__item-tag {
         width: 33.333%;

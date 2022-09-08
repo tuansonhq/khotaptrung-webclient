@@ -78,7 +78,6 @@ Route::group(array('middleware' => ['theme']) , function (){
 
 
             Route::group(['middleware' => ['intend']], function () {
-                Route::get('/', [HomeController::class , "index"])->middleware('intend');
 
                 Route::get('/tin-tuc', [ArticleController::class , "getList"]);
                 Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"]);
@@ -230,6 +229,9 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])->name('getWithdrawItem');
                 Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])->name('postWithdrawItem');
                 Route::post('/withdrawitemajax-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItemAjax'])->name('postWithdrawItemAjax');
+
+                Route::get('/withdrawitemajax-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItemAjax'])->name('getWithdrawItemAjax');
+                Route::post('/postwithdrawitemajax-{game_type}',[\App\Http\Controllers\Frontend\MinigameController::class,'sendWithDrawItem']);
 
                 Route::group(['middleware' => ['intend']], function () {
                     Route::get('/minigame', [\App\Http\Controllers\Frontend\MinigameController::class , 'getCategory'])->name('getCategory');
