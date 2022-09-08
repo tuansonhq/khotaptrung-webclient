@@ -1316,6 +1316,8 @@
 
 #article-detail-advertise {
     width: 100%;
+    position: sticky;
+    top: 150px;
 }
 
 #article-detail-advertise img {
