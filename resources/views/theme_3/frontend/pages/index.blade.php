@@ -25,48 +25,49 @@
         @endphp
 
         <div class="container container-fix">
-            @include('frontend.widget.__slider__banner')
-
             @foreach($data_widget as $key => $value)
                 @include('frontend.widget.'.$value.'',with(['title'=>$data_title[$key]]))
             @endforeach
         </div>
 
     @else
-        <div class="banner-home " >
-            @include('frontend.widget.__slider__banner')
-            <div class="banner-content">
-                <div class="container  container-fix" >
-                    <div class="d-flex justify-content-between">
-                        <div class="box-list-service d-g-lg-none">
-                            <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/service-page-icon.png" alt="" id="menu_service">Danh mục dịch vụ</p>
-                            <hr>
-                            @include('frontend.widget.__list_service')
-                        </div>
+{{--        <div class="banner-home " >--}}
+{{--            @include('frontend.widget.__slider__banner')--}}
+{{--            <div class="banner-content">--}}
+{{--                <div class="container  container-fix" >--}}
+{{--                    <div class="d-flex justify-content-between">--}}
+{{--                        <div class="box-list-service d-g-lg-none">--}}
+{{--                            <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/service-page-icon.png" alt="" id="menu_service">Danh mục dịch vụ</p>--}}
+{{--                            <hr>--}}
+{{--                            @include('frontend.widget.__list_service')--}}
+{{--                        </div>--}}
 
-                        @if(setting('sys_marquee'))
-                            <div class="rotation-notify-home text-slider  ">
-                                <img class="img-text-slider" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">
-                                <marquee class="rotation-marquee marquee-move">
+{{--                        @if(setting('sys_marquee'))--}}
+{{--                            <div class="rotation-notify-home text-slider  ">--}}
+{{--                                <img class="img-text-slider" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">--}}
+{{--                                <marquee class="rotation-marquee marquee-move">--}}
 
-                                    <div class="rotation-marquee-item marquee-item">
-                                        {!! setting('sys_marquee') !!}
-                                    </div>
-                                </marquee>
-                            </div>
-                        @endif
-                        <div class="box-list-top top-list d-g-lg-none">
-                            <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt="" id="menu_top_list"> Top nạp T{{Carbon\Carbon::now()->month}}</p>
+{{--                                    <div class="rotation-marquee-item marquee-item">--}}
+{{--                                        {!! setting('sys_marquee') !!}--}}
+{{--                                    </div>--}}
+{{--                                </marquee>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+{{--                        <div class="box-list-top top-list d-g-lg-none">--}}
+{{--                            <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt="" id="menu_top_list"> Top nạp T{{Carbon\Carbon::now()->month}}</p>--}}
 
-                            @include('frontend.widget.__top_nap_the')
+{{--                            @include('frontend.widget.__top_nap_the')--}}
 
-                        </div>
-                    </div>
+{{--                        </div>--}}
+{{--                    </div>--}}
 
-                </div>
-            </div>
-        </div>
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <div class="container container-fix">
+
+            @include('frontend.widget.__slider__banner__home')
+
             @include('frontend.widget.__list_serve_remark_mobile')
             {{--            Hot sale--}}
             @include('frontend.widget.__hotsale')
@@ -90,9 +91,15 @@
             @include('frontend.widget.__tin__tuc')
             @include('frontend.widget.__abount__us')
 
+
+
         </div>
     @endif
-
+    <div class="modal-sedding-notification sedding-notification-mobile" id="sedding-notification" >
+        <div class="close-sedding">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
 
 {{--    <div class="menu-side-item" style="">--}}
 {{--        <a href="#" class=" go-top" style="display: inline;">--}}
@@ -106,6 +113,7 @@
     @include('theme_3.frontend.widget.modal.__success_charge_atm')
     @include('theme_3.frontend.widget.modal.__success_wallet_card')
     <script src="/assets/frontend/theme_3/js/js_phu/purchase_card.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/modal_sedding.js?v={{time()}}"></script>
     <script src="/assets/frontend/theme_3/js/charge/charge_home.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick-random.js?v={{time()}}"></script>
     @if(\App\Library\AuthFrontendCustom::check())

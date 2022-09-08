@@ -32,9 +32,39 @@
         {{--End--}}
 
 
-        <div class="row flex-column-reverse flex-lg-row mx-0" id="card--body__news">
-            <div class="col-lg-8 px-0 pr-lg-3 mt-1 mt-lg-0" id="list-article">
-                <div class="card --custom p-3" id="new-article-update">
+        <div class="row" id="card--body__news">
+            <div class="col-12 col-lg-8" id="list-article">
+                <div class="card --custom" id="weeky-hot-games">
+                    <div class="card--header">
+                        <div class="card--header__title">
+                            Game hot trong tuần
+                        </div>
+                    </div>
+                    <div class="card--body">
+                        <div>
+                            <div class="swiper-container swiper-weekly-hot-games">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide" >
+                                        <a href="javascript:void(0);">
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/image_52.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <a href="javascript:void(0);">
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/image_52.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <a href="javascript:void(0);">
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/image_52.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card --custom p-3 d-none d-lg-block" id="new-article-update">
                     <div class="card--header">
                         <div class="card--header__title">
                             Mới cập nhật
@@ -43,7 +73,7 @@
                     <div class="card--body">
                         @if(isset($data) )
                             @foreach($data as $key=> $item)
-                                @if($key >= 4)
+                                @if($key >= 5)
                         <div class="article px-3">
                             <div class="row">
                                 <div class="col-4 col-lg-4 p-0">
@@ -95,6 +125,7 @@
                     @endif
                 </div>
             </div>
+
            @include('frontend.widget.__menu__category__article')
         </div>
     </div>

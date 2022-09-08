@@ -772,6 +772,11 @@ class MinigameController extends Controller
     }
 
     public function getCategory(Request $request){
+
+        if (theme('')->theme_key == "theme_1"){
+            return redirect('/');
+        }
+
         $url = '/minigame/get-list-minigame';
         $method = "GET";
         $dataSend = array();

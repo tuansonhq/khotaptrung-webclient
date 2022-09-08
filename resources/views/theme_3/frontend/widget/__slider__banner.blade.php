@@ -1,5 +1,5 @@
 <div class="ads-banner row box-product class_c_slider_banner" id="c_slider_banner">
-    <div class="banner-slide-v2 col-lg-9 col-md-12 swiper-general">
+    <div class="banner-slide-v2 col-lg-12 col-md-12 swiper-generalv2">
         <div class=" swiper swiper-banner brs-12">
             <div class="swiper-wrapper">
 
@@ -23,7 +23,7 @@
         </div>
         <div class="swiper-pagination"></div>
         <div class="banner-content">
-            <div class="container  " >
+            <div class="container">
                 <div class="d-flex justify-content-between">
                     @if(setting('sys_marquee'))
                         <div class="rotation-notify-home text-slider  rotation-notify-home-fix">
@@ -43,21 +43,6 @@
         </div>
     </div>
 
-    <div class="col-md-3 d-none d-lg-flex flex-column justify-content-between swiper-general_right" style="min-height: 100%">
-        <div class="ads-banner-second brs-12">
-            <a href="">
-                <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner01.png" alt="" >
-            </a>
-
-        </div>
-        <div class="ads-banner-second brs-12">
-            <a href="">
-                <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner02.png" alt="" >
-
-            </a>
-        </div>
-
-    </div>
 </div>
 
 

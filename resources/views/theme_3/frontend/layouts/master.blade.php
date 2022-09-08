@@ -146,26 +146,6 @@
         @yield('content')
     </div>
 </div>
-
-
-<div class="modal-sedding-notification" id="myDiv" >
-    <div class="modal-sedding-image">
-        <img src="https://recmiennam.com/wp-content/uploads/2018/01/top-hinh-nen-game-dep-nhat-full-hd-3.jpg" alt="">
-    </div>
-    <div class="close-sedding">
-        <i class="fas fa-times"></i>
-    </div>
-    <div class="">
-        <div class="modal-sedding-title">
-            Acc Liên Minh Tự chọn
-        </div>
-        <div class="modal-sedding-content">
-            Một khách hàng đã thêm vào giỏ hàng cách đây 44 phút
-        </div>
-        <span>150.000đ</span>
-    </div>
-</div>
-
 @if(Request::is('/'))
     <style>
         @media (max-width: 992px){
@@ -220,7 +200,6 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/main.js?v={{time()}}"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/modal_sedding.js?v={{time()}}"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper-banner.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/moment.js"></script>
