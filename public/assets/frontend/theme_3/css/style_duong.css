@@ -141,3 +141,8 @@
 .modal-sedding{
     margin-left: 12px;
 }
+@media (max-width: 992px) {
+    .sedding-notification-mobile{
+        display: none;
+    }
+}
