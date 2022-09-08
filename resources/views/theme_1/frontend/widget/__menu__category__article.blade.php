@@ -8,17 +8,24 @@
         </div>
         <ul class="news_content_category_menu">
             <li><i class="fas fa-chevron-right"></i> <a href="/tin-tuc" class="btn-tatca">
-                    @php
-                        $count = 0;
-                        foreach ($data as $val){
-                            $count = $count + $val->count_item??0;
-                        }
-                    @endphp
-                 Tất cả ({{ $count }})</a>
+{{--                    @php--}}
+{{--                        $count = 0;--}}
+{{--                        foreach ($data as $val){--}}
+{{--                            $count = $count + $val->count_item??0;--}}
+{{--                        }--}}
+{{--                    @endphp--}}
+                 Tất cả
+{{--                    ({{ $count }})--}}
+                </a>
             </li>
 
                 @foreach($data as $val)
-                    <li><i class="fas fa-chevron-right"></i> <a href="/tin-tuc/{{ $val->slug }}" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item??0 }})</a> </li>
+                    <li><i class="fas fa-chevron-right"></i> <a href="/tin-tuc/{{ $val->slug }}" class="btn-slug" data-slug="{{ $val->slug }}">
+
+                            {{ $val->title }}
+{{--                            ({{ $val->count_item??0 }})--}}
+                        </a>
+                    </li>
                 @endforeach
         </ul>
     </div>
