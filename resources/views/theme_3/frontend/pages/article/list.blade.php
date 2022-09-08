@@ -126,7 +126,7 @@
                 </div>
             </div>
 
-           @include('frontend.widget.__menu__category__article')
+           @include('frontend.widget.__menu__category__article_theme_3')
         </div>
     </div>
 @endsection
