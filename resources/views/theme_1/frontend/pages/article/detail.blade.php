@@ -56,7 +56,7 @@
                             </div>
                         </div>
                     </div>
-                    @include('frontend.widget.__menu__category__article')
+                    @include('frontend.pages.article.widget.__danh__muc')
                 </div>
             </div>
         </div>
