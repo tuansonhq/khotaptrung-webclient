@@ -16,8 +16,9 @@
                     @endphp
                  Tất cả ({{ $count }})</a>
             </li>
+
                 @foreach($data as $val)
-                    <li><i class="fas fa-chevron-right"></i> <a href="/tin-tuc/{{ $val->slug }}" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item??0 }})</a> </li>
+                    <li><i class="fas fa-chevron-right"></i> <a href="/tin-tuc/{{ $val->slug }}" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }}</a> </li>
                 @endforeach
         </ul>
     </div>
