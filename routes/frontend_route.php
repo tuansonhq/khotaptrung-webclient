@@ -83,6 +83,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"]);
                 Route::get('/dich-vu', [ServiceController::class, "getList"]);
                 Route::get('/dich-vu/{slug}', [ServiceController::class, "getDetail"]);
+                Route::get('/mua-acc', [AccController::class , "getCategory"]);
             });
             Route::get('/show-bot', [ServiceController::class , "showBot"]);
             Route::get('/lich-su-tra-gop',function(){
@@ -94,9 +95,7 @@ Route::group(array('middleware' => ['theme']) , function (){
             });
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
                 Route::group(['middleware' => ['intend']], function (){
-                    Route::get('/', [HomeController::class , "index"])->middleware('intend');
 
-                    Route::get('/mua-acc', [AccController::class , "getCategory"]);
                     Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
                     Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
                     Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
