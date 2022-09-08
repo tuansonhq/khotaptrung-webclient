@@ -24,6 +24,7 @@ $(document).ready(function(e){
         $('.boxflip .flip-box-front').addClass('img_remove');
         $('.num-play-try').hide();
         $('.play').hide();
+
         //$('.continue').hide();
         $('#type_play').val('real');
     })
@@ -305,6 +306,7 @@ $(document).ready(function(e){
                     $('#noticeModal .content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
                     $('#noticeModal').modal('show');
                     roll_check = true;
+                    $('.play').show();
                 }
             })
         }

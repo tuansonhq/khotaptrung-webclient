@@ -57,7 +57,7 @@ $(document).ready(function(e) {
     $('body').delegate('#start-played', 'click', function() {
 
         if (roll_check) {
-            fakeLoop();
+            // fakeLoop();
             roll_check = false;
             saleoffpass = $("#saleoffpass").val();
             typeRoll = "real";
