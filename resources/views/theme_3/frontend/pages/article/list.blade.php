@@ -38,7 +38,6 @@
                     <div class="card--header">
                         <div class="card--header__title">
                             Game hot trong tuần
-                            
                         </div>
                     </div>
                     <div class="card--body">
