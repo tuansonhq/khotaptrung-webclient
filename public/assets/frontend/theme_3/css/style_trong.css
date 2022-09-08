@@ -1210,7 +1210,7 @@
     font-size: 20px;
 }
 
-#article-related-minigames .acc-related:last-child {
+#article-related-minigames .acc-related:last-child, #article-giftcode .acc-related:last-child  {
     border-bottom: none;
 }
 
