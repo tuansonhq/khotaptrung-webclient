@@ -137,6 +137,7 @@
     right: -8px;
     padding: 0 6px;
     border-radius: 100%;
+    box-shadow: 0 4px 32px rgb(0 0 0 / 8%);
 }
 .modal-sedding{
     margin-left: 12px;
@@ -145,4 +146,9 @@
     .sedding-notification-mobile{
         display: none;
     }
+}
+ /* fix phan dich vu*/
+.body-title-detail{
+    padding-left: 8px;
+    padding-right: 8px;
 }
