@@ -1,7 +1,9 @@
 :root {
     --filter-primary-color: invert(48%) sepia(23%) saturate(4446%) hue-rotate(5deg) brightness(101%) contrast(101%);
 }
-.modal-open{
+.modal-open,
+.modal.show
+{
     overflow: auto;
     padding-right:0 !important;
 }

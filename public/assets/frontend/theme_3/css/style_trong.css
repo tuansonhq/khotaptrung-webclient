@@ -1897,11 +1897,47 @@ a:hover .__icon.--path__custom:after {
     overflow: hidden;
     margin-top: 20px;
 }
+#modal-withdraw-items .button-primary {
+    width: 368px;
+    padding: 12px;
+    margin-top: 28px;
+}
+#modal-withdraw-items .input-form::placeholder {
+    color: #82869E;
+}
+#modal-withdraw-items .card {
+    border-radius: 8px;
+}
+
+#modal-withdraw-items .is-loading {
+    position: relative;
+}
+#modal-withdraw-items .is-loading:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,.75);
+    z-index: 15;
+}
+#modal-withdraw-items .is-loading:after {
+    content: 'Đang xử lí...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-weight: 700;
+    z-index: 16;
+}
 .item-thumb {
     position: relative;
     width: 60px;
     height:60px;
     border-radius: 4px;
+    margin-bottom: 8px;
+    align-self: center;
 }
 .item-thumb img {
     width: 100%;
@@ -1910,30 +1946,43 @@ a:hover .__icon.--path__custom:after {
 }
 .label-item {
     display: flex;
+    flex-direction: column;
     margin-bottom: 0;
     cursor: pointer;
+    width: 100%;height: 100%;
+    padding: 12px;
 }
 .label-item .item-info {
     margin-left: 8px;
 }
-[name='game_type']:checked + .label-item .item-thumb:after{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 1px solid #F67600;
-    background-color: rgba(246, 118, 0, 0.6);
-    border-radius: 4px;
+.select-withdraw {
+    margin-bottom: 16px;
 }
-[name='game_type']:checked + .label-item .item-info {
-    color: #F67600;
+[name='game_type']:checked + .label-item{
+    border: 1px solid #E4E5F0;
+    background-color: #FEF1E6;
+    border-radius: 8px;
+    padding: 11px;
 }
 
 #modal-withdraw-items hr {
     border-top: 1px solid #E4E5F0;
     margin: 16px -16px;
+}
+#wrap-game-type .swiper-slide {
+    height: auto;
+}
+.user-info {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -8px;
+}
+.user-info > div{
+    padding: 0 8px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 #formDataService .card-block {
     border-radius: 12px;
@@ -1961,6 +2010,25 @@ a:hover .__icon.--path__custom:after {
     font-size: 14px;
     line-height: 1.5;
 }
+
+/*toogle password*/
+.toggle-password {
+    position: relative;
+}
+.toggle-password .eye {
+    position: absolute;
+    right: 8px;
+    width: 24px;height: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: url(/assets/frontend/theme_3/image/images_1/eye-hide.svg);
+    cursor: pointer;
+}
+.toggle-password .eye.show{
+    background-image: url(/assets/frontend/theme_3/image/images_1/eye-show.svg);
+}
+
+
 @media screen and (max-width: 1200px) {
     /*Mdoal recharge*/
     #rechargeModal .list-card-deno .card-item {
@@ -2342,6 +2410,41 @@ a:hover .__icon.--path__custom:after {
     }
 }
 
+@media screen and (max-width: 992px) {
+    #modal-withdraw-items .modal-dialog {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+    #modal-withdraw-items .modal-dialog .modal-content {
+        overflow: hidden;
+    }
+    .user-info > div {
+        width: 100%
+    }
+    .user-info > div:not(:last-child) {
+        margin-bottom: 12px;
+    }
+    #modal-withdraw-items .nav-tabs .nav-link {
+        font-size: 16px;
+    }
+    #modal-withdraw-items .swiper-withdraw {
+
+    }
+    #modal-withdraw-items .card,
+    #modal-withdraw-items .card-body
+    {
+        all: unset;
+    }
+    .select-withdraw {
+        margin-bottom: 12px;
+    }
+    #modal-withdraw-items .swiper-withdraw {
+        overflow: visible;
+    }
+    #modal-withdraw-items .button-primary {
+        width: 100%;
+    }
+}
 @media (max-width: 767px) {
     #content-store-card .cards__item.card__item-tag {
         width: 33.333%;
