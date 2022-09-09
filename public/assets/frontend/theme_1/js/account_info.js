@@ -125,7 +125,8 @@ $(document).ready(function(){
 
                 }
                 if(data.status === "ERROR"){
-                    alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
+                    console.log('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
+
                 }
                 if(data.status == true){
 
@@ -183,7 +184,7 @@ $(document).ready(function(){
                 }
             },
             error: function (data) {
-                alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý(account_info)!')
+                console.log('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý(account_info)!')
                 return;
             },
             complete: function (data) {

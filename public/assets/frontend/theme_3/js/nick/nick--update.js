@@ -192,14 +192,14 @@ function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',st
                 $("#account_data").html(res.data);
 
                 $('.nick_total').html('');
-                $('.nick_total').html('( '+ res.nick_total +' nick )');
+                $('.nick_total').html('('+ res.nick_total +' sản phẩm)');
 
             }else {
                 let html = '';
                 html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + res.message + '</span></div></div>';
                 $("#account_data").html(html);
                 $('.nick_total').html('');
-                $('.nick_total').html('( '+ 0 +' nick )');
+                $('.nick_total').html('('+ 0 +' sản phẩm)');
             }
         },
         error: function (data) {

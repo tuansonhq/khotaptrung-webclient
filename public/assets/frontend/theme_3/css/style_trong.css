@@ -1219,6 +1219,16 @@
     border-bottom: 1px solid #E4E5F0;
 }
 
+.acc-related:hover .acc-related--info-name a {
+    color: var(--primary-color);
+    transition: all ease .2s;
+}
+
+.acc-related:hover .acc-related--thumbnail a:after {
+    background-color: var(--primary-color);
+    transition: all ease .2s;
+}
+
 .acc-related--thumbnail-container {
     padding-right: 12px;
 }
@@ -1263,7 +1273,7 @@
     padding-left: 6px;
 }
 
-.acc-related--info-name {
+.acc-related--info-name a {
     color: var(--text-black-color);
     font-size: 16px;
     margin-bottom: 4px;
@@ -1878,12 +1888,6 @@ a:hover .__icon.--path__custom:after {
 #rechargeModal .list-card-deno input:checked + .card-label span {
     color: var(--primary-color);
 }
-/*text*/
-.t-sub-2 {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 1.5;
-}
 
 /* Small Screen */
 #modal-form-charge .modal-body {
@@ -2011,6 +2015,11 @@ a:hover .__icon.--path__custom:after {
     color: var(--primary-color);
 }
 
+.sub-article:hover .sub-article--thumbnail a:after {
+    background-color: var(--primary-color);
+    transition: all ease .2s;
+}
+
 /* width */
 .body-title-detail-checkbox-ct {
     padding-right: 6px;
@@ -2040,24 +2049,58 @@ a:hover .__icon.--path__custom:after {
     flex-wrap: wrap;
 }
 
-#modal-withdraw-items .modal-dialog {
+#modal-withdraw-items .modal-dialog,
+#modal-spin-bonus .modal-dialog
+{
     max-width: 925px;
     margin: auto;
 }
-#modal-withdraw-items .modal-content {
+#modal-withdraw-items .modal-content,
+#modal-spin-bonus .modal-content
+{
     border: unset;
     border-radius: 12px;
 }
-#modal-withdraw-items .modal-header {
+#modal-withdraw-items .modal-header,
+#modal-spin-bonus .modal-header
+{
     padding: 12px 24px;
     border-bottom-color:#E4E5F0;
 }
-#modal-withdraw-items .modal-header .modal-title {
+#modal-withdraw-items .modal-header .modal-title,
+#modal-spin-bonus .modal-header .modal-title
+{
     font-weight: 700;
     font-size: 24px;
     line-height: 1.5;
     color: #1B1D29;
 }
+
+#modal-withdraw-items .close,
+#modal-spin-bonus .close
+{
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+}
+#modal-withdraw-items .close:before,
+#modal-spin-bonus .close:before
+{
+    content: '';
+    position: absolute;
+    width: 100%;height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url('/assets/frontend/theme_3/image/icons/close.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 #modal-withdraw-items .nav.nav-tabs {
     display: table;
     table-layout: fixed;
@@ -2087,26 +2130,6 @@ a:hover .__icon.--path__custom:after {
     border-color: transparent;
     border-bottom: 2px solid #F67600;
 }
-#modal-withdraw-items .close {
-    position: absolute;
-    top: 18px;
-    right: 24px;
-    width: 24px;
-    height: 24px;
-    padding: 0;
-    margin: 0;
-    opacity: 1;
-}
-#modal-withdraw-items .close:before {
-    content: '';
-    position: absolute;
-    width: 100%;height: 100%;
-    top: 0;
-    left: 0;
-    background-image: url('/assets/frontend/theme_3/image/icons/close.png');
-    background-repeat: no-repeat;
-    background-position: center;
-}
 #modal-withdraw-items .card-body {
     padding: 16px;
 }
@@ -2130,10 +2153,10 @@ a:hover .__icon.--path__custom:after {
     border-radius: 8px;
 }
 
-#modal-withdraw-items .is-loading {
+.is-loading {
     position: relative;
 }
-#modal-withdraw-items .is-loading:before {
+.is-loading:before {
     content: '';
     position: absolute;
     top: 0;
@@ -2143,7 +2166,7 @@ a:hover .__icon.--path__custom:after {
     background-color: rgba(255,255,255,.75);
     z-index: 15;
 }
-#modal-withdraw-items .is-loading:after {
+.is-loading:after {
     content: 'Đang xử lí...';
     position: absolute;
     top: 50%;
@@ -2213,6 +2236,8 @@ a:hover .__icon.--path__custom:after {
 }
 .existing-items {
     background-image: url('/assets/frontend/theme_3/image/bg-item-prosession.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100%;
     height: 72px;
     border-radius: 8px;
@@ -2245,7 +2270,6 @@ a:hover .__icon.--path__custom:after {
     font-size: 14px;
     line-height: 1.5;
 }
-
 /*toogle password*/
 .toggle-password {
     position: relative;
@@ -2263,7 +2287,78 @@ a:hover .__icon.--path__custom:after {
     background-image: url(/assets/frontend/theme_3/image/images_1/eye-show.svg);
 }
 
+/* Modal Lich Su quay thuong*/
+#modal-spin-bonus .history-search {
+    padding: 12px 16px;
+}
 
+#modal-spin-bonus .section-history-filter {
+    border-bottom: 1px solid #E4E5F0;
+    padding-bottom: 16px;
+}
+#modal-spin-bonus .section-history-filter .row {
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#modal-spin-bonus .section-history-filter .row [class*='col-'] {
+    padding-right: 6px;
+    padding-left: 6px;
+}
+#modal-spin-bonus .section-history-filter .row [class*='col-']:last-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+#modal-spin-bonus .section-history-filter .row [class*='col-']:last-child .btn {
+    width: calc(50% - 6px);
+    height: 40px;
+}
+#modal-spin-bonus .section-history-filter .row [class*='col-']:last-child .btn:last-child:nth-child(odd) {
+    width: 100%;
+}
+#modal-spin-bonus .section-table-history {
+    padding: 16px;
+}
+#modal-spin-bonus .section-table-history table {
+    width: 100%;
+}
+#modal-spin-bonus .section-table-history .wrap-table {
+    border: 1px solid #E4E5F0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+#modal-spin-bonus table tr:first-child {
+    background-color: #FBFBFD;
+    border-bottom: 1px solid #E4E5F0;
+}
+#modal-spin-bonus table tr:first-child th:first-child,
+#modal-spin-bonus table td:first-child{
+    padding-left: 12px;
+}
+#modal-spin-bonus table tr:nth-child(odd),
+#modal-spin-bonus table tr:nth-child(even):hover
+{
+    background: #FBFBFD;
+}
+#modal-spin-bonus table tr:first-child th:last-child,
+#modal-spin-bonus table td:last-child{
+    padding-right: 12px;
+}
+#modal-spin-bonus table tr:first-child th {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #1B1D29;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+#modal-spin-bonus table td {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
 @media screen and (max-width: 1200px) {
 
     /* New layout news page */
@@ -2272,7 +2367,7 @@ a:hover .__icon.--path__custom:after {
         padding-right: 15px;
         margin-bottom: 12px;
     }
-    
+
     #article-detail-right {
         padding-left: 15px;
     }
@@ -2764,6 +2859,12 @@ a:hover .__icon.--path__custom:after {
         text-align: right;
         padding: 12px;
     }
+    #content-store-card .card .card--header{
+        border-bottom: none;
+    }
+    #content-store-card .card .card--header .text-title{
+        margin: 0;
+    }
 }
 @media (max-width: 767px) {
     #content-store-card .cards__item.card__item-tag {
@@ -2779,4 +2880,15 @@ a:hover .__icon.--path__custom:after {
 }
 #nick-random-home-wrap .loader {
     position: relative;
+}
+
+
+/*Chỉ cho desktop*/
+@media screen and (min-width: 992px) {
+    #modal-spin-bonus .section-history-filter .row [class*='col-']:nth-child(1),
+    #modal-spin-bonus .section-history-filter .row [class*='col-']:nth-child(2),
+    #modal-spin-bonus .section-history-filter .row [class*='col-']:nth-child(3)
+    {
+        margin-bottom: 12px;
+    }
 }

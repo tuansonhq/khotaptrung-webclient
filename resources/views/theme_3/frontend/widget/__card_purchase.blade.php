@@ -2,7 +2,7 @@
     <div class="row" id="screen--first">
         <div class="col-12 col-lg-12 col-xl-8 px-lg-3 section--type__card buy-card">
             <div class="card --custom" style="min-height: 100%">
-                <div class="card--header">
+                <div class="card--header d-block">
                     <div class="card--header__title">
                         <div class="title__icon"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/muathegiare.svg" alt=""></div>
                         <h2 class="text-title">{{ $title??'Mua thẻ nhanh' }}</h2>
@@ -129,9 +129,9 @@
                             </span>
                         </div>
                         @if (App\Library\AuthCustom::check())
-                            <button type="button" class="btn -primary btn-big js_step" data-go_to="step2" data-toggle="modal" data-target="#modal--confirm__payment" id="btn-confirm">Chọn mua</button>
+                            <button type="button" class="btn -primary btn-big js_step" id="btn-confirm" data-go_to="step2" data-toggle="modal" data-target="#modal--confirm__payment" id="btn-confirm">Chọn mua</button>
                         @else
-                            <button type="button" class="btn -primary btn-big js_step" onclick="openLoginModal();" style="margin-top: 16px;">Chọn mua</button>
+                            <button type="button" class="btn -primary btn-big js_step" id="btn-confirm" onclick="openLoginModal();" style="margin-top: 16px;">Chọn mua</button>
                         @endif
                     </div>
                 </div>
@@ -375,7 +375,9 @@
                         <div class="col-md-12 col-6 modal-footer-success-col-right-ct">
                             <div class="row marginauto modal-footer-success-row-ct">
                                 <div class="col-md-12 left-right">
-                                    <a href="/nap-the" class="button-bg-ct" style="display: flex;justify-content: center"><span>Nạp thẻ</span></a>
+                                    <a href="javascript:void(0)" class="button-bg-ct"
+                                       style="display: flex;justify-content: center" data-dismiss="modal"><span>Đóng</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
