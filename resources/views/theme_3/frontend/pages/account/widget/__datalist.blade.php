@@ -247,7 +247,7 @@
                                                                         <button class="button-default-ct btn-open-recharge" type="button" data-tab="1" data-dismiss="modal">Nạp tiền</button>
                                                                     @endif
                                                                 @else
-                                                                    <button class="button-default-ct" type="button" onclick="openLoginModal();">Đăng nhập</button>
+                                                                    <button class="button-default-ct" data-dismiss="modal" type="button" onclick="openLoginModal();">Đăng nhập</button>
                                                                 @endif
                                                             </div>
                                                         </div>
