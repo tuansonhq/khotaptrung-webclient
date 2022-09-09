@@ -381,7 +381,7 @@ $(document).ready(function () {
             $('.discount--value').text(`${100 - discountCardValue}%`);
         }
         
-        if (isNaN(formatNumber( calculatePrice() ))) {
+        if (isNaN(calculatePrice())) {
             $('.price--total__value').text(`0 đ`);
         } else {
             $('.price--total__value').text(`${formatNumber( calculatePrice() )} đ`);
