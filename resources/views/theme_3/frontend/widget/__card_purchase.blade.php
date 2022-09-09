@@ -2,7 +2,7 @@
     <div class="row" id="screen--first">
         <div class="col-12 col-lg-12 col-xl-8 px-lg-3 section--type__card buy-card">
             <div class="card --custom" style="min-height: 100%">
-                <div class="card--header">
+                <div class="card--header d-block">
                     <div class="card--header__title">
                         <div class="title__icon"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/muathegiare.svg" alt=""></div>
                         <h2 class="text-title">{{ $title??'Mua thẻ nhanh' }}</h2>
