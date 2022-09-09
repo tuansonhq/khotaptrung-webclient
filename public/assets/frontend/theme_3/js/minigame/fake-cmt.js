@@ -100,7 +100,7 @@
                 };
                 this.$chatHistoryList.append(templateResponse(contextResponse));
                 this.scrollToBottom();
-            }.bind(this), 5000);
+            }.bind(this), 30000);
         },
         addMessage: function () {
             this.messageToSend = this.$textarea.val();
