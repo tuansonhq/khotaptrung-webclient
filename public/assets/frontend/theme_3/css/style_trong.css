@@ -2272,7 +2272,7 @@ a:hover .__icon.--path__custom:after {
         padding-right: 15px;
         margin-bottom: 12px;
     }
-    
+
     #article-detail-right {
         padding-left: 15px;
     }
@@ -2763,6 +2763,12 @@ a:hover .__icon.--path__custom:after {
         margin-bottom: 12px;
         text-align: right;
         padding: 12px;
+    }
+    #content-store-card .card .card--header{
+        border-bottom: none;
+    }
+    #content-store-card .card .card--header .text-title{
+        margin: 0;
     }
 }
 @media (max-width: 767px) {
