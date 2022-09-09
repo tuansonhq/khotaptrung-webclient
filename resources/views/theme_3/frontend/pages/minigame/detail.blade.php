@@ -15,6 +15,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_phu/spin.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/fake-cmt.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-rut-vp.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-history-spin-bonus.js?v={{time()}}"></script>
     {{--
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/main.js"></script>
     --}}
@@ -176,44 +177,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="history-table-container px-0 mt-3">
-                                        <div class="history-table">
-                                            <div class="history-head row no-gutters">
-                                                <div class="history-head-item py-0 item-left col-2">
-                                                    <p>
-                                                        Thời gian
-                                                    </p>
-                                                </div>
-                                                <div class="history-head-item py-0 item-left col-2">
-                                                    <p>
-                                                        ID
-                                                    </p>
-                                                </div>
-                                                <div class="history-head-item py-0 item-right col-3">
-                                                    <p>
-                                                        Số vật phẩm
-                                                    </p>
-                                                </div>
-                                                <div class="history-head-item py-0 item-right col-3">
-                                                    <p>
-                                                        Thông báo
-                                                    </p>
-                                                </div>
-                                                <div class="history-head-item py-0 item-right col-2">
-                                                    <p>
-                                                        Trạng thái
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="history-content">
-                                                <div class="history-item empty-state row no-gutters">
-                                                    <p>Tài khoản của quý khách chưa phát sinh giao dịch.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
+                                <div class="col-md-12 px-0" id="table-history-withdraw">
 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -221,8 +188,39 @@
             </div>
         </div>
     </div>
-    {{--         Vong quay vong vong      --}}
+    <!--  Modal Lịch sử quay -->
+    <div class="modal fade" id="modal-spin-bonus" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Lịch sử quay thưởng</h5>
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="history-search">
+                        <div class="t-sub-2">
+                            Tìm kiếm
+                        </div>
+                        <div class="row marginauto body-form-search-ct">
+                            <div class="col-10 px-0">
+                                <input autocomplete="off" type="text" name="search" class="input-search-log-ct search w-100" placeholder="Nhập từ khóa">
+                                <img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/search.png" alt="">
+                            </div>
+                            <div class="col-2 body-form-search-button-ct media-web">
+                                <button type="submit" class="timkiem-button-ct btn-timkiem w-100" style="position: relative">
+                                    <span class="span-timkiem">Tìm kiếm</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="data-ajax-render" data-id="{{ @$result->group->id }}">
 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{--         Vong quay vong vong      --}}
     <div class="container_page container">
         <section class="breadcrumb-container">
             <ul class="breadcrumb breadcrumb-arrow">
@@ -304,7 +302,7 @@
                             @case('rubywheel')
                             <div class="rotation">
                                 <div class="item_spin ">
-                                    <div class="rotation-button ani-zoom " id="start-played">
+                                    <div class="rotation-button ani-zoom " {{ \App\Library\AuthCustom::check() ?  'id=start-played' : 'onclick=openLoginModal();'}} >
                                         <img onerror="imgError(this)" class="lazy"
                                              src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}"
                                              alt="{{$result->group->title}}">
@@ -421,7 +419,7 @@
                                         <td colspan="3">
                                             <div class="outer-btn text-center">
                                                 <div class="play btn m-btn m-btn--custom m-btn--icon m-btn--pill"
-                                                     style="" id="start-played">
+                                                     style="" {{ \App\Library\AuthCustom::check() ?  'id=start-played' : 'onclick=openLoginModal();'}}>
                                                     <img onerror="imgError(this)"
                                                          src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}"
                                                          alt="" style="">
@@ -476,7 +474,7 @@
                             @case('gieoque')
 
                             <div class="rotation">
-                                <div class="rotation-button rotation-button-quanhuy" id="start-played">
+                                <div class="rotation-button rotation-button-quanhuy" {{ \App\Library\AuthCustom::check() ?  'id=start-played' : 'onclick=openLoginModal();'}}>
                                     <img onerror="imgError(this)" class="lazy"
                                          src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="">
                                 </div>
@@ -596,10 +594,7 @@
                                 </div>
                             </div>
                             <div class="col-6">
-                                <a href="{{route('getLog',[$result->group->id])}}"
-                                   class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button">
-                                    Lịch sử quay
-                                </a>
+                                <a href="{{route('getLog',[$result->group->id])}}" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button">Lịch sử quay</a>
                             </div>
                             <div class="col-6">
                                 <button class="button-primary">Rút quà</button>
@@ -1247,10 +1242,11 @@
                                 </div>
                             </div>
                             <div class="col-6">
-                                <a href="{{route('getLog',[$result->group->id])}}"
-                                   class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button">
-                                    Lịch sử quay
-                                </a>
+                                @if(App\Library\AuthCustom::check())
+                                    <button type="button" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button" data-toggle="modal" data-target="#modal-spin-bonus">Lịch sử quay</button>
+                                @else
+                                    <button type="button" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button" onclick="openLoginModal();">Lịch sử quay</button>
+                                @endif
                             </div>
                             <div class="col-6">
                                 @if(App\Library\AuthCustom::check())

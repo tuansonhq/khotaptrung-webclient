@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
 @section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/auto-link.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
 @endsection
 @section('meta_robots')
@@ -55,7 +56,7 @@
         <div class="row mb-0 mb-lg-3">
             <div class="col-12 col-lg-8" id="article-detail-left">
                 <div class="card --custom p-3">
-                    <article id="article--detail">
+                    <article id="article--detail" class="content-autolink">
                         <h1 class="article--title">
                             {{$data -> title}}
                         </h1>
