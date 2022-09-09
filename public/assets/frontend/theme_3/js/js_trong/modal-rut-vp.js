@@ -31,6 +31,8 @@ function getWithDrawItem(game_type) {
         type: 'GET',
         success: function (res) {
             if (res.status === 1) {
+                //Lịch sử
+                $('#table-history-withdraw').html(res.history);
                 //Chọn loại vật phẩm
                 let result_data = res.result;
                 if (result_data.listgametype.length) {
@@ -44,7 +46,7 @@ function getWithDrawItem(game_type) {
                                                 <img src="/assets/frontend/theme_3/image/icon-qh.png" alt="">
                                             </div>
                                             <div class="item-info">
-                                                <div class="t-sub-1">${result_data.number_item || 0}</div>
+                                                <div class="t-sub-1">${item.set_number_item || 0}</div>
                                                 <div class="t-body-1">${item.image}</div>
                                             </div>
                                         </label>
@@ -99,6 +101,7 @@ $('#form-withdraw-item').on('submit',function (e) {
         type: 'POST',
         data:data_form,
         success:function (res) {
+            console.log(res)
             let html_message;
             if (res.status){
                 html_message = `<div class="text-invalid message-form mt-2">${res.msg}</div>`;
