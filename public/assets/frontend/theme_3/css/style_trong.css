@@ -2844,6 +2844,12 @@ a:hover .__icon.--path__custom:after {
         text-align: right;
         padding: 12px;
     }
+    #content-store-card .card .card--header{
+        border-bottom: none;
+    }
+    #content-store-card .card .card--header .text-title{
+        margin: 0;
+    }
 }
 @media (max-width: 767px) {
     #content-store-card .cards__item.card__item-tag {

@@ -4,7 +4,8 @@ $(document).ready(function(){
     function getInfo(){
         const url = '/user/account_info';
         if(token == 'undefined' || token == null || token =='' || token == undefined){
-
+            $('.check_auth_menu').attr('href','javascript:void(0)')
+            $('.check_auth_menu').addClass('menu_login')
             $(window).resize(function() {
                 if($(window).width() > 992){
                     $('.box-loading').hide();
@@ -57,7 +58,8 @@ $(document).ready(function(){
             },
             success: function (data) {
                 if(data.status === "LOGIN"){
-
+                    $('.check_auth_menu').attr('href','javascript:void(0)')
+                    $('.check_auth_menu').addClass('menu_login')
                     $(window).resize(function() {
                         if($(window).width() > 992){
                             $('.box-loading').hide();
@@ -97,7 +99,8 @@ $(document).ready(function(){
 
                 }
                 if(data.status == 401){
-
+                    $('.check_auth_menu').attr('href','javascript:void(0)');
+                    $('.check_auth_menu').addClass('menu_login')
                     $(window).resize(function() {
                         if($(window).width() > 992){
                             $('.box-loading').hide();
@@ -137,9 +140,11 @@ $(document).ready(function(){
 
                 }
                 if(data.status === "ERROR"){
-                    alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
+                    console.log('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
+
                 }
                 if(data.status == true){
+
                     $(window).resize(function() {
                         if($(window).width() > 992){
                             $('.box-loading').hide();
@@ -191,6 +196,7 @@ $(document).ready(function(){
                     $('.data_napthe_login').hide();
                     $('.data_napthe_home').show();
                     $('meta[name="jwt"]').attr('content',data.token);
+                    $('.check_auth_menu').removeClass('menu_login')
 
                 }
             },

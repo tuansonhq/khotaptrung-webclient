@@ -357,6 +357,7 @@
                             </div>
                             @break
                             @case('slotmachine5')
+
                             <div class="rotation">
                                 <div class="item_play_spin_five_record"
                                      style="background-image: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}})">
@@ -371,7 +372,11 @@
                             </div>
                             @break
                             @case('squarewheel')
+
+
+
                             <div class="item_square" style="display: flex; flex-wrap: wrap;">
+
                                 <table id="squaredesktop" class="square">
                                     <tr>
                                         <td></td>
@@ -467,6 +472,7 @@
                             @case('smashwheel')
                             @case('rungcay')
                             @case('gieoque')
+
                             <div class="rotation">
                                 <div class="rotation-button rotation-button-quanhuy" {{ \App\Library\AuthCustom::check() ?  'id=start-played' : 'onclick=openLoginModal();'}}>
                                     <img onerror="imgError(this)" class="lazy"

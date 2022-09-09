@@ -113,20 +113,20 @@
                     <div class="col-md-12 left-right justify-content-end default-paginate">
                         @if(isset($data))
                             @if($data->total()>1)
-                        <div class="row marinautooo justify-content-center">
-                            <div class="col-auto">
-                                <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-                                    {{ $data->appends(request()->query())->links('pagination::bootstrap-default-4') }}
+                            <div class="row marinautooo justify-content-center">
+                                <div class="col-auto">
+                                    <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
+                                        {{ $data->appends(request()->query())->links('pagination::bootstrap-default-4') }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            @endif
+                        @endif
                     </div>
-                    @endif
-                    @endif
                 </div>
             </div>
 
-           @include('frontend.widget.__menu__category__article')
+           @include('frontend.widget.__menu__category__article_theme_3')
         </div>
     </div>
 @endsection
