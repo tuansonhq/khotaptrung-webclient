@@ -283,7 +283,7 @@
                                             <label class="text-form fz-13 fw-500 c-mb-4">Nhà cung cấp</label>
                                             <div class="col-md-12 p-0">
                                                 <select class="select-form w-100" name="type" id="telecom">
-    
+
                                                 </select>
                                             </div>
                                         </div>
@@ -319,7 +319,7 @@
                                             </div>
                                             <div class="col-md-12 p-0">
                                                 <div class="row m-0 c-mx-n4" id="cardAmountModal">
-    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -630,6 +630,21 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/history-filter/handle.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/style.js"></script>
+
+@php
+    function convert($s) {
+
+        //A regular expression to find the URLs
+        $url_regex = '<https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)>';
+
+        //The preg_replace() function applies the links by using the captured groups of the URL regex
+        return preg_replace($url_regex, '<a href="$0" title="$0">$0</a>', $s);
+
+    }
+
+
+
+@endphp
 
 @if(\App\Library\AuthFrontendCustom::check())
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
