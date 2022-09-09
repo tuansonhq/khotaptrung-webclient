@@ -1359,6 +1359,10 @@
     padding: 0 8px 0 16px;
 }
 
+#viewMore .modal-viewmore-body img {
+    max-width: 100%;
+}
+
 #viewMore .modal-viewmore-body::-webkit-scrollbar {
     width: 8px;
 }
