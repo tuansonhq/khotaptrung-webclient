@@ -426,6 +426,24 @@ $(document).ready(function (e) {
         $('#successChargeModal').modal('show');
     });
 
+    $('body').on('click','.menu_login',function(e){
+        e.preventDefault();
+
+        let width = $(window).width();
+        setTimeout(function(){
+            if ( width > 1200 ) {
+                $('#loginModal').modal('show');
+                setTimeout(() => {
+                    $('#loginModal #modal-login-container').removeClass('right-panel-active');
+                }, 200);
+            } else {
+                $('.mobile-auth').toggleClass('mobile-auth-show');
+                $('.menu-category-mobile').removeClass('menu-category-mobile_show');
+            }
+        }, 0);
+
+    });
+
     $(document).on('scroll', function () {
         if($(window).width() > 992) {
             if ($(this).scrollTop() > 600) {
