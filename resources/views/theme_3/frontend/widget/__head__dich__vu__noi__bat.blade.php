@@ -3,18 +3,45 @@
     <div class="container container-fix">
         <ul>
             @foreach($data as $item)
-                <li>
-                   <a class="{{ '/'.request()->path() == $item->url ? 'nav-profile-active' : ''}}"  @if($item->target == 1) target="_blank" href="{{ $item->url }}"     @elseif($item->target == 3) @if(!App\Library\AuthCustom::check()) onclick="openLoginModal();" href="#" @else href="{{ $item->url }}"   @endif @else href="{{ $item->url }}"   @endif>
-                        @if($item->image_icon)
-                             <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image_icon)}}" alt="">
-                        @else
-                             <img onerror="imgError(this)" src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        @endif
+                @if(isset($item->url) && $item->url != '')
+                    @if($item->url == '/nap-the' || $item->url =='/recharge-atm')
+                    <li>
+                       <a class="{{ '/'.request()->path() == $item->url ? 'nav-profile-active' : ''}} check_auth_menu"  @if($item->target == 1) target="_blank" href="{{ $item->url }}"     @elseif($item->target == 3) @if(!App\Library\AuthCustom::check()) onclick="openLoginModal();" href="#" @else href="{{ $item->url }}"   @endif @else href="{{ $item->url }}"   @endif>
+                            @if($item->image_icon)
+                                 <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image_icon)}}" alt="">
+                            @else
+                                 <img onerror="imgError(this)" src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
+                            @endif
 
-                        <span id="nav-charge">{{ $item->title }}</span>
-                    </a>
+                            <span id="nav-charge">{{ $item->title }}</span>
+                        </a>
+                    </li>
+                    @else
+                        <li>
+                            <a class="{{ '/'.request()->path() == $item->url ? 'nav-profile-active' : ''}}"  @if($item->target == 1) target="_blank" href="{{ $item->url }}"     @elseif($item->target == 3) @if(!App\Library\AuthCustom::check()) onclick="openLoginModal();" href="#" @else href="{{ $item->url }}"   @endif @else href="{{ $item->url }}"   @endif>
+                                @if($item->image_icon)
+                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image_icon)}}" alt="">
+                                @else
+                                    <img onerror="imgError(this)" src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
+                                @endif
 
-            </li>
+                                <span id="nav-charge">{{ $item->title }}</span>
+                            </a>
+                        </li>
+                    @endif
+                @else
+                    <li>
+                        <a class="{{ '/'.request()->path() == $item->url ? 'nav-profile-active' : ''}}"  @if($item->target == 1) target="_blank" href="{{ $item->url }}"     @elseif($item->target == 3) @if(!App\Library\AuthCustom::check()) onclick="openLoginModal();" href="#" @else href="{{ $item->url }}"   @endif @else href="{{ $item->url }}"   @endif>
+                            @if($item->image_icon)
+                                <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image_icon)}}" alt="">
+                            @else
+                                <img onerror="imgError(this)" src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
+                            @endif
+
+                            <span id="nav-charge">{{ $item->title }}</span>
+                        </a>
+                    </li>
+                @endif
             @endforeach
         </ul>
     </div>
