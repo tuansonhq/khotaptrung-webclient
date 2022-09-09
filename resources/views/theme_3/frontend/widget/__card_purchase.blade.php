@@ -375,7 +375,9 @@
                         <div class="col-md-12 col-6 modal-footer-success-col-right-ct">
                             <div class="row marginauto modal-footer-success-row-ct">
                                 <div class="col-md-12 left-right">
-                                    <a href="/nap-the" class="button-bg-ct" style="display: flex;justify-content: center"><span>Nạp thẻ</span></a>
+                                    <a href="javascript:void(0)" class="button-bg-ct"
+                                       style="display: flex;justify-content: center" data-dismiss="modal"><span>Đóng</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
