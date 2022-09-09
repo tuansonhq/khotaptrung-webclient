@@ -3106,6 +3106,7 @@ header nav.heading .header-container{
     position: relative;
     display: inline-block;
     box-sizing: border-box;
+    height: 100%;
 }
 .fix_ads-banner-ffist a::before{
     position: absolute;
