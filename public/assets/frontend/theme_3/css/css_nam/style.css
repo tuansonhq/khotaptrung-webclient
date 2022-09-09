@@ -114,12 +114,12 @@ transition: .2s;
     .item-minigame_first a:hover::before{
         position: absolute;
         content: '';
-        top: 0;
+        top: 70%;
         right: 0;
         left: 0;
         bottom: 0;
         border-bottom: 0;
-        background: linear-gradient(rgba(255, 255, 255, 0) , #262323);
+        background: linear-gradient(rgba(24, 22, 22, 0),rgba(24, 22, 22, 0.6),#181616);
         border-radius: var(--primary-border);
         z-index: 1;
         transition: all 0.2s ease-out;
@@ -127,12 +127,12 @@ transition: .2s;
     .item-minigame_second a:hover::before{
         position: absolute;
         content: '';
-        top: 0;
+        top: 50%;
         right: 0;
         left: 0;
         bottom: 0;
         border-bottom: 0;
-        background: linear-gradient(rgba(224, 69, 69, 0) , #0E0C0C);
+        background: linear-gradient(rgba(24, 22, 22, 0),rgba(24, 22, 22, 0.6),#181616);
         border-radius: var(--primary-border);
         z-index: 1;
     }
@@ -736,12 +736,11 @@ header nav.heading .header-container{
     .item-minigame_first a:hover::before{
         position: absolute;
         content: '';
-        top: 0;
-        right: 0;
+        top: 60%;        right: 0;
         left: 0;
         bottom: 0;
         border-bottom: 0;
-        background: linear-gradient(rgba(255, 255, 255, 0) , #262323);
+        background: linear-gradient(rgba(24, 22, 22, 0),rgba(24, 22, 22, 0.6),#181616);
         border-radius: var(--primary-border);
         z-index: 1;
         transition: all 0.2s ease-out;
@@ -749,12 +748,12 @@ header nav.heading .header-container{
     .item-minigame_second a:hover::before{
         position: absolute;
         content: '';
-        top: 0;
+        top: 60%;
         right: 0;
         left: 0;
         bottom: 0;
         border-bottom: 0;
-        background: linear-gradient(rgba(224, 69, 69, 0) , #0E0C0C);
+        background: linear-gradient(rgba(24, 22, 22, 0),rgba(24, 22, 22, 0.6),#181616);
         border-radius: var(--primary-border);
         z-index: 1;
     }

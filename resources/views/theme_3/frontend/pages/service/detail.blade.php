@@ -209,7 +209,7 @@
                                                                 @break
                                                                 @case('6')
                                                                 <div class="col-md-12 left-right">
-                                                                    <div class="row body-title-detail-ct">
+                                                                    <div class="row body-title-detail">
                                                                         <div
                                                                             class="col-auto text-left detail-service-col body-title-detail-col-ct">
                                                                             <div class="row marginauto">
@@ -322,14 +322,14 @@
                                                     <div class="card card-block">
                                                         <div class="card-body p-3">
                                                             <div class="col-md-12 left-right">
-                                                                <div class="row body-title-detail-ct" id="section-data-send">
+                                                                <div class="row body-title-detail" id="section-data-send">
                                                                     @if(!empty($send_name) && !empty($send_type))
                                                                         @forelse($send_name as $k_send_name => $send_name_text)
                                                                             @switch($send_type[$k_send_name])
                                                                                 @case('1')
                                                                                 @case('2')
                                                                                 @case('3')
-                                                                                <div class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
+                                                                                <div class="col-auto text-left body-title-detail-col-ct w-100">
                                                                                     <div class="row marginauto">
                                                                                         <div class="col-md-12 left-right body-title-detail-span-ct">
                                                                                             <span>{{$send_name_text}}</span>
@@ -345,7 +345,7 @@
                                                                                 </div>
                                                                                 @break
                                                                                 @case('5')
-                                                                                <div class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
+                                                                                <div class="col-auto text-left body-title-detail-col-ct  w-100">
                                                                                     <div class="row marginauto password-mobile">
                                                                                         <div class="col-md-12 left-right body-title-detail-span-ct">
                                                                                             <span>{{$send_name_text}}</span>
