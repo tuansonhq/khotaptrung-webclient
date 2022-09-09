@@ -3934,7 +3934,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     }
     .c_order-modal .login{
         margin: 0 auto;
-        max-width: 1272px!important;
+        max-width: 1380px!important;
         padding: 16px;
     }
 }
@@ -4098,7 +4098,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     }
     .c_order-modal .login{
         margin: 0 auto;
-        max-width: 992px!important;
+        max-width: 1060px!important;
         padding: 16px;
     }
 
@@ -4529,7 +4529,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     }
     .c_order-modal .login{
         margin: 0 auto;
-        max-width: 752px!important;
+        max-width: 850px!important;
         padding: 16px;
     }
 }
@@ -4900,7 +4900,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
     .c_order-modal .login{
         margin: 0 auto;
-        max-width: 572px!important;
+        max-width: 640px!important;
         padding: 16px;
     }
 
