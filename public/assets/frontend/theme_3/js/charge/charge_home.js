@@ -49,8 +49,13 @@ $(document).ready(function(){
                     $('.select-form').niceSelect('update');
                     ele = $('select#telecom option').first();
                     var telecom = ele.val();
-                    if (telecom.length > 0){
-                        getAmount(telecom);
+
+                    if (telecom){
+                        if (telecom.length > 0){
+                            getAmount(telecom);
+                        }else {
+                            $('.amount-loading').remove();
+                        }
                     }else {
                         $('.amount-loading').remove();
                     }
