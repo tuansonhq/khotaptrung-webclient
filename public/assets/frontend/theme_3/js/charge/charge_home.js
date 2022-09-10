@@ -49,8 +49,13 @@ $(document).ready(function(){
                     $('.select-form').niceSelect('update');
                     ele = $('select#telecom option').first();
                     var telecom = ele.val();
-                    if (telecom.length > 0){
-                        getAmount(telecom);
+
+                    if (telecom){
+                        if (telecom.length > 0){
+                            getAmount(telecom);
+                        }else {
+                            $('.amount-loading').remove();
+                        }
                     }else {
                         $('.amount-loading').remove();
                     }
@@ -62,14 +67,7 @@ $(document).ready(function(){
                 }
             },
             error: function (data) {
-                swal({
-                    title: "Lỗi !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.')
             },
             complete: function (data) {
             }
@@ -145,14 +143,7 @@ $(document).ready(function(){
                 // }
             },
             error: function (data) {
-                swal({
-                    title: "Lỗi !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.')
             },
             complete: function (data) {
 
