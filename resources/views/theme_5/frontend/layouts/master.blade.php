@@ -215,7 +215,7 @@
                 <p class="fw-400 fz-13 c-mt-10 mb-0">Rất tiếc việc mua nick đã thất bại do tài khoản của bạn không đủ, vui lòng nạp tiền để tiếp tục giao dịch!</p>
             </div>
             <div class="modal-footer c-p-24">
-                <button class="btn primary handleOpenRechargeModal" data-dismiss="modal">Nạp tiền</button>
+                <button class="btn primary handle-recharge-modal" data-tab="1" data-dismiss="modal">Nạp tiền</button>
             </div>
         </div>
     </div>
@@ -573,7 +573,7 @@
             </div>
             <div class="modal-footer c-p-24">
                 <a href="/" class="btn secondary" data-dismiss="modal">Trang chủ</a>
-                <button class="btn primary handleOpenRechargeModal" data-dismiss="modal">Nạp thêm</button>
+                <button class="btn primary handle-recharge-modal" data-tab="1" data-dismiss="modal">Nạp thêm</button>
             </div>
         </div>
     </div>

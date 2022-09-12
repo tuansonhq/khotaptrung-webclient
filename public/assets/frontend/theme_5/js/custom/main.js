@@ -14,6 +14,25 @@ let money_format_vnd = wNumb({
     suffix: ' vnd'
 });
 $(document).ready(function() {
+    // Button xử lý mở modal nạp tiền
+    $(document).on('click', '.handle-recharge-modal',function(e){
+        e.preventDefault();
+        $('#rechargeModal').modal('show');
+        let tabActive = $(this).data('tab');
+
+        if (tabActive) {
+            if (tabActive == 1) {
+                $('[href="#charge_card"]').tab('show');
+            }
+            if (tabActive == 2) {
+                $('[href="#atm_card"]').tab('show');
+            }
+        } else {
+            $('[href="#charge-card"]').tab('show');
+        }
+    });
+
+
     /*Tất cả các thẻ select sẽ được dùng plugin select nice*/
     $('select').niceSelect();
     /*Quantity*/
