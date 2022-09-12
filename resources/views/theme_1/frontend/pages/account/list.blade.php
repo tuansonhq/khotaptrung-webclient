@@ -147,8 +147,7 @@
                 </div>
             </div>
         </div>
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
+
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccrandom.js?v={{time()}}"></script>
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/account-list.js?v={{time()}}"></script>
     @endif
