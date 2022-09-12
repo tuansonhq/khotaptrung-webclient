@@ -363,6 +363,7 @@ $('.submit-form').on('click', function () {
 
     // BOT
     let table_bot = $('#table-bot');
+if (table_bot.length){
     $.ajax({
         type: 'GET',
         url: '/show-bot',
@@ -376,7 +377,5 @@ $('.submit-form').on('click', function () {
             }
         },
     })
-
-
-
+}
 // Sau khi nhập đúng thì in ra màn hình
