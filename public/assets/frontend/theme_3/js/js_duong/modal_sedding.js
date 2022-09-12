@@ -33,7 +33,7 @@ let json= [
 json.forEach(function (item) {
     let html = `
     <div class="modal-sedding-image">
-        <img src="https://recmiennam.com/wp-content/uploads/2018/01/top-hinh-nen-game-dep-nhat-full-hd-3.jpg" alt="">
+        <img onerror="imgError(this)" src="https://recmiennam.com/wp-content/uploads/2018/01/top-hinh-nen-game-dep-nhat-full-hd-3.jpg" alt="">
     </div>
     <div class="modal-sedding">
     <div class="modal-sedding-title">
@@ -46,3 +46,19 @@ json.forEach(function (item) {
     </div>`;
     $('#sedding-notification').append(html);
 })
+ /* js mobile */
+function showDivMobile() {
+    setTimeout(function () {
+        $(".sedding-notification-mobile").addClass('modal-sedding-notification_show').delay( 10000);
+        setTimeout(function () {
+            $(".sedding-notification-mobile").removeClass('modal-sedding-notification_show').delay( 6000);
+        },6000)
+    }, 10000);
+
+}
+showDivMobile();
+/* click ra ngoai an modal*/
+
+$('body').click( function() {
+    $('.sedding-notification-mobile').hide();
+});
