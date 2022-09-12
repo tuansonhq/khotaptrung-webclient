@@ -243,6 +243,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/ajax-modal-logs-spin-bonus',[\App\Http\Controllers\Frontend\MinigameController::class,'getLogsModalSpinBonus']);
                 Route::get('/ajax-modal-logs-spin-bonus-acc',[\App\Http\Controllers\Frontend\MinigameController::class,'getLogsModalSpinBonus']);
 
+
                 Route::group(['middleware' => ['intend']], function () {
 
                     Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])->name('getIndex');
