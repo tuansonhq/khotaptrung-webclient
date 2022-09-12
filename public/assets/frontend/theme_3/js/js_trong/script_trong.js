@@ -71,7 +71,6 @@ tippy('.js-copy-text', {
     placement: 'right',
 });
 
-
 // option swiper card
 let slider_count = 1;
 if ($('.slider--card .swiper-wrapper').children().length > 1) {
@@ -103,3 +102,10 @@ var swiper_article_banner = new Swiper(".article--slider__news", {
         }
     },
 });
+
+
+let array_auto_link = JSON.parse($('#array-autolink').val());
+console.log(array_auto_link)
+$('.content-autolink').autoLink(array_auto_link);
+
+

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
 @section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/auto-link.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
 @endsection
 @section('meta_robots')
@@ -55,7 +56,7 @@
         <div class="row mb-0 mb-lg-3">
             <div class="col-12 col-lg-8" id="article-detail-left">
                 <div class="card --custom p-3">
-                    <article id="article--detail">
+                    <article id="article--detail" class="content-autolink">
                         <h1 class="article--title">
                             {{$data -> title}}
                         </h1>
@@ -91,7 +92,9 @@
                             </div>
                             <div class="col-6 acc-related--info">
                                 <div class="acc-related--info-name">
-                                    Acc liên quan siêu vip
+                                    <a href="javascript:void(0);">
+                                        Acc liên quan siêu vip
+                                    </a>
                                 </div>
                                 <div class="acc-related--info-sale">
                                     Đã bán: 68,9K
@@ -119,7 +122,9 @@
                             </div>
                             <div class="col-6 acc-related--info">
                                 <div class="acc-related--info-name">
-                                    Acc liên quan siêu vip
+                                    <a href="javascript:void(0);">
+                                        Acc liên quan siêu vip
+                                    </a>
                                 </div>
                                 <div class="acc-related--info-sale">
                                     Đã bán: 68,9K
@@ -147,7 +152,9 @@
                             </div>
                             <div class="col-6 acc-related--info">
                                 <div class="acc-related--info-name">
-                                    Acc liên quan siêu vip
+                                    <a href="javascript:void(0);">
+                                        Acc liên quan siêu vip
+                                    </a>
                                 </div>
                                 <div class="acc-related--info-sale">
                                     Đã bán: 68,9K
@@ -175,7 +182,9 @@
                             </div>
                             <div class="col-6 acc-related--info">
                                 <div class="acc-related--info-name">
-                                    Acc liên quan siêu vip
+                                    <a href="javascript:void(0);">
+                                        Acc liên quan siêu vip
+                                    </a>
                                 </div>
                                 <div class="acc-related--info-sale">
                                     Đã bán: 68,9K
@@ -211,7 +220,9 @@
                             </div>
                             <div class="col-9 acc-related--info">
                                 <div class="acc-related--info-name">
-                                    Ngôi sao giải trí
+                                    <a href="javascript:void(0);">
+                                        Ngôi sao giải trí
+                                    </a>
                                 </div>
                                 <div class="acc-related--info-sale">
                                     Số lượng: 494/500
@@ -230,7 +241,9 @@
                             </div>
                             <div class="col-9 acc-related--info">
                                 <div class="acc-related--info-name">
-                                    Giang hồ Kì hiệp 3D sắp ra mắt
+                                    <a href="javascript:void(0);">
+                                        Giang hồ Kì hiệp 3D sắp ra mắt
+                                    </a>
                                 </div>
                                 <div class="acc-related--info-sale">
                                     Số lượng: 494/500
@@ -249,7 +262,9 @@
                             </div>
                             <div class="col-9 acc-related--info">
                                 <div class="acc-related--info-name">
-                                    Cửu thiên Mobile sắp ra mắt
+                                    <a href="javascript:void(0);">
+                                        Cửu thiên Mobile sắp ra mắt
+                                    </a>
                                 </div>
                                 <div class="acc-related--info-sale">
                                     Số lượng: 494/500
@@ -268,7 +283,9 @@
                             </div>
                             <div class="col-9 acc-related--info">
                                 <div class="acc-related--info-name">
-                                    Loạn chiến 3Q sắp ra mắt
+                                    <a href="javascript:void(0);">
+                                        Loạn chiến 3Q sắp ra mắt
+                                    </a>
                                 </div>
                                 <div class="acc-related--info-sale">
                                     Số lượng: 494/500
@@ -279,7 +296,9 @@
                 </div>
 
                 <div id="article-detail-advertise" class="d-none d-lg-block">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/image_60.png" alt="">
+                    <a href="javascript:void(0);">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/image_60.png" alt="">
+                    </a>
                 </div>
 
             </div>

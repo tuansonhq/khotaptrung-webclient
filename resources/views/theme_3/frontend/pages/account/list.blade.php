@@ -63,7 +63,6 @@
                                 </div>
                                 <div class="col-md-10 col-10 body-header-col-ct">
                                     <span class="body-header-col-ct-titile">{{ $data->custom->title ? $data->custom->title : $data->title }}</span>
-                                    <span class="c_body-header-col-ct-titile nick_total" style="margin-left: 4px"></span>
                                 </div>
                             </div>
                         </div>
@@ -118,13 +117,16 @@
                             </div>
                         </div>
 {{--End find   --}}
-                        <div class="col-md-12 left-right media-web">
+                        <div class="col-md-12 left-right d-none d-lg-block">
                             <div class="row marginauto body-search-ct sort-nick">
                                 <div class="col-auto text-left left-right sort-nick-left">
-                                    <span>Sắp xếp theo</span>
+                                    <span class="nick_total"></span>
                                 </div>
                                 <div class="col-auto left-right sort-nick-right">
-                                    <div class="row marginauto">
+                                    <div class="row marginauto align-items-center">
+                                        <div class="col-auto left-right">
+                                            <span>Sắp xếp theo:</span>
+                                        </div>
                                         <div class="col-auto left-right item-sort-nick">
                                             <input checked id="sort-1" class="sort" type="radio" name="sort" value="random" hidden>
                                             <label for="sort-1" class="item-sort-nick-label">
