@@ -205,8 +205,8 @@
                                             {{--                                            </div>--}}
 
                                             <div class="item_buy_list_price">
-                                                <span>{{ str_replace(',','.',number_format($item->price_old??$item->price)) }}đ </span>
-                                                {{ str_replace(',','.',number_format($item->price)) }}đ
+                                                <span>{{ str_replace(',','.',number_format($data->price_old??$data->price)) }}đ </span>
+                                                {{ str_replace(',','.',number_format($data->price)) }}đ
                                             </div>
 
                                         </div>
@@ -264,7 +264,7 @@
                                                             <tr>
                                                                 <td>Giá tiền:</td>
                                                                 <th class="text-info">
-                                                                    {{ str_replace(',','.',number_format($item->price)) }}đ
+                                                                    {{ str_replace(',','.',number_format($data->price)) }}đ
                                                                 </th>
                                                             </tr>
                                                             </tbody>
