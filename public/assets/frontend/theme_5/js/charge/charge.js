@@ -83,10 +83,6 @@ $(document).ready(function () {
 
     getTelecom();
 
-    $(document).on('click', '.handleOpenRechargeModal',function(e){
-        $('#rechargeModal').modal('show');
-    });
-
     //Change web url when switch tab
     $('#chargeNavTab').click(function () {
         let base_url = `${window.location.origin}/nap-the`;

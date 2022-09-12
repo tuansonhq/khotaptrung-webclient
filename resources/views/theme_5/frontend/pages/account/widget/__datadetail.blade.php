@@ -71,12 +71,12 @@
                     @if(isset($card_percent))
                         @if($card_percent == 0)
                             <div class="group-btn d-flex d-lg-none" style="--data-between: 12px">
-                                <a href="/nap-the" class="btn pink two-line">
+                                <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="1">
                                     <span class="line-1">Mua bằng Thẻ cào</span>
                                     <span class="line-2">{{ str_replace(',','.',number_format(round($data->price))) }} đ</span>
                                 </a>
                                 @if(isset($data->price_atm))
-                                    <a href="/recharge-atm" class="btn pink two-line">
+                                    <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="2">
                                         <span class="line-1">Mua bằng ATM, Momo</span>
                                         <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
                                     </a>
@@ -85,7 +85,7 @@
                         @else
                             @if(isset($data->price_atm))
                                 <div class="group-btn d-flex d-lg-none" style="--data-between: 12px">
-                                    <a href="/recharge-atm" class="btn pink two-line">
+                                    <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="2">
                                         <span class="line-1">Mua bằng ATM, Momo</span>
                                         <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
                                     </a>
@@ -94,12 +94,12 @@
                         @endif
                     @else
                         <div class="group-btn d-flex d-lg-none" style="--data-between: 12px">
-                            <a href="/nap-the" class="btn pink two-line">
+                            <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="1">
                                 <span class="line-1">Mua bằng Thẻ cào</span>
                                 <span class="line-2">{{ str_replace(',','.',number_format(round($data->price))) }} đ</span>
                             </a>
                             @if(isset($data->price_atm))
-                                <a href="/recharge-atm" class="btn pink two-line">
+                                <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="2">
                                     <span class="line-1">Mua bằng ATM, Momo</span>
                                     <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
                                 </a>
@@ -300,12 +300,12 @@
                         @if(isset($card_percent))
                             @if($card_percent == 0)
                                 <div class="group-btn d-none d-lg-flex" style="--data-between: 12px">
-                                    <a href="/nap-the" class="btn pink two-line">
+                                    <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="1">
                                         <span class="line-1">Mua bằng Thẻ cào</span>
                                         <span class="line-2">{{ str_replace(',','.',number_format(round($data->price))) }} đ</span>
                                     </a>
                                     @if(isset($data->price_atm))
-                                    <a href="/recharge-atm" class="btn pink two-line">
+                                    <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="2">
                                         <span class="line-1">Mua bằng ATM, Momo</span>
                                         <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
                                     </a>
@@ -314,7 +314,7 @@
                             @else
                                 @if(isset($data->price_atm))
                                 <div class="group-btn d-none d-lg-flex" style="--data-between: 12px">
-                                    <a href="/recharge-atm" class="btn pink two-line">
+                                    <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="2">
                                         <span class="line-1">Mua bằng ATM, Momo</span>
                                         <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
                                     </a>
@@ -323,12 +323,12 @@
                             @endif
                         @else
                             <div class="group-btn d-none d-lg-flex" style="--data-between: 12px">
-                                <a href="/nap-the" class="btn pink two-line">
+                                <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="1">
                                     <span class="line-1">Mua bằng Thẻ cào</span>
                                     <span class="line-2">{{ str_replace(',','.',number_format(round($data->price))) }} đ</span>
                                 </a>
                                 @if(isset($data->price_atm))
-                                <a href="/recharge-atm" class="btn pink two-line">
+                                <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="2">
                                     <span class="line-1">Mua bằng ATM, Momo</span>
                                     <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
                                 </a>
