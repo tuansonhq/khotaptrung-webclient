@@ -87,9 +87,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);
                 Route::get('/minigame', [\App\Http\Controllers\Frontend\MinigameController::class , 'getCategory'])->name('getCategory');
 
-                Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
-                Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
-                Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
+
 
 
                 Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
@@ -107,7 +105,9 @@ Route::group(array('middleware' => ['theme']) , function (){
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
                 Route::group(['middleware' => ['intend']], function (){
 
-
+                    Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
+                    Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
+                    Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
 
                 });
                 Route::get('/mua-nick-random', [AccController::class , "getShowAccRandom"]);
