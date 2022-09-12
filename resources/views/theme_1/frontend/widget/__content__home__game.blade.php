@@ -113,8 +113,8 @@
                             @if(isset($item->params) && isset($item->params->price))
                             <div class="row marginauto price-minigame">
                                 <div class="col-md-12 left-right">
-                                    <span class="oldPrice">{{ str_replace(',','.',number_format($item->params->price_old??$item->params->price)) }} đ</span>
-                                    <span class="newPrice">{{ str_replace(',','.',number_format($item->params->price)) }} đ</span>
+                                    <span class="oldPrice">{{ str_replace(',','.',number_format($item->price_old??$item->price)) }} đ</span>
+                                    <span class="newPrice">{{ str_replace(',','.',number_format($item->price)) }} đ</span>
                                 </div>
 
                             </div>
