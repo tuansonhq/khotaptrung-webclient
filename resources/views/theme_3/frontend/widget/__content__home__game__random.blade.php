@@ -1,4 +1,4 @@
-@if(isset($data) && count($data) > 0)
+    @if(isset($data) && count($data) > 0)
 
     <div class="flash-sales block-product mt-fix-20 ">
         <div class="product-header d-flex">
@@ -38,18 +38,18 @@
                                     @endif
 
                                     @php
-                                        if (isset($item->params->price_old)) {
-                                            $sale_percent = (($item->params->price_old - $item->params->price) / $item->params->price_old) * 100;
+                                        if (isset($item->price_old)) {
+                                            $sale_percent = (($item->price_old - $item->price) / $item->price_old) * 100;
                                             $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
                                         } else {
                                             $sale_percent = 0;
                                         }
                                     @endphp
-                                    @if(isset($item->params) && isset($item->params->price))
+                                    @if(isset($item->price))
                                     <div class="item-product__box-price">
 
-                                        <div class="special-price">{{ str_replace(',','.',number_format($item->params->price)) }}đ</div>
-                                        <div class="old-price">{{ str_replace(',','.',number_format($item->params->price_old??$item->params->price)) }}đ</div>
+                                        <div class="special-price">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
+                                        <div class="old-price">{{ str_replace(',','.',number_format($item->price_old??$item->price)) }}đ</div>
                                         @if($sale_percent > 0)
                                         <div class="item-product__sticker-percent">
                                             -{{ $sale_percent }}%
