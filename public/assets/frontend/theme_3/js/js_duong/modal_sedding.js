@@ -33,7 +33,7 @@ let json= [
 json.forEach(function (item) {
     let html = `
     <div class="modal-sedding-image">
-        <img src="https://recmiennam.com/wp-content/uploads/2018/01/top-hinh-nen-game-dep-nhat-full-hd-3.jpg" alt="">
+        <img onerror="imgError(this)" src="https://recmiennam.com/wp-content/uploads/2018/01/top-hinh-nen-game-dep-nhat-full-hd-3.jpg" alt="">
     </div>
     <div class="modal-sedding">
     <div class="modal-sedding-title">
