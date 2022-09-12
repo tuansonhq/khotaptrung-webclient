@@ -150,10 +150,12 @@
 </div>
 
 {{--  modal hien thi nguoi mua website --}}
+<div class="fix-sedding">
 <div class="modal-sedding-notification sedding-notification-mobile" id="sedding-notification" >
     <div class="close-sedding">
         <i class="fas fa-times"></i>
     </div>
+</div>
 </div>
 {{-- end modal --}}
 
