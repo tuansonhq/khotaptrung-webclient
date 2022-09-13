@@ -107,16 +107,18 @@
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link active" data-toggle="tab" href="#tab-recenntly-update" role="tab"
-                    aria-selected="true">Mới cập nhật</a>
+                aria-selected="true">Mới cập nhật</a>
             </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" data-toggle="tab" href="#tab-hot-articles" role="tab"
-                    aria-selected="false">Tin hot</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" data-toggle="tab" href="#tab-top-review" role="tab"
-                    aria-selected="false">Top review</a>
-            </li>
+            @if(isset($data_detail) && count($data_detail) > 0)
+                @foreach($data_detail as $key => $val)
+                    @if(isset($val->data->data) && count($val->data->data) > 0)
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-toggle="tab" href="#tab-article-{{$key}}" role="tab"
+                                aria-selected="false">{{ $val->categoryarticle->title }}</a>
+                        </li>
+                    @endif
+                @endforeach
+            @endif
         </ul>
         <div class="tab-content">
             <div class="tab-pane fade active show" id="tab-recenntly-update" role="tabpanel">
@@ -174,70 +176,35 @@
                     @endif
                 </div>
             </div>
-            <div class="tab-pane fade" id="tab-hot-articles" role="tabpanel">
-                @if(isset($data) )
-                    @foreach($data as $key=> $item)
-                        @if($key >= 4)
-                            @break
-                        @endif
-                            <div class="sub-article">
-                                <div class="row">
-                                    <div class="col-6 sub-article--thumbnail-container">
-                                        <div class="sub-article--thumbnail">
-                                            <a href="/tin-tuc/{{ $item->slug }}">
-                                                <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="sub-article--thumbnail__image">
-                                            </a>
+            @if(isset($data_detail) && count($data_detail) > 0)
+                @foreach($data_detail as $key => $val)
+                    @if(isset($val->data->data) && count($val->data->data) > 0)
+                        <div class="tab-pane fade" id="tab-article-{{$key}}" role="tabpanel">
+                            @foreach($val->data->data as $key=> $item)
+                                @if($key >= 3)
+                                    @break
+                                @endif
+                                    <div class="sub-article">
+                                        <div class="row">
+                                            <div class="col-6 sub-article--thumbnail-container">
+                                                <div class="sub-article--thumbnail">
+                                                    <a href="/tin-tuc/{{ $item->slug }}">
+                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="sub-article--thumbnail__image">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 sub-article--info">
+                                                <a href="/tin-tuc/{{ $item->slug }}" class="sub-article--title__link">
+                                                    {{ $item->title }}
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-6 sub-article--info">
-                                        <a href="/tin-tuc/{{ $item->slug }}" class="sub-article--title__link">
-                                            {{ $item->title }}
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                    @endforeach
-                @else
-                    <div class="row pb-3 pt-3">
-                        <div class="col-md-12 text-center">
-                            <span style="color: red;font-size: 16px;">Không có dữ liệu !</span>
+                            @endforeach
                         </div>
-                    </div>
-                @endif
-            </div>
-            <div class="tab-pane fade" id="tab-top-review" role="tabpanel">
-                @if(isset($data) )
-                    @foreach($data as $key=> $item)
-                        @if($key >= 4)
-                            <div class="sub-article">
-                                <div class="row">
-                                    <div class="col-6 sub-article--thumbnail-container">
-                                        <div class="sub-article--thumbnail">
-                                            <a href="/tin-tuc/{{ $item->slug }}">
-                                                <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="sub-article--thumbnail__image">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 sub-article--info">
-                                        <a href="/tin-tuc/{{ $item->slug }}" class="sub-article--title__link">
-                                            {{ $item->title }}
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                        @if($key >= 5)
-                            @break
-                        @endif
-                    @endforeach
-                @else
-                    <div class="row pb-3 pt-3">
-                        <div class="col-md-12 text-center">
-                            <span style="color: red;font-size: 16px;">Không có dữ liệu !</span>
-                        </div>
-                    </div>
-                @endif
-            </div>
+                    @endif
+                @endforeach
+            @endif
         </div>
     </div>
 </div>
