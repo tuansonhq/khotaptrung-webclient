@@ -76,7 +76,6 @@ class AccController extends Controller
             cache(["game_props_list_{$slug}" => $response_cate_data], 604800);
         }
 
-
         if ($request->ajax()){
 
             $page = $request->page;

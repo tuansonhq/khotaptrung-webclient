@@ -3151,9 +3151,14 @@ header nav.heading .header-container{
 }
 
 .item-article-user{
-    color: #F3F3F3;
-    font-size: 14px;
-    font-weight: 400;
+    color: #F3F3F3 !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+}
+.item-article-user span,.item-article-user p,.item-article-user div{
+    color: #F3F3F3 !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
 }
 .item-article-name{
     font-size: 20px;
@@ -3163,4 +3168,8 @@ header nav.heading .header-container{
 
 #c_slider_banner p{
     margin-bottom: 0!important;
+}
+
+.minigame-add-heard{
+    height: 250px;
 }
