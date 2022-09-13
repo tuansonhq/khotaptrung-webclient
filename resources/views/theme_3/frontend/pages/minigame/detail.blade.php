@@ -222,11 +222,8 @@
                     <div class="col-12 col-lg-5 d-none d-lg-block d-xl-block rotation-col-right">
                         <div class="rotation-leaderboard leaderboard-lg">
                             <div class="leaderboard-buttons row d-none d-lg-flex">
-                                <div class="col-12">
-                                    <div class="existing-items">
-                                        <span class="t-body-1">Bạn đang có:</span>
-                                        <div class="number_item">100.000 kim cương</div>
-                                    </div>
+                                <div class="col-12 data_number_item">
+
                                 </div>
                                 <div class="col-6 leaderboard-col">
                                     @if(App\Library\AuthCustom::check())

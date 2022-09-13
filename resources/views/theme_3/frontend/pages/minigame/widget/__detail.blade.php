@@ -339,7 +339,7 @@
                 </div>
                 @else
                     <div class="col-6 button-col">
-                        <button type="button" onclick="openLoginModal();" class="button-secondary button-demo num-play-try">Chơi thử
+                        <button type="button" onclick="openLoginModal();" class="button-secondary button-demo">Chơi thử
                         </button>
                     </div>
                 @endif
