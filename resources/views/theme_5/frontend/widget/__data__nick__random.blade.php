@@ -49,17 +49,17 @@
                                                     </div>
                                                 </div>
                                                 @php
-                                                    if (isset($items->params->price_old)) {
-                                                        $sale_percent = (($items->params->price_old - $items->params->price) / $items->params->price_old) * 100;
+                                                    if (isset($items->price_old)) {
+                                                        $sale_percent = (($items->price_old - $items->price) / $items->price_old) * 100;
                                                         $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
                                                     } else {
                                                         $sale_percent = 0;
                                                     }
                                                 @endphp
-                                                @if(isset($items->params) && isset($items->params->price))
+                                                @if(isset($items->price))
                                                     <div class="price">
-                                                        <div class="price-current w-100">{{ str_replace(',','.',number_format($items->params->price)) }} đ</div>
-                                                        <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($items->params->price_old??$items->params->price)) }} đ</div>
+                                                        <div class="price-current w-100">{{ str_replace(',','.',number_format($items->price)) }} đ</div>
+                                                        <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($items->price_old??$items->price)) }} đ</div>
                                                         <div class="discount">{{ $sale_percent }}%</div>
                                                     </div>
                                                 @else
@@ -71,7 +71,7 @@
 
                                             @if(App\Library\AuthCustom::check())
 
-                                                @if(App\Library\AuthCustom::user()->balance < $items->params->price)
+                                                @if(App\Library\AuthCustom::user()->balance < $items->price)
                                                     <a href="javascript:void(0)" class="btn secondary lg-sm c-mx-16 c-mb-16 c-mx-lg-12 c-mb-lg-12 the-cao-atm-home">Mua ngay</a>
 
                                                 @else
@@ -110,7 +110,7 @@
                                                     <div class="card--attr__name fw-400 fz-13 text-center">
                                                         Giá tiền
                                                     </div>
-                                                    <div class="card--attr__value fz-13 fw-500">{{ str_replace(',','.',number_format($items->params->price)) }} đ</div>
+                                                    <div class="card--attr__value fz-13 fw-500">{{ str_replace(',','.',number_format($items->price)) }} đ</div>
                                                 </div>
                                             </div>
 
@@ -183,7 +183,7 @@
                                                     <div class="card--attr__name fw-400 fz-13 text-center">
                                                         Tổng thanh toán
                                                     </div>
-                                                    <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">{{ str_replace(',','.',number_format($items->params->price)) }} đ</a></div>
+                                                    <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">{{ str_replace(',','.',number_format($items->price)) }} đ</a></div>
                                                 </div>
                                             </div>
                                         </div>

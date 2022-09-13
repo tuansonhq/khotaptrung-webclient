@@ -29,8 +29,8 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.css">
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/style.css?v={{time()}}">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/lib_bootstrap.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/minigame.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/lib_bootstrap.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/minigame.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_son.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css?ver={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_duong.css?v={{time()}}">
