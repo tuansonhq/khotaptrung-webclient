@@ -186,7 +186,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-title">Nạp tiền</div>
-                <button type="button" class="close" data-dismiss="modal"></button>
+                <button type="button" class="close" data-dismiss="modal" style="right: 20px"></button>
             </div>
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item" role="presentation">
