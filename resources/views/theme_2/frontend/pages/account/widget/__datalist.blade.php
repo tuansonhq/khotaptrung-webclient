@@ -11,7 +11,18 @@
                         <div class="card">
                             <a href="javascript:void(0)" data-id="{{ $item->randId }}" class="card-body scale-thumb buyacc">
                                 <div class="account-thumb c-mb-8">
-                                    <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ @$item->randId }}" class="account-thumb-image lazy">
+                                    @if(isset($data->params->thumb_default) && isset($data->params))
+                                        <img src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ @$item->randId }}" class="account-thumb-image lazy">
+                                    @else
+
+                                        @if(isset($item->image))
+                                            <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="{{ @$item->randId }}" class="account-thumb-image lazy">
+                                        @else
+                                            {{--                                                <img class="item_buy_list_img-main item_buy_list_img-main{{ $item->randId }}" src="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">--}}
+                                        @endif
+                                    @endif
+
+
                                 </div>
                                 <div class="account-title">
                                     <div class="text-title fw-700 text-limit limit-1">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</div>
@@ -34,21 +45,21 @@
                                     </div>
                                 </div>
                                 @php
-                                    if (isset($item->price_old)) {
-                                        $sale_percent = (($item->price_old - $item->price) / $item->price_old) * 100;
+                                    if (isset($data->price_old)) {
+                                        $sale_percent = (($data->price_old - $data->price) / $data->price_old) * 100;
                                         $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
                                     } else {
                                         $sale_percent = 0;
                                     }
                                 @endphp
                                 <div class="price">
-                                    <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
-                                    <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($item->price_old)) }}đ</div>
+                                    <div class="price-current w-100">{{ str_replace(',','.',number_format($data->price)) }}đ</div>
+                                    <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($data->price_old)) }}đ</div>
                                     <div class="discount">{{$sale_percent}}%</div>
                                 </div>
                                 @if(App\Library\AuthCustom::check())
 
-                                    @if(App\Library\AuthCustom::user()->balance < $data->params->price)
+                                    @if(App\Library\AuthCustom::user()->balance < $data->price)
                                         <div class="price c-p-12 c-p-lg-8">
                                             <a href="javascript:void(0)" class="btn secondary w-100 the-cao-atm">Mua ngay</a>
                                         </div>
@@ -91,7 +102,7 @@
                                         <div class="card--attr__name fw-400 fz-13 text-center">
                                             Giá tiền
                                         </div>
-                                        <div class="card--attr__value fz-13 fw-500">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                        <div class="card--attr__value fz-13 fw-500">{{ str_replace(',','.',number_format($data->price)) }} đ</div>
                                     </div>
                                 </div>
 
@@ -169,7 +180,7 @@
                                 </div>
                                 <div class="text-invalid">
                                     @if(App\Library\AuthCustom::check())
-                                        @if(App\Library\AuthCustom::user()->balance < $item->price)
+                                        @if(App\Library\AuthCustom::user()->balance < $data->price)
                                             Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.
                                         @endif
                                     @else
@@ -180,7 +191,7 @@
                             <div class="modal-footer">
                                 @if(App\Library\AuthCustom::check())
 
-                                    @if(App\Library\AuthCustom::user()->balance >= $item->price)
+                                    @if(App\Library\AuthCustom::user()->balance >= $data->price)
                                         <button class="btn primary" type="submit">Xác nhận</button>
                                     @else
                                         <button class="btn primary" type="button" data-toggle="modal" data-target="#rechargeModal" data-bs-dismiss="modal">Nạp tiền</button>

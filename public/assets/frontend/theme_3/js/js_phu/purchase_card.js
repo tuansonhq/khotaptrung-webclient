@@ -10,6 +10,20 @@ $(document).ready(function () {
         observer: true,
         observeParents: true,
     });
+    var slider_card_telecom = new Swiper(".slider--card__telecom", {
+        slidesPerView: 2.5,
+        spaceBetween: 8,
+        freeMode: true,
+        observer: true,
+        observeParents: true,
+    });
+    var slider_card_amount = new Swiper(".slider--card__amount", {
+        slidesPerView: 2.5,
+        spaceBetween: 8,
+        freeMode: true,
+        observer: true,
+        observeParents: true,
+    });
 
     var dataSend = {
         amount: 0,
@@ -178,34 +192,73 @@ $(document).ready(function () {
                     let data = res.data;
                     let loop_index = 0;
                     data.forEach(function (card) {
-                        let html = '';
-                        html += `<li class="cards__item card__item-tag p_0">`;
-                        //Check if it is the first loop
-                        if (loop_index === 0) {
-                            html += `<input type="radio" id="card-${card.id}" value="${card.key}" data-img="${card.image}" name="card-type" checked hidden>`;
-                        } else {
-                            html += `<input type="radio" id="card-${card.id}" value="${card.key}" data-img="${card.image}" name="card-type" hidden>`;
-                        }
-                        html += `<label for="card-${card.id}">`;
-                        html += `<img src="${card.image}" class="card--logo" alt="${card.title}">`;
-                        html += `</label>`;
-                        html += `</li>`;
-
-                        //Increase loop index
-                        loop_index++;
-
-                        if (card.params && card.params.teltecom_type) {
-                            //Apepnd HTML
-                            if (card.params.teltecom_type == 2) {
-                                $('#cardGameList').append(html);
+                        if($(window).width() > 992){
+                            let html = '';
+                            html += `<li class="cards__item card__item-tag p_0">`;
+                            //Check if it is the first loop
+                            if (loop_index === 0) {
+                                html += `<input type="radio" id="card-${card.id}" value="${card.key}" data-img="${card.image}" name="card-type" checked hidden>`;
+                            } else {
+                                html += `<input type="radio" id="card-${card.id}" value="${card.key}" data-img="${card.image}" name="card-type" hidden>`;
                             }
-                            if (card.params.teltecom_type == 1) {
+                            html += `<label for="card-${card.id}">`;
+                            html += `<img src="${card.image}" class="card--logo" alt="${card.title}">`;
+                            html += `</label>`;
+                            html += `</li>`;
+
+                            //Increase loop index
+                            loop_index++;
+
+                            if (card.params && card.params.teltecom_type) {
+                                //Apepnd HTML
+                                if (card.params.teltecom_type == 2) {
+                                    $('#cardGameList').append(html);
+                                }
+                                if (card.params.teltecom_type == 1) {
+                                    $('#cardPhoneList').append(html);
+                                }
+
+                            } else {
                                 $('#cardPhoneList').append(html);
                             }
 
-                        } else {
-                            $('#cardPhoneList').append(html);
+                        }else {
+                            // mobile
+                            let html_mobile = '';
+                            html_mobile += `<div class="swiper-slide">`;
+                            html_mobile += `<div class="cards__item  w-100">`;
+                            //Check if it is the first loop
+                            if (loop_index === 0) {
+                                html_mobile += `<input type="radio" id="card-${card.id}" value="${card.key}" data-img="${card.image}" name="card-type" checked hidden>`;
+                            } else {
+                                html_mobile += `<input type="radio" id="card-${card.id}" value="${card.key}" data-img="${card.image}" name="card-type" hidden>`;
+                            }
+                            html_mobile += `<label for="card-${card.id}">`;
+                            html_mobile += `<img src="${card.image}" class="card--logo" alt="${card.title}">`;
+                            html_mobile += `</label>`;
+                            html_mobile += `</div>`;
+                            html_mobile += `</div>`;
+
+                            //Increase loop index
+                            loop_index++;
+
+                            if (card.params && card.params.teltecom_type) {
+                                //Apepnd HTML
+                                if (card.params.teltecom_type == 2) {
+                                    $('#cardGameListMobile').append(html_mobile);
+                                }
+                                if (card.params.teltecom_type == 1) {
+                                    $('#cardPhoneListMobile').append(html_mobile);
+                                }
+
+                            } else {
+                                $('#cardPhoneListMobile').append(html_mobile);
+                            }
+
                         }
+
+
+
                     });
 
                     //Get amount of the card just been choosen when render
@@ -216,6 +269,7 @@ $(document).ready(function () {
                         e.preventDefault();
                         getCardAmount($(this).val());
                     });
+                    // slider_card_telecom.update();
 
                     $('.section--amount__card').removeClass('d-none');
                 }
@@ -249,37 +303,68 @@ $(document).ready(function () {
 
                     //Empty element
                     $('#cardAmountList').empty();
+                    $('#cardAmountListMobile').empty();
 
                     if (!data.length) {
-                        $('#cardAmountList').append('<p class="text-center c-mb-0">Chưa có mệnh giá của thẻ</p>');
+                        if($(window).width() > 992) {
+                            $('#cardAmountList').append('<p class="text-center c-mb-0">Chưa có mệnh giá của thẻ</p>');
+                        }else {
+                            $('#cardAmountListMobile').append('<p class="text-center c-mb-0">Chưa có mệnh giá của thẻ</p>');
+
+                        }
                         resetAmountWidget();
                         $('#btn-confirm').prop('disabled', true);
                     } else {
                         data.forEach(function (card) {
-                            let html = '';
-                            html += `<li class="deno__item col-4 col-lg-4">`;
-                            //Check if it is the first loop
-                            if (loop_index === 0) {
-                                html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value" checked hidden>`;
-                            } else {
-                                html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value" hidden>`;
+                            if($(window).width() > 992) {
+                                let html = '';
+                                html += `<li class="deno__item col-4 col-lg-4">`;
+                                //Check if it is the first loop
+                                if (loop_index === 0) {
+                                    html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value" checked hidden>`;
+                                } else {
+                                    html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value" hidden>`;
+                                }
+                                html += `<label for="amount-${card.id}" class="deno__value card-item-value">`;
+                                html += `<span>${formatNumber(card.amount)} đ</span>`;
+                                html += `</label>`;
+                                html += `</li>`;
+
+                                //Increase loop index
+                                loop_index++;
+
+                                // Append new HTML amount
+                                $('#cardAmountList').append(html);
+                            }else {
+                                let html = '';
+                                html += `<div class="swiper-slide">`;
+                                html += `<div class="deno__item ">`;
+                                //Check if it is the first loop
+                                if (loop_index === 0) {
+                                    html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value" checked hidden>`;
+                                } else {
+                                    html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value" hidden>`;
+                                }
+                                html += `<label for="amount-${card.id}" class="deno__value card-item-value">`;
+                                html += `<span>${formatNumber(card.amount)} đ</span>`;
+                                html += `</label>`;
+                                html += `</div>`;
+                                html += `</div>`;
+
+                                //Increase loop index
+                                loop_index++;
+
+                                // Append new HTML amount
+                                $('#cardAmountListMobile').append(html);
                             }
-                            html += `<label for="amount-${card.id}" class="deno__value card-item-value">`;
-                            html += `<span>${formatNumber(card.amount)} đ</span>`;
-                            html += `</label>`;
-                            html += `</li>`;
-    
-                            //Increase loop index
-                            loop_index++;
-    
-                            // Append new HTML amount
-                            $('#cardAmountList').append(html);
+
+
                         });
 
                         //prepare the input field and update price related value
                         $('input[name="card-amount"]').val(1);
                         prepareAmountWidget();
-    
+
                         //Activate onchange, oninput function for input field inside
                         $('input[name="card-value"]').change(function (e) {
                             e.preventDefault();
@@ -289,7 +374,7 @@ $(document).ready(function () {
                             e.preventDefault();
                             prepareAmountWidget();
                         });
-    
+
                         //Make btn no longer disable when failed get data
                         $('#btn-confirm').prop('disabled', false);
                     }
@@ -312,13 +397,13 @@ $(document).ready(function () {
     function prepareAmountWidget () {
         let discountCardValue = $('input[name="card-value"]:checked').data('discount');
         $('input[name="card-discount"]').val(discountCardValue);
-        
+
         if (isNaN(100 - discountCardValue)) {
             $('.discount--value').text(`0%`);
         } else {
             $('.discount--value').text(`${100 - discountCardValue}%`);
         }
-        
+
         if (isNaN( calculatePrice())) {
             $('.price--total__value').text(`0 đ`);
         } else {

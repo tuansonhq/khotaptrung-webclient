@@ -29,8 +29,8 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.css">
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/style.css?v={{time()}}">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/lib_bootstrap.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/minigame.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/lib_bootstrap.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/minigame.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_son.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css?ver={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_duong.css?v={{time()}}">
@@ -171,6 +171,34 @@
 
 @endif
 @include('frontend.widget.__theme')
+
+{{--    Modal xác nhận thanh toán--}}
+<div class="modal fade modal-big modal__buyacount loadModal__acount_home" id="LoadModalHome">
+    <div class="modal-dialog modal-dialog-centered modal-custom">
+        <div class="modal-content c-p-24 data__form__random_home">
+
+        </div>
+    </div>
+</div>
+<div class="modal fade modal-small" id="notBuyHome">
+    <div class="modal-dialog modal-dialog-centered modal-custom">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center p-0">
+                <img class="c-pt-16 c-pb-16" src="/assets/frontend/{{theme('')->theme_key}}/image/son/thatbai.png" alt="">
+            </div>
+            <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
+                <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua thẻ nick thất bại</p>
+                <p class="fw-400 fz-13 c-mt-10 mb-0">Rất tiếc việc mua nick đã thất bại do tài khoản của bạn không đủ, vui lòng nạp tiền để tiếp tục giao dịch!</p>
+            </div>
+            <div class="modal-footer c-p-24">
+                <button class="btn primary handleOpenRechargeModal" data-dismiss="modal">Nạp tiền</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <!-- Messenger Plugin chat Code -->
 <div id="fb-root" style="    z-index: 666;"></div>
 <!-- Your Plugin chat code -->
@@ -221,6 +249,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/modal_sedding.js?v={{time()}}"></script>
+
 {{--impport script--}}
 @yield('scripts')
 </body>

@@ -14,7 +14,13 @@ $(document).ready(function(){
             }
         });
     }
-
+    var slider_charge_card_amount = new Swiper(".slider--charge--card__amount", {
+        slidesPerView: 2.5,
+        spaceBetween: 8,
+        freeMode: true,
+        observer: true,
+        observeParents: true,
+    });
     $('#reload_1').click(function () {
         $('.refresh-captcha img').toggleClass("down");
         $.ajax({
@@ -84,35 +90,67 @@ $(document).ready(function(){
             },
             beforeSend: function (xhr) {
 
+                $('.amount-loading').removeClass('d-none');
+                $('#amount').addClass('d-none');
+                $('#amount_mobile').addClass('d-none');
+
             },
             success: function (data) {
+                $('.amount-loading').addClass('d-none');
+
                 if(data.status == 1){
-                    $('.amount-loading').remove();
-                    let html = '';
+
                     // html += '<option value="">-- Vui lòng chọn mệnh giá, sai mất thẻ --</option>';
-                    if(data.data.length > 0){
-                        $.each(data.data,function(key,value){
-                            html += '<div class=" col-4 col-md-4 pl-fix-4 pr-fix-4 check-radio-form charge-card-form">'
-                            if (key == 0){
-                                html += '<input  name="amount" type="radio" id="recharge_amount_'+key+'" data-ratito="'+value.ratio_true_amount+'" value="'+value.amount+'"  hidden checked>'
-                            }else {
-                                html += '<input  name="amount" type="radio" id="recharge_amount_'+key+'" data-ratito="'+value.ratio_true_amount+'" value="'+value.amount+'" hidden>'
-                            }
-
-                            html += '<label for="recharge_amount_'+key+'">'
-                            html += '<p>'+ formatNumber(value.amount)  +'đ</p>'
-                            html += ' </label>'
-                            html += '  </div>'
-                            // html += '<option value="'+ value.amount +'" rel-ratio="'+ value.ratio_default+'">'+ formatNumber(value.amount)  +' VNĐ - Nhận ' + value.ratio_true_amount +'% </option>';
-                        });
-                    }
-
                     if($(window).width() > 992){
+                        $('#amount').removeClass('d-none');
+
+                        let html = '';
+                        if(data.data.length > 0){
+                            $.each(data.data,function(key,value){
+                                html += '<div class=" col-4 col-md-4 pl-fix-4 pr-fix-4 check-radio-form charge-card-form">'
+                                if (key == 0){
+                                    html += '<input  name="amount" type="radio" id="recharge_amount_'+key+'" data-ratito="'+value.ratio_true_amount+'" value="'+value.amount+'"  hidden checked>'
+                                }else {
+                                    html += '<input  name="amount" type="radio" id="recharge_amount_'+key+'" data-ratito="'+value.ratio_true_amount+'" value="'+value.amount+'" hidden>'
+                                }
+
+                                html += '<label for="recharge_amount_'+key+'">'
+                                html += '<p>'+ formatNumber(value.amount)  +'đ</p>'
+                                html += ' </label>'
+                                html += '  </div>'
+                                // html += '<option value="'+ value.amount +'" rel-ratio="'+ value.ratio_default+'">'+ formatNumber(value.amount)  +' VNĐ - Nhận ' + value.ratio_true_amount +'% </option>';
+                            });
+                        }
                         $('#amount').html(html);
                     }else {
-                        $('#amount_mobile').html(html);
+                        $('#amount_mobile').removeClass('d-none');
+
+                        if(data.data.length > 0){
+                            data.data.forEach(function (value,key) {
+                                let html = '';
+
+                                html += ' <div class="swiper-slide">'
+                                html += '<div class="check-radio-form charge-card-form">'
+                                if (key == 0){
+                                    html += '<input  name="amount" type="radio" id="recharge_amount_'+key+'" data-ratito="'+value.ratio_true_amount+'" value="'+value.amount+'"  hidden checked>'
+                                }else {
+                                    html += '<input  name="amount" type="radio" id="recharge_amount_'+key+'" data-ratito="'+value.ratio_true_amount+'" value="'+value.amount+'" hidden>'
+                                }
+
+                                html += '<label for="recharge_amount_'+key+'">'
+                                html += '<p>'+ formatNumber(value.amount)  +'đ</p>'
+                                html += ' </label>'
+                                html += '  </div>'
+                                html += '  </div>'
+                                // html += '<option value="'+ value.amount +'" rel-ratio="'+ value.ratio_default+'">'+ formatNumber(value.amount)  +' VNĐ - Nhận ' + value.ratio_true_amount +'% </option>';
+                                $('#amount_mobile').append(html);
+
+                            });
+                        }
+                        // slider_charge_card_amount.update();
                     }
-                    //
+
+
 
 
 
@@ -131,16 +169,17 @@ $(document).ready(function(){
 
                     // reload_captcha()
                 }
-                // else{
-                //     swal({
-                //         title: "Có lỗi xảy ra !",
-                //         text: data.message,
-                //         icon: "error",
-                //         buttons: {
-                //             cancel: "Đóng",
-                //         },
-                //     })
-                // }
+                else{
+                    console.log(data.message)
+                    // swal({
+                    //     title: "Có lỗi xảy ra !",
+                    //     text: data.message,
+                    //     icon: "error",
+                    //     buttons: {
+                    //         cancel: "Đóng",
+                    //     },
+                    // })
+                }
             },
             error: function (data) {
                 console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.')

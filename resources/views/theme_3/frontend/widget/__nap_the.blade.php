@@ -83,9 +83,44 @@
                                         </div>
                                         <div class="default-form-group mb-fix-20 d-block d-lg-none">
                                             <label class="text-form">Chọn mệnh giá</label>
+{{--                                            <div class="col-md-12 p-0" >--}}
+{{--                                                <div class="row m-0 amount_charge" id="amount_mobile">--}}
+{{--                                                    <div class="amount-loading">--}}
+{{--                                                        <div class="loader">--}}
+{{--                                                            <div class="loading-spokes">--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+
+{{--                                                </div>--}}
+{{--                                            </div>--}}
                                             <div class="col-md-12 p-0" >
-                                                <div class="row m-0 amount_charge" id="amount_mobile">
-                                                    <div class="amount-loading">
+                                                <div class="amount_charge " >
+                                                    <div class="amount-loading m-0">
                                                         <div class="loader">
                                                             <div class="loading-spokes">
                                                                 <div class="spoke-container">
@@ -115,8 +150,17 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="swiper slider--charge--card__amount"   >
+                                                        <div class="swiper-wrapper" id="amount_mobile" >
+
+
+                                                        </div>
+
+                                                    </div>
 
                                                 </div>
+
+
                                             </div>
                                         </div>
                                         <div class="default-form-group mb-fix-20">
@@ -171,37 +215,38 @@
                                             <label class="text-form">Chọn mệnh giá</label>
                                             <div class="col-md-12 p-0" >
                                                 <div class="row m-0 amount_charge" id="amount">
-                                                    <div class="amount-loading">
-                                                        <div class="loader">
-                                                            <div class="loading-spokes">
-                                                                <div class="spoke-container">
-                                                                    <div class="spoke"></div>
-                                                                </div>
-                                                                <div class="spoke-container">
-                                                                    <div class="spoke"></div>
-                                                                </div>
-                                                                <div class="spoke-container">
-                                                                    <div class="spoke"></div>
-                                                                </div>
-                                                                <div class="spoke-container">
-                                                                    <div class="spoke"></div>
-                                                                </div>
-                                                                <div class="spoke-container">
-                                                                    <div class="spoke"></div>
-                                                                </div>
-                                                                <div class="spoke-container">
-                                                                    <div class="spoke"></div>
-                                                                </div>
-                                                                <div class="spoke-container">
-                                                                    <div class="spoke"></div>
-                                                                </div>
-                                                                <div class="spoke-container">
-                                                                    <div class="spoke"></div>
-                                                                </div>
+
+
+                                                </div>
+                                                <div class="amount-loading">
+                                                    <div class="loader">
+                                                        <div class="loading-spokes">
+                                                            <div class="spoke-container">
+                                                                <div class="spoke"></div>
+                                                            </div>
+                                                            <div class="spoke-container">
+                                                                <div class="spoke"></div>
+                                                            </div>
+                                                            <div class="spoke-container">
+                                                                <div class="spoke"></div>
+                                                            </div>
+                                                            <div class="spoke-container">
+                                                                <div class="spoke"></div>
+                                                            </div>
+                                                            <div class="spoke-container">
+                                                                <div class="spoke"></div>
+                                                            </div>
+                                                            <div class="spoke-container">
+                                                                <div class="spoke"></div>
+                                                            </div>
+                                                            <div class="spoke-container">
+                                                                <div class="spoke"></div>
+                                                            </div>
+                                                            <div class="spoke-container">
+                                                                <div class="spoke"></div>
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>

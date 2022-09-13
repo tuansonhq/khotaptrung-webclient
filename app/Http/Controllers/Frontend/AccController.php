@@ -247,6 +247,15 @@ class AccController extends Controller
 
             $data = $response_cate_data->data;
 
+            if (!isset($data)){
+                $data = null;
+                $message = "Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !";
+
+                return view('frontend.pages.account.list')
+                    ->with('message',$message)
+                    ->with('data',$data);
+            }
+
             if (!isset($data->childs) && $data->status == 0){
                 return view('frontend.404.404');
             }
@@ -1166,6 +1175,7 @@ class AccController extends Controller
             if (theme('')->theme_key == "theme_3"){
                 $dataSend['limit_item'] =  4;
             }
+
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $response_data = $result_Api->response_data??null;
 

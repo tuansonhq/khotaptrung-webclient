@@ -2,8 +2,8 @@ function showDiv() {
     setTimeout(function () {
         $(".modal-sedding-notification").addClass('modal-sedding-notification_show').delay( 10000);
         setTimeout(function () {
-            $(".modal-sedding-notification").removeClass('modal-sedding-notification_show').delay( 10000);
-        },10000)
+            $(".modal-sedding-notification").removeClass('modal-sedding-notification_show').delay( 6000);
+        },6000)
     }, 10000);
 
 }
@@ -47,18 +47,14 @@ json.forEach(function (item) {
     $('#sedding-notification').append(html);
 })
  /* js mobile */
-function showDivMobile() {
-    setTimeout(function () {
-        $(".sedding-notification-mobile").addClass('modal-sedding-notification_show').delay( 10000);
-        setTimeout(function () {
-            $(".sedding-notification-mobile").removeClass('modal-sedding-notification_show').delay( 6000);
-        },6000)
-    }, 10000);
 
-}
-showDivMobile();
-/* click ra ngoai an modal*/
 
+/* khong cho click modal */
+$('.sedding-notification-mobile').click(function(e) {
+    e.stopPropagation();
+});
+
+/* click body an modal */
 $('body').click( function() {
     $('.sedding-notification-mobile').hide();
 });

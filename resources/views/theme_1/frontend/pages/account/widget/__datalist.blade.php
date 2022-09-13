@@ -205,9 +205,9 @@
                                             {{--                                            </div>--}}
 
                                             <div class="item_buy_list_price">
-                                                @if(isset($data->params) && isset($data->params->price))
-                                                    <span>{{ str_replace(',','.',number_format($data->params->price_old??$data->params->price)) }}đ </span>
-                                                    {{ str_replace(',','.',number_format($data->params->price)) }}đ
+                                                @if(isset($data->price))
+                                                    <span>{{ str_replace(',','.',number_format($data->price_old??$data->price)) }}đ </span>
+                                                    {{ str_replace(',','.',number_format($data->price)) }}đ
                                                 @endif
                                             </div>
 
@@ -266,8 +266,8 @@
                                                             <tr>
                                                                 <td>Giá tiền:</td>
                                                                 <th class="text-info">
-                                                                    @if(isset($data->params) && isset($data->params->price))
-                                                                        {{ str_replace(',','.',number_format($data->params->price)) }}đ
+                                                                    @if(isset($data->price))
+                                                                        {{ str_replace(',','.',number_format($data->price)) }}đ
                                                                     @endif
                                                                 </th>
                                                             </tr>
@@ -352,7 +352,7 @@
                                     <div class="form-group form-group_buyacc ">
                                         @if(App\Library\AuthCustom::check())
 
-                                            @if(App\Library\AuthCustom::user()->balance < $data->params->price)
+                                            @if(App\Library\AuthCustom::user()->balance < $data->price)
                                                 <div class="col-md-12"><label class="form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</label></div>
                                             @else
                                                 <div class="col-md-12"><label class="form-control-label" style="text-align: center;margin: 10px 0; ">Tài khoản của bạn chưa cấu hình bảo mật ODP nên chỉ cần click vào nút xác nhận mua để hoàn tất giao dịch</label></div>
@@ -371,7 +371,7 @@
 
                                     @if(App\Library\AuthCustom::check())
 
-                                        @if(App\Library\AuthCustom::user()->balance < $data->params->price)
+                                        @if(App\Library\AuthCustom::user()->balance < $data->price)
                                             <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2" data-toggle="modal" data-target="#rechargeModal" id="d3" data-dismiss="modal">Nạp thẻ cào</a>
                                             <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2" style="color: #FFFFFF" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>
                                         @else
