@@ -34,7 +34,7 @@
 
         <div class="row" id="card--body__news">
             <div class="col-12 col-lg-8" id="list-article">
-                <div class="card --custom" id="weeky-hot-games">
+                {{-- <div class="card --custom" id="weeky-hot-games">
                     <div class="card--header">
                         <div class="card--header__title">
                             Game hot trong tuần
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="card --custom p-3 d-none d-lg-block" id="new-article-update">
                     <div class="card--header">
                         <div class="card--header__title">
