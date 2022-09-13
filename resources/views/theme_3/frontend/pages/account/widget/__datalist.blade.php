@@ -17,8 +17,8 @@
                                                     @if(isset($data->params->thumb_default) && isset($data->params))
                                                         <img onerror="imgError(this)" class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->randId }}" >
                                                     @else
-                                                        @if(isset($item->image))
-                                                            <img onerror="imgError(this)" class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
+                                                        @if(isset($data->image))
+                                                            <img onerror="imgError(this)" class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="{{ $item->randId }}">
                                                         @else
                                                             <img onerror="imgError(this)" class="img-list-nick-category lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
                                                         @endif
@@ -224,7 +224,7 @@
                                                                 @if(App\Library\AuthCustom::check())
 
                                                                     @if(App\Library\AuthCustom::user()->balance >= $data->price)
-                                                                        <button class="button-default-ct button-next-step-two" type="submit">Xác nhận</button>
+                                                                        <button class="button-default-ct button-next-step-two" type="submit" data-dismiss="modal">Xác nhận</button>
                                                                     @else
                                                                         <button class="button-default-ct btn-open-recharge" type="button" data-tab="1" data-dismiss="modal">Nạp tiền</button>
                                                                     @endif
