@@ -83,8 +83,43 @@
                                         </div>
                                         <div class="default-form-group mb-fix-20 d-block d-lg-none">
                                             <label class="text-form">Chọn mệnh giá</label>
+{{--                                            <div class="col-md-12 p-0" >--}}
+{{--                                                <div class="row m-0 amount_charge" id="amount_mobile">--}}
+{{--                                                    <div class="amount-loading">--}}
+{{--                                                        <div class="loader">--}}
+{{--                                                            <div class="loading-spokes">--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+
+{{--                                                </div>--}}
+{{--                                            </div>--}}
                                             <div class="col-md-12 p-0" >
-                                                <div class="row m-0 amount_charge" id="amount_mobile">
+                                                <div class="amount_charge " >
                                                     <div class="amount-loading">
                                                         <div class="loader">
                                                             <div class="loading-spokes">
@@ -115,8 +150,17 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="swiper slider--charge--card__amount"   id="amount_mobile" >
+{{--                                                        <div class="swiper-wrapper">--}}
+
+
+{{--                                                        </div>--}}
+
+                                                    </div>
 
                                                 </div>
+
+
                                             </div>
                                         </div>
                                         <div class="default-form-group mb-fix-20">

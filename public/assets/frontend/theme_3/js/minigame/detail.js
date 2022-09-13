@@ -1,20 +1,17 @@
 $(document).ready(function () {
 
-    var module = $('.module').val();
-    var id_group = $('.id_group').val();
     var slug = $('.slug').val();
 
-    getShowMinigameDetail(id_group,module,slug)
+    getShowMinigameDetail(slug)
 
-    function getShowMinigameDetail(id_group,module,slug) {
+    function getShowMinigameDetail(slug) {
 
         var url = '/minigame-' + slug + '';
         request = $.ajax({
             type: 'GET',
             url: url,
             data: {
-                id_group:id_group,
-                module:module,
+
             },
             beforeSend: function (xhr) {
 
@@ -23,16 +20,16 @@ $(document).ready(function () {
 
                 if (data.status == 1) {
 
-                    $('.data_minigame_detail').html('');
-                    $('.data_minigame_detail').html(data.data);
-
+                    $('#data_rotation-detail').html('');
+                    $('#data_rotation-detail').html(data.data);
+                    $('#data_rotation-detail').removeClass('minigame-add-heard');
                 } else if (data.status == 0) {
 
                     var html = '';
                     html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + data.message + '</span></div></div>';
 
-                    $('.data_minigame_detail').html('');
-                    $('.data_minigame_detail').html(html);
+                    $('#data_rotation-detail').html('');
+                    $('#data_rotation-detail').html(html);
 
                 }
 
@@ -45,4 +42,5 @@ $(document).ready(function () {
             }
         });
     }
+
 })

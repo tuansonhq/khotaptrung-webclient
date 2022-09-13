@@ -208,10 +208,6 @@
                                                 @if(isset($data->params) && isset($data->params->price))
                                                     <span>{{ str_replace(',','.',number_format($data->params->price_old??$data->params->price)) }}đ </span>
                                                     {{ str_replace(',','.',number_format($data->params->price)) }}đ
-                                                @else
-                                                    <span>{{ str_replace(',','.',number_format($item->price_old??$item->price)) }}đ </span>
-                                                    {{ str_replace(',','.',number_format($item->price)) }}đ
-                                                    {{--                                                {{ formatPrice($item->price) }}đ--}}
                                                 @endif
                                             </div>
 
@@ -272,9 +268,6 @@
                                                                 <th class="text-info">
                                                                     @if(isset($data->params) && isset($data->params->price))
                                                                         {{ str_replace(',','.',number_format($data->params->price)) }}đ
-                                                                    @else
-                                                                        {{ str_replace(',','.',number_format($item->price)) }}đ
-                                                                        {{--                                                {{ formatPrice($item->price) }}đ--}}
                                                                     @endif
                                                                 </th>
                                                             </tr>

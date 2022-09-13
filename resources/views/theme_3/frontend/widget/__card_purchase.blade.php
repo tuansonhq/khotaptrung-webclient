@@ -1,7 +1,7 @@
-<div class="content__wrap mt-fix-20" id="content-store-card">
+<div class="content__wrap mt-fix-20 content-store-card" id="content-store-card">
     <div class="row" id="screen--first">
         <div class="col-12 col-lg-12 col-xl-8 px-lg-3 section--type__card buy-card">
-            <div class="card --custom" style="min-height: 100%">
+            <div class="card --custom card-mobile" style="min-height: 100%">
                 <div class="card--header d-block">
                     <div class="card--header__title">
                         <div class="title__icon"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/muathegiare.svg" alt=""></div>
@@ -49,11 +49,33 @@
                                     </div>
                                 </div>
                             </ul>
+                            <div class="swiper slider--card__telecom" >
+                                <div class="swiper-wrapper" id="cardGameListMobile">
+{{--                                    <div class="swiper-slide">--}}
+{{--                                        <div class="cards__item p_0 w-100">--}}
+{{--                                            <input type="radio" id="card-477" value="GARENA" data-img="https://cdn.upanh.info/storage/upload/images/Th%E1%BA%BB/the-garena.png" name="card-type" checked="" hidden="">--}}
+{{--                                            <label for="card-477"><img src="https://cdn.upanh.info/storage/upload/images/Th%E1%BA%BB/the-garena.png" class="card--logo" alt="GARENA"></label>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+
+                                </div>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="card-phone" role="tabpanel" aria-labelledby="card-phone-tab">
                             <ul class="cards__list row" id="cardPhoneList">
 
                             </ul>
+                            <div class="swiper slider--card__amount" >
+                                <div class="swiper-wrapper" id="cardPhoneListMobile">
+{{--                                    <div class="swiper-slide">--}}
+{{--                                        <div class="cards__item p_0 w-100">--}}
+{{--                                            <input type="radio" id="card-477" value="GARENA" data-img="https://cdn.upanh.info/storage/upload/images/Th%E1%BA%BB/the-garena.png" name="card-type" checked="" hidden="">--}}
+{{--                                            <label for="card-477"><img src="https://cdn.upanh.info/storage/upload/images/Th%E1%BA%BB/the-garena.png" class="card--logo" alt="GARENA"></label>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,6 +119,20 @@
                         <ul class="deno__list row" id="cardAmountList">
 
                         </ul>
+                        <div class="swiper slider--card__amount" >
+                            <div class="swiper-wrapper" id="cardAmountListMobile">
+{{--                                <div class="swiper-slide">--}}
+{{--                                    <div class="deno__item ">--}}
+{{--                                        <input type="radio" id="amount-3346" value="10000" data-discount="99.0" name="card-value" checked="" hidden="">--}}
+{{--                                        <label for="amount-3346" class="deno__value card-item-value"><span>10.000 đ</span></label>--}}
+{{--                                    </div>--}}
+
+{{--                                </div>--}}
+
+
+                            </div>
+                        </div>
+
                         <div class="card--amount">
                             <span class="card--amount__title">
                                 Số lượng thẻ
@@ -140,7 +176,7 @@
     </div>
 
     <!-- Modal Xác Nhận Thanh Toán-->
-    <div class="modal fade" id="modal--confirm__payment" aria-hidden="true">
+    <div class="modal fade mx-md-fix-8" id="modal--confirm__payment" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered animated">
             <div class="modal-content -custom dialog">
                 <div class="dialog--header">
