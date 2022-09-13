@@ -20,7 +20,8 @@
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_phu/spin.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/fake-cmt.js"></script>
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-rut-vp.js?v={{time()}}"></script>--}}
+
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-rut-vp.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-history-spin-bonus.js?v={{time()}}"></script>
 
 @endsection
@@ -95,7 +96,12 @@
                                 <a href="{{route('getLog',[$group->id])}}" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button">Lịch sử quay</a>
                             </div>
                             <div class="col-6 leaderboard-col">
-                                <button class="button-primary">Rút quà</button>
+                                @if(App\Library\AuthCustom::check())
+                                    <button class="button-primary" type="button" data-toggle="modal" data-target="#modal-withdraw-items">Rút quà
+                                    </button>
+                                @else
+                                    <button class="button-primary" type="button" onclick="openLoginModal();">Rút quà</button>
+                                @endif
                             </div>
                         </div>
                         <div class="leaderboard-header">
@@ -231,8 +237,7 @@
                                 </div>
                                 <div class="col-6 leaderboard-col">
                                     @if(App\Library\AuthCustom::check())
-                                        <button class="button-primary" type="button" data-toggle="modal"
-                                                data-target="#modal-withdraw-items">Rút quà
+                                        <button class="button-primary" type="button" data-toggle="modal" data-target="#modal-withdraw-items">Rút quà
                                         </button>
                                     @else
                                         <button class="button-primary" type="button" onclick="openLoginModal();">Rút quà
@@ -529,8 +534,7 @@
                                                 Chọn vật phẩm bạn đang sở hữu
                                             </div>
                                             <div class="swiper swiper-withdraw">
-                                                <div class="swiper-wrapper" id="wrap-game-type"
-                                                     data-game_type="{{ @$result->group->params->game_type }}">
+                                                <div class="swiper-wrapper" id="wrap-game-type" data-game_type="{{ @$group->params->game_type }}">
                                                     <div class="swiper-slide">
                                                         <input type="radio" id="item-radio-0" name="game_type" hidden
                                                                checked>
@@ -625,16 +629,16 @@
                             <div class="tab-pane fade" id="modal-tab-history" role="tabpanel">
                                 <div class="row marginauto logs-content p-0">
                                     <div class="col-md-12 px-0">
-                                        <div class="row marginauto">
+                                        <div class="row marginauto modal-history-filter">
                                             <div class="col-12 left-right">
                                                 <form class="search-txns">
                                                     <div class="row marginauto body-form-search-ct">
-                                                        <div class="col-auto left-right">
-                                                            <input autocomplete="off" type="text" name="search" class="input-search-log-ct search" placeholder="Nhập từ khóa">
+                                                        <div class="col-12 col-lg-9 left-right">
+                                                            <input autocomplete="off" type="text" name="search" class="input-search-log-ct search w-100" placeholder="Nhập từ khóa">
                                                             <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                                         </div>
-                                                        <div class="col-4 body-form-search-button-ct media-web">
-                                                            <button type="submit" class="timkiem-button-ct btn-timkiem" style="position: relative">
+                                                        <div class="col-lg-3 body-form-search-button-ct media-web d-none d-lg-block">
+                                                            <button type="submit" class="timkiem-button-ct btn-timkiem w-100" style="position: relative">
                                                                 <span class="span-timkiem">Tìm kiếm</span>
                                                                 <div class="row justify-content-center loading-data__timkiem"></div>
                                                             </button>
@@ -642,19 +646,46 @@
                                                     </div>
                                                 </form>
                                             </div>
-                                            <div class="col-auto ml-auto left-right">
-
-                                                <div class="row marginauto justify-content-end nick-findter-row">
-
-                                                    <div class="col-auto nick-findter" style="position: relative">
-                                                        <ul>
-                                                            <li class="li-boloc">Bộ lọc</li>
-                                                            <li class="margin-findter">
-                                                                <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/filter.png" alt="">
-                                                                <span class="overlay-find">0</span>
-                                                            </li>
-                                                        </ul>
+                                            <div class="col-12 col-lg-7">
+                                                <div class="t-sub-2 mb-2">
+                                                    Loại giao dịch
+                                                </div>
+                                                <select name="type" id="" class="wide">
+                                                    <option value="" selected disabled>Chọn</option>
+                                                    <option value="0">Rút kim cương</option>
+                                                    <option value="1">Rút quân huy</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-12 col-lg-5">
+                                                <div class="t-sub-2 mb-2">
+                                                    Trạng thái
+                                                </div>
+                                                <select name="type" id="" class="wide">
+                                                    <option value="" selected disabled>Chọn</option>
+                                                    <option value="0">Thành công</option>
+                                                    <option value="1">Thất bại</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-12 col-lg-7 row mx-0">
+                                                <div class="col-6">
+                                                    <div class="t-sub-2 mb-2">
+                                                        Từ ngày
                                                     </div>
+                                                    <input type="text" name="started_at" class="input-defautf-ct calendar-right" placeholder="Từ ngày" autocomplete="off">
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="t-sub-2 mb-2">
+                                                        Đến ngày
+                                                    </div>
+                                                    <input type="text" name="ended_at" class="input-defautf-ct calendar-right" placeholder="Đến ngày" autocomplete="off">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-5 row mx-0">
+                                                <div class="col-6">
+                                                    <button class="btn -text-btn">Xóa bộ lọc</button>
+                                                </div>
+                                                <div class="col-6">
+                                                    <button class="btn -secondary">Áp dụng</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -694,9 +725,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="data-ajax-render" data-id="{{ @$result->group->id }}">
-
-                        </div>
+                        <div id="data-ajax-render" data-id="{{ @$group->id }}"></div>
                     </div>
                 </div>
             </div>
@@ -735,6 +764,7 @@
 
         </div>
     @endif
+
 @endsection
 
 

@@ -54,6 +54,7 @@ $(document).ready(function () {
         let page = $(this).attr('href').split('page=')[1];
         let new_url = updateQueryStringParameter(url,'page',page);
         window.history.pushState({}, null, new_url);
+        loadData();
         loadDataTable();
     });
 
