@@ -691,6 +691,10 @@ View::composer('frontend.widget.__menu__category__article', function ($view) {
 
 View::composer('frontend.widget.__menu__category__article_theme_3', function ($view) {
 
+    $data = null;
+    $dataDetail = [];
+    $category_url = [];
+
     $data = \Cache::rememberForever('__menu__category__article_theme_3', function() {
         $url = '/get-category';
         $method = "GET";
@@ -701,7 +705,26 @@ View::composer('frontend.widget.__menu__category__article_theme_3', function ($v
         return $data = $result_Api->response_data->datacategory??null;
     });
 
-    return $view->with('data_category', $data);
+    foreach ($data as $key => $value) {
+        if ($key > 1) {
+            break;
+        }
+        $category_url[] = $value->slug;
+    }
+
+    for($i = 0 ; $i < count($category_url); $i++) {
+        $url = '/article/'.$category_url[$i];
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['page'] = 1;
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $response_data = $result_Api->response_data??null;
+
+        $dataDetail[] = $response_data;
+    }
+
+    return $view->with('data_category', $data)->with('data_detail', $dataDetail);
 });
 
 View::composer('frontend.pages.article.widget.__danh__muc', function ($view) {
