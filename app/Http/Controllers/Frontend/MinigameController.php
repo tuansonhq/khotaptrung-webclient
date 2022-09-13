@@ -117,6 +117,10 @@ class MinigameController extends Controller
                             $url = '/minigame/get-minigame-info';
                             $data['id'] = $group->id;
                             $data['module'] = explode('-', $group->module)[0];
+                            $data['token'] = Session::get('jwt');
+                            $data['secret_key'] = config('api.secret_key');
+                            $data['domain'] = \Request::server("HTTP_HOST");
+
                             $result_Api = DirectAPI::_makeRequest($url, $data, $method);
                             $response_data = $result_Api->response_data??null;
 
@@ -173,6 +177,9 @@ class MinigameController extends Controller
 //                                        $expiresAt = Carbon::now()->addMinutes(5);
 //                                        Cache::put('currentPlayList' . $group->id, $currentPlayList, $expiresAt);
 
+                                        $html_item = view('frontend.pages.minigame.widget.__number__item')
+                                            ->with('result',$result)->render();
+
                                         $html = view('frontend.pages.minigame.widget.__detail')
                                             ->with('position',$result->group->position)
                                             ->with('result',$result)
@@ -181,6 +188,7 @@ class MinigameController extends Controller
                                         return response()->json([
                                             'status' => 1,
                                             'data' => $html,
+                                            'data_item' => $html_item,
                                             'message' => 'Load du lieu thanh cong.',
                                         ]);
 
