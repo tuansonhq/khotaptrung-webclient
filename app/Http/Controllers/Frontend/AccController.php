@@ -247,6 +247,15 @@ class AccController extends Controller
 
             $data = $response_cate_data->data;
 
+            if (!isset($data)){
+                $data = null;
+                $message = "Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !";
+
+                return view('frontend.pages.account.list')
+                    ->with('message',$message)
+                    ->with('data',$data);
+            }
+
             if (!isset($data->childs) && $data->status == 0){
                 return view('frontend.404.404');
             }

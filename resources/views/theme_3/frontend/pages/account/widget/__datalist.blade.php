@@ -33,12 +33,12 @@
 
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <ul>
-                                                                @if(isset($data->params) && isset($data->params->price))
-                                                                    <li class="fist-li-account">{{ str_replace(',','.',number_format($data->params->price)) }}đ</li>
-                                                                    <li class="second-li-account">{{ str_replace(',','.',number_format($data->params->price_old??$data->params->price)) }}đ</li>
+                                                                @if(isset($data->price))
+                                                                    <li class="fist-li-account">{{ str_replace(',','.',number_format($data->price)) }}đ</li>
+                                                                    <li class="second-li-account">{{ str_replace(',','.',number_format($data->price_old??$data->price)) }}đ</li>
                                                                     @php
-                                                                        if (isset($data->params->price_old)) {
-                                                                            $sale_percent = (($data->params->price_old - $data->params->price) / $data->params->price_old) * 100;
+                                                                        if (isset($data->price_old)) {
+                                                                            $sale_percent = (($data->price_old - $data->price) / $data->price_old) * 100;
                                                                             $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
                                                                         } else {
                                                                             $sale_percent = 0;
@@ -46,20 +46,6 @@
                                                                     @endphp
                                                                     @if($sale_percent > 0)
                                                                         <li class="three-li-account">-{{$sale_percent}}%</li>
-                                                                    @endif
-                                                                @else
-                                                                    <li class="fist-li-account">{{ str_replace(',','.',number_format($item->price)) }}đ</li>
-                                                                    <li class="second-li-account">{{ str_replace(',','.',number_format($item->price_old??$item->price)) }}đ</li>
-                                                                    @php
-                                                                        if (isset($item->price_old)) {
-                                                                            $sale_percent = (($item->price_old - $item->price) / $item->price_old) * 100;
-                                                                            $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
-                                                                        } else {
-                                                                            $sale_percent = 0;
-                                                                        }
-                                                                    @endphp
-                                                                    @if($sale_percent > 0)
-                                                                    <li class="three-li-account">-{{$sale_percent}}%</li>
                                                                     @endif
                                                                 @endif
                                                             </ul>
@@ -137,10 +123,8 @@
                                                                     </div>
                                                                     <div class="col-auto left-right background-order-col-right-ct">
                                                                         <small>
-                                                                            @if(isset($data->params) && isset($data->params->price))
-                                                                                {{ str_replace(',','.',number_format($data->params->price)) }}đ
-                                                                            @else
-                                                                                {{ str_replace(',','.',number_format($item->price)) }}đ
+                                                                            @if(isset($data->price))
+                                                                                {{ str_replace(',','.',number_format($data->price)) }}đ
                                                                             @endif
                                                                         </small>
                                                                     </div>
@@ -212,10 +196,8 @@
                                                                     </div>
                                                                     <div class="col-auto left-right background-order-col-right-ct">
                                                                         <span>
-                                                                            @if(isset($data->params) && isset($data->params->price))
-                                                                                {{ str_replace(',','.',number_format($data->params->price)) }}đ
-                                                                            @else
-                                                                                {{ str_replace(',','.',number_format($item->price)) }}đ
+                                                                            @if(isset($data->price))
+                                                                                {{ str_replace(',','.',number_format($data->price)) }}đ
                                                                             @endif
                                                                         </span>
                                                                     </div>
@@ -227,7 +209,7 @@
                                                         <div class="row marginauto order-errors">
                                                             <div class="col-md-12 left-right">
                                                                 @if(App\Library\AuthCustom::check())
-                                                                    @if(App\Library\AuthCustom::user()->balance < $data->params->price)
+                                                                    @if(App\Library\AuthCustom::user()->balance < $data->price)
                                                                         <small>Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</small>
                                                                     @endif
                                                                 @else
@@ -241,7 +223,7 @@
                                                             <div class="col-md-12 left-right">
                                                                 @if(App\Library\AuthCustom::check())
 
-                                                                    @if(App\Library\AuthCustom::user()->balance >= $data->params->price)
+                                                                    @if(App\Library\AuthCustom::user()->balance >= $data->price)
                                                                         <button class="button-default-ct button-next-step-two" type="submit">Xác nhận</button>
                                                                     @else
                                                                         <button class="button-default-ct btn-open-recharge" type="button" data-tab="1" data-dismiss="modal">Nạp tiền</button>
