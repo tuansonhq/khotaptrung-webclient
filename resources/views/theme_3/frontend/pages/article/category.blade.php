@@ -36,7 +36,7 @@
 
         <div class="row" id="card--body__news">
             <div class="col-12 col-lg-8" id="list-article">
-                <div class="card --custom" id="weeky-hot-games">
+                {{-- <div class="card --custom" id="weeky-hot-games">
                     <div class="card--header">
                         <div class="card--header__title">
                             Game hot trong tuần
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="card --custom p-3 d-none d-lg-block" id="new-article-update">
                     <div class="card--header">
                         <div class="card--header__title">
@@ -76,32 +76,32 @@
                         @if(isset($data) )
                             @foreach($data as $key=> $item)
                                 @if($key >= 5)
-                        <div class="article px-3">
-                            <div class="row">
-                                <div class="col-4 col-lg-4 p-0">
-                                    <div class="article--thumbnail">
-                                        <a href="/tin-tuc/{{ $item->slug }}">
-                                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="article--thumbnail__image">
-                                        </a>
+                                    <div class="article px-3">
+                                        <div class="row">
+                                            <div class="col-4 col-lg-4 p-0">
+                                                <div class="article--thumbnail">
+                                                    <a href="/tin-tuc/{{ $item->slug }}">
+                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="article--thumbnail__image">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-8 col-lg-8 article--info">
+                                                <div class="article--title mb-3 mb-lg-0">
+                                                    <a href="/tin-tuc/{{ $item->slug }}" class="article--title__link">
+                                                        {{ $item->title }}
+                                                    </a>
+                                                </div>
+                                                <div class="article--description d-none d-lg-block">
+                                                    {!! $item->description !!}
+                                                </div>
+                                                <div class="article--date">
+                                                    <i class="__icon calendar mr-2"></i>
+                                                    {{ formatDateTime($item->created_at) }}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-8 col-lg-8 article--info">
-                                    <div class="article--title mb-3 mb-lg-0">
-                                        <a href="/tin-tuc/{{ $item->slug }}" class="article--title__link">
-                                            {{ $item->title }}
-                                        </a>
-                                    </div>
-                                    <div class="article--description d-none d-lg-block">
-                                        {!! $item->description !!}
-                                    </div>
-                                    <div class="article--date">
-                                        <i class="__icon calendar mr-2"></i>
-                                        {{ formatDateTime($item->created_at) }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                            @endif
+                                @endif
                             @endforeach
                         @else
                             <div class="row pb-3 pt-3">

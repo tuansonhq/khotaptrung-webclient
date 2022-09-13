@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-4" id="article-detail-right">
-                <div class="card --custom" id="article-related-minigames">
+                {{-- <div class="card --custom" id="article-related-minigames">
                     <div class="card--header">
                         <div class="card--header__title">
                             Minigame liên quan
@@ -292,7 +292,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div id="article-detail-advertise" class="d-none d-lg-block">
                     <a href="javascript:void(0);">
