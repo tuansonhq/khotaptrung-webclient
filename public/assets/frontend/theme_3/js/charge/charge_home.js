@@ -90,13 +90,20 @@ $(document).ready(function(){
             },
             beforeSend: function (xhr) {
 
+                $('.amount-loading').removeClass('d-none');
+                $('#amount').addClass('d-none');
+                $('#amount_mobile').addClass('d-none');
+
             },
             success: function (data) {
+                $('.amount-loading').addClass('d-none');
+
                 if(data.status == 1){
-                    $('.amount-loading').remove();
 
                     // html += '<option value="">-- Vui lòng chọn mệnh giá, sai mất thẻ --</option>';
                     if($(window).width() > 992){
+                        $('#amount').removeClass('d-none');
+
                         let html = '';
                         if(data.data.length > 0){
                             $.each(data.data,function(key,value){
@@ -116,11 +123,12 @@ $(document).ready(function(){
                         }
                         $('#amount').html(html);
                     }else {
-                        let html = '';
-                        // $('#amount_mobile').empty();
+                        $('#amount_mobile').removeClass('d-none');
+
                         if(data.data.length > 0){
-                            html += '<div class="swiper-wrapper">';
-                            $.each(data.data,function(key,value){
+                            data.data.forEach(function (value,key) {
+                                let html = '';
+
                                 html += ' <div class="swiper-slide">'
                                 html += '<div class="check-radio-form charge-card-form">'
                                 if (key == 0){
@@ -135,10 +143,10 @@ $(document).ready(function(){
                                 html += '  </div>'
                                 html += '  </div>'
                                 // html += '<option value="'+ value.amount +'" rel-ratio="'+ value.ratio_default+'">'+ formatNumber(value.amount)  +' VNĐ - Nhận ' + value.ratio_true_amount +'% </option>';
+                                $('#amount_mobile').append(html);
+
                             });
-                            html += '  </div>'
                         }
-                        $('#amount_mobile').html(html);
                         // slider_charge_card_amount.update();
                     }
 
@@ -161,16 +169,17 @@ $(document).ready(function(){
 
                     // reload_captcha()
                 }
-                // else{
-                //     swal({
-                //         title: "Có lỗi xảy ra !",
-                //         text: data.message,
-                //         icon: "error",
-                //         buttons: {
-                //             cancel: "Đóng",
-                //         },
-                //     })
-                // }
+                else{
+                    console.log(data.message)
+                    // swal({
+                    //     title: "Có lỗi xảy ra !",
+                    //     text: data.message,
+                    //     icon: "error",
+                    //     buttons: {
+                    //         cancel: "Đóng",
+                    //     },
+                    // })
+                }
             },
             error: function (data) {
                 console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.')
