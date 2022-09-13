@@ -11,7 +11,18 @@
                         <div class="card">
                             <a href="javascript:void(0)" data-id="{{ $item->randId }}" class="card-body scale-thumb buyacc">
                                 <div class="account-thumb c-mb-8">
-                                    <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ @$item->randId }}" class="account-thumb-image lazy">
+                                    @if(isset($data->params->thumb_default) && isset($data->params))
+                                        <img src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ @$item->randId }}" class="account-thumb-image lazy">
+                                    @else
+
+                                        @if(isset($item->image))
+                                            <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="{{ @$item->randId }}" class="account-thumb-image lazy">
+                                        @else
+                                            {{--                                                <img class="item_buy_list_img-main item_buy_list_img-main{{ $item->randId }}" src="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">--}}
+                                        @endif
+                                    @endif
+
+
                                 </div>
                                 <div class="account-title">
                                     <div class="text-title fw-700 text-limit limit-1">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</div>
