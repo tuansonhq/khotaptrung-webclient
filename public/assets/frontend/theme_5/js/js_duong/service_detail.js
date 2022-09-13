@@ -293,7 +293,6 @@ $('body').on('click','.btnPay',function(){
     } else {
         balanceCheck = 0;
     }
-    console.log(userBalance, price, balanceCheck);
 
     if (is_ok){
         if (balanceCheck) {

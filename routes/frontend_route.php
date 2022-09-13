@@ -195,6 +195,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::post('register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
 //                site map
                 Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SiteMapController::class , 'index']);
+                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
 //                404
                 Route::get('/404', function ()
                 {
@@ -242,6 +243,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/ajax-modal-logs-spin-bonus',[\App\Http\Controllers\Frontend\MinigameController::class,'getLogsModalSpinBonus']);
                 Route::get('/ajax-modal-logs-spin-bonus-acc',[\App\Http\Controllers\Frontend\MinigameController::class,'getLogsModalSpinBonus']);
+
 
                 Route::group(['middleware' => ['intend']], function () {
 

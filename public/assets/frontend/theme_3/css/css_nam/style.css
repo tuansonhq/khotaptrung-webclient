@@ -3169,6 +3169,7 @@ header nav.heading .header-container{
 #c_slider_banner p{
     margin-bottom: 0!important;
 }
+
 .item-product__box-img__random{
     position: relative;
 }
@@ -3203,4 +3204,5 @@ header nav.heading .header-container{
 .list-product .item-other-nick:hover .item-product__box-img__random button{
     display: block;
     z-index: 99;
+
 }

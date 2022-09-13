@@ -104,8 +104,3 @@ var swiper_article_banner = new Swiper(".article--slider__news", {
 });
 
 
-let array_auto_link = JSON.parse($('#array-autolink').val());
-console.log(array_auto_link)
-$('.content-autolink').autoLink(array_auto_link);
-
-
