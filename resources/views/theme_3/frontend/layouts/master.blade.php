@@ -53,6 +53,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/preload.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
     @if(setting('sys_google_tag_manager_head') != '')
         @foreach(explode('|',setting('sys_google_tag_manager_head')) as $tag => $sys)
@@ -78,7 +79,6 @@
     @endif
 </head>
 <body>
-<input id="array-autolink" type="hidden" value="{{ setting('sys_theme_auto_link') && setting('sys_theme_auto_link') != '' ? setting('sys_theme_auto_link') : '' }}">
 
 @if(setting('sys_google_tag_manager_body') != '')
     <!-- Google Tag Manager (noscript) -->

@@ -12,12 +12,12 @@
                 </p>
             </div>
             <div class="history-head-item item-right col-3  py-0">
-                <p>
+                <p class="text-right">
                     Số vật phẩm
                 </p>
             </div>
             <div class="history-head-item item-right col-3  py-0">
-                <p>
+                <p class="text-right">
                     Thông báo
                 </p>
             </div>

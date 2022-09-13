@@ -17,7 +17,6 @@ $(document).ready(function () {
 
             },
             success: (data) => {
-
                 if (data.status == 1) {
 
                     $('#data_rotation-detail').html('');
