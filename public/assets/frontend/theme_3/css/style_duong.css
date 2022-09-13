@@ -144,7 +144,40 @@
 }
 @media (max-width: 992px) {
     .sedding-notification-mobile{
-        display: none;
+        top: -100%;
+        left: 16px;
+        right: 16px;
+        bottom:auto;
+        width: auto;
+    }
+    /*.fix-sedding:before {*/
+    /*    content: '';*/
+    /*    position: fixed;*/
+    /*    top: 0;*/
+    /*    left: 0;*/
+    /*    right: 0;*/
+    /*    bottom: 0;*/
+    /*    background-color: rgba(0,0,0,.75);*/
+    /*    z-index: 1000;*/
+    /*}*/
+    .modal-sedding-image{
+        width: 180px;
+        height: 78px;
+    }
+    .modal-sedding-title{
+        font-size: 13px;
+    }
+    .modal-sedding-content{
+        font-size: 12px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .modal-sedding-notification span{
+        font-size: 13px;
+    }
+    .modal-sedding-notification_show{
+        top: 66px;
+        transition: .4s ease;
     }
 }
  /* fix phan dich vu*/
