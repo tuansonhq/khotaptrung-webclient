@@ -198,6 +198,20 @@
     background: rgba(246, 118, 0, 0.15);
 }
 
+#content-store-card .swiper-slide .cards__item input[type="radio"]:checked + label {
+    border: 1px solid var(--primary-color);
+}
+
+#content-store-card .swiper-slide .cards__item input[type="radio"]:checked + label:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(246, 118, 0, 0.15);
+}
+
 #content-store-card .cards__item input[type="radio"]:checked + label {
     border: 1px solid var(--primary-color);
 }
@@ -2362,6 +2376,7 @@ a:hover .__icon.--path__custom:after {
     padding-top: 12px;
     padding-bottom: 12px;
 }
+
 @media screen and (max-width: 1200px) {
 
     /* New layout news page */
@@ -2823,6 +2838,23 @@ a:hover .__icon.--path__custom:after {
 }
 
 @media screen and (max-width: 992px) {
+    #amountWidget{
+        min-height: 200px;
+    }
+    #amountWidget .loader {
+
+
+        top: 20px;
+
+    }
+    #content-store-card .card-mobile {
+        padding: 16px 12px 4px;
+
+    }
+    #content-store-card .cards__item {
+        padding: 0 !important;
+        /*margin-bottom: 8px;*/
+    }
     #modal-withdraw-items .modal-dialog {
         padding-right: 16px;
         padding-left: 16px;
