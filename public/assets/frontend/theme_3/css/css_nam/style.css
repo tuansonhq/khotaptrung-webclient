@@ -3169,3 +3169,38 @@ header nav.heading .header-container{
 #c_slider_banner p{
     margin-bottom: 0!important;
 }
+.item-product__box-img__random{
+    position: relative;
+}
+.item-product__box-img__random button{
+    position: absolute;
+    width: auto;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    background: var(--primary-color);
+    display: none;
+    color: white;
+
+}
+.item-product__box-img__random::before {
+
+
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    border-bottom: 0;
+    /*border-radius: var(--primary-border);*/
+    z-index: 9;
+}
+.list-product .item-other-nick:hover .item-product__box-img__random::before{
+    background: linear-gradient(rgba(24, 22, 22, 0),rgba(24, 22, 22, 0.6),#181616);
+    transition: all 500ms;
+}
+.list-product .item-other-nick:hover .item-product__box-img__random button{
+    display: block;
+    z-index: 99;
+}

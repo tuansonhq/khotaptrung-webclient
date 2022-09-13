@@ -11,7 +11,7 @@
                         <div class="card">
                             <a href="javascript:void(0)" data-id="{{ $item->randId }}" class="card-body scale-thumb buyacc">
                                 <div class="account-thumb c-mb-8">
-                                    <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{\App\Library\MediaHelpers::media($item->title)}}" class="account-thumb-image lazy" onerror="imgError(this)">
+                                    <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="{{\App\Library\MediaHelpers::media($data->title)}}" class="account-thumb-image lazy" onerror="imgError(this)">
                                 </div>
                                 <div class="account-title">
                                     <div class="text-title fw-700 text-limit limit-1">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</div>

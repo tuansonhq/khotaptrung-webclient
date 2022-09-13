@@ -110,6 +110,7 @@
     <script src="https://github.com/wycats/handlebars.js"></script>
     <script src="/assets/frontend/theme_3/js/charge/charge_home.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick-random.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/buyaccrandomhome.js?v={{time()}}"></script>
     @if(\App\Library\AuthFrontendCustom::check())
         <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
     @endif

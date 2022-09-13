@@ -1175,6 +1175,7 @@ class AccController extends Controller
             if (theme('')->theme_key == "theme_3"){
                 $dataSend['limit_item'] =  4;
             }
+
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $response_data = $result_Api->response_data??null;
 
