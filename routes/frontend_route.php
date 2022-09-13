@@ -195,6 +195,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::post('register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
 //                site map
                 Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SiteMapController::class , 'index']);
+                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
 //                404
                 Route::get('/404', function ()
                 {
