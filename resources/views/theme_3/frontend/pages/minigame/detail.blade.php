@@ -240,20 +240,22 @@
                 <div class="col-12 col-lg-7 rotation-col-left">
                     <div class="rotation-detail">
                         <div class="rotation-header">
-                            <h1>{{$result->group->title}}</h1>
-                            @if(isset($result->group->params->thele))
-                                <button class="button-secondary" id="gamRuleButton">Thể lệ</button>
-                            @endif
-                        </div>
-                        <div class="rotation-player">
-                            <img onerror="imgError(this)"
-                                 src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/security-user 1.svg"
-                                 alt="">
+                            <div class="d-flex align-items-center rotation-header-block">
+                                <h1>{{$result->group->title}}</h1>
+                                @if(isset($result->group->params->thele))
+                                    <button class="button-secondary" id="gamRuleButton">Thể lệ</button>
+                                @endif
+                            </div>
                             @if(isset($result->group->params->fake_num_play))
-                                <p><span id="userCount">
-                                    {{ str_replace(',','.',number_format($result->group->params->fake_num_play)) }}</span>
-                                    người đang chơi
-                                </p>
+                            <div class="d-flex align-items-center">
+                                <img onerror="imgError(this)"
+                                     src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/security-user 1.svg"
+                                     alt="">
+                                    <p><span id="userCount">
+                                        {{ str_replace(',','.',number_format($result->group->params->fake_num_play)) }}</span>
+                                        người đang chơi
+                                    </p>
+                            </div>
                             @endif
                         </div>
                         @if(isset($currentPlayList) && $currentPlayList != '')
@@ -267,7 +269,7 @@
                                 </marquee>
                             </div>
                         @endif
-                        <div class="rotation-sale">
+                        <div class="rotation-sale d-block d-lg-none">
                             <div class="rotation-sale-header">
                                 <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/flash_img.png"
                                         alt=""> Flash sale</p>
@@ -520,11 +522,11 @@
                         @endif
                         <div class="rotation-inputs row">
                             @if($result->checkVoucher==1)
-                                <div class="col-12 col-md-6 item_spin_sale-off">
+                                <div class="col-12 col-lg-6 item_spin_sale-off rotation-col">
                                     <input class="input-primary" type="text" placeholder="Nhập mã giảm giá">
                                 </div>
                             @endif
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-lg-6 rotation-col">
                                 <select class="rotation-inputs-select select-primary" name="type" id="numrolllop">
                                     <option value="1">Mua X1/{{$result->group->price/1000}}k 1 lần quay</option>
                                     @if($result->group->params->price_sticky_3 > 0))
@@ -551,25 +553,46 @@
                             </div>
                         </div>
                         <div class="rotation-buttons row">
-                            @if($result->group->params->is_try == 1)
-                                <div class="col-6">
-                                    <button id="playerDemo" class="button-secondary button-demo num-play-try">Chơi thử
-                                    </button>
+                            <div class="col-12 col-lg-6 rotation-col">
+                                <div class="rotation-sale-secondary d-none d-lg-flex">
+                                    <div class="first-sale-price">
+                                        @if(isset($result->group->params->percent_sale))
+                                            {{ str_replace(',','.',number_format(($result->group->params->percent_sale*$result->group->price)/100 + $result->group->price)) }}đ
+                                        @endif
+                                    </div>
+                                    <div class="second-sale-price">
+                                        {{ str_replace(',','.',number_format($result->group->price)) }}đ
+                                    </div>
+                                    @if(isset($result->group->params->percent_sale))
+                                        <div class="third-sale-price">
+                                            <span>Giảm {{ $result->group->params->percent_sale }}%</span>
+                                        </div>
+                                    @endif
                                 </div>
-                            @endif
-                            @if (App\Library\AuthCustom::check())
-                                <div class="col-6 button-rainbow" style="--bg-color: #ecf0f1">
-                                    <button id="start-played" class="button-primary button-play play b_button">Quay
-                                        ngay
-                                    </button>
+                            </div>
+                            <div class="col-12 col-lg-6 rotation-col">
+                                <div class="row">
+                                    @if($result->group->params->is_try == 1)
+                                        <div class="col-6 button-col">
+                                            <button id="playerDemo" class="button-secondary button-demo num-play-try">Chơi thử
+                                            </button>
+                                        </div>
+                                    @endif
+                                    @if (App\Library\AuthCustom::check())
+                                        <div class="col-6 button-rainbow button-col" style="--bg-color: #ecf0f1">
+                                            <button id="start-played" class="button-primary button-play play b_button">Quay
+                                                ngay
+                                            </button>
+                                        </div>
+                                    @else
+                                        <div class="col-6 button-rainbow button-col" style="--bg-color: #ecf0f1">
+                                            <button type="button" class="button-primary button-play b_button"
+                                                    onclick="openLoginModal();">Quay ngay
+                                            </button>
+                                        </div>
+                                    @endif
                                 </div>
-                            @else
-                                <div class="col-6 button-rainbow" style="--bg-color: #ecf0f1">
-                                    <button type="button" class="button-primary button-play b_button"
-                                            onclick="openLoginModal();">Quay ngay
-                                    </button>
-                                </div>
-                            @endif
+                            </div>
                             {{--                                <div class="b_item button-rainbow" style="--bg-color: #ecf0f1">--}}
                             {{--                                    <button class="b_button">Click Me!--}}
                             {{--                                        <div class="rainbow"></div>--}}
@@ -586,17 +609,17 @@
                         </div>
                     </div>
                     <div class="rotation-leaderboard leaderboard-md d-lg-none d-xl-none">
-                        <div class="leaderboard-buttons row d-none d-lg-flex d-xl-flex">
+                        <div class="leaderboard-buttons row">
                             <div class="col-12">
                                 <div class="existing-items">
                                     <span class="t-body-1">Bạn đang có:</span>
                                     <div class="number_item">100.000 kim cương</div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 leaderboard-col">
                                 <a href="{{route('getLog',[$result->group->id])}}" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button">Lịch sử quay</a>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 leaderboard-col">
                                 <button class="button-primary">Rút quà</button>
                             </div>
                         </div>
@@ -639,35 +662,18 @@
                             <div class="leaderboard-content leaderboard-1">
                                 @if(isset($topDayList))
                                     @foreach($topDayList as $key => $item)
-                                        @if($key < 3)
-                                            <div class="leaderboard-item row no-gutters">
-                                                <div class="col-4 leaderboard-item-name">
-                                                    <img
-                                                        src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg"
-                                                        alt="">
-                                                    <p>{{$item['name']}}</p>
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{--                                                    +100.000 kim cương--}}
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
-                                                </div>
+                                        <div class="leaderboard-item row no-gutters">
+                                            <div class="col-4 leaderboard-item-name">
+                                                <span>{{ $key + 1 }}</span>
+                                                <p>{{$item['name']}}</p>
                                             </div>
-                                        @else
-                                            <div class="leaderboard-item row no-gutters">
-                                                <div class="col-4 leaderboard-item-name">
-                                                    <span>{{ $key + 1 }}</span>
-                                                    <p>{{$item['name']}}</p>
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{--                                                    +100.000 kim cương--}}
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
-                                                </div>
+                                            <div class="col-4 leaderboard-item-ar">
+                                                {{--                                                    +100.000 kim cương--}}
                                             </div>
-                                        @endif
+                                            <div class="col-4 leaderboard-item-ar">
+                                                {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
+                                            </div>
+                                        </div>
                                     @endforeach
                                 @endif
 
@@ -675,35 +681,18 @@
                             <div class="leaderboard-content leaderboard-2" style="display: none;">
                                 @if(isset($top7DayList))
                                     @foreach($top7DayList as $key => $item)
-                                        @if($key < 3)
-                                            <div class="leaderboard-item row no-gutters">
-                                                <div class="col-4 leaderboard-item-name">
-                                                    <img
-                                                        src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg"
-                                                        alt="">
-                                                    <p>{{$item['name']}}</p>
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{--                                                    +100.000 kim cương--}}
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
-                                                </div>
+                                        <div class="leaderboard-item row no-gutters">
+                                            <div class="col-4 leaderboard-item-name">
+                                                <span>{{ $key + 1 }}</span>
+                                                <p>{{$item['name']}}</p>
                                             </div>
-                                        @else
-                                            <div class="leaderboard-item row no-gutters">
-                                                <div class="col-4 leaderboard-item-name">
-                                                    <span>{{ $key + 1 }}</span>
-                                                    <p>{{$item['name']}}</p>
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{--                                                    +100.000 kim cương--}}
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
-                                                </div>
+                                            <div class="col-4 leaderboard-item-ar">
+                                                {{--                                                    +100.000 kim cương--}}
                                             </div>
-                                        @endif
+                                            <div class="col-4 leaderboard-item-ar">
+                                                {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
+                                            </div>
+                                        </div>
                                     @endforeach
                                 @endif
 
@@ -727,496 +716,13 @@
                         <div class="leaderboard-seemore">
                             <p>Xem thêm</p>
                         </div>
-                        <div class="leaderboard-buttons row d-lg-none d-xl-none">
-                            <div class="col-12 px-0">
-                                <div class="existing-items">
-                                    <span class="t-body-1">Bạn đang có:</span>
-                                    <div class="number_item">100.000 kim cương</div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <button class="button-secondary history-spin-button">Lịch sử quay</button>
-                            </div>
-                            <div class="col-6">
-                                @if(App\Library\AuthCustom::check())
-                                    <button class="button-primary" type="button" data-toggle="modal"
-                                            data-target="#modal-withdraw-items">Rút quà
-                                    </button>
-                                @else
-                                    <button class="button-primary" type="button" onclick="openLoginModal();">Rút quà
-                                    </button>
-                                @endif
-                            </div>
-                        </div>
                     </div>
                     <div class="rotation-comment chat-history">
                         <h2>Bình luận</h2>
                         <ul class="comment-block list-unstyled chat-scroll">
 
-                            <li>
-                                <div class="comment-item">
-                                    <div class="comment-avatar">
-                                        <img
-                                            src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png"
-                                            alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <div class="comment-info">
-                                            <p>Khách</p>
-                                            <span>4:30 PM, Vừa xong</span>
-                                        </div>
-                                        <div class="comment-content">
-                                            Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
-                                        </div>
-                                        <div class="comment-interact">
-                                            <span id="likeComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg"
-                                                    alt=""> Thích</span>
-                                            <span id="replyComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg"
-                                                    alt=""> Trả lời</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                            <li>
-
-                                <div class="comment-item">
-                                    <div class="comment-avatar">
-                                        <img
-                                            src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png"
-                                            alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <div class="comment-info">
-                                            <p>Khách</p>
-                                            <span>4:30 PM, Vừa xong</span>
-                                        </div>
-                                        <div class="comment-content">
-                                            Đã nạp thành công
-                                        </div>
-                                        <div class="comment-interact">
-                                            <span id="likeComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg"
-                                                    alt=""> Thích</span>
-                                            <span id="replyComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg"
-                                                    alt=""> Trả lời</span>
-                                        </div>
-                                    </div>
-                                </div>
 
 
-                            </li>
-
-                            <li>
-
-                                <div class="comment-item">
-                                    <div class="comment-avatar">
-                                        <img
-                                            src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png"
-                                            alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <div class="comment-info">
-                                            <p>Khách</p>
-                                            <span>4:30 PM, Vừa xong</span>
-                                        </div>
-                                        <div class="comment-content">
-                                            Web nạp ngon thế này mà giờ mới biết
-                                        </div>
-                                        <div class="comment-interact">
-                                            <span id="likeComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg"
-                                                    alt=""> Thích</span>
-                                            <span id="replyComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg"
-                                                    alt=""> Trả lời</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                            <li>
-
-                                <div class="comment-item">
-                                    <div class="comment-avatar">
-                                        <img
-                                            src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png"
-                                            alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <div class="comment-info">
-                                            <p>Khách</p>
-                                            <span>4:30 PM, Vừa xong</span>
-                                        </div>
-                                        <div class="comment-content">
-                                            Vừa chạy ra quán mua 500k thẻ nạp ăn luôn, ngon quá admin
-                                        </div>
-                                        <div class="comment-interact">
-                                            <span id="likeComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg"
-                                                    alt=""> Thích</span>
-                                            <span id="replyComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg"
-                                                    alt=""> Trả lời</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </li>
-
-                            <li>
-
-                                <div class="comment-item">
-                                    <div class="comment-avatar">
-                                        <img
-                                            src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png"
-                                            alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <div class="comment-info">
-                                            <p>Khách</p>
-                                            <span>4:30 PM, Vừa xong</span>
-                                        </div>
-                                        <div class="comment-content">
-                                            Kim cương sạch, thanks admin
-                                        </div>
-                                        <div class="comment-interact">
-                                            <span id="likeComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg"
-                                                    alt=""> Thích</span>
-                                            <span id="replyComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg"
-                                                    alt=""> Trả lời</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                            <li>
-
-                                <div class="comment-item">
-                                    <div class="comment-avatar">
-                                        <img
-                                            src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png"
-                                            alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <div class="comment-info">
-                                            <p>Khách</p>
-                                            <span>4:30 PM, Vừa xong</span>
-                                        </div>
-                                        <div class="comment-content">
-                                            1 vote uy tín cho web nhé, quá ngon luôn
-                                        </div>
-                                        <div class="comment-interact">
-                                            <span id="likeComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg"
-                                                    alt=""> Thích</span>
-                                            <span id="replyComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg"
-                                                    alt=""> Trả lời</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                            <li>
-
-                                <div class="comment-item">
-                                    <div class="comment-avatar">
-                                        <img
-                                            src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png"
-                                            alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <div class="comment-info">
-                                            <p>Khách</p>
-                                            <span>4:30 PM, Vừa xong</span>
-                                        </div>
-                                        <div class="comment-content">
-                                            Web được đấy anh em
-                                        </div>
-                                        <div class="comment-interact">
-                                            <span id="likeComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg"
-                                                    alt=""> Thích</span>
-                                            <span id="replyComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg"
-                                                    alt=""> Trả lời</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                            <li>
-
-                                <div class="comment-item">
-                                    <div class="comment-avatar">
-                                        <img
-                                            src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png"
-                                            alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <div class="comment-info">
-                                            <p>Khách</p>
-                                            <span>4:30 PM, Vừa xong</span>
-                                        </div>
-                                        <div class="comment-content">
-                                            Nhập nhầm mã thẻ với serial báo admin xử lý trong vòng 1 nốt nhạc, uy tín
-                                            quá admin ơi
-                                        </div>
-                                        <div class="comment-interact">
-                                            <span id="likeComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg"
-                                                    alt=""> Thích</span>
-                                            <span id="replyComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg"
-                                                    alt=""> Trả lời</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                            <li>
-                                <div class="comment-item">
-                                    <div class="comment-avatar">
-                                        <img
-                                            src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png"
-                                            alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <div class="comment-info">
-                                            <p>Khách</p>
-                                            <span>4:30 PM, Vừa xong</span>
-                                        </div>
-                                        <div class="comment-content">
-                                            Anh em nào chưa nạp thì vào nạp ngay đi đang có khuyến mại
-                                        </div>
-                                        <div class="comment-interact">
-                                            <span id="likeComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg"
-                                                    alt=""> Thích</span>
-                                            <span id="replyComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg"
-                                                    alt=""> Trả lời</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                            <li>
-
-                                <div class="comment-item">
-                                    <div class="comment-avatar">
-                                        <img
-                                            src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png"
-                                            alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <div class="comment-info">
-                                            <p>Khách</p>
-                                            <span>4:30 PM, Vừa xong</span>
-                                        </div>
-                                        <div class="comment-content">
-                                            Uy tín không anh em.
-                                        </div>
-                                        <div class="comment-interact">
-                                            <span id="likeComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg"
-                                                    alt=""> Thích</span>
-                                            <span id="replyComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg"
-                                                    alt=""> Trả lời</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                            <li>
-
-                                <div class="comment-item">
-                                    <div class="comment-avatar">
-                                        <img
-                                            src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png"
-                                            alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <div class="comment-info">
-                                            <p>Khách</p>
-                                            <span>4:31 PM, Vừa xong</span>
-                                        </div>
-                                        <div class="comment-content">
-                                            Nạp thử 200k nhận luôn gấp đôi trong 10s.
-                                        </div>
-                                        <div class="comment-interact">
-                                            <span id="likeComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg"
-                                                    alt=""> Thích</span>
-                                            <span id="replyComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg"
-                                                    alt=""> Trả lời</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                            <li>
-
-                                <div class="comment-item">
-                                    <div class="comment-avatar">
-                                        <img
-                                            src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png"
-                                            alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <div class="comment-info">
-                                            <p>Khách</p>
-                                            <span>4:31 PM, Vừa xong</span>
-                                        </div>
-                                        <div class="comment-content">
-                                            40k kim cương đã về tài khỏa, thanks admin.
-                                        </div>
-                                        <div class="comment-interact">
-                                            <span id="likeComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg"
-                                                    alt=""> Thích</span>
-                                            <span id="replyComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg"
-                                                    alt=""> Trả lời</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                            <li>
-
-                                <div class="comment-item">
-                                    <div class="comment-avatar">
-                                        <img
-                                            src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png"
-                                            alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <div class="comment-info">
-                                            <p>Khách</p>
-                                            <span>4:31 PM, Vừa xong</span>
-                                        </div>
-                                        <div class="comment-content">
-                                            Có anh em nào vừa từ youtube qua đây nạp k
-                                        </div>
-                                        <div class="comment-interact">
-                                            <span id="likeComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg"
-                                                    alt=""> Thích</span>
-                                            <span id="replyComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg"
-                                                    alt=""> Trả lời</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                            <li>
-
-                                <div class="comment-item">
-                                    <div class="comment-avatar">
-                                        <img
-                                            src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png"
-                                            alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <div class="comment-info">
-                                            <p>Khách</p>
-                                            <span>4:31 PM, Vừa xong</span>
-                                        </div>
-                                        <div class="comment-content">
-                                            Web ngon vl
-                                        </div>
-                                        <div class="comment-interact">
-                                            <span id="likeComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg"
-                                                    alt=""> Thích</span>
-                                            <span id="replyComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg"
-                                                    alt=""> Trả lời</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                            <li>
-
-                                <div class="comment-item">
-                                    <div class="comment-avatar">
-                                        <img
-                                            src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png"
-                                            alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <div class="comment-info">
-                                            <p>Khách</p>
-                                            <span>4:31 PM, Vừa xong</span>
-                                        </div>
-                                        <div class="comment-content">
-                                            Vừa nạp 100k xong
-                                        </div>
-                                        <div class="comment-interact">
-                                            <span id="likeComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg"
-                                                    alt=""> Thích</span>
-                                            <span id="replyComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg"
-                                                    alt=""> Trả lời</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                            <li>
-
-                                <div class="comment-item">
-                                    <div class="comment-avatar">
-                                        <img
-                                            src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png"
-                                            alt="">
-                                    </div>
-                                    <div class="comment-detail">
-                                        <div class="comment-info">
-                                            <p>Khách</p>
-                                            <span>4:31 PM, Vừa xong</span>
-                                        </div>
-                                        <div class="comment-content">
-                                            Anh em không phải sợ đâu, tôi nạp nhiều web này rồi
-                                        </div>
-                                        <div class="comment-interact">
-                                            <span id="likeComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg"
-                                                    alt=""> Thích</span>
-                                            <span id="replyComment"><img
-                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg"
-                                                    alt=""> Trả lời</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
                         </ul>
 
                         <div class="commment-input">
@@ -1234,21 +740,21 @@
 
                 <div class="col-12 col-lg-5 d-none d-lg-block d-xl-block rotation-col-right">
                     <div class="rotation-leaderboard leaderboard-lg">
-                        <div class="leaderboard-buttons row d-none d-lg-flex d-xl-flex">
+                        <div class="leaderboard-buttons row d-none d-lg-flex">
                             <div class="col-12">
                                 <div class="existing-items">
                                     <span class="t-body-1">Bạn đang có:</span>
                                     <div class="number_item">100.000 kim cương</div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 leaderboard-col">
                                 @if(App\Library\AuthCustom::check())
                                     <button type="button" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button" data-toggle="modal" data-target="#modal-spin-bonus">Lịch sử quay</button>
                                 @else
                                     <button type="button" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button" onclick="openLoginModal();">Lịch sử quay</button>
                                 @endif
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 leaderboard-col">
                                 @if(App\Library\AuthCustom::check())
                                     <button class="button-primary" type="button" data-toggle="modal"
                                             data-target="#modal-withdraw-items">Rút quà
@@ -1297,35 +803,18 @@
                             <div class="leaderboard-content leaderboard-1">
                                 @if(isset($topDayList))
                                     @foreach($topDayList as $key => $item)
-                                        @if($key < 3)
-                                            <div class="leaderboard-item row no-gutters">
-                                                <div class="col-4 leaderboard-item-name">
-                                                    <img
-                                                        src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg"
-                                                        alt="">
-                                                    <p>{{$item['name']}}</p>
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{--                                                    +100.000 kim cương--}}
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
-                                                </div>
+                                        <div class="leaderboard-item row no-gutters">
+                                            <div class="col-4 leaderboard-item-name">
+                                                <span>{{ $key + 1 }}</span>
+                                                <p>{{$item['name']}}</p>
                                             </div>
-                                        @else
-                                            <div class="leaderboard-item row no-gutters">
-                                                <div class="col-4 leaderboard-item-name">
-                                                    <span>{{ $key + 1 }}</span>
-                                                    <p>{{$item['name']}}</p>
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{--                                                    +100.000 kim cương--}}
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
-                                                </div>
+                                            <div class="col-4 leaderboard-item-ar">
+                                                {{--                                                    +100.000 kim cương--}}
                                             </div>
-                                        @endif
+                                            <div class="col-4 leaderboard-item-ar">
+                                                {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
+                                            </div>
+                                        </div>
                                     @endforeach
                                 @endif
 
@@ -1333,35 +822,18 @@
                             <div class="leaderboard-content leaderboard-2" style="display: none;">
                                 @if(isset($top7DayList))
                                     @foreach($top7DayList as $key => $item)
-                                        @if($key < 3)
-                                            <div class="leaderboard-item row no-gutters">
-                                                <div class="col-4 leaderboard-item-name">
-                                                    <img
-                                                        src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg"
-                                                        alt="">
-                                                    <p>{{$item['name']}}</p>
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{--                                                    +100.000 kim cương--}}
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
-                                                </div>
+                                        <div class="leaderboard-item row no-gutters">
+                                            <div class="col-4 leaderboard-item-name">
+                                                <span>{{ $key + 1 }}</span>
+                                                <p>{{$item['name']}}</p>
                                             </div>
-                                        @else
-                                            <div class="leaderboard-item row no-gutters">
-                                                <div class="col-4 leaderboard-item-name">
-                                                    <span>{{ $key + 1 }}</span>
-                                                    <p>{{$item['name']}}</p>
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{--                                                    +100.000 kim cương--}}
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
-                                                </div>
+                                            <div class="col-4 leaderboard-item-ar">
+                                                {{--                                                    +100.000 kim cương--}}
                                             </div>
-                                        @endif
+                                            <div class="col-4 leaderboard-item-ar">
+                                                {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
+                                            </div>
+                                        </div>
                                     @endforeach
                                 @endif
 
@@ -1384,20 +856,6 @@
                         </div>
                         <div class="leaderboard-seemore">
                             <p>Xem thêm</p>
-                        </div>
-                        <div class="leaderboard-buttons row d-lg-none d-xl-none">
-                            <div class="col-12 px-0">
-                                <div class="existing-items">
-                                    <span class="t-body-1">Bạn đang có:</span>
-                                    <div class="number_item">100.000 kim cương</div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <button class="button-secondary history-spin-button">Lịch sử quay</button>
-                            </div>
-                            <div class="col-6">
-                                <button class="button-primary">Rút quà</button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1610,7 +1068,7 @@
     <script id="message-template" type="text/x-handlebars-template">
         <li>
 
-            <div class="comment-item comment-item-own">
+            <div class="comment-item comment-item-own comment-item-user">
 
                 <div class="comment-detail comment-detail-own">
                     <div class="comment-info comment-info-own">

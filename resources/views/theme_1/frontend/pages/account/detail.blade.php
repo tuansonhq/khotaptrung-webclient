@@ -1084,7 +1084,8 @@
 
         </script>
         @endif
-
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccslider.js"></script>
         <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">

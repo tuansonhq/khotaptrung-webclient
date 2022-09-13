@@ -26,14 +26,14 @@
                             </li>
                         </ul>
                         @else
-
+                            <ul class="nav justify-content-between row" role="tablist" >
                             <li class="nav-item col-6 col-md-6 p-0  p-md-0" role="presentation">
                                 <a  class="nav-link active text-center " data-toggle="tab" href="#charge_card" role="tab" aria-selected="true">Nạp thẻ <span class="d-g-none">cào</span> </a>
                             </li >
                             <li class="nav-item col-6 col-md-6 p-0 p-md-0" role="presentation">
                                 <a  class="nav-link text-center "  data-toggle="tab" href="#atm_card" role="tab" aria-selected="false"> ATM <span class="d-g-none">tự động</span> </a>
                             </li>
-
+                            </ul>
                         @endif
                     </div>
                     <div class=" tab-content">

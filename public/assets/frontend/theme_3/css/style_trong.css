@@ -1219,6 +1219,16 @@
     border-bottom: 1px solid #E4E5F0;
 }
 
+.acc-related:hover .acc-related--info-name a {
+    color: var(--primary-color);
+    transition: all ease .2s;
+}
+
+.acc-related:hover .acc-related--thumbnail a:after {
+    background-color: var(--primary-color);
+    transition: all ease .2s;
+}
+
 .acc-related--thumbnail-container {
     padding-right: 12px;
 }
@@ -1263,7 +1273,7 @@
     padding-left: 6px;
 }
 
-.acc-related--info-name {
+.acc-related--info-name a {
     color: var(--text-black-color);
     font-size: 16px;
     margin-bottom: 4px;
@@ -2005,6 +2015,11 @@ a:hover .__icon.--path__custom:after {
     color: var(--primary-color);
 }
 
+.sub-article:hover .sub-article--thumbnail a:after {
+    background-color: var(--primary-color);
+    transition: all ease .2s;
+}
+
 /* width */
 .body-title-detail-checkbox-ct {
     padding-right: 6px;
@@ -2220,14 +2235,17 @@ a:hover .__icon.--path__custom:after {
     padding-top: 0;
 }
 .existing-items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
     background-image: url('/assets/frontend/theme_3/image/bg-item-prosession.png');
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 72px;
+    height: 60px;
     border-radius: 8px;
     margin-bottom: 12px;
-    text-align: right;
     padding: 12px;
 }
 .existing-items  .number_item {

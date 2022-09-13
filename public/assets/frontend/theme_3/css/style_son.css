@@ -1359,6 +1359,10 @@
     padding: 0 8px 0 16px;
 }
 
+#viewMore .modal-viewmore-body img {
+    max-width: 100%;
+}
+
 #viewMore .modal-viewmore-body::-webkit-scrollbar {
     width: 8px;
 }
@@ -2668,6 +2672,14 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding: 16px;
 }
 .nav-bar-parent-title span{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #1B1D29;
+}
+.nav-bar-article-title span {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 600;

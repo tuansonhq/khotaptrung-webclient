@@ -5,7 +5,7 @@
             <div class="nav-bar-hr">
                 <div class="row marginauto nav-bar-nick nav-bar-parent">
                     <div class="col-md-12 left-right">
-                        <div class="row marginauto nav-bar-parent-title">
+                        <div class="row marginauto nav-bar-article-title">
                             <div class="col-12 left-right">
                                 <span>Danh mục</span>
                             </div>
