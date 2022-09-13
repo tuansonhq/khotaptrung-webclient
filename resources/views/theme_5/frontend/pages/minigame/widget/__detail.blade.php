@@ -302,11 +302,19 @@
                     @if($result->group->params->is_try == 1)
 
                         <div class="col-12 col-md-6 c-pr-6">
-                            <button id="playerDemo" class="btn secondary w-100 num-play-try">Chơi thử</button>
+                            @if (!\App\Library\AuthCustom::check())
+                                <button class="btn secondary w-100" onclick="openLoginModal();">Chơi thử</button>
+                            @else
+                                <button id="playerDemo" class="btn secondary w-100 num-play-try">Chơi thử</button>
+                            @endif
                         </div>
                     @endif
                     <div class="col-12 col-md-6 c-pl-6">
-                        <button id="start-played" class="btn primary w-100  play">Quay ngay</button>
+                        @if (!\App\Library\AuthCustom::check())
+                            <button class="btn primary w-100">Quay ngay</button>
+                        @else
+                            <button id="start-played" class="btn primary w-100 play">Quay ngay</button>
+                        @endif
                     </div>
                 </div>
                 <div class="footer-mobile">
@@ -314,11 +322,19 @@
                     <div class="row marginauto">
                         @if($result->group->params->is_try == 1)
                             <div class="col-6 pl-0 c-pr-8">
-                                <button class="btn secondary w-100 num-play-try">Chơi thử</button>
+                                @if (!\App\Library\AuthCustom::check())
+                                    <button class="btn secondary w-100" onclick="openLoginModal();">Chơi thử</button>
+                                @else
+                                    <button class="btn secondary w-100 num-play-try">Chơi thử</button>
+                                @endif
                             </div>
                         @endif
                         <div class="col-6 pr-0 c-pl-8">
-                            <button id="start-played" class="btn primary w-100  play">Quay ngay</button>
+                            @if (!\App\Library\AuthCustom::check())
+                                <button class="btn primary w-100">Quay ngay</button>
+                            @else
+                                <button id="start-played" class="btn primary w-100 play">Quay ngay</button>
+                            @endif
                         </div>
                     </div>
 
@@ -886,7 +902,7 @@
                 </div>
             </div>
             <div class="modal-footer c-p-24">
-                <a class="btn secondary" href="/nap-the">Nạp thẻ</a>
+                <a href="javascript:void(0);" class="handle-recharge-modal btn secondary" data-tab="1" data-dismiss="modal">Nạp tiền</a>
                 <button class="btn primary"  data-dismiss="modal">Đóng</button>
             </div>
         </div>

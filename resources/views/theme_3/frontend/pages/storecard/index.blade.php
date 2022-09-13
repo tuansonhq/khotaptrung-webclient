@@ -31,7 +31,7 @@
                         </a>
                         <h4>Mua thẻ</h4>
                     </div>
-                    <div class="card --custom mb-lg-3 h-100">
+                    <div class="card --custom mb-lg-3 h-100 card-mobile">
                         <div class="card--header">
                             <div class="card--header__title">
                                 <div class="title__icon"><img
@@ -55,6 +55,7 @@
                                 <div class="tab--title">Chọn loại thẻ</div>
                                 <div class="tab-pane fade show active" id="card-game" role="tabpanel"
                                      aria-labelledby="card-game-tab">
+{{--                                    desktop--}}
                                     <ul class="cards__list row" id="cardGameList">
                                         <div class="loader position-relative" style="margin: 2rem 0">
                                             <div class="loading-spokes">
@@ -85,11 +86,25 @@
                                             </div>
                                         </div>
                                     </ul>
+{{--                                    mobile--}}
+                                    <div class="swiper slider--card__telecom" >
+                                        <div class="swiper-wrapper" id="cardGameListMobile">
+
+
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="card-phone" role="tabpanel"
                                      aria-labelledby="card-phone-tab">
+{{--                                    desktop--}}
                                     <ul class="cards__list row" id="cardPhoneList">
                                     </ul>
+{{--                                    mobile--}}
+                                    <div class="swiper slider--card__telecom" >
+                                        <div class="swiper-wrapper" id="cardPhoneListMobile">
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -130,9 +145,17 @@
                                 <div class="denos--title">
                                     Chọn mệnh giá
                                 </div>
+{{--                                desktop--}}
                                 <ul class="deno__list row" id="cardAmountList">
 
                                 </ul>
+{{--                                mobile--}}
+                                <div class="swiper slider--card__amount" >
+                                    <div class="swiper-wrapper" id="cardAmountListMobile">
+
+
+                                    </div>
+                                </div>
                                 <div class="card--amount">
                                     <span class="card--amount__title">
                                         Số lượng thẻ
