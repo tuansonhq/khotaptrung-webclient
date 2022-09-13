@@ -79,7 +79,9 @@
                                                     <div class="row marginauto modal-header-order-ct">
                                                         <div class="col-12 span__donhang text-center" style="position: relative">
                                                             <span>Xác nhận thanh toán</span>
+
                                                             <img class="lazy img-close-ct close-modal-default" data-dismiss="modal" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+
                                                         </div>
                                                     </div>
 
