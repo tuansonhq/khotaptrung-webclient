@@ -67,7 +67,8 @@
                         </div>
                         <div class="article--content pb-3">
                             <div class="article--content__text pb-2">
-                                {!! \App\Library\AutoLink::replace($data->content) !!}
+{{--                                {!! \App\Library\AutoLink::replace($data->content) !!}--}}
+                                {!! $data->content !!}
                             </div>
                         </div>
                     </article>
