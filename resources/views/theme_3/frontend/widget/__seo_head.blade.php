@@ -15,8 +15,6 @@
 
         <title>{{$data->seo_title }}</title>
 
-    @else
-
     @endif
 @elseif(Request::is('dich-vu'))
     <title>Shop dịch vụ all game giá rẻ, uy tín, tự động.</title>
@@ -150,13 +148,13 @@
 <link rel="shortcut icon" href="{{\App\Library\MediaHelpers::media(setting('sys_favicon'))}}" type="image/x-icon">
 <meta property="og:url" content="{{url()->current()}}"/>
 <link rel="canonical" href="{{ url()->current() }}">
-@if(Request::is('mua-the'))
-    <title>{{setting('sys_store_card_title')??setting('sys_title') }}</title>
-    <meta name="description" content="{{ strip_tags(setting('sys_store_card_seo')??setting('sys_description')) }}">
-@else
-    <title>{{$data->title??setting('sys_title') }}</title>
-    <meta name="description" content="{{ strip_tags($data->description??setting('sys_description')) }}">
-@endif
+{{--@if(Request::is('mua-the'))--}}
+{{--    <title>{{setting('sys_store_card_title')??setting('sys_title') }}</title>--}}
+{{--    <meta name="description" content="{{ strip_tags(setting('sys_store_card_seo')??setting('sys_description')) }}">--}}
+{{--@else--}}
+{{--    <title>{{$data->title??setting('sys_title') }}</title>--}}
+{{--    <meta name="description" content="{{ strip_tags($data->description??setting('sys_description')) }}">--}}
+{{--@endif--}}
 
 @if(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
     @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
@@ -311,65 +309,65 @@
       ]
     }
     </script>
-            @elseif(Request::is('acc/'. $data->randId .''))
-                <script type="application/ld+json">
-            {
-                  "@graph":
-              [
-                  {
-                        "@context": "http://schema.org/",
-                        "@type": "Product",
-                        "name": "{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}",
-                            "description": "{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}",
-                             "image": "{{ isset($data->custom->image) ? $data->custom->image :  $data->image }}",
-                            "brand": {
-                                "@type": "Brand",
-                                "name": "{{\Request::server ("HTTP_HOST")}}"
-                              },
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "5",
-                                "bestRating": "5",
-                                "worstRating": "4",
-                                "ratingCount": "79396",
-                                "reviewCount": "793986"
-                            },
-                            "sku": "{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug??'' }}",
-                            "gtin8": "{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug??'' }}",
-                            "mpn": "{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug??'' }}",
-                            "offers": {
-                                    "@type": "Offer",
-                                     "url": "https://{{\Request::server ("HTTP_HOST")}}/acc/{{ $data->randId??'' }}",
-                                    "priceCurrency": "VND",
-                                    "price": "7700",
-                                    "priceValidUntil": "2099-12-31",
-                                    "availability": "https://schema.org/InStock",
-                                    "itemCondition": "https://schema.org/NewCondition"
-                                  },
-                            "review": {
-                            "@type": "Review",
-                            "name": "{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}",
-                            "reviewBody": "{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}",
-                            "reviewRating": {
-                              "@type": "Rating",
-                              "ratingValue": "5",
-                              "bestRating": "5",
-                              "worstRating": "4"
-                            },
-                            "author": {"@type": "Person", "name": "An"},
-                            "publisher": {"@type": "Organization", "name": "An"}
-                          }
-                  },
-                {
-                  "@context": "http://schema.org",
-                  "@type": "WebSite",
-                  "name": "https://{{\Request::server ("HTTP_HOST")}}",
-                      "url": "https://{{\Request::server ("HTTP_HOST")}}"
-                }
-              ]
-            }
+        {{--    @elseif(Request::is('acc/'. $data->randId .''))--}}
+        {{--        <script type="application/ld+json">--}}
+        {{--    {--}}
+        {{--          "@graph":--}}
+        {{--      [--}}
+        {{--          {--}}
+        {{--                "@context": "http://schema.org/",--}}
+        {{--                "@type": "Product",--}}
+        {{--                "name": "{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}",--}}
+        {{--                    "description": "{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}",--}}
+        {{--                     "image": "{{ isset($data->custom->image) ? $data->custom->image :  $data->image }}",--}}
+        {{--                    "brand": {--}}
+        {{--                        "@type": "Brand",--}}
+        {{--                        "name": "{{\Request::server ("HTTP_HOST")}}"--}}
+        {{--                      },--}}
+        {{--                    "aggregateRating": {--}}
+        {{--                        "@type": "AggregateRating",--}}
+        {{--                        "ratingValue": "5",--}}
+        {{--                        "bestRating": "5",--}}
+        {{--                        "worstRating": "4",--}}
+        {{--                        "ratingCount": "79396",--}}
+        {{--                        "reviewCount": "793986"--}}
+        {{--                    },--}}
+        {{--                    "sku": "{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug??'' }}",--}}
+        {{--                    "gtin8": "{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug??'' }}",--}}
+        {{--                    "mpn": "{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug??'' }}",--}}
+        {{--                    "offers": {--}}
+        {{--                            "@type": "Offer",--}}
+        {{--                             "url": "https://{{\Request::server ("HTTP_HOST")}}/acc/{{ $data->randId??'' }}",--}}
+        {{--                            "priceCurrency": "VND",--}}
+        {{--                            "price": "7700",--}}
+        {{--                            "priceValidUntil": "2099-12-31",--}}
+        {{--                            "availability": "https://schema.org/InStock",--}}
+        {{--                            "itemCondition": "https://schema.org/NewCondition"--}}
+        {{--                          },--}}
+        {{--                    "review": {--}}
+        {{--                    "@type": "Review",--}}
+        {{--                    "name": "{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}",--}}
+        {{--                    "reviewBody": "{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}",--}}
+        {{--                    "reviewRating": {--}}
+        {{--                      "@type": "Rating",--}}
+        {{--                      "ratingValue": "5",--}}
+        {{--                      "bestRating": "5",--}}
+        {{--                      "worstRating": "4"--}}
+        {{--                    },--}}
+        {{--                    "author": {"@type": "Person", "name": "An"},--}}
+        {{--                    "publisher": {"@type": "Organization", "name": "An"}--}}
+        {{--                  }--}}
+        {{--          },--}}
+        {{--        {--}}
+        {{--          "@context": "http://schema.org",--}}
+        {{--          "@type": "WebSite",--}}
+        {{--          "name": "https://{{\Request::server ("HTTP_HOST")}}",--}}
+        {{--              "url": "https://{{\Request::server ("HTTP_HOST")}}"--}}
+        {{--        }--}}
+        {{--      ]--}}
+        {{--    }--}}
 
-            </script>
+        {{--    </script>--}}
     @endif
 
 @elseif(setting('sys_schema') != '')
