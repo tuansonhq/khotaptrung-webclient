@@ -279,20 +279,7 @@
                                                             ID: #{{ @$item->randId}}
                                                         </div>
                                                         <div class="item-product__box-rank">
-{{--                                                            <div class="item-product__box-rank">--}}
-{{--                                                                <div>--}}
-{{--                                                                    @if(isset($items->items_count))--}}
-{{--                                                                        @if((isset($items->account_fake) && $items->account_fake > 1) || (isset($items->custom->account_fake) && $items->custom->account_fake > 1))--}}
-{{--                                                                            Số tài khoản: {{ str_replace(',','.',number_format(round(isset($items->custom->account_fake) ? $items->items_count*$items->custom->account_fake : $items->items_count*$items->account_fake))) }}--}}
-{{--                                                                        @else--}}
-{{--                                                                            Số tài khoản: {{ $items->items_count }}--}}
-{{--                                                                        @endif--}}
 
-{{--                                                                    @else--}}
-{{--                                                                        Số tài khoản: 0--}}
-{{--                                                                    @endif--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
                                                         </div>
                                                         <div class="item-product__box-price">
 
@@ -304,6 +291,12 @@
                                                                 </div>
                                                             @endif
                                                         </div>
+                                                        @if(App\Library\AuthCustom::check())
+                                                            <button type="button" class="button-secondary list-item-nick-button buyacchome"  data-id="{{ $item->randId }}">Mua ngay</button>
+
+                                                        @else
+                                                            <button type="button" class="button-secondary list-item-nick-button " onclick="openLoginModal()">Mua ngay</button>
+                                                        @endif
                                                     </a>
                                                 </div>
                                             </div>
