@@ -996,26 +996,6 @@
         </div>
     </div>
 
-    {{--    <div class="modal fade" id="naptheModal" role="dialog" aria-hidden="true">--}}
-    {{--        <div class="modal-dialog modal-dialog-centered animated" role="document">--}}
-    {{--            <div class="modal-content">--}}
-    {{--                <div class="modal-header">--}}
-    {{--                    <h5 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông báo</h5>--}}
-    {{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-    {{--                        <span aria-hidden="true">×</span>--}}
-    {{--                    </button>--}}
-    {{--                </div>--}}
-    {{--                <div class="modal-body content-popup" style="font-family: helvetica, arial, sans-serif;">--}}
-    {{--                    Bạn đã hết lượt chơi. Nạp thẻ để chơi tiếp!--}}
-    {{--                </div>--}}
-    {{--                <div class="modal-footer">--}}
-    {{--                    <a href="javascript:void(0)" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp thẻ</a>--}}
-    {{--                    <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
-
     <div class="modal fade login show default-Modal" id="naptheModal" aria-modal="true">
         <div class="modal-dialog modal-md modal-dialog-centered login animated">
             <!--        <div class="image-login"></div>-->
