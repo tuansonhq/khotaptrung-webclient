@@ -2367,8 +2367,24 @@ a:hover .__icon.--path__custom:after {
 #modal-spin-bonus .section-table-history .wrap-table {
     border: 1px solid #E4E5F0;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: auto;
+    max-height: 360px;
 }
+#modal-spin-bonus .section-table-history .wrap-table::-webkit-scrollbar {
+    width: 8px;
+}
+#modal-spin-bonus .section-table-history .wrap-table::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 100px;
+    border: none;
+}
+#modal-spin-bonus .section-table-history .wrap-table:hover::-webkit-scrollbar-thumb {
+    background-color: #E4E5F0;
+}
+#modal-spin-bonus .section-table-history .wrap-table::-webkit-scrollbar-track {
+    background: transparent;
+}
+
 #modal-spin-bonus table tr:first-child {
     background-color: #FBFBFD;
     border-bottom: 1px solid #E4E5F0;

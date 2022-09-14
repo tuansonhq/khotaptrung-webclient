@@ -84,7 +84,33 @@ class AutoLink
         return $data;
     }
 
-    private static function getTextOnTagsA($html,$title){
+    public static function replace_1($keyword = '',$link = '/',$content = '',$target = 1,$follow = 0)
+    {
+        $attr_follow = $follow ? 'rel="follow"' : 'rel="nofollow"';
+
+        $attr_target = $target == 1 ? 'target="_blank"' : '';
+
+        $regex_not_tags_a = "/($keyword)(?![^<a]*>|[^<>]*<\/a>)/i";
+
+        /*Tìm xem có thẻ a nào có chứa từ khoá trùng với keyword config hay không */
+
+        $hyperlink = '<a href="'.$link.'" '.$attr_target.' '.$attr_follow.'>$1</a>';
+
+        $old_tags_a = self::getTagsA($content,$keyword);
+
+        if (count($old_tags_a)) {
+            foreach($old_tags_a[0] as $key => $old_tag_a){
+                if ( strtolower($keyword) == strtolower($old_tags_a['title'][$key])) {
+                    $content = preg_replace(str_replace('/','\/',$old_tag_a),$hyperlink,$content,1);
+                    break;
+                }
+            }
+        }
+        /* Nếu như mà không tìm thấy thẻ a có sẵn nào trùng với keyword trong config thì bắt đầu tìm từ khoá text không nằm trong tag a để replace*/
+
+        return $content;
+    }
+    private static function getTagsA($html,$title){
 
         $reg_tag_a = "/<a.*>(?<title>.+)<\/a>/U";
 
@@ -98,6 +124,4 @@ class AutoLink
         }
         return $matches;
     }
-
-
 }
