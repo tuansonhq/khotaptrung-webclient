@@ -491,11 +491,7 @@
             <!--        <div class="image-login"></div>-->
             <div class="modal-content c-mr-lg-12 c-ml-lg-12">
                 <div class="modal-header modal-header-success-ct">
-                    <div class="row marginauto modal-header-success-row-ct justify-content-center">
-                        <div class="col-md-12 text-center">
-                            {{--                            <span>Gửi yêu cầu thuê dịch vụ thành công</span>--}}
-                        </div>
-                    </div>
+                    <button type="button" class="close" data-dismiss="modal"></button>
                 </div>
                 <div class="modal-body modal-body-success-ct">
                     <div class="row marginauto justify-content-center">
