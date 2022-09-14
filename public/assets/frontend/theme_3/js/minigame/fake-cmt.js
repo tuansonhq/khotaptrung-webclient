@@ -223,10 +223,24 @@ if (cookies_minigame){
         $('#message-to-send').val('');
     })
 
-    console.log("1111111111111")
+    $('body').on('keyup','#message-to-send',function (e) {
+
+        var key = e.which;
+        if (key == 13) {
+            var context = $(this).val();
+
+            let cookies_set = getCookie('chat_minigame');
+            setArray(cookies_set,context,1);
+
+            $('.chat-scroll').scrollTop($('.chat-scroll')[0].scrollHeight);
+
+            $('#message-to-send').val('');
+        }
+        e.preventDefault();
+    })
     // console.log(cookies_lengthChatDefault)
 }else{
-    console.log("2222222222222222")
+
     for (let j = 0; j < lengthChatDefault; j++){
         // console.log(arr_time[j])
         var dateTimeDefault = new Date();
@@ -359,6 +373,22 @@ if (cookies_minigame){
         $('.chat-scroll').scrollTop($('.chat-scroll')[0].scrollHeight);
 
         $('#message-to-send').val('');
+    });
+
+    $('body').on('keyup','#message-to-send',function (e) {
+
+        var key = e.which;
+        if (key == 13) {
+            var context = $(this).val();
+
+            let cookies_set = getCookie('chat_minigame');
+            setArray(cookies_set,context,1);
+
+            $('.chat-scroll').scrollTop($('.chat-scroll')[0].scrollHeight);
+
+            $('#message-to-send').val('');
+        }
+        e.preventDefault();
     })
 
 }
@@ -469,7 +499,7 @@ function setArray(array = [],contents,index){
 
     var set_parse_minute = u_datenow.getMinutes();
     var set_parse_hour = u_datenow.getHours();
-    var set_timeparse = timeSince(set_parse_minute,set_parse_hour);
+
     if (parseInt(set_parse_minute) < 10){
         set_parse_minute = "0"+set_parse_minute;
     }
@@ -519,7 +549,7 @@ function setArray(array = [],contents,index){
                             <p>Bạn</p>
                         </div>
                         <div class="comment-content comment-content-own">
-                            ${k_cookies_parse[1]}
+                            ${contents}
                         </div>
                         <div class="comment-interact comment-interact-own">
                             <span id="likeComment"><img
@@ -536,6 +566,7 @@ function setArray(array = [],contents,index){
     }
 
     $('.list-unstyled').append(setparse_html);
+
     eraseCookie('chat_minigame');
 
     var parse_groups = JSON.stringify(parse_group);
@@ -609,31 +640,5 @@ function timeSince(minute,hours) {
 
 }
 
-// function timeSince(date) {
-//
-//     var seconds = Math.floor((new Date() - date) / 1000);
-//
-//     var interval = seconds / 31536000;
-//
-//     if (interval > 1) {
-//         return Math.floor(interval) + " Năm trước";
-//     }
-//     interval = seconds / 2592000;
-//     if (interval > 1) {
-//         return Math.floor(interval) + " Tháng trước";
-//     }
-//     interval = seconds / 86400;
-//     if (interval > 1) {
-//         return Math.floor(interval) + " Ngày trước";
-//     }
-//     interval = seconds / 3600;
-//     if (interval > 1) {
-//         return Math.floor(interval) + " Giờ trước";
-//     }
-//     interval = seconds / 60;
-//     if (interval > 1) {
-//         return Math.floor(interval) + " Phút trước";
-//     }
-//     return " Vừa xong";
-// }
+
 
