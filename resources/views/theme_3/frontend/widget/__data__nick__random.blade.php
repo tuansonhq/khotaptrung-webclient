@@ -266,7 +266,7 @@
                                             <div class="swiper-slide">
                                                 <div class="item-product__box-img">
                                                     <a href="javascript:void(0)">
-                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}">
+                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($items->image)}}" alt="{{ $item->randId??'' }}">
                                                     </a>
                                                 </div>
                                                 <div class="item-product__box-content">
