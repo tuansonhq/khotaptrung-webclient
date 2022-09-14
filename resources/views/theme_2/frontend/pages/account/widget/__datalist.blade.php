@@ -315,7 +315,7 @@
 
 <div class="c-pt-24 w-100">
     @if(isset($items) && count($items))
-        {{ $items->appends(request()->query())->links('pagination::pagination_3_0') }}
+        {{ $items->appends(request()->query())->links('pagination::bootstrap-4') }}
     @endif
 </div>
 
