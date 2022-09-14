@@ -1090,3 +1090,111 @@ View::composer('frontend.widget.__slider__banner__service__mobile', function ($v
     return $view->with('data',$data);
 
 });
+
+//rss
+
+View::composer('frontend.pages.rss.widget.__article', function ($view) {
+
+//    minigame
+
+    $data = \Cache::rememberForever('__article', function() {
+
+        $url = '/article';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['data'] = 'category_list';
+        $dataSend['module'] = 'acc_category';
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $response_data_article = $result_Api->response_data??null;
+        $article = $response_data_article->data;
+        $arrArticle = array();
+        $arrArticleLastPage= $article->last_page;
+        for ($i=1;$i<=$arrArticleLastPage;$i++){
+            $url_article = '/article';
+            $val_article = array();
+            $val_article['page'] = $i;
+            $result_article  = DirectAPI::_makeRequest($url_article ,$val_article ,$method );
+            $article_data = $result_article->response_data->data->data;
+            array_push($arrArticle,$article_data);
+
+        }
+        return $data = $arrArticle;
+    });
+
+    return $view->with('data', $data);
+});
+
+View::composer('frontend.pages.rss.widget.__minigame', function ($view) {
+
+//    minigame
+
+    $data = \Cache::rememberForever('__minigame', function() {
+
+        $url = '/minigame/get-list-minigame';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $response_data_minigame = $result_Api->response_data??null;
+        $mini_game = $response_data_minigame->data;
+
+        return $data = $mini_game;
+    });
+
+    return $view->with('data', $data);
+});
+
+View::composer('frontend.pages.rss.widget.__service', function ($view) {
+
+//    minigame
+
+    $data = \Cache::rememberForever('__service', function() {
+
+        $url = '/service';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $response_data_service = $result_Api->response_data??null;
+        $service= $response_data_service->data;
+        $arrService = array();
+        $arrServiceLastPage= $service->last_page;
+
+        for ($i=1;$i<=$arrServiceLastPage;$i++){
+            $url_service = '/service';
+            $val_service = array();
+            $val_service['page'] = $i;
+            $result_service  = DirectAPI::_makeRequest($url_service ,$val_service ,$method );
+            $service_data = $result_service->response_data->data->data;
+            array_push($arrService,$service_data);
+
+        }
+
+        return $data = $arrService;
+    });
+
+    return $view->with('data', $data);
+});
+
+View::composer('frontend.pages.rss.widget.__nick', function ($view) {
+
+//    minigame
+
+    $data = \Cache::rememberForever('__nick', function() {
+
+        $url = '/acc';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['data'] = 'category_list';
+        $dataSend['module'] = 'acc_category';
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $response_data_acc = $result_Api->response_data??null;
+        $acc= $response_data_acc->data;
+
+
+        return $data = $acc;
+    });
+
+    return $view->with('data', $data);
+});
