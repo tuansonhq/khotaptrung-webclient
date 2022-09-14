@@ -166,13 +166,14 @@ function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',st
                 } else {
                     query['select_data'] += "|" + params[key];
                 }
+            }else {
+                query[key] = params[key];
             }
             let input = $(`#data_sort [data-query=${key}]`);
             input.val(params[key]);
         });
         $('#data_sort select').niceSelect('update');
     }
-
     $.ajax({
         type: 'GET',
         url: url_ajax,

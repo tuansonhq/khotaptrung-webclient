@@ -726,12 +726,12 @@
 
 .input-defautf-ct:hover{
     color: #82869E;
-    background: #F3F3F7;;
+    background-color: #F3F3F7;
     border: 1px solid #BCBFD6;
 }
 .input-defautf-ct:active, .input-defautf-ct:focus {
     border-color: #F67600;
-    background: #FFFFFF;
+    background-color: #FFFFFF;
     color: #1B1D29;
     outline: none!important;
     box-shadow: none!important;
@@ -1755,7 +1755,7 @@
     margin-left: auto;
 }
 .item-sort-nick{
-    margin-left: 16px;
+    margin-left: 8px;
 }
 .item-sort-nick-label span{
     font-family: 'Open Sans';

@@ -79,7 +79,9 @@
                                                     <div class="row marginauto modal-header-order-ct">
                                                         <div class="col-12 span__donhang text-center" style="position: relative">
                                                             <span>Xác nhận thanh toán</span>
+
                                                             <img class="lazy img-close-ct close-modal-default" data-dismiss="modal" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+
                                                         </div>
                                                     </div>
 
@@ -264,7 +266,7 @@
                                             <div class="swiper-slide">
                                                 <div class="item-product__box-img">
                                                     <a href="javascript:void(0)">
-                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}">
+                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($items->image)}}" alt="{{ $item->randId??'' }}">
                                                     </a>
                                                 </div>
                                                 <div class="item-product__box-content">

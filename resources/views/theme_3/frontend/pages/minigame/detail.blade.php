@@ -247,15 +247,15 @@
                                 @endif
                             </div>
                             @if(isset($result->group->params->fake_num_play))
-                            <div class="d-flex align-items-center">
-                                <img onerror="imgError(this)"
-                                     src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/security-user 1.svg"
-                                     alt="">
+                                <div class="d-flex align-items-center">
+                                    <img onerror="imgError(this)"
+                                         src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/security-user 1.svg"
+                                         alt="">
                                     <p><span id="userCount">
                                         {{ str_replace(',','.',number_format($result->group->params->fake_num_play)) }}</span>
                                         người đang chơi
                                     </p>
-                            </div>
+                                </div>
                             @endif
                         </div>
                         @if(isset($currentPlayList) && $currentPlayList != '')
@@ -574,8 +574,13 @@
                                 <div class="row">
                                     @if($result->group->params->is_try == 1)
                                         <div class="col-6 button-col">
+                                            @if(App\Library\AuthCustom::check())
                                             <button id="playerDemo" class="button-secondary button-demo num-play-try">Chơi thử
                                             </button>
+                                            @else
+                                                <button type="button" class="button-secondary button-demo" onclick="openLoginModal();">Chơi thử
+                                                </button>
+                                            @endif
                                         </div>
                                     @endif
                                     @if (App\Library\AuthCustom::check())
@@ -611,10 +616,20 @@
                     <div class="rotation-leaderboard leaderboard-md d-lg-none d-xl-none">
                         <div class="leaderboard-buttons row">
                             <div class="col-12">
-                                <div class="existing-items">
-                                    <span class="t-body-1">Bạn đang có:</span>
-                                    <div class="number_item">100.000 kim cương</div>
-                                </div>
+                                @if(isset($result->number_item))
+
+                                    <div class="existing-items">
+                                        <span class="t-body-1">Bạn đang có:</span>
+                                        <div class="number_item">{{ str_replace(',','.',number_format($result->number_item)) }} {{ $result->name_item->image }}</div>
+                                    </div>
+                                @else
+                                    @if(App\Library\AuthCustom::check())
+                                        <div class="existing-items">
+                                            <span class="t-body-1">Bạn đang có:</span>
+                                            <div class="number_item">0 {{ $result->name_item->image }}</div>
+                                        </div>
+                                    @endif
+                                @endif
                             </div>
                             <div class="col-6 leaderboard-col">
                                 <a href="{{route('getLog',[$result->group->id])}}" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button">Lịch sử quay</a>
@@ -742,10 +757,20 @@
                     <div class="rotation-leaderboard leaderboard-lg">
                         <div class="leaderboard-buttons row d-none d-lg-flex">
                             <div class="col-12">
-                                <div class="existing-items">
-                                    <span class="t-body-1">Bạn đang có:</span>
-                                    <div class="number_item">100.000 kim cương</div>
-                                </div>
+                                @if(isset($result->number_item))
+
+                                    <div class="existing-items">
+                                        <span class="t-body-1">Bạn đang có:</span>
+                                        <div class="number_item">{{ str_replace(',','.',number_format($result->number_item)) }} {{ $result->name_item->image }}</div>
+                                    </div>
+                                @else
+                                    @if(App\Library\AuthCustom::check())
+                                        <div class="existing-items">
+                                            <span class="t-body-1">Bạn đang có:</span>
+                                            <div class="number_item">0 {{ $result->name_item->image }}</div>
+                                        </div>
+                                    @endif
+                                @endif
                             </div>
                             <div class="col-6 leaderboard-col">
                                 @if(App\Library\AuthCustom::check())
@@ -958,36 +983,18 @@
                     </div>
                     <div class="rotation-modal-btn row no-gutters">
                         <div class="col-6">
-                            <a id="btnWithdraw" class="btn button-secondary">Rút quà</a>
+
+                            @if(App\Library\AuthCustom::check())
+                            <a onclick="openLoginModal();" data-dismiss="modal" data-toggle="modal"
+                               data-target="#modal-withdraw-items" href="javascript:void(0)" class="btn button-secondary">Rút quà</a>
+                            @endif
                         </div>
-                        <div class="col-6" style="text-align: right;">
-                            <button class="button-primary" data-dismiss="modal">Chơi tiếp</button>
-                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    {{--    <div class="modal fade" id="naptheModal" role="dialog" aria-hidden="true">--}}
-    {{--        <div class="modal-dialog modal-dialog-centered animated" role="document">--}}
-    {{--            <div class="modal-content">--}}
-    {{--                <div class="modal-header">--}}
-    {{--                    <h5 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông báo</h5>--}}
-    {{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-    {{--                        <span aria-hidden="true">×</span>--}}
-    {{--                    </button>--}}
-    {{--                </div>--}}
-    {{--                <div class="modal-body content-popup" style="font-family: helvetica, arial, sans-serif;">--}}
-    {{--                    Bạn đã hết lượt chơi. Nạp thẻ để chơi tiếp!--}}
-    {{--                </div>--}}
-    {{--                <div class="modal-footer">--}}
-    {{--                    <a href="javascript:void(0)" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp thẻ</a>--}}
-    {{--                    <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
 
     <div class="modal fade login show default-Modal" id="naptheModal" aria-modal="true">
         <div class="modal-dialog modal-md modal-dialog-centered login animated">

@@ -15,11 +15,17 @@
                     {!! $thele??null !!}
                 </div>
                 <div class="rotation-modal-btn row no-gutters">
+                    @if(App\Library\AuthCustom::check())
                     <div class="col-6">
-                        <button class="button-secondary">Chơi thử</button>
+                        <button id="playerDemo" class="button-secondary button-demo num-play-try" data-dismiss="modal">Chơi thử</button>
                     </div>
+                    @else
+                        <div class="col-6">
+                            <button class="button-secondary" onclick="openLoginModal();" data-dismiss="modal">Chơi thử</button>
+                        </div>
+                    @endif
                     <div class="col-6" style="text-align: right;">
-                        <button class="button-primary">Chơi ngay</button>
+                        <button id="start-played" class="button-primary button-play play b_button" data-dismiss="modal">Chơi ngay</button>
                     </div>
                 </div>
             </div>
