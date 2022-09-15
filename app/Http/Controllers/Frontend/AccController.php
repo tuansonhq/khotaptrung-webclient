@@ -1182,7 +1182,7 @@ class AccController extends Controller
             if(isset($response_data) && $response_data->status == 1){
                 $data = $response_data->data;
 
-                $html = view('frontend.widget.__data__nick__random')
+                $html = view(''.theme('')->theme_key.'.frontend.widget.__data__nick__random')
                     ->with('data',$data)->render();
 
                 return response()->json([
