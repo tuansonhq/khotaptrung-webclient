@@ -85,7 +85,13 @@ var swiper = new Swiper('.mySwiper', {
     }
 });
 
-
+var slider_charge_card_amount = new Swiper(".slider--charge--card__amount", {
+    slidesPerView: 2.5,
+    spaceBetween: 8,
+    freeMode: true,
+    observer: true,
+    observeParents: true,
+});
 
 var swiper2 = new Swiper('.item_play_dif_slide_detail', {
 

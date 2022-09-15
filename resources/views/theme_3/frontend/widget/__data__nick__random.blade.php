@@ -79,7 +79,9 @@
                                                     <div class="row marginauto modal-header-order-ct">
                                                         <div class="col-12 span__donhang text-center" style="position: relative">
                                                             <span>Xác nhận thanh toán</span>
+
                                                             <img class="lazy img-close-ct close-modal-default" data-dismiss="modal" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+
                                                         </div>
                                                     </div>
 
@@ -264,7 +266,7 @@
                                             <div class="swiper-slide">
                                                 <div class="item-product__box-img">
                                                     <a href="javascript:void(0)">
-                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}">
+                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($items->image)}}" alt="{{ $item->randId??'' }}">
                                                     </a>
                                                 </div>
                                                 <div class="item-product__box-content">
@@ -277,20 +279,7 @@
                                                             ID: #{{ @$item->randId}}
                                                         </div>
                                                         <div class="item-product__box-rank">
-{{--                                                            <div class="item-product__box-rank">--}}
-{{--                                                                <div>--}}
-{{--                                                                    @if(isset($items->items_count))--}}
-{{--                                                                        @if((isset($items->account_fake) && $items->account_fake > 1) || (isset($items->custom->account_fake) && $items->custom->account_fake > 1))--}}
-{{--                                                                            Số tài khoản: {{ str_replace(',','.',number_format(round(isset($items->custom->account_fake) ? $items->items_count*$items->custom->account_fake : $items->items_count*$items->account_fake))) }}--}}
-{{--                                                                        @else--}}
-{{--                                                                            Số tài khoản: {{ $items->items_count }}--}}
-{{--                                                                        @endif--}}
 
-{{--                                                                    @else--}}
-{{--                                                                        Số tài khoản: 0--}}
-{{--                                                                    @endif--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
                                                         </div>
                                                         <div class="item-product__box-price">
 
@@ -302,6 +291,12 @@
                                                                 </div>
                                                             @endif
                                                         </div>
+                                                        @if(App\Library\AuthCustom::check())
+                                                            <button type="button" class="button-secondary list-item-nick-button buyacchome"  data-id="{{ $item->randId }}">Mua ngay</button>
+
+                                                        @else
+                                                            <button type="button" class="button-secondary list-item-nick-button " onclick="openLoginModal()">Mua ngay</button>
+                                                        @endif
                                                     </a>
                                                 </div>
                                             </div>

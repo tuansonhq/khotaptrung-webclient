@@ -175,6 +175,7 @@ class MinigameController extends Controller
                     $data['module'] = explode('-', $group->module)[0];
                     $data['page'] = 1;
                     $result_Api_logs = DirectAPI::_makeRequest($url_logs, $data, $method);
+
                     if (isset($result_Api_logs) && $result_Api_logs->response_code == 200) {
                         $data_view = [
                             'result' => $result,
@@ -573,6 +574,7 @@ class MinigameController extends Controller
                 $url = '/minigame/get-withdraw-item';
                 $data['page'] = $request->page;
                 $data['game_type'] = $game_type;
+                $data['limit'] = 10;
                 $result_Api = DirectAPI::_makeRequest($url, $data, $method);
                 if (isset($result_Api) && $result_Api->response_code == 200) {
                     $result = $result_Api->response_data;

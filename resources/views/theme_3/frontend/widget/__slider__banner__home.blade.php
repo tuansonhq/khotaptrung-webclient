@@ -1,5 +1,4 @@
 
-
 @if(isset($data) && count($data))
 
     <div class="ads-banner row box-product class_c_slider_banner" id="c_slider_banner">
@@ -87,5 +86,3 @@
         @endif
     </div>
 @endif
-
-

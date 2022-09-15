@@ -42,7 +42,7 @@ var chatArrayDefault = [
 ];
 
 //Set thời gian minmax
-var lengthChatDefault = 16;
+var lengthChatDefault = 12;
 var monthsDefault = [30, 35, 40, 45, 50, 55, 60, 65];
 
 var totaltime = 0;
@@ -61,43 +61,218 @@ for (let i = 0; i < lengthChatDefault; i++){
 
 //App chat
 
+
+
 var d_totaltime = 0;
 var c_totaltime = 0;
+var arr_group = [];
 
-for (let j = 0; j < lengthChatDefault; j++){
-    // console.log(arr_time[j])
-    var dateTimeDefault = new Date();
-    var datenow = new Date();
 
-    d_totaltime = d_totaltime + arr_time[j]*1;
-    c_totaltime = (totaltime - d_totaltime)*1;
-    if (j == 0){
-        dateTimeDefault.setSeconds(dateTimeDefault.getSeconds() - totaltime); // timestamp
-    }else{
-        dateTimeDefault.setSeconds(dateTimeDefault.getSeconds() - c_totaltime); // timestamp
-    }
-    var t_time;
-    var e_minute = datenow.getMinutes();
-    var s_minute = dateTimeDefault.getMinutes();
-    var e_hour = datenow.getHours();
-    var s_hour = dateTimeDefault.getHours();
+let cookies_minigame = getCookie('chat_minigame');
+// eraseCookie('chat_minigame');
+if (cookies_minigame){
 
-    if (e_hour == s_hour){
-        if (e_minute == s_minute){
-            t_time = " Vừa xong";
-        }else{
-            t_time = e_minute - s_minute + " Phút trước";
+    var cookies_lengthChatDefault = JSON.parse(cookies_minigame);
+
+    for (let k = 0; k < cookies_lengthChatDefault.length; k++){
+        var k_cookies_lengthChatDefault = cookies_lengthChatDefault[k];
+        var cookies_html;
+        var defoalt = k_cookies_lengthChatDefault[2];
+        defoalt = new Date(defoalt);
+
+        var cookies_minute = defoalt.getMinutes();
+        var cookies_hour = defoalt.getHours();
+
+        var c_timepast = timeSince(cookies_minute,cookies_hour);
+
+        if (parseInt(cookies_minute) < 10){
+            cookies_minute = "0"+cookies_minute;
         }
-    }else{
-        t_time = e_hour - s_hour + " Giờ trước";
+        if (parseInt(cookies_hour) < 10){
+            cookies_hour = "0"+cookies_hour;
+        }
+
+
+
+        if (k_cookies_lengthChatDefault[0] == 0){
+            cookies_html = `
+                    <li>
+                        <div class="comment-item comment-item-khach" data-time="${defoalt}">
+                            <div class="comment-avatar">
+                                <img
+                                    src="/assets/frontend/theme_3/image/anhdaidien.svg"
+                                    alt="">
+                            </div>
+                            <div class="comment-detail">
+                                <div class="comment-info">
+                                    <p>Khách</p>
+                                    <span>${cookies_hour}:${cookies_minute}, </span><small class="data_time_minigame">${c_timepast}</small>
+                                </div>
+                                <div class="comment-content">
+                                    ${k_cookies_lengthChatDefault[1]}
+                                </div>
+                                <div class="comment-interact">
+                                    <span id="likeComment"><img
+                                            src="/assets/frontend/theme_3/image/images_1/hearts-suit 1.svg"
+                                            alt=""> Thích</span>
+                                    <span id="replyComment"><img
+                                            src="/assets/frontend/theme_3/image/images_1/comment 1.svg"
+                                            alt=""> Trả lời</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>`;
+        }else{
+            cookies_html = `
+                    <li>
+                        <div class="comment-item comment-item-own comment-item-user" data-time="${defoalt}">
+
+                            <div class="comment-detail comment-detail-own">
+                                <div class="comment-info comment-info-own">
+
+                                    <span>${cookies_hour}:${cookies_minute}, </span><small class="data_time_user">${c_timepast}</small>
+                                    <p>Bạn</p>
+                                </div>
+                                <div class="comment-content comment-content-own">
+                                    ${k_cookies_lengthChatDefault[1]}
+                                </div>
+                                <div class="comment-interact comment-interact-own">
+                                    <span id="likeComment"><img
+                                            src="/assets/frontend/theme_3/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
+                                    <span id="replyComment"><img
+                                            src="/assets/frontend/theme_3/image/images_1/comment 1.svg" alt=""> Trả lời</span>
+                                </div>
+                            </div>
+                            <div class="comment-avatar">
+                                <img src="/assets/frontend/theme_3/image/images_1/user_avatar.png" alt="">
+                            </div>
+                        </div>
+                    </li>`;
+        }
+        $('.list-unstyled').append(cookies_html);
+
     }
 
-    dateTimeDefault = new Date(dateTimeDefault).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
-    const randomChatDefault = Math.floor(Math.random() * chatArrayDefault.length);
+    (function loop() {
 
-    var htmldefault = `
-    <li>
-        <div class="comment-item comment-item-khach">
+        var months = [30, 35, 40, 45, 50, 55, 60, 65];
+
+        var random = Math.floor(Math.random() * months.length);
+
+        setTimeout(function() {
+
+            var chatArray = [
+                'Dịch vụ nạp uy tín ghê',
+                'Uy tín không anh em.',
+                'Vãi vừa ấn nạp xong vào game có ngay (y)',
+                'Web uy tín đấy, vừa nạp 500k xong.',
+                'Nãy có ông bạn nạp 500k xong vào nạp luôn, quá xịn admin ơi.',
+                'Thanks admin <3 , uy tín lắm luôn',
+                'Nhanh gọn uy tín, thanks admin',
+                'Web xịn không scam nha mọi người',
+                'Hàng sạch, thanks admin',
+                'Vừa nạp xong, quá ngon',
+                'Web ok không anh em, có scam không?',
+                'Vừa chạy ra quán mua 500k thẻ nạp ăn luôn, ngon quá admin',
+                'Nhập nhầm mã thẻ với serial báo admin xử lý trong vòng 1 nốt nhạc, uy tín quá admin ơi',
+                'Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s',
+                '1 vote uy tín cho web nhé, quá ngon luôn',
+                'Bị lừa nhiều rồi, giờ mới tìm được web uy tín, thanks ad',
+                'Vừa nạp 100k xong',
+                'Web ngon vl',
+                'Anh em nào chưa nạp thì vào nạp ngay đi đang có khuyến mại',
+                'Uy tín lắm admin',
+                'Vote 10000k sao nhé, quá uy tín',
+                'Có anh em nào vừa từ youtube qua đây nạp k',
+                'Ông em vừa giới thiệu, nạp cái ăn luôn, ngon vc',
+                'Uy tín nhé anh em',
+                'Đã nạp thành công',
+                'Đã nạp ở đây 20tr tiền thẻ, vote uy tín nhé',
+                'Web nạp ngon thế này mà giờ mới biết',
+                'Đã nạp, nhanh lắm nhé',
+                'Ngon vcl, +5 sao cho admin',
+                'Nghe anh em review ngon quá, tôi ra làm cái thẻ 500k nạp đây',
+                'Không scam, web nạp thật, nhận thật nhé !',
+                'Đã nạp và thấy ngon ngọt nhé ae',
+                'Web này trùm nạp mẹ rồi',
+                'Web được đấy anh em',
+                'Thấy web được nhiều anh em nạp rồi, yên tâm nạp hehe',
+                'Anh em không phải sợ đâu, tôi nạp nhiều web này rồi',
+                'Web xịn không scam nha mọi người'
+            ];
+
+            const randomChat = Math.floor(Math.random() * chatArray.length);
+
+            let cookies_set = getCookie('chat_minigame');
+
+            setArray(cookies_set,chatArray[randomChat],0);
+            loop()
+        }, months[random]*1000);
+
+    }());
+
+    $('body').on('click','.btn-send-message',function(){
+        var context = $('#message-to-send').val();
+
+        let cookies_set = getCookie('chat_minigame');
+        setArray(cookies_set,context,1);
+
+        $('.chat-scroll').scrollTop($('.chat-scroll')[0].scrollHeight);
+
+        $('#message-to-send').val('');
+    })
+
+    $('body').on('keyup','#message-to-send',function (e) {
+
+        var key = e.which;
+        if (key == 13) {
+            var context = $(this).val();
+
+            let cookies_set = getCookie('chat_minigame');
+            setArray(cookies_set,context,1);
+
+            $('.chat-scroll').scrollTop($('.chat-scroll')[0].scrollHeight);
+
+            $('#message-to-send').val('');
+        }
+        e.preventDefault();
+    })
+    // console.log(cookies_lengthChatDefault)
+}else{
+
+    for (let j = 0; j < lengthChatDefault; j++){
+        // console.log(arr_time[j])
+        var dateTimeDefault = new Date();
+        var datenow = new Date();
+
+        d_totaltime = d_totaltime + arr_time[j]*1;
+        c_totaltime = (totaltime - d_totaltime)*1;
+        if (j == 0){
+            dateTimeDefault.setSeconds(dateTimeDefault.getSeconds() - totaltime); // timestamp
+        }else{
+            dateTimeDefault.setSeconds(dateTimeDefault.getSeconds() - c_totaltime); // timestamp
+        }
+
+        var s_minute = dateTimeDefault.getMinutes();
+        var s_hour = dateTimeDefault.getHours();
+        var timepast = timeSince(s_minute,s_hour);
+        if (parseInt(s_minute) < 10){
+            s_minute = "0"+s_minute;
+        }
+        if (parseInt(s_hour) < 10){
+            s_hour = "0"+s_hour;
+        }
+        // dateTimeDefault = new Date(dateTimeDefault).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
+        const randomChatDefault = Math.floor(Math.random() * chatArrayDefault.length);
+        var arr_item = [];
+        arr_item.push(0);
+        arr_item.push(chatArrayDefault[randomChatDefault]);
+        arr_item.push(dateTimeDefault);
+        arr_group.push(arr_item);
+        var htmldefault = `
+            <li>
+        <div class="comment-item comment-item-khach" data-time="${dateTimeDefault}">
             <div class="comment-avatar">
                 <img
                     src="/assets/frontend/theme_3/image/anhdaidien.svg"
@@ -106,7 +281,7 @@ for (let j = 0; j < lengthChatDefault; j++){
             <div class="comment-detail">
                 <div class="comment-info">
                     <p>Khách</p>
-                    <span>${dateTimeDefault}, </span><small class="data_time_minigame">${t_time}</small>
+                    <span>${s_hour}:${s_minute}, </span><small class="data_time_minigame">${timepast}</small>
                 </div>
                 <div class="comment-content">
                     ${chatArrayDefault[randomChatDefault]}
@@ -124,325 +299,346 @@ for (let j = 0; j < lengthChatDefault; j++){
 
     </li>`
 
-    $('.list-unstyled').append(htmldefault);
+        $('.list-unstyled').append(htmldefault);
+
+    }
+
+    var arr_groups = JSON.stringify(arr_group);
+    setCookie('chat_minigame',arr_groups,1);
+
+    (function loop() {
+
+        var months = [30, 35, 40, 45, 50, 55, 60, 65];
+
+        var random = Math.floor(Math.random() * months.length);
+
+        setTimeout(function() {
+
+            var chatArray = [
+                'Dịch vụ nạp uy tín ghê',
+                'Uy tín không anh em.',
+                'Vãi vừa ấn nạp xong vào game có ngay (y)',
+                'Web uy tín đấy, vừa nạp 500k xong.',
+                'Nãy có ông bạn nạp 500k xong vào nạp luôn, quá xịn admin ơi.',
+                'Thanks admin <3 , uy tín lắm luôn',
+                'Nhanh gọn uy tín, thanks admin',
+                'Web xịn không scam nha mọi người',
+                'Hàng sạch, thanks admin',
+                'Vừa nạp xong, quá ngon',
+                'Web ok không anh em, có scam không?',
+                'Vừa chạy ra quán mua 500k thẻ nạp ăn luôn, ngon quá admin',
+                'Nhập nhầm mã thẻ với serial báo admin xử lý trong vòng 1 nốt nhạc, uy tín quá admin ơi',
+                'Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s',
+                '1 vote uy tín cho web nhé, quá ngon luôn',
+                'Bị lừa nhiều rồi, giờ mới tìm được web uy tín, thanks ad',
+                'Vừa nạp 100k xong',
+                'Web ngon vl',
+                'Anh em nào chưa nạp thì vào nạp ngay đi đang có khuyến mại',
+                'Uy tín lắm admin',
+                'Vote 10000k sao nhé, quá uy tín',
+                'Có anh em nào vừa từ youtube qua đây nạp k',
+                'Ông em vừa giới thiệu, nạp cái ăn luôn, ngon vc',
+                'Uy tín nhé anh em',
+                'Đã nạp thành công',
+                'Đã nạp ở đây 20tr tiền thẻ, vote uy tín nhé',
+                'Web nạp ngon thế này mà giờ mới biết',
+                'Đã nạp, nhanh lắm nhé',
+                'Ngon vcl, +5 sao cho admin',
+                'Nghe anh em review ngon quá, tôi ra làm cái thẻ 500k nạp đây',
+                'Không scam, web nạp thật, nhận thật nhé !',
+                'Đã nạp và thấy ngon ngọt nhé ae',
+                'Web này trùm nạp mẹ rồi',
+                'Web được đấy anh em',
+                'Thấy web được nhiều anh em nạp rồi, yên tâm nạp hehe',
+                'Anh em không phải sợ đâu, tôi nạp nhiều web này rồi',
+                'Web xịn không scam nha mọi người'
+            ];
+
+            const randomChat = Math.floor(Math.random() * chatArray.length);
+
+            let cookies_set = getCookie('chat_minigame');
+
+            setArray(cookies_set,chatArray[randomChat],0);
+            loop()
+        }, months[random]*1000);
+
+    }());
+
+    $('body').on('click','.btn-send-message',function(){
+        var context = $('#message-to-send').val();
+
+        let cookies_set = getCookie('chat_minigame');
+        setArray(cookies_set,context,1);
+
+        $('.chat-scroll').scrollTop($('.chat-scroll')[0].scrollHeight);
+
+        $('#message-to-send').val('');
+    });
+
+    $('body').on('keyup','#message-to-send',function (e) {
+
+        var key = e.which;
+        if (key == 13) {
+            var context = $(this).val();
+
+            let cookies_set = getCookie('chat_minigame');
+            setArray(cookies_set,context,1);
+
+            $('.chat-scroll').scrollTop($('.chat-scroll')[0].scrollHeight);
+
+            $('#message-to-send').val('');
+        }
+        e.preventDefault();
+    })
 
 }
 
-
 $('.chat-scroll').scrollTop($('.chat-scroll')[0].scrollHeight);
 
-(function loop(index = 0,l_monthsDefault = arr_time) {
+function setArray(array = [],contents,index){
 
-    var months = [30, 35, 40, 45, 50, 55, 60, 65];
+    var parse_group =[]
+    var cookies_parse = JSON.parse(array);
+    var parse_html;
 
-    var random = Math.floor(Math.random() * months.length);
+    $('.list-unstyled').html('');
 
-    setTimeout(function() {
+    for (let p = 0; p < cookies_parse.length; p++){
+        if(p > 0){
+            var k_cookies_parse = cookies_parse[p];
+            var arr_parse = [];
+            arr_parse.push(k_cookies_parse[0]);
+            arr_parse.push(k_cookies_parse[1]);
+            arr_parse.push(k_cookies_parse[2]);
+            parse_group.push(arr_parse);
 
-        var chatArray = [
-            'Dịch vụ nạp uy tín ghê',
-            'Uy tín không anh em.',
-            'Vãi vừa ấn nạp xong vào game có ngay (y)',
-            'Web uy tín đấy, vừa nạp 500k xong.',
-            'Nãy có ông bạn nạp 500k xong vào nạp luôn, quá xịn admin ơi.',
-            'Thanks admin <3 , uy tín lắm luôn',
-            'Nhanh gọn uy tín, thanks admin',
-            'Web xịn không scam nha mọi người',
-            'Hàng sạch, thanks admin',
-            'Vừa nạp xong, quá ngon',
-            'Web ok không anh em, có scam không?',
-            'Vừa chạy ra quán mua 500k thẻ nạp ăn luôn, ngon quá admin',
-            'Nhập nhầm mã thẻ với serial báo admin xử lý trong vòng 1 nốt nhạc, uy tín quá admin ơi',
-            'Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s',
-            '1 vote uy tín cho web nhé, quá ngon luôn',
-            'Bị lừa nhiều rồi, giờ mới tìm được web uy tín, thanks ad',
-            'Vừa nạp 100k xong',
-            'Web ngon vl',
-            'Anh em nào chưa nạp thì vào nạp ngay đi đang có khuyến mại',
-            'Uy tín lắm admin',
-            'Vote 10000k sao nhé, quá uy tín',
-            'Có anh em nào vừa từ youtube qua đây nạp k',
-            'Ông em vừa giới thiệu, nạp cái ăn luôn, ngon vc',
-            'Uy tín nhé anh em',
-            'Đã nạp thành công',
-            'Đã nạp ở đây 20tr tiền thẻ, vote uy tín nhé',
-            'Web nạp ngon thế này mà giờ mới biết',
-            'Đã nạp, nhanh lắm nhé',
-            'Ngon vcl, +5 sao cho admin',
-            'Nghe anh em review ngon quá, tôi ra làm cái thẻ 500k nạp đây',
-            'Không scam, web nạp thật, nhận thật nhé !',
-            'Đã nạp và thấy ngon ngọt nhé ae',
-            'Web này trùm nạp mẹ rồi',
-            'Web được đấy anh em',
-            'Thấy web được nhiều anh em nạp rồi, yên tâm nạp hehe',
-            'Anh em không phải sợ đâu, tôi nạp nhiều web này rồi',
-            'Web xịn không scam nha mọi người'
-        ];
+            k_cookies_parse[2] = new Date(k_cookies_parse[2]);
 
-        const randomChat = Math.floor(Math.random() * chatArray.length);
+            var parse_minute = k_cookies_parse[2].getMinutes();
+            var parse_hour = k_cookies_parse[2].getHours();
+            var timeparse = timeSince(parse_minute,parse_hour);
 
-        var chatHistory = $('.chat-history');
+            if (parseInt(parse_minute) < 10){
+                parse_minute = "0"+parse_minute;
+            }
+            if (parseInt(parse_hour) < 10){
+                parse_hour = "0"+parse_hour;
+            }
 
-        var chatHistoryList = chatHistory.find('ul');
-
-        var dateTime = new Date().toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
-
-        var html = `
-            <li>
-
-                <div class="comment-item comment-item-khach">
-                    <div class="comment-avatar">
-                        <img src="/assets/frontend/theme_3/image/anhdaidien.svg" alt="">
-                    </div>
-                    <div class="comment-detail">
-                        <div class="comment-info">
-                            <p>Khách</p>
-                            <span>${dateTime}, </span><small class="data_time_minigame">Vừa xong</small>
+            if (k_cookies_parse[0] == 0){
+                parse_html = `
+                    <li>
+                        <div class="comment-item comment-item-khach" data-time="${k_cookies_parse[2]}">
+                            <div class="comment-avatar">
+                                <img
+                                    src="/assets/frontend/theme_3/image/anhdaidien.svg"
+                                    alt="">
+                            </div>
+                            <div class="comment-detail">
+                                <div class="comment-info">
+                                    <p>Khách</p>
+                                    <span>${parse_hour}:${parse_minute}, </span><small class="data_time_minigame">${timeparse}</small>
+                                </div>
+                                <div class="comment-content">
+                                    ${k_cookies_parse[1]}
+                                </div>
+                                <div class="comment-interact">
+                                    <span id="likeComment"><img
+                                            src="/assets/frontend/theme_3/image/images_1/hearts-suit 1.svg"
+                                            alt=""> Thích</span>
+                                    <span id="replyComment"><img
+                                            src="/assets/frontend/theme_3/image/images_1/comment 1.svg"
+                                            alt=""> Trả lời</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="comment-content">
-                            ${chatArray[randomChat]}
+
+                    </li>`;
+            }else{
+                parse_html = `
+                    <li>
+                        <div class="comment-item comment-item-own comment-item-user" data-time="${k_cookies_parse[2]}">
+
+                            <div class="comment-detail comment-detail-own">
+                                <div class="comment-info comment-info-own">
+
+                                    <span>${parse_hour}:${parse_minute}, </span><small class="data_time_user">${timeparse}</small>
+                                    <p>Bạn</p>
+                                </div>
+                                <div class="comment-content comment-content-own">
+                                    ${k_cookies_parse[1]}
+                                </div>
+                                <div class="comment-interact comment-interact-own">
+                                    <span id="likeComment"><img
+                                            src="/assets/frontend/theme_3/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
+                                    <span id="replyComment"><img
+                                            src="/assets/frontend/theme_3/image/images_1/comment 1.svg" alt=""> Trả lời</span>
+                                </div>
+                            </div>
+                            <div class="comment-avatar">
+                                <img src="/assets/frontend/theme_3/image/images_1/user_avatar.png" alt="">
+                            </div>
                         </div>
-                        <div class="comment-interact">
-                            <span id="likeComment"><img src="/assets/frontend/theme_3/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
-                            <span id="replyComment"><img src="/assets/frontend/theme_3/image/images_1/comment 1.svg" alt=""> Trả lời</span>
-                        </div>
-                    </div>
-                </div>
+                    </li>`;
+            }
 
-            </li>`;
+            $('.list-unstyled').append(parse_html);
 
-        index = index + 1;
-
-        chatHistoryList.append(html);
-        $('.chat-scroll').scrollTop($('.chat-scroll')[0].scrollHeight);
-
-        l_monthsDefault.push(months[random]);
-
-        loop(index,l_monthsDefault);
-
-        var ptotaltime = 0;
-        var d_ptotaltime = 0;
-        var c_ptotaltime = 0;
-
-        for (let k = 0; k < l_monthsDefault.length; k++){
-            ptotaltime = ptotaltime + l_monthsDefault[k];
         }
+    }
 
-        $(".chat-history ul li .comment-item-khach .data_time_minigame").each(function (key) {
-            var c_dateTimeDefault = new Date();
-            var c_datenow = new Date();
+    var u_datenow = new Date();
 
-            d_ptotaltime = d_ptotaltime + l_monthsDefault[key]*1;
-            c_ptotaltime = (ptotaltime - d_ptotaltime)*1;
-
-            if (key == 0){
-                c_dateTimeDefault.setSeconds(c_dateTimeDefault.getSeconds() - ptotaltime); // timestamp
-            }else{
-                c_dateTimeDefault.setSeconds(c_dateTimeDefault.getSeconds() - c_ptotaltime); // timestamp
-            }
-
-            var t_ptime;
-            var e_pminute = c_datenow.getMinutes();
-            var s_pminute = c_dateTimeDefault.getMinutes();
-            var e_phour = c_datenow.getHours();
-            var s_phour = c_dateTimeDefault.getHours();
-
-            if (e_phour == s_phour){
-                if (e_pminute == s_pminute){
-                    t_ptime = " Vừa xong";
-                }else{
-                    t_ptime = e_pminute - s_pminute + " Phút trước";
-                }
-            }else{
-                t_ptime = e_phour - s_phour + " Giờ trước";
-            }
-
-            $(this).html('');
-            $(this).html(t_ptime);
-        });
-
-        $(".chat-history ul li .comment-item-user").each(function (key) {
-            var data_hour = $(this).data('hour');
-            var data_minute = $(this).data('minute');
-            var u_datenow = new Date();
-
-            var t_utime;
-            var e_uminute = u_datenow.getMinutes();
-            var s_uminute = data_minute*1;
-            var e_uhour = u_datenow.getHours();
-            var s_uhour = data_hour*1;
-
-            if (e_uhour == s_uhour){
-                if (e_uminute == s_uminute){
-                    t_utime = " Vừa xong";
-                }else{
-                    t_utime = e_uminute - s_uminute + " Phút trước";
-                }
-            }else{
-                t_utime = e_uhour - s_uhour + " Giờ trước";
-            }
-
-            $(".chat-history ul li .comment-item-user .data_time_user").each(function (c_key) {
-                if (key == c_key){
-                    $(this).html('');
-                    $(this).html(t_utime);
-                }
-            })
-
-            console.log("e_uhour= " + e_uhour);
-            console.log("s_uhour= " + s_uhour);
-            console.log("e_uminute= " + e_uminute);
-            console.log("s_uminute= " + s_uminute);
-            console.log("t_utime= " + t_utime);
+    var set_arr = [];
+    set_arr.push(index);
+    set_arr.push(contents);
+    set_arr.push(u_datenow);
+    parse_group.push(set_arr);
 
 
-        })
 
-    }, months[random]*1000);
+    var set_parse_minute = u_datenow.getMinutes();
+    var set_parse_hour = u_datenow.getHours();
 
-}());
+    if (parseInt(set_parse_minute) < 10){
+        set_parse_minute = "0"+set_parse_minute;
+    }
+    if (parseInt(set_parse_hour) < 10){
+        set_parse_hour = "0"+set_parse_hour;
+    }
 
-(function () {
-    var chat = {
-        messageToSend: '',
-        messageResponses: [
-            'Dịch vụ nạp uy tín ghê',
-            'Uy tín không anh em.',
-            'Vãi vừa ấn nạp xong vào game có ngay (y)',
-            'Web uy tín đấy, vừa nạp 500k xong.',
-            'Nãy có ông bạn nạp 500k xong vào nạp luôn, quá xịn admin ơi.',
-            'Thanks admin <3 , uy tín lắm luôn',
-            'Nhanh gọn uy tín, thanks admin',
-            'Web xịn không scam nha mọi người',
-            'Hàng sạch, thanks admin',
-            'Vừa nạp xong, quá ngon',
-            'Web ok không anh em, có scam không?',
-            'Vừa chạy ra quán mua 500k thẻ nạp ăn luôn, ngon quá admin',
-            'Nhập nhầm mã thẻ với serial báo admin xử lý trong vòng 1 nốt nhạc, uy tín quá admin ơi',
-            'Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s',
-            '1 vote uy tín cho web nhé, quá ngon luôn',
-            'Bị lừa nhiều rồi, giờ mới tìm được web uy tín, thanks ad',
-            'Vừa nạp 100k xong',
-            'Web ngon vl',
-            'Anh em nào chưa nạp thì vào nạp ngay đi đang có khuyến mại',
-            'Uy tín lắm admin',
-            'Vote 10000k sao nhé, quá uy tín',
-            'Có anh em nào vừa từ youtube qua đây nạp k',
-            'Ông em vừa giới thiệu, nạp cái ăn luôn, ngon vc',
-            'Uy tín nhé anh em',
-            'Đã nạp thành công',
-            'Đã nạp ở đây 20tr tiền thẻ, vote uy tín nhé',
-            'Web nạp ngon thế này mà giờ mới biết',
-            'Đã nạp, nhanh lắm nhé',
-            'Ngon vcl, +5 sao cho admin',
-            'Nghe anh em review ngon quá, tôi ra làm cái thẻ 500k nạp đây',
-            'Không scam, web nạp thật, nhận thật nhé !',
-            'Đã nạp và thấy ngon ngọt nhé ae',
-            'Web này trùm nạp mẹ rồi',
-            'Web được đấy anh em',
-            'Thấy web được nhiều anh em nạp rồi, yên tâm nạp hehe',
-            'Anh em không phải sợ đâu, tôi nạp nhiều web này rồi',
-            'Web xịn không scam nha mọi người'
-        ],
-        init: function () {
-            this.cacheDOM();
-            this.bindEvents();
-            this.render();
-        },
-        cacheDOM: function () {
-            this.$chatHistory = $('.chat-history');
-            this.$button = $('.btn-send-message');
-            this.$textarea = $('#message-to-send');
-            this.$chatHistoryList = this.$chatHistory.find('ul');
-        },
-        bindEvents: function () {
-            this.$button.on('click', this.addMessage.bind(this));
-            this.$textarea.on('keyup', this.addMessageEnter.bind(this));
-        },
-        render: function () {
-            this.scrollToBottom();
-            if (this.messageToSend.trim() !== '') {
-                // var template = Handlebars.compile($("#message-template").html());
-                // var context = {
-                //     messageOutput: this.messageToSend,
-                //     time: this.getCurrentTime()
-                // };
-                // this.$chatHistoryList.append(template(context));
-                // this.scrollToBottom();
-                // this.$textarea.val('');
-
-            }
-
-            this.scrollToBottom();
-
-
-        },
-        addMessage: function () {
-            this.messageToSend = this.$textarea.val();
-            this.render();
-        },
-        addMessageEnter: function (event) {
-            // enter was pressed
-            if (event.keyCode === 13) {
-                this.addMessage();
-            }
-        },
-        scrollToBottom: function () {
-            $('.chat-scroll').scrollTop($('.chat-scroll')[0].scrollHeight);
-        },
-        getCurrentTime: function () {
-            return new Date().toLocaleTimeString().
-            replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
-        },
-        getRandomItem: function (arr) {
-            return arr[Math.floor(Math.random() * arr.length)];
-        }
-    };
-
-    chat.init();
-
-})();
-
-$('body').on('click','.btn-send-message',function(){
-    var context = $('#message-to-send').val();
-    var uf_dateTime = new Date();
-    var uminute = uf_dateTime.getMinutes();
-    var uhour = uf_dateTime.getHours();
-
-    var u_dateTime = new Date().toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
-    var u_html = `
+    var setparse_html;
+    if (index == 0){
+        setparse_html = `
         <li>
-            <div class="comment-item comment-item-own comment-item-user" data-hour="${uhour}" data-minute="${uminute}">
-
-                <div class="comment-detail comment-detail-own">
-                    <div class="comment-info comment-info-own">
-
-                        <span>${u_dateTime}, </span><small class="data_time_user">Vừa xong</small>
-                        <p>Bạn</p>
-                    </div>
-                    <div class="comment-content comment-content-own">
-                        ${context}
-                    </div>
-                    <div class="comment-interact comment-interact-own">
-                        <span id="likeComment"><img
-                                src="/assets/frontend/theme_3/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
-                        <span id="replyComment"><img
-                                src="/assets/frontend/theme_3/image/images_1/comment 1.svg" alt=""> Trả lời</span>
-                    </div>
-                </div>
+            <div class="comment-item comment-item-khach" data-time="${u_datenow}">
                 <div class="comment-avatar">
-                    <img src="/assets/frontend/theme_3/image/images_1/user_avatar.png" alt="">
+                    <img
+                        src="/assets/frontend/theme_3/image/anhdaidien.svg"
+                        alt="">
+                </div>
+                <div class="comment-detail">
+                    <div class="comment-info">
+                        <p>Khách</p>
+                        <span>${set_parse_hour}:${set_parse_minute}, </span><small class="data_time_minigame">Vừa xong</small>
+                    </div>
+                    <div class="comment-content">
+                        ${contents}
+                    </div>
+                    <div class="comment-interact">
+                        <span id="likeComment"><img
+                                src="/assets/frontend/theme_3/image/images_1/hearts-suit 1.svg"
+                                alt=""> Thích</span>
+                        <span id="replyComment"><img
+                                src="/assets/frontend/theme_3/image/images_1/comment 1.svg"
+                                alt=""> Trả lời</span>
+                    </div>
                 </div>
             </div>
+
         </li>`;
+    }else{
+        setparse_html = `
+            <li>
+                <div class="comment-item comment-item-own comment-item-user" data-time="${u_datenow}">
 
-    $('.list-unstyled').append(u_html);
-    $('.chat-scroll').scrollTop($('.chat-scroll')[0].scrollHeight);
+                    <div class="comment-detail comment-detail-own">
+                        <div class="comment-info comment-info-own">
 
-    $('#message-to-send').val('');
-})
+                            <span>${set_parse_hour}:${set_parse_minute}, </span><small class="data_time_user">Vừa xong</small>
+                            <p>Bạn</p>
+                        </div>
+                        <div class="comment-content comment-content-own">
+                            ${contents}
+                        </div>
+                        <div class="comment-interact comment-interact-own">
+                            <span id="likeComment"><img
+                                    src="/assets/frontend/theme_3/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
+                            <span id="replyComment"><img
+                                    src="/assets/frontend/theme_3/image/images_1/comment 1.svg" alt=""> Trả lời</span>
+                        </div>
+                    </div>
+                    <div class="comment-avatar">
+                        <img src="/assets/frontend/theme_3/image/images_1/user_avatar.png" alt="">
+                    </div>
+                </div>
+            </li>`;
+    }
+
+    $('.list-unstyled').append(setparse_html);
+
+    eraseCookie('chat_minigame');
+
+    var parse_groups = JSON.stringify(parse_group);
+    setCookie('chat_minigame',parse_groups,1);
+
+}
+
+function setCookie(name,value,hours) {
+    var expires = "";
+    if (hours) {
+        var date = new Date();
+        date.setTime(date.getTime() + (hours*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
 
 
+function timeSince(minute,hours) {
+    var  date1 = new Date();
+    // The number of milliseconds in one day
+    var now_minute = date1.getMinutes();
+    var now_hour = date1.getHours();
+    var time;
+
+    if (parseInt(hours) < parseInt(now_hour)){
+
+        if (parseInt(now_minute) < parseInt(minute)){
+            time = (parseInt(now_minute) + 60) - parseInt(minute) + " Phút trước";
+        }else if (parseInt(now_minute) > parseInt(minute)){
+            time = parseInt(minute) - parseInt(now_minute) + " Phút trước";
+        }else {
+            time = 1 + " Giờ trước";
+        }
+
+    }else if (parseInt(hours) > parseInt(now_hour)){
+
+        if (parseInt(now_minute) < parseInt(minute)){
+            time = (parseInt(now_minute) + 60) - parseInt(minute) + " Phút trước";
+        }else if (parseInt(now_minute) > parseInt(minute)){
+            time = parseInt(minute) - parseInt(now_minute) + " Phút trước";
+        }else {
+            time = 1 + " Giờ trước";
+        }
+    }else {
+        if (parseInt(now_minute) == parseInt(minute)){
+            time = "Vừa xong";
+        }else {
+            time = parseInt(now_minute) - parseInt(minute) + " Phút trước";
+        }
+
+    }
+
+    // Convert back to days and return
+    return time;
+
+}
 
 
 

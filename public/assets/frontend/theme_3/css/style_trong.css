@@ -198,6 +198,20 @@
     background: rgba(246, 118, 0, 0.15);
 }
 
+#content-store-card .swiper-slide .cards__item input[type="radio"]:checked + label {
+    border: 1px solid var(--primary-color);
+}
+
+#content-store-card .swiper-slide .cards__item input[type="radio"]:checked + label:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(246, 118, 0, 0.15);
+}
+
 #content-store-card .cards__item input[type="radio"]:checked + label {
     border: 1px solid var(--primary-color);
 }
@@ -721,6 +735,28 @@
     box-shadow: none;
 }
 
+.btn.-text-btn {
+    align-items: center;
+    background: transparent;
+    border-radius: 8px;
+    color: #F67600;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.5;
+    outline: none;
+    box-shadow: none;
+}
+.btn.-text-btn:hover {
+    background-color: rgba(246, 118, 0, 0.2);
+}
+.btn.-text-btn:active {
+    background-color: rgba(246, 118, 0, 0.1);
+}
+.btn.-text-btn:disabled {
+    background-color: transparent;
+    border: 1px solid #DBDBDB;
+    color: #7D7D7D;
+}
 .btn.-secondary:hover {
     background-color: var(--primary-color);
 }
@@ -2331,8 +2367,24 @@ a:hover .__icon.--path__custom:after {
 #modal-spin-bonus .section-table-history .wrap-table {
     border: 1px solid #E4E5F0;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: auto;
+    max-height: 360px;
 }
+#modal-spin-bonus .section-table-history .wrap-table::-webkit-scrollbar {
+    width: 8px;
+}
+#modal-spin-bonus .section-table-history .wrap-table::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 100px;
+    border: none;
+}
+#modal-spin-bonus .section-table-history .wrap-table:hover::-webkit-scrollbar-thumb {
+    background-color: #E4E5F0;
+}
+#modal-spin-bonus .section-table-history .wrap-table::-webkit-scrollbar-track {
+    background: transparent;
+}
+
 #modal-spin-bonus table tr:first-child {
     background-color: #FBFBFD;
     border-bottom: 1px solid #E4E5F0;
@@ -2362,6 +2414,58 @@ a:hover .__icon.--path__custom:after {
     padding-top: 12px;
     padding-bottom: 12px;
 }
+
+.modal-history-filter > [class*='col-']:nth-child(2),
+.modal-history-filter > [class*='col-']:nth-child(4)
+{
+    padding-right: 0;
+    padding-left: 0;
+    margin-top: 12px;
+}
+.modal-history-filter > [class*='col-']:nth-child(3),
+.modal-history-filter > [class*='col-']:nth-child(5)
+{
+    padding-left: 12px;
+    padding-right: 0;
+    margin-top: 12px;
+}
+
+.modal-history-filter > [class*='col-']:nth-child(5) > [class*='col-'] {
+    display: flex;
+    align-items:end;
+}
+.modal-history-filter > [class*='col-']:nth-child(5) > [class*='col-']:nth-child(1){
+    padding-left: 0;
+    padding-right: 6px;
+}
+
+.modal-history-filter > [class*='col-']:nth-child(5) > [class*='col-']:nth-child(2){
+    padding-left: 6px;
+    padding-right: 0;
+}
+
+.modal-history-filter > [class*='col-']:nth-child(5) > [class*='col-'] > .btn {
+    width: 100%;
+    height: 40px;
+}
+.modal-history-filter > [class*='col-']:nth-child(4) > [class*='col-']:nth-child(1) {
+    padding-left: 0;
+    padding-right: 6px;
+}
+.modal-history-filter > [class*='col-']:nth-child(4) > [class*='col-']:nth-child(2) {
+    padding-left: 6px;
+    padding-right: 0;
+}
+input.calendar-right {
+    padding-right: 32px;
+    position: relative;
+    background-image: url(/assets/frontend/theme_3/image/images_1/calendar.svg);
+    background-position: calc(100% - 8px) 50%;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+}
+
+
 @media screen and (max-width: 1200px) {
 
     /* New layout news page */
@@ -2823,6 +2927,23 @@ a:hover .__icon.--path__custom:after {
 }
 
 @media screen and (max-width: 992px) {
+    #amountWidget{
+        min-height: 200px;
+    }
+    #amountWidget .loader {
+
+
+        top: 20px;
+
+    }
+    #content-store-card .card-mobile {
+        padding: 16px 12px 4px;
+
+    }
+    #content-store-card .cards__item {
+        padding: 0 !important;
+        /*margin-bottom: 8px;*/
+    }
     #modal-withdraw-items .modal-dialog {
         padding-right: 16px;
         padding-left: 16px;
@@ -2867,6 +2988,11 @@ a:hover .__icon.--path__custom:after {
     }
     #content-store-card .card .card--header .text-title{
         margin: 0;
+    }
+    .modal-history-filter > [class*='col-']:nth-child(3),
+    .modal-history-filter > [class*='col-']:nth-child(5)
+    {
+        padding-left: 0;
     }
 }
 @media (max-width: 767px) {
