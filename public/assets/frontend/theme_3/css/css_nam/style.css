@@ -3211,7 +3211,7 @@ img.lazy {
     /*display: block;*/
 
     /* optional way, set loading as background */
-    background-image: url('https://frontend.theme-3.tichhop.pro/assets/frontend/theme_3/image/images_1/no-image.png');
+    background-image: url(/assets/frontend/theme_3/image/article-thumbnail/thumb_lazy.png);
     background-repeat: no-repeat;
     background-position: center;
     /*background-attachment: ;*/
