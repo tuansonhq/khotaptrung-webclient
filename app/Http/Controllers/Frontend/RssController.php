@@ -27,4 +27,9 @@ class RssController extends Controller
 
 
     }
+    public function detail(){
+      return view('frontend.pages.rss.detail');
+
+
+    }
 }
