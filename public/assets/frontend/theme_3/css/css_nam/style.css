@@ -1326,7 +1326,7 @@ header nav.heading .header-container{
     margin-top: 4px;
     margin-bottom: 12px;
     top: 0;
-    transition: all 0.2s ease-out;
+    /*transition: all 0.2s ease-out;*/
     position: relative;
 
 }
