@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     function getShowAccRandomDetail() {
 
-        var url = '/mua-nick-random';
+        var url = '/api/mua-nick-random';
             $.ajax({
             type: 'GET',
             url: url,
