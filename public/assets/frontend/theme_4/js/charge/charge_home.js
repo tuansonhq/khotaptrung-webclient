@@ -36,7 +36,7 @@ $(document).ready(function(){
 
     function getTelecom(){
 
-        var url = '/get-tele-card';
+        var url = '/api/get-tele-card';
         $.ajax({
             type: "GET",
             url: url,

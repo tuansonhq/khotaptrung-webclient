@@ -31,7 +31,7 @@
                                                 <div class="item-product__box-img item-product__box-img__random">
                                                     <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($items->image)}}" alt="{{ $item->randId??'' }}">
 
-                                                    @if(isset($auth_custom))
+                                                    @if(App\Library\AuthCustom::check())
                                                         <button type="button" class="button-secondary list-item-nick-button buyacchome"  data-id="{{ $item->randId }}">Mua ngay</button>
 
                                                     @else
@@ -95,7 +95,7 @@
                                                         </div>
 
 
-                                                        @if (isset($auth_custom))
+                                                        @if (App\Library\AuthCustom::check())
                                                             <div class="col-md-12 left-right padding-order-ct">
                                                                 <div class="row marginauto">
                                                                     <div class="col-md-12 left-right background-order-ct">
@@ -225,7 +225,7 @@
                                                         <div class="col-md-12 left-right" id="order-errors">
                                                             <div class="row marginauto order-errors">
                                                                 <div class="col-md-12 left-right">
-                                                                    @if(isset($auth_custom))
+                                                                    @if(App\Library\AuthCustom::check())
                                                                         @if(App\Library\AuthCustom::user()->balance < $items->price)
                                                                             <small>Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</small>
                                                                         @endif
@@ -238,7 +238,7 @@
                                                         <div class="col-md-12 left-right padding-order-footer-ct">
                                                             <div class="row marginauto">
                                                                 <div class="col-md-12 left-right">
-                                                                    @if(isset($auth_custom))
+                                                                    @if(App\Library\AuthCustom::check())
 
                                                                         @if(App\Library\AuthCustom::user()->balance >= $items->price)
                                                                             <button class="button-default-ct button-next-step-two" type="submit">Xác nhận</button>
@@ -291,7 +291,7 @@
                                                                 </div>
                                                             @endif
                                                         </div>
-                                                        @if(isset($auth_custom))
+                                                        @if(App\Library\AuthCustom::check())
                                                             <button type="button" class="button-secondary list-item-nick-button buyacchome"  data-id="{{ $item->randId }}">Mua ngay</button>
 
                                                         @else

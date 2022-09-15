@@ -1,7 +1,7 @@
 // Get auto ATM
 getIdCode();
 function getIdCode () {
-    var url = '/transfer-code';
+    var url = '/api/transfer-code';
     $.ajax({
         type: "GET",
         url: url,

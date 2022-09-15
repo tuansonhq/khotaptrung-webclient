@@ -7,7 +7,7 @@ $(document).ready(function(){
     function reload_captcha() {
         $.ajax({
             type: 'GET',
-            url: 'reload-captcha',
+            url: '/api/reload-captcha',
             success: function (data) {
                 console.log(data)
                 $(".captcha span").html(data.captcha);
@@ -28,7 +28,7 @@ $(document).ready(function(){
     });
 
     function getTelecom(){
-        var url = '/get-tele-card';
+        var url = '/api/get-tele-card';
         $.ajax({
             type: "GET",
             url: url,
@@ -87,7 +87,7 @@ $(document).ready(function(){
             $('slect#amount').html(html)
             return;
         }
-        var url = '/get-amount-tele-card';
+        var url = '/api/get-amount-tele-card';
         $.ajax({
             type: "GET",
             url: url,
