@@ -90,10 +90,10 @@ class DirectAPI{
 
                         }else{
 
-                            $resultChange = new \stdClass();
-                            $resultChange->response_code = $response_data->response_code;
-                            $resultChange->response_data = $response_data->response_data;
-                            return $resultChange;
+//                            $resultChange = new \stdClass();
+////                            $resultChange->response_code = $response_data->response_code;
+//                            $resultChange->response_data = $response_data->response_data;
+//                            return $resultChange;
                         }
                     }
 

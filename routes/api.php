@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\AccController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,4 @@ Route::get('/ip', [App\Http\Controllers\Api\IPController::class, 'getIp']);
 
 Route::get('/git-pull', [App\Http\Controllers\Api\GitPullController::class, 'getGitPull']);
 
-
+Route::get('/mua-nick-random', [AccController::class , "getShowAccRandom"]);

@@ -62,40 +62,6 @@ Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name
 Route::get('/tesstt', function ()
 {
 
-    $jwt_refresh_token = Cookie::get('jwt_refresh_token') ?? '';
-
-    if (isset($jwt_refresh_token)){
-        $url_refresh = '/refresh-token-remember';
-        $method_refresh = "POST";
-        $data_refresh = array();
-        $data_refresh['refresh_token'] = $jwt_refresh_token;
-        $data_refresh ['domain'] = config('api.client');
-        $data_refresh ['client'] =config('api.client');
-        $result_Api = DirectAPI::_makeRequest($url_refresh,$data_refresh,$method_refresh);
-        $response_data = $result_Api->response_data??null;
-
-        if(isset($response_data) && $response_data->status == 1){
-
-            $time = strtotime(Carbon::now());
-            $exp_token = $response_data->exp_token;
-            $time_exp_token = $time + $exp_token;
-
-            Session::put('jwt',$response_data->token);
-            Session::put('exp_token',$response_data->exp_token);
-            Session::put('time_exp_token',$time_exp_token);
-            Session::put('auth_custom',$response_data->user);
-
-        }else{
-            $resultChange = new \stdClass();
-            $resultChange->response_code = $response_data->response_code;
-            $resultChange->response_data = $response_data->response_data;
-            return $resultChange;
-        }
-
-        dd($result_Api);
-    }
-
-    dd($jwt_refresh_token);
 
     return view('index');
 });
@@ -116,9 +82,6 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);
                 Route::get('/minigame', [\App\Http\Controllers\Frontend\MinigameController::class , 'getCategory'])->name('getCategory');
 
-
-
-
                 Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
                 Route::get('/mua-the-{card}-{value}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showDetailCard'])->name('showDetailCard');
                 Route::get('/mua-the-{card}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showListCard'])->name('showListCard');
@@ -132,14 +95,15 @@ Route::group(array('middleware' => ['theme']) , function (){
 
             });
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
-                Route::group(['middleware' => ['intend']], function (){
 
-                    Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
+                Route::group(['middleware' => ['intend']], function (){
+//                    Route::get('/mua-nick-random', [AccController::class , "getShowAccRandom"]);
+                    Route::get('/mua-acc/{s ug}', [AccController::class , "getList"]);
                     Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
                     Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
 
                 });
-                Route::get('/mua-nick-random', [AccController::class , "getShowAccRandom"]);
+
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
                 Route::post('/lich-su-mua-nick-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])->name('getShowpassNick');
                 Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);
@@ -210,6 +174,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/get-tele-card/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData']);
                 Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
                 Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
+
             });
             // Route không cần Auth load dữ liệu không cache
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
