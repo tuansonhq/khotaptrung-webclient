@@ -27,7 +27,7 @@
                             <a href="{{ isset($item->url) ? $item->url :  '' }}">
                                 <div class="item-product__box-img">
 
-                                    <img onerror="imgError(this)" src="{{ isset($item->image) ? \App\Library\MediaHelpers::media($item->image) : '' }}" alt="">
+                                    <img onerror="imgError(this)" class="lazy" data-src="{{ isset($item->image) ? \App\Library\MediaHelpers::media($item->image) : '' }}" alt="">
 
                                 </div>
                                 <div class="item-nick-name">{{ isset($item->title) ? $item->title :  '' }}</div>

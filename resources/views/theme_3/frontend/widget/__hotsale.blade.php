@@ -21,7 +21,7 @@
                     <a href="/minigame/slug">
                         <div class="item-product__box-img">
 
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame1.gif" alt="">
+                            <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/minigame1.gif" alt="">
 
                         </div>
                         <div class="item-product__box-content">
@@ -49,7 +49,7 @@
                     <a href="/minigame/slug">
                         <div class="item-product__box-img">
 
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame3.gif" alt="">
+                            <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/minigame3.gif" alt="">
 
                         </div>
                         <div class="item-product__box-content">
@@ -77,7 +77,7 @@
                     <a href="/minigame/slug">
                         <div class="item-product__box-img">
 
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame2.gif" alt="">
+                            <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/minigame2.gif" alt="">
 
                         </div>
                         <div class="item-product__box-content">
@@ -105,7 +105,7 @@
                     <a href="/minigame/slug">
                         <div class="item-product__box-img">
 
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame4.gif" alt="">
+                            <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/minigame4.gif" alt="">
 
                         </div>
                         <div class="item-product__box-content">
@@ -133,7 +133,7 @@
                     <a href="/minigame/slug">
                         <div class="item-product__box-img">
 
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame6.gif" alt="">
+                            <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/minigame6.gif" alt="">
 
                         </div>
                         <div class="item-product__box-content">
@@ -161,7 +161,7 @@
                     <a href="/minigame/slug">
                         <div class="item-product__box-img">
 
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame2.gif" alt="">
+                            <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/minigame2.gif" alt="">
 
                         </div>
                         <div class="item-product__box-content">

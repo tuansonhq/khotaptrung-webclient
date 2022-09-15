@@ -8,11 +8,11 @@
                 @foreach($data as $item)
                     @if(isset($item->image))
                         <div class="swiper-slide">
-                            <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
+                            <img onerror="imgError(this)" class="lazy"  data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
                         </div>
                     @elseif(isset($item->image_banner))
                         <div class="swiper-slide">
-                            <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image_banner)}}" alt="">
+                            <img onerror="imgError(this)" class="lazy"  data-src="{{\App\Library\MediaHelpers::media($item->image_banner)}}" alt="">
                         </div>
                     @endif
                 @endforeach
