@@ -8,7 +8,8 @@ use function PHPUnit\Framework\matches;
 
 class AutoLink
 {
-    public static function replace($data = '')
+
+    public static function replace_old($data = '')
     {
         $config = json_decode(setting('sys_theme_auto_link'));
         if (count($config)) {
@@ -83,14 +84,15 @@ class AutoLink
 //                }
 //            }
             foreach($config as $option){
-               $data = self::replace_1($option->title,$option->url,$data,1,0);
+                $data = self::replace($option->title,$option->url,$data,1,0);
             }
         }
         return $data;
     }
 
-    public static function replace_1($keyword = '', $link = '/', $content = '', $target = 1, $follow = 0)
+    public static function replace($keyword = '', $link = '/', $content = '', $target = 1, $follow = 0 ,$link_type = 1)
     {
+        $changed = false;
         $attr_follow = $follow ? 'rel="follow"' : 'rel="nofollow"';
 
         $attr_target = $target == 1 ? 'target="_blank"' : '';
@@ -104,6 +106,7 @@ class AutoLink
 
         /*Tìm xem có thẻ a nào có chứa từ khoá trùng với keyword config hay không */
         if (count($old_tags_a[0])) {
+            $changed = true;
             foreach ($old_tags_a[0] as $key => $old_tag_a) {
                 if (strtolower($keyword) == strtolower($old_tags_a['title'][$key])) {
                     $content = preg_replace('/'.str_replace('/', '\/', $old_tag_a).'/', $hyperlink, $content, 1);
@@ -111,10 +114,17 @@ class AutoLink
                 }
             }
         } else {
+            preg_match_all($regex_not_tags_a,$content,$result_check);
+            if (count($result_check[0])) {
+                $changed = true;
+            }
             /* Nếu như mà không tìm thấy thẻ a có sẵn nào trùng với keyword trong config thì bắt đầu tìm từ khoá text không nằm trong tag a để replace*/
             $content = preg_replace($regex_not_tags_a, $hyperlink, $content, 1);
         }
-        return $content;
+        return [
+            'content'=>$content,
+            'changed' => $changed,
+        ];
     }
 
     private static function getTagsA($html, $title)

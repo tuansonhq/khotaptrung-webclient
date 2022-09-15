@@ -23,7 +23,7 @@
                     <div class="col-sm-6">
                         <div class="checkbox icheck">
                             <label >
-                                <input type="checkbox" name="remember" value="1">
+                                <input type="checkbox" name="remember_token" value="1">
                                 Ghi nhớ
                             </label>
                         </div>

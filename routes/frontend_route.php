@@ -61,11 +61,41 @@ Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name
 
 Route::get('/tesstt', function ()
 {
-    $url = '/get-random-acc';
-    $method = "GET";
-    $dataSend = array();
 
-    $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+    $jwt_refresh_token = Cookie::get('jwt_refresh_token') ?? '';
+
+    if (isset($jwt_refresh_token)){
+        $url_refresh = '/refresh-token-remember';
+        $method_refresh = "POST";
+        $data_refresh = array();
+        $data_refresh['refresh_token'] = $jwt_refresh_token;
+        $data_refresh ['domain'] = config('api.client');
+        $data_refresh ['client'] =config('api.client');
+        $result_Api = DirectAPI::_makeRequest($url_refresh,$data_refresh,$method_refresh);
+        $response_data = $result_Api->response_data??null;
+
+        if(isset($response_data) && $response_data->status == 1){
+
+            $time = strtotime(Carbon::now());
+            $exp_token = $response_data->exp_token;
+            $time_exp_token = $time + $exp_token;
+
+            Session::put('jwt',$response_data->token);
+            Session::put('exp_token',$response_data->exp_token);
+            Session::put('time_exp_token',$time_exp_token);
+            Session::put('auth_custom',$response_data->user);
+
+        }else{
+            $resultChange = new \stdClass();
+            $resultChange->response_code = $response_data->response_code;
+            $resultChange->response_data = $response_data->response_data;
+            return $resultChange;
+        }
+
+        dd($result_Api);
+    }
+
+    dd($jwt_refresh_token);
 
     return view('index');
 });
@@ -74,8 +104,7 @@ Route::group(array('middleware' => ['theme']) , function (){
     Route::group(array('middleware' => ['throttle:300,1','verify_shop']) , function (){
 
         Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
-        Route::group(['middleware' => ['cacheResponse: 2592000','tracking']], function (){
-
+        Route::group(['middleware' => ['cacheResponse: 2592000','tracking','tokenRemember']], function (){
 
             Route::group(['middleware' => ['intend']], function () {
                 Route::get('/', [HomeController::class , "index"])->middleware('intend');
@@ -195,6 +224,27 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::post('register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
 //                site map
                 Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SiteMapController::class , 'index']);
+                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
+                Route::get('/rss-detail', [\App\Http\Controllers\Frontend\RssController::class , 'detail']);
+                Route::get('/rss-minigame', function ()
+                {
+                    return response()->view('frontend.pages.rss.minigame')->header('Content-Type', 'application/xml');
+                });
+                Route::get('/rss-article', function ()
+                {
+                    return response()->view('frontend.pages.rss.article')->header('Content-Type', 'application/xml');
+                });
+                Route::get('/rss-service', function ()
+                {
+                    return response()->view('frontend.pages.rss.service')->header('Content-Type', 'application/xml');
+                });
+                Route::get('/rss-nick', function ()
+                {
+                    return response()->view('frontend.pages.rss.nick')->header('Content-Type', 'application/xml');
+                });
+                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
+                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
+                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
                 Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
 //                404
                 Route::get('/404', function ()
