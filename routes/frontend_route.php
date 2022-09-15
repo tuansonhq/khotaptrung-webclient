@@ -107,18 +107,16 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
                 Route::post('/lich-su-mua-nick-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])->name('getShowpassNick');
                 Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);
-                Route::post('/user/account_info', [UserController::class , "getInfo"]);
+
                 Route::get('/profile', [UserController::class , "profileSidebar"])->name('profile');
                 // lấy nhà mạng mua thẻ
-                Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
+
                 Route::get('/lich-su-mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCardHistory']);
-                // lấy mệnh giá trong mua thẻ
-                Route::get('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])->name('getAmountStoreCard');
-//                get api atm
-                Route::get('/transfer-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])->name('getIdCode');
+
+
 //                captcha
                 Route::get('/first-captcha', [ChargeController::class , 'myCaptcha']);
-                Route::get('/reload-captcha', [ChargeController::class , 'reloadCaptcha']);
+
                 Route::get('/reload-captcha2', [ChargeController::class , 'reloadCaptcha2']);
 //                 ROUTE cần auth load dữ liệu không cache
                 Route::group(['middleware' => ['auth_custom']], function (){
@@ -170,9 +168,8 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/get-amount-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getAmountCharge'])->name('getAmountCharge');
                 Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])->name('changePasswordApi');
 
-                Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
                 Route::get('/get-tele-card/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData']);
-                Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
+
                 Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
 
             });

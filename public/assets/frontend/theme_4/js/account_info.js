@@ -3,7 +3,7 @@ $(document).ready(function(){
     const csrf_token = $('meta[name="csrf-token"]').attr('content');
     const token =  $('meta[name="jwt"]').attr('content');
     function getInfo(){
-        const url = '/user/account_info';
+        const url = '/api/user/account_info';
         if(token == 'undefined' || token == null || token =='' || token == undefined){
             if($(window).width() > 992){
 

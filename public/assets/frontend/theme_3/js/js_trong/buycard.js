@@ -247,7 +247,7 @@ $(document).ready(function () {
 
     function getListCard () {
         $.ajax({
-            url: '/store-card/get-telecom',
+            url: '/api/store-card/get-telecom',
             type: 'GET',
             success: function (res) {
                 if (res.status) {
@@ -341,7 +341,7 @@ $(document).ready(function () {
 
     function getCardAmount (cardKey) {
         $.ajax({
-            url: '/store-card/get-amount',
+            url: '/api/store-card/get-amount',
             type: 'GET',
             data: {
                 telecom: cardKey
