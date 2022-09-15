@@ -236,7 +236,7 @@ class MinigameController extends Controller
             }
         } catch (\Exception $e) {
             logger($e);
-            return $e->getMessage();
+            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
         }
     }
 
