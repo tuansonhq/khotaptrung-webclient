@@ -95,9 +95,10 @@ Route::group(array('middleware' => ['theme']) , function (){
 
             });
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
-                Route::group(['middleware' => ['intend']], function (){
 
-                    Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
+                Route::group(['middleware' => ['intend']], function (){
+//                    Route::get('/mua-nick-random', [AccController::class , "getShowAccRandom"]);
+                    Route::get('/mua-acc/{s ug}', [AccController::class , "getList"]);
                     Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
                     Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
 
@@ -173,6 +174,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/get-tele-card/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData']);
                 Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
                 Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
+
             });
             // Route không cần Auth load dữ liệu không cache
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
