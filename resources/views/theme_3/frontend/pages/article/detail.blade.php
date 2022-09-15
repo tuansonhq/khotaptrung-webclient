@@ -67,7 +67,6 @@
                         </div>
                         <div class="article--content pb-3">
                             <div class="article--content__text pb-2">
-{{--                                {!! \App\Library\AutoLink::replace($data->content) !!}--}}
                                 {!! $data->content !!}
                             </div>
                         </div>
@@ -304,7 +303,7 @@
             </div>
         </div>
 {{--        Cùng chủ đề--}}
-        @include('frontend.widget.__bai__viet__lien__quan')
+        @include('frontend.widget.__bai__viet__lien__quan', ['data_article' => $data])
     </div>
     @endif
 @endsection
