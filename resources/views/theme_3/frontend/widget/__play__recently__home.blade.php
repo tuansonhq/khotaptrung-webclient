@@ -45,7 +45,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product3.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product3.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">
@@ -74,7 +74,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">
@@ -103,7 +103,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">
@@ -132,7 +132,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">
@@ -161,7 +161,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">
@@ -190,7 +190,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">
@@ -232,7 +232,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">
@@ -261,7 +261,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">
@@ -290,7 +290,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">
@@ -319,7 +319,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">
@@ -348,7 +348,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">
@@ -389,7 +389,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">
@@ -418,7 +418,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">
@@ -447,7 +447,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">
@@ -476,7 +476,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">
@@ -505,7 +505,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">
@@ -534,7 +534,7 @@
                         <a href="/acc/id">
                             <div class="item-product__box-img">
 
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+                                <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                             </div>
                             <div class="item-product__box-content">

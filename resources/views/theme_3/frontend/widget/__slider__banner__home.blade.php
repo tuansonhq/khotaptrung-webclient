@@ -11,7 +11,7 @@
                 @foreach($data[0] as $item)
                     @if(isset($item->image))
                         <div class="swiper-slide">
-                            <img onerror="imgError(this)" class="lazy" data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
+                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
                         </div>
                     @endif
                 @endforeach
@@ -56,7 +56,7 @@
         <div class="ads-banner-second brs-12">
 
             <a href="{{ isset($item1->url) ? $item1->url : "#" }}">
-                <img class="lazy" data-src="{{\App\Library\MediaHelpers::media($item1->image)}}" alt="" >
+                <img src="{{\App\Library\MediaHelpers::media($item1->image)}}" alt="" >
             </a>
 
         </div>
@@ -68,13 +68,13 @@
         <div class="col-md-3 d-none d-lg-flex flex-column justify-content-between swiper-general_right" style="min-height: 100%">
             <div class="ads-banner-second brs-12">
                 <a href="">
-                    <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/banner01.png" alt="" >
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner01.png" alt="" >
                 </a>
 
             </div>
             <div class="ads-banner-second brs-12">
                 <a href="">
-                    <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/banner02.png" alt="" >
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner02.png" alt="" >
 
                 </a>
             </div>
