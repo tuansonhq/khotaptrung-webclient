@@ -275,7 +275,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                alert("Đã xảy ra lỗi khi load dữ liệu! Vui lòng load lại trang!")
+                console.log('Đã xảy ra lỗi khi load dữ liệu! Vui lòng load lại trang! (getListCard storecard)')
             },
             complete: function () {
                 $('#cardGameList .loader').addClass('d-none');
