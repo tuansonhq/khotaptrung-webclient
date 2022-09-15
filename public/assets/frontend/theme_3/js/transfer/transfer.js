@@ -19,14 +19,9 @@ $(document).ready(function(){
 
             },
             error: function (data) {
-                swal({
-                    title: "Lỗi !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý. (getIdCode Transfer code)')
+
             },
             complete: function (data) {
             }

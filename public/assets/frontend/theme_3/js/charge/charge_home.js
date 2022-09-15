@@ -240,25 +240,15 @@ $(document).ready(function(){
                     $('#reject_charge').html(data.message)
                 }
                 else{
-                    swal({
-                        title: "Có lỗi xảy ra !",
-                        text: data.message,
-                        icon: "error",
-                        buttons: {
-                            cancel: "Đóng",
-                        },
-                    })
+                    console.log('Có lỗi xảy ra ! ('+data.message+')')
+
+
                 }
             },
             error: function (data) {
-                swal({
-                    title: "Có lỗi xảy ra !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(postCharge)')
+
+
             },
             complete: function (data) {
                 $('#reload_1').trigger('click');
