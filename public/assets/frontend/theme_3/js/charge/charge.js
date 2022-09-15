@@ -59,14 +59,8 @@ $(document).ready(function(){
                 }
             },
             error: function (data) {
-                swal({
-                    title: "Lỗi !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(getTelecom)')
+
             },
             complete: function (data) {
             }
@@ -128,26 +122,16 @@ $(document).ready(function(){
 
                     reload_captcha()
                 }
-                // else{
-                //     swal({
-                //         title: "Có lỗi xảy ra !",
-                //         text: data.message,
-                //         icon: "error",
-                //         buttons: {
-                //             cancel: "Đóng",
-                //         },
-                //     })
-                // }
+                else{
+                    console.log('Có lỗi xảy ra ('+data.message+')')
+
+
+                }
             },
             error: function (data) {
-                swal({
-                    title: "Lỗi !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(getAmount)')
+
+
             },
             complete: function (data) {
 
@@ -202,25 +186,15 @@ $(document).ready(function(){
                     $('#reject_charge').html(data.message)
                 }
                 else{
-                    swal({
-                        title: "Có lỗi xảy ra !",
-                        text: data.message,
-                        icon: "error",
-                        buttons: {
-                            cancel: "Đóng",
-                        },
-                    })
+
+                    console.log('Có lỗi xảy ra ('+data.message+')')
+
                 }
             },
             error: function (data) {
-                swal({
-                    title: "Có lỗi xảy ra !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý. (post charge)')
+
+
             },
             complete: function (data) {
                 $('#reload_1').trigger('click');
