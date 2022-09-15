@@ -346,11 +346,19 @@
                                     @if($result->group->params->is_try == 1)
 
                                         <div class="col-12 col-md-6 c-pr-6">
-                                            <button id="playerDemo" class="btn secondary w-100 num-play-try">Chơi thử</button>
+                                            @if (!\App\Library\AuthCustom::check())
+                                                <button class="btn secondary w-100" onclick="openLoginModal();">Chơi thử</button>
+                                            @else
+                                                <button id="playerDemo" class="btn secondary w-100 num-play-try">Chơi thử</button>
+                                            @endif
                                         </div>
                                     @endif
                                     <div class="col-12 col-md-6 c-pl-6">
-                                        <button id="start-played" class="btn primary w-100  play">Quay ngay</button>
+                                        @if (!\App\Library\AuthCustom::check())
+                                            <button class="btn primary w-100" onclick="openLoginModal();">Quay ngay</button>
+                                        @else
+                                            <button id="start-played" class="btn primary w-100 play">Quay ngay</button>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="footer-mobile">
@@ -358,11 +366,19 @@
                                     <div class="row marginauto">
                                         @if($result->group->params->is_try == 1)
                                             <div class="col-6 pl-0 c-pr-8">
-                                                <button class="btn secondary w-100 num-play-try">Chơi thử</button>
+                                                @if (!\App\Library\AuthCustom::check())
+                                                    <button class="btn secondary w-100" onclick="openLoginModal();">Chơi thử</button>
+                                                @else
+                                                    <button class="btn secondary w-100 num-play-try">Chơi thử</button>
+                                                @endif
                                             </div>
                                         @endif
                                         <div class="col-6 pr-0 c-pl-8">
-                                            <button id="start-played" class="btn primary w-100  play">Quay ngay</button>
+                                            @if (!\App\Library\AuthCustom::check())
+                                                <button class="btn primary w-100" onclick="openLoginModal();">Quay ngay</button>
+                                            @else
+                                                <button id="start-played" class="btn primary w-100  play">Quay ngay</button>
+                                            @endif
                                         </div>
                                     </div>
 
@@ -463,14 +479,25 @@
                                 <p>Xem thêm</p>
                             </div>
                             <div class="leaderboard-buttons c-px-16 c-py-8 row no-gutters" style="border-bottom: none;">
-                                <div class="col-6 c-pr-5">
-                                    <a href="javascript:void(0)" class="btn secondary w-100 logsHisMinigameMobile open-sheet" data-target="#sheet-filter-02" >
-                                        Lịch sử quay
-                                    </a>
-                                </div>
-                                <div class="col-6 c-pl-5">
-                                    <a class="btn primary w-100" href="/withdrawitem-{{$result->group->params->game_type}}">Rút quà</a>
-                                </div>
+                                @if (!\App\Library\AuthCustom::check())
+                                    <div class="col-6 c-pr-5">
+                                        <a href="javascript:void(0)" class="btn secondary w-100" onclick="openLoginModal();">
+                                            Lịch sử quay
+                                        </a>
+                                    </div>
+                                    <div class="col-6 c-pl-5">
+                                        <a href="javascript:void(0)" class="btn primary w-100" onclick="openLoginModal();">Rút quà</a>
+                                    </div>
+                                @else
+                                    <div class="col-6 c-pr-5">
+                                        <a href="javascript:void(0)" class="btn secondary w-100 logsHisMinigameMobile open-sheet" data-target="#sheet-filter-02" >
+                                            Lịch sử quay
+                                        </a>
+                                    </div>
+                                    <div class="col-6 c-pl-5">
+                                        <a class="btn primary w-100" href="/withdrawitem-{{$result->group->params->game_type}}">Rút quà</a>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -649,14 +676,25 @@
                 <div class="col-12 col-lg-4 c-pl-8 d-none d-lg-block">
                     <div class="rotation-leaderboard c-py-24 c-px-16 brs-12">
                         <div class="leaderboard-buttons c-pb-24 c-mb-16 row no-gutters">
-                            <div class="col-6 c-pr-5">
-                                <a href="javascript:void(0)" class="btn secondary w-100 logsHisMinigame">
-                                    Lịch sử quay
-                                </a>
-                            </div>
-                            <div class="col-6 c-pl-5">
-                                <a  href="/withdrawitem-{{$result->group->params->game_type}}" class="btn primary w-100">Rút quà</a>
-                            </div>
+                            @if (!\App\Library\AuthCustom::check())
+                                <div class="col-6 c-pr-5">
+                                    <a href="javascript:void(0)" class="btn secondary w-100" onclick="openLoginModal();">
+                                        Lịch sử quay
+                                    </a>
+                                </div>
+                                <div class="col-6 c-pl-5">
+                                    <a href="javascript:void(0)" class="btn primary w-100" onclick="openLoginModal();">Rút quà</a>
+                                </div>
+                            @else
+                                <div class="col-6 c-pr-5">
+                                    <a href="javascript:void(0)" class="btn secondary w-100 logsHisMinigame">
+                                        Lịch sử quay
+                                    </a>
+                                </div>
+                                <div class="col-6 c-pl-5">
+                                    <a  href="/withdrawitem-{{$result->group->params->game_type}}" class="btn primary w-100">Rút quà</a>
+                                </div>
+                            @endif
                         </div>
                         <div class="leaderboard-header d-flex align-items-center c-mb-16">
                             <img class="c-mr-4" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/top-leaderboard.svg" alt="">
@@ -942,7 +980,7 @@
                     </div>
                 </div>
                 <div class="modal-footer c-p-24">
-                    <a class="btn secondary" href="/nap-the">Nạp thẻ</a>
+                    <a href="javascript:void(0);" class="handle-recharge-modal btn secondary" data-tab="1" data-dismiss="modal">Nạp tiền</a>
                     <button class="btn primary"  data-dismiss="modal">Đóng</button>
                 </div>
             </div>

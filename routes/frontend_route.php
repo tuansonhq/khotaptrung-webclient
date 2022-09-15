@@ -195,6 +195,28 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::post('register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
 //                site map
                 Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SiteMapController::class , 'index']);
+                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
+                Route::get('/rss-detail', [\App\Http\Controllers\Frontend\RssController::class , 'detail']);
+                Route::get('/rss-minigame', function ()
+                {
+                    return response()->view('frontend.pages.rss.minigame')->header('Content-Type', 'application/xml');
+                });
+                Route::get('/rss-article', function ()
+                {
+                    return response()->view('frontend.pages.rss.article')->header('Content-Type', 'application/xml');
+                });
+                Route::get('/rss-service', function ()
+                {
+                    return response()->view('frontend.pages.rss.service')->header('Content-Type', 'application/xml');
+                });
+                Route::get('/rss-nick', function ()
+                {
+                    return response()->view('frontend.pages.rss.nick')->header('Content-Type', 'application/xml');
+                });
+                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
+                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
+                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
+                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
 //                404
                 Route::get('/404', function ()
                 {
@@ -242,6 +264,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/ajax-modal-logs-spin-bonus',[\App\Http\Controllers\Frontend\MinigameController::class,'getLogsModalSpinBonus']);
                 Route::get('/ajax-modal-logs-spin-bonus-acc',[\App\Http\Controllers\Frontend\MinigameController::class,'getLogsModalSpinBonus']);
+
 
                 Route::group(['middleware' => ['intend']], function () {
 

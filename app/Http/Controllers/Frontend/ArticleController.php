@@ -30,6 +30,7 @@ class ArticleController extends Controller
 
                 $per_page = 0;
                 $total = 0;
+
                 if (isset($data->total)){
                     $total = $data->total;
                 }

@@ -20,7 +20,9 @@
 
     {{--    @dd($data_params)--}}
     <input type="hidden" id="data_params" value="{{ $data->params }}">
-    <input type="hidden" id="userBalance" value="{{ App\Library\AuthCustom::user()->balance }}">
+    @if (\App\Library\AuthCustom::check())
+        <input type="hidden" id="userBalance" value="{{ App\Library\AuthCustom::user()->balance }}">
+    @endif
     <input type="hidden" name="slug" id="slug" value="{{ $slug }}"/>
     <div class="container c-container" id="service-detail">
         <ul class="breadcrumb-list">
@@ -362,7 +364,11 @@
                                     <div  style="color: #f473b9;font-weight: 500" class="txtPrice d-inline-block">0
                                         VNĐ
                                     </div>
-                                    <button type="button" id="btnPurchase" class="btn primary btnPay">Thanh toán</button>
+                                    @if (!\App\Library\AuthCustom::check())
+                                        <button type="button" class="btn primary" onclick="openLoginModal();">Thanh toán</button>
+                                    @else
+                                        <button type="button" id="btnPurchase" class="btn primary btnPay">Thanh toán</button>
+                                    @endif
                                 </div>
                             </div>
 
@@ -403,7 +409,11 @@
                 <input class="text-title" type="hidden" name="selected" value="">
                 <input class="text-title" type="hidden" name="server">
                 <div style="color: #f473b9;font-weight: 500" class="text-title-bold secondary d-inline-block txtPrice">0 VNĐ</div>
-                <button type="button" class="btn primary js-step btnPay">Giao dịch ngay</button>
+                @if (!\App\Library\AuthCustom::check())
+                    <button type="button" class="btn primary" onclick="openLoginModal();">Giao dịch ngay</button>
+                @else
+                    <button type="button" class="btn primary js-step btnPay">Giao dịch ngay</button>
+                @endif
             </div>
         </section>
 
@@ -561,7 +571,7 @@
                     <p class="fw-400 fz-13 c-mt-10 mb-0">Rất tiếc việc mua nick đã thất bại do tài khoản của bạn không đủ, vui lòng nạp tiền để tiếp tục giao dịch!</p>
                 </div>
                 <div class="modal-footer c-p-24">
-                    <button class="btn primary handleOpenRechargeModal" data-dismiss="modal">Nạp tiền</button>
+                    <button class="btn primary handle-recharge-modal" data-tab="1" data-dismiss="modal">Nạp tiền</button>
                 </div>
             </div>
         </div>

@@ -12,7 +12,26 @@ let swiper_item_possession = new Swiper('.swiper-withdraw',{
         }
     },
 });
+
 //toggle-password
+$('#modal-tab-history [name="started_at"],#modal-tab-history [name="ended_at"]').datetimepicker({
+    format: 'DD-MM-YYYY LT',
+    useCurrent: false,
+    icons:
+        { time: 'fas fa-clock',
+            date: 'fas fa-calendar',
+            up: 'fas fa-arrow-up',
+            down: 'fas fa-arrow-down',
+            previous: 'fas fa-arrow-circle-left',
+            next: 'fas fa-arrow-circle-right',
+            today: 'far fa-calendar-check-o',
+            language: 'vi',
+            clear: 'fas fa-trash',
+            close: 'far fa-times' },
+    maxDate: moment()
+
+});
+
 $(document).on('click','.toggle-password .eye',function (e) {
     let input = $(this).prev();
     if ($(this).hasClass('show')){
@@ -23,12 +42,12 @@ $(document).on('click','.toggle-password .eye',function (e) {
     $(this).toggleClass('show')
 });
 
-
-function getWithDrawItem(game_type) {
+function getWithDrawItem(game_type,data_query) {
     $('#modal-tab-withdraw .card-body').toggleClass('is-loading',true)
     $.ajax({
         url: '/withdrawitemajax-' + game_type,
         type: 'GET',
+        data:data_query,
         success: function (res) {
             if (res.status === 1) {
                 //Lịch sử
@@ -89,13 +108,14 @@ function getWithDrawItem(game_type) {
         $('#modal-tab-withdraw .card-body').removeClass('is-loading');
     });
 }
+
 $('#form-withdraw-item').on('submit',function (e) {
     e.preventDefault();
     let data_form = $(this).serializeArray().reduce(function(obj, item) {
         obj[item.name] = item.value;
         return obj;
     }, {});
-    $('#modal-tab-withdraw .card-body').toggleClass('is-loading',true)
+    $('#modal-tab-withdraw .card-body,#table-history-withdraw').toggleClass('is-loading',true)
     $.ajax({
         url: '/postwithdrawitemajax-' + data_form.game_type,
         type: 'POST',
@@ -111,13 +131,25 @@ $('#form-withdraw-item').on('submit',function (e) {
             $('.form-message').html(html_message);
         },
     }).done(function () {
-        $('#modal-tab-withdraw .card-body').removeClass('is-loading');
+        $('#modal-tab-withdraw .card-body,#table-history-withdraw').removeClass('is-loading');
     });
 });
+
 let game_type = $('#wrap-game-type').data('game_type');
+
 getWithDrawItem(game_type);
 
 $(document).on('change','input[name="game_type"]',function (event) {
     getWithDrawItem($(this).val());
 });
+
+$('#modal-tab-history').on('click','.page-link',function (e) {
+    e.preventDefault();
+    let url_string = $(this).attr('href');
+    let url = new URL(url_string);
+    let page = url.searchParams.get('page');
+    let game_type = $('input[name="game_type"]:checked').val();
+
+    getWithDrawItem(game_type,{page:page})
+})
 

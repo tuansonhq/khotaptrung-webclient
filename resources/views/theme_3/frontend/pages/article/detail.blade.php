@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
 @section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/auto-link.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
 @endsection
 @section('meta_robots')
@@ -68,6 +67,7 @@
                         </div>
                         <div class="article--content pb-3">
                             <div class="article--content__text pb-2">
+{{--                                {!! \App\Library\AutoLink::replace($data->content) !!}--}}
                                 {!! $data->content !!}
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-4" id="article-detail-right">
-                <div class="card --custom" id="article-related-minigames">
+                {{-- <div class="card --custom" id="article-related-minigames">
                     <div class="card--header">
                         <div class="card--header__title">
                             Minigame liên quan
@@ -293,7 +293,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div id="article-detail-advertise" class="d-none d-lg-block">
                     <a href="javascript:void(0);">

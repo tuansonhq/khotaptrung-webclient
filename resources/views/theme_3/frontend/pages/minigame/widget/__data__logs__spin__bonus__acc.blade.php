@@ -31,13 +31,13 @@
                 <div class="t-sub-2 mb-2">
                     Từ ngày
                 </div>
-                <input type="text" name="started_at" class="input-defautf-ct" placeholder="Từ ngày" autocomplete="off">
+                <input type="text" name="started_at" class="input-defautf-ct calendar-right" placeholder="Từ ngày" autocomplete="off">
             </div>
             <div class="col-12 col-lg-4">
                 <div class="t-sub-2 mb-2">
                     Đến ngày
                 </div>
-                <input type="text" name="ended_at" class="input-defautf-ct" placeholder="Đến ngày" autocomplete="off">
+                <input type="text" name="ended_at" class="input-defautf-ct calendar-right" placeholder="Đến ngày" autocomplete="off">
             </div>
             <div class="col-12 col-lg-4">
                 <button class="btn -secondary" type="reset">Đặt lại</button>

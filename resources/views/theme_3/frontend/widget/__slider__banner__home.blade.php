@@ -1,5 +1,4 @@
 
-
 @if(isset($data) && count($data))
 
 
@@ -83,5 +82,3 @@
         @endif
     </div>
 @endif
-
-
