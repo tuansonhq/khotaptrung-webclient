@@ -4,7 +4,9 @@
 
 namespace App\Library;
 use Carbon\Carbon;
+use Cookie;
 use Illuminate\Support\Facades\Log;
+use Session;
 
 class DirectAPI{
     public static function _makeRequest($url, array $data, $method,$log = false){
@@ -14,8 +16,12 @@ class DirectAPI{
         $data ['client'] =  str_replace('www.','',$http_url);
 //      $data ['domain'] = config('api.client');
 //      $data ['client'] =config('api.client');
+        if(session()->has('jwt')){
+            $data['token'] = session()->get('jwt');
 
-        $data['secret_key'] = config('api.secret_key');
+        }
+
+      $data['secret_key'] = config('api.secret_key');
         if(is_array($data)){
             $dataPost = http_build_query($data);
         }else{
@@ -55,9 +61,43 @@ class DirectAPI{
                 continue;
             }
             else{
-//                if($httpcode==401){
-//                    session()->flush();
-//                }
+                if($httpcode==401){
+
+                    $jwt_refresh_token = Cookie::get('jwt_refresh_token') ?? '';
+
+                    if (isset($jwt_refresh_token)){
+                        $url_refresh = '/refresh-token-remember';
+                        $method_refresh = "POST";
+                        $data_refresh = array();
+                        $data_refresh['refresh_token'] = $jwt_refresh_token;
+                        $data_refresh ['domain'] = $data ['domain'];
+                        $data_refresh ['client'] = $data ['client'];
+                        $result_Api = DirectAPI::_makeRequest($url_refresh,$data_refresh,$method_refresh);
+                        $response_data = $result_Api->response_data??null;
+
+                        if(isset($response_data) && $response_data->status == 1){
+
+                            $time = strtotime(Carbon::now());
+                            $exp_token = $response_data->exp_token;
+                            $time_exp_token = $time + $exp_token;
+
+                            Session::put('jwt',$response_data->token);
+                            Session::put('exp_token',$response_data->exp_token);
+                            Session::put('time_exp_token',$time_exp_token);
+                            Session::put('auth_custom',$response_data->user);
+
+                            DirectAPI::_makeRequest($url,$data,$method);
+
+                        }else{
+
+                            $resultChange = new \stdClass();
+                            $resultChange->response_code = $response_data->response_code;
+                            $resultChange->response_data = $response_data->response_data;
+                            return $resultChange;
+                        }
+                    }
+
+                }
 
                 $result = json_decode($resultRaw);
 
