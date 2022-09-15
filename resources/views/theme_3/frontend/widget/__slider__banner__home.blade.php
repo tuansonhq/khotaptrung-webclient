@@ -1,7 +1,6 @@
 
 @if(isset($data) && count($data))
 
-
     <div class="ads-banner row box-product class_c_slider_banner" id="c_slider_banner">
         <div class="banner-slide-v2 col-lg-9 col-md-12 swiper-general">
             <div class=" swiper swiper-banner brs-12">
@@ -11,6 +10,10 @@
                         @if(isset($item->image))
                             <div class="swiper-slide">
                                 <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
+                            </div>
+                        @elseif(isset($item->image_banner))
+                            <div class="swiper-slide">
+                                <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image_banner)}}" alt="">
                             </div>
                         @endif
                     @endforeach
@@ -55,6 +58,7 @@
                     <div class="ads-banner-second brs-12">
 
                         <a href="{{ isset($item1->url) ? $item1->url : "#" }}">
+
                             <img src="{{\App\Library\MediaHelpers::media($item1->image)}}" alt="" >
                         </a>
 
