@@ -3215,5 +3215,6 @@ img.lazy {
     background-repeat: no-repeat;
     background-position: center;
     /*background-attachment: ;*/
+    background-size: cover;
 
 }

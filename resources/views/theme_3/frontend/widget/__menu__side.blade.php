@@ -4,9 +4,9 @@
         <a href="{{$item->url??'/'}}">
             <span data-tooltip="{{ $item->title }}" class="coming-soon">
                 @if($item->image_icon)
-                    <img class="lazy" data-src="{{\App\Library\MediaHelpers::media($item->image_icon)}}" alt="">
+                    <img  src="{{\App\Library\MediaHelpers::media($item->image_icon)}}" alt="">
                 @else
-                    <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
+                    <img  src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
                 @endif
             </span>
         </a>
