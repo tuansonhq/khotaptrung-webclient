@@ -82,7 +82,7 @@
                                         <div class="col-6 sub-article--thumbnail-container">
                                             <div class="sub-article--thumbnail">
                                                 <a href="/tin-tuc/{{ $item->slug }}">
-                                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="sub-article--thumbnail__image">
+                                                    <img onerror="imgError(this)"  data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="sub-article--thumbnail__image lazy">
                                                 </a>
                                             </div>
                                         </div>
