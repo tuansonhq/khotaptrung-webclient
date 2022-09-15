@@ -14,6 +14,10 @@
                 <div class="swiper-wrapper">
                     @foreach($data as $val)
 
+                        @if ($val->id === $data_article->id)
+                            @continue
+                        @endif
+
                         <div class="swiper-slide" >
                             <a href="/tin-tuc/{{ $val->slug }}">
                                 <div class="item-product__box-img item-news-img">
