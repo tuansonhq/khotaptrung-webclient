@@ -3,8 +3,8 @@
 ?>
 <rss version="2.0">
     <channel>
-        <title>{{setting('sys_title')}}</title>
-        <link><![CDATA[ {{\Request::server ("HTTP_HOST")}}/rss ]]></link>
+        <title>Mua acc</title>
+        <link><![CDATA[ {{\Request::root()}}/rss-nick ]]></link>
         <language>vn</language>
         <description>{{ setting('sys_description') }}</description>
         <pubDate>{{ now() }}</pubDate>
@@ -12,15 +12,13 @@
         <image>
             <url>{{setting('sys_og_image')}}</url>
             <title>{{setting('sys_title')}}</title>
-            <link>{{\Request::server ("HTTP_HOST")}}</link>
+            <link>{{\Request::root()}}</link>
         </image>
         <pubDate>{{ now() }}</pubDate>
         <generator>VnExpress</generator>
-        <link>{{\Request::server ("HTTP_HOST")}}</link>
+        <link>{{\Request::root()}}</link>
 
-        @include('frontend.pages.rss.widget.__article')
-        @include('frontend.pages.rss.widget.__minigame')
         @include('frontend.pages.rss.widget.__nick')
-        @include('frontend.pages.rss.widget.__service')
+
     </channel>
 </rss>
