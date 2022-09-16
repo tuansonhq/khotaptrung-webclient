@@ -22,12 +22,14 @@ class UserController extends Controller
     public function getInfo(Request $request){
 
         try{
-            $jwt = Session::get('jwt');
+            $jwt = $request->jwt;
+
             if(empty($jwt)){
                 return response()->json([
                     'status' => "LOGIN"
                 ]);
             }
+
             $url = '/profile';
             $method = "GET";
             $data = array();
@@ -37,7 +39,6 @@ class UserController extends Controller
                 if( $result_Api->response_code == 200){
                     $result = $result_Api->response_data;
                     Session::put('auth_custom', $result->user);
-//                    $request->session()->put('auth_custom', $result->user);
 
                     if($result->status == 1){
                         return response()->json([

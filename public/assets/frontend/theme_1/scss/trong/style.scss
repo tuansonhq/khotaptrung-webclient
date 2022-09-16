@@ -89,6 +89,10 @@
             font-weight: 600;
         }
     }
+    & .section-table-history {
+        max-height: 500px;
+        overflow-y: auto;
+    }
 }
 .text--danger {
     color: #eb5d68;

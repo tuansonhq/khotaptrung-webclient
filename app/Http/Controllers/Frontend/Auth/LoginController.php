@@ -76,11 +76,11 @@ class LoginController extends Controller
 
                 }
 
-                Session::put('jwt',$response_data->token);
-                Session::put('exp_token',$response_data->exp_token);
-                Session::put('time_exp_token',$time_exp_token);
-                Session::put('auth_custom',$response_data->user);
-                $return_url = Session::get('url.intended');
+                $request->session()->put('jwt',$response_data->token);
+                $request->session()->put('exp_token',$response_data->exp_token);
+                $request->session()->put('time_exp_token',$time_exp_token);
+                $request->session()->put('auth_custom',$response_data->user);
+                $return_url = $request->session()->get('url.intended');
 
                 return response()->json([
                     'status' => 1,
