@@ -113,7 +113,6 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/lich-su-mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCardHistory']);
 
-
 //                captcha
                 Route::get('/first-captcha', [ChargeController::class , 'myCaptcha']);
 
