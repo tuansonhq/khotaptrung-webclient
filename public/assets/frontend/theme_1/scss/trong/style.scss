@@ -75,7 +75,7 @@
         }
     }
     & .modal-dialog {
-        max-width: 992px;
+        max-width: 768px;
         margin: auto;
     }
 }
@@ -111,5 +111,20 @@
     }
     & .eye.show{
         background-image: url(/assets/frontend/theme_1/image/svg/eye-show.svg);
+    }
+}
+// modal lịch sử quay
+#modal-spin-bonus {
+    & .modal-dialog  {
+        max-width: 768px;
+        margin: auto;
+    }
+    & .wrap-table td,
+    & .wrap-table th
+    {
+        padding: 8px;
+    }
+    & .modal-title {
+        color: #eb5d68;
     }
 }

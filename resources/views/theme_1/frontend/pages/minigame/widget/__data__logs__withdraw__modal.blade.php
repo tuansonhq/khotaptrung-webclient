@@ -64,9 +64,9 @@
 @if(isset($paginatedItems))
     <div class="col-md-12 left-right justify-content-end default-paginate-addpadding default-paginate">
         <div class="row marinautooo justify-content-center">
-            <div class="col-auto">
+            <div class="col-auto frontend__panigate">
                 <div class="data_paginate paginate__v1 paging_bootstrap paginations_custom" style="text-align: center">
-                    {{ $paginatedItems->appends(request()->query())->links('pagination::bootstrap-default-4') }}
+                    {{ $paginatedItems->appends(request()->query())->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>

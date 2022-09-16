@@ -29,7 +29,7 @@
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="modal-tab-withdraw" role="tabpanel">
                             <div class="card">
-                                <div class="card-body is-loading py_8">
+                                <div class="card-body is-loading pt_8 pb_24">
                                     <form action="" id="form-withdraw-item">
                                         @csrf
                                         <div class="t-sub-2 t-color-title my_8">
@@ -88,25 +88,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Lịch sử quay thưởng</h5>
-                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
-                <div class="modal-body p-0">
-                    <div class="history-search">
-                        <div class="t-sub-2">
-                            Tìm kiếm
-                        </div>
-                        <div class="row marginauto body-form-search-ct">
-                            <div class="col-10 px-0">
-                                <input autocomplete="off" type="text" name="search" class="input-search-log-ct search w-100" placeholder="Nhập từ khóa">
-                                <img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/search.png" alt="">
-                            </div>
-                            <div class="col-2 body-form-search-button-ct media-web">
-                                <button type="submit" class="timkiem-button-ct btn-timkiem w-100" style="position: relative">
-                                    <span class="span-timkiem">Tìm kiếm</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="modal-body">
                     <div id="data-ajax-render" data-id="{{ @$result->group->id }}">
 
                     </div>
@@ -1402,7 +1388,7 @@
                                                             <p class="pull-left" style="width: 25px;">
                                                                 #{{$loop->index + 1}}</p>
                                                             <div class="avt avt-xs"><img
-                                                                    src="https://shopas.net/assets/backend/images/icon-user.png"
+                                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/icon-user.png"
                                                                     class="avt-img" alt="player duo"></div>
                                                             <p class="name-player-review hidden-over-name color-vip-1">{{$item['name']}}</p>
                                                         </div>
@@ -1443,7 +1429,7 @@
                                                             <p class="pull-left" style="width: 25px;">
                                                                 #{{$loop->index + 1}}</p>
                                                             <div class="avt avt-xs"><img
-                                                                    src="https://shopas.net/assets/backend/images/icon-user.png"
+                                                                    src="/assets/frontend/{{theme('')->theme_key}}/image/icon-user.png"
                                                                     class="avt-img" alt="player duo"></div>
                                                             <p class="name-player-review hidden-over-name color-vip-1">{{$item['name']}}</p>
                                                         </div>
@@ -4337,4 +4323,5 @@
 
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/modal-rut-vp.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/modal-history-spin-bonus.js?v={{time()}}"></script>
 @endsection
