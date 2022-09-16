@@ -1,13 +1,17 @@
+@if(isset($telecoms))
 <div class="content__wrap mt-fix-20 content-store-card" id="content-store-card">
     <div class="row" id="screen--first">
         <div class="col-12 col-lg-12 col-xl-8 px-lg-3 section--type__card buy-card">
             <div class="card --custom card-mobile" style="min-height: 100%">
                 <div class="card--header d-block">
-                    <div class="card--header__title">
+                    <div class="card--header__title text-left">
                         <div class="title__icon"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/muathegiare.svg" alt=""></div>
-                        <h2 class="text-title m-0">{{ $title??'Mua thẻ nhanh' }}</h2>
+
+                        <h2 class="text-title text-left" style="margin: 0">{{ $title??'Mua thẻ nhanh' }}</h2>
+
                     </div>
                 </div>
+
                 <div class="card--body">
                     <ul class="nav nav-tabs tabs--cards" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -19,69 +23,148 @@
                     <div class="tab-content">
                         <div class="tab--title">Chọn loại thẻ</div>
                         <div class="tab-pane fade show active select-tag-type" id="card-game" role="tabpanel" aria-labelledby="card-game-tab">
-                            <ul class="cards__list row" id="cardGameList">
-                                <div class="loader position-relative" style="margin: 2rem 0">
-                                    <div class="loading-spokes">
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ul>
-                            <div class="swiper slider--card__telecom" >
-                                <div class="swiper-wrapper" id="cardGameListMobile">
-{{--                                    <div class="swiper-slide">--}}
-{{--                                        <div class="cards__item p_0 w-100">--}}
-{{--                                            <input type="radio" id="card-477" value="GARENA" data-img="https://cdn.upanh.info/storage/upload/images/Th%E1%BA%BB/the-garena.png" name="card-type" checked="" hidden="">--}}
-{{--                                            <label for="card-477"><img src="https://cdn.upanh.info/storage/upload/images/Th%E1%BA%BB/the-garena.png" class="card--logo" alt="GARENA"></label>--}}
+                            <ul class="cards__list row d-none d-lg-flex" id="cardGameListV2">
+                                @foreach($telecoms as $key => $telecom)
+                                    @if($telecom->params->teltecom_type == 2)
+                                        @if($key == 0)
+                                            <li class="cards__item card__item-tag p_0">
+                                                <input type="radio" id="card-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" checked hidden>
+                                                <label for="card-{{ $telecom->id }}">
+                                                    <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->image }}">
+                                                </label>
+                                            </li>
+                                        @else
+                                            <li class="cards__item card__item-tag p_0">
+                                                <input type="radio" id="card-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type"  hidden>
+                                                <label for="card-{{ $telecom->id }}">
+                                                    <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->image }}">
+                                                </label>
+                                            </li>
+                                        @endif
+                                    @endif
+                                @endforeach
+{{--                                <div class="loader position-relative" style="margin: 2rem 0">--}}
+{{--                                    <div class="loading-spokes">--}}
+{{--                                        <div class="spoke-container">--}}
+{{--                                            <div class="spoke"></div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="spoke-container">--}}
+{{--                                            <div class="spoke"></div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="spoke-container">--}}
+{{--                                            <div class="spoke"></div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="spoke-container">--}}
+{{--                                            <div class="spoke"></div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="spoke-container">--}}
+{{--                                            <div class="spoke"></div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="spoke-container">--}}
+{{--                                            <div class="spoke"></div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="spoke-container">--}}
+{{--                                            <div class="spoke"></div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="spoke-container">--}}
+{{--                                            <div class="spoke"></div>--}}
 {{--                                        </div>--}}
 {{--                                    </div>--}}
+{{--                                </div>--}}
+                            </ul>
+                            <div class="swiper slider--card__telecom d-lg-none" >
+                                <div class="swiper-wrapper" id="cardGameListMobileV2">
+
+                                    @foreach($telecoms as $key => $telecom)
+                                        @if($telecom->params->teltecom_type == 2)
+                                            @if($key == 0)
+                                                 <div class="swiper-slide">
+                                                     <div class="cards__item  w-100">
+                                                         <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type-mobile" checked hidden>
+
+                                                          <label for="card-mobile-{{ $telecom->id }}">
+                                                              <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
+                                                          </label>
+                                                     </div>
+                                                  </div>
+                                            @else
+                                                <div class="swiper-slide">
+                                                    <div class="cards__item  w-100">
+                                                        <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type-mobile" hidden>
+
+                                                        <label for="card-mobile-{{ $telecom->id }}">
+                                                            <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endif
+                                    @endforeach
 
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="card-phone" role="tabpanel" aria-labelledby="card-phone-tab">
-                            <ul class="cards__list row" id="cardPhoneList">
 
+                        <div class="tab-pane fade" id="card-phone" role="tabpanel" aria-labelledby="card-phone-tab">
+                            <ul class="cards__list row d-none d-lg-flex" id="cardPhoneListV2">
+                                @foreach($telecoms as $key => $telecom)
+                                    @if($telecom->params->teltecom_type != 2)
+                                        @if($key == 0)
+                                            <li class="cards__item card__item-tag p_0">
+                                                <input type="radio" id="card-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" checked hidden>
+                                                <label for="card-{{ $telecom->id }}">
+                                                    <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->image }}">
+                                                </label>
+                                            </li>
+                                        @else
+                                            <li class="cards__item card__item-tag p_0">
+                                                <input type="radio" id="card-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type"  hidden>
+                                                <label for="card-{{ $telecom->id }}">
+                                                    <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->image }}">
+                                                </label>
+                                            </li>
+                                        @endif
+                                    @endif
+                                @endforeach
                             </ul>
-                            <div class="swiper slider--card__amount" >
-                                <div class="swiper-wrapper" id="cardPhoneListMobile">
-{{--                                    <div class="swiper-slide">--}}
-{{--                                        <div class="cards__item p_0 w-100">--}}
-{{--                                            <input type="radio" id="card-477" value="GARENA" data-img="https://cdn.upanh.info/storage/upload/images/Th%E1%BA%BB/the-garena.png" name="card-type" checked="" hidden="">--}}
-{{--                                            <label for="card-477"><img src="https://cdn.upanh.info/storage/upload/images/Th%E1%BA%BB/the-garena.png" class="card--logo" alt="GARENA"></label>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
+                            <div class="swiper slider--card__amount d-lg-none" >
+                                <div class="swiper-wrapper" id="cardPhoneListMobileV2">
+
+                                    @foreach($telecoms as $key => $telecom)
+                                        @if($telecom->params->teltecom_type != 2)
+                                            @if($key == 0)
+                                                <div class="swiper-slide">
+                                                    <div class="cards__item  w-100">
+                                                        <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type-mobile" checked hidden>
+
+                                                        <label for="card-mobile-{{ $telecom->id }}">
+                                                            <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            @else
+                                                <div class="swiper-slide">
+                                                    <div class="cards__item  w-100">
+                                                        <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type-mobile" hidden>
+
+                                                        <label for="card-mobile-{{ $telecom->id }}">
+                                                            <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endif
+                                    @endforeach
 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-        <div class="col-12 col-lg-12 col-xl-4  pl-lg-1 section--amount__card choose-card d-none" >
+        <div class="col-12 col-lg-12 col-xl-4  pl-lg-1 section--amount__card choose-card" >
             <div class="card --custom">
                 <div class="card--body" id="amountWidget">
                     <div class="loader position-absolute" >
@@ -112,7 +195,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="denos--wrap">
+                    <div class="denos--wrap d-none">
                         <div class="denos--title">
                             Chọn mệnh giá
                         </div>
@@ -423,3 +506,8 @@
         </div>
     </div>
 </div>
+@endif
+<script>
+
+
+</script>

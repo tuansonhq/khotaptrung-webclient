@@ -1,8 +1,7 @@
 $(document).ready(function () {
 
     //JS mua the module
-    getListCard();
-
+    // getListCard();
     var swiper_card = new Swiper(".slider--card", {
         slidesPerView: 1,
         spaceBetween: 16,
@@ -282,6 +281,30 @@ $(document).ready(function () {
             }
         });
     };
+
+    //Get amount of the card just been choosen when render
+    getCardAmount($('input[name="card-type"]').val());
+
+    //Listen to onchange event in input card-type
+    $('input[name="card-type"]').change(function (e) {
+        e.preventDefault();
+        getCardAmount($(this).val());
+    });
+
+    //Get amount of the card just been choosen when render
+    getCardAmount($('input[name="card-type-mobile"]').val());
+
+    //Listen to onchange event in input card-type
+    $('input[name="card-type-mobile"]').change(function (e) {
+        e.preventDefault();
+        getCardAmount($(this).val());
+    });
+
+
+
+    // slider_card_telecom.update();
+
+    $('.section--amount__card').removeClass('d-none');
 
     function getCardAmount (cardKey) {
         $.ajax({
