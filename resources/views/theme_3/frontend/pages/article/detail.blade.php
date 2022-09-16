@@ -303,7 +303,7 @@
             </div>
         </div>
 {{--        Cùng chủ đề--}}
-        @include('frontend.widget.__bai__viet__lien__quan')
+        @include('frontend.widget.__bai__viet__lien__quan', ['data_article' => $data])
     </div>
     @endif
 @endsection

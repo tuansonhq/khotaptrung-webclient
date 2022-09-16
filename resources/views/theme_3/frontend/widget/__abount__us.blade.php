@@ -5,7 +5,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide" >
                     <div class="item-intro-img">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/intro1.png" alt=""></div>
+                        <img data-src="/assets/frontend/{{theme('')->theme_key}}/image/intro1.png" class="lazy" alt=""></div>
                     <div class="list-intro-title">
                         Sản phẩm, dịch vụ đa dạng, cập nhật thường xuyên
                     </div>
@@ -16,7 +16,7 @@
                 </div>
                 <div class="swiper-slide" >
                     <div class="item-intro-img">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/intro2.png" alt=""></div>
+                        <img data-src="/assets/frontend/{{theme('')->theme_key}}/image/intro2.png" alt="" class="lazy"></div>
                     <div class="list-intro-title">
                         Hàng nghìn khách hàng tin tưởng
                     </div>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="swiper-slide" >
                     <div class="item-intro-img">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/intro3.png" alt=""></div>
+                        <img data-src="/assets/frontend/{{theme('')->theme_key}}/image/intro3.png" alt="" class="lazy"></div>
                     <div class="list-intro-title">
                         Trung tâm trợ giúp hỗ trợ tư vấn 24/24
                     </div>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="swiper-slide" >
                     <div class="item-intro-img">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/intro4.png" alt=""></div>
+                        <img data-src="/assets/frontend/{{theme('')->theme_key}}/image/intro4.png" alt="" class="lazy"></div>
                     <div class="list-intro-title">
                         Giá cả ưu đãi, siêu rẻ trên thị trường
                     </div>
