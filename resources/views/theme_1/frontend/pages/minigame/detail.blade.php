@@ -2,7 +2,119 @@
 @section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$result->group]))
 @endsection
+
+@push('style')
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/scss/trong/style.css?v={{time()}}">
+@endpush
 @section('content')
+    <!-- Modal rút quà -->
+    <div class="modal fade" id="modal-withdraw-items" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Rút vật phẩm</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-0">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#modal-tab-withdraw" role="tab">Rút vật phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#modal-tab-history" role="tab">Lịch sử</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="modal-tab-withdraw" role="tabpanel">
+                            <div class="card">
+                                <div class="card-body is-loading py_8">
+                                    <form action="" id="form-withdraw-item">
+                                        @csrf
+                                        <div class="t-sub-2 t-color-title my_8">
+                                            Chọn vật phẩm bạn đang sở hữu
+                                        </div>
+                                        <select name="game_type" id="select_game_type" class="form-control" data-game_type="{{ @$result->group->params->game_type }}">
+                                            <option value="">Chọn gói</option>
+                                        </select>
+                                        <span class="text--danger">Vật phẩm hiện có: 0</span>
+                                        <div class="t-sub-2 t-color-title my_8">
+                                            Gói muốn rút
+                                        </div>
+                                        <select name="package" id="package" class="form-control">
+                                            <option value="">Chọn gói</option>
+                                        </select>
+                                        <div class="user-info">
+                                            <div class="input-id-game">
+                                                <div class="t-sub-2 t-color-title my_8">
+                                                    Tài khoản trong game
+                                                </div>
+                                                <input class="form-control" type="text" name="idgame" placeholder="Nhập tài khoản trong game" required="">
+                                            </div>
+                                            <div class="password-phone">
+                                                <div class="t-sub-2 t-color-title my_8">
+                                                    Mật khẩu trong game
+                                                </div>
+                                                <!--
+                                                 <div class="toggle-password">
+                                                    <input class="input-form w-100" type="password" name="serial" placeholder="Nhập mật khẩu trong game" required="">
+                                                    <span class="eye"></span>
+                                                </div>
+                                                 -->
+                                            </div>
+                                        </div>
+                                        <div class="form-message"></div>
+                                        <button class="btn c-theme-btn btn-block mt_12" type="submit">Thực hiện</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="modal-tab-history" role="tabpanel">
+                            <div class="row marginauto logs-content p-0">
+                                <div class="col-md-12" id="table-history-withdraw">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  Modal Lịch sử quay -->
+    <div class="modal fade" id="modal-spin-bonus" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Lịch sử quay thưởng</h5>
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="history-search">
+                        <div class="t-sub-2">
+                            Tìm kiếm
+                        </div>
+                        <div class="row marginauto body-form-search-ct">
+                            <div class="col-10 px-0">
+                                <input autocomplete="off" type="text" name="search" class="input-search-log-ct search w-100" placeholder="Nhập từ khóa">
+                                <img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/search.png" alt="">
+                            </div>
+                            <div class="col-2 body-form-search-button-ct media-web">
+                                <button type="submit" class="timkiem-button-ct btn-timkiem w-100" style="position: relative">
+                                    <span class="span-timkiem">Tìm kiếm</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="data-ajax-render" data-id="{{ @$result->group->id }}">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="item_play">
         <div class="container">
 
@@ -78,12 +190,21 @@
                             <a href="#" class="btn btn-success" data-toggle="modal" data-target="#topquaythuongModal">
                                 Top quay thưởng
                             </a>
-                            <a href="{{route('getWithdrawItem',[$result->group->params->game_type])}}" class="btn btn-success">
-                                Rút Vip
-                            </a>
-                            <a href="{{route('getLog',[$result->group->id])}}" class="btn btn-success">
-                                Lịch sử quay
-                            </a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a href="#modal-withdraw-items" class="btn btn-success" data-toggle="modal">
+                                    Rút Vip
+                                </a>
+                                <a href="#modal-spin-bonus" class="btn btn-success"  data-toggle="modal">
+                                    Lịch sử quay
+                                </a>
+                            @else
+                                <a href="/login" class="btn btn-success">
+                                    Rút Vip
+                                </a>
+                                <a href="/login" class="btn btn-success">
+                                    Lịch sử quay
+                                </a>
+                            @endif
 
                         </div>
                         <div class="item_spin_title">
@@ -295,13 +416,21 @@
                             <a href="#" class="btn btn-success" data-toggle="modal" data-target="#topquaythuongModal">
                                 Top lật thưởng
                             </a>
-                            <a href="{{route('getWithdrawItem',[$result->group->params->game_type])}}" class="btn btn-success">
-                                Rút Vip
-                            </a>
-                            <a href="{{route('getLog',[$result->group->id])}}" class="btn btn-success">
-                                Lịch sử lật
-                            </a>
-
+                            @if(\App\Library\AuthCustom::check())
+                                <a href="#modal-withdraw-items" class="btn btn-success" data-toggle="modal">
+                                    Rút Vip
+                                </a>
+                                <a href="#modal-spin-bonus" class="btn btn-success" data-toggle="modal">
+                                    Lịch sử lật
+                                </a>
+                            @else
+                                <a href="/login" class="btn btn-success">
+                                    Rút Vip
+                                </a>
+                                <a href="/login" class="btn btn-success">
+                                    Lịch sử lật
+                                </a>
+                            @endif
                         </div>
                         <div class="item_spin_title">
                             <p>Lượt lật gần đây</p>
@@ -4205,4 +4334,7 @@
         @break
         @default
     @endswitch
+
+
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/modal-rut-vp.js?v={{time()}}"></script>
 @endsection
