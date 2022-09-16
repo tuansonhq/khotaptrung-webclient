@@ -98,7 +98,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::group(['middleware' => ['intend']], function (){
 //                    Route::get('/mua-nick-random', [AccController::class , "getShowAccRandom"]);
-                    Route::get('/mua-acc/{s ug}', [AccController::class , "getList"]);
+                    Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
                     Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
                     Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
 
@@ -112,7 +112,6 @@ Route::group(array('middleware' => ['theme']) , function (){
                 // lấy nhà mạng mua thẻ
 
                 Route::get('/lich-su-mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCardHistory']);
-
 
 //                captcha
                 Route::get('/first-captcha', [ChargeController::class , 'myCaptcha']);
