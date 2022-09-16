@@ -5,7 +5,7 @@ $(document).ready(function(){
     }
 
     function getTelecom (){
-        const url = '/store-card/get-telecom';
+        const url = '/api/store-card/get-telecom';
         $.ajax({
             type: "GET",
             url: url,
@@ -65,7 +65,7 @@ $(document).ready(function(){
     }
 
     function getAmount(telecom){
-        var url = '/store-card/get-amount';
+        var url = '/api/store-card/get-amount';
         $.ajax({
             type: "GET",
             url: url,

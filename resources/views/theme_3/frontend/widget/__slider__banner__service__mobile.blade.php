@@ -5,7 +5,7 @@
             <div class="col-md-12 text-left left-right">
                 @foreach($data as $key => $item)
                     @if($key == 0)
-                        <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
+                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
                     @endif
                 @endforeach
             </div>

@@ -35,7 +35,6 @@ class ChargeController extends Controller
     public function reloadCaptcha()
     {
 
-        Session::push('url_return.id_return','1');
         return response()->json(['captcha'=> captcha_img()]);
     }
     public function myCaptcha()
@@ -49,7 +48,7 @@ class ChargeController extends Controller
     public function getDepositAuto(Request $request)
     {
 
-        return view('frontend.pages.charge.index');
+        return view(''.theme('')->theme_key.'.frontend.pages.charge.index');
 
     }
 
@@ -89,7 +88,7 @@ class ChargeController extends Controller
 
                 $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
 
-                $html =  view('frontend.pages.charge.widget.__charge')
+                $html =  view(''.theme('')->theme_key.'.frontend.pages.charge.widget.__charge')
                     ->with('data', $data)->with('arrpin',$arrpin)->render();
 
                 if (count($data) == 0 && $page == 1){
@@ -339,7 +338,7 @@ class ChargeController extends Controller
                         ]);
                     }
 
-                    $html =  view('frontend.pages.charge.widget.__charge_history')
+                    $html =  view(''.theme('')->theme_key.'.frontend.pages.charge.widget.__charge_history')
                         ->with('data',$data)->with('arrpin',$arrpin)->with('arrserial',$arrserial)->render();
 
                     return response()->json([
@@ -368,7 +367,7 @@ class ChargeController extends Controller
 
                 $data_telecome = $response_tele_data->data;
 
-                return view('frontend.pages.charge.logs')->with('data_telecome', $data_telecome);
+                return view(''.theme('')->theme_key.'.frontend.pages.charge.logs')->with('data_telecome', $data_telecome);
 
             }
             else{
@@ -400,7 +399,7 @@ class ChargeController extends Controller
 
             $data = $response_data->data;
 
-            return view('frontend.pages.charge.logsdetail')->with('data', $data);
+            return view(''.theme('')->theme_key.'.frontend.pages.charge.logsdetail')->with('data', $data);
 
         }else{
             return response()->json([

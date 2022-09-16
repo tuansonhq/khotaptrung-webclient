@@ -1166,9 +1166,9 @@ class AccController extends Controller
     }
 
     public function getShowAccRandom(Request $request){
-        dd(session()->get('auth_custom'));
+
         if ($request->ajax()){
-            dd(session()->get('auth_custom'));
+
             $url = '/acc';
             $method = "GET";
             $dataSend = array();
@@ -1184,16 +1184,8 @@ class AccController extends Controller
             if(isset($response_data) && $response_data->status == 1){
                 $data = $response_data->data;
 
-                $auth_custom = false;
-                $user = false;
-                if(session()->has('auth_custom')){
-                    $auth_custom = true;
-                    $user = AuthCustom::user();
-                }
-//                dd($user);
-
                 $html = view(''.theme('')->theme_key.'.frontend.widget.__data__nick__random')
-                    ->with('data',$data)->with('auth_custom',$auth_custom)->render();
+                    ->with('data',$data)->render();
 
                 return response()->json([
                     'data' => $html,
