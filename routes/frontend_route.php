@@ -203,10 +203,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 {
                     return response()->view('frontend.pages.rss.nick')->header('Content-Type', 'application/xml');
                 });
-                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
-                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
-                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
-                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
+  
 //                404
                 Route::get('/404', function ()
                 {
