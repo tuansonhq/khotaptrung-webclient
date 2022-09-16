@@ -887,7 +887,7 @@
             function GetAmount() {
 
                 var telecom_key = $("#telecom_key").val();
-                var getamount = $.get("/mua-the/get-amount?telecom_key=" + telecom_key, function (data, status) {
+                var getamount = $.get("/api/mua-the/get-amount?telecom_key=" + telecom_key, function (data, status) {
 
                     $("#amount").find('option').remove();
                     $("#amount").html(data).val($("#amount option:first").val());

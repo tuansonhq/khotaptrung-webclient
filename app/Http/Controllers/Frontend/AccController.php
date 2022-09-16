@@ -1166,7 +1166,9 @@ class AccController extends Controller
     }
 
     public function getShowAccRandom(Request $request){
+
         if ($request->ajax()){
+
             $url = '/acc';
             $method = "GET";
             $dataSend = array();

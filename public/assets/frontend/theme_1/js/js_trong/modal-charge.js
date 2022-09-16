@@ -8,7 +8,7 @@ $(document).ready(function () {
     /*Get Telecom*/
     if (modal_charge.length){
         $.ajax({
-            url:'/get-tele-card',
+            url:'/api/get-tele-card',
             type:'GET',
             success:function (res) {
                 if (res.status === 1){
@@ -43,7 +43,7 @@ $(document).ready(function () {
     });
 
     function getAmount(telecom){
-        var url = '/get-amount-tele-card';
+        var url = '/api/get-amount-tele-card';
         $.ajax({
             type: "GET",
             url: url,
@@ -88,7 +88,7 @@ $(document).ready(function () {
     function reload_captcha() {
         $.ajax({
             type: 'GET',
-            url: '/reload-captcha',
+            url: '/api/reload-captcha',
             success: function (data) {
                 $(".captcha_1 span").html(data.captcha);
             }

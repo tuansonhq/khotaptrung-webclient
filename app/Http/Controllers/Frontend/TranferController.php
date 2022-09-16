@@ -17,9 +17,9 @@ class TranferController extends Controller
     public function index(Request $request)
     {
         if (theme('')->theme_key == 'theme_1' || theme('')->theme_key == 'theme_4'){
-            return view('frontend.pages.transfer.index');
+            return view(''.theme('')->theme_key.'.frontend.pages.transfer.index');
         }else{
-            return view('frontend.pages.charge.index');
+            return view(''.theme('')->theme_key.'.frontend.pages.charge.index');
         }
 
 
@@ -92,7 +92,7 @@ class TranferController extends Controller
 
                 $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
 
-                $html =  view('frontend.pages.transfer.widget.__tranfer_history')
+                $html =  view(''.theme('')->theme_key.'.frontend.pages.transfer.widget.__tranfer_history')
                     ->with('data', $data)->render();
 
                 if (count($data) == 0 && $page == 1){
@@ -144,7 +144,7 @@ class TranferController extends Controller
 
             $data = $response_data->data;
 
-            return view('frontend.pages.transfer.logsdetail')->with('data', $data);
+            return view(''.theme('')->theme_key.'.frontend.pages.transfer.logsdetail')->with('data', $data);
 
         }else{
             return response()->json([
@@ -160,7 +160,7 @@ class TranferController extends Controller
     {
         try {
 
-            return view('frontend.pages.transfer.logs');
+            return view(''.theme('')->theme_key.'.frontend.pages.transfer.logs');
 
         }   catch(\Exception $e){
             Log::error($e);

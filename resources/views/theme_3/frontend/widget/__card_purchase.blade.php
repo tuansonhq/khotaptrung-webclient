@@ -5,7 +5,7 @@
                 <div class="card--header d-block">
                     <div class="card--header__title">
                         <div class="title__icon"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/muathegiare.svg" alt=""></div>
-                        <h2 class="text-title">{{ $title??'Mua thẻ nhanh' }}</h2>
+                        <h2 class="text-title m-0">{{ $title??'Mua thẻ nhanh' }}</h2>
                     </div>
                 </div>
                 <div class="card--body">
