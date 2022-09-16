@@ -1198,3 +1198,44 @@ View::composer('frontend.pages.rss.widget.__nick', function ($view) {
 
     return $view->with('data', $data);
 });
+
+View::composer('frontend.pages.rss.widget.__nick', function ($view) {
+
+//    minigame
+
+    $data = \Cache::rememberForever('__nick', function() {
+
+        $url = '/acc';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['data'] = 'category_list';
+        $dataSend['module'] = 'acc_category';
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $response_data_acc = $result_Api->response_data??null;
+        $acc= $response_data_acc->data;
+
+
+        return $data = $acc;
+    });
+
+    return $view->with('data', $data);
+});
+
+View::composer('frontend.widget.__card_purchase', function ($view) {
+
+//    minigame
+
+    $telecoms = \Cache::rememberForever('__card_purchase', function() {
+
+        $url = '/store-card/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $telecoms = $result_Api->response_data->data??null;
+
+
+        return $telecoms;
+    });
+
+    return $view->with('telecoms', $telecoms);
+});

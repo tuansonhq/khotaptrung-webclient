@@ -20,33 +20,33 @@ class VerifyTokenRemember
      */
     public function handle(Request $request, Closure $next)
     {
-
-        $jwt = Session::get('jwt');
-
-        if(empty($jwt)){
-            $jwt_refresh_token = Cookie::get('jwt_refresh_token') ?? '';
-
-            if (isset($jwt_refresh_token)){
-                $url = '/refresh-token-remember';
-                $method = "POST";
-                $data = array();
-                $data['refresh_token'] = $jwt_refresh_token;
-                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                $response_data = $result_Api->response_data??null;
-
-                if(isset($response_data) && $response_data->status == 1){
-
-                    $time = strtotime(Carbon::now());
-                    $exp_token = $response_data->exp_token;
-                    $time_exp_token = $time + $exp_token;
-
-                    Session::put('jwt',$response_data->token);
-                    Session::put('exp_token',$response_data->exp_token);
-                    Session::put('time_exp_token',$time_exp_token);
-                    Session::put('auth_custom',$response_data->user);
-                }
-            }
-        }
+//        $jwt = Session::get('jwt');
+//        if(empty($jwt)){
+//            $jwt_refresh_token = Cookie::get('jwt_refresh_token') ?? '';
+//            if (isset($jwt_refresh_token)){
+//                $url = '/refresh-token-remember';
+//                $method = "POST";
+//                $data = array();
+//                $data['refresh_token'] = $jwt_refresh_token;
+//                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+//                $response_data = $result_Api->response_data??null;
+//                dd($response_data);
+//                if(isset($response_data) && $response_data->status == 1){
+//                    $time = strtotime(Carbon::now());
+//                    $exp_token = $response_data->exp_token;
+//                    $time_exp_token = $time + $exp_token;
+//                    Session::put('jwt',$response_data->token);
+//                    Session::put('exp_token',$response_data->exp_token);
+//                    Session::put('time_exp_token',$time_exp_token);
+//                    Session::put('auth_custom',$response_data->user);
+//                }else{
+//                    Session::flush();
+//                    \Cookie::queue(\Cookie::forget('jwt_refresh_token'));
+//
+////                    return response('Token hết hạn vui lòng đăng nhập lại!'.\Request::server ("HTTP_HOST"),401);
+//                }
+//            }
+//        }
 
         return $next($request);
     }
