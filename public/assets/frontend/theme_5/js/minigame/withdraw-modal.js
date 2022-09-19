@@ -13,9 +13,8 @@ let swiper_item_possession = new Swiper('.swiper-withdraw',{
     },
 });
 
-//toggle-password
-$('#modal-tab-withdraw [name="started_at"],#modal-tab-withdraw [name="ended_at"]').datetimepicker({
-    format: 'DD-MM-YYYY LT',
+$('#modalWithdraw [name="started_at"],#modalWithdraw [name="ended_at"]').datetimepicker({
+    format: 'DD-MM-YYYY',
     useCurrent: false,
     icons:
         { time: 'fas fa-clock',
@@ -142,5 +141,12 @@ $('#modal-tab-history').on('click','.page-link',function (e) {
     let game_type = $('input[name="game_type"]:checked').val();
 
     getWithDrawItem(game_type,{page:page})
-})
+});
+
+$('#modalWithdraw #resetFormButton').on('click', function (e) {
+    e.preventDefault();
+    $('#modal-tab-history [name="started_at"],#modal-tab-history [name="ended_at"]').val('');
+    $('#modal-tab-history [name="id"],#modal-tab-history [name="status"]').val('');
+    $('#modal-tab-history [name="id"],#modal-tab-history [name="status"]').niceSelect('update');
+});
 
