@@ -37,10 +37,39 @@ class DirectAPI{
             $dataPost = $data;
         }
 
+//        Lấy ip user agent khách hàng
+
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        }
+
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = $_SERVER['REMOTE_ADDR'];
+
+        if(filter_var($client, FILTER_VALIDATE_IP))
+        {
+            $ip = $client;
+        }
+        elseif(filter_var($forward, FILTER_VALIDATE_IP))
+        {
+            $ip = $forward;
+        }
+        else
+        {
+            $ip = $remote;
+        }
+
+        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+
 //        $headers  = [
 //            'Content-Type: application/json',
 ////            'data: '.$data,
 //        ];
+
+
 
         if($log == true){
             $myfile = fopen(storage_path() ."/logs/CACHE1-".Carbon::now()->format('Y-m-d').".txt", "a") or die("Unable to open file!");
