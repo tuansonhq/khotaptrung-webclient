@@ -28,45 +28,52 @@ $(document).ready(function(){
 
     });
 
-    function getTelecom(){
-        var url = '/api/get-tele-card';
-        $.ajax({
-            type: "GET",
-            url: url,
-            success: function (data) {
-                if(data.status == 1){
-                    let html = '';
-                    if(data.data.length > 0){
-                        $.each(data.data,function(key,value){
-                            html += '<option value="'+value.key+'">'+value.title+'</option>';
-                        });
-                    }
-                    else{
-                        html += '<option value="">-- Vui lòng chọn nhà mạng --</option>';
-                    }
-                    $('select#telecom').html(html)
-                    $('.select-form').niceSelect('update');
-                    ele = $('select#telecom option').first();
-                    var telecom = ele.val();
-                    if (telecom.length > 0){
-                        getAmount(telecom);
-                    }else {
-                        $('.amount-loading').remove();
-                    }
-                    $('.charge_name').html(' <small>'+telecom+'</small>')
-                    $('.loading-data').remove();
-                    $('#form-charge2').removeClass('hide_charge');
-                }
-            },
-            error: function (data) {
-                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(getTelecom)')
-
-            },
-            complete: function (data) {
-            }
-        });
+    // function getTelecom(){
+    //     var url = '/api/get-tele-card';
+    //     $.ajax({
+    //         type: "GET",
+    //         url: url,
+    //         success: function (data) {
+    //             if(data.status == 1){
+    //                 let html = '';
+    //                 if(data.data.length > 0){
+    //                     $.each(data.data,function(key,value){
+    //                         html += '<option value="'+value.key+'">'+value.title+'</option>';
+    //                     });
+    //                 }
+    //                 else{
+    //                     html += '<option value="">-- Vui lòng chọn nhà mạng --</option>';
+    //                 }
+    //                 $('select#telecom').html(html)
+    //                 $('.select-form').niceSelect('update');
+    //                 ele = $('select#telecom option').first();
+    //                 var telecom = ele.val();
+    //                 if (telecom.length > 0){
+    //                     getAmount(telecom);
+    //                 }else {
+    //                     $('.amount-loading').remove();
+    //                 }
+    //                 $('.charge_name').html(' <small>'+telecom+'</small>')
+    //                 $('.loading-data').remove();
+    //                 $('#form-charge2').removeClass('hide_charge');
+    //             }
+    //         },
+    //         error: function (data) {
+    //             console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(getTelecom)')
+    //
+    //         },
+    //         complete: function (data) {
+    //         }
+    //     });
+    // }
+    ele = $('select#telecom option').first();
+    var telecom = ele.val();
+    if (telecom.length > 0){
+        getAmount(telecom);
+    }else {
+        $('.amount-loading').remove();
     }
-
+    $('.charge_name').html(' <small>'+telecom+'</small>')
     function getAmount(telecom){
         var url = '/api/get-amount-tele-card';
         $.ajax({
@@ -76,11 +83,17 @@ $(document).ready(function(){
                 telecom:telecom
             },
             beforeSend: function (xhr) {
-
+                $('.amount-loading').removeClass('d-none');
+                $('#amount').addClass('d-none');
+                $('#amount_mobile').addClass('d-none');
             },
             success: function (data) {
+                $('.amount-loading').addClass('d-none');
+
                 if(data.status == 1){
-                    $('.amount-loading').remove();
+                    $('#amount').removeClass('d-none');
+                    $('#amount_mobile').removeClass('d-none');
+
                     let html = '';
                     // html += '<option value="">-- Vui lòng chọn mệnh giá, sai mất thẻ --</option>';
                     if(data.data.length > 0){
@@ -150,7 +163,7 @@ $(document).ready(function(){
         getAmount(telecom)
     });
 
-    getTelecom();
+    // getTelecom();
 
     var formSubmit = $('#form-charge2');
     var url = formSubmit.attr('action');
@@ -170,7 +183,6 @@ $(document).ready(function(){
 
             },
             success: function (data) {
-                console.log(69999)
                 $('#openCharge').modal('hide');
 
                 if(data.status == 1){

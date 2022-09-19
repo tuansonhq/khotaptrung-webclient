@@ -7,7 +7,7 @@ return [
         'width'     => 62,
         'height'    => 32,
         'quality'   => 100,
-        'lines'     => 0,
+        'lines'     => -1,
         'fontSize' => 60,
         'bgImage'   => false,
         'bgColor'   => '#f3f3f7',

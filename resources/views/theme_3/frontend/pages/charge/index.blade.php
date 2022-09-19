@@ -59,51 +59,72 @@
                             </div>
                             <div class="box-product position-static" >
                                 <div class="default-tab pr-fix-16 pl-fix-16">
-                                <ul class="nav justify-content-between row" role="tablist" >
-                                    <li class="nav-item col-6 col-md-6 p-0  p-md-0" role="presentation">
-                                        <a  class="nav-link @if(Request::is('nap-the')) active @endif  text-center " data-toggle="tab" href="#charge_card" id="nav_charge" role="tab" aria-selected="true">Nạp thẻ <span class="d-g-none">cào</span> </a>
-                                    </li >
-                                    <li class="nav-item col-6 col-md-6 p-0 p-md-0" role="presentation">
-                                        <a  class="nav-link @if(Request::is('recharge-atm')) active @endif text-center "  data-toggle="tab" href="#atm_card" id="nav_charge_atm" role="tab" aria-selected="false"> ATM <span class="d-g-none">tự động</span> </a>
-                                    </li>
-{{--                                    <li class="nav-item col-6col-md-6 p-0 p-md-0" role="presentation">--}}
-{{--                                        <a  class="nav-link text-center " data-toggle="tab" href="#wallet_card" role="tab" aria-selected="false">Ví điện tử</a>--}}
+{{--                                <ul class="nav justify-content-between row" role="tablist" >--}}
+{{--                                    <li class="nav-item col-6 col-md-6 p-0  p-md-0" role="presentation">--}}
+{{--                                        <a  class="nav-link @if(Request::is('nap-the')) active @endif  text-center " data-toggle="tab" href="#charge_card" id="nav_charge" role="tab" aria-selected="true">Nạp thẻ <span class="d-g-none">cào</span> </a>--}}
+{{--                                    </li >--}}
+{{--                                    <li class="nav-item col-6 col-md-6 p-0 p-md-0" role="presentation">--}}
+{{--                                        <a  class="nav-link @if(Request::is('recharge-atm')) active @endif text-center "  data-toggle="tab" href="#atm_card" id="nav_charge_atm" role="tab" aria-selected="false"> ATM <span class="d-g-none">tự động</span> </a>--}}
 {{--                                    </li>--}}
-                                </ul>
+
+{{--                                </ul>--}}
+                                    @if (setting('sys_charge_content') && setting('sys_charge_content') != "")
+                                        <ul class="nav justify-content-between row" role="tablist" >
+
+                                            <li class="nav-item col-4 col-md-6 p-0  p-md-0" role="presentation">
+                                                <a  class="nav-link active text-center " data-toggle="tab" href="#charge_card" role="tab" aria-selected="true">Nạp thẻ <span class="d-g-none">cào</span> </a>
+                                            </li >
+                                            <li class="nav-item col-4 col-md-6 p-0 p-md-0" role="presentation">
+                                                <a  class="nav-link text-center "  data-toggle="tab" href="#atm_card" role="tab" aria-selected="false"> ATM <span class="d-g-none">tự động</span> </a>
+                                            </li>
+                                            <li class="nav-item col-4 col-md-6 p-0 p-md-0 d-lg-none" role="presentation">
+                                                <a  class="nav-link text-center " data-toggle="tab" href="#intro_charge" role="tab" aria-selected="false">Thông báo</a>
+                                            </li>
+                                        </ul>
+                                    @else
+                                        <ul class="nav justify-content-between row" role="tablist" >
+                                            <li class="nav-item col-6 col-md-6 p-0  p-md-0" role="presentation">
+                                                <a  class="nav-link active text-center " data-toggle="tab" href="#charge_card" role="tab" aria-selected="true">Nạp thẻ <span class="d-g-none">cào</span> </a>
+                                            </li >
+                                            <li class="nav-item col-6 col-md-6 p-0 p-md-0" role="presentation">
+                                                <a  class="nav-link text-center "  data-toggle="tab" href="#atm_card" role="tab" aria-selected="false"> ATM <span class="d-g-none">tự động</span> </a>
+                                            </li>
+                                        </ul>
+                                    @endif
                             </div>
                                 <div class=" tab-content">
                                 <div class="tab-pane @if(Request::is('nap-the')) active show @endif fade   mt-3" id="charge_card" role="tabpanel" >
-                                    <div class="loading-data">
-                                        <div class="loader">
-                                            <div class="loading-spokes">
-                                                <div class="spoke-container">
-                                                    <div class="spoke"></div>
-                                                </div>
-                                                <div class="spoke-container">
-                                                    <div class="spoke"></div>
-                                                </div>
-                                                <div class="spoke-container">
-                                                    <div class="spoke"></div>
-                                                </div>
-                                                <div class="spoke-container">
-                                                    <div class="spoke"></div>
-                                                </div>
-                                                <div class="spoke-container">
-                                                    <div class="spoke"></div>
-                                                </div>
-                                                <div class="spoke-container">
-                                                    <div class="spoke"></div>
-                                                </div>
-                                                <div class="spoke-container">
-                                                    <div class="spoke"></div>
-                                                </div>
-                                                <div class="spoke-container">
-                                                    <div class="spoke"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <form action="{{route('postTelecomDepositAuto')}}" method="POST" class="form-charge hide_charge" id="form-charge2">
+{{--                                    <div class="loading-data">--}}
+{{--                                        <div class="loader">--}}
+{{--                                            <div class="loading-spokes">--}}
+{{--                                                <div class="spoke-container">--}}
+{{--                                                    <div class="spoke"></div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="spoke-container">--}}
+{{--                                                    <div class="spoke"></div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="spoke-container">--}}
+{{--                                                    <div class="spoke"></div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="spoke-container">--}}
+{{--                                                    <div class="spoke"></div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="spoke-container">--}}
+{{--                                                    <div class="spoke"></div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="spoke-container">--}}
+{{--                                                    <div class="spoke"></div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="spoke-container">--}}
+{{--                                                    <div class="spoke"></div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="spoke-container">--}}
+{{--                                                    <div class="spoke"></div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+                                    <form action="{{route('postTelecomDepositAuto')}}" method="POST" class="form-charge " id="form-charge2">
                                         @csrf
                                         <div class="box-charge-card row">
                                             <div class="col-md-6">
@@ -111,8 +132,9 @@
                                                     <label class="text-form">Nhà cung cấp</label>
                                                     <div class="col-md-12 p-0" >
                                                         <select class="select-form w-100" name="type" id="telecom">
-
-
+                                                            @foreach($data as $val)
+                                                                <option value="{{$val->key}}">{{$val->title}}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
@@ -120,37 +142,38 @@
                                                     <label class="text-form" >Chọn mệnh giá</label>
                                                     <div class="col-md-12 p-0" >
                                                         <div class="row m-0" id="amount_mobile">
-                                                            <div class="amount-loading">
-                                                                <div class="loader">
-                                                                    <div class="loading-spokes">
-                                                                        <div class="spoke-container">
-                                                                            <div class="spoke"></div>
-                                                                        </div>
-                                                                        <div class="spoke-container">
-                                                                            <div class="spoke"></div>
-                                                                        </div>
-                                                                        <div class="spoke-container">
-                                                                            <div class="spoke"></div>
-                                                                        </div>
-                                                                        <div class="spoke-container">
-                                                                            <div class="spoke"></div>
-                                                                        </div>
-                                                                        <div class="spoke-container">
-                                                                            <div class="spoke"></div>
-                                                                        </div>
-                                                                        <div class="spoke-container">
-                                                                            <div class="spoke"></div>
-                                                                        </div>
-                                                                        <div class="spoke-container">
-                                                                            <div class="spoke"></div>
-                                                                        </div>
-                                                                        <div class="spoke-container">
-                                                                            <div class="spoke"></div>
-                                                                        </div>
+
+
+                                                        </div>
+                                                        <div class="amount-loading m-0 ">
+                                                            <div class="loader">
+                                                                <div class="loading-spokes">
+                                                                    <div class="spoke-container">
+                                                                        <div class="spoke"></div>
+                                                                    </div>
+                                                                    <div class="spoke-container">
+                                                                        <div class="spoke"></div>
+                                                                    </div>
+                                                                    <div class="spoke-container">
+                                                                        <div class="spoke"></div>
+                                                                    </div>
+                                                                    <div class="spoke-container">
+                                                                        <div class="spoke"></div>
+                                                                    </div>
+                                                                    <div class="spoke-container">
+                                                                        <div class="spoke"></div>
+                                                                    </div>
+                                                                    <div class="spoke-container">
+                                                                        <div class="spoke"></div>
+                                                                    </div>
+                                                                    <div class="spoke-container">
+                                                                        <div class="spoke"></div>
+                                                                    </div>
+                                                                    <div class="spoke-container">
+                                                                        <div class="spoke"></div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -197,37 +220,38 @@
                                                     <label class="text-form">Chọn mệnh giá</label>
                                                     <div class="col-md-12 p-0" >
                                                         <div class="row m-0 amount_charge" id="amount">
-                                                            <div class="amount-loading">
-                                                                <div class="loader">
-                                                                    <div class="loading-spokes">
-                                                                        <div class="spoke-container">
-                                                                            <div class="spoke"></div>
-                                                                        </div>
-                                                                        <div class="spoke-container">
-                                                                            <div class="spoke"></div>
-                                                                        </div>
-                                                                        <div class="spoke-container">
-                                                                            <div class="spoke"></div>
-                                                                        </div>
-                                                                        <div class="spoke-container">
-                                                                            <div class="spoke"></div>
-                                                                        </div>
-                                                                        <div class="spoke-container">
-                                                                            <div class="spoke"></div>
-                                                                        </div>
-                                                                        <div class="spoke-container">
-                                                                            <div class="spoke"></div>
-                                                                        </div>
-                                                                        <div class="spoke-container">
-                                                                            <div class="spoke"></div>
-                                                                        </div>
-                                                                        <div class="spoke-container">
-                                                                            <div class="spoke"></div>
-                                                                        </div>
+
+
+                                                        </div>
+                                                        <div class="amount-loading ">
+                                                            <div class="loader">
+                                                                <div class="loading-spokes">
+                                                                    <div class="spoke-container">
+                                                                        <div class="spoke"></div>
+                                                                    </div>
+                                                                    <div class="spoke-container">
+                                                                        <div class="spoke"></div>
+                                                                    </div>
+                                                                    <div class="spoke-container">
+                                                                        <div class="spoke"></div>
+                                                                    </div>
+                                                                    <div class="spoke-container">
+                                                                        <div class="spoke"></div>
+                                                                    </div>
+                                                                    <div class="spoke-container">
+                                                                        <div class="spoke"></div>
+                                                                    </div>
+                                                                    <div class="spoke-container">
+                                                                        <div class="spoke"></div>
+                                                                    </div>
+                                                                    <div class="spoke-container">
+                                                                        <div class="spoke"></div>
+                                                                    </div>
+                                                                    <div class="spoke-container">
+                                                                        <div class="spoke"></div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -299,6 +323,26 @@
                                         </div>
                                     </form>
                                 </div>
+                                    <div class="tab-pane fade  mt-3 detailViewBlock" id="intro_charge" role="tabpanel" >
+                                        <div class="charge-content-img" style="">
+                                        </div>
+
+                                        <div class="col-md-12 left-right d-none">
+                                            <span class="detailViewBlockTitle">Thông báo</span>
+                                        </div>
+                                        @if (setting('sys_charge_content') != "")
+                                            <div class="charge-content-detail_mobile detailViewBlockContent" style="  ">
+                                                <div class="" role="alert">
+                                                    {!! setting('sys_charge_content') !!}
+                                                </div>
+                                            </div>
+                                        @endif
+                                        <div class="col-md-12 left-right text-center js-toggle-content noselect">
+                                            <div class="view-more">
+                                                <a href="javascript:void(0)" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/theme_3/image/svg/xemthem.svg)"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
                             </div>
                             </div>
                          </div>
