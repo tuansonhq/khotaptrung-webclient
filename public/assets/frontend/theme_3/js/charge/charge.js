@@ -65,8 +65,9 @@ $(document).ready(function(){
             complete: function (data) {
             }
         });
-    }
 
+    }
+    $('.charge_name').html(' <small>'+telecom+'</small>')
     function getAmount(telecom){
         var url = '/ajax/get-amount-tele-card';
         $.ajax({
@@ -76,11 +77,17 @@ $(document).ready(function(){
                 telecom:telecom
             },
             beforeSend: function (xhr) {
-
+                $('.amount-loading').removeClass('d-none');
+                $('#amount').addClass('d-none');
+                $('#amount_mobile').addClass('d-none');
             },
             success: function (data) {
+                $('.amount-loading').addClass('d-none');
+
                 if(data.status == 1){
-                    $('.amount-loading').remove();
+                    $('#amount').removeClass('d-none');
+                    $('#amount_mobile').removeClass('d-none');
+
                     let html = '';
                     // html += '<option value="">-- Vui lòng chọn mệnh giá, sai mất thẻ --</option>';
                     if(data.data.length > 0){
@@ -150,7 +157,7 @@ $(document).ready(function(){
         getAmount(telecom)
     });
 
-    getTelecom();
+    // getTelecom();
 
     var formSubmit = $('#form-charge2');
     var url = formSubmit.attr('action');
@@ -170,7 +177,6 @@ $(document).ready(function(){
 
             },
             success: function (data) {
-                console.log(69999)
                 $('#openCharge').modal('hide');
 
                 if(data.status == 1){
