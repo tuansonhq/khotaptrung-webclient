@@ -27,10 +27,14 @@ class TranferController extends Controller
 
     public function getIdCode(Request $request)
     {
-
         Session::push('url_return.id_return','1');
-
         try {
+            $jwt = Session::get('jwt');
+            if(empty($jwt)){
+                return response()->json([
+                    'status' => 0,
+                ]);
+            }
             $url = '/transfer/get-code';
             $method = "GET";
             $dataSend = array();

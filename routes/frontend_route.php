@@ -183,7 +183,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
                 Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])->name('login');
                 Route::get('/user/access', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'accesUser']);
-                Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
+                Route::post('/ajax/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
                 Route::post('/loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])->name('loginApi');
                 Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])->name('loginfacebook');
                 Route::get('/register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'showFormRegister'])->name('register');

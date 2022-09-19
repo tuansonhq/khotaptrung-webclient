@@ -40,7 +40,7 @@ $(document).ready(function(){
 
             $('.data_napthe_login').show();
             $('.data_napthe_home').hide();
-            $('meta[name="jwt"]').attr('content','jwt');
+            $('meta[name="jwt"]').attr('content','');
 
 
             return;
@@ -95,7 +95,7 @@ $(document).ready(function(){
 
                     $('.data_napthe_login').show();
                     $('.data_napthe_home').hide();
-                    $('meta[name="jwt"]').attr('content','jwt');
+                    $('meta[name="jwt"]').attr('content','');
 
                 }
                 if(data.status == 401){
@@ -135,7 +135,7 @@ $(document).ready(function(){
 
                     $('.data_napthe_login').show();
                     $('.data_napthe_home').hide();
-                    $('meta[name="jwt"]').attr('content','jwt');
+                    $('meta[name="jwt"]').attr('content','');
 
 
                 }

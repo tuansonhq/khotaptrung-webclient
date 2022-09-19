@@ -44,7 +44,7 @@
                     </form>
                 </div>
                 <div class="modal-login-form-container sign-in-container"   >
-                    <form class="modal-login-form formLogin" action="{{route('login')}}" id="formLogin"  method="POST">
+                    <form class="modal-login-form formLogin" action="/ajax/login" id="formLogin"  method="POST">
                         @csrf
                         <p>Đăng nhập</p>
                         <p class="modal-login-error text-center LoginError" id="LoginError" ></p>
@@ -112,7 +112,7 @@
         </div>
     </div>
     <div class="mobile-auth-form">
-        <form class="modal-login-form formLogin" id="formLoginMobile" action="{{route('login')}}" method="POST">
+        <form class="modal-login-form formLogin" id="formLoginMobile" action="/ajax/login" method="POST">
             @csrf
             <p class="modal-login-error text-center LoginError" id="LoginError" ></p>
             <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off" required>
