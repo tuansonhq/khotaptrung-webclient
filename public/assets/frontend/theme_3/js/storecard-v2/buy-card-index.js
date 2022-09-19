@@ -8,7 +8,7 @@ let temp = {};
 let data_telecom =  {};
 $(document).ready(function () {
     $.ajax({
-        url: '/api/store-card/get-telecom',
+        url: '/ajax/store-card/get-telecom',
         type: 'GET',
         success: function (res) {
             if (res.status) {

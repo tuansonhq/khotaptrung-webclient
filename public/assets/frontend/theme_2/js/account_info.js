@@ -2,7 +2,7 @@ $(document).ready(function(){
     const csrf_token = $('meta[name="csrf-token"]').attr('content');
     const token =  $('meta[name="jwt"]').attr('content');
     function getInfo(){
-        const url = '/api/user/account_info';
+        const url = '/ajax/user/account_info';
         if(token == 'undefined' || token == null || token =='' || token == undefined){
             $('#info .store-loading').remove();
             $('#info_mobile .store-loading').remove();

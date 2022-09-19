@@ -1,4 +1,6 @@
+
 @if(!App\Library\AuthCustom::check())
+
 <div class="modal fade" id="loginModal">
     <div class="modal-dialog modal-lg modal-dialog-centered animated">
         <div class="modal-content">

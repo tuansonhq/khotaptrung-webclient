@@ -45,7 +45,7 @@
                     telecom = $(this).attr("data-content");
                 }
             });
-            const url = '/api/store-card/get-telecom';
+            const url = '/ajax/store-card/get-telecom';
 
             $.ajax({
                 // headers: {
@@ -141,7 +141,7 @@
             $('.row-gateway .item-gateway').not($(this)).addClass('out');
             $(this).addClass('active');
             $(this).removeClass('out');
-            const url = '/api/store-card/get-amount';
+            const url = '/ajax/store-card/get-amount';
             if(jQuery.inArray(telecom, check_amount) == -1){
 
                 $.ajax({
