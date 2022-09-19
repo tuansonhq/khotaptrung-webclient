@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="modal-body">
-                <form id="formLogin"  class="formLogin" action="{{route('login')}}" method="POST">
+                <form id="formLogin"  class="formLogin" action="/ajax/login" method="POST">
                     @csrf
                     <div class=" text-center">
                         <div class="my-4 text-center">

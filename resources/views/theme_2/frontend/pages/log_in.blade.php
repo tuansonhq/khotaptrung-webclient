@@ -13,7 +13,7 @@
                 <div class="p-4 h-100">
                     <div class="row justify-content-center align-items-center h-100">
                         <div class="col-lg-6">
-                            <form action="{{route('login')}}" method="post" id="form-login">
+                            <form action="/ajax/login" method="post" id="form-login">
                                 <h5 class="title-style-left mb-3"><strong>Đăng nhập</strong></h5>
                                 @csrf
                                 <div class="mb-3">

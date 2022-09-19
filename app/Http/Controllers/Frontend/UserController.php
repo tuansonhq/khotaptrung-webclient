@@ -22,14 +22,13 @@ class UserController extends Controller
     public function getInfo(Request $request){
 
         try{
-            $jwt = $request->jwt;
+
+            $jwt = Session::get('jwt');
 
             if(empty($jwt)){
-
                 return response()->json([
                     'status' => "LOGIN"
                 ]);
-
             }
 
             $url = '/profile';
@@ -37,7 +36,6 @@ class UserController extends Controller
             $data = array();
             $data['token'] = $jwt;
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-
             if(isset($result_Api) ){
                 if( $result_Api->response_code == 200){
                     $result = $result_Api->response_data;
@@ -53,7 +51,11 @@ class UserController extends Controller
                 }
                 else if($result_Api->response_code == 401){
 
-                    session()->flush();
+                    Session::forget('jwt');
+                    Session::forget('exp_token');
+                    Session::forget('time_exp_token');
+                    Session::forget('auth_custom');
+//                    session()->flush();
                     return response()->json([
                         'status' => 401,
                         'message'=>"unauthencation"

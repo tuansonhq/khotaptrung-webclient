@@ -1,52 +1,13 @@
 $(document).ready(function(){
     const csrf_token = $('meta[name="csrf-token"]').attr('content');
-    const token =  $('meta[name="jwt"]').attr('content');
     function getInfo(){
         const url = '/ajax/user/account_info';
-        if(token == 'undefined' || token == null || token =='' || token == undefined){
-            $('#info .loading').remove();
-            $('#logout .loading').remove();
-            if (window.location.pathname == '/login'){
-                $('#info').attr('href','')
-            }else {
-                $('#info').attr('href','/login?return_url='+window.location.href)
-            }
-            if (window.location.pathname == '/login'){
-                $('#info_tab_mobile').attr('href','#')
-
-            }else {
-                $('#info_tab_mobile').attr('href','/login?return_url='+window.location.href)
-            }
-            $('#logout').attr('href','/register')
-            $('#info').html('<i class="fas fa-user"></i> Đăng nhập')
-            $('#logout').html('<i class="fas fa-user"></i> Đăng kí')
-
-
-            $('#info_mobile .loading').remove();
-            $('#logout_mobile .loading').remove();
-            $('#info_mobile').attr('href','/login?return_url='+window.location.href)
-            $('#logout_mobile').attr('href','/register')
-            $('#info_mobile').html('Đăng nhập')
-            $('#logout_mobile').html('Đăng kí')
-
-            $('#info_tab_mobile .loading').remove();
-            $('#logout_tab_mobile .loading').remove();
-            $('#info_tab_mobile').attr('href','/login?return_url='+window.location.href)
-            $('#logout_tab_mobile').attr('href','/register')
-            $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
-            $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
-            $('meta[name="jwt"]').attr('content','jwt');
-
-
-            return;
-        }
         $.ajax({
             type: "POST",
             url: url,
             cache:false,
             data: {
                 _token:csrf_token,
-                jwt:token
             },
             beforeSend: function (xhr) {
 
@@ -84,7 +45,7 @@ $(document).ready(function(){
                     $('#logout_tab_mobile').attr('href','/register')
                     $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
                     $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
-                    $('meta[name="jwt"]').attr('content','jwt');
+                    $('meta[name="jwt"]').attr('content','');
                     // $('#form-charge-submit').html('<a href="/login" class="btn btn-submit" >Nạp thẻ</a>')
 
                 }
@@ -120,7 +81,7 @@ $(document).ready(function(){
                     $('#logout_tab_mobile').attr('href','/register')
                     $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
                     $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
-                    $('meta[name="jwt"]').attr('content','jwt');
+                    $('meta[name="jwt"]').attr('content','');
                     // $('#form-charge-submit').html('<a href="/login" class="btn btn-submit" >Nạp thẻ</a>')
 
                 }
@@ -150,7 +111,6 @@ $(document).ready(function(){
                     $('#formProfile #user_id').val(data.info.id);
 
                     $('#logout').html('<i class="fas fa-user"></i> Đăng xuất')
-
 
 
                     // mobile

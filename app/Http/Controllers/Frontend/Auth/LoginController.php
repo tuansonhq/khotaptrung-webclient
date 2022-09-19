@@ -16,15 +16,11 @@ use App\Library\Helpers;
 
 class LoginController extends Controller
 {
-    public function login(){
+    public function login(Request $request){
 
-//        if(!session()->has('auth_custom')){
-
-//        } else{
-//            return redirect('/');
-//        }
         $jwt = Session::get('jwt');
-
+//    $html = view('test')->render();
+//    return $html;
         if (theme('')->theme_key == 'theme_1'){
             if(empty($jwt)){
                 return view('frontend.pages.log_in');
@@ -39,13 +35,11 @@ class LoginController extends Controller
                 return redirect('/');
             }
         }else{
-            Session::put('check_login', 33);
             return view('frontend.pages.index');
         }
     }
 
     public function postLogin(Request $request){
-
         $this->validate($request,[
             'username'=>'required',
             'password'=>'required',
@@ -76,11 +70,11 @@ class LoginController extends Controller
 
                 }
 
-                $request->session()->put('jwt',$response_data->token);
-                $request->session()->put('exp_token',$response_data->exp_token);
-                $request->session()->put('time_exp_token',$time_exp_token);
-                $request->session()->put('auth_custom',$response_data->user);
-                $return_url = $request->session()->get('url.intended');
+                Session::put('jwt',$response_data->token);
+                Session::put('exp_token',$response_data->exp_token);
+                Session::put('time_exp_token',$time_exp_token);
+                Session::put('auth_custom',$response_data->user);
+                $return_url = Session::get('return_url');
 
                 return response()->json([
                     'status' => 1,

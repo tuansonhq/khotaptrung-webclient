@@ -27,7 +27,7 @@ $('body').ready(function(){
     });
 
     function getTelecom(){
-        var url = '/api/get-tele-card';
+        var url = '/ajax/get-tele-card';
         $.ajax({
             type: "GET",
             url: url,
@@ -83,7 +83,7 @@ $('body').ready(function(){
             $('select#amount').html(html)
             return;
         }
-        var url = '/api/get-amount-tele-card';
+        var url = '/ajax/get-amount-tele-card';
         $.ajax({
             type: "GET",
             url: url,
