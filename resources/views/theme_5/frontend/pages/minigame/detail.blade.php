@@ -1029,8 +1029,10 @@
                                                     <div class="form-label">
                                                         Loại giao dịch
                                                     </div>
-                                                    <select name="package" id="package" class="wide select-withdraw">
-                                                        <option value="">Chọn</option>
+                                                    <select name="id" class="wide">
+                                                        <option value="" selected disabled hidden>Chọn</option>
+                                                        <option value="ngoc-rong">Ngoc rong</option>
+                                                        <option value="cf-online">CF Online</option>
                                                     </select>
                                                     <span class="text-error"></span>
                                                 </div>
@@ -1040,8 +1042,10 @@
                                                     <div class="form-label">
                                                         Trạng thái
                                                     </div>
-                                                    <select name="package" id="package" class="wide select-withdraw">
-                                                        <option value="">Chọn</option>
+                                                    <select name="status" class="wide">
+                                                        <option value="" selected disabled hidden>Chọn</option>
+                                                        <option value="1">Hủy</option>
+                                                        <option value="0">Thành công</option>
                                                     </select>
                                                     <span class="text-error"></span>
                                                 </div>
@@ -1055,9 +1059,7 @@
                                                     <div class="form-label">
                                                         Từ ngày
                                                     </div>
-                                                    <select name="package" id="package" class="wide select-withdraw">
-                                                        <option value="">Chọn</option>
-                                                    </select>
+                                                    <input type="text" name="started_at" class="date-right" placeholder="Chọn">
                                                     <span class="text-error"></span>
                                                 </div>
                                             </div>
@@ -1066,9 +1068,7 @@
                                                     <div class="form-label">
                                                         Đến ngày
                                                     </div>
-                                                    <select name="package" id="package" class="wide select-withdraw">
-                                                        <option value="">Chọn</option>
-                                                    </select>
+                                                    <input type="text" name="ended_at" class="date-right" placeholder="Chọn">
                                                     <span class="text-error"></span>
                                                 </div>
                                             </div>
@@ -1082,7 +1082,7 @@
                                     <div class="col-5 c-pl-4">
                                         <div class="row">
                                             <div class="col-6 c-pr-4">
-                                                <div class="btn ghost" style="width:100%;">Xóa bộ lọc</div>
+                                                <div class="btn ghost" id="resetFormButton" style="width:100%;">Xóa bộ lọc</div>
                                             </div>
                                             <div class="col-6 c-pl-4">
                                                 <div class="btn primary" style="width:100%;">Xem kết quả</div>
