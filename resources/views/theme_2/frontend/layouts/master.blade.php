@@ -9,7 +9,12 @@
     <meta name="path" content="" />
     @yield('meta_robots')
 
-    <meta name="jwt" content="jwt" />
+    @if(session()->has('jwt'))
+        <meta name="jwt" content="{{session()->get('jwt')}}" />
+    @else
+        <meta name="jwt" content="jwt" />
+    @endif
+
     @if(setting('sys_google_search_console') != '')
         <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />
     @endif
