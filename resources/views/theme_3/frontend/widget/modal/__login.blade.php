@@ -58,6 +58,15 @@
 {{--                        <p class="modal-login-error" id="passwordError"></p>--}}
 {{--                        <a class="modal-login-forget-password" id="span_resetPass">Quên mật khẩu?</a>--}}
                         <button type="submit">Đăng nhập</button>
+                        <label for="remember_token_mobile" class="input-ratio-ct ghinho_theme3">
+                            <small class="label--checkbox">
+                                <div class="label--checkbox__name">
+                                    Ghi nhớ
+                                </div>
+                            </small>
+                            <input id="remember_token_mobile" type="checkbox" name="remember_token" value="1" class="allgame ghinho_theme3_input" >
+                            <span class="input-ratio-checkmark-ct --overwrite"></span>
+                        </label>
                         <span>Hoặc đăng nhập qua</span>
                         <div class="social-container">
                             <a href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class="social">
@@ -124,6 +133,19 @@
 {{--            <p class="modal-login-error" id="passwordError"></p>--}}
 {{--            <a class="modal-login-forget-password" id="span_resetPass">Quên mật khẩu?</a>--}}
             <button type="submit">Đăng nhập</button>
+            <label for="remember_token_mobile" class="input-ratio-ct ghinho_theme3">
+                <small class="label--checkbox">
+                    <div class="label--checkbox__name">
+                        Ghi nhớ
+                    </div>
+                                                                                                                                                                    </small>
+                <input id="remember_token_mobile" type="checkbox" name="remember_token" value="1" class="allgame ghinho_theme3_input" >
+                <span class="input-ratio-checkmark-ct --overwrite"></span>
+            </label>
+{{--            <label class="ghinho_theme3">--}}
+{{--                <input class="ghinho_theme3_input input-ratio-checkmark-ct --overwrite" type="checkbox" name="remember_token" value="1">--}}
+{{--                <small class="ghinho_theme3_span">Ghi nhớ</small>--}}
+{{--            </label>--}}
             <p>Hoặc đăng nhập qua</p>
             <div class="social-container">
                 <a href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class="social">

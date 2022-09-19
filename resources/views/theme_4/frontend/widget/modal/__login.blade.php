@@ -52,7 +52,12 @@
                     <button type="submit" class="btn btn-primary btn-block"><span
                             class="glyphicon glyphicon-off"></span> Đăng nhập
                     </button>
-
+                    <div class="checkbox icheck" style="margin-top: 8px">
+                        <label >
+                            <input type="checkbox" name="remember_token" value="1">
+                            <span style="margin-left: 4px;cursor: pointer">Ghi nhớ</span>
+                        </label>
+                    </div>
 
                     <div class="modal-bottom" style="margin-top: 15px">
                         <p class="text-center">
