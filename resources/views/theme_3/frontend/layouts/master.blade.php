@@ -8,13 +8,7 @@
     @yield('meta_robots')
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <meta name="path" content=""/>
-
-    @if(session()->has('jwt'))
-        <meta name="jwt" content="{{session()->get('jwt')}}" />
-    @else
-        <meta name="jwt" content="jwt" />
-    @endif
-
+    <meta name="jwt" content="jwt"/>
     {{--    <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />--}}
     @if(setting('sys_google_search_console') != '')
         <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />
@@ -93,6 +87,9 @@
     @endif
 </head>
 <body>
+
+
+
 
 @if(setting('sys_google_tag_manager_body') != '')
     <!-- Google Tag Manager (noscript) -->
