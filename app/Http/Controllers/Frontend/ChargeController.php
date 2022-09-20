@@ -81,6 +81,8 @@ class ChargeController extends Controller
             $dataSend = array();
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $data = $result_Api->response_data??null;
+
+
             if(isset($data) && $data->status == 1){
                 return view(''.theme('')->theme_key.'.frontend.pages.charge.index')->with('data',$data->data);
 

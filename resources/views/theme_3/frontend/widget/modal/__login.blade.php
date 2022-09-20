@@ -7,7 +7,7 @@
             <div class="modal-login-container" id="modal-login-container">
                 <div class="modal-login-form-container sign-up-container">
                     <img class="close-login-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/close_dark.svg" alt="">
-                    <form class="modal-login-form formRegister" id="formRegister" action="{{route('register')}}" method="POST">
+                    <form class="modal-login-form formRegister" id="formRegister" action="{{ url('/ajax/register') }}" method="POST">
                         @csrf
                         <p>Đăng ký</p>
                         <p class="modal-login-error text-center registError" id="registError"></p>
@@ -44,7 +44,7 @@
                     </form>
                 </div>
                 <div class="modal-login-form-container sign-in-container"   >
-                    <form class="modal-login-form formLogin" action="/ajax/login" id="formLogin"  method="POST">
+                    <form class="modal-login-form formLogin" action="{{ url('/ajax/login') }}" id="formLogin"  method="POST">
                         @csrf
                         <p>Đăng nhập</p>
                         <p class="modal-login-error text-center LoginError" id="LoginError" ></p>
@@ -121,7 +121,7 @@
         </div>
     </div>
     <div class="mobile-auth-form">
-        <form class="modal-login-form formLogin" id="formLoginMobile" action="/ajax/login" method="POST">
+        <form class="modal-login-form formLogin" id="formLoginMobile" action="{{ url('/ajax/login') }}" method="POST">
             @csrf
             <p class="modal-login-error text-center LoginError" id="LoginError" ></p>
             <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off" required>
@@ -154,7 +154,7 @@
             </div>
             <p id="changeFormRegister" class="mobile-auth-change-form">Bạn chưa có tài khoản? <span>Đăng ký tại đây</span></p>
         </form>
-        <form class="modal-login-form formRegister" id="formRegisterMobile" action="{{route('register')}}" method="POST" style="display: none">
+        <form class="modal-login-form formRegister" id="formRegisterMobile" action="{{ url('/ajax/register') }}" method="POST" style="display: none">
             @csrf
             <p class="modal-login-error text-center registError" id="registError"></p>
             <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" required>

@@ -13,7 +13,7 @@
                 <div class="p-4 h-100">
                     <div class="row justify-content-center align-items-center h-100">
                         <div class="col-lg-6">
-                            <form action="/ajax/login" method="post" id="form-login">
+                            <form action="{{ url('/ajax/login') }}" method="post" id="form-login">
                                 <h5 class="title-style-left mb-3"><strong>Đăng nhập</strong></h5>
                                 @csrf
                                 <div class="mb-3">
@@ -123,7 +123,7 @@
             </script>
             <div class="col-lg-4">
                 <div class="p-4 bg-light h-100">
-                    <form action="{{route('register')}}" method="POST" id="form-regist">
+                    <form action="{{ url('/ajax/register') }}" method="POST" id="form-regist">
                         @csrf
                         <h5 class="title-style-left mb-3"><strong>Tạo tài khoản mới</strong></h5>
                         <div class="mb-3">
