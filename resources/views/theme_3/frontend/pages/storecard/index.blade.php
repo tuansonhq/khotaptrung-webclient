@@ -1,8 +1,8 @@
 @extends('frontend.layouts.master')
 @section('scripts')
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>--}}
-    <script src="/assets/frontend/theme_3/js/js_phu/purchase_card.js?v={{time()}}"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/buycard.js"></script>
+    <script src="/js/{{theme('')->theme_key}}/store-card/store-card.js"></script>
+{{--    <script src="/assets/frontend/theme_3/js/js_phu/purchase_card.js?v={{time()}}"></script>--}}
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/buycard.js"></script>--}}
 @endsection
 @section('seo_head')
     @include('frontend.widget.__seo_head')

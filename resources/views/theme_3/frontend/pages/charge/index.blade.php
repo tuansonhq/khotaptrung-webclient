@@ -481,7 +481,7 @@
     @include('theme_3.frontend.widget.modal.__success_wallet_card')--}}
 
     <script src="/assets/frontend/theme_3/js/charge/charge.js?v={{time()}}"></script>
-
+{{--    <script src="/js/theme_3/charge/charge.js?v={{time()}}"></script>--}}
     <!-- Đem ra master chỗ này rồi  -->
 {{--    <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>--}}
 
