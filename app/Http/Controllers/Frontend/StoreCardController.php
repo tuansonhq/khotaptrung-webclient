@@ -99,7 +99,7 @@ class StoreCardController extends Controller
 
     public function getAmountStoreCard(Request $request)
     {
-        try{
+        try {
             $url = '/store-card/get-amount';
             $method = "GET";
             $dataSend = array();
@@ -170,13 +170,63 @@ class StoreCardController extends Controller
         }
     }
 
-    public function showListCard($name)
+    public function showListCard(Request $request,$name)
     {
-        return view(''.theme('')->theme_key.'.frontend.pages.storecard-v2.card-list',['key'=>$name]);
+        /*Get telecom*/
+        $url = '/store-card/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $data_telecoms = $result_Api->response_data??null;
+
+        if ($data_telecoms && $data_telecoms->status == 1 ){
+            /*Get amount*/
+            $url = '/store-card/get-amount';
+            $method = "GET";
+            $dataSend = array();
+            $dataSend['telecom'] = $name;
+            $result_api_amount = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $data_amounts = $result_api_amount->response_data??null;
+            if ($data_amounts && $data_amounts->status == 1) {
+                $data_view = [
+                    'key'=>$name,
+                    'data_telecoms'=>$data_telecoms,
+                    'data_amounts'=>$data_amounts,
+                    'status'=>1,
+                ];
+                return view(''.theme('')->theme_key.'.frontend.pages.storecard-v2.card-list',$data_view);
+            }
+        }
     }
     public function showDetailCard($name,$value)
     {
-        return view(''.theme('')->theme_key.'.frontend.pages.storecard-v2.card-single',['key'=>$name,'value'=>$value]);
+        /*Get telecom*/
+        $url = '/store-card/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $data_telecoms = $result_Api->response_data??null;
+
+        if ($data_telecoms && $data_telecoms->status == 1 ){
+            /*Get amount*/
+            $url = '/store-card/get-amount';
+            $method = "GET";
+            $dataSend = array();
+            $dataSend['telecom'] = $name;
+            $result_api_amount = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $data_amounts = $result_api_amount->response_data??null;
+            if ($data_amounts && $data_amounts->status == 1) {
+                $data_view = [
+                    'key'=>$name,
+                    'value'=>$value,
+                    'data_telecoms'=>$data_telecoms,
+                    'data_amounts'=>$data_amounts,
+                    'status'=>1,
+                ];
+                return view(''.theme('')->theme_key.'.frontend.pages.storecard-v2.card-single',$data_view);
+            }
+        }
+
     }
 
     public function getStoreCardHistory(Request $request)

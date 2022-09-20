@@ -39,7 +39,7 @@ $(document).ready(function () {
         data_send.quantity = parseInt(wrap.find('.t-quantity-card').text().trim());
         data_send._token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
-            url:'/mua-the',
+            url:'/ajax/mua-the',
             type:'POST',
             data:data_send,
             beforeSend:function () {

@@ -80,3 +80,29 @@ mix.js('resources/js/app.js', 'public/js')
     ], 'public/js/theme_3/store-card/store-card.js')
     .version();
 
+//theme 1
+mix.styles([
+    'public/assets/frontend/theme_1/lib/sweetalert2/sw2.css',
+    'public/assets/frontend/theme_1/lib/bootstrap/bootstrap.min.css',
+    'public/assets/frontend/theme_1/lib/swiper/swiper.min.css',
+    'public/assets/frontend/theme_1/lib/animate/animate.min.css',
+    'public/assets/frontend/theme_1/css/buyacc.css',
+    'public/assets/frontend/theme_1/lib/OwlCarousel2/owl.carousel.min.css',
+    'public/assets/frontend/theme_1/lib/bootstrap/bootstrap.min.css',
+    'public/assets/frontend/theme_1/lib/steps/jquery-steps.css',
+    'public/assets/frontend/theme_1/lib/select-nice/select-nice.css',
+    'public/assets/frontend/theme_1/css/bootstrap-datetimepicker.min.css',
+    'public/assets/frontend/theme_1/lib/bootstrapdatepicker/bootstrap-datepicker.min.css',
+    'public/assets/frontend/theme_1/lib/fancybox/jquery.fancybox.min.css',
+    'public/assets/frontend/theme_1/lib/fancybox/fancybox.css',
+    'public/assets/frontend/theme_1/lib/bootstrap-popover/bootstrap-popover-x.css',
+    'public/assets/frontend/theme_1/lib/date-picker/tui-date-picker.css',
+    'public/assets/frontend/theme_1/css/news.css',
+    'public/assets/frontend/theme_1/css/account.css',
+    'public/assets/frontend/theme_1/css/spin.css',
+    'public/assets/frontend/theme_1/lib/toastr/toastr.css',
+    'public/assets/frontend/theme_1/lib/steps/jquery-steps.css',
+    'public/assets/frontend/theme_1/css/style_trong.css',
+    'public/assets/frontend/theme_1/css/main.css',
+],'public/css/theme_1/main.css')
+

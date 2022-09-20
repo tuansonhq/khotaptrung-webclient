@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
 @section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/buy-card.js?v={{time()}}"></script>
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/buy-card.js?v={{time()}}"></script>--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/script_trong.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/input.js"></script>
 @endsection
@@ -13,8 +13,18 @@
     @include('frontend.widget.__seo_head',with(['datakey'=>$value,'dataname'=>$key]))
 @endsection
 @section('meta_robots')
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="index,follow"/>
 @endsection
+@php
+    function format_k($number) {
+        if($number >= 1000) {
+           return $number/1000 . "k";   // NB: you will want to round this
+        }
+        else {
+            return $number;
+        }
+    }
+@endphp
 @section('content')
     <div class="container-fix container" id="buy-card">
         {{--        BANNER --}}
@@ -33,6 +43,12 @@
             <li class="breadcrum--item">
                 <a href="/mua-the" class="breadcrum--link">Mua thẻ</a>
             </li>
+            <li class="breadcrum--item">
+                <a href="/mua-the-{{ $key }}" class="breadcrum--link">Mua thẻ {{ $key }}</a>
+            </li>
+            <li class="breadcrum--item">
+                <a href="/mua-the-{{ $key }}-{{ $value }}" class="breadcrum--link">Mua thẻ {{ $key }} {{ $value }}</a>
+            </li>
         </ul>
         {{-- end breadcrum--}}
         <div class="row mx-0">
@@ -49,11 +65,36 @@
                                 THẺ GAME
                             </span>
                             <span class="d-flex align-items-center">
-                                <i class="__icon --arrow --path__custom" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrows/arrow-down.png)"></i>
+                                <i class="__icon --arrow --path__custom"
+                                   style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrows/arrow-down.png)"></i>
                             </span>
                         </a>
                         <ul class="collapse card-list show" id="card--game__nav">
-{{--                            JS PASTE CODE HERE--}}
+                            {{--                            JS PASTE CODE HERE--}}
+                            @if( $data_telecoms->status == 1 )
+                                @forelse($data_telecoms->data as $telecom)
+                                    @if(strtolower($telecom->key) == strtolower($key))
+                                        @php
+                                            $card_is = $telecom;
+                                        @endphp
+                                    @else
+                                    @endif
+                                    @if($telecom->params->teltecom_type == 2)
+                                        <li class="card-item {{ strtolower($telecom->key) == strtolower($key) ? 'active' : '' }}">
+                                            <a href="/mua-the-{{ strtolower($telecom->key) }}" class="card-item_link">
+                                                <div class="card-item_thumb mr-2"><img
+                                                        src="{{ \App\Library\MediaHelpers::media($telecom->image) }}"
+                                                        alt="{{ $telecom->title }}"></div>
+                                                <span class="card-item_name"
+                                                      style="text-transform: capitalize;">thẻ {{ strtolower($telecom->title) }}</span>
+                                            </a>
+                                        </li>
+                                    @else
+                                    @endif
+                                @empty
+                                @endforelse
+                            @else
+                            @endif
                         </ul>
 
                         <a class="section--card p-lg-3" data-toggle="collapse" href="#card--phone__nav" role="button"
@@ -62,11 +103,36 @@
                                 THẺ ĐIỆN THOẠI
                             </span>
                             <span class="d-flex align-items-center">
-                                <i class="__icon --arrow --path__custom" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrows/arrow-down.png)"></i>
+                                <i class="__icon --arrow --path__custom"
+                                   style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrows/arrow-down.png)"></i>
                             </span>
                         </a>
                         <ul class="collapse card-list show" id="card--phone__nav">
-{{--                            JS PASTE CODE HERE--}}
+                            {{--                            JS PASTE CODE HERE--}}
+                            @if($data_telecoms->status == 1 )
+                                @forelse($data_telecoms->data as $telecom)
+                                    @if(strtolower($telecom->key) == strtolower($key))
+                                        @php
+                                            $card_is = $telecom;
+                                        @endphp
+                                    @else
+                                    @endif
+                                    @if($telecom->params->teltecom_type != 2)
+                                        <li class="card-item {{ strtolower($telecom->key) == strtolower($key) ? 'active' : '' }}">
+                                            <a href="/mua-the-{{ strtolower($telecom->key) }}" class="card-item_link">
+                                                <div class="card-item_thumb mr-2"><img
+                                                        src="{{ \App\Library\MediaHelpers::media($telecom->image) }}"
+                                                        alt="{{ $telecom->title }}"></div>
+                                                <span class="card-item_name"
+                                                      style="text-transform: capitalize;">thẻ {{ strtolower($telecom->title) }}</span>
+                                            </a>
+                                        </li>
+                                    @else
+                                    @endif
+                                @empty
+                                @endforelse
+                            @else
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -78,65 +144,82 @@
                 {{--                CARD SINGLE--}}
                 <div class="card --custom _mb-125" id="card--value">
                     <div class="card--head card--mobile__title px-lg-3 _py-075">
-                        <a href="/mua-the-garena" class="card--back d-lg-none d-block">
+                        <a href="/mua-the-{{ strtolower($key) }}" class="card--back d-lg-none d-block">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
                         </a>
-                        <h1 class="card--title">
-                            Thẻ
+                        <h1 class="card--title text-capitalize">
+                            Thẻ {{ $key }} {{ $value }}
                         </h1>
                     </div>
                     <div class="card--body p-lg-2 p-3">
                         <div class="row mx-lg-0" id="card--wrap__single">
                             {{--JS GENERATE HTML HERE--}}
-                            <div class="loader position-relative">
-                                <div class="loading-spokes">
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
+                            @forelse($data_amounts->data as $amount)
+                                @if(format_k($amount->amount) == strtolower($value))
+                                    @php
+                                        $amount_paid = $amount->amount - ($amount->amount * (100 - $amount->ratio_default)/100);
+                                    @endphp
+                                    <div class="col-12 col-lg-3 px-lg-2 mb-lg-4">
+                                        <div class="col-8 col-lg-12 p-0">
+                                            <div class="scratch-card card--single">
+                                                <div class="card--thumb">
+                                                    <img src="{{ \App\Library\MediaHelpers::media($card_is->image) }}"
+                                                         class="card--thumb__image" alt=""></div>
+                                                <div class="card--name"
+                                                     style="--bg-color: {{ $card_is->params->color ?? 'var(--primary-color)' }};">{{str_replace(',','.',number_format($amount->amount))}}
+                                                    VND
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card--deno my-lg-1" data-amount="{{ $amount->amount }}"
+                                             data-ratio_default="{{ $amount->ratio_default }}"
+                                             data-key="{{ strtolower($card_is->key) }}"> Mệnh
+                                            giá {{str_replace(',','.',number_format($amount->amount))}} đ
+                                        </div>
+                                        <div class="card--unit__price"> Đơn
+                                            giá: {{str_replace(',','.',number_format($amount_paid))}} đ
+                                        </div>
+                                        <div class="card--amount _mt-075"><span class="card--amount__title">           Số lượng        </span>
+                                            <div class="card--amount__group">
+                                                <button class="btn--amount -minus js-amount"
+                                                        data-action="minus"></button>
+                                                <input type="text" name="card-amount" class="input--amount" value="1"
+                                                       numberic="">
+                                                <button class="btn--amount -add js-amount" data-action="add">
+                                                    <!--                <img src="/assets/frontend/theme_3/image/icons/add.png" alt="">-->            </button>
+                                            </div>
+                                        </div>
+                                        @if(\App\Library\AuthCustom::check())
+                                            <button type="button" class="btn -secondary w-100 _mt-075 btn-buy-card" data-toggle="modal" data-target="#modal--confirm__payment">Chọn mua</button>
+                                        @else
+                                            <button type="button" class="btn -secondary w-100 _mt-075" onclick="openLoginModal()">Chọn mua</button>
+                                        @endif
                                     </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                </div>
-                            </div>
+                                @else
+                                @endif
+                            @empty
+                            @endforelse
                         </div>
                     </div>
                 </div>
                 {{--                CARD SINGLE--}}
                 {{--                SERVICE DESC--}}
-{{--                <div class="card --custom p-3 p-lg-3 _mb-125">--}}
-{{--                    <h2 class="card--desc__title mb-4">--}}
-{{--                        Mô tả dịch vụ--}}
-{{--                    </h2>--}}
-{{--                    <div class="card--desc__content content-video-in-add p-0">--}}
-{{--                        {!! setting('sys_store_card_content') !!}--}}
-{{--                    </div>--}}
-{{--                    <div class="col-md-12 left-right text-center js-toggle-content">--}}
-{{--                        <div class="view-more">--}}
-{{--                            <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></span>--}}
-{{--                        </div>--}}
-{{--                        <div class="view-less" style="display: none;">--}}
-{{--                            <span class="global__link">Thu gọn<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                {{--                <div class="card --custom p-3 p-lg-3 _mb-125">--}}
+                {{--                    <h2 class="card--desc__title mb-4">--}}
+                {{--                        Mô tả dịch vụ--}}
+                {{--                    </h2>--}}
+                {{--                    <div class="card--desc__content content-video-in-add p-0">--}}
+                {{--                        {!! setting('sys_store_card_content') !!}--}}
+                {{--                    </div>--}}
+                {{--                    <div class="col-md-12 left-right text-center js-toggle-content">--}}
+                {{--                        <div class="view-more">--}}
+                {{--                            <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></span>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="view-less" style="display: none;">--}}
+                {{--                            <span class="global__link">Thu gọn<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></span>--}}
+                {{--                        </div>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
                 {{--                END SERVICE DESC--}}
 
                 {{--                SAME KIND--}}
@@ -150,34 +233,20 @@
                         <div class="swiper card--other__swipe overflow-hidden">
                             <div class="swiper-wrapper" id="card--same__wrapper">
                                 {{--JS GENERATE HTML HERE--}}
-                                <div class="loader position-relative" id="card--same__wrap">
-                                    <div class="loading-spokes">
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
+                                @forelse($data_amounts->data as $amount)
+                                    @if(format_k($amount->amount) != strtolower($value))
+                                        <div class="swiper-slide">
+                                            <a href="/mua-the-{{ strtolower($key) }}-{{ format_k($amount->amount) }}" class="scratch-card">
+                                                <div class="card--thumb"><img src="{{ \App\Library\MediaHelpers::media($card_is->image) }}" class="card--thumb__image" alt=""></div>
+                                                <div class="card--name"
+                                                     style="--bg-color: {{ $card_is->params->color ?? 'var(--primary-color)' }};text-transform: capitalize"> {{str_replace(',','.',number_format($amount->amount))}} VND
+                                                </div>
+                                            </a>
                                         </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    @else
+                                    @endif
+                                @empty
+                                @endforelse
                             </div>
                         </div>
                     </div>
@@ -192,11 +261,6 @@
             {{--            END PAGE CONTENT--}}
         </div>
     </div>
-    <input type="hidden" value="{{ request()->route()->getName() }}" id="isRequest">
-
-    <input type="hidden" value="{{ strtolower(request()->route('card')) }}" id="isTelecom">
-    <input type="hidden" value="{{ request()->route('value') }}" id="isValue">
-    <input type="hidden" value="{{ App\Library\AuthCustom::check() }}" id="auth">
     <!-- Xác Nhận Thanh Toán Mobile-->
     <div class="mobile--confirm__payment step">
         <div class="step--header">
@@ -215,7 +279,8 @@
                     </div>
                     <div class="card--attr__value">
                         <div class="card--logo">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="" id="detail--logo__mobile">
+                            <img src="{{ \App\Library\MediaHelpers::media($card_is->image) }}" alt=""
+                                 id="detail--logo__mobile">
                         </div>
                     </div>
                 </div>
@@ -298,7 +363,7 @@
                             </div>
                             <div class="card--attr__value">
                                 <div class="card--logo">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="" id="detail--logo__card">
+                                    <img src="{{ \App\Library\MediaHelpers::media($card_is->image) }}" alt="" id="detail--logo__card" data-key="{{ strtolower($card_is->key) }}">
                                 </div>
                             </div>
                         </div>
@@ -393,7 +458,7 @@
         </div>
     </div>
     <!-- Thanh Toán Không Thành Công Mobile-->
-    <div class="mobile--fail__payment step"  style="display: none">
+    <div class="mobile--fail__payment step" style="display: none">
         <div class="step--header">
             <a href="" class="step--back js_step" data-go_to="step2">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
@@ -448,7 +513,8 @@
                             </div>
                             <div class="card--attr__value">
                                 <div class="card--logo">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" class="telecom__logo" alt="logo">
+                                    <img src="{{ \App\Library\MediaHelpers::media($card_is->image) }}"
+                                         class="telecom__logo" alt="logo">
                                 </div>
                             </div>
                         </div>
@@ -489,7 +555,8 @@
                         <div class="col-md-12 text-center" style="position: relative">
                             <span>Mua thẻ không thành công</span>
                             <div class="close" data-dismiss="modal" aria-label="Close">
-                                <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                                <img class="lazy img-close-ct close-modal-default"
+                                     src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -498,7 +565,8 @@
                 <div class="modal-body modal-body-success-ct">
                     <div class="row marginauto justify-content-center">
                         <div class="col-auto">
-                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/reject.png" alt="">
+                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/reject.png"
+                                 alt="">
                         </div>
                     </div>
                     <div class="row marginauto modal-body-span-success-ct justify-content-center">
@@ -513,7 +581,8 @@
                             <div class="row marginauto modal-footer-success-row-ct">
                                 <div class="col-md-12 left-right">
                                     <a href="javascript:void(0)" class="button-bg-ct"
-                                       style="display: flex;justify-content: center" data-dismiss="modal"><span>Đóng</span>
+                                       style="display: flex;justify-content: center"
+                                       data-dismiss="modal"><span>Đóng</span>
                                     </a>
                                 </div>
                             </div>
