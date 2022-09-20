@@ -48,7 +48,7 @@
             <div class="container pt-3">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="alert alert-info box-text hidetext" role="alert">
+                        <div class="alert alert-info box-text hidetext fix-image-acount"  role="alert">
 
                             <h1 class="alert-heading h1_category" style="color:#000">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</h1>
 

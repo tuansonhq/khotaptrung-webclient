@@ -135,13 +135,13 @@
 </div>
 
 {{--  modal hien thi nguoi mua website --}}
-<div class="fix-sedding">
-<div class="modal-sedding-notification sedding-notification-mobile" id="sedding-notification" >
-    <div class="close-sedding">
-        <i class="fas fa-times"></i>
-    </div>
-</div>
-</div>
+{{--<div class="fix-sedding">--}}
+{{--    <div class="modal-sedding-notification sedding-notification-mobile" id="sedding-notification" >--}}
+{{--        <div class="close-sedding">--}}
+{{--            <i class="fas fa-times"></i>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 {{-- end modal --}}
 
 @if(Request::is('/'))
@@ -233,7 +233,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/bootstrap-datetimepicker.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/modal_sedding.js?v={{time()}}"></script>
+{{--<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/modal_sedding.js?v={{time()}}"></script>--}}
 
 {{--impport script--}}
 @yield('scripts')

@@ -2449,4 +2449,7 @@ footer{
     }
 }
 
-
+.fix-image-acount img{
+    max-width: 100%;
+    height: auto;
+}

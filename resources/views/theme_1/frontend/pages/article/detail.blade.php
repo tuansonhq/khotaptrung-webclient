@@ -51,7 +51,7 @@
                             <div class="news_content_line"></div>
                         </div>
                         <div class="news_detail">
-                            <div class="news_detail_content">
+                            <div class="news_detail_content fix-image-acount">
                                 {!! $data->content !!}
                             </div>
                         </div>
