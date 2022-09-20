@@ -210,7 +210,7 @@ $(document).ready(function () {
     function reload_captcha() {
         $.ajax({
             type: 'GET',
-            url: '/reload-captcha',
+            url: '/ajax/reload-captcha',
             beforeSend: function () {
                 $('.refresh-captcha img').removeClass("paused");
                 $("#capchaImage").empty();
@@ -228,7 +228,7 @@ $(document).ready(function () {
 
     // Get card data
     function getTelecom () {
-        let url = '/api/get-tele-card';
+        let url = '/ajax/get-tele-card';
 
         $.ajax({
             type: "GET",
@@ -275,7 +275,7 @@ $(document).ready(function () {
     }
 
     function getAmount (telecom) {
-        let url = '/get-amount-tele-card';
+        let url = '/ajax/get-amount-tele-card';
         $.ajax({
             type: "GET",
             url: url,
