@@ -12,6 +12,7 @@
     <meta name="robots" content="index,follow" />
 @endsection
 @section('content')
+
     @if($data == null)
         <div class="item_buy">
             <div class="container pt-3">
