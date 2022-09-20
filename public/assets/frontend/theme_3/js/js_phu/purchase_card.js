@@ -41,7 +41,7 @@ $(document).ready(function () {
     $('#modal--confirm__payment #confirmSubmitButton').on('click', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/mua-the',
+            url:'/ajax/mua-the',
             type:'POST',
             data: dataSend,
             beforeSend: function () {

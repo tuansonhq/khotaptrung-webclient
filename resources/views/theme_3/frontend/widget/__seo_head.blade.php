@@ -7,14 +7,6 @@
         <title>{{ isset($data->custom->seo_title) ? $data->custom->seo_title :  $data->seo_title }}</title>
     @elseif(Request::is('dich-vu/'. $data->slug .''))
         <title>{{ $data->seo_title??'' }}</title>
-    @elseif(isset($data->title))
-
-            <title>{{$data->title }}</title>
-
-    @elseif(isset($data->seo_title))
-
-        <title>{{$data->seo_title }}</title>
-
     @endif
 @elseif(Request::is('dich-vu'))
     <title>Shop dịch vụ all game giá rẻ, uy tín, tự động.</title>
@@ -33,9 +25,13 @@
     @else
         <title>{{$title->title }}</title>
     @endif
+@elseif(isset($data->title))
+    @if(isset($data->randId))
+    @else
+        <title>{{$data->title }}</title>
+    @endif
 @else
     <title>  {{setting('sys_title') }}</title>
-
 @endif
 
 @if(Request::is('tin-tuc'))
@@ -52,17 +48,6 @@
     @elseif(Request::is('dich-vu/'. $data->slug .''))
         <meta name="description" content="{{ $data->seo_description??'' }}">
         <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
-    @elseif(isset($data->seo_description))
-
-        <meta name="description" content="{{ $data->seo_description??'' }}">
-        <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
-
-
-    @elseif(isset($data->description))
-
-        <meta name="description" content="{{ $data->description??'' }}">
-        <meta property="og:description" content="{{ $data->description??'' }}"/>
-    @else
     @endif
 @elseif(isset($data->randId))
     @if(Request::is('acc/'. $data->randId .''))
@@ -108,12 +93,6 @@
         <meta property="og:title" content="{{ isset($data->custom->seo_title) ? $data->custom->seo_title :  $data->seo_title }}">
     @elseif(Request::is('dich-vu/'. $data->slug .''))
         <meta property="og:title" content="{{ $data->title??'' }}">
-    @elseif(isset($data->seo_title))
-        <meta property="og:title" content="{{ $data->seo_title??'' }}">
-    @elseif(isset($data->title))
-        <meta property="og:title" content="{{ $data->title??'' }}">
-
-    @else
     @endif
 @elseif(Request::is('dich-vu'))
     <meta property="og:title" content="Shop dịch vụ all game giá rẻ, uy tín, tự động.">

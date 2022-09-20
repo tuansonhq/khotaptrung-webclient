@@ -28,7 +28,7 @@ $(document).ready(function () {
     $(document).on('click', '#modalConfirmPayment #confirmSubmitButton', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/mua-the',
+            url:'/ajax/mua-the',
             type:'POST',
             data: storeDataSend,
             beforeSend: function () {
@@ -135,7 +135,7 @@ $(document).ready(function () {
     $('#confirmMobileButton').on('click', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/mua-the',
+            url:'/ajax/mua-the',
             type:'POST',
             data: storeDataSend,
             beforeSend: function () {
@@ -233,7 +233,7 @@ $(document).ready(function () {
 
     function getListCard () {
         $.ajax({
-            url: '/store-card/get-telecom',
+            url: '/ajax/store-card/get-telecom',
             type: 'GET',
             success: function (res) {
                 if (res.status) {
@@ -293,7 +293,7 @@ $(document).ready(function () {
 
     function getCardAmount (cardKey) {
         $.ajax({
-            url: '/api/store-card/get-amount',
+            url: '/ajax/store-card/get-amount',
             type: 'GET',
             data: {
                 telecom: cardKey

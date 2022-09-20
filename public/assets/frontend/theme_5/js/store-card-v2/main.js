@@ -4,7 +4,7 @@ let is_view =$('#is_view');
 $(document).ready(function () {
     /*ajax get card*/
     $.ajax({
-        url: '/store-card/get-telecom',
+        url: '/ajax/store-card/get-telecom',
         type: 'GET',
         success: function (res) {
             setCard(res);
@@ -94,7 +94,7 @@ $(document).ready(function () {
             }
         });
         $.ajax({
-            url: '/store-card/get-amount',
+            url: '/ajax/store-card/get-amount',
             type: 'GET',
             data:{
                 telecom: telecom,

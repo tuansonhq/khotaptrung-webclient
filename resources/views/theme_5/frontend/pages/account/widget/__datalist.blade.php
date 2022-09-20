@@ -70,7 +70,7 @@
 {{--                    Form thanh toán nick random  formThanhToanNickRandom --}}
 
                     <div class="formDonhangAccount{{ $item->randId }} formThanhToanNickRandom">
-                        <form class="formDonhangAccount" action="/acc/{{ $item->randId }}/databuy" method="POST">
+                        <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
                             {{ csrf_field() }}
                             <div class="modal-header">
                                 <h2 class="modal-title center">Xác nhận thanh toán</h2>

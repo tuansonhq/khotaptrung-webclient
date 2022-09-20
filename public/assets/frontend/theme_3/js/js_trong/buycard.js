@@ -42,7 +42,7 @@ $(document).ready(function () {
     $(document).on('click', '#modal--confirm__payment #confirmSubmitButton', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/mua-the',
+            url:'/ajax/mua-the',
             type:'POST',
             data: dataSend,
             beforeSend: function () {
@@ -147,7 +147,7 @@ $(document).ready(function () {
     $('#confirmMobileButton').on('click', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/mua-the',
+            url:'/ajax/mua-the',
             type:'POST',
             data: dataSend,
             beforeSend: function () {
