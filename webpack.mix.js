@@ -35,6 +35,11 @@ mix.js('resources/js/app.js', 'public/js')
         'public/assets/frontend/theme_3/css/style_phu/form_element.css',
         'public/assets/frontend/theme_3/css/style_phu/login_modal.css',
     ], 'public/css/theme_3/main.css')
+    .styles([
+        'public/assets/frontend/theme_3/lib/sweetalert2/sw2.css',
+        'public/assets/frontend/theme_3/lib/bootstrap/bootstrap.min.css',
+        'public/assets/frontend/theme_3/lib/swiper/swiper.min.css',
+    ], 'public/css/theme_3/main.css')
     .scripts([
         'public/assets/frontend/theme_3/lib/jquery/jquery.min.js',
         'public/assets/frontend/theme_3/lib/bootstrap/bootstrap.min.js',
@@ -79,6 +84,14 @@ mix.js('resources/js/app.js', 'public/js')
         'public/assets/frontend/theme_3/js/js_trong/buycard.js',
     ], 'public/js/theme_3/store-card/store-card.js')
     .version();
+
+
+
+
+
+
+
+
 
 //theme 1
 mix.styles([
