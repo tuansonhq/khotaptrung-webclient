@@ -140,6 +140,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/ajax/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
                 Route::get('/lich-su-mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCardHistory']);
                 // lấy mệnh giá trong mua thẻ
+
                 Route::get('/ajax/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])->name('getAmountStoreCard');
 //                get api atm
                 Route::get('/ajax/transfer-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])->name('getIdCode');
