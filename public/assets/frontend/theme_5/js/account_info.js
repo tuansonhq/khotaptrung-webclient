@@ -3,7 +3,7 @@ $(document).ready(function(){
     const csrf_token = $('meta[name="csrf-token"]').attr('content');
     const token =  $('meta[name="jwt"]').attr('content');
     function getInfo(){
-        const url = '/api/user/account_info';
+        const url = '/ajax/user/account_info';
         if(token == 'undefined' || token == null || token =='' || token == undefined){
 
 
@@ -23,7 +23,7 @@ $(document).ready(function(){
                   $('.box-account_logined').hide();
 
 
-            $('meta[name="jwt"]').attr('content','jwt');
+            $('meta[name="jwt"]').attr('content','');
             return;
         }
         $.ajax({
@@ -51,7 +51,7 @@ $(document).ready(function(){
                     $('.account-logined').html(html);
                     $('.box-account_nologined').show();
                     $('.box-account_logined').hide();
-                    $('meta[name="jwt"]').attr('content','jwt');
+                    $('meta[name="jwt"]').attr('content','');
 
                 }
                 if(data.status == 401){

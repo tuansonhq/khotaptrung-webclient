@@ -3,7 +3,7 @@ $(document).ready(function () {
     let amount_card = $('.amount-card');
     /* Ajax lấy loại thẻ*/
     $.ajax({
-        url: '/store-card/get-telecom',
+        url: '/ajax/store-card/get-telecom',
         type: 'GET',
         beforeSend: addLoading(type_card),
         success: function (res) {

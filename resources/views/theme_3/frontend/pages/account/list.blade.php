@@ -29,6 +29,26 @@
 
     {{--    Banner--}}
 
+    @if($data == null)
+        <div class="item_buy">
+
+            <div class="container pt-3">
+                <div class="row pb-3 pt-3">
+                    <div class="col-md-12 text-center">
+                        <span style="color: red;font-size: 16px;">
+                            @if(isset($message))
+                                {{ $message }}
+                            @else
+                                Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                            @endif
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    @else
     {{--  Menu  --}}
     <section class="media-web">
         <div class="container container-fix menu-container-ct">
@@ -205,6 +225,7 @@
             </div>
         </div>
     </section>
+
     <section class="media-mobile">
         <div class="row marginauto intermediary-ct" style="height: 20px;background: #EFEFEF">
 
@@ -450,6 +471,7 @@
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick--update.js?v={{time()}}"></script>
+    @endif
 @endsection
 
 
