@@ -11,6 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
+//Theme 3
+
 mix.js('resources/js/app.js', 'public/js')
     .styles([
         'public/assets/frontend/theme_3/lib/sweetalert2/sw2.css',
@@ -32,4 +34,9 @@ mix.js('resources/js/app.js', 'public/js')
         'public/assets/frontend/theme_3/css/style_duong.css',
         'public/assets/frontend/theme_3/css/style_phu/form_element.css',
         'public/assets/frontend/theme_3/css/style_phu/login_modal.css',
-    ], 'public/css/theme_3/main.css');
+    ], 'public/css/theme_3/main.css')
+    .scripts([
+    'public/assets/frontend/{{theme(\'\')->theme_key}}/lib/lazy/jquery.lazy.min.js',
+        'public/assets/frontend/{{theme(\'\')->theme_key}}/lib/lazy/jquery.lazy.min.js',
+    ], 'public/js/datetimepicker.js');
+
