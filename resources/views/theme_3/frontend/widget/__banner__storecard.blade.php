@@ -6,7 +6,7 @@
                     @if(isset($item->image))
                         <div class="swiper-slide">
                             <a href="#" class="banner__link">
-                                <img onerror="imgError(this)" class="lazy" data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="POSTER BANNER">
+                                <img onerror="imgError(this)" class="" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="POSTER BANNER">
                             </a>
                         </div>
                     @endif
@@ -22,10 +22,9 @@
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <a href="#" class="banner__link">
-                    <img onerror="imgError(this)"  data-src="/assets/frontend/{{theme('')->theme_key}}/image/store_card_bg.png" class="banner__image lazy" alt="POSTER BANNER">
+                    <img onerror="imgError(this)"  src="/assets/frontend/{{theme('')->theme_key}}/image/store_card_bg.png" class="banner__image" alt="POSTER BANNER">
                 </a>
             </div>
-
         </div>
         <div class="swiper-pagination --custom"></div>
     </div>
