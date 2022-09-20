@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     // get ID code atm
     function getIdCode(){
-        var url = '/api/transfer-code';
+        var url = '/ajax/transfer-code';
         $.ajax({
             type: "GET",
             url: url,

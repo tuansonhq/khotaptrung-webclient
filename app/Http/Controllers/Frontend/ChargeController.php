@@ -20,6 +20,33 @@ class ChargeController extends Controller
 
 {
     public function index() {
+        try{
+            $url = '/deposit-auto/get-telecom';
+            $method = "GET";
+            $dataSend = array();
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $data = $result_Api->response_data??null;
+            if(isset($data) && $data->status == 1){
+                return response()->json([
+                    'status' => 1,
+                    'message' => 'Thành công',
+                    'data' => $data->data,
+                ],200);
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
+        }
+        catch(\Exception $e){
+            Log::error($e);
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
+            ]);
+        }
         return view('index');
     }
     public function capthcaFormValidate(Request $request) {
@@ -48,7 +75,38 @@ class ChargeController extends Controller
     public function getDepositAuto(Request $request)
     {
 
-        return view(''.theme('')->theme_key.'.frontend.pages.charge.index');
+        try{
+            $url = '/deposit-auto/get-telecom';
+            $method = "GET";
+            $dataSend = array();
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $data = $result_Api->response_data??null;
+
+
+            if(isset($data) && $data->status == 1){
+                return view(''.theme('')->theme_key.'.frontend.pages.charge.index')->with('data',$data->data);
+
+                return response()->json([
+                    'status' => 1,
+                    'message' => 'Thành công',
+                    'data' => $data->data,
+                ],200);
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
+        }
+        catch(\Exception $e){
+            Log::error($e);
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
+            ]);
+        }
+
 
     }
 

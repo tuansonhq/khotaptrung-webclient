@@ -14,26 +14,63 @@ class DirectAPI{
         $resultChange = new \stdClass();
         $http_url = \Request::server ("HTTP_HOST");
 
-      if ($flag > 1){
-          $resultChange->response_code = 407;
-          $resultChange->response_data = null;
-          return $resultChange;
-      }
+        if ($flag > 1){
+            $resultChange->response_code = 407;
+            $resultChange->response_data = null;
+            return $resultChange;
+        }
 
         $data ['domain'] = str_replace('www.','',$http_url);
         $data ['client'] =  str_replace('www.','',$http_url);
-//      $data ['domain'] = config('api.client');
-//      $data ['client'] =config('api.client');
+//
+//        $data ['domain'] = config('api.client');
+//        $data ['client'] =config('api.client');
+
         if(session()->has('jwt')){
             $data['token'] = session()->get('jwt');
         }
 
-      $data['secret_key'] = config('api.secret_key');
+        $data['secret_key'] = config('api.secret_key');
         if(is_array($data)){
             $dataPost = http_build_query($data);
         }else{
             $dataPost = $data;
         }
+
+//        Lấy ip user agent khách hàng
+
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        }
+
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = $_SERVER['REMOTE_ADDR'];
+
+        if(filter_var($client, FILTER_VALIDATE_IP))
+        {
+            $ip = $client;
+        }
+        elseif(filter_var($forward, FILTER_VALIDATE_IP))
+        {
+            $ip = $forward;
+        }
+        else
+        {
+            $ip = $remote;
+        }
+
+        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+
+//        $headers  = [
+//            'Content-Type: application/json',
+////            'data: '.$data,
+//        ];
+
+
+
         if($log == true){
             $myfile = fopen(storage_path() ."/logs/CACHE1-".Carbon::now()->format('Y-m-d').".txt", "a") or die("Unable to open file!");
             $txt = Carbon::now()." : [DATA: ".json_encode($data,JSON_UNESCAPED_UNICODE)."]";
@@ -56,6 +93,9 @@ class DirectAPI{
                 $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                 curl_setopt($ch, CURLOPT_REFERER, $actual_link);
             }
+
+//            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_TIMEOUT, 60);
             $resultRaw = curl_exec($ch);
@@ -70,6 +110,7 @@ class DirectAPI{
             else{
                 $result = json_decode($resultRaw);
                 if($httpcode==401){
+
                     $jwt_refresh_token = Cookie::get('jwt_refresh_token') ?? '';
                     if (isset($jwt_refresh_token)){
                         $url_refresh = '/refresh-token-remember';

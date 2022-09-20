@@ -3,7 +3,7 @@ $(document).ready(function(){
     const csrf_token = $('meta[name="csrf-token"]').attr('content');
     const token =  $('meta[name="jwt"]').attr('content');
     function getInfo(){
-        const url = '/api/user/account_info';
+        const url = '/ajax/user/account_info';
         if(token == 'undefined' || token == null || token =='' || token == undefined){
             if($(window).width() > 992){
 
@@ -26,7 +26,7 @@ $(document).ready(function(){
                 $('.box-account-mobile').show();
                 $('.box-account-mobile').html('<a href="#" data-toggle="modal" data-target="#modal-login"><i class="fas fa-user"></i></a>')
             }
-            $('meta[name="jwt"]').attr('content','jwt');
+            $('meta[name="jwt"]').attr('content','');
             return;
         }
         $.ajax({
@@ -63,7 +63,7 @@ $(document).ready(function(){
                         $('.box-account-mobile_data').html('<a href="#" data-toggle="modal" data-target="#modal-login"><i class="fas fa-user"></i></a>')
                     }
 
-                    $('meta[name="jwt"]').attr('content','jwt');
+                    $('meta[name="jwt"]').attr('content','');
 
                 }
                 if(data.status == 401){

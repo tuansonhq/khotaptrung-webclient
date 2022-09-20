@@ -73,7 +73,7 @@
                                         </div>
 
                                         <div class="formDonhangAccountHome{{ $item->randId }} formThanhToanNickRandomHome" style="display: none">
-                                            <form class="formDonhangAccountHome" action="/acc/{{ $item->randId }}/databuy" method="POST">
+                                            <form class="formDonhangAccountHome" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
                                                 {{ csrf_field() }}
                                                 <div class="modal-header p-0" style="border-bottom: 0">
                                                     <div class="row marginauto modal-header-order-ct">

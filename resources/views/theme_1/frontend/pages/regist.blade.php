@@ -7,7 +7,7 @@
         <div class="log-in-body">
             <p>Đăng ký thành viên</p>
 {{--            <p style="color: red;font-size: 14px">    {{ $errors->first() }}</p>--}}
-            <form action="{{route('register')}}" method="POST" id="form-regist">
+            <form action="{{ url('/ajax/register') }}" method="POST" id="form-regist">
                 <div class="regist_error"></div>
                 @csrf
                 <div class="form-group">

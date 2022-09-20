@@ -582,7 +582,7 @@
                 <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
                     <!--        <div class="image-login"></div>-->
                     <div class="modal-content">
-                        <form class="formDonhangAccount" action="/acc/{{ $data->randId }}/databuy" method="POST" data-id="{{ $data->id }}">
+                        <form class="formDonhangAccount" action="/ajax/acc/{{ $data->randId }}/databuy" method="POST" data-id="{{ $data->id }}">
                             {{ csrf_field() }}
                             <div class="modal-header p-0" style="border-bottom: 0">
                                 <div class="row marginauto modal-header-order-ct">
@@ -757,7 +757,7 @@
 
             {{-- HTMl to append to fieldset two of mobile device --}}
             <div id="fieldsetTwoPayment">
-                <form class="formDonhangAccount" action="/acc/{{ $data->randId }}/databuy" method="POST" data-id="{{ $data->id }}">
+                <form class="formDonhangAccount" action="/ajax/acc/{{ $data->randId }}/databuy" method="POST" data-id="{{ $data->id }}">
                     {{ csrf_field() }}
                     <section>
                         <div class="container container-fix banner-mobile-container-ct">

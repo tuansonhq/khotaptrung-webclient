@@ -503,7 +503,7 @@
                 <div class="loader" style="text-align: center"><img src="/assets/frontend/{{theme('')->theme_key}}/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
                 <div class="modal-content modal-content_accountlist">
 
-                    <form class="formDonhangAccount" action="/acc/{{ $data->randId }}/databuy" method="POST">
+                    <form class="formDonhangAccount" action="/ajax/acc/{{ $data->randId }}/databuy" method="POST">
                         {{ csrf_field() }}
 
                         <div class="modal-header">
