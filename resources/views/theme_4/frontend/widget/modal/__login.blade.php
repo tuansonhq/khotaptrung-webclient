@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="modal-body">
-                <form id="formLogin"  class="formLogin" action="/ajax/login" method="POST">
+                <form id="formLogin"  class="formLogin" action="{{ url('/ajax/login') }}" method="POST">
                     @csrf
                     <div class=" text-center">
                         <div class="my-4 text-center">
@@ -94,7 +94,7 @@
             </div>
 
             <div class="modal-body">
-                <form id="formRegister" action="{{route('register')}}" method="POST">
+                <form id="formRegister" action="{{ url('/ajax/register') }}" method="POST">
                     @csrf
                     <div class=" text-center">
                         <div class="my-4 text-center">
