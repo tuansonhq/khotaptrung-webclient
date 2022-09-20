@@ -46,7 +46,7 @@
     <!-- cdnjs -->
 
 
-    <script src="/js/{{theme('')->theme_key}}/main.js"></script>
+    <script src="/js/{{theme('')->theme_key}}/main.js?v={{time()}}"></script>
 
 
 {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery/jquery.min.js"></script>--}}
