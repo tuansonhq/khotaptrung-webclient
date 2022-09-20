@@ -79,7 +79,7 @@ $(document).ready(function () {
     let temp = {};
     if (route_is === 'getStoreCard' || route_is === 'showDetailCard' || route_is === 'showListCard') {
         $.ajax({
-            url: '/store-card/get-telecom',
+            url: '/ajax/store-card/get-telecom',
             type: 'GET',
             success: function (res) {
                 if (res.status) {
@@ -173,7 +173,7 @@ $(document).ready(function () {
     function getListAmount(){
         if (route_is === 'showListCard' || route_is === 'showDetailCard') {
             $.ajax({
-                url: '/store-card/get-amount',
+                url: '/ajax/store-card/get-amount',
                 type: 'GET',
                 data: {
                     telecom: card_is

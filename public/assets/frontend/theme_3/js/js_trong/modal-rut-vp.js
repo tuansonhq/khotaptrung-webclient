@@ -14,7 +14,7 @@ let swiper_item_possession = new Swiper('.swiper-withdraw',{
 });
 
 //toggle-password
-$('#modal-tab-withdraw [name="started_at"],#modal-tab-withdraw [name="ended_at"]').datetimepicker({
+$('#modal-tab-history [name="started_at"],#modal-tab-history [name="ended_at"]').datetimepicker({
     format: 'DD-MM-YYYY LT',
     useCurrent: false,
     icons:

@@ -29,7 +29,7 @@
                                         <div class="item-product item-other-nick mt-fix-16">
                                             <a href="javascript:void(0)">
                                                 <div class="item-product__box-img item-product__box-img__random">
-                                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($items->image)}}" alt="{{ $item->randId??'' }}">
+                                                    <img onerror="imgError(this)" class="lazy" data-src="{{\App\Library\MediaHelpers::media($items->image)}}" alt="{{ $item->randId??'' }}">
 
                                                     @if(App\Library\AuthCustom::check())
                                                         <button type="button" class="button-secondary list-item-nick-button buyacchome"  data-id="{{ $item->randId }}">Mua ngay</button>
@@ -73,7 +73,7 @@
                                         </div>
 
                                         <div class="formDonhangAccountHome{{ $item->randId }} formThanhToanNickRandomHome" style="display: none">
-                                            <form class="formDonhangAccountHome" action="/acc/{{ $item->randId }}/databuy" method="POST">
+                                            <form class="formDonhangAccountHome" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
                                                 {{ csrf_field() }}
                                                 <div class="modal-header p-0" style="border-bottom: 0">
                                                     <div class="row marginauto modal-header-order-ct">
@@ -266,7 +266,7 @@
                                             <div class="swiper-slide">
                                                 <div class="item-product__box-img">
                                                     <a href="javascript:void(0)">
-                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}">
+                                                        <img onerror="imgError(this)" class="lazy" data-src="{{\App\Library\MediaHelpers::media($items->image)}}" alt="{{ $item->randId??'' }}">
                                                     </a>
                                                 </div>
                                                 <div class="item-product__box-content">
@@ -279,20 +279,7 @@
                                                             ID: #{{ @$item->randId}}
                                                         </div>
                                                         <div class="item-product__box-rank">
-{{--                                                            <div class="item-product__box-rank">--}}
-{{--                                                                <div>--}}
-{{--                                                                    @if(isset($items->items_count))--}}
-{{--                                                                        @if((isset($items->account_fake) && $items->account_fake > 1) || (isset($items->custom->account_fake) && $items->custom->account_fake > 1))--}}
-{{--                                                                            Số tài khoản: {{ str_replace(',','.',number_format(round(isset($items->custom->account_fake) ? $items->items_count*$items->custom->account_fake : $items->items_count*$items->account_fake))) }}--}}
-{{--                                                                        @else--}}
-{{--                                                                            Số tài khoản: {{ $items->items_count }}--}}
-{{--                                                                        @endif--}}
 
-{{--                                                                    @else--}}
-{{--                                                                        Số tài khoản: 0--}}
-{{--                                                                    @endif--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
                                                         </div>
                                                         <div class="item-product__box-price">
 
@@ -304,6 +291,12 @@
                                                                 </div>
                                                             @endif
                                                         </div>
+                                                        @if(App\Library\AuthCustom::check())
+                                                            <button type="button" class="button-secondary list-item-nick-button buyacchome"  data-id="{{ $item->randId }}">Mua ngay</button>
+
+                                                        @else
+                                                            <button type="button" class="button-secondary list-item-nick-button " onclick="openLoginModal()">Mua ngay</button>
+                                                        @endif
                                                     </a>
                                                 </div>
                                             </div>
@@ -322,7 +315,7 @@
                                         <div class="item-product item-other-nick mt-fix-16">
                                             <a href="/acc/{{ $item->randId }}">
                                                 <div class="item-product__box-img">
-                                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}">
+                                                    <img onerror="imgError(this)" class="lazy" data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}">
                                                 </div>
                                                 <div class="item-product__box-content">
                                                     <div class="item-product__box-name limit-1 text-limit">
@@ -363,7 +356,7 @@
                                             <div class="swiper-slide">
                                                 <div class="item-product__box-img">
                                                     <a href="/acc/{{ $item->randId }}">
-                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}">
+                                                        <img onerror="imgError(this)" class="lazy" data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}">
                                                     </a>
                                                 </div>
                                                 <div class="item-product__box-content">

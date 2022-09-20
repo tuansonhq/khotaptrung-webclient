@@ -49,8 +49,22 @@
                                 <i class="__icon --arrow --path__custom" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrows/arrow-down.png)"></i>
                             </span>
                         </a>
-                        <ul class="collapse card-list show" id="card--game__nav">
+                        <ul class="collapse card-list show" id="card--game__navV2">
                             {{-- CARD LINK HERE--}}
+                            @foreach($telecoms as $key => $telecom)
+                                @if($telecom->params->teltecom_type == 2)
+                                     <li class="card-item ${nav_active}">
+                                         <a href="/mua-the-{{ $telecom->key }}" class="card-item_link">
+                                             <div class="card-item_thumb mr-2">
+                                                 <img src="{{ $telecom->image }}" alt="Icon {{ $telecom->title }}">
+                                             </div>
+                                             <span class="card-item_name" style="text-transform: capitalize;">
+                                                {{ $telecom->title }}
+                                            </span>
+                                         </a>
+                                     </li>
+                                @endif
+                            @endforeach
                         </ul>
 
                         <a class="section--card p-lg-3" data-toggle="collapse" href="#card--phone__nav" role="button"
@@ -65,6 +79,20 @@
                         </a>
                         <ul class="collapse card-list show" id="card--phone__nav">
                             {{-- CARD LINK HERE--}}
+                            @foreach($telecoms as $key => $telecom)
+                                @if($telecom->params->teltecom_type == 1)
+                                    <li class="card-item ${nav_active}">
+                                        <a href="/mua-the-{{ $telecom->key }}" class="card-item_link">
+                                            <div class="card-item_thumb mr-2">
+                                                <img src="{{ $telecom->image }}" alt="Icon {{ $telecom->title }}">
+                                            </div>
+                                            <span class="card-item_name" style="text-transform: capitalize;">
+                                                 {{ $telecom->title }}
+                                            </span>
+                                        </a>
+                                    </li>
+                                @endif
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -91,34 +119,20 @@
                     <div class="card--body p-lg-2">
                         <div class="row mx-lg-0 _px-sm-075 _pb-sm-075" id="grid--game__card">
                                 {{-- SHOW CARD HERE--}}
-                            <div class="loader position-relative">
-                                <div class="loading-spokes">
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            @foreach($telecoms as $key => $telecom)
+                                @if($telecom->params->teltecom_type == 2)
+                                     <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
+                                         <a href="/mua-the-{{ $telecom->key }}" class="scratch-card">
+                                             <div class="card--thumb">`;
+                                                 <img src="{{ $telecom->image }}" class="card--thumb__image py-1 py-lg-0" alt="{{ $telecom->title }}">
+                                             </div>
+                                             <div class="card--name" style="--bg-color: ${card.params ? card.params.color : '' };text-transform: capitalize;">
+                                                 {{ $telecom->title }}
+                                             </div>
+                                         </a>
+                                     </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>

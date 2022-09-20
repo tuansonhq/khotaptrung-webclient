@@ -15,427 +15,224 @@ class MinigameController extends Controller
     public function getIndex(Request $request)
     {
         try {
-            if (theme('')->theme_key == "theme_3"){
-                $method = "GET";
-                $data_group = array();
-                $data_group['token'] = Session::get('jwt');
-                $data_group['secret_key'] = config('api.secret_key');
-                $data_group['domain'] = \Request::server("HTTP_HOST");
+            $method = "GET";
+            $data = array();
+            $data['token'] = Session::get('jwt');
+            $data['secret_key'] = config('api.secret_key');
+            $data['domain'] = \Request::server("HTTP_HOST");
 
-                $url = '/minigame/get-list-minigame';
-                $result_Api_group = DirectAPI::_makeRequest($url, $data_group, $method);
-                $response_data_group = $result_Api_group->response_data??null;
+            $url = '/minigame/get-list-minigame';
+            $group_api = DirectAPI::_makeRequest($url, $data, $method);
+            if (isset($group_api) && $group_api->response_code == 200) {
+                $group_api = $group_api->response_data->data;
+            }
 
-                if(isset($response_data_group) && $response_data_group->status == 1){
-                    $group_api = $response_data_group->data;
+            $groups = array_filter($group_api, function ($value) use ($request) {
+                return $value->slug == $request->slug;
+            });
+            $groups_other = array_filter($group_api, function ($value) use ($request) {
+                return $value->slug != $request->slug;
+            });
+            $group = null;
+            foreach ($groups as $dataar) {
+                $group = $dataar;
+            }
 
-                    $groups = array_filter($group_api, function ($value) use ($request) {
-                        return $value->slug == $request->slug;
-                    });
+            $url = '/minigame/get-minigame-info';
+            $data['id'] = $group->id;
+            $data['module'] = explode('-', $group->module)[0];
+            $result_Api = DirectAPI::_makeRequest($url, $data, $method);
 
-                    if (count($groups)){
-                        $groups_other = array_filter($group_api, function ($value) use ($request) {
-                            return $value->slug != $request->slug;
-                        });
+            if (isset($result_Api) && $result_Api->response_code == 200) {
+                $result_out = $result_Api->response_data;
+                if ($result_out->status == 1) {
+                    $result = $result_out->data;
 
-                        $group = null;
-                        foreach ($groups as $dataar) {
-                            $group = $dataar;
-                        }
+                    //Tạo random đang chơi:
+                    if ($group->params->user_num_from > 0 && $group->params->user_num_to > 0 && $group->params->user_num_from < $group->params->user_num_to) {
+                        $numPlay = rand($group->params->user_num_from, $group->params->user_num_to);
+                    } else {
+                        $numPlay = rand(1, 1000);
+                    }
 
-                        //Tạo random đang chơi:
-                        if ($group->params->user_num_from > 0 && $group->params->user_num_to > 0 && $group->params->user_num_from < $group->params->user_num_to) {
-                            $numPlay = rand($group->params->user_num_from, $group->params->user_num_to);
-                        } else {
-                            $numPlay = rand(1, 1000);
-                        }
+                    //top quay thuong
+                    $firstname = ['James', 'Robert', 'John', 'Michael', 'William', 'David', 'Richard', 'Joseph', 'Thomas', 'Charles', 'Christopher', 'Daniel', 'Matthew', 'Anthony', 'Mark', 'Donald', 'Steven', 'Paul', 'Andrew', 'Joshua', 'Kenneth', 'Kevin', 'Brian', 'George', 'Edward', 'Ronald', 'Timothy', 'Jason', 'Jeffrey', 'Ryan', 'Jacob', 'Gary', 'Nicholas', 'Eric', 'Jonathan', 'Stephen', 'Larry', 'Justin', 'Scott', 'Brandon', 'Benjamin', 'Samuel', 'Gregory', 'Frank', 'Alexander', 'Raymond', 'Patrick', 'Jack', 'Dennis', 'Jerry', 'Tyler', 'Aaron', 'Jose', 'Adam', 'Henry', 'Nathan', 'Douglas', 'Zachary', 'Peter', 'Kyle', 'Walter', 'Ethan', 'Jeremy', 'Harold', 'Keith', 'Christian', 'Roger', 'Noah', 'Gerald', 'Carl', 'Terry', 'Sean', 'Austin', 'Arthur', 'Lawrence', 'Jesse', 'Dylan', 'Bryan', 'Joe', 'Jordan', 'Billy', 'Bruce', 'Albert', 'Willie', 'Gabriel', 'Logan', 'Alan', 'Juan', 'Wayne', 'Roy', 'Ralph', 'Randy', 'Eugene', 'Vincent', 'Russell', 'Elijah', 'Louis', 'Bobby', 'Philip', 'Johnny', 'Mary', 'Patricia', 'Jennifer', 'Linda', 'Elizabeth', 'Barbara', 'Susan', 'Jessica', 'Sarah', 'Karen', 'Nancy', 'Lisa', 'Betty', 'Margaret', 'Sandra', 'Ashley', 'Kimberly', 'Emily', 'Donna', 'Michelle', 'Dorothy', 'Carol', 'Amanda', 'Melissa', 'Deborah', 'Stephanie', 'Rebecca', 'Sharon', 'Laura', 'Cynthia'];
+                    $lastname = ['Johnathon', 'Anthony', 'Erasmo', 'Raleigh', 'Nancie', 'Tama', 'Camellia', 'Augustine', 'Christeen', 'Luz', 'Diego', 'Lyndia', 'Thomas', 'Georgianna', 'Leigha', 'Alejandro', 'Marquis', 'Joan', 'Stephania', 'Elroy', 'Zonia', 'Buffy', 'Sharie', 'Blythe', 'Gaylene', 'Elida', 'Randy', 'Margarete', 'Margarett', 'Dion', 'Tomi', 'Arden', 'Clora', 'Laine', 'Becki', 'Margherita', 'Bong', 'Jeanice', 'Qiana', 'Lawanda', 'Rebecka', 'Maribel', 'Tami', 'Yuri', 'Michele', 'Rubi', 'Larisa', 'Lloyd', 'Tyisha', 'Samatha', 'Mischke', 'Serna', 'Pingree', 'Mcnaught', 'Pepper', 'Schildgen', 'Mongold', 'Wrona', 'Geddes', 'Lanz', 'Fetzer', 'Schroeder', 'Block', 'Mayoral', 'Fleishman', 'Roberie', 'Latson', 'Lupo', 'Motsinger', 'Drews', 'Coby', 'Redner', 'Culton', 'Howe', 'Stoval', 'Michaud', 'Mote', 'Menjivar', 'Wiers', 'Paris', 'Grisby', 'Noren', 'Damron', 'Kazmierczak', 'Haslett', 'Guillemette', 'Buresh', 'Center', 'Kucera', 'Catt', 'Badon', 'Grumbles', 'Antes', 'Byron', 'Volkman', 'Klemp', 'Pekar', 'Pecora', 'Schewe', 'Ramage'];
+                    $numTop = 10;
+                    if ($group->params->acc_show_num > 0) {
+                        $numTop = $group->params->acc_show_num;
+                    }
 
-                        //top quay thuong
-                        $firstname = ['James', 'Robert', 'John', 'Michael', 'William', 'David', 'Richard', 'Joseph', 'Thomas', 'Charles', 'Christopher', 'Daniel', 'Matthew', 'Anthony', 'Mark', 'Donald', 'Steven', 'Paul', 'Andrew', 'Joshua', 'Kenneth', 'Kevin', 'Brian', 'George', 'Edward', 'Ronald', 'Timothy', 'Jason', 'Jeffrey', 'Ryan', 'Jacob', 'Gary', 'Nicholas', 'Eric', 'Jonathan', 'Stephen', 'Larry', 'Justin', 'Scott', 'Brandon', 'Benjamin', 'Samuel', 'Gregory', 'Frank', 'Alexander', 'Raymond', 'Patrick', 'Jack', 'Dennis', 'Jerry', 'Tyler', 'Aaron', 'Jose', 'Adam', 'Henry', 'Nathan', 'Douglas', 'Zachary', 'Peter', 'Kyle', 'Walter', 'Ethan', 'Jeremy', 'Harold', 'Keith', 'Christian', 'Roger', 'Noah', 'Gerald', 'Carl', 'Terry', 'Sean', 'Austin', 'Arthur', 'Lawrence', 'Jesse', 'Dylan', 'Bryan', 'Joe', 'Jordan', 'Billy', 'Bruce', 'Albert', 'Willie', 'Gabriel', 'Logan', 'Alan', 'Juan', 'Wayne', 'Roy', 'Ralph', 'Randy', 'Eugene', 'Vincent', 'Russell', 'Elijah', 'Louis', 'Bobby', 'Philip', 'Johnny', 'Mary', 'Patricia', 'Jennifer', 'Linda', 'Elizabeth', 'Barbara', 'Susan', 'Jessica', 'Sarah', 'Karen', 'Nancy', 'Lisa', 'Betty', 'Margaret', 'Sandra', 'Ashley', 'Kimberly', 'Emily', 'Donna', 'Michelle', 'Dorothy', 'Carol', 'Amanda', 'Melissa', 'Deborah', 'Stephanie', 'Rebecca', 'Sharon', 'Laura', 'Cynthia'];
-                        $lastname = ['Johnathon', 'Anthony', 'Erasmo', 'Raleigh', 'Nancie', 'Tama', 'Camellia', 'Augustine', 'Christeen', 'Luz', 'Diego', 'Lyndia', 'Thomas', 'Georgianna', 'Leigha', 'Alejandro', 'Marquis', 'Joan', 'Stephania', 'Elroy', 'Zonia', 'Buffy', 'Sharie', 'Blythe', 'Gaylene', 'Elida', 'Randy', 'Margarete', 'Margarett', 'Dion', 'Tomi', 'Arden', 'Clora', 'Laine', 'Becki', 'Margherita', 'Bong', 'Jeanice', 'Qiana', 'Lawanda', 'Rebecka', 'Maribel', 'Tami', 'Yuri', 'Michele', 'Rubi', 'Larisa', 'Lloyd', 'Tyisha', 'Samatha', 'Mischke', 'Serna', 'Pingree', 'Mcnaught', 'Pepper', 'Schildgen', 'Mongold', 'Wrona', 'Geddes', 'Lanz', 'Fetzer', 'Schroeder', 'Block', 'Mayoral', 'Fleishman', 'Roberie', 'Latson', 'Lupo', 'Motsinger', 'Drews', 'Coby', 'Redner', 'Culton', 'Howe', 'Stoval', 'Michaud', 'Mote', 'Menjivar', 'Wiers', 'Paris', 'Grisby', 'Noren', 'Damron', 'Kazmierczak', 'Haslett', 'Guillemette', 'Buresh', 'Center', 'Kucera', 'Catt', 'Badon', 'Grumbles', 'Antes', 'Byron', 'Volkman', 'Klemp', 'Pekar', 'Pecora', 'Schewe', 'Ramage'];
+                    if ($numTop > 10) {
                         $numTop = 10;
-                        if ($group->params->acc_show_num > 0) {
-                            $numTop = $group->params->acc_show_num;
-                        }
+                    }
 
-                        if ($numTop > 10) {
-                            $numTop = 10;
+                    $topDayList = Cache::get('topDayList' . $group->id);
+                    if ($topDayList == null) {
+                        $topDayList = array();
+                        for ($i = 0; $i < $numTop; $i++) {
+                            $fname = $firstname[rand(0, count($firstname) - 1)];
+                            $lname = $lastname[rand(0, count($lastname) - 1)];
+                            $name = substr($fname, 0, rand(2, 3));
+                            $name .= '*****';
+                            $name .= substr($lname, (strlen($lname) - rand(2, 3)), strlen($lname));
+                            if ($group->params->play_num_from > 0 && $group->params->play_num_to > 0 && $group->params->play_num_from < $group->params->play_num_to) {
+                                $num = rand($group->params->user_num_from, $group->params->play_num_to);
+                            } else {
+                                $num = rand(1, 1000);
+                            }
+                            $topDay = [
+                                'name' => $name,
+                                'numwheel' => $num
+                            ];
+                            array_push($topDayList, $topDay);
                         }
+                        array_multisort(array_column($topDayList, 'numwheel'), SORT_DESC, SORT_NATURAL | SORT_FLAG_CASE, $topDayList);
+                        $expiresAt = Carbon::now()->addHours(24);
+                        Cache::put('topDayList' . $group->id, $topDayList, $expiresAt);
+                    }
 
-                        $topDayList = Cache::get('topDayList' . $group->id);
-                        if ($topDayList == null) {
-                            $topDayList = array();
-                            for ($i = 0; $i < $numTop; $i++) {
-                                $fname = $firstname[rand(0, count($firstname) - 1)];
-                                $lname = $lastname[rand(0, count($lastname) - 1)];
-                                $name = substr($fname, 0, rand(2, 3));
-                                $name .= '*****';
-                                $name .= substr($lname, (strlen($lname) - rand(2, 3)), strlen($lname));
-                                if ($group->params->play_num_from > 0 && $group->params->play_num_to > 0 && $group->params->play_num_from < $group->params->play_num_to) {
-                                    $num = rand($group->params->user_num_from, $group->params->play_num_to);
+                    $top7DayList = Cache::get('top7DayList' . $group->id);
+                    if ($top7DayList == null) {
+                        $top7DayList = array();
+                        for ($i = 1; $i < $numTop; $i++) {
+                            $fname = $firstname[rand(0, count($firstname) - 1)];
+                            $lname = $lastname[rand(0, count($lastname) - 1)];
+                            $name = substr($fname, 0, rand(2, 3));
+                            $name .= '*****';
+                            $name .= substr($lname, (strlen($lname) - rand(2, 3)), strlen($lname));
+                            if ($group->params->play_num_from > 0 && $group->params->play_num_to > 0 && $group->params->play_num_from < $group->params->play_num_to) {
+                                $num = rand($group->params->user_num_from * 7, $group->params->play_num_to * 7);
+                            } else {
+                                $num = rand(1, 7000);
+                            }
+                            $topDay = [
+                                'name' => $name,
+                                'numwheel' => $num
+                            ];
+                            array_push($top7DayList, $topDay);
+                        }
+                        array_multisort(array_column($top7DayList, 'numwheel'), SORT_DESC, SORT_NATURAL | SORT_FLAG_CASE, $top7DayList);
+                        $expiresAt = Carbon::now()->addHours(24 * 7);
+                        Cache::put('top7DayList' . $group->id, $top7DayList, $expiresAt);
+                    }
+
+                    $numNear = 10;
+                    $numNearSpecial = 10;
+                    if ($group->params->play_num_near > 0) {
+                        $numNear = $group->params->play_num_near;
+                    }
+                    if ($group->params->special_num_from > 0 && $group->params->special_num_to > 0 && $group->params->special_num_from < $group->params->special_num_to) {
+                        $numNearSpecial = rand($group->params->special_num_from, $group->params->special_num_to);
+                    }
+                    $currentPlayList = "";
+                    if (count($result->group->items) > 0) {
+                        $currentPlayList = Cache::get('currentPlayList' . $group->id);
+                        if ($currentPlayList == null) {
+                            $arrayGift = [];
+                            $arrayGiftSpecial = [];
+                            foreach ($result->group->items as $key) {
+                                if (isset($key->params->special) && $key->params->special == 1) {
+                                    array_push($arrayGiftSpecial, $key->title);
                                 } else {
-                                    $num = rand(1, 1000);
+                                    array_push($arrayGift, $key->title);
                                 }
-                                $topDay = [
-                                    'name' => $name,
-                                    'numwheel' => $num
-                                ];
-                                array_push($topDayList, $topDay);
-                            }
-                            array_multisort(array_column($topDayList, 'numwheel'), SORT_DESC, SORT_NATURAL | SORT_FLAG_CASE, $topDayList);
-                            $expiresAt = Carbon::now()->addHours(24);
-                            Cache::put('topDayList' . $group->id, $topDayList, $expiresAt);
-                        }
-
-                        $top7DayList = Cache::get('top7DayList' . $group->id);
-                        if ($top7DayList == null) {
-                            $top7DayList = array();
-                            for ($i = 1; $i < $numTop; $i++) {
-                                $fname = $firstname[rand(0, count($firstname) - 1)];
-                                $lname = $lastname[rand(0, count($lastname) - 1)];
-                                $name = substr($fname, 0, rand(2, 3));
-                                $name .= '*****';
-                                $name .= substr($lname, (strlen($lname) - rand(2, 3)), strlen($lname));
-                                if ($group->params->play_num_from > 0 && $group->params->play_num_to > 0 && $group->params->play_num_from < $group->params->play_num_to) {
-                                    $num = rand($group->params->user_num_from * 7, $group->params->play_num_to * 7);
-                                } else {
-                                    $num = rand(1, 7000);
-                                }
-                                $topDay = [
-                                    'name' => $name,
-                                    'numwheel' => $num
-                                ];
-                                array_push($top7DayList, $topDay);
-                            }
-                            array_multisort(array_column($top7DayList, 'numwheel'), SORT_DESC, SORT_NATURAL | SORT_FLAG_CASE, $top7DayList);
-                            $expiresAt = Carbon::now()->addHours(24 * 7);
-                            Cache::put('top7DayList' . $group->id, $top7DayList, $expiresAt);
-                        }
-
-                        if ($request->ajax()){
-
-                            $url = '/minigame/get-minigame-info';
-                            $data['id'] = $group->id;
-                            $data['module'] = explode('-', $group->module)[0];
-                            $result_Api = DirectAPI::_makeRequest($url, $data, $method);
-                            $response_data = $result_Api->response_data??null;
-
-                            if(isset($response_data) && $response_data->status == 1){
-                                $result = $response_data->data;
-
-                                $numNear = 10;
-                                $numNearSpecial = 10;
-                                if ($group->params->play_num_near > 0) {
-                                    $numNear = $group->params->play_num_near;
-                                }
-                                if ($group->params->special_num_from > 0 && $group->params->special_num_to > 0 && $group->params->special_num_from < $group->params->special_num_to) {
-                                    $numNearSpecial = rand($group->params->special_num_from, $group->params->special_num_to);
-                                }
-                                $currentPlayList = "";
-                                if (count($result->group->items) > 0) {
-//                                    $currentPlayList = Cache::get('currentPlayList' . $group->id);
-                                    if ($currentPlayList == null) {
-                                        $arrayGift = [];
-                                        $arrayGiftSpecial = [];
-                                        foreach ($result->group->items as $key) {
-                                            if (isset($key->params->special) && $key->params->special == 1) {
-                                                array_push($arrayGiftSpecial, $key->title);
-                                            } else {
-                                                array_push($arrayGift, $key->title);
-                                            }
-                                        }
-
-                                        if (count($arrayGiftSpecial) > 0) {
-                                            for ($i = 0; $i <= $numNearSpecial; $i++) {
-                                                $fname = $firstname[rand(0, count($firstname) - 1)];
-                                                $lname = $lastname[rand(0, count($lastname) - 1)];
-                                                $name = substr($fname, 0, rand(2, 3));
-                                                $name .= '*****';
-                                                $name .= substr($lname, (strlen($lname) - rand(2, 3)), strlen($lname));
-                                                $gift = $arrayGiftSpecial[rand(0, count($arrayGiftSpecial) - 1)];
-                                                $currentPlayList = $currentPlayList . '&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #28a745"><i class="menu-icon fas fa-user"></i>&nbsp;&nbsp;' . $name . '</span> - đã trúng ' . $gift;
-                                            }
-                                        }
-
-                                        if (count($arrayGift) > 0) {
-                                            for ($i = 0; $i <= $numNear; $i++) {
-                                                $fname = $firstname[rand(0, count($firstname) - 1)];
-                                                $lname = $lastname[rand(0, count($lastname) - 1)];
-                                                $name = substr($fname, 0, rand(2, 3));
-                                                $name .= '*****';
-                                                $name .= substr($lname, (strlen($lname) - rand(2, 3)), strlen($lname));
-                                                $gift = $arrayGift[rand(0, count($arrayGift) - 1)];
-                                                $currentPlayList = $currentPlayList . '&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #28a745"><i class="menu-icon fas fa-user"></i>&nbsp;&nbsp;' . $name . '</span> - đã trúng ' . $gift;
-                                            }
-                                        }
-                                        $currentPlayList = $currentPlayList != "" ? ("Danh sách trúng thưởng: " . $currentPlayList) : "";
-
-//                                        $expiresAt = Carbon::now()->addMinutes(5);
-//                                        Cache::put('currentPlayList' . $group->id, $currentPlayList, $expiresAt);
-
-                                        $html = view('frontend.pages.minigame.widget.__detail')
-                                            ->with('position',$result->group->position)
-                                            ->with('result',$result)
-                                            ->with('currentPlayList',$currentPlayList)->render();
-
-                                        return response()->json([
-                                            'status' => 1,
-                                            'data' => $html,
-                                            'message' => 'Load du lieu thanh cong.',
-                                        ]);
-
-                                    }
-                                }
-                            }else{
-                                return response()->json([
-                                    'status' => 0,
-                                    'message' => 'Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật thường xuyên bạn vui lòng theo dõi web trong thời gian tới !',
-                                ]);
                             }
 
-                        }
+                            if (count($arrayGiftSpecial) > 0) {
+                                for ($i = 0; $i <= $numNearSpecial; $i++) {
+                                    $fname = $firstname[rand(0, count($firstname) - 1)];
+                                    $lname = $lastname[rand(0, count($lastname) - 1)];
+                                    $name = substr($fname, 0, rand(2, 3));
+                                    $name .= '*****';
+                                    $name .= substr($lname, (strlen($lname) - rand(2, 3)), strlen($lname));
+                                    $gift = $arrayGiftSpecial[rand(0, count($arrayGiftSpecial) - 1)];
+                                    $currentPlayList = $currentPlayList . '&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #28a745"><i class="menu-icon fas fa-user"></i>&nbsp;&nbsp;' . $name . '</span> - đã trúng ' . $gift;
+                                }
+                            }
 
+                            if (count($arrayGift) > 0) {
+                                for ($i = 0; $i <= $numNear; $i++) {
+                                    $fname = $firstname[rand(0, count($firstname) - 1)];
+                                    $lname = $lastname[rand(0, count($lastname) - 1)];
+                                    $name = substr($fname, 0, rand(2, 3));
+                                    $name .= '*****';
+                                    $name .= substr($lname, (strlen($lname) - rand(2, 3)), strlen($lname));
+                                    $gift = $arrayGift[rand(0, count($arrayGift) - 1)];
+                                    $currentPlayList = $currentPlayList . '&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #28a745"><i class="menu-icon fas fa-user"></i>&nbsp;&nbsp;' . $name . '</span> - đã trúng ' . $gift;
+                                }
+                            }
+                            $currentPlayList = $currentPlayList != "" ? ("Danh sách trúng thưởng: " . $currentPlayList) : "";
+
+                            $expiresAt = Carbon::now()->addMinutes(5);
+                            Cache::put('currentPlayList' . $group->id, $currentPlayList, $expiresAt);
+                        }
+                    }
+
+//                    lich su trung thuong
+                    $url_logs = '/minigame/get-log';
+                    $data['id'] = $group->id;
+                    $data['module'] = explode('-', $group->module)[0];
+                    $data['page'] = 1;
+                    $result_Api_logs = DirectAPI::_makeRequest($url_logs, $data, $method);
+
+                    if (isset($result_Api_logs) && $result_Api_logs->response_code == 200) {
                         $data_view = [
-                            'group' => $group,
+                            'result' => $result,
                             'groups_other' => $groups_other,
                             'numPlay' => $numPlay,
                             'topDayList' => $topDayList,
                             'top7DayList' => $top7DayList,
+                            'currentPlayList' => $currentPlayList,
+                            'position' => $result->group->position,
+                            'logs' => $result_Api->response_data->data,
                         ];
-
-                        return view('frontend.pages.minigame.detail', $data_view);
-                    }else{
-                        return view('frontend.404.404');
-                    }
-                }else{
-                    $groups = null;
-                    $message = $response_data_group->message??"Không thể lấy dữ liệu";
-
-                    return view('frontend.pages.minigame.detail')
-                        ->with('message',$message)
-                        ->with('groups',$groups);
-                }
-
-            }else{
-                $method = "GET";
-                $data = array();
-                $data['token'] = Session::get('jwt');
-                $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = \Request::server("HTTP_HOST");
-
-                $url = '/minigame/get-list-minigame';
-                $group_api = DirectAPI::_makeRequest($url, $data, $method);
-                if (isset($group_api) && $group_api->response_code == 200) {
-                    $group_api = $group_api->response_data->data;
-                }
-
-                $groups = array_filter($group_api, function ($value) use ($request) {
-                    return $value->slug == $request->slug;
-                });
-                $groups_other = array_filter($group_api, function ($value) use ($request) {
-                    return $value->slug != $request->slug;
-                });
-                $group = null;
-                foreach ($groups as $dataar) {
-                    $group = $dataar;
-                }
-
-                $url = '/minigame/get-minigame-info';
-                $data['id'] = $group->id;
-                $data['module'] = explode('-', $group->module)[0];
-                $result_Api = DirectAPI::_makeRequest($url, $data, $method);
-
-                if (isset($result_Api) && $result_Api->response_code == 200) {
-                    $result_out = $result_Api->response_data;
-                    if ($result_out->status == 1) {
-                        $result = $result_out->data;
-
-                        //Tạo random đang chơi:
-                        if ($group->params->user_num_from > 0 && $group->params->user_num_to > 0 && $group->params->user_num_from < $group->params->user_num_to) {
-                            $numPlay = rand($group->params->user_num_from, $group->params->user_num_to);
-                        } else {
-                            $numPlay = rand(1, 1000);
+                        switch ($result->group->position) {
+                            case 'rubywheel':
+                            case 'flip':
+                            case 'slotmachine':
+                            case 'slotmachine5':
+                            case 'squarewheel':
+                            case 'smashwheel':
+                            case 'rungcay':
+                            case 'gieoque':
+                                return view('frontend.pages.minigame.detail', $data_view);
+                            default:
+                                return redirect()->back()->withErrors($result_out->message);
                         }
-
-                        //top quay thuong
-                        $firstname = ['James', 'Robert', 'John', 'Michael', 'William', 'David', 'Richard', 'Joseph', 'Thomas', 'Charles', 'Christopher', 'Daniel', 'Matthew', 'Anthony', 'Mark', 'Donald', 'Steven', 'Paul', 'Andrew', 'Joshua', 'Kenneth', 'Kevin', 'Brian', 'George', 'Edward', 'Ronald', 'Timothy', 'Jason', 'Jeffrey', 'Ryan', 'Jacob', 'Gary', 'Nicholas', 'Eric', 'Jonathan', 'Stephen', 'Larry', 'Justin', 'Scott', 'Brandon', 'Benjamin', 'Samuel', 'Gregory', 'Frank', 'Alexander', 'Raymond', 'Patrick', 'Jack', 'Dennis', 'Jerry', 'Tyler', 'Aaron', 'Jose', 'Adam', 'Henry', 'Nathan', 'Douglas', 'Zachary', 'Peter', 'Kyle', 'Walter', 'Ethan', 'Jeremy', 'Harold', 'Keith', 'Christian', 'Roger', 'Noah', 'Gerald', 'Carl', 'Terry', 'Sean', 'Austin', 'Arthur', 'Lawrence', 'Jesse', 'Dylan', 'Bryan', 'Joe', 'Jordan', 'Billy', 'Bruce', 'Albert', 'Willie', 'Gabriel', 'Logan', 'Alan', 'Juan', 'Wayne', 'Roy', 'Ralph', 'Randy', 'Eugene', 'Vincent', 'Russell', 'Elijah', 'Louis', 'Bobby', 'Philip', 'Johnny', 'Mary', 'Patricia', 'Jennifer', 'Linda', 'Elizabeth', 'Barbara', 'Susan', 'Jessica', 'Sarah', 'Karen', 'Nancy', 'Lisa', 'Betty', 'Margaret', 'Sandra', 'Ashley', 'Kimberly', 'Emily', 'Donna', 'Michelle', 'Dorothy', 'Carol', 'Amanda', 'Melissa', 'Deborah', 'Stephanie', 'Rebecca', 'Sharon', 'Laura', 'Cynthia'];
-                        $lastname = ['Johnathon', 'Anthony', 'Erasmo', 'Raleigh', 'Nancie', 'Tama', 'Camellia', 'Augustine', 'Christeen', 'Luz', 'Diego', 'Lyndia', 'Thomas', 'Georgianna', 'Leigha', 'Alejandro', 'Marquis', 'Joan', 'Stephania', 'Elroy', 'Zonia', 'Buffy', 'Sharie', 'Blythe', 'Gaylene', 'Elida', 'Randy', 'Margarete', 'Margarett', 'Dion', 'Tomi', 'Arden', 'Clora', 'Laine', 'Becki', 'Margherita', 'Bong', 'Jeanice', 'Qiana', 'Lawanda', 'Rebecka', 'Maribel', 'Tami', 'Yuri', 'Michele', 'Rubi', 'Larisa', 'Lloyd', 'Tyisha', 'Samatha', 'Mischke', 'Serna', 'Pingree', 'Mcnaught', 'Pepper', 'Schildgen', 'Mongold', 'Wrona', 'Geddes', 'Lanz', 'Fetzer', 'Schroeder', 'Block', 'Mayoral', 'Fleishman', 'Roberie', 'Latson', 'Lupo', 'Motsinger', 'Drews', 'Coby', 'Redner', 'Culton', 'Howe', 'Stoval', 'Michaud', 'Mote', 'Menjivar', 'Wiers', 'Paris', 'Grisby', 'Noren', 'Damron', 'Kazmierczak', 'Haslett', 'Guillemette', 'Buresh', 'Center', 'Kucera', 'Catt', 'Badon', 'Grumbles', 'Antes', 'Byron', 'Volkman', 'Klemp', 'Pekar', 'Pecora', 'Schewe', 'Ramage'];
-                        $numTop = 10;
-                        if ($group->params->acc_show_num > 0) {
-                            $numTop = $group->params->acc_show_num;
-                        }
-
-                        if ($numTop > 10) {
-                            $numTop = 10;
-                        }
-
-                        $topDayList = Cache::get('topDayList' . $group->id);
-                        if ($topDayList == null) {
-                            $topDayList = array();
-                            for ($i = 0; $i < $numTop; $i++) {
-                                $fname = $firstname[rand(0, count($firstname) - 1)];
-                                $lname = $lastname[rand(0, count($lastname) - 1)];
-                                $name = substr($fname, 0, rand(2, 3));
-                                $name .= '*****';
-                                $name .= substr($lname, (strlen($lname) - rand(2, 3)), strlen($lname));
-                                if ($group->params->play_num_from > 0 && $group->params->play_num_to > 0 && $group->params->play_num_from < $group->params->play_num_to) {
-                                    $num = rand($group->params->user_num_from, $group->params->play_num_to);
-                                } else {
-                                    $num = rand(1, 1000);
-                                }
-                                $topDay = [
-                                    'name' => $name,
-                                    'numwheel' => $num
-                                ];
-                                array_push($topDayList, $topDay);
-                            }
-                            array_multisort(array_column($topDayList, 'numwheel'), SORT_DESC, SORT_NATURAL | SORT_FLAG_CASE, $topDayList);
-                            $expiresAt = Carbon::now()->addHours(24);
-                            Cache::put('topDayList' . $group->id, $topDayList, $expiresAt);
-                        }
-
-                        $top7DayList = Cache::get('top7DayList' . $group->id);
-                        if ($top7DayList == null) {
-                            $top7DayList = array();
-                            for ($i = 1; $i < $numTop; $i++) {
-                                $fname = $firstname[rand(0, count($firstname) - 1)];
-                                $lname = $lastname[rand(0, count($lastname) - 1)];
-                                $name = substr($fname, 0, rand(2, 3));
-                                $name .= '*****';
-                                $name .= substr($lname, (strlen($lname) - rand(2, 3)), strlen($lname));
-                                if ($group->params->play_num_from > 0 && $group->params->play_num_to > 0 && $group->params->play_num_from < $group->params->play_num_to) {
-                                    $num = rand($group->params->user_num_from * 7, $group->params->play_num_to * 7);
-                                } else {
-                                    $num = rand(1, 7000);
-                                }
-                                $topDay = [
-                                    'name' => $name,
-                                    'numwheel' => $num
-                                ];
-                                array_push($top7DayList, $topDay);
-                            }
-                            array_multisort(array_column($top7DayList, 'numwheel'), SORT_DESC, SORT_NATURAL | SORT_FLAG_CASE, $top7DayList);
-                            $expiresAt = Carbon::now()->addHours(24 * 7);
-                            Cache::put('top7DayList' . $group->id, $top7DayList, $expiresAt);
-                        }
-
-                        $numNear = 10;
-                        $numNearSpecial = 10;
-                        if ($group->params->play_num_near > 0) {
-                            $numNear = $group->params->play_num_near;
-                        }
-                        if ($group->params->special_num_from > 0 && $group->params->special_num_to > 0 && $group->params->special_num_from < $group->params->special_num_to) {
-                            $numNearSpecial = rand($group->params->special_num_from, $group->params->special_num_to);
-                        }
-                        $currentPlayList = "";
-                        if (count($result->group->items) > 0) {
-                            $currentPlayList = Cache::get('currentPlayList' . $group->id);
-                            if ($currentPlayList == null) {
-                                $arrayGift = [];
-                                $arrayGiftSpecial = [];
-                                foreach ($result->group->items as $key) {
-                                    if (isset($key->params->special) && $key->params->special == 1) {
-                                        array_push($arrayGiftSpecial, $key->title);
-                                    } else {
-                                        array_push($arrayGift, $key->title);
-                                    }
-                                }
-
-                                if (count($arrayGiftSpecial) > 0) {
-                                    for ($i = 0; $i <= $numNearSpecial; $i++) {
-                                        $fname = $firstname[rand(0, count($firstname) - 1)];
-                                        $lname = $lastname[rand(0, count($lastname) - 1)];
-                                        $name = substr($fname, 0, rand(2, 3));
-                                        $name .= '*****';
-                                        $name .= substr($lname, (strlen($lname) - rand(2, 3)), strlen($lname));
-                                        $gift = $arrayGiftSpecial[rand(0, count($arrayGiftSpecial) - 1)];
-                                        $currentPlayList = $currentPlayList . '&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #28a745"><i class="menu-icon fas fa-user"></i>&nbsp;&nbsp;' . $name . '</span> - đã trúng ' . $gift;
-                                    }
-                                }
-
-                                if (count($arrayGift) > 0) {
-                                    for ($i = 0; $i <= $numNear; $i++) {
-                                        $fname = $firstname[rand(0, count($firstname) - 1)];
-                                        $lname = $lastname[rand(0, count($lastname) - 1)];
-                                        $name = substr($fname, 0, rand(2, 3));
-                                        $name .= '*****';
-                                        $name .= substr($lname, (strlen($lname) - rand(2, 3)), strlen($lname));
-                                        $gift = $arrayGift[rand(0, count($arrayGift) - 1)];
-                                        $currentPlayList = $currentPlayList . '&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #28a745"><i class="menu-icon fas fa-user"></i>&nbsp;&nbsp;' . $name . '</span> - đã trúng ' . $gift;
-                                    }
-                                }
-                                $currentPlayList = $currentPlayList != "" ? ("Danh sách trúng thưởng: " . $currentPlayList) : "";
-
-                                $expiresAt = Carbon::now()->addMinutes(5);
-                                Cache::put('currentPlayList' . $group->id, $currentPlayList, $expiresAt);
-                            }
-                        }
-
-//                    lich su trung thuong
-                        $url_logs = '/minigame/get-log';
-                        $data['id'] = $group->id;
-                        $data['module'] = explode('-', $group->module)[0];
-                        $data['page'] = 1;
-                        $result_Api_logs = DirectAPI::_makeRequest($url_logs, $data, $method);
-
-                        if (isset($result_Api_logs) && $result_Api_logs->response_code == 200) {
-                            $data_view = [
-                                'result' => $result,
-                                'groups_other' => $groups_other,
-                                'numPlay' => $numPlay,
-                                'topDayList' => $topDayList,
-                                'top7DayList' => $top7DayList,
-                                'currentPlayList' => $currentPlayList,
-                                'position' => $result->group->position,
-                                'logs' => $result_Api->response_data->data,
-                            ];
-                            switch ($result->group->position) {
-                                case 'rubywheel':
-                                case 'flip':
-                                case 'slotmachine':
-                                case 'slotmachine5':
-                                case 'squarewheel':
-                                case 'smashwheel':
-                                case 'rungcay':
-                                case 'gieoque':
-                                    return view('frontend.pages.minigame.detail', $data_view);
-                                default:
-                                    return redirect()->back()->withErrors($result_out->message);
-                            }
-                        } else {
-                            $data_view = [
-                                'result' => $result,
-                                'groups_other' => $groups_other,
-                                'numPlay' => $numPlay,
-                                'topDayList' => $topDayList,
-                                'top7DayList' => $top7DayList,
-                                'currentPlayList' => $currentPlayList,
-                                'position' => $result->group->position,
-                            ];
-                            switch ($result->group->position) {
-                                case 'rubywheel':
-                                case 'flip':
-                                case 'slotmachine':
-                                case 'slotmachine5':
-                                case 'squarewheel':
-                                case 'smashwheel':
-                                case 'rungcay':
-                                case 'gieoque':
-                                    return view('frontend.pages.minigame.detail', $data_view);
-                                default:
-                                    return redirect()->back()->withErrors($result_out->message);
-                            }
-                        }
-
-
                     } else {
-                        logger('minigame: ' . $result_Api->response_data->msg);
-                        return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                        $data_view = [
+                            'result' => $result,
+                            'groups_other' => $groups_other,
+                            'numPlay' => $numPlay,
+                            'topDayList' => $topDayList,
+                            'top7DayList' => $top7DayList,
+                            'currentPlayList' => $currentPlayList,
+                            'position' => $result->group->position,
+                        ];
+                        switch ($result->group->position) {
+                            case 'rubywheel':
+                            case 'flip':
+                            case 'slotmachine':
+                            case 'slotmachine5':
+                            case 'squarewheel':
+                            case 'smashwheel':
+                            case 'rungcay':
+                            case 'gieoque':
+                                return view('frontend.pages.minigame.detail', $data_view);
+                            default:
+                                return redirect()->back()->withErrors($result_out->message);
+                        }
                     }
+
+
                 } else {
                     logger('minigame: ' . $result_Api->response_data->msg);
                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
+            } else {
+                logger('minigame: ' . $result_Api->response_data->msg);
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
         } catch (\Exception $e) {
             logger($e);
@@ -804,7 +601,10 @@ class MinigameController extends Controller
                 }
             } catch (\Exception $e) {
                 logger($e);
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                return response()->json([
+                    'status'=>0,
+                    'message'=>$e->getMessage(),
+                ]);
             }
         } else {
             return response()->json([

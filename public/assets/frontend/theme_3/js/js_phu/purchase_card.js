@@ -1,8 +1,7 @@
 $(document).ready(function () {
 
     //JS mua the module
-    getListCard();
-
+    // getListCard();
     var swiper_card = new Swiper(".slider--card", {
         slidesPerView: 1,
         spaceBetween: 16,
@@ -185,7 +184,7 @@ $(document).ready(function () {
 
     function getListCard () {
         $.ajax({
-            url: '/store-card/get-telecom',
+            url: '/ajax/store-card/get-telecom',
             type: 'GET',
             success: function (res) {
                 if (res.status) {
@@ -275,7 +274,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                alert("Đã xảy ra lỗi khi load dữ liệu! Vui lòng load lại trang!")
+                console.log('Đã xảy ra lỗi khi load dữ liệu! Vui lòng load lại trang! (getListCard storecard)')
             },
             complete: function () {
                 $('#cardGameList .loader').addClass('d-none');
@@ -283,9 +282,33 @@ $(document).ready(function () {
         });
     };
 
+    //Get amount of the card just been choosen when render
+    getCardAmount($('input[name="card-type"]').val());
+
+    //Listen to onchange event in input card-type
+    $('input[name="card-type"]').change(function (e) {
+        e.preventDefault();
+        getCardAmount($(this).val());
+    });
+
+    //Get amount of the card just been choosen when render
+    getCardAmount($('input[name="card-type-mobile"]').val());
+
+    //Listen to onchange event in input card-type
+    $('input[name="card-type-mobile"]').change(function (e) {
+        e.preventDefault();
+        getCardAmount($(this).val());
+    });
+
+
+
+    // slider_card_telecom.update();
+
+    $('.section--amount__card').removeClass('d-none');
+
     function getCardAmount (cardKey) {
         $.ajax({
-            url: '/store-card/get-amount',
+            url: '/ajax/store-card/get-amount',
             type: 'GET',
             data: {
                 telecom: cardKey

@@ -15,14 +15,52 @@ use function PHPUnit\Framework\isEmpty;
 class StoreCardController extends Controller
 {
     public function getStoreCard(){
+
         $data_host =\Request::server ("HTTP_HOST");
+
         if ($data_host =='shopngocrong.net'){
             return redirect('/');
         }else{
             if (isset(theme('')->theme_config->sys_store_card_vers) && theme('')->theme_config->sys_store_card_vers == 'sys_store_card_vers_2'){
-                    return view('frontend.pages.storecard-v2.index');
+
+                $url = '/store-card/get-telecom';
+                $method = "GET";
+                $dataSend = array();
+                $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+                $response_data = $result_Api->response_data??null;
+
+                if(isset($response_data) && $response_data->status == 1){
+
+                    $telecoms = $response_data->data;
+
+                    return view(''.theme('')->theme_key.'.frontend.pages.storecard-v2.index')->with('telecoms', $telecoms);
+                }
+                else{
+                    $telecoms =null;
+                    $message = "Không thể lấy dữ liệu";
+                    return view(''.theme('')->theme_key.'.frontend.pages.storecard-v2.index')->with('telecoms', $telecoms)->with('message', $message);
+                }
+
             }else{
-                return view('frontend.pages.storecard.index');
+
+                $url = '/store-card/get-telecom';
+                $method = "GET";
+                $dataSend = array();
+                $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+                $response_data = $result_Api->response_data??null;
+
+                if(isset($response_data) && $response_data->status == 1){
+
+                    $telecoms = $response_data->data;
+
+                    return view(''.theme('')->theme_key.'.frontend.pages.storecard.index')->with('telecoms', $telecoms);
+                }
+                else{
+                    $telecoms =null;
+                    $message = "Không thể lấy dữ liệu";
+                    return view(''.theme('')->theme_key.'.frontend.pages.storecard.index')->with('telecoms', $telecoms)->with('message', $message);
+                }
+
             }
 
         }
@@ -134,11 +172,11 @@ class StoreCardController extends Controller
 
     public function showListCard($name)
     {
-        return view('frontend.pages.storecard-v2.card-list',['key'=>$name]);
+        return view(''.theme('')->theme_key.'.frontend.pages.storecard-v2.card-list',['key'=>$name]);
     }
     public function showDetailCard($name,$value)
     {
-        return view('frontend.pages.storecard-v2.card-single',['key'=>$name,'value'=>$value]);
+        return view(''.theme('')->theme_key.'.frontend.pages.storecard-v2.card-single',['key'=>$name,'value'=>$value]);
     }
 
     public function getStoreCardHistory(Request $request)
@@ -204,7 +242,7 @@ class StoreCardController extends Controller
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                         $data->setPath($request->url());
                     }
-                    $html =  view('frontend.pages.storecard.widget.__store__card__history')->with('total',$total)->with('per_page',$per_page)
+                    $html =  view(''.theme('')->theme_key.'.frontend.pages.storecard.widget.__store__card__history')->with('total',$total)->with('per_page',$per_page)
                         ->with('data',$data)->with('arrpin',$arrpin)->with('arrserial',$arrserial)->render();
 
                     return response()->json([
@@ -233,7 +271,7 @@ class StoreCardController extends Controller
 
                 $data_telecome = $response_tele_data->data;
 
-                return view('frontend.pages.storecard.logs')->with('data_telecome', $data_telecome);
+                return view(''.theme('')->theme_key.'.frontend.pages.storecard.logs')->with('data_telecome', $data_telecome);
 
             }
             else{

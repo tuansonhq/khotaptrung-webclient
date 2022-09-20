@@ -1,6 +1,6 @@
 
 
-@if(isset($data))
+@if(isset($data) && count($data))
 
 
 <div class="ads-banner row box-product class_c_slider_banner" id="c_slider_banner">
@@ -11,7 +11,7 @@
                 @foreach($data[0] as $item)
                     @if(isset($item->image))
                         <div class="swiper-slide">
-                            <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
+                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
                         </div>
                     @endif
                 @endforeach

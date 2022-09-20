@@ -14,13 +14,17 @@
                 <div class="swiper-wrapper">
                     @foreach($data as $val)
 
+                        @if ($val->id === $data_article->id)
+                            @continue
+                        @endif
+
                         <div class="swiper-slide" >
                             <a href="/tin-tuc/{{ $val->slug }}">
                                 <div class="item-product__box-img item-news-img">
                                     @if(isset($val->image))
-                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val->image)}}" alt="">
+                                        <img onerror="imgError(this)" data-src="{{\App\Library\MediaHelpers::media($val->image)}}" alt="" class="lazy">
                                     @else
-                                        <img onerror="imgError(this)" class="img-list-nick-category lazy" src="/assets/frontend/theme_3/image/images_1/no-image.png" alt="No-image">
+                                        <img onerror="imgError(this)" class="img-list-nick-category lazy" data-src="/assets/frontend/theme_3/image/images_1/no-image.png"  alt="No-image">
                                     @endif
                                 </div>
                                 <div class="item-product__box-content item-news-content">

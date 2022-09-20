@@ -1,8 +1,0 @@
-@import "./variables";
-@import "./minxi";
-
-@for $i from 0 through 50 {
-    .p-#{$i} {
-        padding: #{$i}px !important;
-    }
-}

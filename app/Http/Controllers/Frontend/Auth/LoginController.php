@@ -2,6 +2,7 @@
 
 
 namespace App\Http\Controllers\Frontend\Auth;
+use Cookie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
@@ -15,15 +16,11 @@ use App\Library\Helpers;
 
 class LoginController extends Controller
 {
-    public function login(){
+    public function login(Request $request){
 
-//        if(!session()->has('auth_custom')){
-
-//        } else{
-//            return redirect('/');
-//        }
         $jwt = Session::get('jwt');
-
+//    $html = view('test')->render();
+//    return $html;
         if (theme('')->theme_key == 'theme_1'){
             if(empty($jwt)){
                 return view('frontend.pages.log_in');
@@ -38,12 +35,11 @@ class LoginController extends Controller
                 return redirect('/');
             }
         }else{
-            Session::put('check_login', 33);
             return view('frontend.pages.index');
         }
     }
-    public function postLogin(Request $request){
 
+    public function postLogin(Request $request){
         $this->validate($request,[
             'username'=>'required',
             'password'=>'required',
@@ -52,11 +48,13 @@ class LoginController extends Controller
             'password.required' => __('Vui lòng nhập mật khẩu'),
         ]);
         try{
+
             $url = '/login';
             $method = "POST";
             $data = array();
             $data['username'] = $request->username;
             $data['password'] = $request->password;
+            $data['remember_token'] = $request->remember_token;
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
             $response_data = $result_Api->response_data??null;
 
@@ -65,11 +63,18 @@ class LoginController extends Controller
                 $exp_token = $response_data->exp_token;
 
                 $time_exp_token = $time + $exp_token;
+
+                if (isset($response_data->refresh_token)) {
+                    $jwt_refresh_token = $response_data->refresh_token;
+                    Cookie::queue('jwt_refresh_token',$jwt_refresh_token,20160);
+
+                }
+
                 Session::put('jwt',$response_data->token);
                 Session::put('exp_token',$response_data->exp_token);
                 Session::put('time_exp_token',$time_exp_token);
                 Session::put('auth_custom',$response_data->user);
-                $return_url = Session::get('url.intended');
+                $return_url = Session::get('return_url');
 
                 return response()->json([
                     'status' => 1,
@@ -97,6 +102,7 @@ class LoginController extends Controller
 
 
     }
+
     public function loginfacebook(Request $request)
     {
         $url = '/loginfacebook';
@@ -140,6 +146,7 @@ class LoginController extends Controller
 
 
     }
+
     public function logout(Request $request){
         try{
             $url = '/logout';
@@ -150,12 +157,16 @@ class LoginController extends Controller
 
             if(isset($result_Api) && $result_Api->response_code == 401){
                 Session::flush();
+
+                \Cookie::queue(\Cookie::forget('jwt_refresh_token'));
                 return redirect()->to('/');
             }
+
             if(isset($result_Api) && $result_Api->response_code == 200){
                 $result = $result_Api->response_data;
                 if($result->status == 1){
                     Session::flush();
+                    \Cookie::queue(\Cookie::forget('jwt_refresh_token'));
                     return redirect()->back();
                 }
             }

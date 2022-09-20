@@ -247,7 +247,7 @@ $(document).ready(function () {
 
     function getListCard () {
         $.ajax({
-            url: '/store-card/get-telecom',
+            url: '/ajax/store-card/get-telecom',
             type: 'GET',
             success: function (res) {
                 if (res.status) {
@@ -331,7 +331,8 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                alert("Đã xảy ra lỗi khi load dữ liệu! Vui lòng load lại trang!")
+                console.log('Đã xảy ra lỗi khi load dữ liệu! Vui lòng load lại trang! (getListCard storecard)')
+                // alert("Đã xảy ra lỗi khi load dữ liệu! Vui lòng load lại trang!")
             },
             complete: function () {
                 $('#cardGameList .loader').addClass('d-none');
@@ -341,7 +342,7 @@ $(document).ready(function () {
 
     function getCardAmount (cardKey) {
         $.ajax({
-            url: '/store-card/get-amount',
+            url: '/ajax/store-card/get-amount',
             type: 'GET',
             data: {
                 telecom: cardKey

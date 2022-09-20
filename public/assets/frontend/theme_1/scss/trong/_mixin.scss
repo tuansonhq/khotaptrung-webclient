@@ -1,24 +1,24 @@
-@mixin max_width ($width:992) {
-    @media screen and (max-width: #{$width}px) {
-        @content
-    }
-}
-
-@mixin absolute_center($direction: "left") {
-    @if $direction == 'left' {
+@mixin absolute_center ($direction:"both"){
+    @if($direction == 'x'){
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-    }
-    @if $direction == 'top' {
+    } @else if($direction == 'y'){
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
     }
-    @if $direction == 'both' {
+    @else {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
     }
+}
+@mixin absolute_full {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
