@@ -6704,3 +6704,6 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     max-width: 100%;
     height: auto;
 }
+#viewMore span {
+    font-size: unset;
+}
