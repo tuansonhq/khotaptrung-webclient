@@ -26,6 +26,46 @@
         </div>
 
         @include('frontend.widget.__slide__news')
+         <div class="card --custom c-pt-24" id="weeky-hot-games" >
+                 <div class="card--header">
+                     <div class="card--header__title">
+                         Game hot trong tuần
+                     </div>
+                 </div>
+                 <div class="card--body">
+                     <div>
+                         <div class="swiper-container swiper-weekly-hot-games">
+                             <div class="swiper-wrapper hdshdshdsi">
+                                 <div class="swiper-slide" >
+                                     <a href="javascript:void(0)">
+                                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/image_article/image_52.png" alt="">
+                                     </a>
+                                 </div>
+                                 <div class="swiper-slide" >
+                                     <a href="javascript:void(0)">
+                                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/image_article/image_53.png" alt="">
+                                     </a>
+                                 </div>
+                                 <div class="swiper-slide" >
+                                     <a href="javascript:void(0)">
+                                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/image_article/image_54.png" alt="">
+                                     </a>
+                                 </div>
+                                 <div class="swiper-slide" >
+                                     <a href="javascript:void(0)">
+                                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/image_article/image_55.png" alt="">
+                                     </a>
+                                 </div>
+                                 <div class="swiper-slide" >
+                                     <a href="javascript:void(0)">
+                                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/image_article/image_56.png" alt="">
+                                     </a>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
         <div class="card--mobile__title c-pt-24">
             <h4>Danh mục tin tức</h4>
         </div>
