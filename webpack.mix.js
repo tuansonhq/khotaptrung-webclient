@@ -12,6 +12,24 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .styles([
+        'public/assets/frontend/theme_3/lib/sweetalert2/sw2.css',
+        'public/assets/frontend/theme_3/lib/bootstrap/bootstrap.min.css',
+        'public/assets/frontend/theme_3/lib/swiper/swiper.min.css',
+        'public/assets/frontend/theme_3/lib/animate/animate.min.css',
+        'public/assets/frontend/theme_3/lib/OwlCarousel2/owl.carousel.min.css',
+        'public/assets/frontend/theme_3/lib/date-picker/bootstrap-datetimepicker.css',
+        'public/assets/frontend/theme_3/lib/fancybox/jquery.fancybox.min.css',
+        'public/assets/frontend/theme_3/lib/fancybox/fancybox.css',
+        'public/assets/frontend/theme_3/lib/toastr/toastr.css',
+        'public/assets/frontend/theme_3/lib/steps/jquery-steps.css',
+        'public/assets/frontend/theme_3/lib/select-nice/select-nice.css',
+        'public/assets/frontend/theme_3/css/css_nam/style.css',
+        'public/assets/frontend/theme_3/css/css_nam/lib_bootstrap.css',
+        'public/assets/frontend/theme_3/css/css_nam/minigame.css',
+        'public/assets/frontend/theme_3/css/style_son.css',
+        'public/assets/frontend/theme_3/css/style_trong.css',
+        'public/assets/frontend/theme_3/css/style_duong.css',
+        'public/assets/frontend/theme_3/css/style_phu/form_element.css',
+        'public/assets/frontend/theme_3/css/style_phu/login_modal.css',
+    ], 'public/css/theme_3/main.css');
