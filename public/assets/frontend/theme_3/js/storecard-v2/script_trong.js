@@ -188,7 +188,7 @@ $(document).ready(function () {
         $('.js-send-data').on('click',function () {
             // call ajax here
             $.ajax({
-                url:'/mua-the',
+                url:'/ajax/mua-the',
                 type:'POST',
                 data: data_send,
                 success:function (res) {
@@ -330,7 +330,7 @@ $(document).ready(function () {
         $('.js-send-data').on('click',function () {
             // call ajax here
             $.ajax({
-                url:'/mua-the',
+                url:'/ajax/mua-the',
                 type:'POST',
                 data: data_send,
                 success:function (res) {
