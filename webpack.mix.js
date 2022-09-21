@@ -82,27 +82,65 @@ mix.js('resources/js/app.js', 'public/js')
 
 //theme 1
 mix.styles([
-    'public/assets/frontend/theme_1/lib/sweetalert2/sw2.css',
-    'public/assets/frontend/theme_1/lib/bootstrap/bootstrap.min.css',
-    'public/assets/frontend/theme_1/lib/swiper/swiper.min.css',
-    'public/assets/frontend/theme_1/lib/animate/animate.min.css',
     'public/assets/frontend/theme_1/css/buyacc.css',
-    'public/assets/frontend/theme_1/lib/OwlCarousel2/owl.carousel.min.css',
-    'public/assets/frontend/theme_1/lib/bootstrap/bootstrap.min.css',
-    'public/assets/frontend/theme_1/lib/steps/jquery-steps.css',
-    'public/assets/frontend/theme_1/lib/select-nice/select-nice.css',
-    'public/assets/frontend/theme_1/css/bootstrap-datetimepicker.min.css',
-    'public/assets/frontend/theme_1/lib/bootstrapdatepicker/bootstrap-datepicker.min.css',
-    'public/assets/frontend/theme_1/lib/fancybox/jquery.fancybox.min.css',
-    'public/assets/frontend/theme_1/lib/fancybox/fancybox.css',
-    'public/assets/frontend/theme_1/lib/bootstrap-popover/bootstrap-popover-x.css',
-    'public/assets/frontend/theme_1/lib/date-picker/tui-date-picker.css',
     'public/assets/frontend/theme_1/css/news.css',
     'public/assets/frontend/theme_1/css/account.css',
     'public/assets/frontend/theme_1/css/spin.css',
-    'public/assets/frontend/theme_1/lib/toastr/toastr.css',
-    'public/assets/frontend/theme_1/lib/steps/jquery-steps.css',
     'public/assets/frontend/theme_1/css/style_trong.css',
     'public/assets/frontend/theme_1/css/main.css',
 ],'public/css/theme_1/main.css')
-
+    .scripts([
+        'public/assets/frontend/theme_1/lib/jquery.min.js',
+        'public/assets/frontend/theme_1/lib/bootstrap/bootstrap.min.js',
+        'public/assets/frontend/theme_1/lib/moment/moment.min.js',
+        'public/assets/frontend/theme_1/lib/bootstrap-popover/bootstrap-popover.js',
+        'public/assets/frontend/theme_1/js/bootstrap-datetimepicker.min.js',
+        'public/assets/frontend/theme_1/lib/toastr/toastr.min.js',
+        'public/assets/frontend/theme_1/lib/bootstrapdatepicker/bootstrap-datepicker.min.js',
+        'public/assets/frontend/theme_1/lib/rateit/jquery.barrating.min.js',
+        'public/assets/frontend/theme_1/lib/rateit/examples.js',
+        'public/assets/frontend/theme_1/lib/steps/jquery-steps.js',
+        'public/assets/frontend/theme_1/lib/lazyload/lazyloadGen.js',
+        'public/assets/frontend/theme_1/lib/select-nice/select-nice.js',
+        'public/assets/frontend/theme_1/lib/easeJquery/easing.js',
+        'public/assets/frontend/theme_1/lib/lazyload/lazyloadGen.js',
+        'public/assets/frontend/theme_1/js/sweetalert.min.js',
+        'public/assets/frontend/theme_1/js/account_info.js',
+        'public/assets/frontend/theme_1/js/auto-link.js',
+        'public/assets/frontend/theme_1/lib/sweetalert2/sw2.js',
+        'public/assets/frontend/theme_1/lib/popper/popper.min.js',
+        'public/assets/frontend/theme_1/lib/popper/tippy-bundle.umd.js',
+        'public/assets/frontend/theme_1/js/js_trong/modal-charge.js',
+        'public/assets/frontend/theme_1/js/transfer/transfer.js',
+    ],'public/js/theme_1/main_top.js')
+    .scripts([
+    'public/assets/frontend/theme_1/lib/fancybox/fancybox.umd.js',
+    'public/assets/frontend/theme_1/lib/fancybox/jquery.fancybox.min.js',
+    'public/assets/frontend/theme_1/lib/OwlCarousel2/OwlCarousel2.min.js',
+    'public/assets/frontend/theme_1/lib/slick/slick.min.js',
+    'public/assets/frontend/theme_1/js/action.js',
+    'public/assets/frontend/theme_1/lib/swiper/swiper.min.js',
+    'public/assets/frontend/theme_1/js/swiper.js',
+    'public/assets/frontend/theme_1/js/jquery.cookie.min.js',
+],'public/js/theme_1/main_bot.js')
+//Account
+    .scripts([
+        'public/assets/frontend/theme_1/js/js_trong/modal-charge.js',
+        'public/assets/frontend/theme_1/js/transfer/transfer.js',
+    ],'public/js/theme_1/account/list_1.js')
+    .scripts([
+        'public/assets/frontend/theme_1/js/account/buyaccrandom.js',
+        'public/assets/frontend/theme_1/js/account/account-list.js',
+    ],'public/js/theme_1/account/list_2.js')
+    .scripts([
+        'public/assets/frontend/theme_1/js/js_trong/modal-charge.js',
+        'public/assets/frontend/theme_1/js/transfer/transfer.js',
+        'public/assets/frontend/theme_1/js/account/buyacc.js',
+        'public/assets/frontend/theme_1/js/account/buyaccslider.js',
+    ],'public/js/theme_1/account/detail.js')
+    .styles([
+        'public/assets/frontend/theme_1/css/modal-custom.css'
+    ],'public/css/theme_1/account/detail.css')
+    .scripts([
+        'public/assets/frontend/theme_1/js/account/acc-history.js',
+    ],'public/js/theme_1/account/logs.js')

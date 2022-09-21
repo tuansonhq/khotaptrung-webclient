@@ -59,7 +59,7 @@
                                                  <img src="{{ $telecom->image }}" alt="Icon {{ $telecom->title }}">
                                              </div>
                                              <span class="card-item_name" style="text-transform: capitalize;">
-                                                {{ $telecom->title }}
+                                                Thẻ {{ strtolower($telecom->title) }}
                                             </span>
                                          </a>
                                      </li>
@@ -87,7 +87,7 @@
                                                 <img src="{{ $telecom->image }}" alt="Icon {{ $telecom->title }}">
                                             </div>
                                             <span class="card-item_name" style="text-transform: capitalize;">
-                                                 {{ $telecom->title }}
+                                                Thẻ {{ strtolower($telecom->title) }}
                                             </span>
                                         </a>
                                     </li>
