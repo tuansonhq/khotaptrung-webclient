@@ -15,8 +15,8 @@
 
 {{--    <title>Kho lưu trữ</title>--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.css">--}}
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.css">--}}
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.css">
     <!--    swiper-->
     <link rel="shortcut icon" href="/assets/frontend/{{theme('')->theme_key}}/images/icon_logo.png">
 {{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.css">--}}
@@ -26,33 +26,33 @@
 {{--    <!--    bootstrap-->--}}
 {{--    <!-- Bootstrap CSS -->--}}
 {{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.css">--}}
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <!--    gallery-->
+{{--    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->--}}
+{{--    <!--    gallery-->--}}
 {{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.css">--}}
 {{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.css">--}}
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 
-    {{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/bootstrap-datetimepicker.min.css">--}}
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrapdatepicker/bootstrap-datepicker.min.css">--}}
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.css">--}}
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.css">--}}
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fixed-sticky/fixedsticky.css">--}}
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap-popover/bootstrap-popover-x.css">--}}
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/tui-date-picker.css">--}}
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/news.css?v={{time()}}">--}}
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/account.css?v={{time()}}">--}}
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/spin.css?v={{time()}}">--}}
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.css">--}}
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.css">--}}
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css?v={{time()}}">--}}
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/main.css?v={{time()}}">--}}
+        <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrapdatepicker/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fixed-sticky/fixedsticky.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap-popover/bootstrap-popover-x.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/tui-date-picker.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/news.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/account.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/spin.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/main.css?v={{time()}}">
 
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_menu)){{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}@endif/theme.css">--}}
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_banner)){{theme('')->theme_config->sys_config_banner ? theme('')->theme_config->sys_config_banner : ''}}@endif/theme.css">--}}
-{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_menu_news)){{theme('')->theme_config->sys_config_menu_news ? theme('')->theme_config->sys_config_menu_news : ''}}@endif/theme.css">--}}
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_menu)){{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}@endif/theme.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_banner)){{theme('')->theme_config->sys_config_banner ? theme('')->theme_config->sys_config_banner : ''}}@endif/theme.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_menu_news)){{theme('')->theme_config->sys_config_menu_news ? theme('')->theme_config->sys_config_menu_news : ''}}@endif/theme.css">
 
-    <link rel="stylesheet" href="/css/{{theme('')->theme_key}}/main.css?v={{time()}}">
+{{--    <link rel="stylesheet" href="/css/{{theme('')->theme_key}}/main.css?v={{time()}}">--}}
 
     @stack('style')
 
@@ -65,37 +65,37 @@
         }
     </style>
 
-    <link rel="stylesheet" href="/js/{{theme('')->theme_key}}/main.js?v={{time()}}">
+{{--    <link rel="stylesheet" href="/js/{{theme('')->theme_key}}/main.js?v={{time()}}">--}}
 
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/moment/moment.min.js"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/moment/moment.min.js"></script>
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap-popover/bootstrap-popover.js"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap-popover/bootstrap-popover.js"></script>
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/bootstrap-datetimepicker.min.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrapdatepicker/bootstrap-datepicker.min.js"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrapdatepicker/bootstrap-datepicker.min.js"></script>
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/rateit/jquery.barrating.min.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/rateit/examples.js"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/rateit/jquery.barrating.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/rateit/examples.js"></script>
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js"></script>
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js?v={{time()}}"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/sweetalert.min.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/auto-link.js?v={{time()}}"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/script.js?v={{time()}}"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/sweetalert.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/auto-link.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/script.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
 
     <script>
         $(document).ready(function () {
@@ -395,7 +395,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/action.js?v={{time()}}"></script>
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/js/@if(isset(theme('')->theme_config->sys_config_menu)){{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}@endif/theme.js"></script>--}}
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/@if(isset(theme('')->theme_config->sys_config_menu)){{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}@endif/theme.js"></script>
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
 

@@ -135,7 +135,7 @@
                         <div class="row marginauto modal-header-order-ct">
                             <div class="col-12 span__donhang text-center" style="position: relative">
                                 <span>Mua tài khoản thành công</span>
-                                <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                                <img class="img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                             </div>
                         </div>
 
@@ -147,7 +147,7 @@
                             <div class="col-md-12 left-right image-success">
                                 <div class="row marginauto justify-content-center">
                                     <div class="col-auto">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/group.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/group.png" alt="">
                                     </div>
                                 </div>
                             </div>
