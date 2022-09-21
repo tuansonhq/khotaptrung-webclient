@@ -8,7 +8,7 @@
 
                     <div class="media-inner aling-items-end">
                         <a href="/tin-tuc/{{ $item->slug }}">
-                            <img src="{{$item->image}}" alt="" class="bg rounded">
+                            <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="bg rounded">
                         </a>
 
                         <div class="align-items-bottom">
