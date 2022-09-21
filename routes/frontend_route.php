@@ -146,7 +146,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/ajax/transfer-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])->name('getIdCode');
 //                captcha
                 Route::get('/first-captcha', [ChargeController::class , 'myCaptcha']);
-                Route::get('/ajax/reload-captcha', [ChargeController::class , 'reloadCaptcha']);
+                Route::get('/reload-captcha', [ChargeController::class , 'reloadCaptcha']);
                 Route::get('/reload-captcha2', [ChargeController::class , 'reloadCaptcha2']);
 //                 ROUTE cần auth load dữ liệu không cache
                 Route::group(['middleware' => ['auth_custom']], function (){
