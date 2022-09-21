@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="modal-body">
-                <form id="formLogin"  class="formLogin" action="{{route('login')}}" method="POST">
+                <form id="formLogin"  class="formLogin" action="{{ url('/ajax/login') }}" method="POST">
                     @csrf
                     <div class=" text-center">
                         <div class="my-4 text-center">
@@ -52,7 +52,12 @@
                     <button type="submit" class="btn btn-primary btn-block"><span
                             class="glyphicon glyphicon-off"></span> Đăng nhập
                     </button>
-
+                    <div class="checkbox icheck" style="margin-top: 8px">
+                        <label >
+                            <input type="checkbox" name="remember_token" value="1">
+                            <span style="margin-left: 4px;cursor: pointer">Ghi nhớ</span>
+                        </label>
+                    </div>
 
                     <div class="modal-bottom" style="margin-top: 15px">
                         <p class="text-center">
@@ -89,7 +94,7 @@
             </div>
 
             <div class="modal-body">
-                <form id="formRegister" action="{{route('register')}}" method="POST">
+                <form id="formRegister" action="{{ url('/ajax/register') }}" method="POST">
                     @csrf
                     <div class=" text-center">
                         <div class="my-4 text-center">

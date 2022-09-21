@@ -86,7 +86,7 @@ $(document).ready(function(){
     $('#StoreCardTotal').removeClass('hide');
     $('#StoreCardPay').removeClass('hide');
     function getAmount(telecom){
-        var url = '/store-card/get-amount';
+        var url = '/ajax/store-card/get-amount';
         $.ajax({
             type: "GET",
             url: url,

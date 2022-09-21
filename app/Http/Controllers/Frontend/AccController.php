@@ -64,7 +64,7 @@ class AccController extends Controller
                 $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
                 $response_cate_data = $result_Api_cate->response_data??null;
 
-            }else{
+            } else {
                 $dataSendCate = array();
                 $dataSendCate['data'] = 'category_detail';
                 $dataSendCate['slug'] = $slug;
@@ -1166,7 +1166,9 @@ class AccController extends Controller
     }
 
     public function getShowAccRandom(Request $request){
+
         if ($request->ajax()){
+
             $url = '/acc';
             $method = "GET";
             $dataSend = array();
@@ -1182,7 +1184,7 @@ class AccController extends Controller
             if(isset($response_data) && $response_data->status == 1){
                 $data = $response_data->data;
 
-                $html = view('frontend.widget.__data__nick__random')
+                $html = view(''.theme('')->theme_key.'.frontend.widget.__data__nick__random')
                     ->with('data',$data)->render();
 
                 return response()->json([
