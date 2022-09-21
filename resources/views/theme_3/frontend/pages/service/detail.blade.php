@@ -477,30 +477,43 @@
                         </div>
                         {{--End BOT--}}
 
-                        <div class="col-md-12 left-right px-3 px-lg-0">
-                            <div class="row marginauto">
-                                <div class="col-md-12 col-8 body-header-col-km-left-ct">
-                                    <small>Mô tả dịch vụ</small>
-                                </div>
-                            </div>
-                        </div>
+                        @if(isset($data->content))
+                            <section>
+                                <div class="container container-fix body-container-ct pt-0">
+                                    <div class="row marginauto body-container-row-ct pt-0">
+                                        <div class="col-md-12 left-right detailViewBlock">
+                                            <div class="row marginauto body-row-ct footer-row-ct p-0">
+                                                <div class="col-md-12 left-right">
+                                                    <span class="detailViewBlockTitle">Mô tả dịch vụ</span>
+                                                </div>
+                                                @if(substr($data->content,1200))
+                                                    <div class="col-md-12 left-right footer-row-col-ct content-video-in content-video-in-add detailViewBlockContent">
+                                                        @else
+                                                            <div class="col-md-12 left-right footer-row-col-ct content-video-in  detailViewBlockContent">
+                                                                @endif
+                                                                {!!  $data->content !!}
+                                                            </div>
+                                                            @if(substr($data->content,1200))
+                                                                <div class="col-md-12 left-right text-center js-toggle-content noselect">
+                                                                    <div class="view-more">
+                                                                        <a href="javascript:void(0)" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/xemthem.svg)"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                    </div>
+                                            </div>
 
-                        <div class="col-md-12 left-right card--desc px-3 px-lg-0">
-                            <div class="row marginauto body-title-ct show-detail-caythue-ct-fix">
-                                <div
-                                    class="col-md-12 text-left left-right content-video-in double-click content-video-in ">
-                                    {!! @$data->content !!}
-                                </div>
-                                <div class="col-md-12 left-right text-center js-toggle-content">
-                                </div>
-                            </div>
-                        </div>
+                                        </div>
+                                    </div>
+                            </section>
+                        @endif
 
                     </div>
                 </div>
             </section>
 
             @include('frontend.pages.service.widget.__related')
+
             <div class="modal fade login show default-Modal" id="successModal" aria-modal="true">
                 <div class="modal-dialog modal-md modal-dialog-centered login animated">
                     <!--        <div class="image-login"></div>-->
