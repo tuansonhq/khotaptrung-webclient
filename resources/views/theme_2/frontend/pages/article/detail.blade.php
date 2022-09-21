@@ -41,7 +41,7 @@
                 <div class="article-single mb-4">
                     <div class="article-thumb mb-4">
                         <div class="media-placeholder ratio-2-1 rounded">
-                            <div class="bg rounded" style="background-image: url({{\App\Library\MediaHelpers::media($item->image)}});"></div>
+                            <div class="bg rounded" style="background-image: url({{\App\Library\MediaHelpers::media($data->image)}});"></div>
                             <div class="media-inner aling-items-end">
                                 <div class="align-items-end h-100 text-white">
                                     <div class="align-items-bottom">
