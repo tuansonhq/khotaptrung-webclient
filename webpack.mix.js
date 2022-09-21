@@ -15,17 +15,6 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .styles([
-        'public/assets/frontend/theme_3/lib/sweetalert2/sw2.css',
-        'public/assets/frontend/theme_3/lib/bootstrap/bootstrap.min.css',
-        'public/assets/frontend/theme_3/lib/swiper/swiper.min.css',
-        'public/assets/frontend/theme_3/lib/animate/animate.min.css',
-        'public/assets/frontend/theme_3/lib/OwlCarousel2/owl.carousel.min.css',
-        'public/assets/frontend/theme_3/lib/date-picker/bootstrap-datetimepicker.css',
-        'public/assets/frontend/theme_3/lib/fancybox/jquery.fancybox.min.css',
-        'public/assets/frontend/theme_3/lib/fancybox/fancybox.css',
-        'public/assets/frontend/theme_3/lib/toastr/toastr.css',
-        'public/assets/frontend/theme_3/lib/steps/jquery-steps.css',
-        'public/assets/frontend/theme_3/lib/select-nice/select-nice.css',
         'public/assets/frontend/theme_3/css/css_nam/style.css',
         'public/assets/frontend/theme_3/css/css_nam/lib_bootstrap.css',
         'public/assets/frontend/theme_3/css/css_nam/minigame.css',
@@ -35,31 +24,16 @@ mix.js('resources/js/app.js', 'public/js')
         'public/assets/frontend/theme_3/css/style_phu/form_element.css',
         'public/assets/frontend/theme_3/css/style_phu/login_modal.css',
     ], 'public/css/theme_3/main.css')
+    .styles([
+        'public/assets/frontend/theme_3/css/trong-style/distance.css',
+        'public/assets/frontend/theme_3/css/trong-style/buy-card.css',
+        'public/assets/frontend/theme_3/css/style_trong.css',
+    ], 'public/css/theme_3/store-card/store-card-list.css')
     .scripts([
-        'public/assets/frontend/theme_3/lib/jquery/jquery.min.js',
-        'public/assets/frontend/theme_3/lib/bootstrap/bootstrap.min.js',
-        'public/assets/frontend/theme_3/lib/lazy/jquery.lazy.min.js',
-        'public/assets/frontend/theme_3/lib/lazy/jquery.lazy.plugins.min.js',
-        'public/assets/frontend/theme_3/lib/toastr/toastr.min.js',
-        'public/assets/frontend/theme_3/lib/sweetalert2/sw2.js',
-        'public/assets/frontend/theme_3/lib/select-nice/select-nice.js',
-        'public/assets/frontend/theme_3/lib/popper/popper.min.js',
-        'public/assets/frontend/theme_3/lib/popper/tippy-bundle.umd.js',
-        'public/assets/frontend/theme_3/lib/steps/jquery-steps.js',
-        'public/assets/frontend/theme_3/lib/easeJquery/easing.js',
         'public/assets/frontend/theme_3/js/account_info.js',
         'public/assets/frontend/theme_3/js/js_trong/preload.js',
-        'public/assets/frontend/theme_3/lib/handlebars/handlebars.min.js',
-        'public/assets/frontend/theme_3/lib/fancybox/fancybox.umd.js',
-        'public/assets/frontend/theme_3/lib/fancybox/jquery.fancybox.min.js',
-        'public/assets/frontend/theme_3/lib/OwlCarousel2/OwlCarousel2.min.js',
-        'public/assets/frontend/theme_3/lib/slick/slick.min.js',
-        'public/assets/frontend/theme_3/lib/swiper/swiper.min.js',
         'public/assets/frontend/theme_3/js/js_nam/main.js',
         'public/assets/frontend/theme_3/js/js_nam/swiper.js',
-        'public/assets/frontend/theme_3/lib/date-picker/moment.js',
-        'public/assets/frontend/theme_3/lib/date-picker/i18n/vi.js',
-        'public/assets/frontend/theme_3/lib/date-picker/bootstrap-datetimepicker.js',
         'public/assets/frontend/theme_3/js/js_trong/modal-charge.js',
         'public/assets/frontend/theme_3/js/transfer/transfer.js',
     ], 'public/js/theme_3/main.js')
@@ -80,67 +54,37 @@ mix.js('resources/js/app.js', 'public/js')
     ], 'public/js/theme_3/store-card/store-card.js')
     .version();
 
+
+
+
+
+
+
+
+
 //theme 1
-mix.styles([
-    'public/assets/frontend/theme_1/css/buyacc.css',
-    'public/assets/frontend/theme_1/css/news.css',
-    'public/assets/frontend/theme_1/css/account.css',
-    'public/assets/frontend/theme_1/css/spin.css',
-    'public/assets/frontend/theme_1/css/style_trong.css',
-    'public/assets/frontend/theme_1/css/main.css',
-],'public/css/theme_1/main.css')
-    .scripts([
-        'public/assets/frontend/theme_1/lib/jquery.min.js',
-        'public/assets/frontend/theme_1/lib/bootstrap/bootstrap.min.js',
-        'public/assets/frontend/theme_1/lib/moment/moment.min.js',
-        'public/assets/frontend/theme_1/lib/bootstrap-popover/bootstrap-popover.js',
-        'public/assets/frontend/theme_1/js/bootstrap-datetimepicker.min.js',
-        'public/assets/frontend/theme_1/lib/toastr/toastr.min.js',
-        'public/assets/frontend/theme_1/lib/bootstrapdatepicker/bootstrap-datepicker.min.js',
-        'public/assets/frontend/theme_1/lib/rateit/jquery.barrating.min.js',
-        'public/assets/frontend/theme_1/lib/rateit/examples.js',
-        'public/assets/frontend/theme_1/lib/steps/jquery-steps.js',
-        'public/assets/frontend/theme_1/lib/lazyload/lazyloadGen.js',
-        'public/assets/frontend/theme_1/lib/select-nice/select-nice.js',
-        'public/assets/frontend/theme_1/lib/easeJquery/easing.js',
-        'public/assets/frontend/theme_1/lib/lazyload/lazyloadGen.js',
-        'public/assets/frontend/theme_1/js/sweetalert.min.js',
-        'public/assets/frontend/theme_1/js/account_info.js',
-        'public/assets/frontend/theme_1/js/auto-link.js',
-        'public/assets/frontend/theme_1/lib/sweetalert2/sw2.js',
-        'public/assets/frontend/theme_1/lib/popper/popper.min.js',
-        'public/assets/frontend/theme_1/lib/popper/tippy-bundle.umd.js',
-        'public/assets/frontend/theme_1/js/js_trong/modal-charge.js',
-        'public/assets/frontend/theme_1/js/transfer/transfer.js',
-    ],'public/js/theme_1/main_top.js')
-    .scripts([
-    'public/assets/frontend/theme_1/lib/fancybox/fancybox.umd.js',
-    'public/assets/frontend/theme_1/lib/fancybox/jquery.fancybox.min.js',
-    'public/assets/frontend/theme_1/lib/OwlCarousel2/OwlCarousel2.min.js',
-    'public/assets/frontend/theme_1/lib/slick/slick.min.js',
-    'public/assets/frontend/theme_1/js/action.js',
-    'public/assets/frontend/theme_1/lib/swiper/swiper.min.js',
-    'public/assets/frontend/theme_1/js/swiper.js',
-    'public/assets/frontend/theme_1/js/jquery.cookie.min.js',
-],'public/js/theme_1/main_bot.js')
-//Account
-    .scripts([
-        'public/assets/frontend/theme_1/js/js_trong/modal-charge.js',
-        'public/assets/frontend/theme_1/js/transfer/transfer.js',
-    ],'public/js/theme_1/account/list_1.js')
-    .scripts([
-        'public/assets/frontend/theme_1/js/account/buyaccrandom.js',
-        'public/assets/frontend/theme_1/js/account/account-list.js',
-    ],'public/js/theme_1/account/list_2.js')
-    .scripts([
-        'public/assets/frontend/theme_1/js/js_trong/modal-charge.js',
-        'public/assets/frontend/theme_1/js/transfer/transfer.js',
-        'public/assets/frontend/theme_1/js/account/buyacc.js',
-        'public/assets/frontend/theme_1/js/account/buyaccslider.js',
-    ],'public/js/theme_1/account/detail.js')
-    .styles([
-        'public/assets/frontend/theme_1/css/modal-custom.css'
-    ],'public/css/theme_1/account/detail.css')
-    .scripts([
-        'public/assets/frontend/theme_1/js/account/acc-history.js',
-    ],'public/js/theme_1/account/logs.js')
+// mix.styles([
+//     'public/assets/frontend/theme_1/lib/sweetalert2/sw2.css',
+//     'public/assets/frontend/theme_1/lib/bootstrap/bootstrap.min.css',
+//     'public/assets/frontend/theme_1/lib/swiper/swiper.min.css',
+//     'public/assets/frontend/theme_1/lib/animate/animate.min.css',
+//     'public/assets/frontend/theme_1/css/buyacc.css',
+//     'public/assets/frontend/theme_1/lib/OwlCarousel2/owl.carousel.min.css',
+//     'public/assets/frontend/theme_1/lib/bootstrap/bootstrap.min.css',
+//     'public/assets/frontend/theme_1/lib/steps/jquery-steps.css',
+//     'public/assets/frontend/theme_1/lib/select-nice/select-nice.css',
+//     'public/assets/frontend/theme_1/css/bootstrap-datetimepicker.min.css',
+//     'public/assets/frontend/theme_1/lib/bootstrapdatepicker/bootstrap-datepicker.min.css',
+//     'public/assets/frontend/theme_1/lib/fancybox/jquery.fancybox.min.css',
+//     'public/assets/frontend/theme_1/lib/fancybox/fancybox.css',
+//     'public/assets/frontend/theme_1/lib/bootstrap-popover/bootstrap-popover-x.css',
+//     'public/assets/frontend/theme_1/lib/date-picker/tui-date-picker.css',
+//     'public/assets/frontend/theme_1/css/news.css',
+//     'public/assets/frontend/theme_1/css/account.css',
+//     'public/assets/frontend/theme_1/css/spin.css',
+//     'public/assets/frontend/theme_1/lib/toastr/toastr.css',
+//     'public/assets/frontend/theme_1/lib/steps/jquery-steps.css',
+//     'public/assets/frontend/theme_1/css/style_trong.css',
+//     'public/assets/frontend/theme_1/css/main.css',
+// ],'public/css/theme_1/main.css')
+
