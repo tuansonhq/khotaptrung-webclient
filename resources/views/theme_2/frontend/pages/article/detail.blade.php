@@ -18,7 +18,6 @@
             <li class="nav-item">
                 <a href="/tin-tuc" class="nav-link">Tin tức chung</a>
             </li>
-
             @include('frontend.widget.__menu__article')
         </ul>
         <div>
@@ -67,6 +66,7 @@
                         {{--                            </ul>--}}
                         {{--                        </div>--}}
                         <div class="article-content flex-grow-1 news_detail_content">
+
                             {!! $data->content !!}
 
                         </div>
