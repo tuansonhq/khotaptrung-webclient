@@ -4,66 +4,87 @@ $(document).ready(function(){
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
 
-    function getTelecom (){
-        const url = '/ajax/store-card/get-telecom';
-        $.ajax({
-            type: "GET",
-            url: url,
-            beforeSend: function (xhr) {
-            },
-            success: function (data) {
-                if(data.status == 1){
-                    let html = '';
-                    if(data.data.length > 0){
-                        $.each(data.data,function(key,value){
-                            html += '<option value="'+value.key+'">'+value.key+'</option>';
-                        });
-                    }
-                    $('select#telecom_storecard').html(html)
-                    ele = $('select#telecom_storecard option').first();
+    // function getTelecom (){
+    //     const url = '/store-card/get-telecom';
+    //     $.ajax({
+    //         type: "GET",
+    //         url: url,
+    //         beforeSend: function (xhr) {
+    //         },
+    //         success: function (data) {
+    //             if(data.status == 1){
+    //                 let html = '';
+    //                 if(data.data.length > 0){
+    //                     $.each(data.data,function(key,value){
+    //                         html += '<option value="'+value.key+'">'+value.key+'</option>';
+    //                     });
+    //                 }
+    //                 $('select#telecom_storecard').html(html)
+    //                 ele = $('select#telecom_storecard option').first();
+    //
+    //                 var telecom = ele.val();
+    //                 getAmount(telecom);
+    //                 $("#buy_telecom_key").on('change', function () {
+    //                     getAmount(telecom);
+    //
+    //                 });
+    //
+    //                 $("#buy_amount").on('change', function () {
+    //                     UpdatePrice();
+    //                 });
+    //
+    //                 $("#quantity").on('change', function () {
+    //                     UpdatePrice();
+    //                 });
+    //                 $('#loading-data').remove();
+    //                 $('#loading-data-total').remove();
+    //                 $('#loading-data-pay').remove();
+    //                 $('#formStoreCard').removeClass('hide');
+    //                 $('#StoreCardTotal').removeClass('hide');
+    //                 $('#StoreCardPay').removeClass('hide');
+    //             }
+    //             else{
+    //                 swal({
+    //                     title: "Có lỗi xảy ra !",
+    //                     text: data.message,
+    //                     icon: "error",
+    //                     buttons: {
+    //                         cancel: "Đóng",
+    //                     },
+    //                 })
+    //             }
+    //         },
+    //         error: function (data) {
+    //             alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!')
+    //             return;
+    //         },
+    //         complete: function (data) {
+    //
+    //         }
+    //     });
+    // }
 
-                    var telecom = ele.val();
-                    getAmount(telecom);
-                    $("#buy_telecom_key").on('change', function () {
-                        getAmount(telecom);
+    ele = $('select#telecom_storecard option').first();
+    var telecom = ele.val();
+    getAmount(telecom);
+    $("#buy_telecom_key").on('change', function () {
+        getAmount(telecom);
 
-                    });
+    });
 
-                    $("#buy_amount").on('change', function () {
-                        UpdatePrice();
-                    });
+    $("#buy_amount").on('change', function () {
+        UpdatePrice();
+    });
 
-                    $("#quantity").on('change', function () {
-                        UpdatePrice();
-                    });
-                    $('#loading-data').remove();
-                    $('#loading-data-total').remove();
-                    $('#loading-data-pay').remove();
-                    $('#formStoreCard').removeClass('hide');
-                    $('#StoreCardTotal').removeClass('hide');
-                    $('#StoreCardPay').removeClass('hide');
-                }
-                else{
-                    swal({
-                        title: "Có lỗi xảy ra !",
-                        text: data.message,
-                        icon: "error",
-                        buttons: {
-                            cancel: "Đóng",
-                        },
-                    })
-                }
-            },
-            error: function (data) {
-                alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!')
-                return;
-            },
-            complete: function (data) {
-
-            }
-        });
-    }
-
+    $("#quantity").on('change', function () {
+        UpdatePrice();
+    });
+    // $('#loading-data').remove();
+    $('#loading-data-total').remove();
+    $('#loading-data-pay').remove();
+    // $('#formStoreCard').removeClass('hide');
+    $('#StoreCardTotal').removeClass('hide');
+    $('#StoreCardPay').removeClass('hide');
     function getAmount(telecom){
         var url = '/ajax/store-card/get-amount';
         $.ajax({
@@ -119,7 +140,7 @@ $(document).ready(function(){
         var telecom = $(this).val();
         getAmount(telecom)
     });
-    getTelecom();
+    // getTelecom();
     // $("#telecom_storecard").on('change', function () {
     //     getAmount();
     //

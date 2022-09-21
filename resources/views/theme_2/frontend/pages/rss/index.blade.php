@@ -19,7 +19,6 @@
         <link>{{\Request::server ("HTTP_HOST")}}</link>
 
         @include('frontend.pages.rss.widget.__article')
-        @include('frontend.pages.rss.widget.__minigame')
         @include('frontend.pages.rss.widget.__nick')
         @include('frontend.pages.rss.widget.__service')
     </channel>

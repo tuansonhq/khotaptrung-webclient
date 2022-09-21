@@ -18,7 +18,7 @@
       <h2 style="font-size: 30px;font-weight: bold;text-transform: uppercase">MUA THẺ GAME GIÁ RẺ </h2>
    </div>
 
-   <form method="POST" action="{{route('postStoreCard')}}" id="form-storeCard" >
+   <form method="POST" action="{{route('postStoreCard')}}" id="form-storecard" >
       @csrf
       <div class="container detail-service">
          <div class="row">
@@ -33,14 +33,17 @@
                            </div>
                         </div>
                      </div>
-                      <div class="col-md-7 row justify-content-center" id="loading-data">
-                          <div class="loading"></div>
-                      </div>
-                     <div class="col-md-7 hide" id="formStoreCard"  >
+{{--                      <div class="col-md-7 row justify-content-center" id="loading-data">--}}
+{{--                          <div class="loading"></div>--}}
+{{--                      </div>--}}
+                     <div class="col-md-7 " id="formStoreCard"  >
                         <div class="mb-2 control-label bb"><strong>Chọn nhà mạng:</strong> </div>
                         <div class="mb-3">
-                           <select name="telecom" id="telecom_storecard" class="server-filter form-control t14" style="">
 
+                            <select name="telecom" id="telecom_storecard" class="server-filter form-control t14" style="">
+                                @foreach($data->data as $val)
+                                   <option value="{{$val->key}}">{{$val->title}}</option>
+                               @endforeach
                            </select>
                         </div>
                         <div class="mb-2 control-label bb"><strong>Mệnh giá:</strong> </div>
@@ -78,12 +81,18 @@
                             </div>
                            <span class="hide" id="StoreCardTotal"> Tổng: 0 VNĐ</span>
                         </a>
+                         @if(\App\Library\AuthCustom::check())
                         <button id="btnPurchase" type="submit" style="font-size: 20px;" class="followus">
                             <div class="justify-content-center" id="loading-data-pay">
                                 <div class="loading"></div>
                             </div>
                             <span class="hide" id="StoreCardPay">  <i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</span>
                         </button>
+                         @else
+                             <a href="/login" style="font-size: 20px;" class="followus">
+                                 <span class="hide" id="StoreCardPay">  <i class="fa fa-key" aria-hidden="true"></i> Đăng nhập để thanh toán</span>
+                             </a>
+                         @endif
                      </div>
                   </div>
                </div>
