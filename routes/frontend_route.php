@@ -219,6 +219,12 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SiteMapController::class , 'index']);
                 Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
                 Route::get('/rss-detail', [\App\Http\Controllers\Frontend\RssController::class , 'detail']);
+
+                Route::get('/robots.txt', function ()
+                {
+                    return view('frontend.pages.robots.robots.txt');
+                });
+
                 Route::get('/rss-minigame', function ()
                 {
                     return response()->view('frontend.pages.rss.minigame')->header('Content-Type', 'application/xml');
