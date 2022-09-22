@@ -15,18 +15,41 @@ use function PHPUnit\Framework\isEmpty;
 class StoreCardController extends Controller
 {
     public function getStoreCard(){
+
         $data_host =\Request::server ("HTTP_HOST");
-        if ($data_host =='shopngocrong.net'){
-            return redirect('/');
-        }else{
-            if (isset(theme('')->theme_config->sys_store_card_vers) && theme('')->theme_config->sys_store_card_vers == 'sys_store_card_vers_2'){
-                    return view('frontend.pages.storecard-v2.index');
-            }else{
-                return view('frontend.pages.storecard.index');
+
+        try{
+            $url = '/store-card/get-telecom';
+            $method = "GET";
+            $dataSend = array();
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $data = $result_Api->response_data??null;
+            if(isset($data) && $data->status == 1){
+                if ($data_host =='shopngocrong.net'){
+                    return redirect('/');
+                }else{
+                    if (isset(theme('')->theme_config->sys_store_card_vers) && theme('')->theme_config->sys_store_card_vers == 'sys_store_card_vers_2'){
+                        return view('frontend.pages.storecard-v2.index');
+                    }else{
+                        return view('frontend.pages.storecard.index')->with('data',$data);
+                    }
+
+                }
             }
-
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
         }
-
+        catch(\Exception $e){
+            Log::error($e);
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
+            ]);
+        }
     }
 
     public function getTelecomStoreCard(Request $request){
@@ -61,7 +84,7 @@ class StoreCardController extends Controller
 
     public function getAmountStoreCard(Request $request)
     {
-        try{
+        try {
             $url = '/store-card/get-amount';
             $method = "GET";
             $dataSend = array();
@@ -132,13 +155,63 @@ class StoreCardController extends Controller
         }
     }
 
-    public function showListCard($name)
+    public function showListCard(Request $request,$name)
     {
-        return view('frontend.pages.storecard-v2.card-list',['key'=>$name]);
+        /*Get telecom*/
+        $url = '/store-card/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $data_telecoms = $result_Api->response_data??null;
+
+        if ($data_telecoms && $data_telecoms->status == 1 ){
+            /*Get amount*/
+            $url = '/store-card/get-amount';
+            $method = "GET";
+            $dataSend = array();
+            $dataSend['telecom'] = $name;
+            $result_api_amount = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $data_amounts = $result_api_amount->response_data??null;
+            if ($data_amounts && $data_amounts->status == 1) {
+                $data_view = [
+                    'key'=>$name,
+                    'data_telecoms'=>$data_telecoms,
+                    'data_amounts'=>$data_amounts,
+                    'status'=>1,
+                ];
+                return view(''.theme('')->theme_key.'.frontend.pages.storecard-v2.card-list',$data_view);
+            }
+        }
     }
     public function showDetailCard($name,$value)
     {
-        return view('frontend.pages.storecard-v2.card-single',['key'=>$name,'value'=>$value]);
+        /*Get telecom*/
+        $url = '/store-card/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $data_telecoms = $result_Api->response_data??null;
+
+        if ($data_telecoms && $data_telecoms->status == 1 ){
+            /*Get amount*/
+            $url = '/store-card/get-amount';
+            $method = "GET";
+            $dataSend = array();
+            $dataSend['telecom'] = $name;
+            $result_api_amount = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $data_amounts = $result_api_amount->response_data??null;
+            if ($data_amounts && $data_amounts->status == 1) {
+                $data_view = [
+                    'key'=>$name,
+                    'value'=>$value,
+                    'data_telecoms'=>$data_telecoms,
+                    'data_amounts'=>$data_amounts,
+                    'status'=>1,
+                ];
+                return view(''.theme('')->theme_key.'.frontend.pages.storecard-v2.card-single',$data_view);
+            }
+        }
+
     }
 
     public function getStoreCardHistory(Request $request)
@@ -204,7 +277,7 @@ class StoreCardController extends Controller
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                         $data->setPath($request->url());
                     }
-                    $html =  view('frontend.pages.storecard.widget.__store__card__history')->with('total',$total)->with('per_page',$per_page)
+                    $html =  view(''.theme('')->theme_key.'.frontend.pages.storecard.widget.__store__card__history')->with('total',$total)->with('per_page',$per_page)
                         ->with('data',$data)->with('arrpin',$arrpin)->with('arrserial',$arrserial)->render();
 
                     return response()->json([
@@ -233,7 +306,7 @@ class StoreCardController extends Controller
 
                 $data_telecome = $response_tele_data->data;
 
-                return view('frontend.pages.storecard.logs')->with('data_telecome', $data_telecome);
+                return view(''.theme('')->theme_key.'.frontend.pages.storecard.logs')->with('data_telecome', $data_telecome);
 
             }
             else{

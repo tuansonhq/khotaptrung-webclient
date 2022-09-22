@@ -28,7 +28,7 @@ $(document).ready(function () {
     $(document).on('click', '#modalConfirmPayment #confirmSubmitButton', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/mua-the',
+            url:'/ajax/mua-the',
             type:'POST',
             data: storeDataSend,
             beforeSend: function () {
@@ -135,7 +135,7 @@ $(document).ready(function () {
     $('#confirmMobileButton').on('click', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/mua-the',
+            url:'/ajax/mua-the',
             type:'POST',
             data: storeDataSend,
             beforeSend: function () {
@@ -233,7 +233,7 @@ $(document).ready(function () {
 
     function getListCard () {
         $.ajax({
-            url: '/store-card/get-telecom',
+            url: '/ajax/store-card/get-telecom',
             type: 'GET',
             success: function (res) {
                 if (res.status) {
@@ -293,7 +293,7 @@ $(document).ready(function () {
 
     function getCardAmount (cardKey) {
         $.ajax({
-            url: '/store-card/get-amount',
+            url: '/ajax/store-card/get-amount',
             type: 'GET',
             data: {
                 telecom: cardKey
@@ -317,7 +317,7 @@ $(document).ready(function () {
                         $('#btn-confirm').prop('disabled', true);
                     } else {
                         let loop_index = 0;
-    
+
                         data.forEach(function (card) {
                             let html = '';
                             html += `<div class="col-4 c-px-4 card-price-form">`;
@@ -333,16 +333,16 @@ $(document).ready(function () {
                             html += `<p class="fw-500 fs-15 mb-0">${formatNumber(card.amount)} đ</p>`;
                             html += `</label>`;
                             html += `</div>`;
-    
-    
+
+
                             // Append new HTML amount
                             $('#cardAmountList').append(html);
                         });
-    
+
                         //prepare the input field and update price related value
                         $('input[name="card-amount"]').val(1);
                         prepareAmountWidget();
-    
+
                         //Activate onchange, oninput function for input field inside
                         $('input[name="card-value"]').change(function (e) {
                             e.preventDefault();
@@ -352,12 +352,12 @@ $(document).ready(function () {
                             e.preventDefault();
                             prepareAmountWidget();
                         });
-    
+
                         //Make btn no longer disable when failed get data
                         $('#btn-confirm').prop('disabled', false);
-    
+
                     }
-                    
+
                     $('#cardPriceContent').removeClass('d-none');
 
                 }
@@ -371,13 +371,13 @@ $(document).ready(function () {
     function prepareAmountWidget () {
         let discountCardValue = $('input[name="card-value"]:checked').data('discount');
         $('input[name="card-discount"]').val(discountCardValue);
-        
+
         if (isNaN(100 - discountCardValue)) {
             $('.buy-card-discount').text(`0%`);
         } else {
             $('.buy-card-discount').text(`${100 - discountCardValue}%`);
         }
-        
+
         if (isNaN(formatNumber( calculatePrice() ))) {
             $('.buy-card-total').text(`0 đ`);
         } else {

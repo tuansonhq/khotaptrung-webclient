@@ -1326,7 +1326,7 @@ header nav.heading .header-container{
     margin-top: 4px;
     margin-bottom: 12px;
     top: 0;
-    transition: all 0.2s ease-out;
+    /*transition: all 0.2s ease-out;*/
     position: relative;
 
 }
@@ -3205,4 +3205,35 @@ header nav.heading .header-container{
     display: block;
     z-index: 99;
 
+}
+img.lazy {
+
+    /*display: block;*/
+
+    /* optional way, set loading as background */
+    background-image: url(/assets/frontend/theme_3/image/images_1/no-image.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    /*background-attachment: ;*/
+    background-size: cover;
+
+}
+
+.ghinho_theme3{
+    display: flex;
+    margin-right: auto;
+    margin-bottom: 0!important;
+    margin-top: 8px;
+}
+.ghinho_theme3_input{
+    width: 0;
+    height: 0;
+}
+.ghinho_theme3_span{
+    color: #A7ABC3;
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 12px;
+    margin-left: 8px;
+    cursor: pointer;
 }

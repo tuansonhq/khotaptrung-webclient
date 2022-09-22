@@ -6,7 +6,9 @@
     <meta name="robots" content="index,follow" />
 @endsection
 @section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/service.js" type="text/javascript"></script>
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/service.js" type="text/javascript"></script>--}}
+
+    <script src="/js/{{theme('')->theme_key}}/cay-thue/cay-thue.js" type="text/javascript"></script>
 @endsection
 @section('content')
 
@@ -26,7 +28,7 @@
         <div class="container container-fix menu-container-ct">
             <ul>
                 <li><a href="/">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/dich-vu">Dịch vụ</a></li>
             </ul>
         </div>
@@ -42,7 +44,7 @@
                         <div class="col-md-12 left-right">
                             <div class="row marginauto body-header-ct">
                                 <div class="col-auto left-right">
-                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
                                 </div>
                                 <div class="col-md-10 col-8 body-header-col-ct">
                                     <h1>Dịch vụ</h1>
@@ -74,7 +76,7 @@
                                 <div class="row marginauto body-form-search-ct">
                                     <div class="col-auto left-right">
                                         <input type="text" name="search" class="input-search-ct" placeholder="Tìm dịch vụ">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                     </div>
                                     <div class="col-4 body-form-search-button-ct">
                                         <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
@@ -89,7 +91,7 @@
                                 <div class="row marginauto body-form-search-ct">
                                     <div class="col-12 left-right">
                                         <input type="text" name="search" class="input-search-ct" placeholder="Tìm dịch vụ">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                     </div>
                                 </div>
                             </form>
@@ -104,7 +106,6 @@
 
 {{--    @include('frontend.pages.service.widget.__category__content')--}}
 
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/cay-thue/cay-thue.js?v={{time()}}"></script>
 @endsection
 
 

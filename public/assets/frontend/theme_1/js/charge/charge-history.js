@@ -19,6 +19,21 @@ $(document).ready(function(){
         var started_at = $('.started_at_data_ls').val();
         var ended_at =  $('.ended_at_data_ls').val();
 
+        let html ='';
+        html += '<div class="">';
+        html += ' <table class="table table-hover table-custom-res">';
+        html += ' <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+        html += '  <tbody>';
+        html += ' <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">';
+        html += '  <div class="d-flex justify-content-center">';
+        html += ' <span class="pulser"></span>';
+        html += ' </div>';
+        html += ' </div>';
+        html += ' <tbody>';
+        html += ' </table>';
+        html += '</div>';
+        $("#data_pay_card_history_ls").empty().html('');
+        $("#data_pay_card_history_ls").empty().html(html);
         loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
     });
     loadDataChargeHistory();

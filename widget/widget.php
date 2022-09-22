@@ -799,7 +799,31 @@ View::composer('frontend.widget.__top_nap_the_mobile', function ($view) {
 });
 
 View::composer('frontend.widget.__nap_the', function ($view) {
-    return $view;
+    $data = \Cache::rememberForever('__nap_the', function() {
+        $url = '/deposit-auto/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+//    $data_1 = \Cache::rememberForever('__top_nap_the_mobile', function() {
+//        $url = '/top-charge';
+//        $method = "GET";
+//        $dataSend = array();
+//
+//        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+//        return $data = $result_Api->response_data->data??null;
+//
+//    });
+//    $data = [
+//        'telecom'  => $data,
+//        'top-charge'   => $data_1,
+//
+//    ];
+    return $view->with('data',$data);
+
 
 });
 //theme 2
@@ -1215,4 +1239,5 @@ View::composer('frontend.pages.article.widget.__ads__article', function ($view) 
     });
 
     return $view->with('data',$data);
+
 });

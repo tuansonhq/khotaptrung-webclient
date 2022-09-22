@@ -1,15 +1,18 @@
 
-<div class="row justify-content-center" id="loading-data">
-    <div class="loading"></div>
-</div>
-<div class="" id="form-content" style="display: none">
+{{--<div class="row justify-content-center" id="loading-data">--}}
+{{--    <div class="loading"></div>--}}
+{{--</div>--}}
+<div class="" id="form-content">
     <form action="{{route('postTelecomDepositAuto')}}" id="form-charge" method="POST">
         @csrf
 
         <div class="form-group">
             <div class="col-12">
                 <select name="type"  id="telecom"  class="form-control" >
-
+{{--                    <option value="">-- Vui lòng chọn nhà mạng --</option>--}}
+                    @foreach($data as $val)
+                        <option value="{{$val->key}}">{{$val->title}}</option>
+                    @endforeach
                 </select>
 
             </div>

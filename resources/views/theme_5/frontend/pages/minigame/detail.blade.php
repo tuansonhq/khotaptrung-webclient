@@ -16,6 +16,7 @@
         })
     </script>
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/minigame.css">
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/withdraw-modal.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/fake-cmt.js"></script>
 @endsection
 @section('content')
@@ -692,7 +693,9 @@
                                     </a>
                                 </div>
                                 <div class="col-6 c-pl-5">
-                                    <a  href="/withdrawitem-{{$result->group->params->game_type}}" class="btn primary w-100">Rút quà</a>
+                                    <a href="/withdrawitem-{{$result->group->params->game_type}}" class="btn primary w-100" data-toggle="modal" data-target="#modalWithdraw">
+                                        Rút quà
+                                    </a>
                                 </div>
                             @endif
                         </div>
@@ -941,6 +944,163 @@
 
     <input type="hidden" class="started_at" name="started_at" value="{{ $result->group->started_at??0 }}">
     <input type="hidden" id="type_play" value="real">
+
+    <!-- Modal rút quà -->
+    <div class="modal fade" id="modalWithdraw" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content c-p-0">
+                <div class="modal-header c-p-24 align-items-center">
+                    <h5 class="modal-title fw-700 fz-15 lh-24">Rút vật phẩm</h5>
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#modal-tab-withdraw" role="tab">Rút vật phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#modal-tab-history" role="tab">Lịch sử</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content c-p-0">
+                        <div class="tab-pane fade show active" id="modal-tab-withdraw" role="tabpanel">
+                            <form action="" id="form-withdraw-item">
+                                @csrf
+                                <div class="item-block-tab c-p-16">
+                                    <div class="input-group">
+                                        <div class="form-label">Chọn vật phẩm bạn đang sở hữu</div>
+                                        <div class="swiper swiper-withdraw">
+                                            <div class="swiper-wrapper" id="wrap-game-type" data-game_type="{{ @$result->group->params->game_type }}">
+
+                                            </div>
+                                        </div>
+                                        <span class="text-error"></span>
+                                    </div>
+                                </div>
+                                <div class="item-input-tab">
+                                    <div class="input-group">
+                                        <div class="form-label">
+                                            Chọn vật phẩm bạn đang sở hữu
+                                        </div>
+                                        <select name="package" id="package" class="wide select-withdraw">
+                                            <option value="">Chọn gói</option>
+                                        </select>
+                                        <span class="text-error"></span>
+                                    </div>
+                                    <div class="input-group input-id-game">
+                                        <div class="form-label">
+                                            Tài khoản trong game
+                                        </div>
+                                        <input class="" type="text" name="idgame" placeholder="Nhập tài khoản trong game" required="">
+                                        <span class="text-error"></span>
+                                    </div>
+                                    <div class="input-group password-phone">
+                                        <div class="form-label">
+                                            Mật khẩu trong game
+                                        </div>
+                                        <div class="toggle-password">
+                                            <input class="password" type="password" name="serial" placeholder="Nhập mật khẩu trong game" required="">
+                                        </div>
+                                        <span class="text-error"></span>
+                                    </div>
+                                    <div id="withdrawMessage"></div>
+                                    <div class="d-flex c-mt-24 justify-content-end">
+                                        <button type="submit" class="btn primary" style="width: 40%">Rút ngay</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="modal-tab-history" role="tabpanel">
+                            <div class="history-block-tab">
+                                <div style="width: 100%">
+                                    <form action="" class="form-search history">
+                                        <input type="search" placeholder="Tìm kiếm" class=" has-submit">
+                                        <button type="submit"></button>
+                                    </form>
+                                </div>
+                                <div class="value-filter">
+                                    <div class="show-modal-filter noselect">Bộ lọc</div>
+                                </div>
+                                <div class="row history-tab-inputs">
+                                    <div class="col-7 c-pr-4">
+                                        <div class="row">
+                                            <div class="col-6 c-pr-4">
+                                                <div class="input-group">
+                                                    <div class="form-label">
+                                                        Loại giao dịch
+                                                    </div>
+                                                    <select name="id" class="wide">
+                                                        <option value="" selected disabled hidden>Chọn</option>
+                                                        <option value="ngoc-rong">Ngoc rong</option>
+                                                        <option value="cf-online">CF Online</option>
+                                                    </select>
+                                                    <span class="text-error"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 c-pl-4">
+                                                <div class="input-group">
+                                                    <div class="form-label">
+                                                        Trạng thái
+                                                    </div>
+                                                    <select name="status" class="wide">
+                                                        <option value="" selected disabled hidden>Chọn</option>
+                                                        <option value="1">Hủy</option>
+                                                        <option value="0">Thành công</option>
+                                                    </select>
+                                                    <span class="text-error"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 c-pl-4">
+                                        <div class="row">
+                                            <div class="col-6 c-pr-4">
+                                                <div class="input-group">
+                                                    <div class="form-label">
+                                                        Từ ngày
+                                                    </div>
+                                                    <input type="text" name="started_at" class="date-right" placeholder="Chọn">
+                                                    <span class="text-error"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 c-pl-4">
+                                                <div class="input-group">
+                                                    <div class="form-label">
+                                                        Đến ngày
+                                                    </div>
+                                                    <input type="text" name="ended_at" class="date-right" placeholder="Chọn">
+                                                    <span class="text-error"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-7 c-pr-4">
+
+                                    </div>
+                                    <div class="col-5 c-pl-4">
+                                        <div class="row">
+                                            <div class="col-6 c-pr-4">
+                                                <div class="btn ghost" id="resetFormButton" style="width:100%;">Xóa bộ lọc</div>
+                                            </div>
+                                            <div class="col-6 c-pl-4">
+                                                <div class="btn primary" style="width:100%;">Xem kết quả</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="history-list-tab">
+                                <div id="table-history-withdraw"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal quay thành công -->
     <div class="modal fade modal-small" id="noticeModal">
         <div class="modal-dialog modal-dialog-centered modal-custom">
