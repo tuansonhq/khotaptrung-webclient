@@ -16,7 +16,12 @@
                 <a href="/" class="breadcrum--link">Trang chủ</a>
             </li>
             <li class="breadcrum--item">
-                <a href="" class="breadcrum--link">Tin tức</a>
+                @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                <a href="" class="breadcrum--link">Blog</a>
+
+                @else
+                    <a href="" class="breadcrum--link">Tin tức</a>
+                @endif
             </li>
             <li class="breadcrum--item">
                 <a href="" class="breadcrum--link">{{ $title->title }}</a>
@@ -24,9 +29,15 @@
         </ul>
         {{--content--}}
         <div class="card--mobile__title">
-            <a href="/tin-tuc" class="card--back">
+            @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+            <a href="/blog" class="card--back">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
             </a>
+            @else
+                <a href="/tin-tuc" class="card--back">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
+                </a>
+            @endif
             <h4>Tin cộng đồng</h4>
         </div>
 
@@ -80,23 +91,43 @@
                                         <div class="row">
                                             <div class="col-4 col-lg-4 p-0">
                                                 <div class="article--thumbnail">
-                                                    <a href="/tin-tuc/{{ $item->slug }}">
+                                                    @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                                                    <a href="/blog/{{ $item->slug }}">
                                                         <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="article--thumbnail__image">
                                                     </a>
+                                                    @else
+                                                        <a href="/tin-tuc/{{ $item->slug }}">
+                                                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="article--thumbnail__image">
+                                                        </a>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="col-8 col-lg-8 article--info">
                                                 <div class="article--title mb-3 mb-lg-0">
-                                                    <a href="/tin-tuc/{{ $item->slug }}" class="article--title__link">
+                                                    @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                                                    <a href="/blog/{{ $item->slug }}" class="article--title__link">
                                                         {{ $item->title }}
                                                     </a>
+                                                    @else
+                                                        <a href="/tin-tuc/{{ $item->slug }}" class="article--title__link">
+                                                            {{ $item->title }}
+                                                        </a>
+                                                    @endif
                                                 </div>
                                                 <div class="article--description d-none d-lg-block">
                                                     {!! $item->description !!}
                                                 </div>
                                                 <div class="article--date">
                                                     <i class="__icon calendar mr-2"></i>
+                                                    @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                                                        @if(isset($item->published_at))
+                                                            {{ formatDateTime($item->published_at) }}
+                                                        @else
+                                                        {{ formatDateTime($item->created_at) }}
+                                                        @endif
+                                                    @else
                                                     {{ formatDateTime($item->created_at) }}
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

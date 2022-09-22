@@ -19,7 +19,8 @@
                         @endif
 
                         <div class="swiper-slide" >
-                            <a href="/tin-tuc/{{ $val->slug }}">
+                            @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                            <a href="/blog/{{ $val->slug }}">
                                 <div class="item-product__box-img item-news-img">
                                     @if(isset($val->image))
                                         <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val->image)}}" alt="">
@@ -34,12 +35,39 @@
                                         {{ $val->title }}
                                     </div>
                                     <div class="item-product__box-date">
-                                        {{ formatDateTime($val->created_at) }}
+                                        @if(isset($val->published_at))
+                                        {{ formatDateTime($val->published_at) }}
+                                        @else
+                                            {{ formatDateTime($val->created_at) }}
+                                        @endif
                                     </div>
 
 
                                 </div>
                             </a>
+                            @else
+                                <a href="/tin-tuc/{{ $val->slug }}">
+                                    <div class="item-product__box-img item-news-img">
+                                        @if(isset($val->image))
+                                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val->image)}}" alt="">
+                                        @else
+                                            <img onerror="imgError(this)" class="img-list-nick-category lazy" src="/assets/frontend/theme_3/image/images_1/no-image.png" alt="No-image">
+                                        @endif
+                                    </div>
+                                    <div class="item-product__box-content item-news-content">
+
+
+                                        <div class="item-product__box-name mh_item-product__box-name text-limit limit-2">
+                                            {{ $val->title }}
+                                        </div>
+                                        <div class="item-product__box-date">
+                                            {{ formatDateTime($val->created_at) }}
+                                        </div>
+
+
+                                    </div>
+                                </a>
+                            @endif
                         </div>
 
                     @endforeach
