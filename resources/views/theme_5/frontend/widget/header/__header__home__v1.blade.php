@@ -1,8 +1,8 @@
 <div class="container c-container header-container">
     <div class="box-logo ">
         <a href="/">
-            <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="" class="d-lg-block d-none">
-            <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo_mobile'))}}" alt="" class="d-lg-none ">
+            <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="" class="d-lg-block d-none w-50">
+            <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo_mobile'))}}" alt="" class="d-lg-none w-50">
         </a>
     </div>
     <div class="d-none d-md-flex ">
