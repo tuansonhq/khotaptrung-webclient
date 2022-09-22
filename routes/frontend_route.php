@@ -104,6 +104,11 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/tin-tuc', [ArticleController::class , "getList"]);
                 Route::get('/tin-tuc', [ArticleController::class , "getList"]);
                 Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"]);
+
+                Route::get('/blog', [ArticleController::class , "getList"]);
+                Route::get('/blog', [ArticleController::class , "getList"]);
+                Route::get('/blog/{slug}', [ArticleController::class , "getDetail"]);
+
                 Route::get('/dich-vu', [ServiceController::class, "getList"]);
                 Route::get('/dich-vu/{slug}', [ServiceController::class, "getDetail"]);
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);
@@ -146,7 +151,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/ajax/transfer-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])->name('getIdCode');
 //                captcha
                 Route::get('/first-captcha', [ChargeController::class , 'myCaptcha']);
-                Route::get('/ajax/reload-captcha', [ChargeController::class , 'reloadCaptcha']);
+                Route::get('/reload-captcha', [ChargeController::class , 'reloadCaptcha']);
                 Route::get('/reload-captcha2', [ChargeController::class , 'reloadCaptcha2']);
 //                 ROUTE cần auth load dữ liệu không cache
                 Route::group(['middleware' => ['auth_custom']], function (){
@@ -219,6 +224,12 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SiteMapController::class , 'index']);
                 Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
                 Route::get('/rss-detail', [\App\Http\Controllers\Frontend\RssController::class , 'detail']);
+
+                Route::get('/robots.txt', function ()
+                {
+                    return view('frontend.pages.robots.robots.txt');
+                });
+
                 Route::get('/rss-minigame', function ()
                 {
                     return response()->view('frontend.pages.rss.minigame')->header('Content-Type', 'application/xml');

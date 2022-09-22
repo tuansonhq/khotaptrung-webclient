@@ -8,7 +8,7 @@
 
                     <div class="media-inner aling-items-end">
                         <a href="/tin-tuc/{{ $item->slug }}">
-                            <img src="{{$item->image}}" alt="" class="bg rounded">
+                            <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="bg rounded">
                         </a>
 
                         <div class="align-items-bottom">
@@ -34,7 +34,7 @@
                     <div class="media-placeholder ratio-5-3 rounded">
                         <div class="bg rounded item-imager-blog" >
                             <a href="/tin-tuc/{{ $item->slug }}">
-                                <img src="{{  $item->image }}" class="img-fluid" title="{{ $item->title }}">
+                                <img src="{{\App\Library\MediaHelpers::media($item->image)}}" class="img-fluid" title="{{ $item->title }}">
                             </a>
                         </div>
                     </div>

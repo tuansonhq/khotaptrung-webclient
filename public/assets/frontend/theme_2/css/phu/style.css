@@ -31,3 +31,29 @@
 .history-detail-attr div.detail-primary {
     color: var(--primary-color);
 }
+
+/* Rss Detail */
+
+#rss-detail {
+    padding: 16px;
+}
+
+#rss-detail .rss-detail-list {
+    margin-bottom: 0;
+    margin-top: 16px;
+    padding-bottom: 16px;
+}
+
+#rss-detail .rss-detail-list div {
+    text-align: center;
+}
+
+#rss-detail .rss-detail-list a {
+    color: #3e3e3ee0 !important;
+    text-transform: uppercase !important;
+    font-weight: bold;
+}
+
+#rss-detail .rss-detail-list a:hover {
+    color: rgb(238, 70, 35) !important;
+}

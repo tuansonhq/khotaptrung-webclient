@@ -18,7 +18,6 @@
             <li class="nav-item">
                 <a href="/tin-tuc" class="nav-link">Tin tức chung</a>
             </li>
-
             @include('frontend.widget.__menu__article')
         </ul>
         <div>
@@ -41,7 +40,7 @@
                 <div class="article-single mb-4">
                     <div class="article-thumb mb-4">
                         <div class="media-placeholder ratio-2-1 rounded">
-                            <div class="bg rounded" style="background-image: url({{$data->image }});"></div>
+                            <div class="bg rounded" style="background-image: url({{\App\Library\MediaHelpers::media($data->image)}});"></div>
                             <div class="media-inner aling-items-end">
                                 <div class="align-items-end h-100 text-white">
                                     <div class="align-items-bottom">
@@ -67,6 +66,7 @@
                         {{--                            </ul>--}}
                         {{--                        </div>--}}
                         <div class="article-content flex-grow-1 news_detail_content">
+
                             {!! $data->content !!}
 
                         </div>

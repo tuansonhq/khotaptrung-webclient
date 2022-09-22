@@ -20,7 +20,7 @@
                     <div class="media-placeholder ratio-2-1">
                         <div class="bg item-image " >
                             <a href="/tin-tuc/{{ $item->slug }}">
-                                <img class="img-fluid" src="{{  $item->image }}" title="{{ $item->title }}">
+                                <img class="img-fluid" src="{{\App\Library\MediaHelpers::media($item->image)}}" title="{{ $item->title }}">
                             </a>
                         </div>
                     </div>
