@@ -13,10 +13,19 @@
     </script>
 @endpush
 @section('content')
+
+    @if(isset($data->params) && isset($data->params->article_type))
+        {!! $data->params->article_type !!}
+    @endif
+
     <div class="site-content-body alt first pt-0 pb-0 d-flex justify-content-between align-items-center">
         <ul class="nav nav-line">
             <li class="nav-item">
-                <a href="/tin-tuc" class="nav-link">Tin tức chung</a>
+                @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                <a href="/blog" class="nav-link">Tin tức chung</a>
+                @else
+                    <a href="/tin-tuc" class="nav-link">Tin tức chung</a>
+                @endif
             </li>
 
             @include('frontend.widget.__menu__article')
@@ -32,8 +41,20 @@
     <div class="site-content-body bg-white last">
         <nav class="site-breadcrumb mb-3">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="/tin-tuc">Tin tức</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="/tin-tuc/{{ $data->groups[0]->slug }}">{{ $data->groups[0]->title }}</a></li>
+                <li class="breadcrumb-item">
+                    @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                    <a href="/blog">Blog</a>
+                    @else
+                        <a href="/tin-tuc">Tin tức</a>
+                    @endif
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                    <a href="/blog/{{ $data->groups[0]->slug }}">{{ $data->groups[0]->title }}</a>
+                    @else
+                        <a href="/tin-tuc/{{ $data->groups[0]->slug }}">{{ $data->groups[0]->title }}</a>
+                    @endif
+                </li>
             </ol>
         </nav>
         <div class="row">

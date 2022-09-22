@@ -4,20 +4,43 @@
             <div class="col-6 col-lg-3 px-2 mt-2 mb-3">
                 <div class="article mb-3">
                     <div class="article--thumbnail">
-                        <a href="/tin-tuc/{{ $item->slug }}">
+                        @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                        <a href="/blog/{{ $item->slug }}">
                             <img onerror="imgError(this)"
                                 src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                 alt="" class="article--thumbnail__image">
                         </a>
+                        @else
+                            <a href="/tin-tuc/{{ $item->slug }}">
+                                <img onerror="imgError(this)"
+                                     src="{{\App\Library\MediaHelpers::media($item->image)}}"
+                                     alt="" class="article--thumbnail__image">
+                            </a>
+                        @endif
                     </div>
                     <div class="article--title my-3">
-                        <a href="/tin-tuc/{{ $item->slug }}" class="article--title__link">
+                        @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                        <a href="/blog/{{ $item->slug }}" class="article--title__link">
                             {{ $item->title}}
                         </a>
+                        @else
+                            <a href="/tin-tuc/{{ $item->slug }}" class="article--title__link">
+                                {{ $item->title}}
+                            </a>
+                        @endif
                     </div>
                     <div class="article--date">
                         <i class="__icon calendar mr-2"></i>
-                        {{ formatDateTime($item->created_at) }}
+                        @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                            @if(isset($item->published_at))
+                                {{ formatDateTime($item->published_at) }}
+                            @else
+                                {{ formatDateTime($item->created_at) }}
+                            @endif
+
+                        @else
+                            {{ formatDateTime($item->created_at) }}
+                        @endif
                     </div>
                 </div>
             </div>
