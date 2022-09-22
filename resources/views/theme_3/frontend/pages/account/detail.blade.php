@@ -6,7 +6,9 @@
     <meta name="robots" content="noindex,nofollow" />
 @endsection
 @section('content')
-
+    @if(isset($data->params) && isset($data->params->article_type))
+        {!! $data->params->article_type !!}
+    @endif
     @if($data == null)
         <div class="item_buy">
             <div class="container pt-3" style="padding-bottom: 600px">
