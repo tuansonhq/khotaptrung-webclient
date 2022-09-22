@@ -312,9 +312,7 @@
                 </div> --}}
 
                 <div id="article-detail-advertise" class="d-none d-lg-block">
-                    <a href="javascript:void(0);">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/image_60.png" alt="">
-                    </a>
+                    @include('frontend.pages.article.widget.__ads__article')
                 </div>
 
             </div>

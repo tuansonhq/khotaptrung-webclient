@@ -1198,3 +1198,21 @@ View::composer('frontend.pages.rss.widget.__nick', function ($view) {
 
     return $view->with('data', $data);
 });
+
+
+View::composer('frontend.pages.article.widget.__ads__article', function ($view) {
+
+//    quảng cáo bài viết
+
+    $data = \Cache::rememberForever('__ads__article', function() {
+        $url = '/get-slider-banner-article';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+});
