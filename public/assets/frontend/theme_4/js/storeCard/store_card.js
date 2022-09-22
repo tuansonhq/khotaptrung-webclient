@@ -1,260 +1,56 @@
 $(document).ready(function(){
 
-    function formatNumber(num) {
-        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
-    }
-    $('.expand-button').on('click', function() {
+    getCardAmount($('select[name="card-type"]').val());
 
-        $('.special-text').toggleClass('-expanded');
-
-        if ($('.special-text').hasClass('-expanded')) {
-            $('.expand-button').html('Thu gọn nội dung');
-        } else {
-            $('.expand-button').html('Xem thêm nội dung');
-        }
-    });
-    /*option swiper card*/
-    let slider_count = 1;
-    if ($('.slider--card .swiper-wrapper').children().length > 1) {
-        slider_count = 1.4;
+    var dataSend = {
+        amount: 0,
+        telecom: '',
+        quantity: 0,
+        _token: $('meta[name="csrf-token"]').attr('content'),
     }
-    var swiper_card = new Swiper(".slider--card", {
-        slidesPerView: slider_count,
+
+    var swiper_card = new Swiper(".swiper-card-purchase", {
+        slidesPerView: 1,
         spaceBetween: 16,
         freeMode: true,
         observer: true,
         observeParents: true,
     });
-    function getTelecom (){
-        const url = '/ajax/store-card/get-telecom';
-        $.ajax({
-            type: "GET",
-            url: url,
-            beforeSend: function (xhr) {
-            },
-            success: function (data) {
-                if(data.status == 1){
-                    let html = '';
-                    if(data.data.length > 0){
-                        $.each(data.data,function(key,value){
-                            html += '<option value="'+value.key+'" data-img="'+value.image+'">'+value.key+'</option>';
-                        });
-                    }
-                    $('select#telecom_storecard').html(html)
-                    ele = $('select#telecom_storecard option').first();
-                    var telecom = ele.val();
-                    var telecom_img = ele.data('img');
-                    $('.store-card_telecom').text(telecom)
-                    $('input[name=store_telecom]').val(telecom)
-                    $('input[name=store_telecom_img]').val(telecom_img)
 
-                    getAmount(telecom);
-                    $("#buy_telecom_key").on('change', function () {
-                        getAmount(telecom);
-
-                    });
-
-                    $("#buy_amount").on('change', function () {
-                        UpdatePrice();
-                    });
-
-                    $("#quantity").on('change', function () {
-                        UpdatePrice();
-                    });
-                    $('#loading-data').remove();
-                    $('#loading-data-total').remove();
-                    $('#loading-data-pay').remove();
-                    $('#formStoreCard').show();
-                    $('#StoreCardTotal').show();
-                    $('#StoreCardPay').show();
-                    $('#form-storecard').show();
-                }
-                else{
-                    swal({
-                        title: "Có lỗi xảy ra !",
-                        text: data.message,
-                        icon: "error",
-                        buttons: {
-                            cancel: "Đóng",
-                        },
-                    })
-                }
-            },
-            error: function (data) {
-                alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!')
-                return;
-            },
-            complete: function (data) {
-
-            }
-        });
-    }
-
-    function getAmount(telecom){
-        var url = '/ajax/store-card/get-amount';
-        $.ajax({
-            type: "GET",
-            url: url,
-            data: {
-                telecom:telecom
-            },
-            beforeSend: function (xhr) {
-
-            },
-            success: function (data) {
-
-                if(data.status == 1){
-
-                    let html = '';
-                    if(data.data.length > 0){
-                        $.each(data.data,function(key,value){
-                            // html+= '<p>'+value.amount +'</p>'
-                            html += '<option value="'+ value.amount +'" rel-ratio="'+ value.ratio_default+'">'+ formatNumber(value.amount)  +' VNĐ - ' + (100-value.ratio_default) +'% </option>';
-                        });
-                    }
-                    $('#amount_storecard').html(html);
-                    UpdatePrice();
-                }
-                // else{
-                //     swal({
-                //         title: "Có lỗi xảy ra !",
-                //         text: data.message,
-                //         icon: "error",
-                //         buttons: {
-                //             cancel: "Đóng",
-                //         },
-                //     })
-                // }
-            },
-            error: function (data) {
-                swal({
-                    title: "Lỗi !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
-            },
-            complete: function (data) {
-
-            }
-        });
-    }
-    $('body').on('change','#telecom_storecard',function(){
-        var telecom = $(this).val();
-
-
-        $("#telecom_storecard option:selected").each(function(){
-            var telecom_img = $(this).data('img');
-            $('input[name=store_telecom_img]').val(telecom_img);
-
-        });
-        $('.store-card_telecom').text(telecom);
-        $('input[name=store_telecom]').val(telecom);
-
-        getAmount(telecom)
-    });
-    getTelecom();
-    // $("#telecom_storecard").on('change', function () {
-    //     getAmount();
-    //
-    // });
-
-    $("#amount_storecard").on('change', function () {
-        UpdatePrice();
-
-    });
-
-    $("#quantity").on('change', function () {
-        UpdatePrice();
-    });
-
-    function UpdatePrice(){
-        var amount=$("#amount_storecard").val();
-        var ratio=$('#amount_storecard option:selected').attr('rel-ratio');
-        var quantity=$("#quantity").val();
-
-        $('.store-card_amount').text(formatNumber(amount))
-        $('.store-card_quantity').text(quantity)
-        $('.store-card_ratito').text(ratio)
-        // $('.card--info__value_amount').text(amount)
-        $('input[name=store_amount]').val(amount)
-
-
-        if(amount=='' ||amount==null || ratio=='' ||ratio==null   || quantity=='' ||quantity==null){
-
-            $('#txtPrice').html('Tổng: ' + 0 + ' VNĐ');
-            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                $(this).removeClass();
-            });
-            return;
-        }
-        if(ratio<=0 || ratio=="" || ratio==null){
-            ratio=100;
-        }
-        var sale=amount-(amount*ratio/100);
-        var total=(amount-sale) *quantity;
-        // var total=sale*quantity;
-        var totalnotsale = amount*quantity
-        if(sale != 0){
-            $('#txtPrice').html('Tổng: ' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' VNĐ');
-            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                $(this).removeClass();
-            });
-        }else {
-            $('#txtPrice').html('Tổng: ' + totalnotsale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' VNĐ');
-            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                $(this).removeClass();
-            });
-        }
-
-
-    }
-    $(document).ready(function () {
-        $('#btnbeforePurchase').click(function () {
-            $('#success_storecard').modal('show');
-        });
-    });
-
-    var formSubmit = $('#form-storecard');
-    var url = formSubmit.attr('action');
-    var btnSubmit = formSubmit.find(':submit');
-
-    formSubmit.submit(function (e) {
+    $('#btnPurchase').on('click', function (e) {
         e.preventDefault();
-        e.stopPropagation();
-        $('#openConfirmStorecard').modal('show');
-        // $('#success_storecard1').modal('show');
+        prepareDataSend();
+        $('#homealert').modal('show');
     });
 
-    $('.btn-confirm-charge').on('click', function (m) {
+    $(document).on('click', '#btnConfirmPurchase', function(e) {
+        e.preventDefault();
         $.ajax({
-            type: "POST",
-            url: url,
-            cache:false,
-            data: formSubmit.serialize(), // serializes the form's elements.
-            beforeSend: function (xhr) {
-                $('#openConfirmStorecard').modal("hide");
-                $('#success_storecard1 .swiper-wrapper').empty();
-                swiper_card.update();
+            url:'/ajax/mua-the',
+            type:'POST',
+            data: dataSend,
+            beforeSend: function () {
+                $('#btnConfirmPurchase').prop("disabled", true);
+                $('#btnConfirmPurchase').text("Đang xử lý");
+                $('.swiper-card-purchase .swiper-wrapper').empty();
             },
-            success: function (data) {
-                if(data.status == 1){
-                    btnSubmit.prop('disabled', true);
-                    swal({
-                        title: "Thành công !",
-                        text: data.message,
-                        icon: "success",
-                    })
-                    amount_card =  $('input[name=store_amount]').val();
-                    telecom_card =  $('input[name=store_telecom]').val();
-                    telecom_card_img =  $('input[name=store_telecom_img]').val();
-                    $('#success_storecard1').modal("show");
-                    let html_card = '';
-                    if(data.data.data_card.length > 0){
-                        $.each(data.data.data_card,function(key,value){
-                            html_card += ' <div class="swiper-slide card__detail  swiper-slide-active ">'
+            success:function (res) {
+                // handle data callback
+                $('#homealert').modal('hide');
+                if(res.status && res.status != 401){
+                    let data = res.data;
+
+                    amount_card = dataSend.amount;
+                    telecom_card = dataSend.telecom;
+                    telecom_card_img =  $('select[name="card-type"]').find(':selected').data('img');
+                    
+
+                    if (data.length > 0){
+
+                        //Append HTML for desktop layout
+                        data.forEach(function (card) {
+                            let html_card = '';
+                            html_card += ' <div class="swiper-slide card__detail">'
                             html_card += ' <div class="card--header__detail p-3">'
                             html_card += ' <div class="card--info__wrap">'
                             html_card += '<div class="card--info__wrap d-flex">'
@@ -274,36 +70,44 @@ $(document).ready(function(){
                             html_card += ' <div class="card--attr justify-content-between d-flex text-center">'
                             html_card += ' <div class="card--attr__name fw-400 fz-13 text-center">Mã thẻ</div>'
                             html_card += ' <div class="card--attr__value fz-13 fw-500 d-flex">'
-                            html_card += ' <div class="card__info c-mr-8">'+value.pin+'</div>'
+                            html_card += ' <div class="card__info c-mr-8">'+card.pin+'</div>'
                             html_card += ' <div class="icon--coppy js-copy-text">'
-                            html_card += ' <b class="ml-2"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.pin+'" aria-hidden="true"></i></b>\n'
+                            html_card += ' <b class="ml-2"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+card.pin+'" aria-hidden="true"></i></b>\n'
                             html_card += ' </div>'
                             html_card += ' </div>'
                             html_card += ' </div>'
                             html_card += '  <div class="card--attr justify-content-between pt-0 d-flex text-center">'
                             html_card += ' <div class="card--attr justify-content-between pt-0 d-flex text-center"> Seri</div>'
                             html_card += ' <div class="card--attr__value fz-13 fw-500 d-flex">'
-                            html_card += ' <div class="card__info c-mr-8">'+value.serial+'</div>'
+                            html_card += ' <div class="card__info c-mr-8">'+card.serial+'</div>'
                             html_card += ' <div class="icon--coppy js-copy-text">'
-                            html_card += ' <b class="ml-2"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.serial+'" aria-hidden="true"></i></b>\n'
+                            html_card += ' <b class="ml-2"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+card.serial+'" aria-hidden="true"></i></b>\n'
                             html_card += ' </div>'
                             html_card += '</div>'
                             html_card += ' </div>'
                             html_card += ' </div>'
                             html_card += ' </div>'
-                            $('.success_storecard1 .swiper-wrapper').append(html_card);
-
+                            $('.swiper-card-purchase .swiper-wrapper').append(html_card);
                         });
                     }
 
+                    if (data.length > 1){
+                        swiper_card.params.slidesPerView = 1.25;
+                    } else {
+                        swiper_card.params.slidesPerView = 1;
+                    }
+
+                    swiper_card.update();
+
+                    $('#successModal').modal('show');
                 }
-                else if(data.status == 401){
+                else if(res.status == 401){
                     window.location.href = '/login?return_url='+window.location.href;
                 }
-                else if(data.status == 0){
+                else if(res.status == 0){
                     swal({
                         title: "Mua thẻ thất bại !",
-                        text: data.message,
+                        text: res.message,
                         icon: "error",
                         buttons: {
                             cancel: "Đóng",
@@ -314,7 +118,7 @@ $(document).ready(function(){
                 else{
                     swal({
                         title: "Có lỗi xảy ra !",
-                        text: data.message,
+                        text: res.message,
                         icon: "error",
                         buttons: {
                             cancel: "Đóng",
@@ -322,24 +126,141 @@ $(document).ready(function(){
                     })
                 }
             },
-            error: function (data) {
+            error: function (res) {
                 swal({
                     title: "Có lỗi xảy ra !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
+                    text: res.message,
                     icon: "error",
                     buttons: {
                         cancel: "Đóng",
                     },
                 })
             },
-            complete: function (data) {
-                $('span#reload').trigger('click');
-                formSubmit.trigger("reset");
-                // btnSubmit.text('Nạp thẻ');
-                btnSubmit.prop('disabled', false);
+            complete: function () {
+                $('#btnConfirmPurchase').prop("disabled", false);
+                $('#btnConfirmPurchase').text("Xác nhận");
             }
         });
     });
 
+    //Listen to onchange event in input card-type
+    $('select[name="card-type"]').change(function (e) {
+        e.preventDefault();
+        getCardAmount($(this).val());
+    });
 
+    //Activate onchange, oninput function for input field inside
+    $('select[name="amount"]').change(function (e) {
+        e.preventDefault();
+        preparePriceBtn();
+    });
+    $('select[name="card-quantity"]').on('change', function (e) {
+        e.preventDefault();
+        preparePriceBtn();
+    });
+
+    function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+    }
+
+    function getCardAmount (cardKey) {
+        $.ajax({
+            url: '/ajax/store-card/get-amount',
+            type: 'GET',
+            data: {
+                telecom: cardKey
+            },
+            beforeSend: function () {
+                $('#amount').empty();
+            },
+            success: function (res) {
+                if (res.status) {
+                    let data = res.data;
+                    let loop_index = 0;
+
+                    if (!data.length) {
+                        $('#amount').append('<option value="" selected>Chưa có mệnh giá của thẻ</option>');
+                        $('#btnPurchase').prop('disabled', true);
+                        preparePriceBtn();
+                    } else {
+                        data.forEach(function (card) {
+                            let html = '';
+                            //Check if it is the first loop
+                            if (loop_index === 0) {
+                                html += `<option value="${card.amount}" data-ratio="${card.ratio_default}" selected>${formatNumber(card.amount)} VNĐ - ${100 - card.ratio_default}%</option>`;
+                            } else {
+                                html += `<option value="${card.amount}" data-ratio="${card.ratio_default}">${formatNumber(card.amount)} VNĐ - ${100 - card.ratio_default}%</option>`;
+                            }
+
+                            //Increase loop index
+                            loop_index++;
+
+                            // Append new HTML amount
+                            $('#amount').append(html);
+
+                        });
+
+                        //prepare the input field and update price related value
+                        $('select[name="card-quantity"]').val(1);
+
+                        //Make btn no longer disable when failed get data
+                        $('#btnPurchase').prop('disabled', false);
+                        preparePriceBtn();
+                    }
+
+                }
+            },
+            complete: function () {
+
+            }
+        });
+    }
+
+    function preparePriceBtn () {
+        let price = calculatePrice();
+        if (price) {
+            price = formatNumber(price);
+            $('#cardPrice').text(price);
+        } else {
+            $('#cardPrice').text('0');
+            $('#btnPurchase').prop('disabled', true);
+        }
+    }
+
+    //Calculate price
+    function calculatePrice () {
+        let amount = $('select[name="amount"]').find(':selected').val();
+        let quantity = $('select[name="card-quantity"]').val();
+        let discount = $('select[name="amount"]').find(':selected').data('ratio');
+
+        let discountPerCard = amount - (amount * discount /100);
+        let totalPrice = (amount - discountPerCard) * quantity;
+        let totalNotSale = amount * quantity;
+
+        if (discountPerCard) {
+            return totalPrice;
+        }
+
+        return totalNotSale;
+    }
+
+    function resetSuccessModal() {
+        $('#modal--success__payment .card__message').text('');
+        $('#modal--success__payment #successPrice').text('');
+        $('#modal--success__payment #successQuantity').text('');
+        $('#modal--success__payment .swiper-wrapper').empty();
+    }
+
+    //Append new data to submit to backend
+    function prepareDataSend() {
+        let amount = $('select[name="amount"]').find(':selected').val();
+        let telecom = $('select[name="card-type"]').val();
+        let quantity = $('select[name="card-quantity"]').val();
+
+        dataSend.amount = amount;
+        dataSend.telecom = telecom.toUpperCase();
+        dataSend.quantity = quantity;
+
+        console.log(dataSend);
+    }
 });

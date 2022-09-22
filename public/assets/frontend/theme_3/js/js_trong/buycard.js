@@ -364,9 +364,10 @@ $(document).ready(function () {
 
                     if (!data.length) {
 
-                            $('#cardAmountList').append('<p class="text-center c-mb-0">Chưa có mệnh giá của thẻ</p>');
+                        $('#cardAmountList').append('<p class="text-center c-mb-0">Chưa có mệnh giá của thẻ</p>');
 
                         resetAmountWidget();
+
                         $('#btn-confirm').prop('disabled', true);
                     } else {
                         data.forEach(function (card) {
