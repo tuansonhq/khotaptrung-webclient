@@ -17,6 +17,10 @@
                             <div class="swiper-container list-nap-game col-md-12 text-left left-right">
                                 <div class="swiper-wrapper">
                                     @forelse($datacate as $k_cat => $service)
+                                        @if(isset($current_id) && $current_id == $service->id)
+                                            @continue
+                                        @else
+                                        @endif
                                     <div class="swiper-slide body-detail-ctng-col-ct">
                                         <a href="/dich-vu/{{@$service->slug}}">
                                             <div class="row marginauto hover-overlay-ct">
