@@ -1,7 +1,8 @@
 <div class="container c-container header-container">
     <div class="box-logo ">
         <a href="/">
-            <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/logo.png" alt="">
+            <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="" class="d-lg-block d-none">
+            <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo_mobile'))}}" alt="" class="d-lg-none ">
         </a>
     </div>
     <div class="d-none d-md-flex ">
