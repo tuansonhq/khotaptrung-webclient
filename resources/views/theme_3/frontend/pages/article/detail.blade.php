@@ -61,7 +61,7 @@
             @endif
         </div>
         <div class="row mb-0 mb-lg-3">
-            <div class="col-12 col-lg-8" id="article-detail-left">
+            <div class="col-12 col-lg-9" id="article-detail-left">
                 <div class="card --custom p-3">
                     <article id="article--detail" class="content-autolink">
                         <h1 class="article--title">
@@ -89,7 +89,7 @@
                     </article>
                 </div>
             </div>
-            <div class="col-12 col-lg-4" id="article-detail-right">
+            <div class="col-12 col-lg-3" id="article-detail-right">
                 {{-- <div class="card --custom" id="article-related-minigames">
                     <div class="card--header">
                         <div class="card--header__title">
