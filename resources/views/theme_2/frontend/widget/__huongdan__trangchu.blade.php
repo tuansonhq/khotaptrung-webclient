@@ -23,7 +23,7 @@
             <a href="/blog/{{ $item->slug }}">
                 <div class="media-placeholder ratio-4-3">
                     <div class="media-inner bg-overlay gradient-from-bottom d-flex align-items-end">
-                        <img src="{{ $item->image }}" class="bg" alt="" style="object-fit: cover">
+                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}" class="bg" alt="" style="object-fit: cover">
                         <div class="p-3 text-white p-3 text-white gradient-from-bottom-title">
                             <p class="lead mb-0" style="color: #fff !important;">{{ $item->title }}</p>
                             <h5 class="mb-0" style="color: #fff !important;">Ăn ngay khuyến mãi</h5>
@@ -36,7 +36,7 @@
                 <a href="/tin-tuc/{{ $item->slug }}">
                     <div class="media-placeholder ratio-4-3">
                         <div class="media-inner bg-overlay gradient-from-bottom d-flex align-items-end">
-                            <img src="{{ $item->image }}" class="bg" alt="" style="object-fit: cover">
+                            <img src="{{\App\Library\MediaHelpers::media($item->image)}}" class="bg" alt="" style="object-fit: cover">
                             <div class="p-3 text-white p-3 text-white gradient-from-bottom-title">
                                 <p class="lead mb-0" style="color: #fff !important;">{{ $item->title }}</p>
                                 <h5 class="mb-0" style="color: #fff !important;">Ăn ngay khuyến mãi</h5>
