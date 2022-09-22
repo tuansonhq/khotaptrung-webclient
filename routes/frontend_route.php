@@ -82,6 +82,11 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/tin-tuc', [ArticleController::class , "getList"]);
                 Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"]);
+
+                Route::get('/blog', [ArticleController::class , "getList"]);
+                Route::get('/blog/{slug}', [ArticleController::class , "getDetail"]);
+
+
                 Route::get('/dich-vu', [ServiceController::class, "getList"]);
                 Route::get('/dich-vu/{slug}', [ServiceController::class, "getDetail"]);
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);

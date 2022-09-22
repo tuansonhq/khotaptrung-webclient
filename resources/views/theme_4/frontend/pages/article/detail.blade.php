@@ -7,6 +7,11 @@
 @endsection
 @section('content')
 <section>
+
+    @if(isset($data->params) && isset($data->params->article_type))
+        {!! $data->params->article_type !!}
+    @endif
+
     <div class="container">
 
         @if($data == null)
@@ -18,7 +23,7 @@
                                 @if(isset($message))
                                     {{ $message }}
                                 @else
-                                    Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                                    Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
                                 @endif
                             </span>
                         </div>
@@ -33,7 +38,13 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
 
-                <li class="breadcrumb-item" aria-current="page"><a href="/tin-tuc" title="tin-tuc">Tin tức</a></li>
+                <li class="breadcrumb-item" aria-current="page">
+                    @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                    <a href="/blog" title="tin-tuc">Blog</a>
+                    @else
+                        <a href="/tin-tuc" title="tin-tuc">Tin tức</a>
+                    @endif
+                </li>
                 <li class="breadcrumb-item active">{{ $data->title }}</li>
             </ol>
         </nav>
@@ -45,10 +56,17 @@
                     <div class="article_cat_date">
                         <div style="display: inline-block;margin-right: 15px"><i class="far fa-clock" aria-hidden="true"></i> {{ formatDateTime($data->created_at) }}</div>
                         @if(isset($data->groups[0]))
-                        <div style="display: inline-block"><i class="far fa-newspaper"
-                                                              aria-hidden="true"></i> <a
-                                href="/tin-tuc/{{ $data->groups[0]->slug }}"
+                        <div style="display: inline-block">
+                            <i class="far fa-newspaper" aria-hidden="true"></i>
+                            @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                            <a
+                                href="/blog/{{ $data->groups[0]->slug }}"
                                 title="{{ $data->groups[0]->title }}">{{ $data->groups[0]->title }}</a>
+                            @else
+                                <a
+                                    href="/tin-tuc/{{ $data->groups[0]->slug }}"
+                                    title="{{ $data->groups[0]->title }}">{{ $data->groups[0]->title }}</a>
+                            @endif
                         </div>
                         @endif
                     </div>

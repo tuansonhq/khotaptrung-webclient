@@ -7,7 +7,9 @@
                 <div class="news_content_category_line"></div>
             </div>
             <ul class="news_content_category_menu">
-                <li><i class="fas fa-chevron-right"></i> <a href="/tin-tuc" class="btn-tatca">
+                <li><i class="fas fa-chevron-right"></i>
+                    @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                    <a href="/blog" class="btn-tatca">
                         @php
                             $count = 0;
                             foreach ($datacate as $val){
@@ -15,10 +17,26 @@
                             }
                         @endphp
                         Tất cả ({{ $count }})</a>
+                    @else
+                        <a href="/tin-tuc" class="btn-tatca">
+                            @php
+                                $count = 0;
+                                foreach ($datacate as $val){
+                                    $count = $count + $val->count_item;
+                                }
+                            @endphp
+                            Tất cả ({{ $count }})</a>
+                    @endif
                 </li>
 
                 @foreach($datacate as $val)
-                    <li><i class="fas fa-chevron-right"></i> <a href="/tin-tuc/{{ $val->slug }}" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item }})</a> </li>
+                    <li><i class="fas fa-chevron-right"></i>
+                        @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                        <a href="/blog/{{ $val->slug }}" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item }})</a>
+                        @else
+                            <a href="/tin-tuc/{{ $val->slug }}" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item }})</a>
+                        @endif
+                    </li>
                 @endforeach
             </ul>
         </div>
