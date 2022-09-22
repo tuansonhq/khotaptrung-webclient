@@ -9,85 +9,85 @@ $(document).ready(function(){
         _token: $('meta[name="csrf-token"]').attr('content'),
     }
 
+    var swiper_card = new Swiper(".swiper-card-purchase", {
+        slidesPerView: 1,
+        spaceBetween: 16,
+        freeMode: true,
+        observer: true,
+        observeParents: true,
+    });
+
     $('#btnPurchase').on('click', function (e) {
         e.preventDefault();
         prepareDataSend();
+        $('#homealert').modal('show');
     });
 
-    $(document).on('click', '#modal--confirm__payment #confirmSubmitButton', function(e) {
+    $(document).on('click', '#btnConfirmPurchase', function(e) {
         e.preventDefault();
         $.ajax({
             url:'/ajax/mua-the',
             type:'POST',
             data: dataSend,
             beforeSend: function () {
-                $('#confirmSubmitButton').prop("disabled", true);
-                $('#confirmSubmitButton').text("Đang xử lý");
-                resetSuccessModal();
+                $('#btnConfirmPurchase').prop("disabled", true);
+                $('#btnConfirmPurchase').text("Đang xử lý");
+                $('.swiper-card-purchase .swiper-wrapper').empty();
             },
             success:function (res) {
                 // handle data callback
-                $('#modal--confirm__payment').modal('hide');
+                $('#homealert').modal('hide');
                 if(res.status && res.status != 401){
                     let data = res.data;
-                    let cardImage = $('input[name="card-type"]:checked').data('img');
-                    let cardName = $('input[name="card-type"]:checked').val();
 
-                    $('#modal--success__payment .card__message').text(res.message);
-                    $('#modal--success__payment #successCard').attr('src', cardImage);
-                    $('#modal--success__payment #successPrice').text(formatNumber(dataSend.amount) + ' đ');
-                    $('#modal--success__payment #successQuantity').text(dataSend.quantity);
+                    amount_card = dataSend.amount;
+                    telecom_card = dataSend.telecom;
+                    telecom_card_img =  $('select[name="card-type"]').find(':selected').data('img');
+                    
+
                     if (data.length > 0){
 
                         //Append HTML for desktop layout
                         data.forEach(function (card) {
                             let html_card = '';
-                            html_card += `<div class="swiper-slide card__detail">`;
-                            html_card += `  <div class="card--header__detail">`;
-                            html_card += `      <div class="card--info__wrap">`;
-                            html_card += `          <div class="card--logo">`;
-                            html_card += `            <img src="${cardImage}" alt="telecom_logo">`;
-                            html_card += `          </div>`;
-                            html_card += `          <div class="card--info">`;
-                            html_card += `              <div class="card--info__name">`;
-                            html_card += `                  ${cardName}`;
-                            html_card += `              </div>`;
-                            html_card += `               <div class="card--info__value">`;
-                            html_card += `                    ${formatNumber(dataSend.amount)} đ`;
-                            html_card += `                </div>`;
-                            html_card += `            </div>`;
-                            html_card += `        </div>`;
-                            html_card += `    </div>`;
-                            html_card += `    <div class="card--gray">`;
-                            html_card += `      <div class="card--attr">`;
-                            html_card += `            <div class="card--attr__name">`;
-                            html_card += `              Mã thẻ`;
-                            html_card += `            </div>`;
-                            html_card += `            <div class="card--attr__value">`;
-                            html_card += `              <div class="card__info">`;
-                            html_card += `                  ${card.pin}`;
-                            html_card += `               </div>`;
-                            html_card += `               <div class="icon--coppy js-copy-text">`;
-                            html_card += `                    <img src="/assets/frontend/theme_3/image/icons/coppy.png" alt="icon__copy">`;
-                            html_card += `                </div>`;
-                            html_card += `            </div>`;
-                            html_card += `        </div>`;
-                            html_card += `        <div class="card--attr">`;
-                            html_card += `             <div class="card--attr__name">`;
-                            html_card += `                 Số Series`;
-                            html_card += `              </div>`;
-                            html_card += `              <div class="card--attr__value">`;
-                            html_card += `                  <div class="card__info">`;
-                            html_card += `                      ${card.serial}`;
-                            html_card += `                   </div>`;
-                            html_card += `                   <div class="icon--coppy js-copy-text">`;
-                            html_card += `                      <img src="/assets/frontend/theme_3/image/icons/coppy.png" alt="icon__copy">`;
-                            html_card += `                   </div>`;
-                            html_card += `               </div>`;
-                            html_card += `         </div>`;
-                            html_card += `    </div>`;
-                            html_card += `</div>`;
-                            $('#modal--success__payment .swiper-wrapper').append(html_card);
+                            html_card += ' <div class="swiper-slide card__detail">'
+                            html_card += ' <div class="card--header__detail p-3">'
+                            html_card += ' <div class="card--info__wrap">'
+                            html_card += '<div class="card--info__wrap d-flex">'
+                            html_card += ' <div class="card--logo d-flex">'
+                            html_card += ' <img src="'+telecom_card_img+'" alt="">'
+                            html_card += ' </div>'
+                            html_card += ' <div class="card--info">'
+                            html_card += '<div class="card--info__name " >'+telecom_card+'</div>'
+                            html_card += '<div class="card--info__value ">'
+                            html_card += ' <a href="javascript:void(0)" class="text-primary" >'+formatNumber(amount_card)+' đ</a>'
+                            html_card += ' </div>'
+                            html_card += ' </div>'
+                            html_card += ' </div>'
+                            html_card += ' </div>'
+                            html_card += ' </div>'
+                            html_card += '  <div class="card--gray p-2 m-2" style="background-color: #F8F8FC;border-radius: 4px">'
+                            html_card += ' <div class="card--attr justify-content-between d-flex text-center">'
+                            html_card += ' <div class="card--attr__name fw-400 fz-13 text-center">Mã thẻ</div>'
+                            html_card += ' <div class="card--attr__value fz-13 fw-500 d-flex">'
+                            html_card += ' <div class="card__info c-mr-8">'+card.pin+'</div>'
+                            html_card += ' <div class="icon--coppy js-copy-text">'
+                            html_card += ' <b class="ml-2"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+card.pin+'" aria-hidden="true"></i></b>\n'
+                            html_card += ' </div>'
+                            html_card += ' </div>'
+                            html_card += ' </div>'
+                            html_card += '  <div class="card--attr justify-content-between pt-0 d-flex text-center">'
+                            html_card += ' <div class="card--attr justify-content-between pt-0 d-flex text-center"> Seri</div>'
+                            html_card += ' <div class="card--attr__value fz-13 fw-500 d-flex">'
+                            html_card += ' <div class="card__info c-mr-8">'+card.serial+'</div>'
+                            html_card += ' <div class="icon--coppy js-copy-text">'
+                            html_card += ' <b class="ml-2"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+card.serial+'" aria-hidden="true"></i></b>\n'
+                            html_card += ' </div>'
+                            html_card += '</div>'
+                            html_card += ' </div>'
+                            html_card += ' </div>'
+                            html_card += ' </div>'
+                            $('.swiper-card-purchase .swiper-wrapper').append(html_card);
                         });
                     }
 
@@ -99,24 +99,48 @@ $(document).ready(function(){
 
                     swiper_card.update();
 
-                    $('#modal--success__payment').modal('show');
+                    $('#successModal').modal('show');
                 }
-                else {
-                    $('#message--error--buy').text(res.message);
-                    $('#modal--fail__payment').modal('show');
+                else if(res.status == 401){
+                    window.location.href = '/login?return_url='+window.location.href;
+                }
+                else if(res.status == 0){
+                    swal({
+                        title: "Mua thẻ thất bại !",
+                        text: res.message,
+                        icon: "error",
+                        buttons: {
+                            cancel: "Đóng",
+                        },
+                    })
+
+                }
+                else{
+                    swal({
+                        title: "Có lỗi xảy ra !",
+                        text: res.message,
+                        icon: "error",
+                        buttons: {
+                            cancel: "Đóng",
+                        },
+                    })
                 }
             },
             error: function (res) {
-                $('#message--error--buy').text('');
-                $('#modal--fail__payment').modal('show');
+                swal({
+                    title: "Có lỗi xảy ra !",
+                    text: res.message,
+                    icon: "error",
+                    buttons: {
+                        cancel: "Đóng",
+                    },
+                })
             },
             complete: function () {
-                $('#confirmSubmitButton').prop("disabled", false);
-                $('#confirmSubmitButton').text("Xác nhận");
+                $('#btnConfirmPurchase').prop("disabled", false);
+                $('#btnConfirmPurchase').text("Xác nhận");
             }
         });
-
-        $('#modal--confirm__payment').modal('hide');
     });
 
     //Listen to onchange event in input card-type

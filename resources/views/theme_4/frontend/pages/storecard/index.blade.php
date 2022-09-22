@@ -47,7 +47,7 @@
 
                                         <select name="card-type" class="server-filter form-control t14" style="">
                                             @foreach($telecoms as $val)
-                                                <option value="{{$val->key}}">{{$val->title}}</option>
+                                                <option value="{{$val->key}}" data-img="{{$val->image}}">{{$val->title}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -76,15 +76,13 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <a id="txtPrice" style="font-size: 20px;font-weight: bold;display: block;margin-bottom: 15px;line-height: 20px;" class="btn btn-success">Tổng: <span id="cardPrice">0</span> Xu</a>
-                                {{-- <a style="font-size: 18px;font-weight: bold;display: block;margin-bottom: 15px" class="btn-auth"
-                                   href="/login"
-                                   data-toggle="modal"
-                                   data-target="#modal-login"><i class="fa fa-key" aria-hidden="true"></i> Đăng nhập để thanh
-                                    toán</a> --}}
-                                <button id="btnPurchase" type="button" style="font-size: 18px;font-weight: bold;display: block;margin-bottom: 15px;cursor: pointer" class="btn-auth"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán
-                                </button>
-
+                                <a id="txtPrice" style="font-size: 20px;font-weight: bold;display: block;margin-bottom: 15px;line-height: 20px;" class="btn btn-success">Tổng: <span id="cardPrice">0</span> VNĐ</a>
+                                @if (!\App\Library\AuthCustom::check())
+                                    <a class="btn-auth" style="font-size: 18px;font-weight: bold;display: block;margin-bottom: 15px; color: #fff" data-toggle="modal" data-target="#modal-login"><i class="fa fa-key" aria-hidden="true"></i> Đăng nhập để thanh toán</a>
+                                @else
+                                    <button id="btnPurchase" type="button" style="font-size: 18px;font-weight: bold;display: block;margin-bottom: 15px;cursor: pointer" class="btn-auth"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán
+                                    </button>
+                                @endif
                             </div>
                         </div>
 
@@ -93,7 +91,7 @@
                     </div>
 
 
-                    <!-- Modal -->
+                    <!-- Modal xác nhận -->
                     <div class="modal fade" id="homealert" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -115,16 +113,42 @@
                                 </div>
                                 <div class="modal-footer">
 
-                                    <a class="btn-auth" href="/login">Đăng nhập</a>
+                                    <button type="submit" class="btn btn-success" id="btnConfirmPurchase" style="">Xác nhận thanh toán
+                                    </button>
 
-
-                                    <button type="button"
-                                            class="btn btn-danger c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase"
-                                            data-dismiss="modal">Đóng
+                                    <button type="button" class="btn btn-danger c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng
                                     </button>
 
                                 </div>
 
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal thành công -->
+                    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+
+                                <div class="modal-header">
+                                    <div class="col-1"></div>
+                                    <div class="col-10 text-center"><h6 class="modal-title">Mua thẻ thành công</h6></div>
+                                    <div class="col-1 ">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="swiper-card-purchase">
+                                        <!-- Additional required wrapper -->
+                                        <div class="swiper-wrapper">
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -151,6 +175,10 @@
                             </div>
 
                             <style type="text/css">
+
+                                #successModal .swiper-card-purchase {
+                                    overflow: hidden;
+                                }
 
                                 @media        only screen and (max-width: 580px) {
                                     .hidetext {
@@ -190,19 +218,6 @@
                                 }
                             </style>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
                     </div>
                 </div>
@@ -212,8 +227,6 @@
                 @include('frontend.widget.__tai__khoan__lien__quan')
 
             </div>
-
-
 
         </div><!-- /.container -->
     </section>
