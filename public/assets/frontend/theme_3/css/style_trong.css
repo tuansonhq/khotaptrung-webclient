@@ -1417,9 +1417,11 @@
 }
 
 #article--detail .article--content .article--content__text {
-    width: 820px;
+    max-width: 100%;
 }
-
+#article--detail table {
+    max-width: 100%;
+}
 #article--detail .article--content .article--content__text img {
     max-width: 90%;
     height: auto;
