@@ -341,3 +341,31 @@ function initSwiperConfigAccGame() {
         },
     });
 }
+
+
+let swiper_auto_config = $('.swiper-config-auto');
+if (swiper_auto_config.length){
+    Array.from(swiper_auto_config).forEach(function (elm) {
+        let perview = $(elm).data('perview') * 1;
+        let between = $(elm).data('between') * 1;
+        let id = $(elm).attr('id');
+        new Swiper(elm,{
+            autoplay: false,
+            updateOnImagesReady: true,
+            watchSlidesVisibility: false,
+            lazyLoadingInPrevNext: false,
+            lazyLoadingOnTransitionStart: false,
+            slidesPerView: perview,
+            speed: 300,
+            spaceBetween: between,
+            touchMove: false,
+            grabCursor: false,
+            observer: true,
+            observeParents: true,
+            navigation: {
+                nextEl: `#${id} .navigation.slider-next`,
+                prevEl: `#${id} .navigation.slider-prev`,
+            },
+        });
+    });
+}

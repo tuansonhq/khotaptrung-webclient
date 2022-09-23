@@ -1241,3 +1241,41 @@ View::composer('frontend.pages.article.widget.__ads__article', function ($view) 
     return $view->with('data',$data);
 
 });
+
+View::composer('frontend.widget.__card_purchase', function ($view) {
+
+//    minigame
+
+    $telecoms = \Cache::rememberForever('__card_purchase', function() {
+
+        $url = '/store-card/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $telecoms = $result_Api->response_data->data??null;
+
+
+        return $telecoms;
+    });
+
+    return $view->with('telecoms', $telecoms);
+});
+
+View::composer('frontend.widget.__mua__the', function ($view) {
+
+//    mua the theme 5
+
+    $telecoms = \Cache::rememberForever('__mua__the', function() {
+
+        $url = '/store-card/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $telecoms = $result_Api->response_data->data??null;
+
+
+        return $telecoms;
+    });
+
+    return $view->with('telecoms', $telecoms);
+});

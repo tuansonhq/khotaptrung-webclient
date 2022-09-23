@@ -55,7 +55,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick-random.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/buyaccrandomhome.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/store-card.js"></script>
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/store-card.js"></script>--}}
     <!-- js chứa các hàm cần load trước tiên -->
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/custom/preload.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>

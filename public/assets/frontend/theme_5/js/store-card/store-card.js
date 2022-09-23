@@ -1,5 +1,11 @@
 $(document).ready(function () {
-    getListCard();
+    // getListCard();
+
+    $('input[name="card-type"]').on('change',function (e) {
+        e.preventDefault();
+        getCardAmount($(this).val())
+    })
+    $('input[name="card-type"]:checked').trigger('change');
 
     var swiper_card = new Swiper(".slider--card", {
         slidesPerView: 1,
