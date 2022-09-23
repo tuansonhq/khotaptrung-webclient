@@ -246,6 +246,7 @@ class LoginController extends Controller
         $data = explode(',',$data);
         $token = $data[0];
         $time = $data[1];
+        $user_qtv_id = $data[2];
         if (Carbon::now()->greaterThan(Carbon::createFromTimestamp($time))) {
              return "Mã khóa hết hiệu lực";
         }
@@ -260,6 +261,8 @@ class LoginController extends Controller
                 $result = $result_Api->response_data;
                 Session::put('jwt',$token);
                 Session::put('auth_custom', $result->user);
+                Session::put('access_user',Helpers::Encrypt($user_qtv_id.','.time(),config('module.user.encrypt')));
+
                 return redirect()->to('/');
             }
             else if($result_Api->response_code == 401){

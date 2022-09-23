@@ -98,7 +98,6 @@ class UserController extends Controller
 
     }
 
-
     public function info(Request $request)
     {
         return view(''.theme('')->theme_key.'.frontend.pages.profile.index');
