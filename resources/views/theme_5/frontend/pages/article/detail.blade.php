@@ -6,6 +6,11 @@
     <meta name="robots" content="index,follow" />
 @endsection
 @section('content')
+
+    @if(isset($data->params) && isset($data->params->article_type))
+        {!! $data->params->article_type !!}
+    @endif
+
     <div class="container container-fix">
         {{--breadcrum--}}
         <ul class="breadcrumb-list">
