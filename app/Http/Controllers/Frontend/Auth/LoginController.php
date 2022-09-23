@@ -260,6 +260,8 @@ class LoginController extends Controller
                 $result = $result_Api->response_data;
                 Session::put('jwt',$token);
                 Session::put('auth_custom', $result->user);
+                Session::put('accesuser',Helpers::Encrypt(time(),config('module.user.encrypt')));
+
                 return redirect()->to('/');
             }
             else if($result_Api->response_code == 401){

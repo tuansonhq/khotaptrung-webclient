@@ -39,7 +39,7 @@ View::composer('frontend.widget.__banner__storecard', function ($view) {
 });
 
 View::composer('frontend.widget.__slider__banner__home', function ($view) {
-    if (theme('')->theme_key == "theme_3"){
+    if (theme('')->theme_key == "theme_3" || theme('')->theme_key == "theme_5"){
         $data = \Cache::rememberForever('__slider__banner__home', function() {
             $url = '/get-slider-banner';
             $method = "GET";

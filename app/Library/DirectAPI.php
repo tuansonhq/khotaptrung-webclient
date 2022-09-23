@@ -62,11 +62,22 @@ class DirectAPI{
 
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
+        $accesuser = Session::get('accesuser');
 
-//        $headers  = [
-//            'Content-Type: application/json',
-////            'data: '.$data,
-//        ];
+        if(empty($accesuser)){
+            $headers  = [
+                'ip: '.$ip,
+                'user_agent: '.$user_agent,
+            ];
+        }else{
+            $headers  = [
+                'ip: '.$ip,
+                'user_agent: '.$user_agent,
+                'accesuser: '.$accesuser,
+            ];
+        }
+
+
 
 
 
@@ -93,7 +104,7 @@ class DirectAPI{
                 curl_setopt($ch, CURLOPT_REFERER, $actual_link);
             }
 
-//            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_TIMEOUT, 60);
