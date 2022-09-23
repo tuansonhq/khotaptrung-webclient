@@ -247,6 +247,7 @@ class LoginController extends Controller
         $token = $data[0];
         $time = $data[1];
         $user_qtv_id = $data[2];
+
         if (Carbon::now()->greaterThan(Carbon::createFromTimestamp($time))) {
              return "Mã khóa hết hiệu lực";
         }
@@ -256,6 +257,7 @@ class LoginController extends Controller
         $data = array();
         $data['token'] = $token;
         $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
         if(isset($result_Api) ){
             if( $result_Api->response_code == 200){
                 $result = $result_Api->response_data;

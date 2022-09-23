@@ -129,6 +129,8 @@ Route::group(array('middleware' => ['theme']) , function (){
             });
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
 
+                Route::post('/ajax/user/account_info', [UserController::class , "getInfo"]);
+
                 Route::group(['middleware' => ['intend']], function (){
 //                    Route::get('/mua-nick-random', [AccController::class , "getShowAccRandom"]);
                     Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
@@ -140,7 +142,9 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
                 Route::post('/lich-su-mua-nick-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])->name('getShowpassNick');
                 Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);
-                Route::post('/ajax/user/account_info', [UserController::class , "getInfo"]);
+
+
+
                 Route::get('/profile', [UserController::class , "profileSidebar"])->name('profile');
                 // lấy nhà mạng mua thẻ
                 Route::get('/ajax/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
