@@ -14,9 +14,21 @@
                     $count = $count + $val->count_item;
                 }
             @endphp
-            <li><a href="/tin-tuc">Tất cả ({{ $count }})</a></li>
+            <li>
+                @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                <a href="/blog">Tất cả ({{ $count }})</a>
+                @else
+                    <a href="/tin-tuc">Tất cả ({{ $count }})</a>
+                @endif
+            </li>
             @foreach($data as $val)
-                <li><a href="/tin-tuc/{{ $val->slug }}" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item }})</a></li>
+                <li>
+                    @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                    <a href="/blog/{{ $val->slug }}" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item }})</a>
+                    @else
+                        <a href="/tin-tuc/{{ $val->slug }}" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item }})</a>
+                    @endif
+                </li>
             @endforeach
         </ul>
     </div>

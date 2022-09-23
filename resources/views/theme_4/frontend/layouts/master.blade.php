@@ -4,19 +4,6 @@
 <head>
 
     <meta charset="utf-8"/>
-{{--    <title>Nạp All Game Giá Rẻ, Uy Tín Số 1 Việt Nam</title>--}}
-{{--    <meta name="description" content="Website nạp all game ( liên minh, liên quân, free fire, pubg mobile, tốc chiến, .... ) giá rẻ, uy tín số 1 Việt Nam với 50.000 lượt nạp thành công mỗi ngày. Napgamegiare.net - Địa chỉ nạp game tin cậy của game thủ Việt">--}}
-{{--    <meta name="keywords" content="">--}}
-{{--    <link rel="shortcut icon" href="/assets/frontend/{{theme('')->theme_key}}/image/nHOb2jr8HK_1626233668.jpg" type="image/x-icon">--}}
-{{--    <link rel="canonical" href="https://napgamegiare.net">--}}
-{{--    <meta name="robots" content="index,follow" />--}}
-{{--    <meta name="author" content="napgamegiare.net"/>--}}
-{{--    <meta content="" name="author"/>--}}
-{{--    <meta property="og:type" content="website"/>--}}
-{{--    <meta property="og:url" content="https://napgamegiare.net"/>--}}
-{{--    <meta property="og:title" content="Nạp All Game Giá Rẻ, Uy Tín Số 1 Việt Nam"/>--}}
-{{--    <meta property="og:description" content="Website nạp all game ( liên minh, liên quân, free fire, pubg mobile, tốc chiến, .... ) giá rẻ, uy tín số 1 Việt Nam với 50.000 lượt nạp thành công mỗi ngày. Napgamegiare.net - Địa chỉ nạp game tin cậy của game thủ Việt"/>--}}
-{{--    <meta property="og:image" content="https://napgamegiare.netassets/frontend/images/image-share.jpg"/>--}}
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport"/>
 {{--    <meta http-equiv="Content-type" content="text/html; charset=utf-8">--}}
@@ -418,5 +405,6 @@
 
 </script>
 
+@yield('scripts')
 </body>
 </html>

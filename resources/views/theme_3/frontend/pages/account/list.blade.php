@@ -13,7 +13,7 @@
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%">
                     <a href="/mua-acc" class="previous-step-one" style="line-height: 28px">
-                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>
 
@@ -79,7 +79,7 @@
                             <div class="col-md-12 left-right">
                                 <div class="row marginauto body-header-ct">
                                     <div class="col-auto left-right">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
                                     </div>
                                     <div class="col-md-10 col-10 body-header-col-ct">
                                         <span class="body-header-col-ct-titile">{{ $data->custom->title ? $data->custom->title : $data->title }}</span>
@@ -104,7 +104,7 @@
                                             <div class="row marginauto body-form-search-ct">
                                                 <div class="col-auto left-right">
                                                     <input autocomplete="off" type="text" name="search" class="input-search-ct" placeholder="Nhập từ khóa">
-                                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                                 </div>
                                                 <div class="col-4 body-form-search-button-ct media-web">
                                                     <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
@@ -120,7 +120,7 @@
                                                 <ul>
                                                     <li class="li-boloc">Bộ lọc</li>
                                                     <li class="margin-findter">
-                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/filter.png" alt="">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick/filter.png" alt="">
                                                         <span class="overlay-find">
                                                         0
                                                     </span>
@@ -245,7 +245,7 @@
                         <div class="row marginauto modal-header-nick-ct">
                             <div class="col-12 left-right text-left" style="position: relative">
                                 <span>Bộ lọc</span>
-                                <img class="lazy img-close-nick-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                                <img class="img-close-nick-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                             </div>
                         </div>
 

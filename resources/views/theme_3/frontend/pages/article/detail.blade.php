@@ -12,6 +12,7 @@
     <meta name="robots" content="index,follow" />
 @endsection
 @section('content')
+
     @if($data == null)
         <div class="item_buy">
             <div class="container pt-3">
@@ -39,7 +40,11 @@
                 <a href="/" class="breadcrum--link">Trang chủ</a>
             </li>
             <li class="breadcrum--item">
-                <a href="/tin-tuc" class="breadcrum--link">Tin tức</a>
+                @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                <a href="/blog" class="breadcrum--link">Blog</a>
+                @else
+                    <a href="/tin-tuc" class="breadcrum--link">Tin tức</a>
+                @endif
             </li>
             <li class="breadcrum--item">
                 <a href="javascript:void(0)" class="breadcrum--link">{{$data -> title}}</a>
@@ -50,17 +55,29 @@
             <a href="/tin-tuc" class="card--back">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
             </a>
+            @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
             <p>Chi tiết tin tức</p>
+            @else
+                <p>Chi tiết blog</p>
+            @endif
         </div>
         <div class="row mb-0 mb-lg-3">
-            <div class="col-12 col-lg-8" id="article-detail-left">
+            <div class="col-12 col-lg-9" id="article-detail-left">
                 <div class="card --custom p-3">
                     <article id="article--detail" class="content-autolink">
                         <h1 class="article--title">
                             {{$data -> title}}
                         </h1>
                         <div class="article--info">
-                            {{ formatDateTime($data->created_at) }}
+                            @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                                @if(isset($data->published_at))
+                                    {{ formatDateTime($data->published_at) }}
+                                @else
+                                    {{ formatDateTime($data->created_at) }}
+                                @endif
+                            @else
+                                {{ formatDateTime($data->created_at) }}
+                            @endif
                         </div>
                         <div class="article--thumbnail py-4">
                             <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" class="article--thumbnail__image py-3">
@@ -73,7 +90,7 @@
                     </article>
                 </div>
             </div>
-            <div class="col-12 col-lg-4" id="article-detail-right">
+            <div class="col-12 col-lg-3" id="article-detail-right">
                 {{-- <div class="card --custom" id="article-related-minigames">
                     <div class="card--header">
                         <div class="card--header__title">
@@ -295,9 +312,7 @@
                 </div> --}}
 
                 <div id="article-detail-advertise" class="d-none d-lg-block">
-                    <a href="javascript:void(0);">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/image_60.png" alt="">
-                    </a>
+                    @include('frontend.pages.article.widget.__ads__article')
                 </div>
 
             </div>

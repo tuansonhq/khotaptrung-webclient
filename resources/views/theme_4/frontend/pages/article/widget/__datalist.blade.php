@@ -8,7 +8,11 @@
                             @if(isset($item->url_redirect_301))
                                 <a target="_blank" href="{{ $item->url_redirect_301 }}"><img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}"></a>
                             @else
-                                <a href="/tin-tuc/{{ $item->slug }}"><img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}"></a>
+                                @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                                <a href="/blog/{{ $item->slug }}"><img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}"></a>
+                                @else
+                                    <a href="/tin-tuc/{{ $item->slug }}"><img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}"></a>
+                                @endif
                             @endif
 
                         </div>
@@ -18,17 +22,35 @@
                                     @if(isset($item->url_redirect_301))
                                         <a target="_blank" href="{{ $item->url_redirect_301 }}" style="text-transform: initial;">{{ $item->title }}</a>
                                     @else
-                                        <a href="/tin-tuc/{{ $item->slug }}" style="text-transform: initial;">{{ $item->title }}</a>
+                                        @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                                        <a href="/blog/{{ $item->slug }}" style="text-transform: initial;">{{ $item->title }}</a>
+                                        @else
+                                            <a href="/tin-tuc/{{ $item->slug }}" style="text-transform: initial;">{{ $item->title }}</a>
+                                        @endif
                                     @endif
 
                                 </h2>
                             </div>
                             <div class="article_cat_date">
                                 <div style="display: inline-block;margin-right: 15px">
-                                    <i class="far fa-clock" aria-hidden="true"></i> {{ formatDateTime($item->created_at) }}
+                                    <i class="far fa-clock" aria-hidden="true"></i>
+                                    @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                                        @if(isset($item->published_at))
+                                            {{ formatDateTime($item->published_at) }}
+                                        @else
+                                            {{ formatDateTime($item->created_at) }}
+                                        @endif
+                                    @else
+                                        {{ formatDateTime($item->created_at) }}
+                                    @endif
                                 </div>
                                 <div style="display: inline-block">
-                                    <i class="far fa-newspaper" aria-hidden="true"></i> <a href="/tin-tuc/{{ $item->groups[0]->slug }}" title="Hướng dẫn">{{ $item->groups[0]->title }}</a>
+                                    <i class="far fa-newspaper" aria-hidden="true"></i>
+                                    @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                                    <a href="/blog/{{ $item->groups[0]->slug }}" title="Hướng dẫn">{{ $item->groups[0]->title }}</a>
+                                    @else
+                                        <a href="/tin-tuc/{{ $item->groups[0]->slug }}" title="Hướng dẫn">{{ $item->groups[0]->title }}</a>
+                                    @endif
                                 </div>
                             </div>
                             <div class="article_description hidden-xs">{!! $item->seo_description !!}</div>

@@ -9,9 +9,9 @@
         <div class="container container-fix menu-container-ct">
             <ul>
                 <li><a href="/">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img   src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img   src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="">Tài khoản đã mua</a></li>
             </ul>
         </div>
@@ -24,7 +24,7 @@
                 <div class="col-auto left-right" style="width: 10%">
                     <a href="javascript:void(0)" class="previous-step-one box-account-mobile_open"
                        style="line-height: 28px" onclick="openMenuProfile()">
-                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png"
+                        <img   src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png"
                              alt="">
                     </a>
                 </div>
@@ -67,7 +67,7 @@
                                             <div class="col-auto left-right">
                                                 <input autocomplete="off" type="text" name="search"
                                                        class="input-search-log-ct search" placeholder="Nhập từ khóa">
-                                                <img class="lazy"
+                                                <img
                                                      src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png"
                                                      alt="">
                                             </div>
@@ -91,7 +91,7 @@
                                             <ul>
                                                 <li class="li-boloc">Bộ lọc</li>
                                                 <li class="margin-findter">
-                                                    <img class="lazy"
+                                                    <img
                                                          src="/assets/frontend/{{theme('')->theme_key}}/image/nick/filter.png"
                                                          alt="">
                                                     <span class="overlay-find">
@@ -106,7 +106,7 @@
                             </div>
 
                             <div class="row marginauto nick-findter-data">
-                                {{--                                        <div class="col-auto prepend-nick" style="position: relative"><a href="">Từ 500K - 1 Triệu</a><img class="lazy close-item-nick" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/close.png" alt=""></div>--}}
+                                {{--                                        <div class="col-auto prepend-nick" style="position: relative"><a href="">Từ 500K - 1 Triệu</a><img class="  close-item-nick" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/close.png" alt=""></div>--}}
                             </div>
                         </div>
 
@@ -139,7 +139,7 @@
                     <div class="row marginauto modal-header-nick-ct">
                         <div class="col-12 left-right text-center" style="position: relative">
                             <span>Bộ lọc</span>
-                            <img class="lazy img-close-nick-ct close-modal-default"
+                            <img class=" img-close-nick-ct close-modal-default"
                                  src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                         </div>
                     </div>
@@ -294,7 +294,7 @@
                     <div class="row marginauto modal-header-order-ct">
                         <div class="col-12 span__donhang text-center" style="position: relative">
                             <span>Mua tài khoản thành công</span>
-                            <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                            <img class=" img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                         </div>
                     </div>
 
@@ -306,7 +306,7 @@
                         <div class="col-md-12 left-right image-success">
                             <div class="row marginauto justify-content-center">
                                 <div class="col-auto">
-                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/group.png" alt="">
+                                    <img class=" " src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/group.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -320,7 +320,7 @@
                                         </div>
                                         <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick  data-tai-khoan">
                                             <input readonly autocomplete="off" class="input-defautf-ct" type="text" value="">
-                                            <img class="lazy js_copy_input" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="icon_copy" data-tippy-content="Đã copy tài khoản">
+                                            <img class="  js_copy_input" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="icon_copy" data-tippy-content="Đã copy tài khoản">
                                         </div>
                                         <div class="col-md-12 left-right">
                                             <div class="row marginauto title-tra-gop-success-row">
@@ -329,9 +329,9 @@
                                                 </div>
                                                 <div class="col-md-12 left-right body-title-detail-select-ct taikhoan-success-nick data-password">
 {{--                                                    <input id="password" readonly autocomplete="off" class="input-defautf-ct" type="password" value="******" placeholder="******">--}}
-{{--                                                    <img class="lazy img-copy js_copy_input" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="icon_copy" id="getCopypass">--}}
+{{--                                                    <img class="  img-copy js_copy_input" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="icon_copy" id="getCopypass">--}}
 {{--                                                    <div class="getCopypass">--}}
-{{--                                                        <img class="lazy img-show-password" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/eyehide.png" alt="" id="getShowpass">--}}
+{{--                                                        <img class="  img-show-password" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/eyehide.png" alt="" id="getShowpass">--}}
 {{--                                                    </div>--}}
                                                 </div>
                                             </div>
