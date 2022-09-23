@@ -261,7 +261,7 @@ class LoginController extends Controller
                 $result = $result_Api->response_data;
                 Session::put('jwt',$token);
                 Session::put('auth_custom', $result->user);
-                Session::put('accesuser',Helpers::Encrypt($user_qtv_id.','.time(),config('module.user.encrypt')));
+                Session::put('access_user',Helpers::Encrypt($user_qtv_id.','.time(),config('module.user.encrypt')));
 
                 return redirect()->to('/');
             }
