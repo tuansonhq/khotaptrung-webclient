@@ -69,6 +69,9 @@
                         </label>
                         <span>Hoặc đăng nhập qua</span>
                         <div class="social-container">
+                            <a href="#">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/ggroup.svg" alt="">
+                            </a>
                             <a href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class="social">
                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/fb_icon.svg" alt="">
                             </a>
