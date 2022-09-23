@@ -145,7 +145,11 @@ class DirectAPI{
 
                         }else{
 
-                            Session::flush();
+
+                            Session::forget('jwt');
+                            Session::forget('exp_token');
+                            Session::forget('time_exp_token');
+                            Session::forget('auth_custom');
                             \Cookie::queue(\Cookie::forget('jwt_refresh_token'));
                             $resultChange->response_code = 401;
                             $resultChange->response_data = $response_data;
