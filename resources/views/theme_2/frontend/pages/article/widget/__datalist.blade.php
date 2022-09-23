@@ -8,6 +8,7 @@
 
                     <div class="media-inner aling-items-end">
 
+
                         @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
                         <a href="/blog/{{ $item->slug }}">
 
