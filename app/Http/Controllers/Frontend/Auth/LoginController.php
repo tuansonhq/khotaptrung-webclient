@@ -236,6 +236,7 @@ class LoginController extends Controller
                 'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
             ]);        }
     }
+
     public function accesUser(Request $request){
         if (!$request->get('sign')){
             return "Mã khóa bị thiếu";

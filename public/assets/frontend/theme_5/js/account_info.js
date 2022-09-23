@@ -2,30 +2,32 @@ $(document).ready(function(){
 
     const csrf_token = $('meta[name="csrf-token"]').attr('content');
     const token =  $('meta[name="jwt"]').attr('content');
+
+    getInfo();
     function getInfo(){
+
         const url = '/ajax/user/account_info';
-        if(token == 'undefined' || token == null || token =='' || token == undefined){
-
-
-                $('.box-loading').hide();
-                $('.box-logined').show();
-                $('.box-account').hide();
-
-                // đăng nhập, đăng ký
-
-                  let html = '';
-                  html += '<div class="box-icon brs-8 " >';
-                  html += ' <img src="/assets/frontend/theme_5/image/nam/profile.svg" alt="" >';
-                  html += '</div>';
-
-                  $('.account-logined').html(html);
-                  $('.box-account_nologined').show();
-                  $('.box-account_logined').hide();
-
-
-            $('meta[name="jwt"]').attr('content','');
-            return;
-        }
+        // if(token == 'undefined' || token == null || token =='' || token == undefined){
+        //
+        //         $('.box-loading').hide();
+        //         $('.box-logined').show();
+        //         $('.box-account').hide();
+        //
+        //         // đăng nhập, đăng ký
+        //
+        //           let html = '';
+        //           html += '<div class="box-icon brs-8 " >';
+        //           html += ' <img src="/assets/frontend/theme_5/image/nam/profile.svg" alt="" >';
+        //           html += '</div>';
+        //
+        //           $('.account-logined').html(html);
+        //           $('.box-account_nologined').show();
+        //           $('.box-account_logined').hide();
+        //
+        //
+        //     $('meta[name="jwt"]').attr('content','');
+        //     return;
+        // }
         $.ajax({
             type: "POST",
             url: url,
@@ -120,7 +122,7 @@ $(document).ready(function(){
             }
         });
     }
-    getInfo();
+
 
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')

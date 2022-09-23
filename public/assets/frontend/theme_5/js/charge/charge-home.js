@@ -138,7 +138,7 @@ $(document).ready(function () {
     function reload_captcha() {
         $.ajax({
             type: 'GET',
-            url: '/ajax/reload-captcha',
+            url: '/reload-captcha',
             beforeSend: function () {
                 $('.refresh-captcha img').removeClass("paused");
                 $("#capchaImage").empty();
