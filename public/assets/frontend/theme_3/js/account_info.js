@@ -1,50 +1,9 @@
 $(document).ready(function(){
     const csrf_token = $('meta[name="csrf-token"]').attr('content');
     const token =  $('meta[name="jwt"]').attr('content');
+    getInfo();
     function getInfo(){
         const url = '/ajax/user/account_info';
-        if(token == 'undefined' || token == null || token =='' || token == undefined){
-            $('.check_auth_menu').attr('href','javascript:void(0)')
-            $('.check_auth_menu').addClass('menu_login')
-            $(window).resize(function() {
-                if($(window).width() > 992){
-                    $('.box-loading').hide();
-                    $('.box-logined').show();
-                    $('.box-registed').show();
-
-                    $('.box-account').hide();
-                    $('.box-deposit-charge').hide();
-                    $('.box-logined').html(' <a class="btn btn-submit" onclick="openLoginModal();">Đăng nhập</a>');
-                    $('.box-registed').html(' <a class="btn btn-submit" onclick="openRegisterModal();">Đăng ký</a>');
-                }else {
-                    $('.box-loading-mobile').hide();
-                    $('.box-account-mobile').html('<div class="box-account-logined " onclick="openLoginModal()"> <div class="account-avatar"> <img src="/assets/frontend/theme_3/image/avatar.png" alt=""></div> </div>')
-                    $('#login_menu').html('<a href="#" onclick="openLoginModal()"><img src="/assets/theme_3/image/menu_category6.png" alt=""> <span>Đăng nhập/ Đăng ký</span></a>')
-                }
-            });
-
-                if($(window).width() > 992){
-                    $('.box-loading').hide();
-                    $('.box-logined').show();
-                    $('.box-registed').show();
-
-                    $('.box-account').hide();
-                    $('.box-deposit-charge').hide();
-                    $('.box-logined').html(' <a class="btn btn-submit" onclick="openLoginModal();">Đăng nhập</a>');
-                    $('.box-registed').html(' <a class="btn btn-submit" onclick="openRegisterModal();">Đăng ký</a>');
-                }else {
-                    $('.box-loading-mobile').hide();
-                    $('.box-account-mobile').html('<div class="box-account-logined " onclick="openLoginModal()"> <div class="account-avatar"> <img src="/assets/frontend/theme_3/image/avatar.png" alt=""></div> </div>')
-                    $('#login_menu').html('<a href="#" onclick="openLoginModal()"><img src="/assets/theme_3/image/menu_category6.png" alt=""> <span>Đăng nhập/ Đăng ký</span></a>')
-                }
-
-            $('.data_napthe_login').show();
-            $('.data_napthe_home').hide();
-            $('meta[name="jwt"]').attr('content','');
-
-
-            return;
-        }
         $.ajax({
             type: "POST",
             url: url,
@@ -209,7 +168,7 @@ $(document).ready(function(){
             }
         });
     }
-    getInfo();
+
 
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
