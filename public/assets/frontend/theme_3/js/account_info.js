@@ -2,7 +2,7 @@ $(document).ready(function(){
     const csrf_token = $('meta[name="csrf-token"]').attr('content');
     const token =  $('meta[name="jwt"]').attr('content');
     function getInfo(){
-        const url = '/user/account_info';
+        const url = '/ajax/user/account_info';
         if(token == 'undefined' || token == null || token =='' || token == undefined){
             $('.check_auth_menu').attr('href','javascript:void(0)')
             $('.check_auth_menu').addClass('menu_login')
@@ -40,7 +40,7 @@ $(document).ready(function(){
 
             $('.data_napthe_login').show();
             $('.data_napthe_home').hide();
-            $('meta[name="jwt"]').attr('content','jwt');
+            $('meta[name="jwt"]').attr('content','');
 
 
             return;
@@ -95,7 +95,7 @@ $(document).ready(function(){
 
                     $('.data_napthe_login').show();
                     $('.data_napthe_home').hide();
-                    $('meta[name="jwt"]').attr('content','jwt');
+                    $('meta[name="jwt"]').attr('content','');
 
                 }
                 if(data.status == 401){
@@ -135,7 +135,7 @@ $(document).ready(function(){
 
                     $('.data_napthe_login').show();
                     $('.data_napthe_home').hide();
-                    $('meta[name="jwt"]').attr('content','jwt');
+                    $('meta[name="jwt"]').attr('content','');
 
 
                 }

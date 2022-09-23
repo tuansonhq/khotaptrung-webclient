@@ -1,6 +1,7 @@
 <div class="menu-side" style=" ">
     @foreach($data??[] as $item)
 
+
     @if($item->url == '/nap-the' || $item->url =='/recharge-atm')
         <div class="menu-side-item" style="">
             <a href="{{$item->url??'/'}}" class="check_auth_menu">
@@ -57,7 +58,7 @@
 
     <div class="menu-side-item" style="" >
         <a href="#" class=" go-top">
-            <img src="/assets/frontend/{{theme('')->theme_key}}/image/back-top.svg" alt="" style=" ">
+            <img class="lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/image/back-top.svg" alt="" style=" ">
         </a>
 
     </div>

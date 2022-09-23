@@ -7,7 +7,7 @@
     <div class="log-in container" >
         <div class="log-in-body">
             <p>Đăng nhập hệ thống</p>
-            <form action="{{route('login')}}" method="POST" id="form-login">
+            <form action="/ajax/login" method="POST" id="form-login">
                 <div class="login_error"></div>
 {{--            <p style="color: red;font-size: 14px">    {{ $errors->first() }}</p>--}}
                 @csrf
@@ -23,7 +23,7 @@
                     <div class="col-sm-6">
                         <div class="checkbox icheck">
                             <label >
-                                <input type="checkbox" name="remember" value="1">
+                                <input type="checkbox" name="remember_token" value="1">
                                 Ghi nhớ
                             </label>
                         </div>
@@ -70,8 +70,7 @@
                 beforeSend: function (xhr) {
                 },
                 success: function (data) {
-                    // alert(data)
-                    console.log(data);
+
                     if(data.status == 1){
                         if (return_url == null || return_url == '' || return_url == undefined){
 

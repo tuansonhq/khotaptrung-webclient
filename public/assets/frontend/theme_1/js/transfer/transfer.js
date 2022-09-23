@@ -1,7 +1,7 @@
 $(document).ready(function(){
     // get tele
     function getIdCode(){
-        var url = '/transfer-code';
+        var url = '/ajax/transfer-code';
         $.ajax({
             type: "GET",
             url: url,

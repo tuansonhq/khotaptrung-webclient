@@ -7,7 +7,7 @@ $(document).ready(function(){
     function reload_captcha() {
         $.ajax({
             type: 'GET',
-            url: 'reload-captcha',
+            url: '/ajax/reload-captcha',
             success: function (data) {
 
                 $(".captcha_1 span").html(data.captcha);
@@ -34,54 +34,68 @@ $(document).ready(function(){
 
     });
 
-    function getTelecom(){
-        var url = '/get-tele-card';
-        $.ajax({
-            type: "GET",
-            url: url,
-            success: function (data) {
+    // function getTelecom(){
+    //     var url = '/api/get-tele-card';
+    //     $.ajax({
+    //         type: "GET",
+    //         url: url,
+    //         success: function (data) {
+    //
+    //             if(data.status == 1){
+    //                 let html = '';
+    //                 if(data.data.length > 0){
+    //                     $.each(data.data,function(key,value){
+    //                         html += '<option value="'+value.key+'">'+value.title+'</option>';
+    //                     });
+    //                 }
+    //                 else{
+    //                     html += '<option value="">-- Vui lòng chọn nhà mạng --</option>';
+    //                 }
+    //                 $('select#telecom').html(html)
+    //                 $('.select-form').niceSelect('update');
+    //                 ele = $('select#telecom option').first();
+    //                 var telecom = ele.val();
+    //
+    //                 if (telecom){
+    //                     if (telecom.length > 0){
+    //                         getAmount(telecom);
+    //                     }else {
+    //                         $('.amount-loading').remove();
+    //                     }
+    //                 }else {
+    //                     $('.amount-loading').remove();
+    //                 }
+    //
+    //
+    //                 $('.charge_name').html(' <small>'+telecom+'</small>')
+    //                 $('.loading-data').remove();
+    //                 $('#form-charge2').removeClass('hide_charge');
+    //             }
+    //         },
+    //         error: function (data) {
+    //             console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.')
+    //         },
+    //         complete: function (data) {
+    //         }
+    //     });
+    // }
+    ele = $('select#telecom option').first();
+    var telecom = ele.val();
 
-                if(data.status == 1){
-                    let html = '';
-                    if(data.data.length > 0){
-                        $.each(data.data,function(key,value){
-                            html += '<option value="'+value.key+'">'+value.title+'</option>';
-                        });
-                    }
-                    else{
-                        html += '<option value="">-- Vui lòng chọn nhà mạng --</option>';
-                    }
-                    $('select#telecom').html(html)
-                    $('.select-form').niceSelect('update');
-                    ele = $('select#telecom option').first();
-                    var telecom = ele.val();
-
-                    if (telecom){
-                        if (telecom.length > 0){
-                            getAmount(telecom);
-                        }else {
-                            $('.amount-loading').remove();
-                        }
-                    }else {
-                        $('.amount-loading').remove();
-                    }
-
-
-                    $('.charge_name').html(' <small>'+telecom+'</small>')
-                    $('.loading-data').remove();
-                    $('#form-charge2').removeClass('hide_charge');
-                }
-            },
-            error: function (data) {
-                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.')
-            },
-            complete: function (data) {
-            }
-        });
+    if (telecom){
+        if (telecom.length > 0){
+            getAmount(telecom);
+        }else {
+            $('.amount-loading').remove();
+        }
+    }else {
+        $('.amount-loading').remove();
     }
 
+
+    $('.charge_name').html(' <small>'+telecom+'</small>')
     function getAmount(telecom){
-        var url = '/get-amount-tele-card';
+        var url = '/ajax/get-amount-tele-card';
         $.ajax({
             type: "GET",
             url: url,
@@ -124,6 +138,7 @@ $(document).ready(function(){
                         $('#amount').html(html);
                     }else {
                         $('#amount_mobile').removeClass('d-none');
+                        $('#amount_mobile').empty();
 
                         if(data.data.length > 0){
                             data.data.forEach(function (value,key) {
@@ -201,7 +216,7 @@ $(document).ready(function(){
         getAmount(telecom)
     });
 
-    getTelecom();
+    // getTelecom();
 
 
 
@@ -240,25 +255,15 @@ $(document).ready(function(){
                     $('#reject_charge').html(data.message)
                 }
                 else{
-                    swal({
-                        title: "Có lỗi xảy ra !",
-                        text: data.message,
-                        icon: "error",
-                        buttons: {
-                            cancel: "Đóng",
-                        },
-                    })
+                    console.log('Có lỗi xảy ra ! ('+data.message+')')
+
+
                 }
             },
             error: function (data) {
-                swal({
-                    title: "Có lỗi xảy ra !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(postCharge)')
+
+
             },
             complete: function (data) {
                 $('#reload_1').trigger('click');
