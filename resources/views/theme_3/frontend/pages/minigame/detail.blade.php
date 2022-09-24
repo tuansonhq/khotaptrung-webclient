@@ -1055,11 +1055,11 @@
         </div>
     </div>
 
-    <input type="text" value="{{ isset($result->seddingchat)? $result->seddingchat->params_plus : '' }}" class="chatArrayDefault">
+{{--    <input type="text" value="{{ isset($result->seddingchat)? $result->seddingchat->params_plus : '' }}" class="chatArrayDefault">--}}
 
-    <input type="text" value="{{ isset($result->seddingchat)? $result->seddingchat->params : '' }}" class="chatArray">
+{{--    <input type="text" value="{{ isset($result->seddingchat)? $result->seddingchat->params : '' }}" class="chatArray">--}}
 
-    <input type="hidden" value="{{ $arrUserName??'' }}" class="arrUserName">
+    <input type="hidden" value="{{ json_encode($arrUserName)??'' }}" class="arrUserName">
 
     <input type="hidden" value="{{ isset($result->seddingchat)? $result->seddingchat->total_item : 12 }}" class="total_item">
 
