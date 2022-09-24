@@ -48,7 +48,7 @@ $(document).ready(function () {
         let modal_confirm = $('#modal--confirm__payment');
         modal_confirm.find('.card--logo img').attr('src',path_logo);
         $.ajax({
-            url: '/api/store-card/get-amount',
+            url: '/ajax/store-card/get-amount',
             type: 'GET',
             data: {
                 telecom: $(this).data('key')
