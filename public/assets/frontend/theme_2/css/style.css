@@ -1148,6 +1148,10 @@ ol.w {
     padding-right: 0.5rem;
     margin-left: -1rem;
 }
+.nav-qp-tabs .nav-item:last-child .nav-link {
+    margin-left: -0.5rem;
+}
+
 .nav-qp-tabs .nav-item .nav-link > span {
     position: relative;
     z-index: 20;
@@ -1454,6 +1458,7 @@ ol.w {
  --------------------*/
 .site-main {
     position: relative;
+    z-index: 1;
 }
 .site-main .site-content {
     background: #fff;
@@ -2034,7 +2039,7 @@ ol.w {
  --------------------*/
 .site-footer {
     position: relative;
-    z-index: -1;
+    /*z-index: 0;*/
     overflow: hidden;
     margin-top: -9rem;
     font-size: 0.875rem;
@@ -2042,7 +2047,7 @@ ol.w {
 .site-footer:before {
     content: "";
     width: 140vw;
-    height: 16rem;
+    height: 12rem;
     border-radius: 50%;
     background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 60%);
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 60%);
@@ -2050,6 +2055,7 @@ ol.w {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#33000000", endColorstr="#00000000", GradientType=0);
     position: absolute;
     left: -20vw;
+    z-index: -1;
 }
 .site-footer .foo-nav .nav-item .nav-link {
     padding: 0.25rem 0 0.25rem 1.25rem;
@@ -2065,7 +2071,7 @@ ol.w {
     color: white;
 }
 .site-footer .site-footer-content {
-    padding: 12rem 0 2rem;
+    padding: 6rem 0 2rem;
     z-index: 0;
     position: relative;
 }
