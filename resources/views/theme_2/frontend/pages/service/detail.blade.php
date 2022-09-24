@@ -207,10 +207,10 @@
                         @endif
                         <!-- end -->
 
-                        <h2 class="text-title fw-700 title-color-lg c-py-16  c-py-lg-20">
-                            Tuỳ chọn tướng (với Game Moba)
-                        </h2>
-                        <div class="card unset-lg">
+{{--                        <h2 class="text-title fw-700 title-color-lg c-py-16  c-py-lg-20">--}}
+{{--                            Tuỳ chọn tướng (với Game Moba)--}}
+{{--                        </h2>--}}
+                        <div class="card unset-lg c-mt-16">
                             <div class="card-body c-p-16 c-p-lg-0 d-flex flex-wrap mx-n2">
 
                                 @php
@@ -347,11 +347,11 @@
                                 </div>
                             </div>
 
-
-                            <h2 class="text-title fw-700 title-color-lg c-mb-14 c-mt-16">
-                                Tùy chọn mở rộng (đối với Game Ngọc Rồng)
-                            </h2>
                             @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
+                            <h2 class="text-title fw-700 title-color-lg c-mb-14 c-mt-16">
+                                Tùy chọn mở rộng
+                            </h2>
+
                             <div class="card service-select c-py-12 c-pr-8 select-multi">
                                 <div class="card-body py-0 s-filter">
                                     @php
