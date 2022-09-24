@@ -140,8 +140,6 @@ class DirectAPI{
                             return self::_makeRequest($url_data,$data,$method,false,$flag);
 
                         }else{
-
-
                             Session::forget('jwt');
                             Session::forget('exp_token');
                             Session::forget('time_exp_token');
