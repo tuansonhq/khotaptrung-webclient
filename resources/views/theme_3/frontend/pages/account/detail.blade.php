@@ -242,8 +242,8 @@
 
 
 
-    <script src="/js/{{theme('')->theme_key}}/nick/nick-detail.js?v={{time()}}"></script>
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick-detail.js?v={{time()}}"></script>--}}
+{{--    <script src="/js/{{theme('')->theme_key}}/nick/nick-detail.js?v={{time()}}"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick-detail.js?v={{time()}}"></script>
 @endsection
 
 
