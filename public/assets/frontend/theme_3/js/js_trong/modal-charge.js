@@ -5,36 +5,47 @@ $(document).ready(function () {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
 
-    /*Get Telecom*/
-    if (modal_charge.length){
-        $.ajax({
-            url:'/ajax/get-tele-card',
-            type:'GET',
-            success:function (res) {
-                if (res.status === 1){
-                    let telecoms = res.data;
-                    let html = '';
-                    if (telecoms.length){
-                        telecoms.forEach(function (telecom) {
-                            html += `<option value="${telecom.key}">${telecom.title}</option>`;
-                        });
-                    }else {
-                        html += '<option value="">-- Vui lòng chọn nhà mạng --</option>';
-                    }
-                    modal_charge.find('#modal-telecom').html(html);
-                }
-                $('select').niceSelect();
-                $('#modal-telecom').trigger('change');
-            },
-            error: function (data) {
-                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(get telecom)')
+    // /*Get Telecom*/
+    // if (modal_charge.length){
+    //     $.ajax({
+    //         url:'/ajax/get-tele-card',
+    //         type:'GET',
+    //         success:function (res) {
+    //             if (res.status === 1){
+    //                 let telecoms = res.data;
+    //                 let html = '';
+    //                 if (telecoms.length){
+    //                     telecoms.forEach(function (telecom) {
+    //                         html += `<option value="${telecom.key}">${telecom.title}</option>`;
+    //                     });
+    //                 }else {
+    //                     html += '<option value="">-- Vui lòng chọn nhà mạng --</option>';
+    //                 }
+    //                 modal_charge.find('#modal-telecom').html(html);
+    //             }
+    //             $('select').niceSelect();
+    //             $('#modal-telecom').trigger('change');
+    //         },
+    //         error: function (data) {
+    //             console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(get telecom)')
+    //
+    //         },
+    //     });
+    // }
+    $('select').niceSelect();
+    $('#modal-telecom').trigger('change');
 
-            },
-        });
+    ele = $('select#modal-telecom option').first();
+    var telecom = ele.val();
+    if (telecom){
+        getAmount(telecom);
     }
+
     $(document).on('change','#modal-telecom',function () {
         getAmount($(this).val());
     });
+
+ 
 
     function getAmount(telecom){
         var url = '/ajax/get-amount-tele-card';
