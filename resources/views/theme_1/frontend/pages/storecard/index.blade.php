@@ -41,7 +41,7 @@
                         <div class="mb-3">
 
                             <select name="telecom" id="telecom_storecard" class="server-filter form-control t14" style="">
-                                @foreach($data->data as $val)
+                                @foreach($telecoms as $val)
                                    <option value="{{$val->key}}">{{$val->title}}</option>
                                @endforeach
                            </select>
