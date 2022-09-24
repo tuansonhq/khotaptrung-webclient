@@ -231,7 +231,7 @@ class MinigameController extends Controller
                             'result' => $result,
                             'groups_other' => $groups_other,
                             'numPlay' => $numPlay,
-                            'arrUserName' => json_encode($arrUserName),
+                            'arrUserName' => $arrUserName,
                             'topDayList' => $topDayList,
                             'top7DayList' => $top7DayList,
                             'currentPlayList' => $currentPlayList,
