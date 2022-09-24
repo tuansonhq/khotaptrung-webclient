@@ -364,9 +364,26 @@
         @endphp
     @endif
 @endif
+@include('frontend.widget.modal.__login')
 
 
+<script>
+    //Show login modal and mobile login
+    function openLoginModal(){
+        setTimeout(function(){
+            $('#modal-login').modal('show');
 
+        }, 0);
+    }
+
+    function openRegisterModal(){
+        setTimeout(function(){
+            $('#loginRegist').modal('show');
+
+        }, 0);
+    }
+
+</script>
 
 <script>
     @if(\App\Library\AuthCustom::check())
