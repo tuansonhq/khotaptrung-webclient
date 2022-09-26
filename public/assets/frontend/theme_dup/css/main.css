@@ -134,7 +134,7 @@ header .nav-bar{
     box-shadow: inset 0px -1px 0px #363636;
 }
 .nav-bar-container {
-    height: 120px;
+    height: 90px;
     display: flex;
     justify-content: space-between;
     transition: .2s;
@@ -160,8 +160,8 @@ header .nav-bar{
 .nav-bar-category .nav li a{
     transition:  0.2s ease;
     margin: 34px 15px 33px 15px;
-    line-height: 120px;
-    color: white;
+    line-height: 90px;
+    color: #b9b9b9;
     text-transform: uppercase;
     font-weight: 600;
     font-size: 15px;
@@ -173,26 +173,37 @@ header .nav-bar{
     color: #32c5d2;
 
 }
-.nav-log-in a,.nav-regist a{
-    padding: 4px 12px;
-    border: 1px solid grey;
-    border-radius: 16px;
-    font-weight: 500 !important;
-    font-size: 14px !important;
-    transition: 0.2s;
-
-}
 
 .nav-log-in a i,.nav-regist a i{
     padding-right: 4px;
 
 }
-.nav-log-in a:hover,.nav-regist a:hover{
-    background-color: #2f353b;
+
+.nav-bar-category .nav li.nav-log-in a,.nav-bar-category .nav li.nav-regist a{
+    /*padding: 4px 12px;*/
+    /*border: 1px solid grey;*/
+    /*border-radius: 16px;*/
+    /*font-weight: 500 !important;*/
+    font-size: 14px !important;
     transition: 0.2s;
+    line-height: 90px;
+    padding: 12px;
+    color: #ffffff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: -webkit-linear-gradient(bottom, #985614 0%, #ff0000 100%);
+    font-weight: bold;
+}
+.nav-bar-category .nav li.nav-log-in a:hover,.nav-bar-category .nav li.nav-regist a:hover{
+    /*background-color: #2f353b;*/
+    transition: 0.2s;
+    background: -webkit-linear-gradient(bottom, #ff0000 0%, #985614 100%);
 
 
 }
+
+
 .info{
     display: inherit;
 }
@@ -553,8 +564,9 @@ header .nav-bar{
 
 .game-list-image{
     position: relative;
-
+    padding-top: 28px;
 }
+
 .game-list-image, .game-list-title, .game-list-description, .game-list-more {
     position: relative;
     z-index: 200;
@@ -583,6 +595,13 @@ header .nav-bar{
 .game-list>div{
     margin-bottom: 15px;
 }
+.game-list-title{
+    position: absolute;
+    background: #0f1114;
+    top: 0;
+    left: 4px;
+    right: 4px;
+}
 .game-list-title a{
     text-decoration: none;
 }
@@ -598,18 +617,32 @@ header .nav-bar{
     color: #f1c40f;
     font-size: 14px;
     text-align: center;
-    padding-top: 24px;
+    padding-top: 8px;
     text-transform: uppercase;
     margin-bottom: 0!important;
     padding-bottom: 8px;
 }
 
 .game-list-description{
-    text-align: center;
+    text-align: left;
+    padding-top: 24px;
 }
+.game-list-description p:before{
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    background: #515151;
+}
+
 .game-list-description p{
     font-size: 14px;
     color: white;
+    position: relative;
+    padding-left: 20px;
 }
 .game-list-description-old-price {
     text-decoration: line-through;
