@@ -34,7 +34,7 @@
         <div class="container container-fix menu-container-ct">
             <ul>
                 <li><a href="/">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img  src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/mua-acc">Danh mục Shop Account</a></li>
             </ul>
         </div>
@@ -50,7 +50,7 @@
                         <div class="col-md-12 left-right">
                             <div class="row marginauto body-header-ct">
                                 <div class="col-auto left-right">
-                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
+                                    <img  src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
                                 </div>
                                 <div class="col-md-10 col-10 body-header-col-ct">
                                     <h1>Danh sách mục Shop Account</h1>
@@ -81,7 +81,7 @@
                                 <div class="row marginauto body-form-search-ct">
                                     <div class="col-auto left-right">
                                         <input autocomplete="off" type="text" name="search" class="input-search-ct" placeholder="Tìm kiếm theo game">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
+                                        <img   src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                     </div>
                                     <div class="col-4 body-form-search-button-ct">
                                         <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
@@ -96,7 +96,7 @@
                                 <div class="row marginauto body-form-search-ct">
                                     <div class="col-12 left-right" type="">
                                         <input autocomplete="off" type="text" name="search-mobile" class="input-search-ct" placeholder="Tìm kiếm theo game">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
+                                        <img   src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                     </div>
                                 </div>
                             </form>
@@ -115,8 +115,8 @@
 
 {{--    @include('frontend.pages.account.widget.__category__content')--}}
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick.js?v={{time()}}"></script>--}}
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick--update.js?v={{time()}}"></script>
+    <script src="/js/{{theme('')->theme_key}}/nick/nick--update.js?v={{time()}}"></script>
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick--update.js?v={{time()}}"></script>--}}
 @endsection
 
 

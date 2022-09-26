@@ -62,7 +62,7 @@ function showConfirmContent () {
     prepareDataSend();
     //Close recharge modal if page has this modal
     $('#rechargeModal').modal('hide');
-    if ( $(window).width() >= 992 ) { 
+    if ( $(window).width() >= 992 ) {
         $('#orderCharge').modal('show');
     } else {
         $('#chargeConfirmStep').css('transform', 'translateX(0)');
@@ -72,7 +72,7 @@ function showConfirmContent () {
 function showHomeConfirmContent () {
     prepareConfirmData();
     prepareDataSend();
-    if ( $(window).width() >= 992 ) { 
+    if ( $(window).width() >= 992 ) {
         $('#orderCharge').modal('show');
     } else {
         $('#chargeConfirmStep').css('transform', 'translateX(0)');
@@ -228,7 +228,7 @@ $(document).ready(function () {
 
     // Get card data
     function getTelecom () {
-        let url = '/get-tele-card';
+        let url = '/ajax/get-tele-card';
 
         $.ajax({
             type: "GET",
@@ -275,7 +275,7 @@ $(document).ready(function () {
     }
 
     function getAmount (telecom) {
-        let url = '/get-amount-tele-card';
+        let url = '/ajax/get-amount-tele-card';
         $.ajax({
             type: "GET",
             url: url,

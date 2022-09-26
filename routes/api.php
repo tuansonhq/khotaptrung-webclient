@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Frontend\AccController;
+use App\Http\Controllers\Frontend\ChargeController;
+use App\Http\Controllers\Frontend\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

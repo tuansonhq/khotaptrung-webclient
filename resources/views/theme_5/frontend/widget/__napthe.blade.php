@@ -58,7 +58,7 @@
                     </div>
                     <form class="w-100" action="" id="chargeCardHomeForm">
                         <div class="row content-block d-none">
-                            <div class="col-12 col-lg-6 c-pr-8">
+                            <div class="col-12 col-lg-6 c-pr-8 c-pr-lg-16">
                                 <div class="money-form-group c-mb-16">
                                     <label class="text-form fz-13 fw-500 c-mb-4">Nhà cung cấp</label>
                                     <div class="col-md-12 p-0">

@@ -3919,6 +3919,9 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 
 @media screen and (min-width: 1200px){
+    #viewMore span {
+        font-size: unset;
+    }
     .item_slot {
         background-size: 100% auto !important;
         width: 100%;
@@ -4951,9 +4954,14 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     .item-article-user{
         font-size: 10px!important;
     }
+
 }
 
 @media only screen and (min-width: 376px) and (max-width: 573px) {
+    #detailContent iframe{
+        max-width: 100%;
+        height: auto;
+    }
     .fix_ads-banner-second_top{
         height: 212px!important;
     }
@@ -5841,6 +5849,10 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 @media only screen and (max-width: 376px) {
+    #detailContent iframe{
+        max-width: 100%;
+        height: auto;
+    }
     .fix_ads-banner-second_top{
         height: 212px!important;
     }
@@ -6704,6 +6716,6 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     max-width: 100%;
     height: auto;
 }
-#viewMore span {
-    font-size: unset;
-}
+
+
+
