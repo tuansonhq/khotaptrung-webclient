@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/minigame.css">
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/withdraw-modal.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/fake-cmt.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/modal-history-spin-bonus.js?v={{time()}}"></script>
 @endsection
 @section('content')
 
@@ -688,7 +689,7 @@
                                 </div>
                             @else
                                 <div class="col-6 c-pr-5">
-                                    <a href="javascript:void(0)" class="btn secondary w-100 logsHisMinigame">
+                                    <a href="javascript:void(0)" class="btn secondary w-100" data-toggle="modal" data-target="#modal-spin-bonus" >
                                         Lịch sử quay
                                     </a>
                                 </div>
@@ -826,51 +827,10 @@
             </div>
         </div>
 
-        {{--        Modal lịch sử   --}}
-
-        <div class="modal fade modal-big modal-logs-minigame" id="minigameLogs">
-            <div class="modal-dialog modal-dialog-centered modal-custom">
-                <div class="modal-content c-p-24">
-                    <div class="modal-header">
-                        <h2 class="modal-title center">Lịch sử trúng thưởng</h2>
-                        <button type="button" class="close" data-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
-                        <div class="card--gray">
-                            <div class="card--attr justify-content-between d-flex c-mb-16 default-table" id="logs-minigame">
-                                <table class="table table-responsive-lg table-striped table-hover table-logs">
-                                    <thead>
-                                    <tr class="row marginauto">
-                                        <th class="fw-500 fz-13 lh-20 text-title text-center col-auto">Giải thưởng</th>
-                                        <th class="fw-500 fz-13 lh-20 text-title text-right col-auto ml-auto">Thời gian</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @if(isset($logs))
-                                        @foreach($logs->log as $item)
-                                            <tr class="row marginauto">
-                                                <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">{{$item->item_ref->title}}</td>
-                                                <td class="text-right col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">{{$item->created_at}}</td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a class="btn primary"  href="/withdrawitem-{{$result->group->params->game_type}}">Rút quà</a>
 
 
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    {{--         @endif--}}
-    <!-- Sheet Thể lệ  -->
+        {{--         @endif--}}
+        <!-- Sheet Thể lệ  -->
         <div class="bottom-sheet" id="sheet-filter" aria-hidden="true" data-height="36">
             <div class="layer"></div>
             <div class="content-bottom-sheet bar-slide">
@@ -893,9 +853,7 @@
             </div>
         </div>
 
-    {{--     bottom-sheet lịch sử   --}}
-
-    <!-- Sheet Filter Mobile -->
+        <!-- Sheet History Mobile -->
 
         <div class="bottom-sheet" id="sheet-filter-02" aria-hidden="true" data-height="50">
             <div class="layer"></div>
@@ -903,38 +861,12 @@
                 <form action="" class="form-filter">
                     <div class="sheet-header">
                         <h2 class="text-title center">
-                            Lịch sử trúng thưởng
+                            Lịch sử quay thưởng
                         </h2>
                         <label class="close"></label>
                     </div>
-                    <div class="sheet-body overflow-visible">
-                        <!-- body -->
-                        <div class="card--gray">
-                            <div class="card--attr justify-content-between d-flex c-mb-16 default-table" id="sheet-minigame-his">
-                                <table class="table table-striped table-hover table-logs">
-                                    <thead>
-                                    <tr class="row marginauto">
-                                        <th class="fw-500 fz-13 lh-20 text-title text-left col-auto">Giải thưởng</th>
-                                        <th class="fw-500 fz-13 lh-20 text-title text-right col-auto ml-auto">Thời gian</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @if(isset($logs))
-                                        @foreach($logs->log as $item)
-                                            <tr class="row marginauto">
-                                                <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">{{$item->item_ref->title}}</td>
-                                                <td class="text-right col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">{{$item->created_at}}</td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sheet-footer">
-                        <a  href="/withdrawitem-{{$result->group->params->game_type}}" class="btn primary js-submit-form">Rút quà</a>
+                    <div class="sheet-body overflow-visible c-p-0">
+                        <div id="data-ajax-mobile-render"></div>
                     </div>
                 </form>
             </div>
@@ -1095,6 +1027,23 @@
                                 <div id="table-history-withdraw"></div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  Modal Lịch sử quay -->
+    <div class="modal fade" id="modal-spin-bonus" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content c-p-0">
+                <div class="modal-header c-p-24 align-items-center">
+                    <h5 class="modal-title fw-700 fz-15 lh-24">Lịch sử quay thưởng</h5>
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body c-p-0">
+                    <div id="data-ajax-render" data-id="{{ @$result->group->id }}">
+
                     </div>
                 </div>
             </div>
