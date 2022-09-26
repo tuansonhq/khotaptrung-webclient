@@ -34,7 +34,14 @@ class LoginController extends Controller
             }else{
                 return redirect('/');
             }
-        }else{
+        }elseif (theme('')->theme_key == 'theme_dup'){
+            if(empty($jwt)){
+                return view('frontend.pages.log_in');
+            }else{
+                return redirect('/');
+            }
+        }
+        else{
             return view('frontend.pages.index');
         }
     }
