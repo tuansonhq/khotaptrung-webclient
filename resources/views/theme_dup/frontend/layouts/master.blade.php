@@ -137,29 +137,7 @@
     @stack('js')
 
     @yield('seo_head')
-        @if(Request::is('/'))
-        <style>
-            .content{
-                padding-top: 140px;
-            }
-            @media only screen and (max-width: 1024px) {
-                .content {
-                    padding-top: 80px;
-                }
-            }
-        </style>
-    @else
-        <style>
-            .content{
-                padding-top: 120px;
-            }
-            @media only screen and (max-width: 1024px) {
-                .content {
-                    padding-top: 100px;
-                }
-            }
-        </style>
-        @endif
+
     @if(setting('sys_google_tag_manager_head') != '')
 
         @foreach(explode('|',setting('sys_google_tag_manager_head')) as $tag => $sys)
