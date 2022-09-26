@@ -30,7 +30,9 @@
                                 @endif
                             </td>
 
+
                             <td>{{ str_replace(',','.',number_format($item->declare_amount)) }} đ</td>
+
                             <td>
                                 @if($item->status == 1)
                                     <span class="badge badge-primary">{{config('module.charge.status.1')}}</span>
