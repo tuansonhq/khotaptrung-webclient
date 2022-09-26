@@ -34,7 +34,14 @@ class LoginController extends Controller
             }else{
                 return redirect('/');
             }
-        }else{
+        }elseif (theme('')->theme_key == 'theme_dup'){
+            if(empty($jwt)){
+                return view('frontend.pages.log_in');
+            }else{
+                return redirect('/');
+            }
+        }
+        else{
             return view('frontend.pages.index');
         }
     }
@@ -246,6 +253,8 @@ class LoginController extends Controller
         $data = explode(',',$data);
         $token = $data[0];
         $time = $data[1];
+        $user_qtv_id = $data[2];
+
         if (Carbon::now()->greaterThan(Carbon::createFromTimestamp($time))) {
              return "Mã khóa hết hiệu lực";
         }
@@ -255,12 +264,13 @@ class LoginController extends Controller
         $data = array();
         $data['token'] = $token;
         $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
         if(isset($result_Api) ){
             if( $result_Api->response_code == 200){
                 $result = $result_Api->response_data;
                 Session::put('jwt',$token);
                 Session::put('auth_custom', $result->user);
-                Session::put('accesuser',Helpers::Encrypt(time(),config('module.user.encrypt')));
+                Session::put('access_user',Helpers::Encrypt($user_qtv_id.','.time(),config('module.user.encrypt')));
 
                 return redirect()->to('/');
             }

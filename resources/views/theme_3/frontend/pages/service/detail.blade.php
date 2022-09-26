@@ -512,7 +512,8 @@
                 </div>
             </section>
 
-            @include('frontend.pages.service.widget.__related')
+
+            @include('frontend.pages.service.widget.__related',['current_id'=>$data->id])
 
             <div class="modal fade login show default-Modal" id="successModal" aria-modal="true">
                 <div class="modal-dialog modal-md modal-dialog-centered login animated">

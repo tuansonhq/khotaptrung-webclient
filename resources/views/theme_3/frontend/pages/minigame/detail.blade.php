@@ -1055,11 +1055,22 @@
         </div>
     </div>
 
+{{--    <input type="text" value="{{ isset($result->seddingchat)? $result->seddingchat->params_plus : '' }}" class="chatArrayDefault">--}}
+
+{{--    <input type="text" value="{{ isset($result->seddingchat)? $result->seddingchat->params : '' }}" class="chatArray">--}}
+
+    <input type="hidden" value="{{ json_encode($arrUserName)??'' }}" class="arrUserName">
+
+    <input type="hidden" value="{{ isset($result->seddingchat)? $result->seddingchat->total_item : 12 }}" class="total_item">
+
+    <input type="hidden" value="{{ isset($result->seddingchat)? $result->seddingchat->price : 120 }}" class="max_time">
+
+    <input type="hidden" value="{{ isset($result->seddingchat)? $result->seddingchat->price_old : 30 }}" class="min_time">
+
     @foreach(config('constants.'.'game_type') as $item => $key)
         <input type="hidden" id="withdrawruby_{{$item}}" value="{{$key}}">
     @endforeach
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
     <input type="hidden" id="position_input" value="{{ @$position }}">
     <input type="hidden" id="group_id" value="{{ @$result->group->id}}">
     <input type="hidden" id="image_static"

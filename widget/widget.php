@@ -808,20 +808,21 @@ View::composer('frontend.widget.__nap_the', function ($view) {
         return $data = $result_Api->response_data->data??null;
 
     });
-//    $data_1 = \Cache::rememberForever('__top_nap_the_mobile', function() {
-//        $url = '/top-charge';
-//        $method = "GET";
-//        $dataSend = array();
-//
-//        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-//        return $data = $result_Api->response_data->data??null;
-//
-//    });
-//    $data = [
-//        'telecom'  => $data,
-//        'top-charge'   => $data_1,
-//
-//    ];
+    return $view->with('data',$data);
+
+
+});
+
+View::composer('frontend.widget.modal.__recharge_modal', function ($view) {
+    $data = \Cache::rememberForever('modal.__recharge_modal', function() {
+        $url = '/deposit-auto/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
     return $view->with('data',$data);
 
 
@@ -1240,4 +1241,42 @@ View::composer('frontend.pages.article.widget.__ads__article', function ($view) 
 
     return $view->with('data',$data);
 
+});
+
+View::composer('frontend.widget.__card_purchase', function ($view) {
+
+//    minigame
+
+    $telecoms = \Cache::rememberForever('__card_purchase', function() {
+
+        $url = '/store-card/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $telecoms = $result_Api->response_data->data??null;
+
+
+        return $telecoms;
+    });
+
+    return $view->with('telecoms', $telecoms);
+});
+
+View::composer('frontend.widget.__mua__the', function ($view) {
+
+//    mua the theme 5
+
+    $telecoms = \Cache::rememberForever('__mua__the', function() {
+
+        $url = '/store-card/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $telecoms = $result_Api->response_data->data??null;
+
+
+        return $telecoms;
+    });
+
+    return $view->with('telecoms', $telecoms);
 });

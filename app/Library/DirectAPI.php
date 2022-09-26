@@ -62,24 +62,20 @@ class DirectAPI{
 
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
-        $accesuser = Session::get('accesuser');
+        $accesuser = Session::get('access_user');
 
         if(empty($accesuser)){
             $headers  = [
                 'ip: '.$ip,
-                'user_agent: '.$user_agent,
+                'user-agent: '.$user_agent,
             ];
         }else{
             $headers  = [
                 'ip: '.$ip,
-                'user_agent: '.$user_agent,
-                'accesuser: '.$accesuser,
+                'user-agent: '.$user_agent,
+                'access-user: '.$accesuser,
             ];
         }
-
-
-
-
 
         if($log == true){
             $myfile = fopen(storage_path() ."/logs/CACHE1-".Carbon::now()->format('Y-m-d').".txt", "a") or die("Unable to open file!");
@@ -144,12 +140,11 @@ class DirectAPI{
                             return self::_makeRequest($url_data,$data,$method,false,$flag);
 
                         }else{
-
-
                             Session::forget('jwt');
                             Session::forget('exp_token');
                             Session::forget('time_exp_token');
                             Session::forget('auth_custom');
+                            Session::forget('access_user');
                             \Cookie::queue(\Cookie::forget('jwt_refresh_token'));
                             $resultChange->response_code = 401;
                             $resultChange->response_data = $response_data;
