@@ -11,100 +11,100 @@
 
                         <div class="col-6 fixcssacount col-sm-6 col-lg-3">
                             <div class="item_buy_list_in" style="position: relative">
-                                @if(isset($item->groups) || (isset($item->params) && isset($item->params->ext_info)))
-                                    <div class="tooltipaccount hide tooltipaccount{{ $item->randId }}">
-                                        <h3 style="position: relative;text-align: center" >Thông tin tài khoản</h3>
-                                        {{--                                    <span class="close close_position close{{ $item->randId }}"><i class="fas fa-times"></i></span>--}}
+{{--                                @if(isset($item->groups) || (isset($item->params) && isset($item->params->ext_info)))--}}
+{{--                                    <div class="tooltipaccount hide tooltipaccount{{ $item->randId }}">--}}
+{{--                                        <h3 style="position: relative;text-align: center" >Thông tin tài khoản</h3>--}}
+{{--                                        --}}{{--                                    <span class="close close_position close{{ $item->randId }}"><i class="fas fa-times"></i></span>--}}
 
-                                        <div class="slider-container">
-                                            <div class="slider-turn" style="width: 100%">
-                                                <?php
-                                                $index = 0;
-                                                ?>
-                                                @if(isset($item->groups))
-                                                    <?php
-                                                    $att_values = $item->groups;
-                                                    ?>
-                                                    @foreach($att_values as $att_value)
+{{--                                        <div class="slider-container">--}}
+{{--                                            <div class="slider-turn" style="width: 100%">--}}
+{{--                                                <?php--}}
+{{--                                                $index = 0;--}}
+{{--                                                ?>--}}
+{{--                                                @if(isset($item->groups))--}}
+{{--                                                    <?php--}}
+{{--                                                    $att_values = $item->groups;--}}
+{{--                                                    ?>--}}
+{{--                                                    @foreach($att_values as $att_value)--}}
 
-                                                        @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                            @if(isset($att_value->parent))
-                                                                <?php
-                                                                $index = $index + 1;
-                                                                ?>
-                                                                @if($index < 5)
-                                                                    <div class="row" style="margin: 0 auto;width: 100%">
-                                                                        <div class="col-auto text-left =fixcssacount item_buy_list_info_inacc">
-                                                                            {{ $att_value->parent->title??null }} :
-                                                                        </div>
-                                                                        <div class="col-auto text-right fixcssacount  right" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                            {{ $att_value->title??null }}
-                                                                        </div>
-                                                                    </div>
-                                                                @endif
-                                                            @endif
-                                                        @endif
-                                                    @endforeach
-                                                @endif
+{{--                                                        @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)--}}
+{{--                                                            @if(isset($att_value->parent))--}}
+{{--                                                                <?php--}}
+{{--                                                                $index = $index + 1;--}}
+{{--                                                                ?>--}}
+{{--                                                                @if($index < 5)--}}
+{{--                                                                    <div class="row" style="margin: 0 auto;width: 100%">--}}
+{{--                                                                        <div class="col-auto text-left =fixcssacount item_buy_list_info_inacc">--}}
+{{--                                                                            {{ $att_value->parent->title??null }} :--}}
+{{--                                                                        </div>--}}
+{{--                                                                        <div class="col-auto text-right fixcssacount  right" style="color: #666;font-weight: 600;margin-left: auto">--}}
+{{--                                                                            {{ $att_value->title??null }}--}}
+{{--                                                                        </div>--}}
+{{--                                                                    </div>--}}
+{{--                                                                @endif--}}
+{{--                                                            @endif--}}
+{{--                                                        @endif--}}
+{{--                                                    @endforeach--}}
+{{--                                                @endif--}}
 
-                                                @if(isset($item->params) && isset($item->params->ext_info))
-                                                    <?php
-                                                    $params = json_decode(json_encode($item->params->ext_info),true);
-                                                    ?>
-                                                    @if($index < 5)
+{{--                                                @if(isset($item->params) && isset($item->params->ext_info))--}}
+{{--                                                    <?php--}}
+{{--                                                    $params = json_decode(json_encode($item->params->ext_info),true);--}}
+{{--                                                    ?>--}}
+{{--                                                    @if($index < 5)--}}
 
-                                                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                                            @foreach($dataAttribute as $index=>$att)
-                                                                @if($att->position == 'text')
-                                                                    @if(isset($att->childs))
-                                                                        @foreach($att->childs as $child)
-                                                                            @foreach($params as $key => $param)
-                                                                                @if($key == $child->id && $child->is_slug_override == null)
-                                                                                    <?php
-                                                                                    $index++;
-                                                                                    ?>
-                                                                                    @if($index < 5)
-                                                                                        <div class="row" style="margin: 0 auto;width: 100%">
-                                                                                            <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                                                                {{ $child->title??null }} :
-                                                                                            </div>
-                                                                                            <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                                                {{ $param??null }}
-                                                                                            </div>
-                                                                                        </div>
+{{--                                                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)--}}
+{{--                                                            @foreach($dataAttribute as $index=>$att)--}}
+{{--                                                                @if($att->position == 'text')--}}
+{{--                                                                    @if(isset($att->childs))--}}
+{{--                                                                        @foreach($att->childs as $child)--}}
+{{--                                                                            @foreach($params as $key => $param)--}}
+{{--                                                                                @if($key == $child->id && $child->is_slug_override == null)--}}
+{{--                                                                                    <?php--}}
+{{--                                                                                    $index++;--}}
+{{--                                                                                    ?>--}}
+{{--                                                                                    @if($index < 5)--}}
+{{--                                                                                        <div class="row" style="margin: 0 auto;width: 100%">--}}
+{{--                                                                                            <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">--}}
+{{--                                                                                                {{ $child->title??null }} :--}}
+{{--                                                                                            </div>--}}
+{{--                                                                                            <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">--}}
+{{--                                                                                                {{ $param??null }}--}}
+{{--                                                                                            </div>--}}
+{{--                                                                                        </div>--}}
 
-                                                                                    @endif
-                                                                                @endif
-                                                                            @endforeach
-                                                                        @endforeach
-                                                                    @endif
+{{--                                                                                    @endif--}}
+{{--                                                                                @endif--}}
+{{--                                                                            @endforeach--}}
+{{--                                                                        @endforeach--}}
+{{--                                                                    @endif--}}
 
-                                                                @endif
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
+{{--                                                                @endif--}}
+{{--                                                            @endforeach--}}
+{{--                                                        @endif--}}
+{{--                                                    @endif--}}
+{{--                                                @endif--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
-                                    <script>
-                                        if ($(window).width() >= 1200) {
-                                            $(".close{{ $item->randId }}").on("click", function(e) {
-                                                $('.tooltipaccount{{ $item->randId }}').addClass('hide');
-                                            });
-                                            $(".item_buy_list_img-main{{ $item->randId }}")
-                                                .on('mouseenter', function() {
-                                                    $('.tooltipaccount{{ $item->randId }}').removeClass('hide');
-                                                })
-                                                .on('mouseout', function() {
-                                                    $('.tooltipaccount{{ $item->randId }}').addClass('hide');
-                                                });
-                                        }
+{{--                                    <script>--}}
+{{--                                        if ($(window).width() >= 1200) {--}}
+{{--                                            $(".close{{ $item->randId }}").on("click", function(e) {--}}
+{{--                                                $('.tooltipaccount{{ $item->randId }}').addClass('hide');--}}
+{{--                                            });--}}
+{{--                                            $(".item_buy_list_img-main{{ $item->randId }}")--}}
+{{--                                                .on('mouseenter', function() {--}}
+{{--                                                    $('.tooltipaccount{{ $item->randId }}').removeClass('hide');--}}
+{{--                                                })--}}
+{{--                                                .on('mouseout', function() {--}}
+{{--                                                    $('.tooltipaccount{{ $item->randId }}').addClass('hide');--}}
+{{--                                                });--}}
+{{--                                        }--}}
 
 
-                                    </script>
-                                @endif
+{{--                                    </script>--}}
+{{--                                @endif--}}
                                 <div class="item_buy_list_img item_buy_list_img_custom">
                                     <a href="javascript:void(0)" class="buyacc" data-id="{{ $item->randId }}">
                                         @if(isset($data->params->thumb_default) && isset($data->params))
@@ -125,76 +125,100 @@
                                     bảo hành 100%,lỗi hoàn tiền
                                 </div>
 
-                                <div class="item_buy_list_info hidelistacountrandom">
-                                    <div class="row item_buy_list_info__row">
-                                        <?php
-                                        $index = 0;
-                                        ?>
-                                        @if(isset($item->groups))
-                                            <?php
-                                            $att_values = $item->groups;
-                                            ?>
-                                            @foreach($att_values as $att_value)
+                                <div class="item_buy_list_info ">
 
-                                                @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                    @if(isset($att_value->parent))
+                                    @if(isset($item->groups) || (isset($item->params) && isset($item->params->ext_info)))
+                                    <div class="item_buy_list_info item_buy_list_info_custom">
+                                        <div class="row item_buy_list_info__row">
+                                            <div class="slider-container">
+                                                <div class="slider-turn" style="width: 100%">
+                                                    <?php
+                                                    $index = 0;
+                                                    ?>
+                                                    @if(isset($item->groups))
                                                         <?php
-                                                        $index = $index + 1;
+                                                        $att_values = $item->groups;
+                                                        ?>
+                                                        @foreach($att_values as $att_value)
+
+                                                            @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                                @if(isset($att_value->parent))
+                                                                    <?php
+                                                                    $index = $index + 1;
+                                                                    ?>
+                                                                    @if($index < 5)
+                                                                        <div class="row" style="margin: 0 auto;width: 100%">
+                                                                            <div class="col-auto text-left =fixcssacount item_buy_list_info_inacc">
+                                                                                {{ $att_value->parent->title??null }} :
+                                                                            </div>
+                                                                            <div class="col-auto text-right fixcssacount  right" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                                {{ $att_value->title??null }}
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+
+                                                    @if(isset($item->params) && isset($item->params->ext_info))
+                                                        <?php
+                                                        $params = json_decode(json_encode($item->params->ext_info),true);
                                                         ?>
                                                         @if($index < 5)
-                                                            <div class="row" style="margin: 0 auto;width: 100%">
-                                                                <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                                    {{ $att_value->parent->title??null }} :
-                                                                </div>
-                                                                <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                    {{--                                                                                                        {{ $att_value->title??null }}--}}
-                                                                    {{ isset($att_value->title) ? \Str::limit($att_value->title,12) : null }}
-                                                                </div>
-                                                            </div>
-                                                        @endif
-                                                    @endif
-                                                @endif
-                                            @endforeach
-                                        @endif
 
-                                        @if(isset($item->params) && isset($item->params->ext_info))
-                                            <?php
-                                            $params = json_decode(json_encode($item->params->ext_info),true);
-                                            ?>
-                                            @if($index < 5)
+                                                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                                                @foreach($dataAttribute as $index=>$att)
+                                                                    @if($att->position == 'text')
+                                                                        @if(isset($att->childs))
+                                                                            @foreach($att->childs as $child)
+                                                                                @foreach($params as $key => $param)
+                                                                                    @if($key == $child->id && $child->is_slug_override == null)
+                                                                                        <?php
+                                                                                        $index++;
+                                                                                        ?>
+                                                                                        @if($index < 5)
+                                                                                            <div class="row" style="margin: 0 auto;width: 100%">
+                                                                                                <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                                                                    {{ $child->title??null }} :
+                                                                                                </div>
+                                                                                                <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                                                    {{ $param??null }}
+                                                                                                </div>
+                                                                                            </div>
 
-                                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                                    @foreach($dataAttribute as $index=>$att)
-                                                        @if($att->position == 'text')
-                                                            @if(isset($att->childs))
-                                                                @foreach($att->childs as $child)
-                                                                    @foreach($params as $key => $param)
-                                                                        @if($key == $child->id && $child->is_slug_override == null)
-                                                                            <?php
-                                                                            $index++;
-                                                                            ?>
-                                                                            @if($index < 5)
-                                                                                <div class="row" style="margin: 0 auto;width: 100%">
-                                                                                    <div class="col-6 text-left fixcssacount item_buy_list_info_inacc">
-                                                                                        {{ $child->title??null }} :
-                                                                                    </div>
-                                                                                    <div class="col-6 text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
-                                                                                        {{ isset($param) ? \Str::limit($param,12) : null }}
-                                                                                    </div>
-                                                                                </div>
-
-                                                                            @endif
+                                                                                        @endif
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            @endforeach
                                                                         @endif
-                                                                    @endforeach
+
+                                                                    @endif
                                                                 @endforeach
                                                             @endif
-
                                                         @endif
-                                                    @endforeach
-                                                @endif
-                                            @endif
-                                        @endif
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <script>
+                                                if ($(window).width() >= 1200) {
+                                                    $(".close{{ $item->randId }}").on("click", function(e) {
+                                                        $('.tooltipaccount{{ $item->randId }}').addClass('hide');
+                                                    });
+                                                    $(".item_buy_list_img-main{{ $item->randId }}")
+                                                        .on('mouseenter', function() {
+                                                            $('.tooltipaccount{{ $item->randId }}').removeClass('hide');
+                                                        })
+                                                        .on('mouseout', function() {
+                                                            $('.tooltipaccount{{ $item->randId }}').addClass('hide');
+                                                        });
+                                                }
+
+
+                                            </script>
+                                        </div>
                                     </div>
+                                    @endif
                                 </div>
 
                                 <div class="item_buy_list_more">

@@ -36,12 +36,15 @@
                             <p>Đã quay:  {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}} </p>
 
                             <div class="row marginauto price-minigame">
-                                <div class="col-md-12 left-right">
+                                <div class="col-md-12 left-right text-center">
                                     @if(isset($item->params->percent_sale))
                                     <span class="oldPrice">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }} đ</span>
-                                    @else
-                                    @endif
                                     <span class="newPrice">{{ str_replace(',','.',number_format($item->price)) }} đ</span>
+
+                                    @else
+                                        <span class="oldPrice text-center" style="text-decoration: unset">{{ str_replace(',','.',number_format($item->price)) }} đ</span>
+
+                                    @endif
                                 </div>
 
                             </div>
