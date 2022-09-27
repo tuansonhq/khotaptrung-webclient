@@ -81,8 +81,10 @@ function showHomeConfirmContent () {
 
 $(document).ready(function () {
 
-    getTelecom();
+    // getTelecom();
 
+    let first_telecom = $('#rechargeModal #telecom').val();
+    getAmount(first_telecom)
     //Change web url when switch tab
     $('#chargeNavTab').click(function () {
         let base_url = `${window.location.origin}/nap-the`;
@@ -120,7 +122,7 @@ $(document).ready(function () {
     $(document).on('click', '#orderCharge #confirmSubmitButton', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/nap-the',
+            url:'/ajax/nap-the',
             type:'POST',
             data: chargeDataSend,
             beforeSend: function () {
@@ -167,7 +169,7 @@ $(document).ready(function () {
     $(document).on('click', '#chargeConfirmStep #confirmSubmitButtonMobile', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/nap-the',
+            url:'/ajax/nap-the',
             type:'POST',
             data: chargeDataSend,
             beforeSend: function () {

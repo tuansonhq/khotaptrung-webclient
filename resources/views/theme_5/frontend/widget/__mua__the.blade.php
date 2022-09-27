@@ -30,42 +30,44 @@
                     <div class="tab-pane fade active show" id="gameCard" role="tabpanel">
                         <div class="buy-card-section c-mb-8 c-mb-sm-0">
                             <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-pb-sm-8">Chọn loại thẻ</label>
-                            <div class="col-md-12 p-0 d-none d-lg-block">
-                                <div class="row m-0 c-mx-n4" id="cardGameList">
-                                    @foreach($telecoms as $key => $telecom)
-                                        @if(isset($telecom->params) and $telecom->params->teltecom_type == 2)
-                                            <div class="col-4 c-px-4 c-py-0 card-type-form">
-                                                <input type="radio" id="card-{{ $key }}" value="{{ $telecom->key }}"
-                                                       name="card-type" data-img="{{ $telecom->image }}"
-                                                       data-title="{{ $telecom->title }}"
-                                                       {{ !$key ? 'checked' : '' }} hidden>
-                                                <label for="card-{{ $key }}" class="brs-8 c-mb-8">
-                                                    <img src="{{ $telecom->image }}" alt="{{ $telecom->title }}">
-                                                </label>
-                                            </div>
-                                        @else
-                                        @endif
-                                    @endforeach
+                                <div class="col-md-12 p-0 d-none d-lg-block">
+                                    <div class="row m-0 c-mx-n4" id="cardGameList">
+                                        @foreach($telecoms as $key => $telecom)
+                                            @if(isset($telecom->params) and $telecom->params->teltecom_type == 2)
+                                                <div class="col-4 c-px-4 c-py-0 card-type-form">
+                                                    <input type="radio" id="card-{{ $key }}" value="{{ $telecom->key }}"
+                                                           name="card-type" data-img="{{ $telecom->image }}"
+                                                           data-title="{{ $telecom->title }}"
+                                                           {{ !$key ? 'checked' : '' }} hidden>
+                                                    <label for="card-{{ $key }}" class="brs-8 c-mb-8">
+                                                        <img src="{{ $telecom->image }}" alt="{{ $telecom->title }}">
+                                                    </label>
+                                                </div>
+                                            @else
+                                            @endif
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="swiper swiper-config-auto d-block d-lg-none" id="slider-card-game" data-perview="2.5" data-between="8">
-                                <div class="swiper-wrapper">
-                                    @foreach($telecoms as $key => $telecom)
-                                        @if(isset($telecom->params) && $telecom->params->teltecom_type == 2)
-                                            <div class="swiper-slide card-type-form">
-                                                <input type="radio" id="card-{{ $key }}-slide" value="{{ $telecom->key }}"
-                                                       name="card-type" data-img="{{ $telecom->image }}"
-                                                       data-title="{{ $telecom->title }}"
-                                                       {{ !$key ? 'checked' : '' }} hidden>
-                                                <label for="card-{{ $key }}-slide" class="brs-8 c-mb-8">
-                                                    <img src="{{ $telecom->image }}" alt="{{ $telecom->title }}">
-                                                </label>
-                                            </div>
-                                        @else
-                                        @endif
-                                    @endforeach
+                                <div class="swiper swiper-config-auto d-block d-lg-none" id="slider-card-game"
+                                     data-perview="2.5" data-between="8">
+                                    <div class="swiper-wrapper">
+                                        @foreach($telecoms as $key => $telecom)
+                                            @if(isset($telecom->params) && $telecom->params->teltecom_type == 2)
+                                                <div class="swiper-slide card-type-form">
+                                                    <input type="radio" id="card-{{ $key }}-slide"
+                                                           value="{{ $telecom->key }}"
+                                                           name="card-type" data-img="{{ $telecom->image }}"
+                                                           data-title="{{ $telecom->title }}"
+                                                           {{ !$key ? 'checked' : '' }} hidden>
+                                                    <label for="card-{{ $key }}-slide" class="brs-8 c-mb-8">
+                                                        <img src="{{ $telecom->image }}" alt="{{ $telecom->title }}">
+                                                    </label>
+                                                </div>
+                                            @else
+                                            @endif
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="mobileCard" role="tabpanel">
@@ -89,12 +91,14 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="swiper swiper-config-auto d-block d-lg-none" id="slider-card-phone" data-perview="2.5" data-between="8">
+                            <div class="swiper swiper-config-auto d-block d-lg-none" id="slider-card-phone"
+                                 data-perview="2.5" data-between="8">
                                 <div class="swiper-wrapper">
                                     @foreach($telecoms as $key => $telecom)
                                         @if(!isset($telecom->params) || $telecom->params->teltecom_type != 2)
                                             <div class="swiper-slide card-type-form">
-                                                <input type="radio" id="card-{{ $key }}-slide" value="{{ $telecom->key }}"
+                                                <input type="radio" id="card-{{ $key }}-slide"
+                                                       value="{{ $telecom->key }}"
                                                        name="card-type" data-img="{{ $telecom->image }}"
                                                        data-title="{{ $telecom->title }}"
                                                        {{ !$key ? 'checked' : '' }} hidden>
