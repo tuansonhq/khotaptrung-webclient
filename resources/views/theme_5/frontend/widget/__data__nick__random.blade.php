@@ -20,7 +20,7 @@
             </div>
 
             @if(isset($items->items) && count($items->items) > 0)
-                <div class="swiper swiper-acc-game">
+                <div class="swiper swiper-acc-game card-list">
                     <div class="swiper-wrapper">
                         @foreach($items->items as $item)
                             @if($items->display_type == 2)

@@ -6,7 +6,7 @@
         </h2>
         <a href="/mua-acc/id" class="link arr-right">Xem tất cả</a>
     </div>
-    <div class="swiper swiper-acc-game">
+    <div class="swiper swiper-acc-game card-list">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <div class="item-category">
