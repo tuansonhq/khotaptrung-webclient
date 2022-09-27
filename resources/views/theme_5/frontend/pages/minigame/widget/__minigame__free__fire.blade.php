@@ -13,7 +13,7 @@
 
     <div class="swiper class-config-demo">
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
+            <div class="swiper-slide card-list">
                 <div class="item-category">
                     <div class="card">
                         <a href="/minigame-slug" class="card-body scale-thumb c-p-16">

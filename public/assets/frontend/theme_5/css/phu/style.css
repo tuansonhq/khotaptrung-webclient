@@ -1507,3 +1507,33 @@ input[type=text].buy-card-amount-input {
     list-style: none;
 }
 /* End History Minigame Modal */
+
+/* Component Card Hover Effect */
+
+/* Type 1: Hover card in swiper slide */
+.card-list .swiper-slide {
+    margin-top: 4px;
+    margin-bottom: 12px;
+    top: 0;
+}
+
+.card-list .swiper-slide:hover {
+    box-shadow: 0 3.4623px 6.1418px rgba(0,0,0,0.05),0 7.92923px 12.9218px rgba(0,0,0,0.05),0 9px 15px rgba(0,0,0,0.08)!important;
+    top: -4px;
+    transition: .2s ease-out;
+    border-radius: 12px;
+}
+
+/* Type 2: Hover card without slide */
+
+.card-hover {
+    top: 0;
+}
+
+.card-hover:hover {
+    box-shadow: 0 3.4623px 6.1418px rgba(0,0,0,0.05),0 7.92923px 12.9218px rgba(0,0,0,0.05),0 9px 15px rgba(0,0,0,0.08)!important;
+    top: -4px;
+    transition: all .2s ease-out;
+}
+
+/* End Component Card Hover Effect */

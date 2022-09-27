@@ -8,7 +8,7 @@
                 @if($data->display_type == 2)
 
                     <div class="item-account">
-                        <div class="card">
+                        <div class="card card-hover">
                             <a href="javascript:void(0)" data-id="{{ $item->randId }}" class="card-body scale-thumb buyacc">
                                 <div class="account-thumb c-mb-8">
                                     <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="{{\App\Library\MediaHelpers::media($data->title)}}" class="account-thumb-image lazy" onerror="imgError(this)">
@@ -177,7 +177,7 @@
                 @else
 
                     <div class="item-account">
-                        <div class="card">
+                        <div class="card card-hover">
                             <a href="/acc/{{ $item->randId }}" class="card-body scale-thumb">
                                 <div class="account-thumb c-mb-8">
                                     <img onerror="imgError(this)"  src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}"
