@@ -9,7 +9,7 @@
     <meta name="path" content="" />
     @yield('meta_robots')
 
-    <meta name="jwt" content="jwt" />
+    <meta name="jwt" content="" />
     @if(setting('sys_google_search_console') != '')
         <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />
     @endif
@@ -308,8 +308,11 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/custom/main.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bottom-sheet/main.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/history-filter/handle.js"></script>
+@if(!Request::is('nap-the'))
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>
+@endif
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
+
 
 @yield('scripts')
 </body>

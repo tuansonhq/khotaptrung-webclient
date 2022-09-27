@@ -44,7 +44,7 @@ $(document).ready(function () {
     $(document).on('click', '#confirmSubmitButton', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/nap-the',
+            url:'/ajax/nap-the',
             type:'POST',
             data: dataSend,
             beforeSend: function () {
@@ -91,7 +91,7 @@ $(document).ready(function () {
     $(document).on('click', '#confirmSubmitButtonMobile', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/nap-the',
+            url:'/ajax/nap-the',
             type:'POST',
             data: dataSend,
             beforeSend: function () {
@@ -138,7 +138,7 @@ $(document).ready(function () {
     function reload_captcha() {
         $.ajax({
             type: 'GET',
-            url: '/ajax/reload-captcha',
+            url: '/reload-captcha',
             beforeSend: function () {
                 $('.refresh-captcha img').removeClass("paused");
                 $("#capchaImage").empty();

@@ -99,20 +99,19 @@ Route::group(array('middleware' => ['theme']) , function (){
         Route::group(['middleware' => ['cacheResponse: 2592000','tracking','tokenRemember']], function (){
 
             Route::group(['middleware' => ['intend']], function () {
-                Route::get('/', [HomeController::class , "index"])->middleware('intend');
+                Route::get('/', [HomeController::class , "index"])->name('homeIndex')->middleware('intend');
 
-                Route::get('/tin-tuc', [ArticleController::class , "getList"]);
-                Route::get('/tin-tuc', [ArticleController::class , "getList"]);
-                Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"]);
+                Route::get('/tin-tuc', [ArticleController::class , "getList"])->name('articleList');
+                Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"])->name('articleDetail');
 
                 Route::get('/blog', [ArticleController::class , "getList"]);
 
                 Route::get('/blog/{slug}', [ArticleController::class , "getDetail"]);
 
 
-                Route::get('/dich-vu', [ServiceController::class, "getList"]);
-                Route::get('/dich-vu/{slug}', [ServiceController::class, "getDetail"]);
-                Route::get('/mua-acc', [AccController::class , "getCategory"]);
+                Route::get('/dich-vu', [ServiceController::class, "getList"])->name('serviceList');
+                Route::get('/dich-vu/{slug}', [ServiceController::class, "getDetail"])->name('serviceDetail');
+                Route::get('/mua-acc', [AccController::class , "getCategory"])->name('accIndex');
                 Route::get('/minigame', [\App\Http\Controllers\Frontend\MinigameController::class , 'getCategory'])->name('getCategory');
 
                 Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
@@ -129,10 +128,12 @@ Route::group(array('middleware' => ['theme']) , function (){
             });
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
 
+                Route::post('/ajax/user/account_info', [UserController::class , "getInfo"]);
+
                 Route::group(['middleware' => ['intend']], function (){
 //                    Route::get('/mua-nick-random', [AccController::class , "getShowAccRandom"]);
-                    Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
-                    Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
+                    Route::get('/mua-acc/{slug}', [AccController::class , "getList"])->name('accList');
+                    Route::get('/acc/{slug}', [AccController::class , "getDetail"])->name('accDetail');
                     Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
 
                 });
@@ -140,7 +141,9 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
                 Route::post('/lich-su-mua-nick-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])->name('getShowpassNick');
                 Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);
-                Route::post('/ajax/user/account_info', [UserController::class , "getInfo"]);
+
+
+
                 Route::get('/profile', [UserController::class , "profileSidebar"])->name('profile');
                 // lấy nhà mạng mua thẻ
                 Route::get('/ajax/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');

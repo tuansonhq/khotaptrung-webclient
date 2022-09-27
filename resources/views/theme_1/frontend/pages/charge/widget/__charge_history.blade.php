@@ -34,6 +34,7 @@
                                 {{--                            @endif--}}
                             </td>
                             <td>
+
                                 {{ str_replace(',','.',number_format($item->declare_amount)) }}
                             </td>
                             <td>
@@ -55,7 +56,7 @@
                             </td>
                             <td>
                                 @if(isset($item->real_received_amount))
-                                    {{ str_replace(',','.',number_format($item->real_received_amount)) }}
+                                    {{ str_replace(',','.',number_format($item->real_received_amount)) }} đ
                                 @else
                                     0
                                 @endif

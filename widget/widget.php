@@ -39,7 +39,7 @@ View::composer('frontend.widget.__banner__storecard', function ($view) {
 });
 
 View::composer('frontend.widget.__slider__banner__home', function ($view) {
-    if (theme('')->theme_key == "theme_3"){
+    if (theme('')->theme_key == "theme_3" || theme('')->theme_key == "theme_5"){
         $data = \Cache::rememberForever('__slider__banner__home', function() {
             $url = '/get-slider-banner';
             $method = "GET";
@@ -808,20 +808,21 @@ View::composer('frontend.widget.__nap_the', function ($view) {
         return $data = $result_Api->response_data->data??null;
 
     });
-//    $data_1 = \Cache::rememberForever('__top_nap_the_mobile', function() {
-//        $url = '/top-charge';
-//        $method = "GET";
-//        $dataSend = array();
-//
-//        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-//        return $data = $result_Api->response_data->data??null;
-//
-//    });
-//    $data = [
-//        'telecom'  => $data,
-//        'top-charge'   => $data_1,
-//
-//    ];
+    return $view->with('data',$data);
+
+
+});
+
+View::composer('frontend.widget.modal.__recharge_modal', function ($view) {
+    $data = \Cache::rememberForever('modal.__recharge_modal', function() {
+        $url = '/deposit-auto/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
     return $view->with('data',$data);
 
 
@@ -1241,41 +1242,57 @@ View::composer('frontend.pages.article.widget.__ads__article', function ($view) 
     return $view->with('data',$data);
 
 });
-// menu category article
-//View::composer('frontend.widget.__menu__category__article_theme_5', function ($view) {
-//
-//    $data = null;
-//    $dataDetail = [];
-//    $category_url = [];
-//
-//    $data = \Cache::rememberForever('__menu__category__article_theme_5', function() {
-//        $url = '/get-category';
-//        $method = "GET";
-//        $val = array();
-//
-//        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-//
-//        return $data = $result_Api->response_data->datacategory??null;
-//    });
-//
-//    foreach ($data as $key => $value) {
-//        if ($key > 1) {
-//            break;
-//        }
-//        $category_url[] = $value->slug;
-//    }
-//
-//    for($i = 0 ; $i < count($category_url); $i++) {
-//        $url = '/article/'.$category_url[$i];
-//        $method = "GET";
-//        $dataSend = array();
-//        $dataSend['page'] = 1;
-//
-//        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-//        $response_data = $result_Api->response_data??null;
-//
-//        $dataDetail[] = $response_data;
-//    }
-//
-//    return $view->with('data_category', $data)->with('data_detail', $dataDetail);
-//});
+
+View::composer('frontend.widget.__card_purchase', function ($view) {
+
+//    minigame
+
+    $telecoms = \Cache::rememberForever('__card_purchase', function() {
+
+        $url = '/store-card/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $telecoms = $result_Api->response_data->data??null;
+
+
+        return $telecoms;
+    });
+
+    return $view->with('telecoms', $telecoms);
+});
+
+View::composer('frontend.widget.__mua__the', function ($view) {
+
+//    mua the theme 5
+
+    $telecoms = \Cache::rememberForever('__mua__the', function() {
+
+        $url = '/store-card/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $telecoms = $result_Api->response_data->data??null;
+
+
+        return $telecoms;
+    });
+
+    return $view->with('telecoms', $telecoms);
+});
+
+View::composer('frontend.widget.__napthe', function ($view) {
+
+//    nạp tiền theme 5
+
+    $data = \Cache::rememberForever('frontend.widget.__napthe', function() {
+        $url = '/deposit-auto/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+    return $view->with('data',$data);
+});
