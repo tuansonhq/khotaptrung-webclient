@@ -24,7 +24,7 @@
                 @endif
             </li>
             <li class="breadcrum--item">
-                <a href="" class="breadcrum--link">{{ $title->title }}</a>
+                <a href="" class="breadcrum--link">{{ $title->title??'' }}</a>
             </li>
         </ul>
         {{--content--}}
@@ -80,7 +80,7 @@
                 <div class="card --custom p-3 d-none d-lg-block" id="new-article-update">
                     <div class="card--header">
                         <div class="card--header__title">
-                            {{$title->title}}
+                            {{$title->title??''}}
                         </div>
                     </div>
                     <div class="card--body">
