@@ -2,7 +2,7 @@
     <div class="container item_play_dif__img">
         <div class="row">
             <div class="col-md-12">
-                <div class="h3" style="font-size: 24px;font-weight: 700">BÀI VIẾT LIÊN QUAN</div>
+                <div class="h3" style="font-size: 24px;font-weight: 700;color: white">BÀI VIẾT LIÊN QUAN</div>
                 <div class="news_content_line"></div>
             </div>
             <div class="col-12 item_play_dif_slide pt-3 pb-5" >
