@@ -1280,3 +1280,19 @@ View::composer('frontend.widget.__mua__the', function ($view) {
 
     return $view->with('telecoms', $telecoms);
 });
+
+View::composer('frontend.widget.__napthe', function ($view) {
+
+//    nạp tiền theme 5
+
+    $data = \Cache::rememberForever('frontend.widget.__napthe', function() {
+        $url = '/deposit-auto/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+    return $view->with('data',$data);
+});

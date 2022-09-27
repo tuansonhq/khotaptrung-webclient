@@ -157,8 +157,7 @@
                         <div class="col-lg-3 c-px-8 c-mb-16">
                             <div class="card">
                                 <div class="card-body c-p-16">
-                                    <a href="/mua-the-{{ strtolower($card_is->key) }}-{{ format_k($amount->amount) }}"
-                                       class="scratch-card c-mb-12">
+                                    <a href="/mua-the-{{ strtolower($card_is->key) }}-{{ format_k($amount->amount) }}" class="scratch-card c-mb-12">
                                         <div class="card--thumb">
                                             <img src="{{ $card_is->image }}" class="card--thumb__image py-1 py-lg-0" alt="{{ $card_is->title }}">
                                         </div>
@@ -169,7 +168,7 @@
                                     </a>
                                     <span class="t-sub-2 t-capitalize">Thẻ {{ strtolower($card_is->title) }} {{ format_k($amount->amount) }}</span>
                                     <div class="t-body-1 link-color">
-                                        Đơn giá: {{ str_replace(',','.',number_format($amount->amount)) }} đ
+                                        Đơn giá: {{ str_replace(',','.',number_format($amount_paid)) }} đ
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center c-mt-12">
                                         <span class="t-body-2">Số lượng</span>
