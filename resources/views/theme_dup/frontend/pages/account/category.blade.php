@@ -10,7 +10,7 @@
     @if($data == null)
         <div class="item_buy">
 
-            <div class="container pt-3">
+            <div class="container pt-3 item_buy-form">
                 <div class="row pb-3 pt-3">
                     <div class="col-md-12 text-center">
                         <span style="color: red;font-size: 16px;">
@@ -28,8 +28,8 @@
         </div>
     @else
 
-    <div class="item_buy">
-        <div class="container">
+    <div class="item_buy item-buy_acc">
+
             <div class="news_breadcrumbs">
                 <div class="container">
                     <div class="row">
@@ -43,8 +43,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="item_buy_list row pt-5">
+        <div class="container">
+            <div class="item_buy_list row pt-2">
                 @if(isset($data) && count($data))
                     @foreach($data as $item)
                         <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 ppk">
@@ -76,9 +76,9 @@
 
                                     @if(isset($item->items_count))
                                         @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
-                                            <p style="color: #212529;">Số tài khoản: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }} </p>
+                                            <p >Số tài khoản: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }} </p>
                                         @else
-                                            <p style="color: #212529;">Số tài khoản: {{ $item->items_count }} </p>
+                                            <p >Số tài khoản: {{ $item->items_count }} </p>
                                         @endif
 
                                     @else

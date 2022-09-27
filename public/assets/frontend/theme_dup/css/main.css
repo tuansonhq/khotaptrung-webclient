@@ -259,7 +259,7 @@ header .nav-bar{
 }
 /*content*/
 .content{
-    padding-top: 120px;
+    padding-top: 90px;
 }
 /*banner*/
 .content-banner{
@@ -267,6 +267,11 @@ header .nav-bar{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-top: 12px;
+}
+.item_buy-form{
+    background-color: rgba(0,0,0,0.4);
+
 }
 .slider{
     padding-top: 12px;
@@ -602,6 +607,21 @@ header .nav-bar{
     left: 4px;
     right: 4px;
 }
+.item-buy_acc .game-list-title{
+    position: unset;
+    background: transparent;
+    padding-top: 12px;
+}
+.item-buy_acc>.container{
+    background: rgba(0,0,0,0.6);
+    margin-top: 12px;
+}
+.item-buy_acc .game-list-image{
+    padding-top: 0;
+}
+.item-buy_acc .game-list-description{
+    padding-top: 12px;
+}
 .game-list-title a{
     text-decoration: none;
 }
@@ -810,8 +830,9 @@ header .nav-bar{
     margin: 8% auto 10%;
     padding: 20px;
     color: #fff;
-    border: 1px solid #cccccc;
-    background-color: white;
+    border: 1px solid black;
+    background-color: rgba(0,0,0,0.8);
+    border-radius: 4px;
 }
 #modal-login .log-in-body{
     width: auto;
@@ -821,7 +842,7 @@ header .nav-bar{
 }
 .log-in-body p{
     margin: 0;
-    color: black;
+    color: white;
     text-align: center;
     padding: 0 20px 20px 20px;
     text-align: center;
@@ -859,10 +880,10 @@ header .nav-bar{
     pointer-events: none;
 }
 .log-in-body .checkbox label{
-    color: black;
+    color: white;
 }
 .log-in-body .col-sm-6 a{
-    color: black;
+    color: red;
     float: right;
 }
 
@@ -2002,7 +2023,7 @@ footer{
 }
 .title__tklienquan{
     text-align: center;
-    color: #3f444a;
+    color: white;
     font-size: 24px;
     margin: 10px 0;
     text-transform: uppercase;
@@ -2221,10 +2242,12 @@ footer{
 
 /*son bt*/
 .item_play_dif_slide_detail_in_active__size{
-    background: black;
+
     border-radius: 4px;
-    border: 1px solid #cccccc;
+
     padding: 2px;
+    background: #1f2228;
+    border: 1px solid #30343c;
 }
 #dichvunoibat .item_play_dif_slide_detail_in_active__size{
     background: transparent;
@@ -2282,7 +2305,7 @@ footer{
     color: #FFFFFF;
 }
 .gallery-thumbsmaxheadth{
-    max-height: 46px;
+    max-height: 60px;
 }
 @media (max-width: 768px) {
     .nav-bar-brand{
@@ -2444,6 +2467,7 @@ footer{
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;
+    color: white;
 }
 
 .edu-hisinfo h3{
@@ -2584,4 +2608,13 @@ footer{
 .item_play_dif_slide_title_hea{
     max-height: 48px;
     height: 48px;
+}
+/*fix dup*/
+.service-thumb>.container {
+    background: rgba(0,0,0,0.7);
+    padding-bottom: 12px;
+ /*padding: 12px 0;*/
+}
+.content-items-spin .game-list-description p{
+    margin-top: 24px;
 }

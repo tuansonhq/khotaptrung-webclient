@@ -59,6 +59,9 @@
 
             padding-bottom: 40px;
         }
+        .main-lay-out-hide{
+            background: unset;
+        }
     </style>
 
 {{--    <link rel="stylesheet" href="/js/{{theme('')->theme_key}}/main.js?v={{time()}}">--}}
@@ -184,7 +187,8 @@
                       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 @endif
-<div class="{{ Request::is('/')?'main-lay-out':'' }}">
+{{--<div class="{{ Request::is('/')?'main-lay-out':'' }}">--}}
+<div class="main-lay-out @hide('theme_dup_route-name-header')  main-lay-out-hide @endhide">
     @include('frontend.layouts.includes.header')
     <div class="content" style="">
         @yield('content')

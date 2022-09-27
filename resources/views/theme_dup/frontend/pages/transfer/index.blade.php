@@ -2,7 +2,7 @@
 @push('style')
 @endpush
 @push('js')
-    <script src="/assets/frontend/theme_1/js/transfer/transfer.js?v={{time()}}"></script>
+    <script src="/assets/frontend/theme_dup/js/transfer/transfer.js?v={{time()}}"></script>
 @endpush
 @section('meta_robots')
     <meta name="robots" content="index,follow" />

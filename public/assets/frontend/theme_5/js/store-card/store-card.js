@@ -7,6 +7,9 @@ $(document).ready(function () {
     })
     $('input[name="card-type"]:checked').trigger('change');
 
+    if ($(document).width() > 992 ){
+        $('#cardGameList .card-type-form:first-child input').prop('checked',true)
+    }
     var swiper_card = new Swiper(".slider--card", {
         slidesPerView: 1,
         spaceBetween: 16,

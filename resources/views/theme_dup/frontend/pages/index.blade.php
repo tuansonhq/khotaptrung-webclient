@@ -105,7 +105,7 @@
         </div>
 
 
-        @include('frontend.widget.__menu__taget')
+{{--        @include('frontend.widget.__menu__taget')--}}
 
     </div>
 

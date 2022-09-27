@@ -3,7 +3,7 @@
 }
 .item_play_title p{
     text-align: center;
-    color: #3f444a;
+    color: white;
     font-size: 22px;
     margin: 10px 0;
     text-transform: uppercase;
@@ -16,7 +16,7 @@
     margin: 0 auto 30px auto;
 }
 .item_play_online_out{
-    color: #333;
+    color: white;
     font-size: 12px;
     margin-left: 10px;
     margin-bottom: 10px;
@@ -172,7 +172,9 @@
 /*slide game khacs*/
 .item_play_dif_slide_detail_in{
     position: relative;
-    background-color: #13151a;
+    border-radius: 4px;
+    background: #1f2228;
+    border: 1px solid #30343c;
 }
 .item_play_dif_slide_img{
     position: relative;
@@ -416,6 +418,9 @@
     text-align: center;
 
 }
+.item_spin_num_play{
+    color: #ff0;
+}
 .item_play_num_play p{
     color: #3f444a;
     font-size: 18px;
@@ -439,6 +444,7 @@
     font-size: 20px;
     font-weight: bold;
     transition: .2s ease;
+    line-height: 100%;
 }
 .item_spin_category{
     display: flex;
@@ -452,7 +458,7 @@
 .item_spin_title p{
     font-size: 30px;
     text-transform: uppercase;
-    color: #505050;
+    color: #ff0;
     text-align: center;
     font-weight: 600;
 }
@@ -540,9 +546,12 @@
 }
 .item_buy_list_in{
     height: 100%;
-    border: 1px solid #ddd;
-    padding: 1px;
 
+    border: 1px solid #30343c;
+    padding: 1px;
+    background: #1f2228;
+    border-radius: 4px;
+    overflow: hidden;
 }
 .item_buy_list>div{
     margin: 12px 0;
@@ -604,6 +613,7 @@
     padding: 4px 0 0 16px;
     /*text-align: center;*/
     /*margin-bottom: 5px;*/
+    color: white;
 }
 .item_buy_list_info_inaccright{
     font-size: 16px;
@@ -618,6 +628,7 @@
     padding: 5px;
     color: red;
     margin-bottom: 12px;
+    background: #000;
 }
 .item_buy_list_more{
     padding: 8px 12px 0 12px;
@@ -626,9 +637,9 @@
     text-decoration: none;
 }
 .item_buy_list_more a:hover .item_buy_list_view{
-    color: #32c5d2;
-    background: white;
-    border: 1px solid #32c5d2;
+    color: #f44336;
+    background: transparent;
+    border: 1px solid #f44336;
     transition: .2s ease;
 
 }
@@ -657,8 +668,8 @@
 .item_buy_list_view{
     text-align: center;
     color: #ffffff;
-    background: #32c5d2;
-    border: 1px solid #32c5d2;
+    background: #f44336;
+    border: 1px solid #f44336;
     transition: .2s ease;
     padding: 6px;
     font-size: 17px;
@@ -1586,4 +1597,15 @@ td{
     .item_play_spin_five_record .item_play_spin_progress, .item_play_spin_five_record .item_play_spin_sale-off{
         bottom: 0;
     }
+}
+/*dup*/
+.item_play .container{
+    background: rgba(0,0,0,0.7);
+    padding: 8px;
+}
+.item_spin_list .table thead th,.item_spin_list .table thead tr{
+    color: white;
+}
+.item_play_dif_slide_more_view{
+    padding: 4px 0 12px 0;
 }
