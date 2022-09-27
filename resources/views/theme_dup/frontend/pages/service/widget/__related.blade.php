@@ -3,7 +3,7 @@
     <div class="container item_play_dif__img">
         <div class="row">
             <div class="col-md-12">
-                <div class="h3" style="font-size: 24px;font-weight: 700">DỊCH VỤ KHÁC</div>
+                <div class="h3" style="font-size: 24px;font-weight: 700;color: white">DỊCH VỤ KHÁC</div>
                 <div class="news_content_line"></div>
             </div>
             @if(isset($datacate) && count($datacate) > 0)

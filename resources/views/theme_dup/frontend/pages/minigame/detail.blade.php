@@ -1,4 +1,4 @@
-@extends('frontend.layouts.master')
+    @extends('frontend.layouts.master')
 @section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$result->group]))
 @endsection
@@ -101,7 +101,7 @@
         </div>
     </div>
 
-    <div class="item_play">
+    <div class="item_play pt-3">
         <div class="container">
 
             @switch($position)

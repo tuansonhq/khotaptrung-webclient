@@ -768,6 +768,7 @@ select.form-control{height: 42px;}
     height: auto;
     font-size: 18px;
     padding-left: 40px !important;
+    color: white;
 }
 .simple-checkbox input[type="checkbox"],.simple-checkbox  input[type="radio"] {
     position: absolute;
