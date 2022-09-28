@@ -360,7 +360,7 @@
                     <div class="row marginauto modal-header-order-ct">
                         <div class="col-12 span__donhang text-center" style="position: relative">
                             <span>Mua tài khoản thành công</span>
-                            <img class="lazy img-close-ct close-modal-success" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                            <img class="lazy img-close-ct close-modal-success" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" data-dismiss="modal" alt="">
                         </div>
                     </div>
 
