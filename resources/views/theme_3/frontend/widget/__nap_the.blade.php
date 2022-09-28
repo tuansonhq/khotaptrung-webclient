@@ -204,7 +204,6 @@
                                                         </button>
                                                     </div>
 
-
                                                 </div>
                                             </div>
 
@@ -261,8 +260,13 @@
                                             </button>
                                         </div>
 
-                                    </div>
 
+                                    </div>
+                                    <div class="row marginauto">
+                                        <div class="col-md-12 canhbao__napthe__col">
+                                            <span>Nạp thẻ vui lòng trọn mệnh giá,trong trường hợp bạn không chọn mệnh giá rất có thể thẻ cào của bạn sẽ mất trận trọng!</span>
+                                        </div>
+                                    </div>
                                     @include('frontend.widget.modal.__confirm_charge')
                                 </div>
                             </form>
