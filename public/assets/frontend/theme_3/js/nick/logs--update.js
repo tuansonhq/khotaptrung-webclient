@@ -202,7 +202,7 @@ function loadDataTable(query = {page:1,serial:'',key:'',price:'',status:'',start
     }
     $.ajax({
         type: 'GET',
-        url: '/lich-su-mua-nick',
+        url: '/lich-su-mua-account',
         data: query,
         beforeSend: function (xhr) {
 
