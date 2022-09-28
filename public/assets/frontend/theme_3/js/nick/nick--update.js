@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     var product_list = new Swiper('.list-nap-game', {
         autoplay: false,
         navigation: {
@@ -69,7 +70,7 @@ $(document).ready(function () {
         $('#openOrder').modal('show');
     });
 
-    $(document).on('submit', '#openOrder .formDonhangAccount', function(e){
+    $('body').on('submit', '#openOrder .formDonhangAccount', function(e){
         e.preventDefault();
 
         let formSubmit = $(this);
@@ -93,6 +94,7 @@ $(document).ready(function () {
                 $('#openOrder').modal('hide');
                 if(response.status == 1){
                     $('#successModal').modal('show');
+
                 }
                 else if (response.status == 2){
                     swal(

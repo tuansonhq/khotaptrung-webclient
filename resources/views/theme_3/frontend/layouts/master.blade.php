@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <meta name="path" content=""/>
     <meta name="jwt" content="jwt"/>
+    @yield('seo_head')
     {{--    <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />--}}
     @if(setting('sys_google_search_console') != '')
         <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />
@@ -39,7 +40,7 @@
     @if (!\App\Library\AuthCustom::check())
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/login_modal.css">
     @endif
-    @yield('seo_head')
+
 {{--    import css --}}
     @yield('styles')
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery/jquery.min.js"></script>
