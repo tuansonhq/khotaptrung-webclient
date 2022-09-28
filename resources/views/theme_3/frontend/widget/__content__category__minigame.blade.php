@@ -8,7 +8,7 @@
             <div class="item-minigame_first y_content-item">
                 <a href="/minigame-{{ $item->slug }}" class="y_item">
                     @if(isset($item->image))
-                        <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                        <img onerror="imgError(this)" class="lazy" data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                     @endif
                     <div class="item-minigame-content y_caption">
                         <div class="item-minigame-name">{{ $item->title }}</div>
@@ -47,7 +47,7 @@
                             <div class="item-minigame_second y_content-item">
                                 <a href="/minigame-{{ $item->slug }}" class="y_item">
                                     @if(isset($item->image))
-                                        <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                        <img onerror="imgError(this)" class="lazy" data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                     @endif
                                     <div class="item-minigame-content y_caption">
                                         <div class="item-minigame-name">{{ $item->title }}</div>
@@ -89,7 +89,7 @@
 
                                 <a href="/minigame-{{ $item->slug }}" class="y_item">
                                     @if(isset($item->image))
-                                        <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                        <img onerror="imgError(this)" class="lazy" data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                     @endif
                                     <div class="item-minigame-content y_caption">
                                         <div class="item-minigame-name">{{ $item->title }}</div>
@@ -132,7 +132,7 @@
                     <div class="item-minigame_first">
                         <a href="/minigame-{{ $item->slug }}">
                             @if(isset($item->image))
-                                <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                <img onerror="imgError(this)" class="lazy" data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                             @endif
                             <div class="item-minigame-content">
                                 <div class="item-minigame-name">{{ $item->title }}</div>
@@ -165,7 +165,7 @@
                     <div class="item-minigame_second">
                         <a href="/minigame-{{ $item->slug }}">
                             @if(isset($item->image))
-                                <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                <img onerror="imgError(this)" class="lazy" data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                             @endif
                             <div class="item-minigame-content">
                                 <div class="item-minigame-name">{{ $item->title }}</div>

@@ -1,75 +1,27 @@
 
 //Sử lý chát có sẵn
 
-var chatArrayDefault = [
-    'Dịch vụ nạp uy tín ghê',
-    'Uy tín không anh em.',
-    'Vãi vừa ấn nạp xong vào game có ngay (y)',
-    'Web uy tín đấy, vừa nạp 500k xong.',
-    'Nãy có ông bạn nạp 500k xong vào nạp luôn, quá xịn admin ơi.',
-    'Thanks admin <3 , uy tín lắm luôn',
-    'Nhanh gọn uy tín, thanks admin',
-    'Web xịn không scam nha mọi người',
-    'Hàng sạch, thanks admin',
-    'Vừa nạp xong, quá ngon',
-    'Web ok không anh em, có scam không?',
-    'Vừa chạy ra quán mua 500k thẻ nạp ăn luôn, ngon quá admin',
-    'Nhập nhầm mã thẻ với serial báo admin xử lý trong vòng 1 nốt nhạc, uy tín quá admin ơi',
-    'Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s',
-    '1 vote uy tín cho web nhé, quá ngon luôn',
-    'Bị lừa nhiều rồi, giờ mới tìm được web uy tín, thanks ad',
-    'Vừa nạp 100k xong',
-    'Web ngon vl',
-    'Anh em nào chưa nạp thì vào nạp ngay đi đang có khuyến mại',
-    'Uy tín lắm admin',
-    'Vote 10000k sao nhé, quá uy tín',
-    'Có anh em nào vừa từ youtube qua đây nạp k',
-    'Ông em vừa giới thiệu, nạp cái ăn luôn, ngon vc',
-    'Uy tín nhé anh em',
-    'Đã nạp thành công',
-    'Đã nạp ở đây 20tr tiền thẻ, vote uy tín nhé',
-    'Web nạp ngon thế này mà giờ mới biết',
-    'Đã nạp, nhanh lắm nhé',
-    'Ngon vcl, +5 sao cho admin',
-    'Nghe anh em review ngon quá, tôi ra làm cái thẻ 500k nạp đây',
-    'Không scam, web nạp thật, nhận thật nhé !',
-    'Đã nạp và thấy ngon ngọt nhé ae',
-    'Web này trùm nạp mẹ rồi',
-    'Web được đấy anh em',
-    'Thấy web được nhiều anh em nạp rồi, yên tâm nạp hehe',
-    'Anh em không phải sợ đâu, tôi nạp nhiều web này rồi',
-    'Web xịn không scam nha mọi người'
-];
+
 
 //Set thời gian minmax
-var lengthChatDefault = 12;
-var monthsDefault = [30, 35, 40, 45, 50, 55, 60, 65];
+var lengthChatDefault = $('.total_item').val();
+
+var max_time = $('.max_time').val();
+var min_time = $('.min_time').val();
 
 var totaltime = 0;
-var arr_time = [];
-
-for (let i = 0; i < lengthChatDefault; i++){
-
-    var randomDefault = Math.floor(Math.random() * monthsDefault.length);
-    var i_minite = monthsDefault[randomDefault];
-    totaltime = totaltime + i_minite;
-    arr_time.push(i_minite);
-
-}
-
-// totaltime = totaltime + monthsDefault[0];
 
 //App chat
 
-
-
 var d_totaltime = 0;
 var c_totaltime = 0;
+
 var arr_group = [];
 
-
 let cookies_minigame = getCookie('chat_minigame');
+
 // eraseCookie('chat_minigame');
+
 if (cookies_minigame){
 
     var cookies_lengthChatDefault = JSON.parse(cookies_minigame);
@@ -92,73 +44,73 @@ if (cookies_minigame){
             cookies_hour = "0"+cookies_hour;
         }
 
-
-
         if (k_cookies_lengthChatDefault[0] == 0){
             cookies_html = `
-                    <li>
-                        <div class="comment-item comment-item-khach" data-time="${defoalt}">
-                            <div class="comment-avatar">
-                                <img
-                                    src="/assets/frontend/theme_3/image/anhdaidien.svg"
-                                    alt="">
+                <li>
+                    <div class="comment-item comment-item-khach" data-time="${defoalt}">
+                        <div class="comment-avatar">
+                            <img
+                                src="/assets/frontend/theme_3/image/anhdaidien.svg"
+                                alt="">
+                        </div>
+                        <div class="comment-detail">
+                            <div class="comment-info">
+                                <p>${k_cookies_lengthChatDefault[3]}</p>
+                                <span>${cookies_hour}:${cookies_minute}, </span><small class="data_time_minigame">${c_timepast}</small>
                             </div>
-                            <div class="comment-detail">
-                                <div class="comment-info">
-                                    <p>Khách</p>
-                                    <span>${cookies_hour}:${cookies_minute}, </span><small class="data_time_minigame">${c_timepast}</small>
-                                </div>
-                                <div class="comment-content">
-                                    ${k_cookies_lengthChatDefault[1]}
-                                </div>
-                                <div class="comment-interact">
-                                    <span id="likeComment"><img
-                                            src="/assets/frontend/theme_3/image/images_1/hearts-suit 1.svg"
-                                            alt=""> Thích</span>
-                                    <span id="replyComment"><img
-                                            src="/assets/frontend/theme_3/image/images_1/comment 1.svg"
-                                            alt=""> Trả lời</span>
-                                </div>
+                            <div class="comment-content">
+                                ${k_cookies_lengthChatDefault[1]}
+                            </div>
+                            <div class="comment-interact">
+                                <span id="likeComment"><img
+                                        src="/assets/frontend/theme_3/image/images_1/hearts-suit 1.svg"
+                                        alt=""> Thích</span>
+                                <span id="replyComment"><img
+                                        src="/assets/frontend/theme_3/image/images_1/comment 1.svg"
+                                        alt=""> Trả lời</span>
                             </div>
                         </div>
+                    </div>
 
-                    </li>`;
+                </li>`;
         }else{
             cookies_html = `
-                    <li>
-                        <div class="comment-item comment-item-own comment-item-user" data-time="${defoalt}">
+                <li>
+                    <div class="comment-item comment-item-own comment-item-user" data-time="${defoalt}">
 
-                            <div class="comment-detail comment-detail-own">
-                                <div class="comment-info comment-info-own">
+                        <div class="comment-detail comment-detail-own">
+                            <div class="comment-info comment-info-own">
 
-                                    <span>${cookies_hour}:${cookies_minute}, </span><small class="data_time_user">${c_timepast}</small>
-                                    <p>Bạn</p>
-                                </div>
-                                <div class="comment-content comment-content-own">
-                                    ${k_cookies_lengthChatDefault[1]}
-                                </div>
-                                <div class="comment-interact comment-interact-own">
-                                    <span id="likeComment"><img
-                                            src="/assets/frontend/theme_3/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
-                                    <span id="replyComment"><img
-                                            src="/assets/frontend/theme_3/image/images_1/comment 1.svg" alt=""> Trả lời</span>
-                                </div>
+                                <span>${cookies_hour}:${cookies_minute}, </span><small class="data_time_user">${c_timepast}</small>
+                                <p>Bạn</p>
                             </div>
-                            <div class="comment-avatar">
-                                <img src="/assets/frontend/theme_3/image/images_1/user_avatar.png" alt="">
+                            <div class="comment-content comment-content-own">
+                                ${k_cookies_lengthChatDefault[1]}
+                            </div>
+                            <div class="comment-interact comment-interact-own">
+                                <span id="likeComment"><img
+                                        src="/assets/frontend/theme_3/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
+                                <span id="replyComment"><img
+                                        src="/assets/frontend/theme_3/image/images_1/comment 1.svg" alt=""> Trả lời</span>
                             </div>
                         </div>
-                    </li>`;
+                        <div class="comment-avatar">
+                            <img src="/assets/frontend/theme_3/image/images_1/user_avatar.png" alt="">
+                        </div>
+                    </div>
+                </li>`;
         }
+
         $('.list-unstyled').append(cookies_html);
 
     }
 
     (function loop() {
 
-        var months = [30, 35, 40, 45, 50, 55, 60, 65];
+        var max_time = $('.max_time').val();
+        var min_time = $('.min_time').val();
+        let number = getRandomInt(min_time,max_time);
 
-        var random = Math.floor(Math.random() * months.length);
 
         setTimeout(function() {
 
@@ -202,21 +154,27 @@ if (cookies_minigame){
                 'Web xịn không scam nha mọi người'
             ];
 
+            var arrUserName = JSON.parse($('.arrUserName').val());
+
             const randomChat = Math.floor(Math.random() * chatArray.length);
+
+            const randomUserDefault = Math.floor(Math.random() * arrUserName.length);
 
             let cookies_set = getCookie('chat_minigame');
 
-            setArray(cookies_set,chatArray[randomChat],0);
+            setArray(cookies_set,chatArray[randomChat],0,arrUserName[randomUserDefault]);
             loop()
-        }, months[random]*1000);
+        }, lamtron(number)*1000);
 
     }());
 
     $('body').on('click','.btn-send-message',function(){
+
         var context = $('#message-to-send').val();
 
         let cookies_set = getCookie('chat_minigame');
-        setArray(cookies_set,context,1);
+
+        setArray(cookies_set,context,1,"Bạn");
 
         $('.chat-scroll').scrollTop($('.chat-scroll')[0].scrollHeight);
 
@@ -230,7 +188,7 @@ if (cookies_minigame){
             var context = $(this).val();
 
             let cookies_set = getCookie('chat_minigame');
-            setArray(cookies_set,context,1);
+            setArray(cookies_set,context,1,"Bạn");
 
             $('.chat-scroll').scrollTop($('.chat-scroll')[0].scrollHeight);
 
@@ -242,11 +200,54 @@ if (cookies_minigame){
 }else{
 
     for (let j = 0; j < lengthChatDefault; j++){
-        // console.log(arr_time[j])
+
         var dateTimeDefault = new Date();
         var datenow = new Date();
+        var max_time = $('.max_time').val();
+        var min_time = $('.min_time').val();
+        let number = getRandomInt(min_time,max_time);
 
-        d_totaltime = d_totaltime + arr_time[j]*1;
+        var chatArrayDefault = [
+            'Dịch vụ nạp uy tín ghê',
+            'Uy tín không anh em.',
+            'Vãi vừa ấn nạp xong vào game có ngay (y)',
+            'Web uy tín đấy, vừa nạp 500k xong.',
+            'Nãy có ông bạn nạp 500k xong vào nạp luôn, quá xịn admin ơi.',
+            'Thanks admin <3 , uy tín lắm luôn',
+            'Nhanh gọn uy tín, thanks admin',
+            'Web xịn không scam nha mọi người',
+            'Hàng sạch, thanks admin',
+            'Vừa nạp xong, quá ngon',
+            'Web ok không anh em, có scam không?',
+            'Vừa chạy ra quán mua 500k thẻ nạp ăn luôn, ngon quá admin',
+            'Nhập nhầm mã thẻ với serial báo admin xử lý trong vòng 1 nốt nhạc, uy tín quá admin ơi',
+            'Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s',
+            '1 vote uy tín cho web nhé, quá ngon luôn',
+            'Bị lừa nhiều rồi, giờ mới tìm được web uy tín, thanks ad',
+            'Vừa nạp 100k xong',
+            'Web ngon vl',
+            'Anh em nào chưa nạp thì vào nạp ngay đi đang có khuyến mại',
+            'Uy tín lắm admin',
+            'Vote 10000k sao nhé, quá uy tín',
+            'Có anh em nào vừa từ youtube qua đây nạp k',
+            'Ông em vừa giới thiệu, nạp cái ăn luôn, ngon vc',
+            'Uy tín nhé anh em',
+            'Đã nạp thành công',
+            'Đã nạp ở đây 20tr tiền thẻ, vote uy tín nhé',
+            'Web nạp ngon thế này mà giờ mới biết',
+            'Đã nạp, nhanh lắm nhé',
+            'Ngon vcl, +5 sao cho admin',
+            'Nghe anh em review ngon quá, tôi ra làm cái thẻ 500k nạp đây',
+            'Không scam, web nạp thật, nhận thật nhé !',
+            'Đã nạp và thấy ngon ngọt nhé ae',
+            'Web này trùm nạp mẹ rồi',
+            'Web được đấy anh em',
+            'Thấy web được nhiều anh em nạp rồi, yên tâm nạp hehe',
+            'Anh em không phải sợ đâu, tôi nạp nhiều web này rồi',
+            'Web xịn không scam nha mọi người'
+        ];
+
+        d_totaltime = d_totaltime + lamtron(number)*1;
         c_totaltime = (totaltime - d_totaltime)*1;
         if (j == 0){
             dateTimeDefault.setSeconds(dateTimeDefault.getSeconds() - totaltime); // timestamp
@@ -264,40 +265,47 @@ if (cookies_minigame){
             s_hour = "0"+s_hour;
         }
         // dateTimeDefault = new Date(dateTimeDefault).toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
+
+        var arrUserName = JSON.parse($('.arrUserName').val());
+
         const randomChatDefault = Math.floor(Math.random() * chatArrayDefault.length);
+
+        const randomUserDefault = Math.floor(Math.random() * arrUserName.length);
+
         var arr_item = [];
         arr_item.push(0);
         arr_item.push(chatArrayDefault[randomChatDefault]);
         arr_item.push(dateTimeDefault);
+        arr_item.push(arrUserName[randomUserDefault]);
         arr_group.push(arr_item);
         var htmldefault = `
             <li>
-        <div class="comment-item comment-item-khach" data-time="${dateTimeDefault}">
-            <div class="comment-avatar">
-                <img
-                    src="/assets/frontend/theme_3/image/anhdaidien.svg"
-                    alt="">
-            </div>
-            <div class="comment-detail">
-                <div class="comment-info">
-                    <p>Khách</p>
-                    <span>${s_hour}:${s_minute}, </span><small class="data_time_minigame">${timepast}</small>
+                <div class="comment-item comment-item-khach" data-time="${dateTimeDefault}">
+                    <div class="comment-avatar">
+                        <img
+                            src="/assets/frontend/theme_3/image/anhdaidien.svg"
+                            alt="">
+                    </div>
+                    <div class="comment-detail">
+                        <div class="comment-info">
+                            <p>${arrUserName[randomUserDefault]}</p>
+                            <span>${s_hour}:${s_minute}, </span><small class="data_time_minigame">${timepast}</small>
+                        </div>
+                        <div class="comment-content">
+                            ${chatArrayDefault[randomChatDefault]}
+                        </div>
+                        <div class="comment-interact">
+                            <span id="likeComment"><img
+                                    src="/assets/frontend/theme_3/image/images_1/hearts-suit 1.svg"
+                                    alt=""> Thích</span>
+                            <span id="replyComment"><img
+                                    src="/assets/frontend/theme_3/image/images_1/comment 1.svg"
+                                    alt=""> Trả lời</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="comment-content">
-                    ${chatArrayDefault[randomChatDefault]}
-                </div>
-                <div class="comment-interact">
-                    <span id="likeComment"><img
-                            src="/assets/frontend/theme_3/image/images_1/hearts-suit 1.svg"
-                            alt=""> Thích</span>
-                    <span id="replyComment"><img
-                            src="/assets/frontend/theme_3/image/images_1/comment 1.svg"
-                            alt=""> Trả lời</span>
-                </div>
-            </div>
-        </div>
 
-    </li>`
+            </li>`
 
         $('.list-unstyled').append(htmldefault);
 
@@ -308,9 +316,9 @@ if (cookies_minigame){
 
     (function loop() {
 
-        var months = [30, 35, 40, 45, 50, 55, 60, 65];
-
-        var random = Math.floor(Math.random() * months.length);
+        var max_time = $('.max_time').val();
+        var min_time = $('.min_time').val();
+        let number = getRandomInt(min_time,max_time);
 
         setTimeout(function() {
 
@@ -356,11 +364,15 @@ if (cookies_minigame){
 
             const randomChat = Math.floor(Math.random() * chatArray.length);
 
+            var arrUserName = JSON.parse($('.arrUserName').val());
+
+            const randomUserDefault = Math.floor(Math.random() * arrUserName.length);
+
             let cookies_set = getCookie('chat_minigame');
 
-            setArray(cookies_set,chatArray[randomChat],0);
+            setArray(cookies_set,chatArray[randomChat],0,arrUserName[randomUserDefault]);
             loop()
-        }, months[random]*1000);
+        }, lamtron(number)*1000);
 
     }());
 
@@ -368,7 +380,7 @@ if (cookies_minigame){
         var context = $('#message-to-send').val();
 
         let cookies_set = getCookie('chat_minigame');
-        setArray(cookies_set,context,1);
+        setArray(cookies_set,context,1,"Bạn");
 
         $('.chat-scroll').scrollTop($('.chat-scroll')[0].scrollHeight);
 
@@ -382,7 +394,7 @@ if (cookies_minigame){
             var context = $(this).val();
 
             let cookies_set = getCookie('chat_minigame');
-            setArray(cookies_set,context,1);
+            setArray(cookies_set,context,1,"Bạn");
 
             $('.chat-scroll').scrollTop($('.chat-scroll')[0].scrollHeight);
 
@@ -395,7 +407,7 @@ if (cookies_minigame){
 
 $('.chat-scroll').scrollTop($('.chat-scroll')[0].scrollHeight);
 
-function setArray(array = [],contents,index){
+function setArray(array = [],contents,index,name){
 
     var parse_group =[]
     var cookies_parse = JSON.parse(array);
@@ -405,11 +417,13 @@ function setArray(array = [],contents,index){
 
     for (let p = 0; p < cookies_parse.length; p++){
         if(p > 0){
+
             var k_cookies_parse = cookies_parse[p];
             var arr_parse = [];
             arr_parse.push(k_cookies_parse[0]);
             arr_parse.push(k_cookies_parse[1]);
             arr_parse.push(k_cookies_parse[2]);
+            arr_parse.push(k_cookies_parse[3]);
             parse_group.push(arr_parse);
 
             k_cookies_parse[2] = new Date(k_cookies_parse[2]);
@@ -436,7 +450,7 @@ function setArray(array = [],contents,index){
                             </div>
                             <div class="comment-detail">
                                 <div class="comment-info">
-                                    <p>Khách</p>
+                                    <p>${k_cookies_parse[3]}</p>
                                     <span>${parse_hour}:${parse_minute}, </span><small class="data_time_minigame">${timeparse}</small>
                                 </div>
                                 <div class="comment-content">
@@ -493,9 +507,8 @@ function setArray(array = [],contents,index){
     set_arr.push(index);
     set_arr.push(contents);
     set_arr.push(u_datenow);
+    set_arr.push(name);
     parse_group.push(set_arr);
-
-
 
     var set_parse_minute = u_datenow.getMinutes();
     var set_parse_hour = u_datenow.getHours();
@@ -519,7 +532,7 @@ function setArray(array = [],contents,index){
                 </div>
                 <div class="comment-detail">
                     <div class="comment-info">
-                        <p>Khách</p>
+                        <p>${name}</p>
                         <span>${set_parse_hour}:${set_parse_minute}, </span><small class="data_time_minigame">Vừa xong</small>
                     </div>
                     <div class="comment-content">
@@ -640,5 +653,12 @@ function timeSince(minute,hours) {
 
 }
 
-
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function lamtron(number) {
+    return Math.round(number / 5) * 5
+}
 

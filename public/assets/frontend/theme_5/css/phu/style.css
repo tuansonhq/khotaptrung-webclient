@@ -1269,3 +1269,271 @@ input[type=text].buy-card-amount-input {
     }
 }
 /* End Loading Effect */
+
+/* Withdraw Minigame Modal */
+#modalWithdraw .modal-dialog,
+#modal-spin-bonus .modal-dialog
+{
+    max-width: 680px;
+    margin: auto;
+}
+
+#modalWithdraw .modal-content,
+#modal-spin-bonus .modal-content
+{
+    border: unset;
+    border-radius: 12px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#modalWithdraw .modal-header,
+#modal-spin-bonus .modal-header
+{
+    border-bottom: 1px solid var(--border-default-color);
+}
+
+#modalWithdraw .modal-header .modal-title,
+#modal-spin-bonus .modal-header .modal-title
+{
+    color: var(--text-title-color);
+}
+
+#modalWithdraw .close,
+#modal-spin-bonus .close
+{
+    position: absolute;
+    top: 36px;
+    right: 24px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+}
+
+#modalWithdraw .close:before,
+#modal-spin-bonus .close:before
+{
+    content: '';
+    position: absolute;
+    width: 100%;height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url('/assets/frontend/theme_3/image/icons/close.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#modalWithdraw .nav.nav-tabs {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    border-bottom: none;
+}
+
+#modalWithdraw .nav.nav-tabs .nav-item {
+    display: table-cell;
+    text-align: center;
+}
+
+#modalWithdraw .nav-tabs .nav-link {
+    border-bottom: 1px solid var(--border-default-color);
+    font-size: 13px;
+    line-height: 24px;
+    color: var(--text-link-default-color);
+    font-weight: 400;
+}
+
+#modalWithdraw .nav-tabs .nav-link.active {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+#modalWithdraw.nav-tabs .nav-link:not(.active):focus,
+#modalWithdraw .nav-tabs .nav-link:not(.active):hover {
+    border-color: transparent;
+    border-bottom: 1px solid var(--border-default-color);
+}
+
+#modalWithdraw .nav-tabs .nav-item.show .nav-link,
+#modalWithdraw .nav-tabs .nav-link.active {
+    border-color: transparent;
+    border-bottom: 2px solid  var(--primary-color);
+}
+
+#modal-tab-withdraw .item-block-tab {
+    border-bottom: 1px solid var(--border-default-color);
+}
+
+#modal-tab-withdraw .item-input-tab {
+    padding: 16px 16px 24px 16px;
+}
+
+#modalWithdraw .swiper-withdraw {
+    overflow: hidden;
+    margin-top: 12px;
+    width: 100%;
+}
+
+#modalWithdraw .button-primary {
+    width: 368px;
+    padding: 12px;
+    margin-top: 28px;
+}
+
+#modalWithdraw .input-form::placeholder {
+    color: #82869E;
+}
+
+#modalWithdraw .card {
+    border-radius: 8px;
+}
+
+#modalWithdraw .label-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+}
+
+#modalWithdraw [name='game_type']:checked + .label-item {
+    border: 1px solid var(--border-default-color);
+    background-color: #E8EBF9;
+    border-radius: 8px;
+    padding: 11px;
+}
+
+#modalWithdraw .item-thumb {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    align-self: center;
+}
+
+#modalWithdraw .label-item .item-info {
+    margin-left: 8px;
+}
+
+#modal-tab-history .history-block-tab {
+    border-bottom: 1px solid var(--border-default-color);
+    padding: 12px 16px;
+}
+
+#modal-tab-history .form-search.history {
+    margin-bottom: 24px;
+}
+
+#modal-tab-history .value-filter {
+    margin-bottom: 12px;
+}
+
+#modal-tab-history .history-tab-inputs {
+    margin-bottom: 12px;
+}
+
+.is-loading {
+    position: relative;
+}
+.is-loading:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,.75);
+    z-index: 15;
+}
+.is-loading:after {
+    content: 'Đang xử lí...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-weight: 700;
+    z-index: 16;
+}
+
+.history-list-tab {
+    padding: 16px 4px 24px 16px;
+}
+
+#modalWithdraw .history-content {
+    max-height: 260px;
+}
+
+/* End Withdraw Minigame Modal */
+
+/* History Minigame Modal */
+
+#modal-spin-bonus .section-history-filter, #sheet-filter-02 .section-history-filter {
+    border-bottom: 1px solid var(--border-default-color);
+    padding: 16px;
+}
+
+#modal-spin-bonus .section-history-list, #sheet-filter-02 .section-history-list {
+    max-height: 260px;
+    overflow-y: scroll;
+    padding: 0 4px 24px 16px;
+    margin-top: 16px;
+    margin-right: 4px;
+    margin-bottom: 8px;
+}
+
+#modal-spin-bonus .section-history-list::-webkit-scrollbar , #sheet-filter-02 .section-history-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+#modal-spin-bonus .section-history-list::-webkit-scrollbar-thumb , #sheet-filter-02 .section-history-list::-webkit-scrollbar-thumb {
+    background: rgba(188, 191, 214, 0.5);
+    border-radius: 14px;
+}
+
+#modal-spin-bonus .section-history-list::-webkit-scrollbar-thumb:active , #sheet-filter-02 .section-history-list::-webkit-scrollbar-thumb:active {
+    background: rgba(188, 191, 214, 1);
+}
+#modal-spin-bonus .section-history-list::-webkit-scrollbar-thumb , #sheet-filter-02 .section-history-list::-webkit-scrollbar-thumb {
+    transform: translateX(-12px);
+}
+
+#modal-spin-bonus .trans-list , #sheet-filter-02 .trans-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+/* End History Minigame Modal */
+
+/* Component Card Hover Effect */
+
+/* Type 1: Hover card in swiper slide */
+.card-list .swiper-slide {
+    margin-top: 4px;
+    margin-bottom: 12px;
+    top: 0;
+}
+
+.card-list .swiper-slide:hover {
+    box-shadow: 0 3.4623px 6.1418px rgba(0,0,0,0.05),0 7.92923px 12.9218px rgba(0,0,0,0.05),0 9px 15px rgba(0,0,0,0.08)!important;
+    top: -4px;
+    transition: .2s ease-out;
+    border-radius: 12px;
+}
+
+/* Type 2: Hover card without slide */
+
+.card-hover {
+    top: 0;
+}
+
+.card-hover:hover {
+    box-shadow: 0 3.4623px 6.1418px rgba(0,0,0,0.05),0 7.92923px 12.9218px rgba(0,0,0,0.05),0 9px 15px rgba(0,0,0,0.08)!important;
+    top: -4px;
+    transition: all .2s ease-out;
+}
+
+/* End Component Card Hover Effect */

@@ -44,7 +44,7 @@ $(document).ready(function () {
     $(document).on('click', '#confirmSubmitButton', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/nap-the',
+            url:'/ajax/nap-the',
             type:'POST',
             data: dataSend,
             beforeSend: function () {
@@ -91,7 +91,7 @@ $(document).ready(function () {
     $(document).on('click', '#confirmSubmitButtonMobile', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/nap-the',
+            url:'/ajax/nap-the',
             type:'POST',
             data: dataSend,
             beforeSend: function () {
@@ -138,7 +138,7 @@ $(document).ready(function () {
     function reload_captcha() {
         $.ajax({
             type: 'GET',
-            url: 'reload-captcha',
+            url: '/reload-captcha',
             beforeSend: function () {
                 $('.refresh-captcha img').removeClass("paused");
                 $("#capchaImage").empty();
@@ -156,7 +156,7 @@ $(document).ready(function () {
 
     // Get card data
     function getTelecom () {
-        let url = '/get-tele-card';
+        let url = '/ajax/get-tele-card';
 
         $.ajax({
             type: "GET",
@@ -203,7 +203,7 @@ $(document).ready(function () {
     }
 
     function getAmount (telecom) {
-        let url = '/get-amount-tele-card';
+        let url = '/ajax/get-amount-tele-card';
         $.ajax({
             type: "GET",
             url: url,
@@ -277,7 +277,7 @@ $(document).ready(function () {
 
     // Get auto ATM
     function getIdCode () {
-        var url = '/transfer-code';
+        var url = '/ajax/transfer-code';
         $.ajax({
             type: "GET",
             url: url,

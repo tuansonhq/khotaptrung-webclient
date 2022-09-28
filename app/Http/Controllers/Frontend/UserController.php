@@ -22,12 +22,15 @@ class UserController extends Controller
     public function getInfo(Request $request){
 
         try{
+
             $jwt = Session::get('jwt');
+
             if(empty($jwt)){
                 return response()->json([
                     'status' => "LOGIN"
                 ]);
             }
+
             $url = '/profile';
             $method = "GET";
             $data = array();
@@ -37,7 +40,6 @@ class UserController extends Controller
                 if( $result_Api->response_code == 200){
                     $result = $result_Api->response_data;
                     Session::put('auth_custom', $result->user);
-//                    $request->session()->put('auth_custom', $result->user);
 
                     if($result->status == 1){
                         return response()->json([
@@ -48,7 +50,12 @@ class UserController extends Controller
                     }
                 }
                 else if($result_Api->response_code == 401){
-                    session()->flush();
+
+                    Session::forget('jwt');
+                    Session::forget('exp_token');
+                    Session::forget('time_exp_token');
+                    Session::forget('auth_custom');
+//                    session()->flush();
                     return response()->json([
                         'status' => 401,
                         'message'=>"unauthencation"
@@ -91,10 +98,9 @@ class UserController extends Controller
 
     }
 
-
     public function info(Request $request)
     {
-        return view('frontend.pages.profile.index');
+        return view(''.theme('')->theme_key.'.frontend.pages.profile.index');
 
     }
 
@@ -149,7 +155,7 @@ class UserController extends Controller
     {
         try{
 
-            return view('theme_2.frontend.pages.account.user.index');
+            return view(''.theme('')->theme_key.'.frontend.pages.account.user.index');
         }
         catch(\Exception $e){
             Log::error($e);
@@ -266,7 +272,7 @@ class UserController extends Controller
             $config = config('module.txns.trade_type_api');
             $status = config('module.txns.status');
 
-            return view('frontend.pages.transaction.logs')->with('config',$config)->with('status',$status);
+            return view(''.theme('')->theme_key.'.frontend.pages.transaction.logs')->with('config',$config)->with('status',$status);
 
         }
         catch(\Exception $e){
@@ -335,7 +341,7 @@ class UserController extends Controller
 
                     $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
 
-                    return view('frontend.pages.transaction.logs')
+                    return view(''.theme('')->theme_key.'.frontend.pages.transaction.logs')
                         ->with('data', $data)
                         ->with('total',$total)
                         ->with('status',$status)
@@ -437,7 +443,7 @@ class UserController extends Controller
 
 
 
-                        return view('frontend.pages.charge.logs')
+                        return view(''.theme('')->theme_key.'.frontend.pages.charge.logs')
                             ->with('data',$data)
                             ->with('arrpin',$arrpin)
                             ->with('total',$total)
@@ -516,7 +522,7 @@ class UserController extends Controller
                             $data->setPath($request->url());
                         }
 
-                        return view('frontend.pages.transfer.logs')
+                        return view(''.theme('')->theme_key.'.frontend.pages.transfer.logs')
                             ->with('data',$data)
                             ->with('total',$total)
                             ->with('per_page',$per_page);
@@ -552,7 +558,7 @@ class UserController extends Controller
             'telecoms'=>$data_telecom,
             'status'=>config('module.store-card.status'),
         ];
-        return view('frontend.pages.storecard.logs',compact('data_category'));
+        return view(''.theme('')->theme_key.'.frontend.pages.storecard.logs',compact('data_category'));
     }
 
     public function getLogsStoreData(Request $request){
@@ -620,7 +626,7 @@ class UserController extends Controller
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                         $data->setPath($request->url());
                     }
-                    $html = view('frontend.pages.storecard.widget.__datalogs')
+                    $html = view(''.theme('')->theme_key.'.frontend.pages.storecard.widget.__datalogs')
                         ->with('data',$data)
                         ->with('total',$total)
                         ->with('per_page',$per_page)
@@ -687,7 +693,7 @@ class UserController extends Controller
 
             $data = $response_data->data;
 
-            return view('frontend.pages.storecard.detail')->with('data',$data);
+            return view(''.theme('')->theme_key.'.frontend.pages.storecard.detail')->with('data',$data);
 
         } else{
             return redirect('/404');
@@ -785,7 +791,7 @@ class UserController extends Controller
                            $data->setPath($request->url());
                        }
 
-                        return view('frontend.pages.storecard.widgets.logs')
+                        return view(''.theme('')->theme_key.'.frontend.pages.storecard.widgets.logs')
                             ->with('data',$data)
                             ->with('total',$total)
                             ->with('per_page',$per_page)
@@ -844,7 +850,7 @@ class UserController extends Controller
                     'message'=>'Không lấy được dữ liệu.',
                 ];
             }
-            return view('frontend.pages.transaction.logdetail',$data_view);
+            return view(''.theme('')->theme_key.'.frontend.pages.transaction.logdetail',$data_view);
         }
         catch(\Exception $e){
             Log::error($e);

@@ -6,8 +6,18 @@
     @include('frontend.widget.__seo_head',with(['datacard'=>$key]))
 @endsection
 @section('meta_robots')
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="index,follow"/>
 @endsection
+@php
+    function format_k($number) {
+        if($number >= 1000) {
+           return $number/1000 . "k";   // NB: you will want to round this
+        }
+        else {
+            return $number;
+        }
+    }
+@endphp
 @section('content')
     <div class="c-container container">
         <!-- head mobile -->
@@ -29,7 +39,8 @@
                 <a href="/mua-the" class="breadcrumb-link">Mua thẻ</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="/mua-the-{{ @$key }}" class="breadcrumb-link text-capitalize">Thẻ {{ @$key }}</a>
+                <a href="/mua-the-{{ @strtolower($key) }}"
+                   class="breadcrumb-link text-capitalize">Thẻ {{ strtolower($key) }}</a>
             </li>
         </ul>
         <!-- end breadcrum -->
@@ -38,7 +49,7 @@
     <!-- End -->
         <div class="c-mt-32 d-block d-lg-none">
             <p class="t-title-1 c-mb-0 c-pb-8 card-name text-capitalize">
-                Thẻ {{ @$key }}
+                Thẻ {{ @strtolower($key) }}
             </p>
             <hr class="c-mx-n16">
         </div>
@@ -51,30 +62,80 @@
                         <div class="t-title-1 title-color">Danh mục thẻ</div>
                     </div>
                     <div class="card-body c-p-0">
-                        <a class="section--card p-lg-3" data-toggle="collapse" href="#card--game__nav" role="button" aria-expanded="true">
+                        <a class="section--card p-lg-3" data-toggle="collapse" href="#card--game__nav" role="button"
+                           aria-expanded="true">
                             <span class="t-sub-1">
                                 THẺ GAME
                             </span>
                             <span class="d-flex align-items-center">
-                                <i class="icon-default size-20" style="--path : url(/assets/frontend/theme_5/image/svg/arrow-down.svg)"></i>
+                                <i class="icon-default size-20"
+                                   style="--path : url(/assets/frontend/theme_5/image/svg/arrow-down.svg)"></i>
                             </span>
                         </a>
-                        <ul class="collapse card-list show is-load" id="card--game__nav">
-                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
-                            <!-- JS PASTE HTML HERE -->
+                        <ul class="collapse card-list show" id="card--game__nav">
+                            @if( $data_telecoms->status == 1 )
+                                @forelse($data_telecoms->data as $telecom)
+                                    @if(strtolower($telecom->key) == strtolower($key))
+                                        @php
+                                            $card_is = $telecom;
+                                        @endphp
+                                    @else
+                                    @endif
+                                    @if($telecom->params->teltecom_type == 2)
+                                        <li class="card-item {{ strtolower($telecom->key) == $key ? 'active' : '' }}">
+                                            <a href="/mua-the-{{ strtolower($telecom->key) }}" class="card-item_link">
+                                                <div class="card-item_thumb mr-2">
+                                                    <img src="{{ @\App\Library\MediaHelpers::media($telecom->image) }}"
+                                                         alt="">
+                                                </div>
+                                                <span
+                                                    class="card-item_name t-capitalize">Thẻ {{ strtolower($telecom->title) }}</span>
+                                            </a>
+                                        </li>
+                                    @else
+                                    @endif
+                                @empty
+                                @endforelse
+                            @else
+                            @endif
                         </ul>
 
-                        <a class="section--card p-lg-3" data-toggle="collapse" href="#card--phone__nav" role="button" aria-expanded="true">
+                        <a class="section--card p-lg-3" data-toggle="collapse" href="#card--phone__nav" role="button"
+                           aria-expanded="true">
                             <span class="t-sub-1">
                                 THẺ ĐIỆN THOẠI
                             </span>
                             <span class="d-flex align-items-center">
-                                <i class="icon-default size-20" style="--path : url(/assets/frontend/theme_5/image/svg/arrow-down.svg)"></i>
+                                <i class="icon-default size-20"
+                                   style="--path : url(/assets/frontend/theme_5/image/svg/arrow-down.svg)"></i>
                             </span>
                         </a>
-                        <ul class="collapse card-list show is-load" id="card--phone__nav">
-                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
-                            <!-- JS PASTE HTML HERE -->
+                        <ul class="collapse card-list show" id="card--phone__nav">
+                            @if( $data_telecoms->status == 1 )
+                                @forelse($data_telecoms->data as $telecom)
+                                    @if(strtolower($telecom->key) == strtolower($key))
+                                        @php
+                                            $card_is = $telecom;
+                                        @endphp
+                                    @else
+                                    @endif
+                                    @if($telecom->params->teltecom_type != 2)
+                                        <li class="card-item {{ strtolower($telecom->key) == $key ? 'active' : '' }}">
+                                            <a href="/mua-the-{{ strtolower($telecom->key) }}" class="card-item_link">
+                                                <div class="card-item_thumb mr-2">
+                                                    <img src="{{ @\App\Library\MediaHelpers::media($telecom->image) }}"
+                                                         alt="">
+                                                </div>
+                                                <span
+                                                    class="card-item_name t-capitalize">Thẻ {{ strtolower($telecom->title) }}</span>
+                                            </a>
+                                        </li>
+                                    @else
+                                    @endif
+                                @empty
+                                @endforelse
+                            @else
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -88,16 +149,96 @@
                         Thẻ {{ @$key }}
                     </h2>
                 </div>
-                <div class="row c-mx-n8 list-card d-none d-lg-flex is-load" id="wrap-desktop">
-                    <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
-                    <!-- JS PASTE HTML HERE -->
+                <div class="row c-mx-n8 list-card d-none d-lg-flex" id="wrap-desktop">
+                    @forelse($data_amounts->data as $amount)
+                        @php
+                            $amount_paid = $amount->amount - ($amount->amount * (100 - $amount->ratio_default)/100);
+                        @endphp
+                        <div class="col-lg-3 c-px-8 c-mb-16">
+                            <div class="card">
+                                <div class="card-body c-p-16">
+                                    <a href="/mua-the-{{ strtolower($card_is->key) }}-{{ format_k($amount->amount) }}" class="scratch-card c-mb-12">
+                                        <div class="card--thumb">
+                                            <img src="{{ $card_is->image }}" class="card--thumb__image py-1 py-lg-0" alt="{{ $card_is->title }}">
+                                        </div>
+                                        <div class="card--name t-title-2 deno-card-color"
+                                             data-amount="{{ $amount->amount }}" data-discount="{{ $amount->ratio_default }}">
+                                            {{ str_replace(',','.',number_format($amount->amount)) }} VND
+                                        </div>
+                                    </a>
+                                    <span class="t-sub-2 t-capitalize">Thẻ {{ strtolower($card_is->title) }} {{ format_k($amount->amount) }}</span>
+                                    <div class="t-body-1 link-color">
+                                        Đơn giá: {{ str_replace(',','.',number_format($amount_paid)) }} đ
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center c-mt-12">
+                                        <span class="t-body-2">Số lượng</span>
+                                        <div class="js-quantity sm">
+                                            <div class="js-quantity-minus"></div>
+                                            <input type="text" class="js-quantity-input" value="1">
+                                            <div class="js-quantity-add"></div>
+                                        </div>
+                                    </div>
+                                    <div class="group-btn c-mt-16">
+                                        @if(\App\Library\AuthCustom::check())
+                                            <button type="button" class="btn secondary show-modal-confirm">Chọn mua</button>
+                                        @else
+                                            <button type="button" class="btn secondary" onclick="openLoginModal();">Chọn mua</button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="invalid-color t-body-2 text-center c-py-12 w-100">Chưa cấu hình mệnh giá thẻ</div>
+                    @endforelse
                 </div>
 
                 <div class="d-block d-lg-none">
                     <div class="swiper swiper-card c-my-16">
-                        <div class="swiper-wrapper is-load" id="wrap-mobile">
-                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
-                            <!-- JS PASTE HTML HERE -->
+                        <div class="swiper-wrapper" id="wrap-mobile">
+                            @forelse($data_amounts->data as $amount)
+                                @php
+                                    $amount_paid = $amount->amount - ($amount->amount * (100 - $amount->ratio_default)/100);
+                                @endphp
+                                <div class="swiper-slide">
+                                    <div class="card">
+                                        <div class="card-body c-p-16">
+                                            <a href="/mua-the-{{ strtolower($card_is->key) }}-{{ format_k($amount->amount) }}" class="scratch-card c-mb-12">
+                                                <div class="card--thumb">
+                                                    <img src="{{ \App\Library\MediaHelpers::media($card_is->image) }}" class="card--thumb__image py-1 py-lg-0" alt="">
+                                                </div>
+                                                <div class="card--name t-title-2 deno-card-color" data-amount="{{ $amount->amount }}" data-discount="{{ $amount->ratio_default }}">
+                                                    {{ str_replace(',','.',number_format($amount->amount)) }} VND
+                                                </div>
+                                            </a>
+                                            <span class="t-sub-2 text-capitalize">Thẻ {{ strtolower($card_is->title) }} {{ format_k($amount->amount) }}</span>
+                                            <div class="t-body-1 link-color">Đơn giá: {{  str_replace(',','.',number_format($amount_paid)) }} đ</div>
+                                            <div class="d-flex justify-content-between align-items-center c-mt-12">
+                                                <span class="t-body-2">Số lượng</span>
+                                                <div class="js-quantity sm">
+                                                    <div class="js-quantity-minus"></div>
+                                                    <input type="text" class="js-quantity-input" value="1">
+                                                    <div class="js-quantity-add"></div>
+                                                </div>
+                                            </div>
+                                            <div class="group-btn c-mt-16">
+                                                @if(\App\Library\AuthCustom::check())
+                                                    <button type="button" class="btn secondary js-step show-step-confirm" data-target="#step-confirm">
+                                                        Chọn mua
+                                                    </button>
+                                                @else
+                                                    <button type="button" class="btn secondary" onclick="openLoginModal();">
+                                                        Chọn mua
+                                                    </button>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <div class="invalid-color t-body-2 text-center c-py-12 w-100">Chưa cấu hình mệnh giá thẻ</div>
+                            @endforelse
+
                         </div>
                     </div>
                 </div>
@@ -109,18 +250,45 @@
                         </h2>
                         <hr>
                         <div class="swiper swiper-card c-my-12">
-                            <div class="swiper-wrapper is-load" id="card-other">
-                                <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
-                                <!-- JS PASTE HTML HERE -->
+                            <div class="swiper-wrapper" id="card-other">
+                                @forelse($data_telecoms->data as $telecom)
+                                    @if(isset($telecom->params) && isset($card_is->params))
+                                        @if($telecom->params->teltecom_type == $card_is->params->teltecom_type && $telecom->id != $card_is->id )
+                                            <div class="swiper-slide">
+                                                <a href="/mua-the-{{ strtolower($telecom->key) }}" class="scratch-card">
+                                                    <div class="card--thumb">
+                                                        <img
+                                                            src="{{ \App\Library\MediaHelpers::media($telecom->image) }}"
+                                                            class="card--thumb__image py-1 py-lg-0" alt="">
+                                                    </div>
+                                                    <div class="card--name t-sub-2 text-capitalize">
+                                                        Thẻ {{ strtolower($telecom->title) }}</div>
+                                                </a>
+                                            </div>
+                                        @else
+                                        @endif
+                                    @else
+                                        <div class="swiper-slide">
+                                            <a href="/mua-the-{{ strtolower($telecom->key) }}" class="scratch-card">
+                                                <div class="card--thumb">
+                                                    <img src="{{ \App\Library\MediaHelpers::media($telecom->image) }}"
+                                                         class="card--thumb__image py-1 py-lg-0" alt="">
+                                                </div>
+                                                <div class="card--name t-sub-2 text-capitalize">
+                                                    Thẻ {{ strtolower($telecom->title) }}</div>
+                                            </a>
+                                        </div>
+                                    @endif
+                                @empty
+                                @endforelse
                             </div>
                         </div>
                         <div class="navigation slider-prev"></div>
                         <div class="navigation slider-next"></div>
                     </div>
                 </div>
+            </div>
         </div>
-    </div>
-        <input type="hidden" value="amount" data-key="{{ @$key }}" id="is_view">
 
         <!-- Modal-confirm -->
         <div class="modal fade modal-big" id="modal-confirm">
@@ -198,7 +366,7 @@
                                         Số tiền thanh toán
                                     </div>
                                     <div class="t-body-2 text-primary-color t-total-card">
-                                       0đ
+                                        0đ
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +394,7 @@
                 <div class="card c-px-12 c-py-4 c-mb-16">
                     <div class="d-flex justify-content-between c-py-4">
                         <div class="t-body-1 link-color">Loại thẻ</div>
-                        <div class="t-body-2 t-type-card">Zing</div>
+                        <div class="t-body-2 t-type-card text-capitalize">{{ @$key }}</div>
                     </div>
                     <div class="d-flex justify-content-between c-py-4">
                         <div class="t-body-1 link-color">Số lượng</div>
@@ -268,7 +436,8 @@
                 <div class="modal-content">
                     <div class="modal-body text-center c-p-0">
                         <div class="banner">
-                            <img width="143" height="114" class="" src="/assets/frontend/{{theme('')->theme_key}}/image/trong/modal-failed.png" alt="">
+                            <img width="143" height="114" class=""
+                                 src="/assets/frontend/{{theme('')->theme_key}}/image/trong/modal-failed.png" alt="">
                         </div>
                         <p class="t-sub-1 title-color">Mua thẻ thất bại</p>
                         <span class="t-body-1 res-message">
@@ -371,7 +540,7 @@
                 <a href="/mua-the" class="btn primary" type="button">Mua thêm</a>
             </div>
         </div>
-        @endsection
-@section('scripts')
-            <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card-v2/main.js"></script>
+@endsection
+        @section('scripts')
+            <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card-v2/main.js?v={{ time() }}"></script>
 @endsection

@@ -12,7 +12,8 @@
     @yield('meta_robots')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="path" content="" />
-    <meta name="jwt" content="jwt" />
+    <meta name="jwt" content="" />
+
     @if(setting('sys_google_search_console') != '')
         <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />
     @endif
@@ -404,5 +405,6 @@
 
 </script>
 
+@yield('scripts')
 </body>
 </html>

@@ -1,7 +1,7 @@
 <div class="section-header c-pt-12 c-pt-lg-6 c-mb-24 c-mb-lg-20 justify-content-between">
     <h2 class="section-title">
         <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/son/naptien.svg)"></i>
-        {{ $title??'' }}
+        {{ $title??'Nạp tiền' }}
     </h2>
 </div>
 
@@ -24,46 +24,50 @@
 
             <div class="tab-content">
                 <div class="tab-pane fade active show c-p-16 c-pb-lg-0" id="charge_card" role="tabpanel">
-                    <div class="row text-center loader-container">
-                        <div class="col-12">
-                            <div class="loader position-relative" style="margin: 2rem 0">
-                                <div class="loading-spokes">
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+{{--                    <div class="row text-center loader-container">--}}
+{{--                        <div class="col-12">--}}
+{{--                            <div class="loader position-relative" style="margin: 2rem 0">--}}
+{{--                                <div class="loading-spokes">--}}
+{{--                                    <div class="spoke-container">--}}
+{{--                                        <div class="spoke"></div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="spoke-container">--}}
+{{--                                        <div class="spoke"></div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="spoke-container">--}}
+{{--                                        <div class="spoke"></div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="spoke-container">--}}
+{{--                                        <div class="spoke"></div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="spoke-container">--}}
+{{--                                        <div class="spoke"></div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="spoke-container">--}}
+{{--                                        <div class="spoke"></div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="spoke-container">--}}
+{{--                                        <div class="spoke"></div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="spoke-container">--}}
+{{--                                        <div class="spoke"></div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <form class="w-100" action="" id="chargeCardHomeForm">
-                        <div class="row content-block d-none">
-                            <div class="col-12 col-lg-6 c-pr-8">
+                        <div class="row content-block">
+                            <div class="col-12 col-lg-6 c-pr-8 c-pr-lg-16">
                                 <div class="money-form-group c-mb-16">
                                     <label class="text-form fz-13 fw-500 c-mb-4">Nhà cung cấp</label>
                                     <div class="col-md-12 p-0">
                                         <select class="select-form w-100" name="type" id="telecom">
-
+                                            @forelse($data as $telecom)
+                                                <option value="{{ $telecom->key}}">{{ $telecom->title }}</option>
+                                            @empty
+                                                <option value="">Chưa cấu hình</option>
+                                            @endforelse
                                         </select>
                                     </div>
                                 </div>

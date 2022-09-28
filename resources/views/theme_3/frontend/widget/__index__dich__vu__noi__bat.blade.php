@@ -26,7 +26,7 @@
                                 @else
                                     <a target="_blank" href="{{ $item->url }}">
                                         @endif
-                                        <img src="{{ $item->image_icon }}" alt="">
+                                        <img class="lazy" data-src="{{ $item->image_icon }}" alt="">
                                         <div>{{ $item->title }}</div>
                                     </a>
                             </a>
