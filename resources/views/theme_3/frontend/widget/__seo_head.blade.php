@@ -10,6 +10,8 @@
         <title>{{ $data->seo_title??'' }}</title>
     @elseif(Request::is('tin-tuc/'. $data->slug .''))
         <title>{{ $data->seo_title??'' }}</title>
+    @elseif(Request::is('blog/'. $data->slug .''))
+        <title>{{ $data->seo_title??'' }}</title>
     @endif
 @elseif(Request::is('dich-vu'))
     <title>Shop dịch vụ all game giá rẻ, uy tín, tự động.</title>
@@ -53,6 +55,9 @@
         <meta name="description" content="{{ $data->seo_description??'' }}">
         <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
     @elseif(Request::is('tin-tuc/'. $data->slug .''))
+        <meta name="description" content="{{ $data->seo_description??'' }}">
+        <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
+    @elseif(Request::is('blog/'. $data->slug .''))
         <meta name="description" content="{{ $data->seo_description??'' }}">
         <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
     @endif
@@ -101,6 +106,8 @@
     @elseif(Request::is('dich-vu/'. $data->slug .''))
         <meta property="og:title" content="{{ $data->title??'' }}">
     @elseif(Request::is('tin-tuc/'. $data->slug .''))
+        <meta property="og:title" content="{{ $data->seo_title??'' }}">
+    @elseif(Request::is('blog/'. $data->slug .''))
         <meta property="og:title" content="{{ $data->seo_title??'' }}">
     @endif
 @elseif(Request::is('dich-vu'))

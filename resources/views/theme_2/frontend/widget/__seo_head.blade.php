@@ -1,4 +1,3 @@
-
 @if(Request::is('tin-tuc'))
     <title>Tin tức</title>
 @elseif(Request::is('mua-acc'))
@@ -8,6 +7,10 @@
         <title>{{ isset($data->custom->seo_title) ? $data->custom->seo_title :  $data->seo_title }}</title>
     @elseif(Request::is('dich-vu/'. $data->slug .''))
         <title>{{ $data->seo_title??'' }}</title>
+    @elseif(Request::is('tin-tuc/'. $data->slug .''))
+        <title>{{ $data->seo_title??'' }}</title>
+    @elseif(Request::is('blog/'. $data->slug .''))
+        <title>{{ $data->seo_title??'' }}</title>
     @endif
 @elseif(Request::is('dich-vu'))
     <title>Shop dịch vụ all game giá rẻ, uy tín, tự động.</title>
@@ -15,6 +18,12 @@
     @if(Request::is('acc/'. $data->randId .''))
         <title>{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}</title>
     @endif
+@elseif(Request::is('mua-the'))
+    <title>{{setting('sys_store_card_title')??setting('sys_title') }}</title>
+@elseif(isset($datacard))
+    <title>Mua thẻ {{ $datacard }}</title>
+@elseif(isset($datakey) && isset($dataname))
+    <title>Mua thẻ {{ $dataname }} mệnh giá {{ $datakey }}</title>
 @elseif(isset($title->title))
     @if(isset($data->randId))
     @else
@@ -33,7 +42,6 @@
     <meta name="description" content="Tin tức">
     <meta property="og:description" content="Tin tức"/>
 @elseif(Request::is('mua-acc'))
-
     <meta name="description" content="Shop bán acc all game: Free Fire, Liên Quân, Liên Minh, PUBG Mobile, Tốc Chiến, Ngọc Rồng, Ninja,.. uy tín, giá rẻ. Giao dịch nick tự động 24/7. Tài khoản lỗi hoàn tiền 100%. Website phục vụ 100.000 giao dịch thành công mỗi ngày cho khách hàng cả nước.">
     <meta property="og:description" content="Shop bán acc all game: Free Fire, Liên Quân, Liên Minh, PUBG Mobile, Tốc Chiến, Ngọc Rồng, Ninja,.. uy tín, giá rẻ. Giao dịch nick tự động 24/7. Tài khoản lỗi hoàn tiền 100%. Website phục vụ 100.000 giao dịch thành công mỗi ngày cho khách hàng cả nước."/>
 @elseif(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
@@ -42,6 +50,12 @@
         <meta name="description" content="{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}">
         <meta property="og:description" content="{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}"/>
     @elseif(Request::is('dich-vu/'. $data->slug .''))
+        <meta name="description" content="{{ $data->seo_description??'' }}">
+        <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
+    @elseif(Request::is('tin-tuc/'. $data->slug .''))
+        <meta name="description" content="{{ $data->seo_description??'' }}">
+        <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
+    @elseif(Request::is('blog/'. $data->slug .''))
         <meta name="description" content="{{ $data->seo_description??'' }}">
         <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
     @endif
@@ -55,14 +69,21 @@
 @elseif(Request::is('dich-vu'))
     <meta name="description" content="Website cung cấp các dịch vụ như: nạp game ( kim cương, quân huy, RP, UC, vàng, ngọc, xu... ), cày thuê ( liên quân, liên minh, free fire, ... ), làm nhiệm vụ thuê, ...">
     <meta property="og:description" content="Website cung cấp các dịch vụ như: nạp game ( kim cương, quân huy, RP, UC, vàng, ngọc, xu... ), cày thuê ( liên quân, liên minh, free fire, ... ), làm nhiệm vụ thuê, ..."/>
-
+@elseif(Request::is('mua-the'))
+    <meta name="description" content="{{ strip_tags(setting('sys_store_card_seo')??setting('sys_description')) }}">
+    <meta property="og:description" content="{{ strip_tags(setting('sys_store_card_seo')??setting('sys_description')) }}"/>
+@elseif(isset($datacard))
+    <meta name="description" content="Mua thẻ {{ $datacard }}">
+    <meta property="og:description" content="Mua thẻ {{ $datacard }}"/>
+@elseif(isset($datakey) && isset($dataname))
+    <meta name="description" content="Mua thẻ {{ $dataname }} mệnh giá {{ $datakey }}">
+    <meta property="og:description" content="Mua thẻ {{ $dataname }} mệnh giá {{ $datakey }}"/>
 @elseif(isset($title->seo_description))
     <meta name="description" content="{{ $title->seo_description??'' }}">
     <meta property="og:description" content="{{ $title->seo_description??'' }}"/>
 @elseif(isset($data->seo_description))
     <meta name="description" content="{{ $data->seo_description??'' }}">
     <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
-
 @else
     <meta name="description" content="{{ setting('sys_description') }}">
     <meta property="og:description" content="{{ setting('sys_description') }}"/>
@@ -82,9 +103,19 @@
         <meta property="og:title" content="{{ isset($data->custom->seo_title) ? $data->custom->seo_title :  $data->seo_title }}">
     @elseif(Request::is('dich-vu/'. $data->slug .''))
         <meta property="og:title" content="{{ $data->title??'' }}">
+    @elseif(Request::is('tin-tuc/'. $data->slug .''))
+        <meta property="og:title" content="{{ $data->seo_title??'' }}">
+    @elseif(Request::is('blog/'. $data->slug .''))
+        <meta property="og:title" content="{{ $data->seo_title??'' }}">
     @endif
 @elseif(Request::is('dich-vu'))
     <meta property="og:title" content="Shop dịch vụ all game giá rẻ, uy tín, tự động.">
+@elseif(Request::is('mua-the'))
+    <meta property="og:title" content="{{setting('sys_store_card_title')??setting('sys_title') }}">
+@elseif(isset($datacard))
+    <meta property="og:title" content="Mua thẻ {{ $datacard }}">
+@elseif(isset($datakey) && isset($dataname))
+    <meta property="og:title" content="Mua thẻ {{ $dataname }} mệnh giá {{ $datakey }}">
 @elseif(isset($title->title))
     @if(isset($data->randId))
     @else
@@ -194,7 +225,6 @@
         }
       ]
     }
-
     </script>
 
     @elseif(Request::is('dich-vu/'. $data->slug .''))
@@ -271,7 +301,6 @@
         }
       ]
     }
-
     </script>
         {{--    @elseif(Request::is('acc/'. $data->randId .''))--}}
         {{--        <script type="application/ld+json">--}}
