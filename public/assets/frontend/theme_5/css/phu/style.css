@@ -573,7 +573,7 @@ input[type=text].buy-card-amount-input {
 .rotation-top {
     border-top-right-radius: 12px;
     border-top-left-radius: 12px;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     color: #FFFFFF;
 }
 
