@@ -62,7 +62,7 @@ function showConfirmContent () {
     prepareDataSend();
     //Close recharge modal if page has this modal
     $('#rechargeModal').modal('hide');
-    if ( $(window).width() >= 992 ) { 
+    if ( $(window).width() >= 992 ) {
         $('#orderCharge').modal('show');
     } else {
         $('#chargeConfirmStep').css('transform', 'translateX(0)');
@@ -72,7 +72,7 @@ function showConfirmContent () {
 function showHomeConfirmContent () {
     prepareConfirmData();
     prepareDataSend();
-    if ( $(window).width() >= 992 ) { 
+    if ( $(window).width() >= 992 ) {
         $('#orderCharge').modal('show');
     } else {
         $('#chargeConfirmStep').css('transform', 'translateX(0)');
@@ -81,8 +81,10 @@ function showHomeConfirmContent () {
 
 $(document).ready(function () {
 
-    getTelecom();
+    // getTelecom();
 
+    let first_telecom = $('#rechargeModal #telecom').val();
+    getAmount(first_telecom)
     //Change web url when switch tab
     $('#chargeNavTab').click(function () {
         let base_url = `${window.location.origin}/nap-the`;
@@ -120,7 +122,7 @@ $(document).ready(function () {
     $(document).on('click', '#orderCharge #confirmSubmitButton', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/nap-the',
+            url:'/ajax/nap-the',
             type:'POST',
             data: chargeDataSend,
             beforeSend: function () {
@@ -167,7 +169,7 @@ $(document).ready(function () {
     $(document).on('click', '#chargeConfirmStep #confirmSubmitButtonMobile', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/nap-the',
+            url:'/ajax/nap-the',
             type:'POST',
             data: chargeDataSend,
             beforeSend: function () {
@@ -228,7 +230,7 @@ $(document).ready(function () {
 
     // Get card data
     function getTelecom () {
-        let url = '/get-tele-card';
+        let url = '/ajax/get-tele-card';
 
         $.ajax({
             type: "GET",
@@ -275,7 +277,7 @@ $(document).ready(function () {
     }
 
     function getAmount (telecom) {
-        let url = '/get-amount-tele-card';
+        let url = '/ajax/get-amount-tele-card';
         $.ajax({
             type: "GET",
             url: url,

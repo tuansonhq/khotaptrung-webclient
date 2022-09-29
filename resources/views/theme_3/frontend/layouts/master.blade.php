@@ -8,8 +8,9 @@
     @yield('meta_robots')
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <meta name="path" content=""/>
-    <meta name="jwt" content="jwt"/>
-    @yield('seo_head')
+
+    <meta name="jwt" content=""/>
+
     {{--    <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />--}}
     @if(setting('sys_google_search_console') != '')
         <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />
@@ -45,7 +46,13 @@
     @yield('styles')
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery/jquery.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js"></script>
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js"></script>--}}
+
+    <!-- cdnjs -->
+
+
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazy/jquery.lazy.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazy/jquery.lazy.plugins.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.js"></script>
@@ -55,7 +62,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/preload.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/handlebars/handlebars.min.js"></script>
     @if(setting('sys_google_tag_manager_head') != '')
         @foreach(explode('|',setting('sys_google_tag_manager_head')) as $tag => $sys)
             @if($tag == 0)
@@ -247,7 +254,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/moment.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/i18n/vi.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/bootstrap-datetimepicker.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
 {{--<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/modal_sedding.js?v={{time()}}"></script>--}}
 

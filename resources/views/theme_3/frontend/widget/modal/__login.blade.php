@@ -1,11 +1,13 @@
+
 @if(!App\Library\AuthCustom::check())
+
 <div class="modal fade" id="loginModal">
     <div class="modal-dialog modal-lg modal-dialog-centered animated">
         <div class="modal-content">
             <div class="modal-login-container" id="modal-login-container">
                 <div class="modal-login-form-container sign-up-container">
                     <img class="close-login-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/close_dark.svg" alt="">
-                    <form class="modal-login-form formRegister" id="formRegister" action="{{route('register')}}" method="POST">
+                    <form class="modal-login-form formRegister" id="formRegister" action="{{ url('/ajax/register') }}" method="POST">
                         @csrf
                         <p>Đăng ký</p>
                         <p class="modal-login-error text-center registError" id="registError"></p>
@@ -42,7 +44,7 @@
                     </form>
                 </div>
                 <div class="modal-login-form-container sign-in-container"   >
-                    <form class="modal-login-form formLogin" action="{{route('login')}}" id="formLogin"  method="POST">
+                    <form class="modal-login-form formLogin" action="{{ url('/ajax/login') }}" id="formLogin"  method="POST">
                         @csrf
                         <p>Đăng nhập</p>
                         <p class="modal-login-error text-center LoginError" id="LoginError" ></p>
@@ -56,8 +58,20 @@
 {{--                        <p class="modal-login-error" id="passwordError"></p>--}}
 {{--                        <a class="modal-login-forget-password" id="span_resetPass">Quên mật khẩu?</a>--}}
                         <button type="submit">Đăng nhập</button>
+                        <label for="remember_token_mobile" class="input-ratio-ct ghinho_theme3">
+                            <small class="label--checkbox">
+                                <div class="label--checkbox__name">
+                                    Ghi nhớ
+                                </div>
+                            </small>
+                            <input id="remember_token_mobile" type="checkbox" name="remember_token" value="1" class="allgame ghinho_theme3_input" >
+                            <span class="input-ratio-checkmark-ct --overwrite"></span>
+                        </label>
                         <span>Hoặc đăng nhập qua</span>
                         <div class="social-container">
+                            <a href="#">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/ggroup.svg" alt="">
+                            </a>
                             <a href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class="social">
                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/fb_icon.svg" alt="">
                             </a>
@@ -110,7 +124,7 @@
         </div>
     </div>
     <div class="mobile-auth-form">
-        <form class="modal-login-form formLogin" id="formLoginMobile" action="{{route('login')}}" method="POST">
+        <form class="modal-login-form formLogin" id="formLoginMobile" action="{{ url('/ajax/login') }}" method="POST">
             @csrf
             <p class="modal-login-error text-center LoginError" id="LoginError" ></p>
             <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off" required>
@@ -122,6 +136,19 @@
 {{--            <p class="modal-login-error" id="passwordError"></p>--}}
 {{--            <a class="modal-login-forget-password" id="span_resetPass">Quên mật khẩu?</a>--}}
             <button type="submit">Đăng nhập</button>
+            <label for="remember_token_mobile" class="input-ratio-ct ghinho_theme3">
+                <small class="label--checkbox">
+                    <div class="label--checkbox__name">
+                        Ghi nhớ
+                    </div>
+                                                                                                                                                                    </small>
+                <input id="remember_token_mobile" type="checkbox" name="remember_token" value="1" class="allgame ghinho_theme3_input" >
+                <span class="input-ratio-checkmark-ct --overwrite"></span>
+            </label>
+{{--            <label class="ghinho_theme3">--}}
+{{--                <input class="ghinho_theme3_input input-ratio-checkmark-ct --overwrite" type="checkbox" name="remember_token" value="1">--}}
+{{--                <small class="ghinho_theme3_span">Ghi nhớ</small>--}}
+{{--            </label>--}}
             <p>Hoặc đăng nhập qua</p>
             <div class="social-container">
                 <a href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class="social">
@@ -130,7 +157,7 @@
             </div>
             <p id="changeFormRegister" class="mobile-auth-change-form">Bạn chưa có tài khoản? <span>Đăng ký tại đây</span></p>
         </form>
-        <form class="modal-login-form formRegister" id="formRegisterMobile" action="{{route('register')}}" method="POST" style="display: none">
+        <form class="modal-login-form formRegister" id="formRegisterMobile" action="{{ url('/ajax/register') }}" method="POST" style="display: none">
             @csrf
             <p class="modal-login-error text-center registError" id="registError"></p>
             <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" required>

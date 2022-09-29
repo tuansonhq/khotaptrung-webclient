@@ -13,7 +13,7 @@
                 <div class="p-4 h-100">
                     <div class="row justify-content-center align-items-center h-100">
                         <div class="col-lg-6">
-                            <form action="{{route('login')}}" method="post" id="form-login">
+                            <form action="{{ url('/ajax/login') }}" method="post" id="form-login">
                                 <h5 class="title-style-left mb-3"><strong>Đăng nhập</strong></h5>
                                 @csrf
                                 <div class="mb-3">
@@ -33,8 +33,15 @@
                                 <div class="mb-3">
                                     <button class="btn bg-warning-gradient text-white d-block pt-2 pb-2 text-uppercase rounded col-12" type="submit"><strong>Đăng nhập <i class="las la-angle-double-right"></i></strong></button>
                                 </div>
+                                <div class="checkbox icheck">
+                                    <label style="display: flex">
+                                        <input type="checkbox" name="remember_token" value="1" style="display: block">
+                                        <span style="margin-left: 4px;cursor: pointer">Ghi nhớ</span>
+                                    </label>
+                                </div>
 {{--                                <p>Không nhớ mất khẩu? <a href="#" class="forgot-link" data-bs-toggle="modal" data-bs-target="#forgotModal">Lấy lại mật khẩu</a></p>--}}
                                 <div class="mb-3 is-devider"><span>Hoặc đăng nhập với</span></div>
+
                                 <div class="row g-2">
                                     <div class="col-12">
                                         <a href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class="btn btn-outline-primary text-primary d-block btn-login"><i class="lab la-facebook"></i> Facebook</a>
@@ -116,7 +123,7 @@
             </script>
             <div class="col-lg-4">
                 <div class="p-4 bg-light h-100">
-                    <form action="{{route('register')}}" method="POST" id="form-regist">
+                    <form action="{{ url('/ajax/register') }}" method="POST" id="form-regist">
                         @csrf
                         <h5 class="title-style-left mb-3"><strong>Tạo tài khoản mới</strong></h5>
                         <div class="mb-3">

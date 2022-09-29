@@ -1,3 +1,4 @@
+
 @if(Request::is('tin-tuc'))
     <title>Tin tức</title>
 @elseif(Request::is('mua-acc'))
@@ -30,6 +31,7 @@
         <title>{{$title->title }}</title>
     @endif
 @elseif(isset($data->title))
+
     @if(isset($data->randId))
     @else
         <title>{{$data->title }}</title>

@@ -16,7 +16,9 @@
         })
     </script>
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/minigame.css">
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/withdraw-modal.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/fake-cmt.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/modal-history-spin-bonus.js?v={{time()}}"></script>
 @endsection
 @section('content')
 
@@ -509,155 +511,6 @@
                             <h6 class="fw-700 fz-20 lh-28 c-mb-20  d-none d-lg-block">Bình luận</h6>
                             <ul class="comment-block list-unstyled chat-scroll c-pr-8">
 
-                                <li>
-                                    <div class="comment-item d-flex align-items-start c-mb-16">
-                                        <div class="comment-avatar c-mr-8">
-                                            <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                        </div>
-                                        <div class="comment-detail">
-                                            <div class="comment-info c-mb-4">
-                                                <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
-                                            </div>
-                                            <div class="comment-content fw-400 fz-13">
-                                                Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
-                                            </div>
-                                            <div class="comment-interact c-mt-12">
-                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
-                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-                                <li>
-                                    <div class="comment-item d-flex align-items-start c-mb-16">
-                                        <div class="comment-avatar c-mr-8">
-                                            <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                        </div>
-                                        <div class="comment-detail">
-                                            <div class="comment-info c-mb-4">
-                                                <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
-                                            </div>
-                                            <div class="comment-content fw-400 fz-13">
-                                                Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
-                                            </div>
-                                            <div class="comment-interact c-mt-12">
-                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
-                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-                                <li>
-                                    <div class="comment-item d-flex align-items-start c-mb-16">
-                                        <div class="comment-avatar c-mr-8">
-                                            <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                        </div>
-                                        <div class="comment-detail">
-                                            <div class="comment-info c-mb-4">
-                                                <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
-                                            </div>
-                                            <div class="comment-content fw-400 fz-13">
-                                                Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
-                                            </div>
-                                            <div class="comment-interact c-mt-12">
-                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
-                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-                                <li>
-                                    <div class="comment-item d-flex align-items-start c-mb-16">
-                                        <div class="comment-avatar c-mr-8">
-                                            <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                        </div>
-                                        <div class="comment-detail">
-                                            <div class="comment-info c-mb-4">
-                                                <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
-                                            </div>
-                                            <div class="comment-content fw-400 fz-13">
-                                                Hàng sạch, thanks admin
-                                            </div>
-                                            <div class="comment-interact c-mt-12">
-                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
-                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-                                <li>
-                                    <div class="comment-item d-flex align-items-start c-mb-16">
-                                        <div class="comment-avatar c-mr-8">
-                                            <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                        </div>
-                                        <div class="comment-detail">
-                                            <div class="comment-info c-mb-4">
-                                                <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">5:30 PM, Vừa xong</span>
-                                            </div>
-                                            <div class="comment-content fw-400 fz-13">
-                                                Nhanh gọn uy tín, thanks admin
-                                            </div>
-                                            <div class="comment-interact c-mt-12">
-                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
-                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-                                <li>
-                                    <div class="comment-item d-flex align-items-start c-mb-16">
-                                        <div class="comment-avatar c-mr-8">
-                                            <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                        </div>
-                                        <div class="comment-detail">
-                                            <div class="comment-info c-mb-4">
-                                                <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM</span>
-                                            </div>
-                                            <div class="comment-content fw-400 fz-13">
-                                                Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
-                                            </div>
-                                            <div class="comment-interact c-mt-12">
-                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
-                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-                                <li>
-                                    <div class="comment-item d-flex align-items-start c-mb-16">
-                                        <div class="comment-avatar c-mr-8">
-                                            <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                        </div>
-                                        <div class="comment-detail">
-                                            <div class="comment-info c-mb-4">
-                                                <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">6:30 PM</span>
-                                            </div>
-                                            <div class="comment-content fw-400 fz-13">
-                                                Anh em không phải sợ đâu, tôi nạp nhiều web này rồi
-                                            </div>
-                                            <div class="comment-interact c-mt-12">
-                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
-                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-
-
                             </ul>
 
                             <div class="commment-input d-flex align-items-center c-mb-20">
@@ -687,12 +540,14 @@
                                 </div>
                             @else
                                 <div class="col-6 c-pr-5">
-                                    <a href="javascript:void(0)" class="btn secondary w-100 logsHisMinigame">
+                                    <a href="javascript:void(0)" class="btn secondary w-100" data-toggle="modal" data-target="#modal-spin-bonus" >
                                         Lịch sử quay
                                     </a>
                                 </div>
                                 <div class="col-6 c-pl-5">
-                                    <a  href="/withdrawitem-{{$result->group->params->game_type}}" class="btn primary w-100">Rút quà</a>
+                                    <a href="/withdrawitem-{{$result->group->params->game_type}}" class="btn primary w-100" data-toggle="modal" data-target="#modalWithdraw">
+                                        Rút quà
+                                    </a>
                                 </div>
                             @endif
                         </div>
@@ -823,51 +678,10 @@
             </div>
         </div>
 
-        {{--        Modal lịch sử   --}}
-
-        <div class="modal fade modal-big modal-logs-minigame" id="minigameLogs">
-            <div class="modal-dialog modal-dialog-centered modal-custom">
-                <div class="modal-content c-p-24">
-                    <div class="modal-header">
-                        <h2 class="modal-title center">Lịch sử trúng thưởng</h2>
-                        <button type="button" class="close" data-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
-                        <div class="card--gray">
-                            <div class="card--attr justify-content-between d-flex c-mb-16 default-table" id="logs-minigame">
-                                <table class="table table-responsive-lg table-striped table-hover table-logs">
-                                    <thead>
-                                    <tr class="row marginauto">
-                                        <th class="fw-500 fz-13 lh-20 text-title text-center col-auto">Giải thưởng</th>
-                                        <th class="fw-500 fz-13 lh-20 text-title text-right col-auto ml-auto">Thời gian</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @if(isset($logs))
-                                        @foreach($logs->log as $item)
-                                            <tr class="row marginauto">
-                                                <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">{{$item->item_ref->title}}</td>
-                                                <td class="text-right col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">{{$item->created_at}}</td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a class="btn primary"  href="/withdrawitem-{{$result->group->params->game_type}}">Rút quà</a>
 
 
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    {{--         @endif--}}
-    <!-- Sheet Thể lệ  -->
+        {{--         @endif--}}
+        <!-- Sheet Thể lệ  -->
         <div class="bottom-sheet" id="sheet-filter" aria-hidden="true" data-height="36">
             <div class="layer"></div>
             <div class="content-bottom-sheet bar-slide">
@@ -890,9 +704,7 @@
             </div>
         </div>
 
-    {{--     bottom-sheet lịch sử   --}}
-
-    <!-- Sheet Filter Mobile -->
+        <!-- Sheet History Mobile -->
 
         <div class="bottom-sheet" id="sheet-filter-02" aria-hidden="true" data-height="50">
             <div class="layer"></div>
@@ -900,38 +712,12 @@
                 <form action="" class="form-filter">
                     <div class="sheet-header">
                         <h2 class="text-title center">
-                            Lịch sử trúng thưởng
+                            Lịch sử quay thưởng
                         </h2>
                         <label class="close"></label>
                     </div>
-                    <div class="sheet-body overflow-visible">
-                        <!-- body -->
-                        <div class="card--gray">
-                            <div class="card--attr justify-content-between d-flex c-mb-16 default-table" id="sheet-minigame-his">
-                                <table class="table table-striped table-hover table-logs">
-                                    <thead>
-                                    <tr class="row marginauto">
-                                        <th class="fw-500 fz-13 lh-20 text-title text-left col-auto">Giải thưởng</th>
-                                        <th class="fw-500 fz-13 lh-20 text-title text-right col-auto ml-auto">Thời gian</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @if(isset($logs))
-                                        @foreach($logs->log as $item)
-                                            <tr class="row marginauto">
-                                                <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">{{$item->item_ref->title}}</td>
-                                                <td class="text-right col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">{{$item->created_at}}</td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sheet-footer">
-                        <a  href="/withdrawitem-{{$result->group->params->game_type}}" class="btn primary js-submit-form">Rút quà</a>
+                    <div class="sheet-body overflow-visible c-p-0">
+                        <div id="data-ajax-mobile-render"></div>
                     </div>
                 </form>
             </div>
@@ -941,6 +727,180 @@
 
     <input type="hidden" class="started_at" name="started_at" value="{{ $result->group->started_at??0 }}">
     <input type="hidden" id="type_play" value="real">
+
+    <!-- Modal rút quà -->
+    <div class="modal fade" id="modalWithdraw" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content c-p-0">
+                <div class="modal-header c-p-24 align-items-center">
+                    <h5 class="modal-title fw-700 fz-15 lh-24">Rút vật phẩm</h5>
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#modal-tab-withdraw" role="tab">Rút vật phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#modal-tab-history" role="tab">Lịch sử</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content c-p-0">
+                        <div class="tab-pane fade show active" id="modal-tab-withdraw" role="tabpanel">
+                            <form action="" id="form-withdraw-item">
+                                @csrf
+                                <div class="item-block-tab c-p-16">
+                                    <div class="input-group">
+                                        <div class="form-label">Chọn vật phẩm bạn đang sở hữu</div>
+                                        <div class="swiper swiper-withdraw">
+                                            <div class="swiper-wrapper" id="wrap-game-type" data-game_type="{{ @$result->group->params->game_type }}">
+
+                                            </div>
+                                        </div>
+                                        <span class="text-error"></span>
+                                    </div>
+                                </div>
+                                <div class="item-input-tab">
+                                    <div class="input-group">
+                                        <div class="form-label">
+                                            Chọn vật phẩm bạn đang sở hữu
+                                        </div>
+                                        <select name="package" id="package" class="wide select-withdraw">
+                                            <option value="">Chọn gói</option>
+                                        </select>
+                                        <span class="text-error"></span>
+                                    </div>
+                                    <div class="input-group input-id-game">
+                                        <div class="form-label">
+                                            Tài khoản trong game
+                                        </div>
+                                        <input class="" type="text" name="idgame" placeholder="Nhập tài khoản trong game" required="">
+                                        <span class="text-error"></span>
+                                    </div>
+                                    <div class="input-group password-phone">
+                                        <div class="form-label">
+                                            Mật khẩu trong game
+                                        </div>
+                                        <div class="toggle-password">
+                                            <input class="password" type="password" name="serial" placeholder="Nhập mật khẩu trong game" required="">
+                                        </div>
+                                        <span class="text-error"></span>
+                                    </div>
+                                    <div id="withdrawMessage"></div>
+                                    <div class="d-flex c-mt-24 justify-content-end">
+                                        <button type="submit" class="btn primary" style="width: 40%">Rút ngay</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="modal-tab-history" role="tabpanel">
+                            <div class="history-block-tab">
+                                <div style="width: 100%">
+                                    <form action="" class="form-search history">
+                                        <input type="search" placeholder="Tìm kiếm" class=" has-submit">
+                                        <button type="submit"></button>
+                                    </form>
+                                </div>
+                                <div class="value-filter">
+                                    <div class="show-modal-filter noselect">Bộ lọc</div>
+                                </div>
+                                <div class="row history-tab-inputs">
+                                    <div class="col-7 c-pr-4">
+                                        <div class="row">
+                                            <div class="col-6 c-pr-4">
+                                                <div class="input-group">
+                                                    <div class="form-label">
+                                                        Loại giao dịch
+                                                    </div>
+                                                    <select name="id" class="wide">
+                                                        <option value="" selected disabled hidden>Chọn</option>
+                                                        <option value="ngoc-rong">Ngoc rong</option>
+                                                        <option value="cf-online">CF Online</option>
+                                                    </select>
+                                                    <span class="text-error"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 c-pl-4">
+                                                <div class="input-group">
+                                                    <div class="form-label">
+                                                        Trạng thái
+                                                    </div>
+                                                    <select name="status" class="wide">
+                                                        <option value="" selected disabled hidden>Chọn</option>
+                                                        <option value="1">Hủy</option>
+                                                        <option value="0">Thành công</option>
+                                                    </select>
+                                                    <span class="text-error"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 c-pl-4">
+                                        <div class="row">
+                                            <div class="col-6 c-pr-4">
+                                                <div class="input-group">
+                                                    <div class="form-label">
+                                                        Từ ngày
+                                                    </div>
+                                                    <input type="text" name="started_at" class="date-right" placeholder="Chọn">
+                                                    <span class="text-error"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 c-pl-4">
+                                                <div class="input-group">
+                                                    <div class="form-label">
+                                                        Đến ngày
+                                                    </div>
+                                                    <input type="text" name="ended_at" class="date-right" placeholder="Chọn">
+                                                    <span class="text-error"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-7 c-pr-4">
+
+                                    </div>
+                                    <div class="col-5 c-pl-4">
+                                        <div class="row">
+                                            <div class="col-6 c-pr-4">
+                                                <div class="btn ghost" id="resetFormButton" style="width:100%;">Xóa bộ lọc</div>
+                                            </div>
+                                            <div class="col-6 c-pl-4">
+                                                <div class="btn primary" style="width:100%;">Xem kết quả</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="history-list-tab">
+                                <div id="table-history-withdraw"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  Modal Lịch sử quay -->
+    <div class="modal fade" id="modal-spin-bonus" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content c-p-0">
+                <div class="modal-header c-p-24 align-items-center">
+                    <h5 class="modal-title fw-700 fz-15 lh-24">Lịch sử quay thưởng</h5>
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body c-p-0">
+                    <div id="data-ajax-render" data-id="{{ @$result->group->id }}">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal quay thành công -->
     <div class="modal fade modal-small" id="noticeModal">
         <div class="modal-dialog modal-dialog-centered modal-custom">
