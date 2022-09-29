@@ -1,11 +1,11 @@
-<div class="content__wrap mt-fix-20" id="content-store-card">
+<div class="content__wrap mt-fix-20 content-store-card" id="content-store-card">
     <div class="row" id="screen--first">
         <div class="col-12 col-lg-12 col-xl-8 px-lg-3 section--type__card buy-card">
-            <div class="card --custom" style="min-height: 100%">
-                <div class="card--header">
+            <div class="card --custom card-mobile" style="min-height: 100%">
+                <div class="card--header d-block">
                     <div class="card--header__title">
                         <div class="title__icon"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/muathegiare.svg" alt=""></div>
-                        <h2 class="text-title">Mua thẻ nhanh</h2>
+                        <h2 class="text-title">{{ $title??'Mua thẻ nhanh' }}</h2>
                     </div>
                 </div>
                 <div class="card--body">
@@ -49,11 +49,33 @@
                                     </div>
                                 </div>
                             </ul>
+                            <div class="swiper slider--card__telecom" >
+                                <div class="swiper-wrapper" id="cardGameListMobile">
+{{--                                    <div class="swiper-slide">--}}
+{{--                                        <div class="cards__item p_0 w-100">--}}
+{{--                                            <input type="radio" id="card-477" value="GARENA" data-img="https://cdn.upanh.info/storage/upload/images/Th%E1%BA%BB/the-garena.png" name="card-type" checked="" hidden="">--}}
+{{--                                            <label for="card-477"><img src="https://cdn.upanh.info/storage/upload/images/Th%E1%BA%BB/the-garena.png" class="card--logo" alt="GARENA"></label>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+
+                                </div>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="card-phone" role="tabpanel" aria-labelledby="card-phone-tab">
                             <ul class="cards__list row" id="cardPhoneList">
 
                             </ul>
+                            <div class="swiper slider--card__amount" >
+                                <div class="swiper-wrapper" id="cardPhoneListMobile">
+{{--                                    <div class="swiper-slide">--}}
+{{--                                        <div class="cards__item p_0 w-100">--}}
+{{--                                            <input type="radio" id="card-477" value="GARENA" data-img="https://cdn.upanh.info/storage/upload/images/Th%E1%BA%BB/the-garena.png" name="card-type" checked="" hidden="">--}}
+{{--                                            <label for="card-477"><img src="https://cdn.upanh.info/storage/upload/images/Th%E1%BA%BB/the-garena.png" class="card--logo" alt="GARENA"></label>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,6 +119,20 @@
                         <ul class="deno__list row" id="cardAmountList">
 
                         </ul>
+                        <div class="swiper slider--card__amount" >
+                            <div class="swiper-wrapper" id="cardAmountListMobile">
+{{--                                <div class="swiper-slide">--}}
+{{--                                    <div class="deno__item ">--}}
+{{--                                        <input type="radio" id="amount-3346" value="10000" data-discount="99.0" name="card-value" checked="" hidden="">--}}
+{{--                                        <label for="amount-3346" class="deno__value card-item-value"><span>10.000 đ</span></label>--}}
+{{--                                    </div>--}}
+
+{{--                                </div>--}}
+
+
+                            </div>
+                        </div>
+
                         <div class="card--amount">
                             <span class="card--amount__title">
                                 Số lượng thẻ
@@ -129,9 +165,9 @@
                             </span>
                         </div>
                         @if (App\Library\AuthCustom::check())
-                            <button type="button" class="btn -primary btn-big js_step" data-go_to="step2" data-toggle="modal" data-target="#modal--confirm__payment" id="btn-confirm">Chọn mua</button>
+                            <button type="button" class="btn -primary btn-big js_step" id="btn-confirm" data-go_to="step2" data-toggle="modal" data-target="#modal--confirm__payment" id="btn-confirm">Chọn mua</button>
                         @else
-                            <button type="button" class="btn -primary btn-big js_step" onclick="openLoginModal();" style="margin-top: 16px;">Chọn mua</button>
+                            <button type="button" class="btn -primary btn-big js_step" id="btn-confirm" onclick="openLoginModal();" style="margin-top: 16px;">Chọn mua</button>
                         @endif
                     </div>
                 </div>
@@ -140,7 +176,7 @@
     </div>
 
     <!-- Modal Xác Nhận Thanh Toán-->
-    <div class="modal fade" id="modal--confirm__payment" aria-hidden="true">
+    <div class="modal fade mx-md-fix-8" id="modal--confirm__payment" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered animated">
             <div class="modal-content -custom dialog">
                 <div class="dialog--header">
@@ -227,6 +263,7 @@
                             </div>
                         </div>
                     </div>
+
                     <button type="submit" class="btn -primary btn-big" data-dismiss="modal" data-toggle="modal" data-target="#modal--success__payment" id="confirmSubmitButton">Xác nhận</button>
                 </div>
             </div>
@@ -287,55 +324,55 @@
                     </div>
                     <div class="swiper slider--card">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide card__detail">
-                                <div class="card--header__detail">
-                                    <div class="card--info__wrap">
-                                        <div class="card--logo">
-                                            <img src="" alt="">
-                                        </div>
-                                        <div class="card--info">
-                                            <div class="card--info__name">
+{{--                            <div class="swiper-slide card__detail">--}}
+{{--                                <div class="card--header__detail">--}}
+{{--                                    <div class="card--info__wrap">--}}
+{{--                                        <div class="card--logo">--}}
+{{--                                            <img src="" alt="">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="card--info">--}}
+{{--                                            <div class="card--info__name">--}}
 
-                                            </div>
-                                            <div class="card--info__value">
-                                                đ
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card--gray">
-                                    <div class="card--attr">
-                                        <div class="card--attr__name">
-                                            Mã thẻ
-                                        </div>
-                                        <div class="card--attr__value">
-                                            <div class="card__info">
+{{--                                            </div>--}}
+{{--                                            <div class="card--info__value">--}}
+{{--                                                đ--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="card--gray">--}}
+{{--                                    <div class="card--attr">--}}
+{{--                                        <div class="card--attr__name">--}}
+{{--                                            Mã thẻ--}}
+{{--                                        </div>--}}
+{{--                                        <div class="card--attr__value">--}}
+{{--                                            <div class="card__info">--}}
 
-                                            </div>
-                                            <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card--attr">
-                                        <div class="card--attr__name">
-                                            Seri
-                                        </div>
-                                        <div class="card--attr__value">
-                                            <div class="card__info">
+{{--                                            </div>--}}
+{{--                                            <div class="icon--coppy js-copy-text">--}}
+{{--                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="card--attr">--}}
+{{--                                        <div class="card--attr__name">--}}
+{{--                                            Seri--}}
+{{--                                        </div>--}}
+{{--                                        <div class="card--attr__value">--}}
+{{--                                            <div class="card__info">--}}
 
-                                            </div>
-                                            <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                            </div>
-                                        </div>
+{{--                                            </div>--}}
+{{--                                            <div class="icon--coppy js-copy-text">--}}
+{{--                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
-                                    </div>
-                                </div>
-                            </div>
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
-                    <button type="submit" class="btn -primary btn-big">Mua thêm</button>
+                    <button type="button" class="btn -primary btn-big" data-dismiss="modal">Mua thêm</button>
                 </div>
             </div>
         </div>
@@ -374,7 +411,9 @@
                         <div class="col-md-12 col-6 modal-footer-success-col-right-ct">
                             <div class="row marginauto modal-footer-success-row-ct">
                                 <div class="col-md-12 left-right">
-                                    <a href="/nap-the" class="button-bg-ct" style="display: flex;justify-content: center"><span>Nạp thẻ</span></a>
+                                    <a href="javascript:void(0)" class="button-bg-ct"
+                                       style="display: flex;justify-content: center" data-dismiss="modal"><span>Đóng</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>

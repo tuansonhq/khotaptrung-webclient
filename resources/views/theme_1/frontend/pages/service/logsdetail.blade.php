@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('meta_robots')
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="noindex,nofollow" />
 @endsection
 @section('content')
 {{--    @dd($data)--}}

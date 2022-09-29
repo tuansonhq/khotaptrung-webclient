@@ -24,12 +24,14 @@ class ArticleController extends Controller
 
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $response_data = $result_Api->response_data??null;
+
             if(isset($response_data) && $response_data->status == 1){
 
                 $data = $response_data->data;
 
                 $per_page = 0;
                 $total = 0;
+
                 if (isset($data->total)){
                     $total = $data->total;
                 }
@@ -103,12 +105,12 @@ class ArticleController extends Controller
             }
         }
         else {
-            $data = null;
-            $message = $response_data->message??"Không thể lấy dữ liệu";
 
-            return view('frontend.pages.article.category')
-                ->with('message',$message)
-                ->with('data',$data);
+
+            $data = null;
+//            $message = $response_data->message??"Không thể lấy dữ liệu";
+
+            return view('frontend.404.404');
         }
     }
 

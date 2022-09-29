@@ -89,8 +89,7 @@ class ServiceController extends Controller
 
             return view('frontend.pages.service.list')->with('data', $data);
 
-        }
-        else{
+        }else{
             $data =null;
             $message = "Không thể lấy dữ liệu";
             return view('frontend.pages.service.list')->with('data', $data)->with('message', $message);
@@ -145,11 +144,15 @@ class ServiceController extends Controller
             }
 
         }
+        elseif ($result_Api->response_code == 404){
+            return view('frontend.404.404');
+        }
         else{
-            return response()->json([
-                'status' => 0,
-                'message'=>$response_data->message??"Không thể lấy dữ liệu"
-            ]);
+
+            $data =null;
+            $message = "Không thể lấy dữ liệu";
+            return view('frontend.pages.service.detail')->with('data', $data)->with('message', $message);
+
         }
     }
 
@@ -723,5 +726,29 @@ class ServiceController extends Controller
             ]);
         }
 //        return $response_data;
+    }
+
+    public function getListMobile(Request $request)
+    {
+        $url = '/service';
+        $method = "GET";
+
+        $dataSend = array();
+
+        $url = '/menu-category';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $response_data = $result_Api->response_data->data??null;
+        if($response_data){
+            return view('frontend.pages.service.list-mobile')->with('data', $response_data);
+
+        }
+        else{
+            $data =null;
+            $message = "Không thể lấy dữ liệu";
+            return view('frontend.pages.service.list-mobile')->with('data', $data)->with('message', $message);
+        }
     }
 }

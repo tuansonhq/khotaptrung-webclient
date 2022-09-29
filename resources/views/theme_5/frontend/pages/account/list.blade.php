@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('seo_head')
-    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+    @include('frontend.widget.__seo_head')
 @endsection
 @section('meta_robots')
     <meta name="robots" content="index,follow" />
@@ -103,7 +103,7 @@
                     <div class="loading-wrap">
                         <span class="modal-loader-spin"></span>
                     </div>
-                    <div class="listing-account c-mb-16 list-content">
+                    <div class="listing-account list-content">
 
                         {{--                        @include('frontend.pages.account.widget.__datalist')--}}
 
@@ -337,8 +337,7 @@
                             <p class="fw-400 fz-13 c-mt-10 mb-0">Rất tiếc việc mua nick đã thất bại do tài khoản của bạn không đủ, vui lòng nạp tiền để tiếp tục giao dịch!</p>
                         </div>
                         <div class="modal-footer c-p-24">
-                            <a href="/recharge-atm" class="btn secondary" data-dismiss="modal">Nạp ATM</a>
-                            <a href="/nap-the" class="btn primary">Nạp tiền</a>
+                            <button class="btn primary handle-recharge-modal" data-tab="1" data-dismiss="modal">Nạp tiền</button>
                         </div>
                     </div>
                 </div>

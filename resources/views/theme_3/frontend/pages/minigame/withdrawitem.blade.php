@@ -1,5 +1,8 @@
 
 @extends('theme_3.frontend.layouts.master')
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/breadcrumb.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/withdraw_items.css">
@@ -29,6 +32,9 @@
             {{--content--}}
             <div class="col-12 col-lg-9">
                 <div class="withdraw-content">
+                    <div class="ml-auto text-right" style="padding: 16px 16px 0 16px">
+                        <span class="lammoi_lichsu" style="font-size: 13px;color: #ffffff" onClick="window.location.reload();"><i class="fas fa-redo mr-1" ></i>Làm mới</span>
+                    </div>
                     <div class="withdraw-header row no-gutters">
                         <div class="col-6">
                             <div class="listed-type listed-type-active">
@@ -46,8 +52,7 @@
                         <div class="container">
                             <div class="col-md-12">
                                 <div class="alert alert-success alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                            aria-hidden="true">×</span></button>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                                     {{$message}}
                                 </div>
                             </div>
@@ -57,8 +62,7 @@
                         <div class="container">
                             <div class="col-md-12">
                                 <div class="alert alert-danger alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                            aria-hidden="true">×</span></button>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                                     {{$messages[0]}}
                                 </div>
                             </div>
@@ -140,6 +144,7 @@
                                     </form>
                                 </div>
                                 <div class="history-filter">
+
                                     <p>Bộ lọc</p>
                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick/filter.png" alt="">
                                     <span class="filter-count" style="display: none">0</span>
@@ -215,7 +220,7 @@
                                             @endforeach
                                         @else
                                             <div class="history-item empty-state row no-gutters">
-                                                <p>Tài khoản của quý khách chưa phát sinh giao dịch</p>
+                                                <p>Tài khoản của quý khách chưa phát sinh giao dịch.</p>
                                             </div>
                                         @endif
                                     </div>

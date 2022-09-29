@@ -20,17 +20,13 @@
                                             @endif
                                         </a>
                                     </div>
-                                    <div class="item_play_dif_slide_title">
+                                    <div class="item_play_dif_slide_title item_play_dif_slide_title_hea text-limit limit-2">
                                         <span>{{ $item->title }}</span>
                                     </div>
-                                    <div class="item_play_dif_slide_description__size">
-                                        {{--                                {!! substr($item->description, 0, 150); !!}--}}
-                                        {!! $item->description !!}
-                                        {{--                                @if(strlen($item->description) < 120)--}}
-                                        {{--                                    {!! substr($item->description, 0, 120); !!}--}}
-                                        {{--                                @else--}}
-                                        {{--                                    {!! substr($item->description, 0, 120); !!}...--}}
-                                        {{--                                @endif--}}
+                                    <div class="text_article_theme1 text-limit limit-3" style="color: #ffffff">
+                                        <div style="padding: 0 8px">
+                                            {!! $item->description !!}
+                                        </div>
                                     </div>
                                 </div>
 

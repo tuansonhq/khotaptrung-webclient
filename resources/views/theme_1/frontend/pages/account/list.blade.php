@@ -48,7 +48,7 @@
             <div class="container pt-3">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="alert alert-info box-text hidetext" role="alert">
+                        <div class="alert alert-info box-text hidetext fix-image-acount"  role="alert">
 
                             <h1 class="alert-heading h1_category" style="color:#000">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</h1>
 
@@ -131,6 +131,14 @@
         <input type="hidden" name="status_data" class="status_data" value="">
         <input type="hidden" name="sort_by_data" class="sort_by_data" value="">
 
+{{--        Lm auto  --}}
+
+        <input type="hidden" name="champions_data" class="champions_data" value="">
+        <input type="hidden" name="skill_data" class="skill_data" value="">
+        <input type="hidden" name="tftcompanions_data" class="tftcompanions_data" value="">
+        <input type="hidden" name="tftdamageskins_data" class="tftdamageskins_data" value="">
+        <input type="hidden" name="tftmapskins_data" class="tftmapskins_data" value="">
+
         <div class="modal fade modal__buyacount loadModal__acount" id="LoadModal" role="dialog" style="display: none;" aria-hidden="true">
             <div class="modal-dialog modal-dialog__account" role="document">
                 <div class="loader" style="text-align: center"><img src="/assets/frontend/{{theme('')->theme_key}}/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
@@ -139,7 +147,10 @@
                 </div>
             </div>
         </div>
-
+        @if($data->display_type == 2)
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
+        @endif
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccrandom.js?v={{time()}}"></script>
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/account-list.js?v={{time()}}"></script>
     @endif

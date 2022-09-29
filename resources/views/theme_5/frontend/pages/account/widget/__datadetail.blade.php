@@ -1,5 +1,6 @@
 @if(isset($data))
     @if($data->status == 1)
+
         <section class="acc-detail data-account-detail">
             <div class="section-content">
                 <div class="card account-thumb">
@@ -12,7 +13,7 @@
 
                                             <div class="swiper-slide">
                                                 <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                                    <img class="lazy" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                    <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                                 </div>
                                             </div>
 
@@ -24,11 +25,13 @@
 
                                 <div class="swiper gallery-thumbs c-ml-16 c-ml-lg-0">
                                     <div class="swiper-wrapper">
+                                        @foreach(explode('|',$data->image_extension) as $val)
                                         <div class="swiper-slide">
                                             <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                                <img class="lazy" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                             </div>
                                         </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -68,12 +71,12 @@
                     @if(isset($card_percent))
                         @if($card_percent == 0)
                             <div class="group-btn d-flex d-lg-none" style="--data-between: 12px">
-                                <a href="/nap-the" class="btn pink two-line">
+                                <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="1">
                                     <span class="line-1">Mua bằng Thẻ cào</span>
                                     <span class="line-2">{{ str_replace(',','.',number_format(round($data->price))) }} đ</span>
                                 </a>
                                 @if(isset($data->price_atm))
-                                    <a href="/recharge-atm" class="btn pink two-line">
+                                    <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="2">
                                         <span class="line-1">Mua bằng ATM, Momo</span>
                                         <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
                                     </a>
@@ -82,7 +85,7 @@
                         @else
                             @if(isset($data->price_atm))
                                 <div class="group-btn d-flex d-lg-none" style="--data-between: 12px">
-                                    <a href="/recharge-atm" class="btn pink two-line">
+                                    <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="2">
                                         <span class="line-1">Mua bằng ATM, Momo</span>
                                         <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
                                     </a>
@@ -91,12 +94,12 @@
                         @endif
                     @else
                         <div class="group-btn d-flex d-lg-none" style="--data-between: 12px">
-                            <a href="/nap-the" class="btn pink two-line">
+                            <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="1">
                                 <span class="line-1">Mua bằng Thẻ cào</span>
                                 <span class="line-2">{{ str_replace(',','.',number_format(round($data->price))) }} đ</span>
                             </a>
                             @if(isset($data->price_atm))
-                                <a href="/recharge-atm" class="btn pink two-line">
+                                <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="2">
                                     <span class="line-1">Mua bằng ATM, Momo</span>
                                     <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
                                 </a>
@@ -121,14 +124,14 @@
                                     @if(isset($att_value->parent))
                                         <tr>
                                             <td>
-                                                        <span class="link-color">
-                                                            {{ $att_value->parent->title??null }}
-                                                        </span>
+                                                <span class="link-color">
+                                                    {{ $att_value->parent->title??null }}
+                                                </span>
                                             </td>
                                             <td>
-                                                        <span>
-                                                            {{ $att_value->title??null }}
-                                                        </span>
+                                                <span>
+                                                    {{ $att_value->title??null }}
+                                                </span>
                                             </td>
                                             {{--                                                    <td>--}}
                                             {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
@@ -282,8 +285,8 @@
                         </div>
                         <div class="group-btn c-mb-16 d-none d-lg-flex " style="--data-between: 12px">
                             <button class="btn secondary tinhnang">Trả góp</button>
-                            @if(App\Library\AuthCustom::check())
-                                @if(App\Library\AuthCustom::user()->balance < $data->price)
+                            @if(\App\Library\AuthCustom::check())
+                                @if(\App\Library\AuthCustom::user()->balance < $data->price)
                                     <button type="button" class="btn primary the-cao-atm">Mua ngay</button>
                                 @else
                                     <button type="button" class="btn primary btn-muangay">Mua ngay</button>
@@ -297,12 +300,12 @@
                         @if(isset($card_percent))
                             @if($card_percent == 0)
                                 <div class="group-btn d-none d-lg-flex" style="--data-between: 12px">
-                                    <a href="/nap-the" class="btn pink two-line">
+                                    <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="1">
                                         <span class="line-1">Mua bằng Thẻ cào</span>
                                         <span class="line-2">{{ str_replace(',','.',number_format(round($data->price))) }} đ</span>
                                     </a>
                                     @if(isset($data->price_atm))
-                                    <a href="/recharge-atm" class="btn pink two-line">
+                                    <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="2">
                                         <span class="line-1">Mua bằng ATM, Momo</span>
                                         <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
                                     </a>
@@ -311,7 +314,7 @@
                             @else
                                 @if(isset($data->price_atm))
                                 <div class="group-btn d-none d-lg-flex" style="--data-between: 12px">
-                                    <a href="/recharge-atm" class="btn pink two-line">
+                                    <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="2">
                                         <span class="line-1">Mua bằng ATM, Momo</span>
                                         <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
                                     </a>
@@ -320,12 +323,12 @@
                             @endif
                         @else
                             <div class="group-btn d-none d-lg-flex" style="--data-between: 12px">
-                                <a href="/nap-the" class="btn pink two-line">
+                                <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="1">
                                     <span class="line-1">Mua bằng Thẻ cào</span>
                                     <span class="line-2">{{ str_replace(',','.',number_format(round($data->price))) }} đ</span>
                                 </a>
                                 @if(isset($data->price_atm))
-                                <a href="/recharge-atm" class="btn pink two-line">
+                                <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="2">
                                     <span class="line-1">Mua bằng ATM, Momo</span>
                                     <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
                                 </a>
@@ -345,13 +348,31 @@
                             </div>
                         </div>
                         <div class="card-footer text-center">
-                            <span class="see-more" data-content="Xem thêm nội dung"></span>
+                            <span class="see-more open-sheet" data-content="Xem thêm nội dung" data-target="#sheet-description"></span>
+                        </div>
+                    </div>
+                    <!-- handle bottom sheet -->
+                    <div class="bottom-sheet" id="sheet-description" aria-hidden="true" data-height="80">
+                        <div class="layer"></div>
+                        <div class="content-bottom-sheet bar-slide" >
+                            <div class="sheet-header">
+                                <h2 class="text-title center">
+                                    Chi tiết dịch vụ
+                                </h2>
+                                <label for="check-bottom-sheet" class="close"></label>
+                            </div>
+                            <div class="sheet-body">
+                                <!-- body -->
+                                <div>
+                                    {!! $data->description !!}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="footer-mobile">
-                <div class="c-px-16 c-pt-16 group-btn" style="--data-between: 12px">
+                <div class="group-btn" style="--data-between: 12px">
                     <button class="btn secondary tinhnang">Mua trả góp</button>
                     @if(App\Library\AuthCustom::check())
                         @if(App\Library\AuthCustom::user()->balance < $data->price)
@@ -463,7 +484,7 @@
                 </div>
 
                 <div class="footer-mobile">
-                    <div class="c-px-16 c-pt-16 group-btn" style="--data-between: 12px">
+                    <div class="group-btn" style="--data-between: 12px">
                         <button type="submit" class="btn primary">Xác nhận</button>
                     </div>
                 </div>
@@ -594,7 +615,7 @@
                 </div>
 
                 <div class="footer-mobile">
-                    <div class="c-px-16 c-pt-16 group-btn" style="--data-between: 12px">
+                    <div class="group-btn" style="--data-between: 12px">
                         <button class="btn primary btn-success-mobile">Xác nhận</button>
                     </div>
                 </div>
@@ -787,3 +808,5 @@
         </div>
     </div>
 </div>
+
+

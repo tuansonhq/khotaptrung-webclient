@@ -8,15 +8,15 @@
 
                         <div class="col-auto body-detail-nick-col-ct" data-title="{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}">
                             <a href="/minigame-{{ $item->slug }}" class="list-item-nick-hover">
-                                <div class="row marginauto">
+                                <div class="row marginauto list-item-nick-hover-row">
                                     <div class="col-md-12 left-right default-overlay-nick-ct">
                                         @if(isset($item->image))
-                                            <img class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                            <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                         @endif
                                     </div>
                                     <div class="col-md-12 left-right list-item-nick">
                                         <div class="row marginauto list-item-nick-body">
-                                            <div class="col-md-12 left-right text-left body-detail-account-col-span-ct">
+                                            <div class="col-md-12 left-right text-left body-detail-account-col-span-ct body-detail-title-fixed">
                                                 <span>{{ $item->title }}</span>
                                             </div>
                                             <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
@@ -25,7 +25,7 @@
                                                 </div>
                                                 <div class="item-product__box-price">
 
-                                                    <div class="special-price">{{number_format($item->price)}} đ</div>
+                                                    <div class="special-price">{{ str_replace(',','.',number_format(($item->price))) }} đ</div>
 
                                                     @if(isset($item->params->percent_sale))
                                                         <div class="old-price">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }} đ</div>
@@ -33,7 +33,7 @@
                                                     @endif
                                                     @if(isset($item->params->percent_sale))
                                                         <div class="item-product__sticker-percent">
-                                                            -{{number_format($item->params->percent_sale)}}%
+                                                            -{{ str_replace(',','.',number_format(($item->params->percent_sale))) }}%
                                                         </div>
                                                     @endif
                                                 </div>
@@ -55,7 +55,7 @@
                         </div>
                     @endforeach
                 @else
-                    <p>Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !</p>
+                    <p>Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật minigame thường xuyên bạn vui lòng theo dõi web trong thời gian tới !</p>
                 @endif
             </div>
         </div>

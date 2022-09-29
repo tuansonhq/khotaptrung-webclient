@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
-@section('seo_head')
-    @include('frontend.widget.__seo_head')
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
 @endsection
 @section('content')
 
@@ -13,7 +13,7 @@
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href="">Lịch sử nạp thẻ</a></li>
+                <li class="menu-container-li-ct"><a href="">Lịch sử mua thẻ</a></li>
             </ul>
         </div>
     </section>
@@ -48,8 +48,11 @@
                     <div class="row marginauto logs-content">
                         <div class="col-md-12 left-right">
                             <div class="row marginauto logs-title">
-                                <div class="col-md-12 left-right">
+                                <div class="col-6 left-right">
                                     <span>Lịch sử mua thẻ</span>
+                                </div>
+                                <div class="col-auto ml-auto pr-0">
+                                    <span class="lammoi_lichsu" style="font-size: 13px;color: #ffffff" onClick="window.location.reload();"><i class="fas fa-redo mr-1" ></i>Làm mới</span>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +141,7 @@
                                         <span>Thẻ cào</span>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct id-finter-nick">
-                                        <input autocomplete="off" class="input-defautf-ct id" type="text" name="serial" placeholder="Nhập mã Serial">
+                                        <input autocomplete="off" class="input-defautf-ct id" type="text" data-query="serial" placeholder="Nhập mã Serial">
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +152,7 @@
                                         <span>Loại thẻ</span>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct transaction-finter-nick">
-                                        <select class="wide transaction" name="telecom">
+                                        <select class="wide transaction" data-query="telecom">
                                             <option value="">Chọn</option>
                                             @forelse($data_category['telecoms'] as $key => $telecom)
                                                 <option value="{{ @$telecom->title }}">{{ @$telecom->title }}</option>
@@ -165,7 +168,7 @@
                                         <span>Trạng thái</span>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
-                                        <select class="wide status" name="status">
+                                        <select class="wide status" data-query="status">
                                             <option value="">Chọn</option>
                                             @forelse($data_category['status'] as $key => $status)
                                                 <option value="{{ @$key }}">{{ @$status }}</option>
@@ -186,7 +189,7 @@
                                                 <span>Từ ngày</span>
                                             </div>
                                             <div class="col-md-12 left-right body-title-detail-select-ct">
-                                                <input autocomplete="off" name="started_at" class="input-defautf-ct started_at" type="text" placeholder="Chọn">
+                                                <input autocomplete="off" data-query="started_at" class="input-defautf-ct started_at" type="text" placeholder="Chọn">
                                             </div>
                                         </div>
 
@@ -199,7 +202,7 @@
                                                 <span>Đến ngày</span>
                                             </div>
                                             <div class="col-md-12 left-right body-title-detail-select-ct" style="position: relative">
-                                                <input autocomplete="off" class="input-defautf-ct ended_at" name="ended_at" type="text" placeholder="Chọn">
+                                                <input autocomplete="off" class="input-defautf-ct ended_at" data-query="ended_at" type="text" placeholder="Chọn">
                                             </div>
                                         </div>
                                     </div>

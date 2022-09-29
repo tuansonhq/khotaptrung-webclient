@@ -4,6 +4,36 @@
 //     $('.input-search').focus();
 // });
 
+//Button open recharge modal and change tab
+$(document).on('click', '.btn-open-recharge', function (e) {
+    e.preventDefault();
+    $('#rechargeModal').modal('show');
+    let tabActive = $(this).data('tab');
+
+    if (tabActive) {
+        if (tabActive == 1) {
+            $('[href="#tab-modal-recharge"]').tab('show');
+        }
+        if (tabActive == 2) {
+            $('[href="#tab-modal-atm"]').tab('show');
+        }
+    } else {
+        $('[href="#tab-modal-recharge"]').tab('show');
+    }
+});
+
+//Handle Toggle Viewmore Action
+$(document).on('click', '.view-more', function (e) {
+    e.preventDefault();
+    let viewBlock = $(this).closest('.detailViewBlock');
+    let viewBlockTitle = $(viewBlock).find('.detailViewBlockTitle').text();
+    let viewBlockContent = $(viewBlock).find('.detailViewBlockContent').html();
+    console.log(viewBlock, viewBlockTitle, viewBlockContent);
+    $('#viewMore #detailTitle').text(viewBlockTitle);
+    $('#viewMore #detailContent').html(viewBlockContent);
+    $('#viewMore').modal('show');
+});
+
 // side bar
 var openHamburgerBar = false;
 $('.open-hamburger-sidebar').click(function (e) {
@@ -128,19 +158,7 @@ function Redirect(){
 //     element.stop().animate({ height: autoHeight }, time); // Animate to Auto Height
 // }
 
-function handleToggleContent1(){
-    // $('.js-toggle-content .view-less').toggle();
-    // $('.js-toggle-content .view-more').toggle();
-    let card_desc1 = $('.box-list-service');
 
-    card_desc1.toggleClass('box-list-service-show', 1000, "easeOutSine" );
-    // if ($('.view-less').is(":visible")) {
-    //     let initialHeight = card_desc.css('max-height', 'initial').height();
-    //     card_desc.animate({maxHeight: initialHeight + 16},250)
-    // } else {
-    //     card_desc.animate({maxHeight: 280},250)
-    // }
-}
 var user = function() {
     $('.box-account-logined').click(function(e) {
         // e.preventDefault(); // stops link from making page jump to the top
@@ -406,7 +424,44 @@ $(document).ready(function (e) {
         e.preventDefault();
         $('#openCharge').modal('hide');
         $('#successChargeModal').modal('show');
-    })
+    });
+
+    $('body').on('click','.menu_login',function(e){
+        e.preventDefault();
+
+        let width = $(window).width();
+        setTimeout(function(){
+            if ( width > 1200 ) {
+                $('#loginModal').modal('show');
+                setTimeout(() => {
+                    $('#loginModal #modal-login-container').removeClass('right-panel-active');
+                }, 200);
+            } else {
+                $('.mobile-auth').toggleClass('mobile-auth-show');
+                $('.menu-category-mobile').removeClass('menu-category-mobile_show');
+            }
+        }, 0);
+
+    });
+
+    $(document).on('scroll', function () {
+        if($(window).width() > 992) {
+            if ($(this).scrollTop() > 600) {
+                $('.go-to-top').fadeIn();
+            } else {
+                $('.go-to-top').fadeOut();
+            }
+        }
+        $(window).resize(function() {
+            if($(window).width() > 992) {
+                if ($(this).scrollTop() > 600) {
+                    $('.go-to-top').fadeIn();
+                } else {
+                    $('.go-to-top').fadeOut();
+                }
+            }
+        });
+    });
 
     // $('body').on('click','.openChargeSuccess',function(e){
     //     e.preventDefault();
@@ -429,7 +484,12 @@ $(document).ready(function (e) {
     //
     //     $('#successWalletCardModal').modal('show');
     // })
+    // Fancybox.defaults.infinite = 0;
     Fancybox.bind('[data-fancybox="gallerycoverDetail"]', {
+        infinite: true,
+        thumbs : {
+            autoStart : true,
+        },
         dragToClose: true,
         animated: true,
         closeButton: "top",
@@ -438,9 +498,14 @@ $(document).ready(function (e) {
             zoom: false,
             // zoom: 200
         },
-
+        caption: function (fancybox, carousel, slide) {
+            return (
+                `${slide.index + 1} / ${carousel.slides.length} <br />` + slide.caption
+            );
+        },
         slideshow: true,
         Toolbar: {
+
             display: [
                 { id: "prev", position: "center" },
                 { id: "counter", position: "center" },
@@ -452,6 +517,37 @@ $(document).ready(function (e) {
 
     });
 
+    Fancybox.bind('[data-fancybox="galleryAccount"]', {
+        infinite: true,
+        Thumbs : false,
+        toolbar         : false,
+        dragToClose: true,
+        animated: true,
+        closeButton: "top",
+        openSpeed: 300,
+        Image: {
+            zoom: true,
+            // zoom: 200
+        },
+        caption: function (fancybox, carousel, slide) {
+            return (
+                `${slide.index + 1} / ${carousel.slides.length} <br />` + slide.caption
+            );
+        },
+        slideshow: true,
+        Toolbar: {
+
+            display: [
+                { id: "prev", position: "center" },
+                { id: "counter", position: "center" },
+                { id: "next", position: "center" },
+                { id: "zoom", position: "center" },
+                "close",
+            ],
+
+        },
+
+    });
+
 
 })
-

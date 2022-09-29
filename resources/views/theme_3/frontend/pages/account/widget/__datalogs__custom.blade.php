@@ -10,7 +10,7 @@
         @if(isset($data) && count($data) > 0)
             @foreach ($data as $item)
                 <tr>
-                    <td>{{ date('d/m/Y',strtotime($item->created_at)) }}<br>{{ date('H:i:s',strtotime($item->created_at)) }}</td>
+                    <td>{{ date('d/m/Y',strtotime($item->published_at)) }}<br>{{ date('H:i:s',strtotime($item->published_at)) }}</td>
                     <td>
                         @if(isset($item->randId))
                             #{{ $item->randId }}
@@ -35,7 +35,11 @@
                     <td>
                         @if($item->status == 1)
                         @elseif($item->status == 2)
-                            <span class="badge badge-warning">Chờ xử lý</span>
+                            <span class="badge badge-warning" style="position: relative;padding-left: 24px;padding-right: 4px">
+                                    <div class="c_loading">
+                                        <div class="c_loading-child"></div>
+                                    </div>
+                                    Chờ xử lý</span>
                         @elseif($item->status == 3)
                             <span class="badge badge-warning">Đang check thông tin</span>
                         @elseif($item->status == 4)
@@ -70,8 +74,8 @@
                         <input type="hidden" class="js_attr_category" data-id="{{ $item->id }}" value="{{ json_encode($group->childs) }}">
                     @endif
                     @if($group->module == 'acc_label')
-                        <input type="hidden" class="js_attr_label" data-gr="{{$group->id}}" data-id="{{ $item->id }}" value="{{ $group->parent->title }}">
-                        <input type="hidden" class="js_attr_value" data-gr="{{$group->id}}" data-id="{{ $item->id }}" value="{{ $group->title }}">
+                        <input type="hidden" class="js_attr_label" data-gr="{{$group->id}}" data-id="{{ $item->id }}" value="{{ @$group->parent->title }}">
+                        <input type="hidden" class="js_attr_value" data-gr="{{$group->id}}" data-id="{{ $item->id }}" value="{{ @$group->title }}">
                     @endif
                 @empty
                 @endforelse

@@ -1,6 +1,17 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+@endsection
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('content')
-    <div class="container container-fix" style="max-width: 1232px">
+
+    @if(isset($data->params) && isset($data->params->article_type))
+        {!! $data->params->article_type !!}
+    @endif
+
+    <div class="container container-fix">
         {{--breadcrum--}}
         <ul class="breadcrumb-list">
             <li class="breadcrumb-item">
@@ -32,8 +43,8 @@
                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/group.svg"
                          class="c-mr-6 c-ml-6"><span>{{ @$data->author->username }}</span>
                 </div>
-                <div class="article--thumbnail py-4">
-                    <img src="{{ @$data->image }}" alt="" class="article--thumbnail__image py-3">
+                <div class="py-4">
+                    <img src="{{ @$data->image }}" alt="" class="article--thumbnail__image py-3 w-100">
                 </div>
                 <div class="article--content pb-3">
                     <div class="article--content__text pb-2">

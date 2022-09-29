@@ -130,6 +130,8 @@ ul.card-list {
     width: 100%;
     height: 65%;
     position: absolute;
+    top: 0;
+    left: 0;
 }
 .scratch-card .card--thumb .card--thumb__image {
     top: 50%;
@@ -275,6 +277,14 @@ ul.card-list {
 }
 /* Màn hình nhỏ laptop và mobile */
 @media only screen and (max-width: 75rem) {
+    .scratch-card .card--name {
+        height: 40px;
+    }
+    #grid--game__card .scratch-card .card--name,
+    #grid--phone__card .scratch-card .card--name {
+        height: 20px;
+        font-size: 14px;
+    }
     .poster__banner {
         border-radius: 0;
     }
@@ -286,10 +296,6 @@ ul.card-list {
     .card--single.scratch-card
     {
         border-radius: 8px;
-    }
-    .scratch-card .card--name {
-        font-size: 12px;
-        font-weight: 600;
     }
     .js--card__swipe .scratch-card .card--name,
     #card--other .scratch-card .card--name,

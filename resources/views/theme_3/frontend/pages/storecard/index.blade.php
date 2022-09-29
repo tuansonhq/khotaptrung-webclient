@@ -6,6 +6,9 @@
 @section('seo_head')
     @include('frontend.widget.__seo_head')
 @endsection
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('content')
     <div class="container-fix container">
         <ul class="breadcrum--list">
@@ -23,16 +26,17 @@
             <div class="row" id="screen--first">
                 <div class="col-12 col-lg-12 col-xl-8 px-lg-3 section--type__card">
                     <div class="card--mobile__title">
-                        <a class="card--back"  @if(App\Library\AuthCustom::check()) onclick="openMenuProfile()" @else onclick="Redirect()"   @endif>
+                        <a class="card--back" href="/">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
                         </a>
                         <h4>Mua thẻ</h4>
                     </div>
-                    <div class="card --custom mb-lg-3 h-100">
+                    <div class="card --custom mb-lg-3 h-100 card-mobile">
                         <div class="card--header">
                             <div class="card--header__title">
                                 <div class="title__icon"><img
-                                        src="/assets/frontend/{{theme('')->theme_key}}/image/icons/credit_card.png" alt=""></div>
+                                        src="/assets/frontend/{{theme('')->theme_key}}/image/icons/credit_card.png"
+                                        alt=""></div>
                                 <h4>Mua thẻ</h4>
                             </div>
                         </div>
@@ -49,7 +53,9 @@
                             </ul>
                             <div class="tab-content">
                                 <div class="tab--title">Chọn loại thẻ</div>
-                                <div class="tab-pane fade show active" id="card-game" role="tabpanel" aria-labelledby="card-game-tab">
+                                <div class="tab-pane fade show active" id="card-game" role="tabpanel"
+                                     aria-labelledby="card-game-tab">
+{{--                                    desktop--}}
                                     <ul class="cards__list row" id="cardGameList">
                                         <div class="loader position-relative" style="margin: 2rem 0">
                                             <div class="loading-spokes">
@@ -80,10 +86,25 @@
                                             </div>
                                         </div>
                                     </ul>
+{{--                                    mobile--}}
+                                    <div class="swiper slider--card__telecom" >
+                                        <div class="swiper-wrapper" id="cardGameListMobile">
+
+
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="tab-pane fade" id="card-phone" role="tabpanel" aria-labelledby="card-phone-tab">
+                                <div class="tab-pane fade" id="card-phone" role="tabpanel"
+                                     aria-labelledby="card-phone-tab">
+{{--                                    desktop--}}
                                     <ul class="cards__list row" id="cardPhoneList">
                                     </ul>
+{{--                                    mobile--}}
+                                    <div class="swiper slider--card__telecom" >
+                                        <div class="swiper-wrapper" id="cardPhoneListMobile">
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -124,20 +145,30 @@
                                 <div class="denos--title">
                                     Chọn mệnh giá
                                 </div>
+{{--                                desktop--}}
                                 <ul class="deno__list row" id="cardAmountList">
 
                                 </ul>
+{{--                                mobile--}}
+                                <div class="swiper slider--card__amount" >
+                                    <div class="swiper-wrapper" id="cardAmountListMobile">
+
+
+                                    </div>
+                                </div>
                                 <div class="card--amount">
                                     <span class="card--amount__title">
                                         Số lượng thẻ
                                     </span>
                                     <div class="card--amount__group">
                                         <button class="btn--amount -minus js-amount" data-action="minus">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/minus.png" alt="">
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/minus.png"
+                                                 alt="">
                                         </button>
                                         <input type="text" name="card-amount" class="input--amount" value="1" numberic>
                                         <button class="btn--amount -add js-amount" data-action="add">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/add.png" alt="">
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/add.png"
+                                                 alt="">
                                         </button>
                                     </div>
                                 </div>
@@ -158,33 +189,38 @@
 
                                     </span>
                                 </div>
-                                @if (App\Library\AuthCustom::check())
-                                    <button type="button" class="btn -primary btn-big js_step" data-go_to="step2" data-toggle="modal" data-target="#modal--confirm__payment" id="btn-confirm">Chọn mua</button>
+                                @if (\App\Library\AuthCustom::check())
+                                    <button type="button" class="btn -primary btn-big js_step" data-go_to="step2"
+                                            data-toggle="modal" data-target="#modal--confirm__payment" id="btn-confirm">
+                                        Chọn mua
+                                    </button>
                                 @else
-                                    <button type="button" class="btn -primary btn-big js_step" onclick="openLoginModal();" style="margin-top: 16px;">Chọn mua</button>
+                                    <button type="button" class="btn -primary btn-big js_step"
+                                            onclick="openLoginModal();" style="margin-top: 16px;" id="btn-confirm">Chọn mua
+                                    </button>
                                 @endif
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-12 mt-fix-20">
-                    <div class="card --custom">
-                        <div class="card--body">
-                            <div class="card--desc__title">Mô tả dịch vụ</div>
-                            <div class="card--desc__content content-video-in-add">
-                                {!! setting('sys_store_card_content') !!}
-                            </div>
-                            <div class="col-md-12 left-right text-center js-toggle-content">
-                                <div class="view-more">
-                                    <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></span>
+                @if (setting('sys_store_card_content'))
+                    <div class="col-12 col-md-12 mt-fix-20 detailViewBlock">
+                        <div class="card --custom">
+                            <div class="card--body">
+                                <div class="card--desc__title detailViewBlockTitle">Mô tả dịch vụ</div>
+                                <div class="card--desc__content content-video-in-add detailViewBlockContent">
+                                    {!! setting('sys_store_card_content') !!}
                                 </div>
-                                <div class="view-less">
-                                    <span class="global__link">Thu gọn<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></span>
+                                <div class="col-md-12 left-right text-center js-toggle-content">
+                                    <div class="view-more">
+                                        <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1"
+                                                                            style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
             {{-- confirm payment mobile--}}
             <div class="mobile--confirm__payment step">
@@ -204,7 +240,7 @@
                             </div>
                             <div class="card--attr__value">
                                 <div class="card--logo">
-                                    <img  id="confirmMobileCard" src="" alt="">
+                                    <img id="confirmMobileCard" src="" alt="">
                                 </div>
                             </div>
                         </div>
@@ -269,7 +305,8 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn -primary btn-big -ps__end" id="confirmMobileButton">Xác nhận</button>
+                    <button type="button" class="btn -primary btn-big -ps__end" id="confirmMobileButton">Xác nhận
+                    </button>
                 </div>
             </div>
             <!-- Modal Xác Nhận Thanh Toán-->
@@ -360,7 +397,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn -primary btn-big" id="confirmSubmitButton">Xác nhận</button>
+                            <button type="button" class="btn -primary btn-big" id="confirmSubmitButton">Xác nhận
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -423,7 +461,8 @@
                                     </div>
                                     <div class="card--attr__value" id="">
                                         <div class="card--logo">
-                                            <img id="successCard" src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png"
+                                            <img id="successCard"
+                                                 src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png"
                                                  alt="">
                                         </div>
                                     </div>
@@ -451,7 +490,9 @@
                                         <div class="card--header__detail">
                                             <div class="card--info__wrap">
                                                 <div class="card--logo">
-                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
+                                                    <img
+                                                        src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png"
+                                                        alt="">
                                                 </div>
                                                 <div class="card--info">
                                                     <div class="card--info__name">
@@ -473,7 +514,9 @@
 
                                                     </div>
                                                     <div class="icon--coppy js-copy-text">
-                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
+                                                        <img
+                                                            src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png"
+                                                            alt="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -486,7 +529,9 @@
 
                                                     </div>
                                                     <div class="icon--coppy js-copy-text">
-                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
+                                                        <img
+                                                            src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png"
+                                                            alt="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -509,7 +554,9 @@
                                 <div class="col-md-12 text-center" style="position: relative">
                                     <span>Mua thẻ không thành công</span>
                                     <div class="close" data-dismiss="modal" aria-label="Close">
-                                        <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                                        <img class="lazy img-close-ct close-modal-default"
+                                             src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png"
+                                             alt="">
                                     </div>
                                 </div>
                             </div>
@@ -518,7 +565,9 @@
                         <div class="modal-body modal-body-success-ct">
                             <div class="row marginauto justify-content-center">
                                 <div class="col-auto">
-                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/reject.png" alt="">
+                                    <img class="lazy"
+                                         src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/reject.png"
+                                         alt="">
                                 </div>
                             </div>
                             <div class="row marginauto modal-body-span-success-ct justify-content-center">
@@ -532,7 +581,9 @@
                                 <div class="col-md-12 col-6 modal-footer-success-col-right-ct">
                                     <div class="row marginauto modal-footer-success-row-ct">
                                         <div class="col-md-12 left-right">
-                                            <a href="/nap-the" class="button-bg-ct" style="display: flex;justify-content: center"><span>Nạp thẻ</span></a>
+                                            <a href="javascript:void(0)" class="button-bg-ct"
+                                               style="display: flex;justify-content: center" data-dismiss="modal"><span>Đóng</span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

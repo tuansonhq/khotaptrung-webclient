@@ -1,7 +1,9 @@
-<section class="section-category-tab c-mb-20 c-mb-lg-16">
+<section class="section-category-tab c-pt-12 c-pt-lg-6 c-pb-12 c-pb-lg-6">
     <div class="section-header c-mb-20 c-mb-lg-16 justify-content-between">
         <h2 class="section-title c-py-lg-8">
-            Dành cho bạn
+
+            {{ $title??'Dành cho bạn' }}
+
         </h2>
         <ul class="nav nav-tabs size-auto" role="tablist">
             <li class="nav-item" role="presentation">
@@ -17,7 +19,7 @@
         <a href="" class="link arr-right d-none d-lg-block">Xem tất cả</a>
     </div>
 
-    <!-- Đặt tên class cho swiper sau đó config trong file "public/assets/frontend/{{theme('')->theme_key}}/js/swiper-slider-conf/swiper-slider-conf.js" -->
+<!-- Đặt tên class cho swiper sau đó config trong file "public/assets/frontend/{{theme('')->theme_key}}/js/swiper-slider-conf/swiper-slider-conf.js" -->
     <!-- Nếu có giao diện giống nhau hoàn toàn thì có thể dùng chung config (chung tên class 'class-config-demo') -->
     <div class="tab-content c-mt-24 c-mt-lg-16">
         <div class="tab-pane fade show active" id="tab-1" role="tabpanel">
@@ -572,4 +574,3 @@
     </div>
 
 </section>
-

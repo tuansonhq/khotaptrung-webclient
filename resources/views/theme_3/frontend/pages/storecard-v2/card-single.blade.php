@@ -1,41 +1,29 @@
 @extends('frontend.layouts.master')
-@section('seo_head')
-{{--    @include('frontend.widget.__seo_head',with(['data'=>$data]))--}}
-@endsection
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong-style/distance.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong-style/buy-card.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
 @section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/buy-card.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/buy-card.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/script_trong.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/input.js"></script>
 @endsection
 @section('seo_head')
-    @include('frontend.widget.__seo_head')
+    @include('frontend.widget.__seo_head',with(['datakey'=>$value,'dataname'=>$key]))
+@endsection
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
 @endsection
 @section('content')
     <div class="container-fix container" id="buy-card">
         {{--        BANNER --}}
-        <div class="poster__banner _mt-125 _mt-sm-0 d-none d-lg-block">
-            <div class="swiper js--swiper__banner mb-n4">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png" alt="POSTER BANNER">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png"
-                                 alt="POSTER BANNER">
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-pagination --custom"></div>
-            </div>
+
+        <div class="d-none d-lg-block">
+            @include('frontend.widget.__banner__storecard')
         </div>
+
+
         {{--        END BANNER--}}
         {{--breadcrum--}}
         <ul class="breadcrum--list">
@@ -133,22 +121,22 @@
                 </div>
                 {{--                CARD SINGLE--}}
                 {{--                SERVICE DESC--}}
-                <div class="card --custom p-3 p-lg-3 _mb-125">
-                    <h2 class="card--desc__title mb-4">
-                        Mô tả dịch vụ
-                    </h2>
-                    <div class="card--desc__content content-video-in-add p-0">
-                        {!! setting('sys_store_card_content') !!}
-                    </div>
-                    <div class="col-md-12 left-right text-center js-toggle-content">
-                        <div class="view-more">
-                            <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></span>
-                        </div>
-                        <div class="view-less" style="display: none;">
-                            <span class="global__link">Thu gọn<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></span>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="card --custom p-3 p-lg-3 _mb-125">--}}
+{{--                    <h2 class="card--desc__title mb-4">--}}
+{{--                        Mô tả dịch vụ--}}
+{{--                    </h2>--}}
+{{--                    <div class="card--desc__content content-video-in-add p-0">--}}
+{{--                        {!! setting('sys_store_card_content') !!}--}}
+{{--                    </div>--}}
+{{--                    <div class="col-md-12 left-right text-center js-toggle-content">--}}
+{{--                        <div class="view-more">--}}
+{{--                            <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></span>--}}
+{{--                        </div>--}}
+{{--                        <div class="view-less" style="display: none;">--}}
+{{--                            <span class="global__link">Thu gọn<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></span>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 {{--                END SERVICE DESC--}}
 
                 {{--                SAME KIND--}}
@@ -159,7 +147,7 @@
                         </h2>
                     </div>
                     <div class="card--body px-3 py-3 py-lg-2 px-lg-3">
-                        <div class="swiper card--other__swipe">
+                        <div class="swiper card--other__swipe overflow-hidden">
                             <div class="swiper-wrapper" id="card--same__wrapper">
                                 {{--JS GENERATE HTML HERE--}}
                                 <div class="loader position-relative" id="card--same__wrap">
@@ -195,12 +183,18 @@
                     </div>
                 </div>
                 {{--                END SAME KIND--}}
+                {{--            SERVICE RELATED--}}
+                <div class="card --custom _mb-125 _mb-sm-075 p-3 p-lg-0" id="service-related">
+                    @include('frontend.widget.__list_serve_remark_image')
+                </div>
+                {{--            END SERVICE RELATED--}}
             </div>
             {{--            END PAGE CONTENT--}}
         </div>
     </div>
     <input type="hidden" value="{{ request()->route()->getName() }}" id="isRequest">
-    <input type="hidden" value="{{ request()->route('card') }}" id="isTelecom">
+
+    <input type="hidden" value="{{ strtolower(request()->route('card')) }}" id="isTelecom">
     <input type="hidden" value="{{ request()->route('value') }}" id="isValue">
     <input type="hidden" value="{{ App\Library\AuthCustom::check() }}" id="auth">
     <!-- Xác Nhận Thanh Toán Mobile-->
@@ -477,100 +471,10 @@
                     </div>
                     <div class="swiper slider--card">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide card__detail">
-                                <div class="card--header__detail">
-                                    <div class="card--info__wrap">
-                                        <div class="card--logo">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
-                                        </div>
-                                        <div class="card--info">
-                                            <div class="card--info__name">
-                                                Zing 1
-                                            </div>
-                                            <div class="card--info__value">
-                                                100.000 đ
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card--gray">
-                                    <div class="card--attr">
-                                        <div class="card--attr__name">
-                                            Mã thẻ
-                                        </div>
-                                        <div class="card--attr__value">
-                                            <div class="card__info">
-                                                48563415693486456
-                                            </div>
-                                            <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card--attr">
-                                        <div class="card--attr__name">
-                                            Seri
-                                        </div>
-                                        <div class="card--attr__value">
-                                            <div class="card__info">
-                                                12121212121
-                                            </div>
-                                            <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide card__detail">
-                                <div class="card--header__detail">
-                                    <div class="card--info__wrap">
-                                        <div class="card--logo">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
-                                        </div>
-                                        <div class="card--info">
-                                            <div class="card--info__name">
-                                                Zing 1
-                                            </div>
-                                            <div class="card--info__value">
-                                                100.000 đ
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card--gray">
-                                    <div class="card--attr">
-                                        <div class="card--attr__name">
-                                            Mã thẻ
-                                        </div>
-                                        <div class="card--attr__value">
-                                            <div class="card__info">
-                                                48563415693486456
-                                            </div>
-                                            <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card--attr">
-                                        <div class="card--attr__name">
-                                            Seri
-                                        </div>
-                                        <div class="card--attr__value">
-                                            <div class="card__info">
-                                                12121212121
-                                            </div>
-                                            <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- JS PASTE CODE HERE -->
                         </div>
                     </div>
-                    <button type="button" class="btn -primary btn-big">Mua thêm</button>
+                    <button type="button" class="btn -primary btn-big" data-dismiss="modal">Mua thêm</button>
                 </div>
             </div>
         </div>
@@ -608,7 +512,9 @@
                         <div class="col-md-12 col-6 modal-footer-success-col-right-ct">
                             <div class="row marginauto modal-footer-success-row-ct">
                                 <div class="col-md-12 left-right">
-                                    <a href="/nap-the" class="button-bg-ct" style="display: flex;justify-content: center"><span>Nạp thẻ</span></a>
+                                    <a href="javascript:void(0)" class="button-bg-ct"
+                                       style="display: flex;justify-content: center" data-dismiss="modal"><span>Đóng</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>

@@ -11,56 +11,47 @@
                             @if($item->status == 1)
                                 @if($data->display_type == 2)
                                     <div class="col-auto body-detail-nick-col-ct">
-                                        <a href="javascript:void(0)" class="list-item-nick-hover">
-                                            <div class="row marginauto">
+                                        <a href="javascript:void(0)" class="list-item-nick-hover buy-random-acc" data-id="{{ $item->randId }}">
+                                            <div class="row marginauto list-item-nick-hover-row">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct nick-item-cover-overlay">
                                                     @if(isset($data->params->thumb_default) && isset($data->params))
-                                                        <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->randId }}" >
+                                                        <img onerror="imgError(this)" class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->randId }}" >
                                                     @else
-                                                        @if(isset($item->image))
-                                                            <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
+                                                        @if(isset($data->image))
+                                                            <img onerror="imgError(this)" class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="{{ $item->randId }}">
                                                         @else
-                                                            <img class="img-list-nick-category lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
+                                                            <img onerror="imgError(this)" class="img-list-nick-category lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
                                                         @endif
                                                     @endif
                                                 </div>
-                                                <div class="col-md-12 left-right list-item-nick">
-                                                    <div class="row marginauto list-item-nick-body">
+
+                                                <div class="col-md-12 left-right list-item-nick " >
+                                                    <div class="row marginauto list-item-nick-body ">
                                                         <div class="col-md-12 left-right text-left body-detail-account-col-span-ct">
                                                             <span>ID: {{ $item->randId }}</span>
                                                         </div>
 
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <ul>
-                                                                @if(isset($data->params) && isset($data->params->price))
-                                                                    <li class="fist-li-account">{{ str_replace(',','.',number_format($data->params->price)) }}đ</li>
-                                                                    <li class="second-li-account">{{ str_replace(',','.',number_format($data->params->price_old??$data->params->price)) }}đ</li>
+                                                                @if(isset($data->price))
+                                                                    <li class="fist-li-account">{{ str_replace(',','.',number_format($data->price)) }}đ</li>
+                                                                    <li class="second-li-account">{{ str_replace(',','.',number_format($data->price_old??$data->price)) }}đ</li>
                                                                     @php
-                                                                        if (isset($data->params->price_old)) {
-                                                                            $sale_percent = (($data->params->price_old - $data->params->price) / $data->params->price_old) * 100;
+                                                                        if (isset($data->price_old)) {
+                                                                            $sale_percent = (($data->price_old - $data->price) / $data->price_old) * 100;
                                                                             $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
                                                                         } else {
                                                                             $sale_percent = 0;
                                                                         }
                                                                     @endphp
-                                                                    <li class="three-li-account">-{{$sale_percent}}%</li>
-                                                                @else
-                                                                    <li class="fist-li-account">{{ str_replace(',','.',number_format($item->price)) }}đ</li>
-                                                                    <li class="second-li-account">{{ str_replace(',','.',number_format($item->price_old??$item->price)) }}đ</li>
-                                                                    @php
-                                                                        if (isset($item->price_old)) {
-                                                                            $sale_percent = (($item->price_old - $item->price) / $item->price_old) * 100;
-                                                                            $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
-                                                                        } else {
-                                                                            $sale_percent = 0;
-                                                                        }
-                                                                    @endphp
-                                                                    <li class="three-li-account">-{{$sale_percent}}%</li>
+                                                                    @if($sale_percent > 0)
+                                                                        <li class="three-li-account">-{{$sale_percent}}%</li>
+                                                                    @endif
                                                                 @endif
                                                             </ul>
                                                         </div>
 
-                                                        <button class="button-secondary list-item-nick-button buy-random-acc" data-id="{{ $item->randId }}">Mua ngay</button>
+                                                        <button class="button-secondary list-item-nick-button " data-id="{{ $item->randId }}">Mua ngay</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -86,19 +77,6 @@
                                                         <span>Thông tin acc</span>
                                                     </div>
 
-                                                    <div class="col-md-12 left-right" id="order-errors">
-                                                        <div class="row marginauto order-errors">
-                                                            <div class="col-md-12 left-right">
-                                                                @if(App\Library\AuthCustom::check())
-                                                                    @if(App\Library\AuthCustom::user()->balance < $data->params->price)
-                                                                        <small>Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</small>
-                                                                    @endif
-                                                                @else
-                                                                    <small>Bạn phải đăng nhập mới có thể mua tài khoản tự động.</small>
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                    </div>
 
                                                     @if (App\Library\AuthCustom::check())
                                                         <div class="col-md-12 left-right padding-order-ct">
@@ -145,10 +123,8 @@
                                                                     </div>
                                                                     <div class="col-auto left-right background-order-col-right-ct">
                                                                         <small>
-                                                                            @if(isset($data->params) && isset($data->params->price))
-                                                                                {{ str_replace(',','.',number_format($data->params->price)) }}đ
-                                                                            @else
-                                                                                {{ str_replace(',','.',number_format($item->price)) }}đ
+                                                                            @if(isset($data->price))
+                                                                                {{ str_replace(',','.',number_format($data->price)) }}đ
                                                                             @endif
                                                                         </small>
                                                                     </div>
@@ -220,10 +196,8 @@
                                                                     </div>
                                                                     <div class="col-auto left-right background-order-col-right-ct">
                                                                         <span>
-                                                                            @if(isset($data->params) && isset($data->params->price))
-                                                                                {{ str_replace(',','.',number_format($data->params->price)) }}đ
-                                                                            @else
-                                                                                {{ str_replace(',','.',number_format($item->price)) }}đ
+                                                                            @if(isset($data->price))
+                                                                                {{ str_replace(',','.',number_format($data->price)) }}đ
                                                                             @endif
                                                                         </span>
                                                                     </div>
@@ -231,34 +205,31 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
+                                                    <div class="col-md-12 left-right" id="order-errors">
+                                                        <div class="row marginauto order-errors">
+                                                            <div class="col-md-12 left-right">
+                                                                @if(App\Library\AuthCustom::check())
+                                                                    @if(App\Library\AuthCustom::user()->balance < $data->price)
+                                                                        <small>Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</small>
+                                                                    @endif
+                                                                @else
+                                                                    <small>Bạn phải đăng nhập mới có thể mua tài khoản tự động.</small>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-md-12 left-right padding-order-footer-ct">
                                                         <div class="row marginauto">
                                                             <div class="col-md-12 left-right">
                                                                 @if(App\Library\AuthCustom::check())
 
-                                                                    @if(App\Library\AuthCustom::user()->balance >= $data->params->price)
+                                                                    @if(App\Library\AuthCustom::user()->balance >= $data->price)
                                                                         <button class="button-default-ct button-next-step-two" type="submit">Xác nhận</button>
                                                                     @else
-                                                                        <div class="row marginauto justify-content-center gallery-right-footer">
-                                                                            <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                                                <div class="row marginauto">
-                                                                                    <div class="col-md-12 left-right">
-                                                                                        <a href="/nap-the" class="btn -secondary btn-big">Thẻ cào</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                                                <div class="row marginauto">
-                                                                                    <div class="col-md-12 left-right">
-                                                                                        <a href="/recharge-atm" class="btn -secondary btn-big">ATM, Momo</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                                        <button class="button-default-ct btn-open-recharge" type="button" data-tab="1" data-dismiss="modal">Nạp tiền</button>
                                                                     @endif
                                                                 @else
-                                                                    <button class="button-default-ct" type="button" onclick="openLoginModal();">Đăng nhập</button>
+                                                                    <button class="button-default-ct" data-dismiss="modal" type="button" onclick="openLoginModal();">Đăng nhập</button>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -270,12 +241,12 @@
                                 @else
                                     <div class="col-auto body-detail-nick-col-ct">
                                         <a href="/acc/{{ $item->randId }}" class="list-item-nick-hover">
-                                            <div class="row marginauto">
+                                            <div class="row marginauto list-item-nick-hover-row">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct nick-item-cover-overlay">
                                                     @if(isset($item->image))
-                                                        <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
+                                                        <img onerror="imgError(this)" class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
                                                     @else
-                                                        <img class="img-list-nick-category lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
+                                                        <img onerror="imgError(this)" class="img-list-nick-category lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
                                                     @endif
                                                 </div>
                                                 <div class="col-md-12 left-right list-item-nick">
@@ -365,7 +336,9 @@
                                                                             $sale_percent = 0;
                                                                         }
                                                                     @endphp
+                                                                    @if($sale_percent > 0)
                                                                     <li class="three-li-account">-{{$sale_percent}}%</li>
+                                                                    @endif
                                                                 @else
                                                                     <li class="fist-li-account">{{ str_replace(',','.',number_format($item->price)) }}đ</li>
                                                                     <li class="second-li-account">{{ str_replace(',','.',number_format($item->price_old??$item->price)) }}đ</li>
@@ -377,7 +350,9 @@
                                                                             $sale_percent = 0;
                                                                         }
                                                                     @endphp
-                                                                    <li class="three-li-account">-{{$sale_percent}}%</li>
+                                                                    @if($sale_percent > 0)
+                                                                        <li class="three-li-account">-{{$sale_percent}}%</li>
+                                                                    @endif
                                                                 @endif
                                                             </ul>
                                                         </div>

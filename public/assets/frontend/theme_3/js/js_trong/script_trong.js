@@ -26,46 +26,7 @@ $('.js-amount').on('click', function () {
     $('input[name=card-amount]').trigger('input');
 });
 
-// see more desc service
-$('.js-toggle-content').click(function () {
-    handleToggleContent();
-});
-
-$('.card--body .card--desc__content').dblclick(function(){
-    handleToggleContent();
-});
-// ondblclick on mobile
-if ($(window).width() < 1200) {
-    var touchtime = 0;
-    $(".card--body .card--desc__content").on("click", function() {
-        if (touchtime == 0) {
-            // set first click
-            touchtime = new Date().getTime();
-        } else {
-            // compare first click to this click and see if they occurred within double click threshold
-            if (((new Date().getTime()) - touchtime) < 800) {
-                // double click occurred
-                handleToggleContent();
-                touchtime = 0;
-            } else {
-                // not a double click so set as a new first click
-                touchtime = new Date().getTime();
-            }
-        }
-    });
-}
-function handleToggleContent(){
-    $('.js-toggle-content .view-less').toggle();
-    $('.js-toggle-content .view-more').toggle();
-    let card_desc = $('.card--desc__content');
-    card_desc.toggleClass('content-video-in-add');
-    if ($('.view-less').is(":visible")) {
-        let initialHeight = card_desc.css('max-height', 'initial').height();
-        card_desc.animate({maxHeight: initialHeight + 16},250)
-    } else {
-        card_desc.animate({maxHeight: 280},250)
-    }
-}
+$('select').niceSelect();
 
 // Coppy text vào bộ nhớ
 $('.js-copy-text').on('click', function () {
@@ -110,7 +71,6 @@ tippy('.js-copy-text', {
     placement: 'right',
 });
 
-
 // option swiper card
 let slider_count = 1;
 if ($('.slider--card .swiper-wrapper').children().length > 1) {
@@ -142,3 +102,5 @@ var swiper_article_banner = new Swiper(".article--slider__news", {
         }
     },
 });
+
+

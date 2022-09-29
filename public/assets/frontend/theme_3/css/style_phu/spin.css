@@ -13,18 +13,24 @@
 .rotation-col-right {
     padding-left: 10px;
 }
-
+.comment-info small {
+    margin-left: 0.5rem;
+    font-weight: 400;
+    font-size: 12px;
+    color: #82869E;
+}
 .rotation-detail {
     background-color: #FFFFFF;
     border-radius: 12px;
-    padding: 1.25rem;
+    padding: 1rem;
     margin-bottom: 1.25rem;
 }
 
 .rotation-header {
     display: flex;
     align-items: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    justify-content: space-between;
 }
 
 .rotation-header h1 {
@@ -45,15 +51,8 @@
     background-color: #FFFFFF;
 }
 
-.rotation-player {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.25rem;
-}
-
-.rotation-player p {
+.rotation-header p {
     margin-bottom: 0;
-    margin-left: 0.25rem;
     font-weight: 400;
     font-size: 14px;
     color: #434657;
@@ -61,7 +60,7 @@
 
 .rotation-notify {
     position: relative;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
     background: #F3F3F7;
     border-radius: 8px;
 }
@@ -217,7 +216,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
 }
 
 .rotation-button {
@@ -226,7 +225,7 @@
 }
 
 .rotation-points {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
 }
 
 .rotation-points-title {
@@ -325,7 +324,23 @@
 }
 
 .rotation-inputs {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.rotation-inputs .rotation-col:first-child, .rotation-buttons .rotation-col:first-child {
+    padding-right: 8px;
+}
+
+.rotation-inputs .rotation-col:nth-child(2), .rotation-buttons .rotation-col:nth-child(2) {
+    padding-left: 8px;
+}
+
+.rotation-buttons .button-col:first-child {
+    padding-right: 8px;
+}
+
+.rotation-buttons .button-col:nth-child(2) {
+    padding-left: 8px;
 }
 
 .rotation-inputs input {
@@ -341,6 +356,43 @@
 
 .rotation-inputs-select {
     width: 100%;
+}
+
+.rotation-sale-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F3F3F7;
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+}
+
+.rotation-sale-secondary .first-sale-price {
+    font-weight: 400;
+    font-size: 14px;
+    color: #82869E;
+    text-decoration-line: line-through;
+}
+
+.rotation-sale-secondary .second-sale-price {
+    font-weight: 700;
+    font-size: 24px;
+    color: #F67600;
+    margin-left: 8px;
+}
+
+.rotation-sale-secondary .third-sale-price {
+    margin-left: 8px;
+}
+
+.rotation-sale-secondary .third-sale-price span {
+    font-weight: 600;
+    font-size: 12px;
+    color: #FFFFFF;
+    background: #F67600;
+    border-radius: 4px;
+    padding: 2px 8px;
 }
 
 .rotation-buttons button {
@@ -463,7 +515,12 @@
     font-size: 12px;
     color: #82869E;
 }
-
+.comment-info small {
+    margin-left: 0.5rem;
+    font-weight: 400;
+    font-size: 12px;
+    color: #82869E;
+}
 .comment-info span::before {
     content: "";
     height: 3px;
@@ -538,7 +595,7 @@
 
 .rotation-leaderboard {
     position: sticky;
-    padding: 1rem 1.25rem 1.25rem 1.25rem;
+    padding: 1rem;
     background: #FFFFFF;
     border-radius: 12px;
     transition: top 0.2s;
@@ -548,6 +605,14 @@
     padding-bottom: 1rem;
     border-bottom: 1px solid #E4E5F0;
     margin-bottom: 1rem;
+}
+
+.leaderboard-buttons .leaderboard-col:nth-child(2) {
+    padding-right: 8px;
+}
+
+.leaderboard-buttons .leaderboard-col:nth-child(3) {
+    padding-left: 8px;
 }
 
 .leaderboard-buttons button {
@@ -560,25 +625,25 @@
 .leaderboard-header {
     display: flex;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .leaderboard-header p {
     margin-left: 0.5rem;
     margin-bottom: 0;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 20px;
     color: #000000;
 }
 
 .leaderboard-type {
     position: relative;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .listed-date {
     text-align: center;
-    padding: 0.75rem 0;
+    padding: 7px 0;
     font-weight: 600;
     font-size: 16px;
     color: #82869E;
@@ -617,7 +682,7 @@
 }
 
 .leaderboard-head-item p {
-    padding: 0.75rem 0.75rem 0.75rem 0;
+    padding: 9px 0.75rem 9px 0;
     font-weight: 600;
     font-size: 14px;
     color: #1B1D29;
@@ -629,7 +694,7 @@
 }
 
 .leaderboard-head .leaderboard-head-item:first-child p {
-    padding: 0.75rem 0rem 0.75rem 0.75rem;
+    padding: 9px 0rem 9px 0.75rem;
 }
 
 .leaderboard-content {
@@ -638,7 +703,7 @@
 }
 
 .leaderboard-item {
-    padding: 0.55rem 1rem;
+    padding: 0.5rem 1rem;
     align-items: center;
     font-weight: 400;
     font-size: 14px;
@@ -646,7 +711,7 @@
 }
 
 .leaderboard-item:nth-child(odd) {
-    background-color: #FBFDFD;
+    background-color: #F3F3F7;
 }
 
 .leaderboard-item:nth-child(even) {
@@ -1101,6 +1166,18 @@
     .leaderboard-buttons button {
         font-size: 14px;
     }
+
+    .rotation-sale-secondary .second-sale-price {
+        font-size: 20px
+    }
+
+    .rotation-sale-secondary .first-sale-price {
+        font-size: 12px
+    }
+
+    .button-play {
+        padding: 13px 7px 13px 7px;
+    }
 }
 
 @media (max-width: 992px) {
@@ -1114,6 +1191,39 @@
 
     .rotation-col-right {
         padding-left: 15px;
+    }
+
+    .button-play {
+        padding: 13px;
+    }
+
+    .rotation-inputs .rotation-col:first-child, .rotation-buttons .rotation-col:first-child {
+        padding-right: 15px;
+    }
+
+    .rotation-inputs .rotation-col:nth-child(2), .rotation-buttons .rotation-col:nth-child(2) {
+        padding-left: 15px;
+    }
+
+    .rotation-header {
+        display: block;
+    }
+
+    .rotation-header-block {
+        margin-bottom: 8px;
+    }
+
+    .rotation-header h1 {
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .rotation-inputs {
+        margin-bottom: 8px;
+    }
+
+    .rotation-inputs-select {
+        margin-bottom: 8px;
     }
 
     .rotation-detail {
@@ -1159,10 +1269,6 @@
 
     .rotation-marquee {
         padding: 12px 0;
-    }
-
-    .rotation-player {
-        margin-bottom: 1rem;
     }
 
     .rotation-notify {
@@ -1221,10 +1327,6 @@
     }
 
     .rotation-points {
-        margin-bottom: 1rem;
-    }
-
-    .rotation-inputs {
         margin-bottom: 1rem;
     }
 
@@ -1315,9 +1417,17 @@
     }
 
     .leaderboard-buttons {
-        padding: 0.75rem 1rem;
+        padding-bottom: 0.75rem;
         margin-bottom: 0;
         border-bottom: none;
+    }
+
+    .leaderboard-buttons .leaderboard-col:nth-child(2) {
+        padding-left: 30px;
+    }
+
+    .leaderboard-buttons .leaderboard-col:nth-child(3) {
+        padding-right: 30px;
     }
 
     .leaderboard-content .leaderboard-item:nth-last-child(-n+6) {

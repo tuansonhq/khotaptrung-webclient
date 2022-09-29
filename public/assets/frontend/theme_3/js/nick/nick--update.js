@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     var product_list = new Swiper('.list-nap-game', {
         autoplay: false,
         navigation: {
@@ -14,7 +15,7 @@ $(document).ready(function () {
 
         loop: false,
         centeredSlides: false,
-        slidesPerView: 4,
+        slidesPerView: 4.5,
         slidesPerGroup: 3,
         speed: 800,
         spaceBetween: 16,
@@ -26,13 +27,13 @@ $(document).ready(function () {
         observeParents: true,
         breakpoints: {
             992: {
-                slidesPerView: 4,
+                slidesPerView: 3.2,
             },
             768:{
-                slidesPerView: 4,
+                slidesPerView: 3.2,
             },
             480: {
-                slidesPerView: 3.5,
+                slidesPerView: 1.5,
 
             }
         }
@@ -45,10 +46,14 @@ $(document).ready(function () {
        loadDataTable();
     });
     $('.item-sort-nick-label').on('click', function (e) {
+        let url = window.location.href;
         let id = $(this).attr('for');
+        let sortData = $(`#${id}`).val();
+        let updatedURL = updateQueryStringParameter(url, 'sort_by_data', sortData);
+        window.history.pushState({}, null, updatedURL);
         let query = {
             page:1,
-            sort_by_data:$(`#${id}`).val(),
+            sort_by_data: sortData,
         }
         loadDataTable(query);
     });
@@ -65,7 +70,7 @@ $(document).ready(function () {
         $('#openOrder').modal('show');
     });
 
-    $(document).on('submit', '#openOrder .formDonhangAccount', function(e){
+    $('body').on('submit', '#openOrder .formDonhangAccount', function(e){
         e.preventDefault();
 
         let formSubmit = $(this);
@@ -89,6 +94,7 @@ $(document).ready(function () {
                 $('#openOrder').modal('hide');
                 if(response.status == 1){
                     $('#successModal').modal('show');
+
                 }
                 else if (response.status == 2){
                     swal(
@@ -132,9 +138,6 @@ $(document).ready(function () {
 
 
     });
-    $('.js-toggle-content').click(function () {
-        handleToggleContent('.content-video-in');
-    });
 
     // Function when user search
     $('.media-form-search').submit(function (e) {
@@ -159,18 +162,26 @@ function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',st
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
         Object.keys(params).forEach(key => {
-            query[key] = params[key];
-            let input = $(`#data_sort [name=${key}]`);
+            if ((key.indexOf('select_data')) > -1) {
+                if (key === 'select_data_0'){
+                    query['select_data'] = params[key];
+                } else {
+                    query['select_data'] += "|" + params[key];
+                }
+            }else {
+                query[key] = params[key];
+            }
+            let input = $(`#data_sort [data-query=${key}]`);
             input.val(params[key]);
         });
         $('#data_sort select').niceSelect('update');
     }
-
     $.ajax({
         type: 'GET',
         url: url_ajax,
         data: query,
         beforeSend: function (xhr) {
+            $('#listLoader').css('min-height', `500px`);
             $("#account_data").empty().html('');
             $("#listLoader").removeClass('d-none');
         },
@@ -182,10 +193,16 @@ function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',st
                     return;
                 }
                 $("#account_data").html(res.data);
+
+                $('.nick_total').html('');
+                $('.nick_total').html('('+ res.nick_total +' sản phẩm)');
+
             }else {
                 let html = '';
                 html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + res.message + '</span></div></div>';
                 $("#account_data").html(html);
+                $('.nick_total').html('');
+                $('.nick_total').html('('+ 0 +' sản phẩm)');
             }
         },
         error: function (data) {
@@ -193,19 +210,11 @@ function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',st
         },
         complete: function (data) {
             $("#listLoader").addClass('d-none');
+            $("#listLoader").removeAttr("style");
+            // Scroll to top of account_data div
+            $('html, body').animate({
+                scrollTop: $('#account_data').offset().top - 300
+            }, 600 );
         }
     });
-}
-
-function handleToggleContent(selector){
-    $('.js-toggle-content .view-less').toggle();
-    $('.js-toggle-content .view-more').toggle();
-    let elm = $(selector);
-    elm.toggleClass('content-video-in-add');
-    if ($('.view-less').is(":visible")) {
-        let initialHeight = elm.css('max-height', 'initial').height();
-        elm.animate({maxHeight: initialHeight + 16},250)
-    } else {
-        elm.animate({maxHeight: 280},250)
-    }
 }

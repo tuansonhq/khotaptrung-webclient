@@ -1,34 +1,33 @@
 
 @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
-    @if(Request::is('/'))
-        <script>
-            $(document).on('scroll',function(){
-                if ($(this).scrollTop() > 180) {
+{{--    @if(Request::is('/'))--}}
+{{--        <script>--}}
+{{--            $(document).on('scroll',function(){--}}
+{{--                if ($(this).scrollTop() > 180) {--}}
+{{--                    $('#menu-service').addClass("menu-fix");--}}
+{{--                } else {--}}
+{{--                    $('#menu-service').removeClass("menu-fix");--}}
+{{--                }--}}
+{{--            });--}}
+{{--        </script>--}}
+{{--    @else--}}
+{{--        <script>--}}
+{{--            $(document).ready(function () {--}}
+{{--                $('#menu-service .menu-category').css("height","48px");--}}
 
-                    $('#menu-service').addClass("menu-fix");
-                } else {
-                    $('#menu-service').removeClass("menu-fix");
-                }
-            });
-        </script>
-    @else
-        <script>
-            $(document).ready(function () {
-                $('#menu-service .menu-category').css("height","48px");
+{{--                $('#menu-service .menu-category').css("top","120px");--}}
+{{--            });--}}
+{{--            $(document).on('scroll',function(){--}}
+{{--                if ($(this).scrollTop() > 10) {--}}
+{{--                    $('#menu-service .menu-category').css("position","fixed");--}}
+{{--                    $('#menu-service .menu-category').css("top","80px");--}}
 
-                $('#menu-service .menu-category').css("top","120px");
-            });
-            $(document).on('scroll',function(){
-                if ($(this).scrollTop() > 40) {
-                    $('#menu-service .menu-category').css("position","fixed");
-                    $('#menu-service .menu-category').css("top","80px");
-
-                } else {
-                    $('#menu-service .menu-category').css("position","inherit");
-                    $('#menu-service .menu-category').css("top","120px");                }
-            });
-        </script>
-    @endif
+{{--                } else {--}}
+{{--                    $('#menu-service .menu-category').css("position","inherit");--}}
+{{--                    $('#menu-service .menu-category').css("top","120px");                }--}}
+{{--            });--}}
+{{--        </script>--}}
+{{--    @endif--}}
 @else
     @include('frontend.widget.__menu__side')
 
@@ -71,10 +70,10 @@
 @if (!\App\Library\AuthCustom::check())
     @include('frontend.widget.modal.__login')
 @endif
-@if(!Request::is('/'))
-    @if(Session::has('url_return.id_return'))
-        @php
-            Session::forget('url_return.id_return');
-        @endphp
-    @endif
-@endif
+{{--@if(!Request::is('/'))--}}
+{{--    @if(Session::has('url_return.id_return'))--}}
+{{--        @php--}}
+{{--            Session::forget('url_return.id_return');--}}
+{{--        @endphp--}}
+{{--    @endif--}}
+{{--@endif--}}

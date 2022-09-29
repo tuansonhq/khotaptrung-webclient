@@ -2,7 +2,266 @@
 @section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
+    @if(isset($data->params) && isset($data->params->article_type))
+        {!! $data->params->article_type !!}
+    @endif
+    @if($data == null)
+        <div class="item_buy">
+            <div class="container pt-3" style="padding-bottom: 600px">
+                <div class="row pb-3 pt-3">
+                    <div class="col-md-12 text-center">
+                        <span style="color: red;font-size: 16px;">
+                            @if(isset($message))
+                                {{ $message }}
+                            @else
+                                Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật dịch vụ thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                            @endif
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    @else
+    <!-- Cookie  -->
+    @php
+        if (isset($data->price_old)) {
+            $sale_percent = (($data->price_old - $data->price) / $data->price_old) * 100;
+            $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
+        } else {
+            $sale_percent = 0;
+        }
+    @endphp
+    @php
+        $totalaccount = 0;
+        if(isset($data->category->items_count)){
+            if ((isset($data->category->account_fake) && $data->category->account_fake > 1) || (isset($data->category->custom->account_fake) && $data->category->custom->account_fake > 1)){
+                $totalaccount = str_replace(',','.',number_format(round(isset($data->category->custom->account_fake) ? $data->category->items_count*$data->category->custom->account_fake : $data->category->items_count*$data->category->account_fake)));
+            }
+        }else{
+            $totalaccount = 0;
+        }
+    @endphp
+    @php
+        $data_cookie = Cookie::get('viewed_account') ?? '[]';
+
+        $flag_viewed = true;
+        $data_cookie = json_decode($data_cookie,true);
+
+            foreach ($data_cookie as $key => $acc_viewed){
+                if($acc_viewed['randId'] == $data->randId){
+                 $flag_viewed = false;
+                }
+            }
+            if ($flag_viewed){
+                    if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {
+                         array_pop($data_cookie);
+                     }
+                    $data_save = [
+                        'image'=>$data->image,
+                        'category'=>isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title,
+                        'randId'=>$data->randId,
+                        'price'=>$data->price,
+                        'price_old'=>$data->price_old,
+                        'promotion'=>$sale_percent,
+                        'buy_account'=>$totalaccount,
+                     ];
+                    array_unshift($data_cookie,$data_save);
+                    $data_cookie = json_encode($data_cookie);
+                    Cookie::queue('viewed_account',$data_cookie,43200);
+            }
+    @endphp
+
+    {{-- <fieldset id="fieldset-three">
+
+    <section>
+        <div class="container container-fix banner-mobile-container-ct">
+            <div class="row marginauto banner-mobile-row-ct">
+                <div class="col-auto left-right" style="width: 10%">
+                    <img class="lazy previous-step-one-tra-gop" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
+                </div>
+
+                <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
+                    <h3>Xác nhận thanh toán</h3>
+                </div>
+                <div class="col-auto left-right" style="width: 10%">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="max-header-fix">
+        <div class="row marginauto" style="padding: 12px 16px">
+
+            <div class="col-md-12 left-right title-order-ct">
+                <span>Thông tin tài khoản #521479</span>
+            </div>
+
+            <div class="col-md-12 left-right" id="order-errors">
+                <div class="row marginauto order-errors">
+                    <div class="col-md-12 left-right">
+                        <small>Lỗi rồi em ơi</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 left-right padding-order-ct">
+                <div class="row marginauto">
+                    <div class="col-md-12 left-right background-order-ct">
+                        <div class="row marginauto background-order-body-row-ct">
+                            <div class="col-auto left-right background-order-col-left-ct">
+                                <span>Nhà phát hành</span>
+                            </div>
+                            <div class="col-auto left-right background-order-col-right-ct">
+                                <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/zing.png" alt="">
+                            </div>
+                        </div>
+
+                        <div class="row marginauto background-order-body-row-ct">
+                            <div class="col-auto left-right background-order-col-left-ct">
+                                <span>Tên game</span>
+                            </div>
+                            <div class="col-auto left-right background-order-col-right-ct">
+                                <small>Ngọc rồng</small>
+                            </div>
+                        </div>
+
+                        <div class="row marginauto background-order-body-row-ct">
+                            <div class="col-auto left-right background-order-col-left-ct">
+                                <span>Số lượng</span>
+                            </div>
+                            <div class="col-auto left-right background-order-col-right-ct">
+                                <small>01</small>
+                            </div>
+                        </div>
+
+                        <div class="row marginauto background-order-body-bottom-ct">
+                            <div class="col-auto left-right background-order-col-left-ct">
+                                <span>Tổng tiền</span>
+                            </div>
+                            <div class="col-auto left-right background-order-col-right-ct">
+                                <small>250.000 đ</small>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-12 left-right title-tra-gop">
+                <span>Thông tin trả góp</span>
+            </div>
+
+            <div class="col-md-12 left-right">
+                <div class="row body-title-detail-ct">
+
+                    <div class="col-md-6 text-left body-title-detail-nick-col-ct">
+                        <div class="row marginauto">
+                            <div class="col-md-12 left-right body-title-detail-span-ct">
+                                <span>Trả trước</span>
+                            </div>
+                            <div class="col-md-12 left-right body-title-detail-select-ct">
+                                <input readonly autocomplete="off" class="input-defautf-ct input-modal-defautf-ct-play" type="text" placeholder="50.000">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-md-6 text-left body-title-detail-nick-col-ct">
+                        <div class="row marginauto password-mobile">
+                            <div class="col-md-12 left-right body-title-detail-span-ct">
+                                <span>Trả lần 2</span>
+                            </div>
+                            <div class="col-md-12 left-right body-title-detail-select-ct" style="position: relative">
+                                <input readonly autocomplete="off" class="input-defautf-ct" type="text" placeholder="200.000">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-12 left-right">
+                <div class="row body-title-detail-ct">
+                    <div class="col-md-12 left-right body-title-detail-span-ct body-title-detail-col-ng-ct">
+                        <span>Mã bảo vệ</span>
+                    </div>
+                    <div class="col-auto text-left body-title-detail-col-left-ng-ct chitiet-nick-input">
+                        <div class="row marginauto">
+                            <div class="col-md-12 left-right body-title-detail-select-ct">
+                                <input autocomplete="off" class="input-defautf-ct" type="text" placeholder="Nhập mã bảo vệ">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-auto text-left body-title-detail-col-center-ng-ct">
+                        <div class="row marginauto password-mobile capcha-image-bg">
+                            <div class="col-md-12 left-right body-title-detail-select-ct">
+                                <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/capcha.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-auto text-left body-title-detail-col-right-ng-ct">
+                        <div class="row marginauto password-mobile capcha-image-bg">
+                            <div class="col-md-12 left-right body-title-detail-select-ct">
+                                <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/rf-capcha.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12 left-right padding-order-ct">
+                <div class="row marginauto">
+                    <div class="col-md-12 left-right background-order-ct">
+                        <div class="row marginauto thong-tin-tra-gop-mobile">
+                            <div class="col-6 left-right">
+                                <span>Quy định trả góp</span>
+                            </div>
+                            <div class="col-auto left-right data-scroll-mobile">
+                                <div class="row marginauto up-scroll-mobile"><div class="col-auto left-right"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/up.png" alt=""></div></div>
+                            </div>
+                        </div>
+                        <div class="row marginauto tragop-order-body-row-ct">
+                            <div class="col-md-12 left-right background-order-col-left-ct">
+                                <ul id="tra-gop-scroll-mobile">
+                                    <li>Trả góp ban đầu 20% giá trị tài khoản dự kiến mua để giữ tài khoản. Áp dụng cho tài khoản trị giá từ 200.000đ trở lên.</li>
+                                    <li>Thời gian trả góp: 7 ngày. Không tính ngày xác nhận trả góp.</li>
+                                    <li>Phí trả góp: 0%</li>
+                                    <li>Trong thời gian trả góp bạn phải hoàn tất phần còn lại để giao dịch hoàn tất.</li>
+                                    <li>Trường hợp quá thời gian trả góp giao dịch của bạn sẽ tự động bị hủy bỏ và hoàn lại 20% số tiền đã góp ban đầu.Lúc này tài khoản được tự do. (Ví dụ: tài khoản cần mua trị giá 1 triệu, trả góp ban đầu 200.000đ.</li>
+                                    <li>Nếu quá thời gian giao dịch trả góp bị hủy bỏ thì bạn sẽ nhận lại 20% tức 40.000đ trong tài khoản) Quy trình giao dịch đều xử lý tự động, bạn không thể gọi hỗ trợ gia hạn thêm ngày trả góp hoặc đổi khác quy định trên.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-12 left-right padding-order-footer-ct">
+                <div class="row marginauto">
+                    <div class="col-md-12 left-right">
+                        <button class="button-default-ct button-next-step-two-tra-gop" type="button">Xác nhận</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <input type="hidden" name="previous" class="input-back-step-two-tra-gop" value="Trang trước"/>
+
+</fieldset> --}}
+
     <fieldset id="fieldset-one">
         <div id="pageBreadcrumb">
 
@@ -53,6 +312,8 @@
         <section id="showslideracc">
 
         </section>
+
+
 
         {{-- <div class="modal fade login show order-modal" id="traGop" aria-modal="true">
 
@@ -324,7 +585,7 @@
                                     </div>
                                     <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
                                         <button type="button" class="button-success-primary">
-                                            <a href="/lich-su-mua-account" style="display: block">Lịch sử mua Acc</a>
+                                            <a href="/lich-su-mua-nick" style="display: block">Lịch sử mua Acc</a>
                                         </button>
                                     </div>
                                 </div>
@@ -343,193 +604,12 @@
 
     <fieldset id="fieldset-two"></fieldset>
 
-    {{-- <fieldset id="fieldset-three">
-
-        <section>
-            <div class="container container-fix banner-mobile-container-ct">
-                <div class="row marginauto banner-mobile-row-ct">
-                    <div class="col-auto left-right" style="width: 10%">
-                        <img class="lazy previous-step-one-tra-gop" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
-                    </div>
-
-                    <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                        <h3>Xác nhận thanh toán</h3>
-                    </div>
-                    <div class="col-auto left-right" style="width: 10%">
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="max-header-fix">
-            <div class="row marginauto" style="padding: 12px 16px">
-
-                <div class="col-md-12 left-right title-order-ct">
-                    <span>Thông tin tài khoản #521479</span>
-                </div>
-
-                <div class="col-md-12 left-right" id="order-errors">
-                    <div class="row marginauto order-errors">
-                        <div class="col-md-12 left-right">
-                            <small>Lỗi rồi em ơi</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12 left-right padding-order-ct">
-                    <div class="row marginauto">
-                        <div class="col-md-12 left-right background-order-ct">
-                            <div class="row marginauto background-order-body-row-ct">
-                                <div class="col-auto left-right background-order-col-left-ct">
-                                    <span>Nhà phát hành</span>
-                                </div>
-                                <div class="col-auto left-right background-order-col-right-ct">
-                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/zing.png" alt="">
-                                </div>
-                            </div>
-
-                            <div class="row marginauto background-order-body-row-ct">
-                                <div class="col-auto left-right background-order-col-left-ct">
-                                    <span>Tên game</span>
-                                </div>
-                                <div class="col-auto left-right background-order-col-right-ct">
-                                    <small>Ngọc rồng</small>
-                                </div>
-                            </div>
-
-                            <div class="row marginauto background-order-body-row-ct">
-                                <div class="col-auto left-right background-order-col-left-ct">
-                                    <span>Số lượng</span>
-                                </div>
-                                <div class="col-auto left-right background-order-col-right-ct">
-                                    <small>01</small>
-                                </div>
-                            </div>
-
-                            <div class="row marginauto background-order-body-bottom-ct">
-                                <div class="col-auto left-right background-order-col-left-ct">
-                                    <span>Tổng tiền</span>
-                                </div>
-                                <div class="col-auto left-right background-order-col-right-ct">
-                                    <small>250.000 đ</small>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-md-12 left-right title-tra-gop">
-                    <span>Thông tin trả góp</span>
-                </div>
-
-                <div class="col-md-12 left-right">
-                    <div class="row body-title-detail-ct">
-
-                        <div class="col-md-6 text-left body-title-detail-nick-col-ct">
-                            <div class="row marginauto">
-                                <div class="col-md-12 left-right body-title-detail-span-ct">
-                                    <span>Trả trước</span>
-                                </div>
-                                <div class="col-md-12 left-right body-title-detail-select-ct">
-                                    <input readonly autocomplete="off" class="input-defautf-ct input-modal-defautf-ct-play" type="text" placeholder="50.000">
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                        <div class="col-md-6 text-left body-title-detail-nick-col-ct">
-                            <div class="row marginauto password-mobile">
-                                <div class="col-md-12 left-right body-title-detail-span-ct">
-                                    <span>Trả lần 2</span>
-                                </div>
-                                <div class="col-md-12 left-right body-title-detail-select-ct" style="position: relative">
-                                    <input readonly autocomplete="off" class="input-defautf-ct" type="text" placeholder="200.000">
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-md-12 left-right">
-                    <div class="row body-title-detail-ct">
-                        <div class="col-md-12 left-right body-title-detail-span-ct body-title-detail-col-ng-ct">
-                            <span>Mã bảo vệ</span>
-                        </div>
-                        <div class="col-auto text-left body-title-detail-col-left-ng-ct chitiet-nick-input">
-                            <div class="row marginauto">
-                                <div class="col-md-12 left-right body-title-detail-select-ct">
-                                    <input autocomplete="off" class="input-defautf-ct" type="text" placeholder="Nhập mã bảo vệ">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-auto text-left body-title-detail-col-center-ng-ct">
-                            <div class="row marginauto password-mobile capcha-image-bg">
-                                <div class="col-md-12 left-right body-title-detail-select-ct">
-                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/capcha.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-auto text-left body-title-detail-col-right-ng-ct">
-                            <div class="row marginauto password-mobile capcha-image-bg">
-                                <div class="col-md-12 left-right body-title-detail-select-ct">
-                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/rf-capcha.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-md-12 left-right padding-order-ct">
-                    <div class="row marginauto">
-                        <div class="col-md-12 left-right background-order-ct">
-                            <div class="row marginauto thong-tin-tra-gop-mobile">
-                                <div class="col-6 left-right">
-                                    <span>Quy định trả góp</span>
-                                </div>
-                                <div class="col-auto left-right data-scroll-mobile">
-                                    <div class="row marginauto up-scroll-mobile"><div class="col-auto left-right"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/up.png" alt=""></div></div>
-                                </div>
-                            </div>
-                            <div class="row marginauto tragop-order-body-row-ct">
-                                <div class="col-md-12 left-right background-order-col-left-ct">
-                                    <ul id="tra-gop-scroll-mobile">
-                                        <li>Trả góp ban đầu 20% giá trị tài khoản dự kiến mua để giữ tài khoản. Áp dụng cho tài khoản trị giá từ 200.000đ trở lên.</li>
-                                        <li>Thời gian trả góp: 7 ngày. Không tính ngày xác nhận trả góp.</li>
-                                        <li>Phí trả góp: 0%</li>
-                                        <li>Trong thời gian trả góp bạn phải hoàn tất phần còn lại để giao dịch hoàn tất.</li>
-                                        <li>Trường hợp quá thời gian trả góp giao dịch của bạn sẽ tự động bị hủy bỏ và hoàn lại 20% số tiền đã góp ban đầu.Lúc này tài khoản được tự do. (Ví dụ: tài khoản cần mua trị giá 1 triệu, trả góp ban đầu 200.000đ.</li>
-                                        <li>Nếu quá thời gian giao dịch trả góp bị hủy bỏ thì bạn sẽ nhận lại 20% tức 40.000đ trong tài khoản) Quy trình giao dịch đều xử lý tự động, bạn không thể gọi hỗ trợ gia hạn thêm ngày trả góp hoặc đổi khác quy định trên.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-md-12 left-right padding-order-footer-ct">
-                    <div class="row marginauto">
-                        <div class="col-md-12 left-right">
-                            <button class="button-default-ct button-next-step-two-tra-gop" type="button">Xác nhận</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <input type="hidden" name="previous" class="input-back-step-two-tra-gop" value="Trang trước"/>
-
-    </fieldset> --}}
-
     <input type="hidden" name="slug" class="slug" value="{{ $slug }}">
     <input type="hidden" name="slug" class="slug_category" value="{{ $slug_category }}">
+    @endif
+
+
+
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick-detail.js?v={{time()}}"></script>
 @endsection

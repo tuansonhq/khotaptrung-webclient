@@ -14,8 +14,8 @@
                     Nick.vn xin chào!
                 </div>
                 <div class="fw-400 c-mt-4">Vui lòng đăng nhập để sử dụng dịch vụ của chúng tôi</div>
-                <button class="handleLoginPopup btn primary w-100 c-mt-12" id="handleLoginPopup">Đăng nhập</button>
-                <div class="c-mt-10">Bạn chưa có tài khoản? <a href="" class="handleLoginPopup text-primary-color fw-500 underline" id="handleRegisterPopup" style="text-decoration: underline">Đăng ký</a></div>
+                <button class="btn primary w-100 c-mt-12" id="handleLoginPopup">Đăng nhập</button>
+                <div class="c-mt-10">Bạn chưa có tài khoản? <a href="" class="text-primary-color fw-500 underline" id="handleRegisterPopup" style="text-decoration: underline">Đăng ký</a></div>
             </div>
         </div>
         </div>

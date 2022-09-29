@@ -4,10 +4,10 @@ return [
     'characters' => ['1', '2', '3', '4','5','6','7','8','9'],
     'default' => [
         'length'    => 3,
-        'width'     => 79,
-        'height'    => 40,
+        'width'     => 62,
+        'height'    => 32,
         'quality'   => 100,
-        'lines'     => -1,
+        'lines'     => 0,
         'fontSize' => 60,
         'bgImage'   => false,
         'bgColor'   => '#f3f3f7',
@@ -24,8 +24,8 @@ return [
 
     'flat' => [
         'length'    => 3,
-        'width'     => 79,
-        'height'    => 40,
+        'width'     => 62,
+        'height'    => 32,
         'quality'   => 100,
         'lines'     => -1,
         'fontSize' => 60,

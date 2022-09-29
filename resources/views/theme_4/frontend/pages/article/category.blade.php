@@ -2,6 +2,9 @@
 @section('seo_head')
     @include('frontend.widget.__seo_head')
 @endsection
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('content')
     <section>
         <div class="container">
@@ -16,7 +19,7 @@
                                 @if(isset($message))
                                     {{ $message }}
                                 @else
-                                    Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                                    Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
                                 @endif
                             </span>
                             </div>
@@ -27,7 +30,13 @@
             <nav aria-label="breadcrumb" style="margin-top: 10px;">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="/tin-tuc">Tin tức</a></li>
+                    <li class="breadcrumb-item">
+                        @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                        <a href="/blog">Blog</a>
+                        @else
+                            <a href="/tin-tuc">Tin tức</a>
+                        @endif
+                    </li>
                     <li class="breadcrumb-item active" aria-current="page"><a href="/tin-tuc/{{ $title->slug }}">{{ $title->title }}</a></li>
                 </ol>
             </nav>

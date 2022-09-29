@@ -4,13 +4,18 @@
         <span>
             <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/tintucindex.svg" alt="">
         </span>
-        <h2 class="text-title">Tin tức</h2>
-
+        @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+        <h2 class="text-title">{{ $title??'Tin tức' }}</h2>
+        @else
+            <h2 class="text-title">{{ $title??'Blog' }}</h2>
+        @endif
         <div class="navbar-spacer"></div>
         <div class="text-view-more">
-
-            <a href="/tin-tuc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/arrowright.svg)"></i></a>
-
+            @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+            <a href="/blog" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/arrowright.svg)"></i></a>
+            @else
+                <a href="/tin-tuc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/arrowright.svg)"></i></a>
+            @endif
         </div>
     </div>
 {{--    <div class="box-product-content tab-content">--}}
@@ -24,25 +29,54 @@
                         @foreach($data as $val)
 
                         <div class="swiper-slide" >
-                            <a href="/tin-tuc/{{ $val->slug }}">
+                            @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                            <a href="/blog/{{ $val->slug }}">
                                 <div class="item-product__box-img item-news-img">
                                     @if(isset($val->image))
-                                    <img src="{{\App\Library\MediaHelpers::media($val->image)}}" alt="">
+                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val->image)}}" alt="">
+                                    @else
+                                    <img onerror="imgError(this)" class="img-list-nick-category lazy" src="/assets/frontend/theme_3/image/images_1/no-image.png" alt="No-image">
                                     @endif
                                 </div>
                                 <div class="item-product__box-content item-news-content">
 
-
-                                    <div class="item-product__box-name">
+                                    <div class="item-product__box-name mh_item-product__box-name text-limit limit-2">
                                         {{ $val->title }}
                                     </div>
                                     <div class="item-product__box-date">
-                                        {{ formatDateTime($val->created_at) }}
+                                        @if(isset($val->published_at))
+                                        {{ formatDateTime($val->published_at) }}
+                                        @else
+                                            {{ formatDateTime($val->created_at) }}
+                                        @endif
                                     </div>
 
 
                                 </div>
                             </a>
+                            @else
+                                <a href="/tin-tuc/{{ $val->slug }}">
+                                    <div class="item-product__box-img item-news-img">
+                                        @if(isset($val->image))
+                                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val->image)}}" alt="">
+                                        @else
+                                            <img onerror="imgError(this)" class="img-list-nick-category lazy" src="/assets/frontend/theme_3/image/images_1/no-image.png" alt="No-image">
+                                        @endif
+                                    </div>
+                                    <div class="item-product__box-content item-news-content">
+
+
+                                        <div class="item-product__box-name mh_item-product__box-name text-limit limit-2">
+                                            {{ $val->title }}
+                                        </div>
+                                        <div class="item-product__box-date">
+                                            {{ formatDateTime($val->created_at) }}
+                                        </div>
+
+
+                                    </div>
+                                </a>
+                            @endif
                         </div>
 
                         @endforeach

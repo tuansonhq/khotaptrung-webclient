@@ -92,7 +92,8 @@
             </div>
             <div class="box-logo ">
                 <a href="/">
-                    <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="">
+                    <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="" class="d-lg-block d-none">
+                    <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo_mobile'))}}" alt="" class="d-lg-none ">
                 </a>
             </div>
             <div class="box-search">
@@ -111,49 +112,49 @@
                 @if(isset(theme('')->theme_config->sys_theme_ver))
                     @if(theme('')->theme_config->sys_theme_ver != 'sys_theme_ver3.0' )
                          @include('frontend.widget.__menu_header')
-{{--                    @else--}}
-{{--                        <ul class="nav header-main-nav d-none d-lg-flex ">--}}
-{{--                            <li class="nav-item item-about active">--}}
-{{--                                <a href="">--}}
-{{--                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">--}}
-{{--                                    <div class="item-about-title">Khuyến mãi</div>--}}
-{{--                                </a>--}}
-{{--                            </li>--}}
-{{--                            <li class="nav-item item-about">--}}
-{{--                                <a href="">--}}
-{{--                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/notifications.svg" alt="">--}}
-{{--                                    <div class="item-about-title">Thông báo</div>--}}
-{{--                                </a>--}}
-{{--                            </li>--}}
-{{--                            <li class="nav-item item-about">--}}
-{{--                                <a href="">--}}
-{{--                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/cup.svg" alt="">--}}
-{{--                                    <div class="item-about-title">Sự kiện hot</div>--}}
-{{--                                </a>--}}
-{{--                            </li>--}}
-{{--                        </ul>--}}
+                    @else
+                        <ul class="nav header-main-nav d-none d-lg-flex ">
+                            <li class="nav-item item-about " id="item-about-khuyenmai">
+                                <a href="javascript:void(0)">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">
+                                    <div class="item-about-title">Khuyến mãi</div>
+                                </a>
+                            </li>
+                            <li class="nav-item item-about" id="item-about-thongbao">
+                                <a href="javascript:void(0)">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/notifications.svg" alt="">
+                                    <div class="item-about-title">Thông báo</div>
+                                </a>
+                            </li>
+                            <li class="nav-item item-about" id="item-about-sukienhot">
+                                <a href="javascript:void(0)">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/cup.svg" alt="">
+                                    <div class="item-about-title">Sự kiện hot</div>
+                                </a>
+                            </li>
+                        </ul>
                     @endif
-{{--                @else--}}
-{{--                    <ul class="nav header-main-nav d-none d-lg-flex ">--}}
-{{--                        <li class="nav-item item-about active">--}}
-{{--                            <a href="">--}}
-{{--                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">--}}
-{{--                                <div class="item-about-title">Khuyến mãi</div>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item item-about">--}}
-{{--                            <a href="">--}}
-{{--                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/notifications.svg" alt="">--}}
-{{--                                <div class="item-about-title">Thông báo</div>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                        <li class="nav-item item-about">--}}
-{{--                            <a href="">--}}
-{{--                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/cup.svg" alt="">--}}
-{{--                                <div class="item-about-title">Sự kiện hot</div>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
+                @else
+                    <ul class="nav header-main-nav d-none d-lg-flex ">
+                        <li class="nav-item item-about ">
+                            <a href="">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">
+                                <div class="item-about-title">Khuyến mãi</div>
+                            </a>
+                        </li>
+                        <li class="nav-item item-about">
+                            <a href="">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/notifications.svg" alt="">
+                                <div class="item-about-title">Thông báo</div>
+                            </a>
+                        </li>
+                        <li class="nav-item item-about">
+                            <a href="">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/cup.svg" alt="">
+                                <div class="item-about-title">Sự kiện hot</div>
+                            </a>
+                        </li>
+                    </ul>
                 @endif
             </div>
             <div class="navbar-spacer"></div>
@@ -195,8 +196,12 @@
                             <div  class="account-balance"></div>
                         </div>
                         <div class="account-avatar">
+                            @if(setting('sys_avatar') != '')
 
-                            <img src="/assets/frontend/theme_3/image/avatar.png" alt="">
+                                <img src="{{ setting('sys_avatar') }}" alt="sys_avatar">
+                            @else
+                            <img src="/assets/frontend/theme_3/image/anhdaidien.svg" alt="sys_avatar">
+                            @endif
                         </div>
                         <div class="account-triangle ">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/triangle.png" alt="">
@@ -205,7 +210,12 @@
                             <!--                                <div class="arrow down"></div>-->
                             <div class=" d-flex">
                                 <div class="acount-logined_img">
-                                    <img src="/assets/frontend/theme_3/image/avatar.png" alt="">
+                                    @if(setting('sys_avatar') != '')
+
+                                        <img src="{{ setting('sys_avatar') }}" alt="sys_avatar">
+                                    @else
+                                        <img src="/assets/frontend/theme_3/image/anhdaidien.svg" alt="sys_avatar">
+                                    @endif
                                 </div>
                                 <div class="account-logined_info">
                                     <div id="account-id">
@@ -241,7 +251,7 @@
                 </div>
                 <div class="box-deposit-charge box-deposit">
                     <a class="btn btn-submit">
-                        Nạp thẻ
+                        Nạp tiền
                     </a>
                 </div>
                 <div class="box-registed box-deposit">
@@ -250,17 +260,13 @@
                     </a>
                 </div>
             </div>
-
-
             {{--                mobile--}}
-
             <div class="box-login-mobile">
                 <div class="box-loading-mobile ">
                     <div class="loading">
                         <div class="loading-child"></div>
                     </div>
                 </div>
-
                 <div class="box-account-mobile">
                     {{--                    <div class="box-account-logined " onclick="openMenuProfile()">--}}
                     {{--                        <div class="account-avatar">--}}
@@ -269,13 +275,73 @@
                     {{--                    </div>--}}
                 </div>
             </div>
-
         </div>
 
+        @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
+            @include('frontend.widget.__head__dich__vu__noi__bat')
+        @endif
+        <div class="menu-profile-mobile">
+            <div class="row marginauto">
+                {{--Bắt đầu vòng lặp --}}
+                <div class="col-md-12 left-right nav-bar-hr">
+                    <section class="media-mobile">
+                        <div class=" banner-mobile-container-ct">
+                            <div class="row marginauto banner-mobile-row-ct">
+                                <div class="col-auto left-right box-account-mobile_open" style="width: 10%" onclick="openMenuProfile()" >
+                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
+                                </div>
 
+                                <div class="col-auto left-right banner-mobile-span text-center text-login" style="width: 80%">
+                                    <p>Tài khoản</p>
+                                </div>
+                                <div class="col-auto left-right" style="width: 10%">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    {{--                                    Vong lap thang bố--}}
+                    <div class="acount-logined_mobile d-flex m-3">
+                        <div class="acount-logined_img">
+                            <img src="/assets/frontend/theme_3/image/avatar.png" alt="">
+                        </div>
+                        <div class="account-logined_info">
+                            <div id="account-id-mobile">
+                            </div>
+                            <div id="account-balance-mobile">
+                            </div>
+                        </div>
+                    </div>
+                    @include('frontend.widget.__menu_profile')
+                </div>
+            </div>
+        </div>
 
+        <div class="menu-category-mobile">
+            <ul class=" ">
+                {{--            <li>--}}
+                {{--                <a href="/">--}}
+                {{--                        <img src="./assets/frontend/{{theme('')->theme_key}}/image/svg/home-2.svg" alt="">--}}
+                {{--                    <span>Trang chủ</span>--}}
+
+                {{--                </a>--}}
+                {{--            </li>--}}
+                {{--            <li>--}}
+                {{--                <a href="">--}}
+                {{--                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/km_mobile.svg" alt="">--}}
+                {{--                    <span>Khuyến mãi</span>--}}
+                {{--                </a>--}}
+                {{--            </li>--}}
+                {{--            <li>--}}
+                {{--                <a href="">--}}
+                {{--                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/sk_mobile.svg" alt="">--}}
+                {{--                    <span>Sư kiện hot</span>--}}
+                {{--                </a>--}}
+                {{--            </li>--}}
+                <div class="menu-category-mobile-partition"></div>
+                @include('frontend.widget.__head__dich__vu__noi__bat__mobile')
+            </ul>
+        </div>
     </nav>
-
 </header>
 <div class="header " id="menu-service"  style="  ;">
     @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
@@ -283,7 +349,6 @@
     @endif
     <div class="menu-profile-mobile">
         <div class="row marginauto">
-
             {{--Bắt đầu vòng lặp --}}
             <div class="col-md-12 left-right nav-bar-hr">
                 <section class="media-mobile">
@@ -307,21 +372,14 @@
                         <img src="/assets/frontend/theme_3/image/avatar.png" alt="">
                     </div>
                     <div class="account-logined_info">
-                        <div id="account-id-mobile">
-                            {{--                            <span class="">ID: </span>1234567--}}
+                        <div class="account-id-mobile">
                         </div>
-                        <div id="account-balance-mobile">
-                            {{--                            <span class="">Số dư: </span>0 đ--}}
+                        <div class="account-balance-mobile">
                         </div>
-
                     </div>
-
                 </div>
-
                 @include('frontend.widget.__menu_profile')
             </div>
-
-
         </div>
     </div>
 
@@ -334,22 +392,20 @@
 
 {{--                </a>--}}
 {{--            </li>--}}
-            <li>
-                <a href="">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/km_mobile.svg" alt="">
-                    <span>Khuyến mãi</span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/sk_mobile.svg" alt="">
-                    <span>Sư kiện hot</span>
-                </a>
-            </li>
+{{--            <li>--}}
+{{--                <a href="">--}}
+{{--                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/km_mobile.svg" alt="">--}}
+{{--                    <span>Khuyến mãi</span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
+{{--            <li>--}}
+{{--                <a href="">--}}
+{{--                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/sk_mobile.svg" alt="">--}}
+{{--                    <span>Sư kiện hot</span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
             <div class="menu-category-mobile-partition"></div>
             @include('frontend.widget.__head__dich__vu__noi__bat__mobile')
-{{--            <div class="menu-category-mobile-partition"></div>--}}
-
         </ul>
     </div>
 </div>

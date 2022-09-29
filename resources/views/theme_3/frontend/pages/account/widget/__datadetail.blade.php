@@ -20,7 +20,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12 left-right" id="showdetailacc">
+                            <div class="col-md-12 left-right">
                                 <div class="row marginauto">
                                     <div class="col-lg-6 col-md-12 left-right">
                                         <div class="row marginauto">
@@ -30,8 +30,14 @@
                                                         <div class="swiper-wrapper">
                                                             @foreach(explode('|',$data->image_extension) as $val)
                                                                 <div class="swiper-slide">
-                                                                    <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                                                        <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
+{{--                                                                    desktop--}}
+{{--                                                                    <a  data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}" class="d-lg-none">--}}
+{{--                                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">--}}
+{{--                                                                    </a>--}}
+{{--                                                                    mobile--}}
+                                                                    <a  data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false" class="d-none d-lg-block ">
+
+                                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                                                                     </a>
                                                                 </div>
                                                             @endforeach
@@ -51,23 +57,11 @@
                                                 <div class="gallery-thumb" style="overflow: hidden">
                                                     <div class="swiper gallery-thumbs gallery-thumbsmaxheadth swiper-container-horizontal">
                                                         <div class="swiper-wrapper">
-                                                            <div class="swiper-slide">
-                                                                <a class="" data-fancybox="gallerycoverDetail" href="https://cdn.upanh.info//storage/upload/product-acc/902/images/0xTbGLPKIv_1648889770.jpg">
-                                                                    <div class="row marginauto">
-                                                                        <div class="col-md-12 left-right default-overlay-ct swiper-slide-col">
-                                                                            <img src="https://cdn.upanh.info//storage/upload/product-acc/902/images/0xTbGLPKIv_1648889770.jpg" alt="" class="lazy">
-                                                                        </div>
-                                                                    </div>
-                                                                </a>
-                                                            </div>
                                                             @foreach(explode('|',$data->image_extension) as $val)
                                                                 <div class="swiper-slide">
-                                                                    <a class="" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                                                        <div class="row marginauto">
-                                                                            <div class="col-md-12 left-right default-overlay-ct swiper-slide-col">
-                                                                                <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
-                                                                            </div>
-                                                                        </div>
+
+                                                                    <a  class="d-lg-block d-none ">
+                                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                                                                     </a>
                                                                 </div>
                                                             @endforeach
@@ -138,7 +132,7 @@
 
                                                                 {{--                                                    bat dau vonh lap   --}}
                                                                 <?php
-                                                                    $total = 0;
+                                                                $total = 0;
                                                                 ?>
                                                                 @if(isset($data->groups))
                                                                     <?php $att_values = $data->groups ?>
@@ -147,7 +141,7 @@
                                                                             @if(isset($att_value->parent))
                                                                                 @if($total < 7)
                                                                                     <?php
-                                                                                        $total = $total + 1;
+                                                                                    $total = $total + 1;
                                                                                     ?>
                                                                                     <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
                                                                                         <div class="col-auto gallery-col-auto-left left-right">
@@ -173,7 +167,7 @@
                                                                                         @foreach($att->childs as $child)
                                                                                             @foreach($params as $key => $param)
                                                                                                 <?php
-                                                                                                    $total = $total + 1;
+                                                                                                $total = $total + 1;
                                                                                                 ?>
                                                                                                 @if($key == $child->id && $child->is_slug_override == null)
 
@@ -235,9 +229,9 @@
                                                     @if(isset($card_percent))
                                                         @if($card_percent == 0)
                                                             <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                                <div class="row marginauto nick-detail-button">
+                                                                <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="1">
                                                                     <div class="col-md-12 left-right">
-                                                                        <a href="/nap-the" class="button-not-bg-ct">
+                                                                        <a href="javascript:void(0);" class="button-not-bg-ct">
                                                                             <ul>
                                                                                 <li><small>Thẻ cào</small></li>
                                                                                 <li><span>{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span></li>
@@ -250,36 +244,36 @@
 
                                                         @endif
                                                     @else
-                                                    <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                        <div class="row marginauto nick-detail-button">
-                                                            <div class="col-md-12 left-right">
-                                                                <a href="/nap-the" class="button-not-bg-ct">
-                                                                    <ul>
-                                                                        <li><small>Thẻ cào</small></li>
-                                                                        <li><span>{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span></li>
-                                                                    </ul>
-                                                                </a>
+                                                        <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
+                                                            <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="1">
+                                                                <div class="col-md-12 left-right">
+                                                                    <a href="javascript:void(0);" class="button-not-bg-ct">
+                                                                        <ul>
+                                                                            <li><small>Thẻ cào</small></li>
+                                                                            <li><span>{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span></li>
+                                                                        </ul>
+                                                                    </a>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
                                                     @endif
 
+                                                    @if(isset($data->price_atm))
+                                                        <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
+                                                            <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="2">
+                                                                <div class="col-md-12 left-right">
+                                                                    <a href="javascript:void(0);" class="button-not-bg-ct">
+                                                                        <ul>
+                                                                            <li><small>ATM, Momo</small></li>
+                                                                            <li><span>{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span></li>
 
-                                            @if(isset($data->price_atm))
-                                            <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                <div class="row marginauto nick-detail-button">
-                                                    <div class="col-md-12 left-right">
-                                                        <a href="/recharge-atm" class="button-not-bg-ct">
-                                                            <ul>
-                                                                <li><small>ATM, Momo</small></li>
-                                                                @if(isset($data->price_atm))
-                                                                    <li><span>{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span></li>
-                                                                @endif
 
-                                                            </ul>
-                                                        </a>
+                                                                        </ul>
+                                                                    </a>
 
-                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     @endif
                                                 </div>
                                             </div>
@@ -313,12 +307,12 @@
 
                     <div class="col-lg-12 col-md-12 left-right">
                         <div class="gallery" style="overflow: hidden">
-                            <div class="swiper gallery-slider swiper-container-horizontal">
+                                <div class="swiper gallery-slider-mobile swiper-container-horizontal">
                                 <div class="swiper-wrapper">
-                                    @foreach(explode('|',$data->image_extension) as $val)
+                                    @foreach(explode('|',$data->image_extension) as $key => $val)
                                         <div class="swiper-slide">
-                                            <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                                <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
+                                            <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}" class="d-lg-none">
+                                                <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                                             </a>
                                         </div>
                                     @endforeach
@@ -329,19 +323,17 @@
 
                     <div class="col-md-12 left-right">
                         <div class="row marginauto body-row-nick-detail-ct">
-
-                            <div class="col-md-12 left-right" id="showdetailacc">
+                            <div class="col-md-12 left-right">
                                 <div class="row marginauto">
                                     <div class="col-12 left-right">
                                         <div class="row marginauto">
-
                                             <div class="col-lg-12 col-md-12 left-right gallery-thumb-nick">
                                                 <div class="gallery-thumb" style="overflow: hidden">
-                                                    <div class="swiper gallery-thumbs gallery-thumbsmaxheadth swiper-container-horizontal">
+                                                    <div class="swiper gallery-thumbs-mobile gallery-thumbsmaxheadth swiper-container-horizontal">
                                                         <div class="swiper-wrapper">
                                                             @foreach(explode('|',$data->image_extension) as $val)
                                                                 <div class="swiper-slide">
-                                                                    <a class="" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                                                    <a class="" >
                                                                         <div class="row marginauto">
                                                                             <div class="col-md-12 left-right default-overlay-ct swiper-slide-col">
                                                                                 <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
@@ -494,9 +486,9 @@
                                                 @if(isset($card_percent))
                                                     <div class="row marginauto justify-content-center gallery-right-footer">
                                                         <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                            <div class="row marginauto nick-detail-button">
+                                                            <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="1">
                                                                 <div class="col-md-12 left-right">
-                                                                    <a href="/" class="button-not-bg-ct">
+                                                                    <a href="/nap-the" class="button-not-bg-ct">
                                                                         <ul>
                                                                             <li><small>Thẻ cào</small></li>
                                                                             <li><span>{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span></li>
@@ -506,9 +498,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                            <div class="row marginauto nick-detail-button">
+                                                            <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="2">
                                                                 <div class="col-md-12 left-right">
-                                                                    <a href="/" class="button-not-bg-ct">
+                                                                    <a href="/recharge-atm" class="button-not-bg-ct">
                                                                         <ul>
                                                                             <li><small>ATM, Momo</small></li>
                                                                             @if(isset($data->price_atm))
@@ -523,7 +515,7 @@
                                                 @else
                                                     <div class="row marginauto justify-content-center gallery-right-footer">
                                                         <div class="col-md-12 col-12 modal-footer-success-col-right-ct">
-                                                            <div class="row marginauto nick-detail-button">
+                                                            <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="2">
                                                                 <div class="col-md-12 left-right">
                                                                     <a href="/" class="button-not-bg-ct">
                                                                         <ul>
@@ -556,24 +548,26 @@
             <section>
                 <div class="container container-fix body-container-ct">
                     <div class="row marginauto body-container-row-ct">
-                        <div class="col-md-12 left-right">
+                        <div class="col-md-12 left-right detailViewBlock">
                             <div class="row marginauto body-row-ct footer-row-ct">
                                 <div class="col-md-12 left-right">
-                                    <span>Mô tả sản phẩm {{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }} | Mã số: {{ $data->randId }}</span>
+                                    <span class="detailViewBlockTitle">Mô tả sản phẩm {{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }} | Mã số: {{ $data->randId }}</span>
                                 </div>
-                                <div class="col-md-12 left-right footer-row-col-ct content-video-in content-video-in-add">
+                                @if(substr($data->description,1200))
+                                <div class="col-md-12 left-right footer-row-col-ct content-video-in content-video-in-add detailViewBlockContent">
+                                @else
+                                <div class="col-md-12 left-right footer-row-col-ct content-video-in detailViewBlockContent">
+                                @endif
                                     {!! $data->description !!}
                                 </div>
 
+                                @if(substr($data->description,1200))
                                 <div class="col-md-12 left-right text-center js-toggle-content">
                                     <div class="view-more">
                                         <a href="javascript:void(0)" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/xemthem.svg)"></i></a>
                                     </div>
-                                    <div class="view-less">
-                                        <a href="javascript:void(0)" class="global__link__default">Thu gọn<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/rutgon.svg)"></i></a>
-                                    </div>
                                 </div>
-
+                                @endif
                             </div>
                         </div>
 
@@ -583,45 +577,227 @@
         @endif
 
         @if (App\Library\AuthCustom::check())
-        <div class="modal fade login show order-modal" id="openOrder" aria-modal="true">
+            <div class="modal fade login show order-modal" id="openOrder" aria-modal="true">
 
-            <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
-                <!--        <div class="image-login"></div>-->
-                <div class="modal-content">
-                    <form class="formDonhangAccount" action="/acc/{{ $data->randId }}/databuy" method="POST" data-id="{{ $data->id }}">
-                        {{ csrf_field() }}
-                        <div class="modal-header p-0" style="border-bottom: 0">
-                            <div class="row marginauto modal-header-order-ct">
-                                <div class="col-12 span__donhang text-center" style="position: relative">
-                                    <span>Xác nhận thanh toán</span>
-                                    <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
+                    <!--        <div class="image-login"></div>-->
+                    <div class="modal-content">
+                        <form class="formDonhangAccount" action="/acc/{{ $data->randId }}/databuy" method="POST" data-id="{{ $data->id }}">
+                            {{ csrf_field() }}
+                            <div class="modal-header p-0" style="border-bottom: 0">
+                                <div class="row marginauto modal-header-order-ct">
+                                    <div class="col-12 span__donhang text-center" style="position: relative">
+                                        <span>Xác nhận thanh toán</span>
+                                        <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="modal-body modal-body-order-ct">
+                                <div class="row marginauto">
+                                    <div class="col-md-12 left-right title-order-ct">
+                                        <span>Thông tin acc</span>
+                                    </div>
+                                    <div class="col-md-12 left-right padding-order-ct">
+                                        <div class="row marginauto">
+                                            <div class="col-md-12 left-right background-order-ct">
+                                                <div class="row marginauto background-order-row-ct">
+                                                    <div class="col-auto left-right background-order-col-left-ct">
+                                                        <span>Tài khoản</span>
+                                                    </div>
+                                                    <div class="col-auto left-right background-order-col-right-ct">
+                                                        <small>{{ App\Library\AuthCustom::user()->username }}</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 left-right padding-order-ct">
+                                        <div class="row marginauto">
+                                            <div class="col-md-12 left-right background-order-ct">
+                                                <div class="row marginauto background-order-body-row-ct">
+                                                    <div class="col-auto left-right background-order-col-left-ct">
+                                                        <span>Nhà phát hành</span>
+                                                    </div>
+                                                    <div class="col-auto left-right background-order-col-right-ct">
+                                                        <small>{{ $data->groups[0]->title }}</small>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row marginauto background-order-body-row-ct">
+                                                    <div class="col-auto left-right background-order-col-left-ct">
+                                                        <span>Tên game</span>
+                                                    </div>
+                                                    <div class="col-auto left-right background-order-col-right-ct">
+                                                        <small>{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}</small>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row marginauto background-order-body-row-ct">
+                                                    <div class="col-auto left-right background-order-col-left-ct">
+                                                        <span>Giá tiền</span>
+                                                    </div>
+                                                    <div class="col-auto left-right background-order-col-right-ct">
+                                                        <small>
+                                                            @if(isset($data->category->params->price) && isset($data->category->params))
+                                                                {{ str_replace(',','.',number_format($data->category->params->price)) }} đ
+                                                            @else
+                                                                {{ str_replace(',','.',number_format($data->price)) }} đ
+                                                            @endif
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 left-right padding-order-ct">
+                                        <div class="row marginauto">
+                                            <div class="col-md-12 left-right background-order-ct">
+
+                                                @if(isset($data->groups))
+                                                    <?php $att_values = $data->groups ?>
+
+                                                    @foreach($att_values as $att_value)
+                                                        @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                            @if(isset($att_value->parent))
+                                                                <div class="row marginauto background-order-body-row-ct">
+                                                                    <div class="col-auto left-right background-order-col-left-ct">
+                                                                        <span>{{ $att_value->parent->title??null }}</span>
+                                                                    </div>
+                                                                    <div class="col-auto left-right background-order-col-right-ct">
+                                                                        <small>{{ $att_value->title??null }}</small>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+
+                                                @if(isset($data->params) && isset($data->params->ext_info))
+                                                    <?php $params = json_decode(json_encode($data->params->ext_info),true); ?>
+                                                    @foreach ($params as $key => $param)
+                                                        <div class="row marginauto background-order-body-row-ct">
+                                                            <div class="col-auto left-right background-order-col-left-ct">
+                                                                <span>{{ $key }}</span>
+                                                            </div>
+                                                            <div class="col-auto left-right background-order-col-right-ct">
+                                                                <small>{{ $param }}</small>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 left-right padding-order-ct">
+                                        <div class="row marginauto">
+                                            <div class="col-md-12 left-right background-order-ct">
+                                                <div class="row marginauto background-order-row-ct">
+                                                    <div class="col-auto left-right background-order-col-left-ct">
+                                                        <span>Tổng thanh toán</span>
+                                                    </div>
+                                                    <div class="col-auto left-right background-order-col-right-ct">
+                                                    <span>
+                                                        @if(isset($data->category->params->price) && isset($data->category->params))
+                                                            {{ str_replace(',','.',number_format($data->category->params->price)) }} đ
+                                                        @else
+                                                            {{ str_replace(',','.',number_format($data->price)) }} đ
+                                                        @endif
+                                                    </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 left-right" id="order-errors">
+                                        <div class="row marginauto order-errors">
+                                            <div class="col-md-12 left-right">
+                                                @if(App\Library\AuthCustom::check())
+                                                    @if(App\Library\AuthCustom::user()->balance < $data->price)
+                                                        <small>Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</small>
+                                                    @endif
+                                                @else
+                                                    <small>Bạn phải đăng nhập mới có thể mua tài khoản tự động.</small>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12 left-right padding-order-footer-ct">
+                                        <div class="row marginauto">
+                                            <div class="col-md-12 left-right">
+                                                @if(App\Library\AuthCustom::check())
+
+                                                    @if(App\Library\AuthCustom::user()->balance >= $data->price)
+                                                        <button class="button-default-ct openSuccess" type="submit">Xác nhận</button>
+                                                    @else
+                                                        <button class="button-default-ct btn-open-recharge" type="button" data-tab="1" data-dismiss="modal">Nạp tiền</button>
+                                                    @endif
+                                                @else
+                                                    <button class="button-default-ct" type="button" onclick="openLoginModal();">Đăng nhập</button>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            {{-- HTMl to append to fieldset two of mobile device --}}
+            <div id="fieldsetTwoPayment">
+                <form class="formDonhangAccount" action="/acc/{{ $data->randId }}/databuy" method="POST" data-id="{{ $data->id }}">
+                    {{ csrf_field() }}
+                    <section>
+                        <div class="container container-fix banner-mobile-container-ct">
+                            <div class="row marginauto banner-mobile-row-ct">
+                                <div class="col-auto left-right" style="width: 10%">
+                                    <img class="lazy previous-step-one" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
+                                </div>
+
+                                <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
+                                    <h3>Xác nhận thanh toán</h3>
+                                </div>
+                                <div class="col-auto left-right" style="width: 10%">
                                 </div>
                             </div>
 
                         </div>
+                    </section>
 
-                        <div class="modal-body modal-body-order-ct">
-                            <div class="row marginauto">
+                    <section class="max-header-fix">
+                        <div class="row marginauto" style="padding: 12px 16px">
 
-                                <div class="col-md-12 left-right title-order-ct">
-                                    <span>Thông tin acc</span>
-                                </div>
+                            <div class="col-md-12 left-right title-order-ct">
+                                <span>Thông tin acc</span>
+                            </div>
 
-                                <div class="col-md-12 left-right" id="order-errors">
-                                    <div class="row marginauto order-errors">
-                                        <div class="col-md-12 left-right">
-                                            @if(App\Library\AuthCustom::check())
-                                                @if(App\Library\AuthCustom::user()->balance < $data->price)
-                                                    <small>Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</small>
-                                                @endif
-                                            @else
-                                                <small>Bạn phải đăng nhập mới có thể mua tài khoản tự động.</small>
+                            <div class="col-md-12 left-right" id="order-errors">
+                                <div class="row marginauto order-errors">
+                                    <div class="col-md-12 left-right purchaseError">
+                                        @if(App\Library\AuthCustom::check())
+                                            @if(App\Library\AuthCustom::user()->balance < $data->price)
+                                                <small>Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</small>
                                             @endif
-                                        </div>
+                                        @else
+                                            <small>Bạn phải đăng nhập mới có thể mua tài khoản tự động.</small>
+                                        @endif
                                     </div>
                                 </div>
+                            </div>
 
-
+                            @if (App\Library\AuthCustom::check())
                                 <div class="col-md-12 left-right padding-order-ct">
                                     <div class="row marginauto">
                                         <div class="col-md-12 left-right background-order-ct">
@@ -636,292 +812,97 @@
                                         </div>
                                     </div>
                                 </div>
+                            @endif
 
-                                <div class="col-md-12 left-right padding-order-ct">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 left-right background-order-ct">
-                                            <div class="row marginauto background-order-body-row-ct">
-                                                <div class="col-auto left-right background-order-col-left-ct">
-                                                    <span>Nhà phát hành</span>
-                                                </div>
-                                                <div class="col-auto left-right background-order-col-right-ct">
-                                                    <small>{{ $data->groups[0]->title }}</small>
-                                                </div>
+                            <div class="col-md-12 left-right padding-order-ct">
+                                <div class="row marginauto">
+                                    <div class="col-md-12 left-right background-order-ct">
+                                        <div class="row marginauto background-order-body-row-ct">
+                                            <div class="col-auto left-right background-order-col-left-ct">
+                                                <span>Nhà phát hành</span>
                                             </div>
-
-                                            <div class="row marginauto background-order-body-row-ct">
-                                                <div class="col-auto left-right background-order-col-left-ct">
-                                                    <span>Tên game</span>
-                                                </div>
-                                                <div class="col-auto left-right background-order-col-right-ct">
-                                                    <small>{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}</small>
-                                                </div>
-                                            </div>
-
-                                            <div class="row marginauto background-order-body-row-ct">
-                                                <div class="col-auto left-right background-order-col-left-ct">
-                                                    <span>Giá tiền</span>
-                                                </div>
-                                                <div class="col-auto left-right background-order-col-right-ct">
-                                                    <small>
-                                                        @if(isset($data->category->params->price) && isset($data->category->params))
-                                                            {{ str_replace(',','.',number_format($data->category->params->price)) }} đ
-                                                        @else
-                                                            {{ str_replace(',','.',number_format($data->price)) }} đ
-                                                        @endif
-                                                    </small>
-                                                </div>
+                                            <div class="col-auto left-right background-order-col-right-ct">
+                                                <small>{{ $data->groups[0]->title }}</small>
                                             </div>
                                         </div>
 
-                                    </div>
-                                </div>
+                                        <div class="row marginauto background-order-body-row-ct">
+                                            <div class="col-auto left-right background-order-col-left-ct">
+                                                <span>Tên game</span>
+                                            </div>
+                                            <div class="col-auto left-right background-order-col-right-ct">
+                                                <small>{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}</small>
+                                            </div>
+                                        </div>
 
-                                <div class="col-md-12 left-right padding-order-ct">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 left-right background-order-ct">
-
-                                            @if(isset($data->groups))
-                                                <?php $att_values = $data->groups ?>
-
-                                                @foreach($att_values as $att_value)
-                                                    @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                        @if(isset($att_value->parent))
-                                                            <div class="row marginauto background-order-body-row-ct">
-                                                                <div class="col-auto left-right background-order-col-left-ct">
-                                                                    <span>{{ $att_value->parent->title??null }}</span>
-                                                                </div>
-                                                                <div class="col-auto left-right background-order-col-right-ct">
-                                                                    <small>{{ $att_value->title??null }}</small>
-                                                                </div>
-                                                            </div>
-                                                        @endif
+                                        <div class="row marginauto background-order-body-row-ct">
+                                            <div class="col-auto left-right background-order-col-left-ct">
+                                                <span>Giá tiền</span>
+                                            </div>
+                                            <div class="col-auto left-right background-order-col-right-ct">
+                                                <small>
+                                                    @if(isset($data->category->params->price) && isset($data->category->params))
+                                                        {{ str_replace(',','.',number_format($data->category->params->price)) }} đ
+                                                    @else
+                                                        {{ str_replace(',','.',number_format($data->price)) }} đ
                                                     @endif
-                                                @endforeach
-                                            @endif
-
-                                            @if(isset($data->params) && isset($data->params->ext_info))
-                                                <?php $params = json_decode(json_encode($data->params->ext_info),true); ?>
-                                                @foreach ($params as $key => $param)
-                                                    <div class="row marginauto background-order-body-row-ct">
-                                                        <div class="col-auto left-right background-order-col-left-ct">
-                                                            <span>{{ $key }}</span>
-                                                        </div>
-                                                        <div class="col-auto left-right background-order-col-right-ct">
-                                                            <small>{{ $param }}</small>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            @endif
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 left-right padding-order-ct">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 left-right background-order-ct">
-                                            <div class="row marginauto background-order-row-ct">
-                                                <div class="col-auto left-right background-order-col-left-ct">
-                                                    <span>Tổng thanh toán</span>
-                                                </div>
-                                                <div class="col-auto left-right background-order-col-right-ct">
-                                                    <span>
-                                                        @if(isset($data->category->params->price) && isset($data->category->params))
-                                                            {{ str_replace(',','.',number_format($data->category->params->price)) }} đ
-                                                        @else
-                                                            {{ str_replace(',','.',number_format($data->price)) }} đ
-                                                        @endif
-                                                    </span>
-                                                </div>
+                                                </small>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
+                            </div>
 
-                                <div class="col-md-12 left-right padding-order-footer-ct">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 left-right">
-                                            @if(App\Library\AuthCustom::check())
+                            <div class="col-md-12 left-right padding-order-ct">
+                                <div class="row marginauto">
+                                    <div class="col-md-12 left-right background-order-ct">
 
-                                                @if(App\Library\AuthCustom::user()->balance >= $data->price)
-                                                    <button class="button-default-ct openSuccess" type="submit">Xác nhận</button>
-                                                @else
-                                                    <div class="row marginauto justify-content-center gallery-right-footer">
-                                                        <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                            <button type="button" class="button-success-secondary">
-                                                                <a href="/nap-the" style="display: block">Nạp thẻ</a>
-                                                            </button>
+                                        @if(isset($data->groups))
+                                            <?php $att_values = $data->groups ?>
+
+                                            @foreach($att_values as $att_value)
+                                                @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                    @if(isset($att_value->parent))
+                                                        <div class="row marginauto background-order-body-row-ct">
+                                                            <div class="col-auto left-right background-order-col-left-ct">
+                                                                <span>{{ $att_value->parent->title??null }}</span>
+                                                            </div>
+                                                            <div class="col-auto left-right background-order-col-right-ct">
+                                                                <small>{{ $att_value->title??null }}</small>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                            <button type="button" class="button-success-primary">
-                                                                <a href="/recharge-atm" style="display: block">ATM, Momo</a>
-                                                            </button>
-                                                        </div>
-                                                    </div>
+                                                    @endif
                                                 @endif
-                                            @else
-                                                <button class="button-default-ct" type="button" onclick="openLoginModal();">Đăng nhập</button>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-
-        {{-- HTMl to append to fieldset two of mobile device --}}
-        <div id="fieldsetTwoPayment">
-            <form class="formDonhangAccount" action="/acc/{{ $data->randId }}/databuy" method="POST" data-id="{{ $data->id }}">
-                {{ csrf_field() }}
-                <section>
-                    <div class="container container-fix banner-mobile-container-ct">
-                        <div class="row marginauto banner-mobile-row-ct">
-                            <div class="col-auto left-right" style="width: 10%">
-                                <img class="lazy previous-step-one" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
-                            </div>
-
-                            <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                                <h3>Xác nhận thanh toán</h3>
-                            </div>
-                            <div class="col-auto left-right" style="width: 10%">
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-
-                <section class="max-header-fix">
-                    <div class="row marginauto" style="padding: 12px 16px">
-
-                        <div class="col-md-12 left-right title-order-ct">
-                            <span>Thông tin acc</span>
-                        </div>
-
-                        <div class="col-md-12 left-right" id="order-errors">
-                            <div class="row marginauto order-errors">
-                                <div class="col-md-12 left-right purchaseError">
-                                    @if(App\Library\AuthCustom::check())
-                                        @if(App\Library\AuthCustom::user()->balance < $data->price)
-                                            <small>Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</small>
+                                            @endforeach
                                         @endif
-                                    @else
-                                        <small>Bạn phải đăng nhập mới có thể mua tài khoản tự động.</small>
-                                    @endif
+
+                                        @if(isset($data->params) && isset($data->params->ext_info))
+                                            <?php $params = json_decode(json_encode($data->params->ext_info),true); ?>
+                                            @foreach ($params as $key => $param)
+                                                <div class="row marginauto background-order-body-row-ct">
+                                                    <div class="col-auto left-right background-order-col-left-ct">
+                                                        <span>{{ $key }}</span>
+                                                    </div>
+                                                    <div class="col-auto left-right background-order-col-right-ct">
+                                                        <small>{{ $param }}</small>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                    </div>
+
                                 </div>
                             </div>
-                        </div>
 
-                        @if (App\Library\AuthCustom::check())
                             <div class="col-md-12 left-right padding-order-ct">
                                 <div class="row marginauto">
                                     <div class="col-md-12 left-right background-order-ct">
                                         <div class="row marginauto background-order-row-ct">
                                             <div class="col-auto left-right background-order-col-left-ct">
-                                                <span>Tài khoản</span>
+                                                <span>Tổng thanh toán</span>
                                             </div>
                                             <div class="col-auto left-right background-order-col-right-ct">
-                                                <small>{{ App\Library\AuthCustom::user()->username }}</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-
-                        <div class="col-md-12 left-right padding-order-ct">
-                            <div class="row marginauto">
-                                <div class="col-md-12 left-right background-order-ct">
-                                    <div class="row marginauto background-order-body-row-ct">
-                                        <div class="col-auto left-right background-order-col-left-ct">
-                                            <span>Nhà phát hành</span>
-                                        </div>
-                                        <div class="col-auto left-right background-order-col-right-ct">
-                                            <small>{{ $data->groups[0]->title }}</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="row marginauto background-order-body-row-ct">
-                                        <div class="col-auto left-right background-order-col-left-ct">
-                                            <span>Tên game</span>
-                                        </div>
-                                        <div class="col-auto left-right background-order-col-right-ct">
-                                            <small>{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="row marginauto background-order-body-row-ct">
-                                        <div class="col-auto left-right background-order-col-left-ct">
-                                            <span>Giá tiền</span>
-                                        </div>
-                                        <div class="col-auto left-right background-order-col-right-ct">
-                                            <small>
-                                                @if(isset($data->category->params->price) && isset($data->category->params))
-                                                    {{ str_replace(',','.',number_format($data->category->params->price)) }} đ
-                                                @else
-                                                    {{ str_replace(',','.',number_format($data->price)) }} đ
-                                                @endif
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 left-right padding-order-ct">
-                            <div class="row marginauto">
-                                <div class="col-md-12 left-right background-order-ct">
-
-                                    @if(isset($data->groups))
-                                        <?php $att_values = $data->groups ?>
-
-                                        @foreach($att_values as $att_value)
-                                            @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                @if(isset($att_value->parent))
-                                                    <div class="row marginauto background-order-body-row-ct">
-                                                        <div class="col-auto left-right background-order-col-left-ct">
-                                                            <span>{{ $att_value->parent->title??null }}</span>
-                                                        </div>
-                                                        <div class="col-auto left-right background-order-col-right-ct">
-                                                            <small>{{ $att_value->title??null }}</small>
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    @endif
-
-                                    @if(isset($data->params) && isset($data->params->ext_info))
-                                        <?php $params = json_decode(json_encode($data->params->ext_info),true); ?>
-                                        @foreach ($params as $key => $param)
-                                            <div class="row marginauto background-order-body-row-ct">
-                                                <div class="col-auto left-right background-order-col-left-ct">
-                                                    <span>{{ $key }}</span>
-                                                </div>
-                                                <div class="col-auto left-right background-order-col-right-ct">
-                                                    <small>{{ $param }}</small>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    @endif
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 left-right padding-order-ct">
-                            <div class="row marginauto">
-                                <div class="col-md-12 left-right background-order-ct">
-                                    <div class="row marginauto background-order-row-ct">
-                                        <div class="col-auto left-right background-order-col-left-ct">
-                                            <span>Tổng thanh toán</span>
-                                        </div>
-                                        <div class="col-auto left-right background-order-col-right-ct">
                                             <span>
                                                 @if(isset($data->category->params->price) && isset($data->category->params))
                                                     {{ str_replace(',','.',number_format($data->category->params->price)) }} đ
@@ -929,45 +910,207 @@
                                                     {{ str_replace(',','.',number_format($data->price)) }} đ
                                                 @endif
                                             </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-12 left-right padding-order-footer-ct fixcungbuttonmobile">
-                            <div class="row marginauto" style="padding: 12px 16px">
-                                <div class="col-md-12 left-right">
-                                    @if(App\Library\AuthCustom::check())
+                            <div class="col-md-12 left-right padding-order-footer-ct fixcungbuttonmobile">
+                                <div class="row marginauto" style="padding: 12px 16px">
+                                    <div class="col-md-12 left-right">
+                                        @if(App\Library\AuthCustom::check())
 
-                                        @if(App\Library\AuthCustom::user()->balance >= $data->price)
-                                            <button class="button-default-ct button-next-step-two" type="submit">Xác nhận</button>
+                                            @if(App\Library\AuthCustom::user()->balance >= $data->price)
+                                                <button class="button-default-ct button-next-step-two" type="submit">Xác nhận</button>
+                                            @else
+                                                <div class="row marginauto justify-content-center gallery-right-footer">
+                                                    <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
+                                                        <button type="button" class="button-success-secondary">
+                                                            <a href="/nap-the" style="display: block">Nap thẻ</a>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
+                                                        <button type="button" class="button-success-primary">
+                                                            <a href="/recharge-atm" style="display: block">ATM, Momo</a>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         @else
-                                            <div class="row marginauto justify-content-center gallery-right-footer">
-                                                <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                    <button type="button" class="button-success-secondary">
-                                                        <a href="/nap-the" style="display: block">Nap thẻ</a>
-                                                    </button>
-                                                </div>
-                                                <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                    <button type="button" class="button-success-primary">
-                                                        <a href="/recharge-atm" style="display: block">ATM, Momo</a>
-                                                    </button>
-                                                </div>
-                                            </div>
+                                            <button class="button-default-ct" type="button" onclick="openLoginModal();">Đăng nhập</button>
                                         @endif
-                                    @else
-                                        <button class="button-default-ct" type="button" onclick="openLoginModal();">Đăng nhập</button>
-                                    @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <input type="hidden" name="previous" class="input-back-step-two" value="Trang trước"/>
+                </form>
+            </div>
+        @endif
+
+
+
+        <div class="modal fade login show order-modal" id="accDetail" aria-modal="true" data-backdrop="static" data-keyboard="false">
+
+            <div class="modal-dialog step-tab-panel  modal-dialog-centered  animated">
+                <!--        <div class="image-login"></div>-->
+                <div class="modal-content">
+                    <div class="modal-header p-0" style="border-bottom: 0">
+                        <div class="row marginauto modal-header-order-ct pt-fix-16 pb-fix-16">
+                            <div class="col-12 span__donhang" style="position: relative">
+                                <div class="row marginauto ">
+                                    <div class="col-md-12 left-right">
+                                        <span>Mã số: {{ $data->randId }}</span>
+                                    </div>
+                                    <div class="col-md-12 left-right">
+                                        <small>MỤC: {{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}</small>
+                                    </div>
+                                </div>
+                                <div class="close" data-dismiss="modal" aria-label="Close">
+                                    <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
 
-                <input type="hidden" name="previous" class="input-back-step-two" value="Trang trước"/>
-            </form>
+                    <div class="modal-body modal-body-order-ct">
+                        <div class="row marginauto">
+
+                            <div class="d-flex">
+{{--                                <div id="myCarousel" class="carousel slide acc-holder" data-ride="carousel">--}}
+{{--                                    <!-- Indicators -->--}}
+{{--                                    <ol class="">--}}
+{{--                                        @foreach(explode('|',$data->image_extension) as $key => $val)--}}
+{{--                                            <li data-target="#myCarousel" data-slide-to="{{$key+1}}" class="acc-holder_slides">--}}
+{{--                                                <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" />--}}
+{{--                                            </li>--}}
+
+{{--                                        @endforeach--}}
+{{--                                    </ol>--}}
+{{--                                </div>--}}
+{{--                                <div class="prevAccount">--}}
+{{--                                    <a class="prev" onclick="plusSlides(-1)">--}}
+{{--                                        <img src="/assets/frontend/theme_3/image/swiper-prev.svg" alt="">--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
+{{--                                <div class="nextAccount">--}}
+{{--                                    <a class="next" onclick="plusSlides(1)">--}}
+{{--                                        <img src="/assets/frontend/theme_3/image/swiper-next.svg" alt="">--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
+
+
+
+                            <!-- main images -->
+                                <div class="acc-holder ">
+                                    @foreach(explode('|',$data->image_extension) as $key => $val)
+
+                                    <div class="acc-holder_slides " >
+                                        <a class="acc-holder_expand" data-fancybox="galleryAccount" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                            <i class="__icon__profile --sm__profile --link__profile --link--acc" style="--path : url(/assets/frontend/theme_3/image/svg/expand-acc.svg)"></i>
+{{--                                            <img src="/assets/frontend/theme_3/image/svg/expand-acc.svg" alt="">--}}
+                                        </a>
+                                        <div class="acc-holder_badge">{{$key+1}} / {{count(explode('|',$data->image_extension))}}</div>
+                                        <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" />
+                                    </div>
+                                    @endforeach
+
+
+                                    <div class="prevAccount">
+                                        <a class="prev" onclick="plusSlides(-1)">
+                                            <img src="/assets/frontend/theme_3/image/swiper-prev.svg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="nextAccount">
+                                        <a class="next" onclick="plusSlides(1)">
+                                            <img src="/assets/frontend/theme_3/image/swiper-next.svg" alt="">
+                                        </a>
+                                    </div>
+
+
+                                </div>
+
+                                <!-- thumnails in a row -->
+                                <div class="flex-grow-1 ml-fix-12">
+                                    <div class="row acc-thumbnail  mx-0">
+                                        @foreach(explode('|',$data->image_extension) as $key => $val)
+                                            <div class="acc-thumbnail_column col-md-3 px-fix-6 mb-fix-12">
+                                                <div class="acc-thumbnail_badge" onclick="currentSlide({{$key+1}})">{{$key+1}}</div>
+                                                <img class="acc-thumbnail-image" src="{{\App\Library\MediaHelpers::media($val)}}" onclick="currentSlide({{$key+1}})" alt="Caption One">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        @endif
+
+        <script>
+
+            var slideIndex = 1;
+            var slideIndex1 = 1;
+            var ImageIndex = 0;
+            function swipe(event, direction){
+                var midpoint = Math.floor(screen.width/2);
+                var px = event.pageX;
+                var items = document.getElementsByClassName('acc-holder_slides');
+                var itemActive = items[ImageIndex];
+                if (direction === 'left') {
+                    itemActive.style.marginLeft = '-100%';
+                    itemActive.style.transition = '1s ';
+                    ImageIndex = ImageIndex < items.length - 1 ? ImageIndex + 1 : ImageIndex;
+                }else{
+                    itemActive.style.marginLeft = '0';
+                    itemActive.style.transition = '1s ';
+                    ImageIndex = ImageIndex >= 1 ? ImageIndex - 1 : 0;
+                }
+            }
+            showSlides(slideIndex);
+
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+                var i;
+                var slides = document.getElementsByClassName("acc-holder_slides");
+                var dots = document.getElementsByClassName("acc-thumbnail_column");
+                if (n > slides.length) {slideIndex = 1}
+                if (n < 1) {slideIndex = slides.length}
+
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                    // slides[i].style.display = "inline";
+                }
+
+
+
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex-1].style.display = "block";
+                // slides[slideIndex-1].style.display = "inline";
+                dots[slideIndex-1].className += " active";
+            }
+
+
+
+        </script>
+
+
     @endif
+
 @endif

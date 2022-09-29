@@ -5,7 +5,7 @@
                     <span>
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/muathegiare.svg" alt="">
                     </span>
-            <h2 class="text-title" >Chọn Game nạp giá rẻ</h2>
+            <h2 class="text-title" >{{ $title??'Nạp game giá rẻ nhé' }}</h2>
             <div class="navbar-spacer"></div>
         </div>
     </div>
@@ -36,7 +36,7 @@
                     <a href="/dich-vu/{{ @$service->slug }}" class="list-item-nick-hover">
                         <div class="row marginauto">
                             <div class="col-md-12 left-right default-overlay-nick-ct --fix-responsive">
-                                <img class="lazy" src="{{@\App\Library\MediaHelpers::media($service->image)}}" alt="{{ @$service->slug }}">
+                                <img onerror="imgError(this)" class="lazy" src="{{@\App\Library\MediaHelpers::media($service->image)}}" alt="{{ @$service->slug }}">
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">
                                 <span>{{ @$service->title }}</span>

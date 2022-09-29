@@ -21,13 +21,14 @@ $(document).ready(function () {
     $(document).on('click','.nick-findter',function(){
         $('#openFinter').modal('show');
     });
+
     $(document).on('click','.prepend-nick',function () {
         let target_name = $(this).data('close');
         if (target_name === 'started_at'){
-            $('[name=started_at],[name=ended_at]').val('');
+            $('[data-query=started_at],[data-query=ended_at]').val('');
+        } else {
+            $(`[data-query=${target_name}]`).val('');
         }
-        let target = $(`[name=${target_name}]`);
-        target.val('');
         loadData();
         loadDataTable();
         $('#openFinter').modal('hide');
@@ -53,14 +54,17 @@ $(document).ready(function () {
         let page = $(this).attr('href').split('page=')[1];
         let new_url = updateQueryStringParameter(url,'page',page);
         window.history.pushState({}, null, new_url);
+        loadData();
         loadDataTable();
     });
+
     $(document).on('click','.btn-ap-dung',function (e) {
         e.preventDefault();
         loadData();
         loadDataTable();
         $('#openFinter').modal('hide');
     });
+
     $(document).on('click','.js-show-pass',function (e) {
         e.preventDefault();
         let input_password = $('#password');
@@ -82,18 +86,18 @@ function loadData(){
     let html_append = '';
     let length = 0;
     let sort_data = [];
-    let sort_data_el = $('#data_sort [name]');
+    let sort_data_el = $('#data_sort [data-query]');
     Array.from(sort_data_el).forEach(function (elm) {
         if ($(elm)[0].tagName === 'INPUT' && !!$(elm).val().trim()){
-            let key = $(elm).attr('name');
+            let key = $(elm).attr('data-query');
             let value = $(elm).val();
             sort_data.push([key,value])
             ++length;
         }
-        if ($(elm)[0].tagName === 'SELECT' && !! $(elm).find(':selected').length && $(elm).find(':selected').val()){
-            let key = $(elm).attr('name');
+        if ($(elm)[0].tagName === 'SELECT' && !! $(elm).find(':selected').length && $(elm).val() || $(elm).data('query') === 'select_data'){
+            let key = $(elm).attr('data-query');
             let text = $(elm).find(':selected').text();
-            let value = $(elm).find(':selected').val();
+            let value = $(elm).find(':selected').val() || '';
             sort_data.push([key,value,text]);
             ++length;
         }
@@ -106,8 +110,8 @@ function loadData(){
         html_append += `<div class="col-auto prepend-nick" data-close="${sort_data[i][0]}">`;
         if (count_params == 2){
             if (sort_data[i][0] == 'started_at' || sort_data[i][0] == 'ended_at'){
-                let start = $('input[name=started_at]');
-                let end = $('input[name=ended_at]');
+                let start = $('input[data-query=started_at]');
+                let end = $('input[data-query=ended_at]');
                 if (!!start.val().trim() && !!end.val().trim()){
                     html_append += `<a href="javascript:void(0)">${start.val().trim()} - ${end.val().trim()} </a>`;
                 }
@@ -133,7 +137,13 @@ function loadData(){
         if (!i) {
             url_return = url +`?${sort_data[i][0]}=${sort_data[i][1]}`;
         } else {
-            url_return += `&${sort_data[i][0]}=${sort_data[i][1]}`;
+            /*Nếu mà nó trùng name nhau thì giá trị sẽ ngăn cách nhau bằng | chứ không thêm key mới vào url*/
+            if (sort_data[i][0] === sort_data[i - 1][0]) {
+                url_return += `|${sort_data[i][1]}`;
+            }
+            else {
+                url_return += `&${sort_data[i][0]}=${sort_data[i][1]}`;
+            }
         }
     }
     const urlParams = new URLSearchParams(window.location.search);

@@ -17,11 +17,15 @@
                             <div class="swiper-container list-nap-game col-md-12 text-left left-right">
                                 <div class="swiper-wrapper">
                                     @forelse($datacate as $k_cat => $service)
+                                        @if(isset($current_id) && $current_id == $service->id)
+                                            @continue
+                                        @else
+                                        @endif
                                     <div class="swiper-slide body-detail-ctng-col-ct">
                                         <a href="/dich-vu/{{@$service->slug}}">
                                             <div class="row marginauto hover-overlay-ct">
                                                 <div class="col-md-12 left-right default-overlay-ct service--thumbnail">
-                                                    <img class="lazy" src="{{@\App\Library\MediaHelpers::media($service->image)}}" alt="">
+                                                    <img onerror="imgError(this)" class="lazy" src="{{@\App\Library\MediaHelpers::media($service->image)}}" alt="">
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
                                                     <span>{{ $service->title }}</span>

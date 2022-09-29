@@ -1,37 +1,67 @@
 /*Lấy chiều dài để responsive*/
 let width = $(document).width();
+
+/*format tiền*/
+let money_format = wNumb({
+    thousand: '.',
+    suffix: ' đ'
+});
+let percent_format = wNumb({
+    suffix: ' %'
+});
+let money_format_vnd = wNumb({
+    thousand: '.',
+    suffix: ' vnd'
+});
 $(document).ready(function() {
+    // Button xử lý mở modal nạp tiền
+    $(document).on('click', '.handle-recharge-modal',function(e){
+        e.preventDefault();
+        $('#rechargeModal').modal('show');
+        let tabActive = $(this).data('tab');
+
+        if (tabActive) {
+            if (tabActive == 1) {
+                $('[href="#charge_card"]').tab('show');
+            }
+            if (tabActive == 2) {
+                $('[href="#atm_card"]').tab('show');
+            }
+        } else {
+            $('[href="#charge-card"]').tab('show');
+        }
+    });
+
+
     /*Tất cả các thẻ select sẽ được dùng plugin select nice*/
     $('select').niceSelect();
-
     /*Quantity*/
-    let js_quantity = $('.js-quantity');
-    if (js_quantity.length){
-        js_quantity.on('click','.js-quantity-minus',function (event) {
-            event.preventDefault();
-            let input = $(this).closest('.js-quantity').find('.js-quantity-input');
-            input.val(parseInt(input.val()) - 1);
-            if(input.val() < 1 || isNaN(input.val())){
-                input.val(1);
-            }
-        });
-        js_quantity.on('click','.js-quantity-add',function (event) {
-            event.preventDefault();
-            let input = $(this).closest('.js-quantity').find('.js-quantity-input');
-            input.val(parseInt(input.val()) + 1);
-            if(input.val() > 20 || isNaN(input.val())){
-                input.val(20);
-            }
-        });
-        js_quantity.on('input','.js-quantity-input',function () {
-            if ($(this).val() > 20 || isNaN($(this).val())){
-                $(this).val(20);
-            }
-            if ($(this).val() < 1 || isNaN($(this).val())){
-                $(this).val(1);
-            }
-        });
-    }
+    $(document).on('click','.js-quantity-minus',function (event) {
+        event.preventDefault();
+        let input = $(this).closest('.js-quantity').find('.js-quantity-input');
+        input.val(parseInt(input.val()) - 1);
+        if(input.val() < 1 || isNaN(input.val())){
+            input.val(1);
+        }
+        input.trigger('input')
+    });
+    $(document).on('click','.js-quantity-add',function (event) {
+        event.preventDefault();
+        let input = $(this).closest('.js-quantity').find('.js-quantity-input');
+        input.val(parseInt(input.val()) + 1);
+        if(input.val() > 20 || isNaN(input.val())){
+            input.val(20);
+        }
+        input.trigger('input');
+    });
+    $(document).on('input','.js-quantity-input',function () {
+        if ($(this).val() > 20 || isNaN($(this).val())){
+            $(this).val(20);
+        }
+        if ($(this).val() < 1 || isNaN($(this).val())){
+            $(this).val(1);
+        }
+    });
     /*End quantity*/
     /*Input chỉ được nhập số*/
     $(document).on('keypress','input[numberic]', function (e) {
@@ -64,18 +94,6 @@ $(document).ready(function() {
             }
         });
     }
-    /*option swiper card*/
-    let slider_count = 1;
-    if ($('.slider--card .swiper-wrapper').children().length > 1) {
-        slider_count = 1.25;
-    }
-    var swiper_card = new Swiper(".slider--card", {
-        slidesPerView: slider_count,
-        spaceBetween: 16,
-        freeMode: true,
-        observer: true,
-        observeParents: true,
-    });
 
     /*Mua thẻ thành công*/
     tippy('.js-copy-text', {
@@ -178,12 +196,12 @@ $(document).ready(function() {
 
     if (width < 992){
         /*Step Mobile*/
-        $(document).on('click','.js-step',function () {
+        $('body').on('click','.js-step',function () {
             let selector = $(this).data('target');
             let elm = $(selector);
             elm.css('transform','translateX(0)');
         })
-        $(document).on('click','.close-step',function (e) {
+        $('body').on('click','.close-step',function (e) {
             e.preventDefault();
             let elm = $(this).closest('.step');
             elm.css('transform','translateX(130%)')
@@ -230,34 +248,83 @@ $(document).ready(function() {
             });
         }
     });
+
     /*Seemore*/
-    let content_desc = $('.content-desc');
-    if (content_desc.length){
-        let max_height_desc = content_desc.outerHeight();
+    $(document).on('click','.see-more',function () {
+        handleToggleDesc($(this));
+    });
+    $('body').find('.content-desc').dblclick(function () {
+        handleToggleDesc('.see-more');
+    });
+
+    let max_height_desc;
+    window.onload = function (){
+         max_height_desc = $('body').find('.content-desc').outerHeight();
+        $('body').find('.content-desc').addClass('hide');
+    }
+    /*set max-height for content*/
+    /*handle toggle*/
+    function handleToggleDesc(selector) {
+        let content_desc = $('body').find('.content-desc');
+        $(selector).toggleClass('hide');
+        content_desc.toggleClass('hide');
+        if ($(selector).hasClass('hide')){
+            $(selector).attr('data-content','Ẩn bớt nội dung');
+            content_desc.css('max-height',max_height_desc);
+        }else {
+            $(selector).attr('data-content','Xem thêm nội dung');
+            content_desc.css('max-height','');
+        }
+    }
+    // dblclick on mobile
+    if (width < 1200) {
+        let touchtime = 0;
+        $('body').find('.content-desc').on("click", function() {
+            if (!touchtime) {
+                // set first click
+                touchtime = new Date().getTime();
+            } else {
+                // compare first click to this click and see if they occurred within double click threshold
+                if (((new Date().getTime()) - touchtime) < 500) {
+                    // double click occurred
+                    handleToggleDesc('.see-more');
+                    touchtime = 0;
+                } else {
+                    // not a double click so set as a new first click
+                    touchtime = new Date().getTime();
+                }
+            }
+        });
+    }
+
+    /*Seemore nick*/
+    let content_desc_nick = $('.content-desc-nick');
+    if (content_desc_nick.length){
+        let max_height_desc_nick = content_desc_nick.outerHeight();
         $(document).on('click','.see-more',function () {
             handleToggle($(this));
         });
-        content_desc.dblclick(function () {
+        content_desc_nick.dblclick(function () {
             handleToggle('.see-more');
         })
         /*set max-height for content*/
-        content_desc.toggleClass('hide',true);
+        content_desc_nick.toggleClass('hide',true);
         /*handle toggle*/
         function handleToggle(selector) {
             $(selector).toggleClass('hide');
-            content_desc.toggleClass('hide');
+            content_desc_nick.toggleClass('hide');
             if ($(selector).hasClass('hide')){
                 $(selector).attr('data-content','Ẩn bớt nội dung');
-                content_desc.css('max-height',max_height_desc);
+                content_desc_nick.css('max-height',max_height_desc);
             }else {
                 $(selector).attr('data-content','Xem thêm nội dung');
-                content_desc.css('max-height','');
+                content_desc_nick.css('max-height','');
             }
         }
         // dblclick on mobile
         if (width < 1200) {
             let touchtime = 0;
-            content_desc.on("click", function() {
+            content_desc_nick.on("click", function() {
                 if (!touchtime) {
                     // set first click
                     touchtime = new Date().getTime();
@@ -325,3 +392,4 @@ $(document).ready(function() {
         })
     }
 });
+

@@ -1,7 +1,9 @@
 @extends('frontend.layouts.master')
-@push('js')
-    <script src="/assets/frontend/theme_4/js/charge/charge.js?v={{time()}}"></script>
-@endpush
+{{--@push('js')--}}
+{{--@endpush--}}
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
 <section>
     <div class="container">

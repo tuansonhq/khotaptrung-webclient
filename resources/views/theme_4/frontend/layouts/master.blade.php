@@ -4,8 +4,9 @@
 <head>
 
     <meta charset="utf-8"/>
-    <meta name="viewport"
-          content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport"/>
+
     @yield('seo_head')
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     @yield('meta_robots')
@@ -37,6 +38,8 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css?v={{time()}}">
+
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/sw2.js"></script>
 
@@ -45,6 +48,8 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.umd.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>
+
 
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
@@ -89,13 +94,28 @@
     </style>
 
     @if(setting('sys_google_tag_manager_head') != '')
-    <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','{{setting('sys_google_tag_manager_head') }}');</script>
-        <!-- End Google Tag Manager -->
+
+        @foreach(explode('|',setting('sys_google_tag_manager_head')) as $tag => $sys)
+            @if($tag == 0)
+            <!-- Google Tag Manager -->
+                <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                    })(window,document,'script','dataLayer','{{ $sys }}');</script>
+                <!-- End Google Tag Manager -->
+            @elseif($tag == 1)
+            <!-- Hubjs Tag Manager -->
+                <script type="text/javascript">
+                    var _mtm = window._mtm = window._mtm || [];
+                    _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+                    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                    g.type='text/javascript'; g.async=true; g.src='https://analytics.hub-js.com/js/container_{{ $sys }}.js'; s.parentNode.insertBefore(g,s);
+                </script>
+                <!-- End Hubjs Tag Manager -->
+            @endif
+        @endforeach
+
     @endif
 </head>
 <body>
@@ -134,7 +154,112 @@
 @include('frontend.layouts.includes.header')
 
 @yield('content')
+<!-- Modal nạp tiền -->
+<div class="modal fade show" id="rechargeModal" aria-modal="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered animated">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Nạp tiền</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 24px">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" data-toggle="tab" href="#tab-modal-recharge" role="tab"
+                       aria-selected="true">Nạp thẻ</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" data-toggle="tab" href="#tab-modal-atm" role="tab"
+                       aria-selected="false">ATM</a>
+                </li>
+                {{--<li class="nav-item" role="presentation">
+                    <a class="nav-link" data-toggle="tab" href="#tab-modal-wallet" role="tab"
+                       aria-selected="false">Ví điện tử</a>
+                </li>--}}
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="tab-modal-recharge" role="tabpanel">
+                    <form action="{{route('postTelecomDepositAuto')}}" id="modal-form-charge">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="t-sub-2 mb-2">Nhà cung cấp</div>
+                            <select name="type" class="form-control mb-fix-12" id="modal-telecom">
+                                <!-- JS PASTE CODE HERE -->
+                            </select>
 
+                            <div class="t-sub-2 mb-2 mt-2">Chọn mệnh giá</div>
+                            <div class="list-card-deno" id="modal-amounts">
+                                <!-- JS PASTE CODE HERE -->
+                            </div>
+
+                            <div class="t-sub-2 mb-2">Mã số thẻ</div>
+                            <input autocomplete="off" class="form-control input-form w-100 mb-fix-12" name="pin" type="text" placeholder="Nhập mã số thẻ" required="">
+
+                            <div class="t-sub-2 mb-2 mt-2">Số seri</div>
+                            <input autocomplete="off" class="form-control input-form w-100 mb-fix-12" name="serial" type="text" placeholder="Nhập số seri thẻ" required="">
+
+                            <div class="default-form-group mt-2">
+                                <label class="text-form fw-600" style="font-weight: 600">Mã bảo vệ</label>
+                                <div class="row p-0">
+                                    <div class="col-md-12 d-flex ">
+                                        <input class="form-control input-form w-100" name="captcha" type="text" placeholder="Nhập mã bảo vệ" required>
+                                        <div class="captcha captcha_1">
+                                            <span class="reload">
+                                                {!! captcha_img('flat') !!}
+                                            </span>
+                                        </div>
+                                        <button class="refresh-captcha" id="modal-reload-captcha" type="button">
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/captcha_refresh.png" alt="">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-invalid message-form mt-2"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-big submit-modal-form-charge" style="background: #32c5d2;border: 1px solid #32c5d2;">Nạp tiền</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="tab-modal-atm" role="tabpanel">
+                    <div class="modal-body">
+                        <form action="">
+                            <div class="box-charge-card">
+                                {{--                                            <div class="atm-card-title mb-fix-20">--}}
+                                {{--                                                <span>Để hoàn tất đơn nạp, bạn vui lòng chuyển khoản theo cú pháp sau:</span>--}}
+                                {{--                                            </div>--}}
+                                <div class="dialog--content mb-fix-20">
+                                    <div class="card--gray">
+                                        @if (setting('sys_tranfer_content') != "")
+                                            {!! setting('sys_tranfer_content') !!}
+                                        @endif
+                                        <div class="card--attr transfer-title justify-content-center">
+                                            {{--                                            <div class="card--attr__name">--}}
+                                            {{--                                                Nội dung chuyển tiền--}}
+                                            {{--                                            </div>--}}
+                                            <div class="card--attr__value d-flex">
+                                                <div class="card__info transfer-code" id=""></div>
+
+                                                <div class="icon--coppy js-copy-text" aria-describedby="tippy-7" >
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {{--<div class="tab-pane fade" id="tab-modal-wallet" role="tabpanel">
+
+                </div>--}}
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Messenger Plugin chat Code -->
 <div id="fb-root" style="    z-index: 666;"></div>
 
@@ -253,6 +378,7 @@
 
 <script type="text/javascript" src="/assets/frontend/{{theme('')->theme_key}}/js/script.js"></script>
 <script  type="text/javascript" src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
+
 
 <script>
 

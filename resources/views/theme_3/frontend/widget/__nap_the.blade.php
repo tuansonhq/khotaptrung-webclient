@@ -7,22 +7,34 @@
                     <span>
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/naptienindex.svg" alt="">
                     </span>
-                    <h2 class="text-title" >Nạp tiền</h2>
+                    <h2 class="text-title" >{{ $title??'Nạp tiền' }}</h2>
                     <div class="navbar-spacer"></div>
                 </div>
                 <div class="box-product position-static" >
                     <div class="default-tab pr-fix-16 pl-fix-16">
+                        @if (setting('sys_charge_content') && setting('sys_charge_content') != "")
                         <ul class="nav justify-content-between row" role="tablist" >
+
+                            <li class="nav-item col-4 col-md-6 p-0  p-md-0" role="presentation">
+                                <a  class="nav-link active text-center " data-toggle="tab" href="#charge_card" role="tab" aria-selected="true">Nạp thẻ <span class="d-g-none">cào</span> </a>
+                            </li >
+                            <li class="nav-item col-4 col-md-6 p-0 p-md-0" role="presentation">
+                                <a  class="nav-link text-center "  data-toggle="tab" href="#atm_card" role="tab" aria-selected="false"> ATM <span class="d-g-none">tự động</span> </a>
+                            </li>
+                            <li class="nav-item col-4 col-md-6 p-0 p-md-0 d-lg-none" role="presentation">
+                                <a  class="nav-link text-center " data-toggle="tab" href="#intro_charge" role="tab" aria-selected="false">Thông báo</a>
+                            </li>
+                        </ul>
+                        @else
+                            <ul class="nav justify-content-between row" role="tablist" >
                             <li class="nav-item col-6 col-md-6 p-0  p-md-0" role="presentation">
                                 <a  class="nav-link active text-center " data-toggle="tab" href="#charge_card" role="tab" aria-selected="true">Nạp thẻ <span class="d-g-none">cào</span> </a>
                             </li >
                             <li class="nav-item col-6 col-md-6 p-0 p-md-0" role="presentation">
                                 <a  class="nav-link text-center "  data-toggle="tab" href="#atm_card" role="tab" aria-selected="false"> ATM <span class="d-g-none">tự động</span> </a>
                             </li>
-                            {{--                                    <li class="nav-item col-6col-md-6 p-0 p-md-0" role="presentation">--}}
-                            {{--                                        <a  class="nav-link text-center " data-toggle="tab" href="#wallet_card" role="tab" aria-selected="false">Ví điện tử</a>--}}
-                            {{--                                    </li>--}}
-                        </ul>
+                            </ul>
+                        @endif
                     </div>
                     <div class=" tab-content">
                         <div class="tab-pane fade active show  mt-3" id="charge_card" role="tabpanel" >
@@ -71,9 +83,44 @@
                                         </div>
                                         <div class="default-form-group mb-fix-20 d-block d-lg-none">
                                             <label class="text-form">Chọn mệnh giá</label>
+{{--                                            <div class="col-md-12 p-0" >--}}
+{{--                                                <div class="row m-0 amount_charge" id="amount_mobile">--}}
+{{--                                                    <div class="amount-loading">--}}
+{{--                                                        <div class="loader">--}}
+{{--                                                            <div class="loading-spokes">--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="spoke-container">--}}
+{{--                                                                    <div class="spoke"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+
+{{--                                                </div>--}}
+{{--                                            </div>--}}
                                             <div class="col-md-12 p-0" >
-                                                <div class="row m-0 amount_charge" id="amount_mobile">
-                                                    <div class="amount-loading">
+                                                <div class="amount_charge " >
+                                                    <div class="amount-loading m-0">
                                                         <div class="loader">
                                                             <div class="loading-spokes">
                                                                 <div class="spoke-container">
@@ -103,8 +150,17 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="swiper slider--charge--card__amount"   >
+                                                        <div class="swiper-wrapper" id="amount_mobile" >
+
+
+                                                        </div>
+
+                                                    </div>
 
                                                 </div>
+
+
                                             </div>
                                         </div>
                                         <div class="default-form-group mb-fix-20">
@@ -127,7 +183,7 @@
                                                 <div class="col-md-12 d-flex ">
                                                     <input class="input-form w-100" name="captcha" type="text" placeholder="Nhập mã bảo vệ" required>
                                                     <div class="captcha captcha_1" >
-                                                        <span class="reload">
+                                                        <span class="reload fix_capcha">
                                                              {!! captcha_img('flat') !!}
                                                         </span>
                                                     </div>
@@ -137,9 +193,17 @@
 
                                                 </div>
                                                 <div class="col-md-5 mt-md-fix-20 d-block d-lg-none">
-                                                    <button  class=" primary-button button-default-ct w-75 w-md-100"  type="submit" style="float: right">
-                                                        Nạp ngay
-                                                    </button>
+                                                    <div class="data_napthe_login">
+                                                        <a  class="primary-button button-default-ct w-75 w-md-100 text-center" onclick="openLoginModal();" style="float: right">
+                                                            Nạp ngay
+                                                        </a>
+                                                    </div>
+                                                    <div class="data_napthe_home">
+                                                        <button  class="primary-button button-default-ct w-75 w-md-100 text-center" type="submit" style="float: right">
+                                                            Nạp ngay
+                                                        </button>
+                                                    </div>
+
                                                 </div>
                                             </div>
 
@@ -150,47 +214,60 @@
                                             <label class="text-form">Chọn mệnh giá</label>
                                             <div class="col-md-12 p-0" >
                                                 <div class="row m-0 amount_charge" id="amount">
-                                                    <div class="amount-loading">
-                                                        <div class="loader">
-                                                            <div class="loading-spokes">
-                                                                <div class="spoke-container">
-                                                                    <div class="spoke"></div>
-                                                                </div>
-                                                                <div class="spoke-container">
-                                                                    <div class="spoke"></div>
-                                                                </div>
-                                                                <div class="spoke-container">
-                                                                    <div class="spoke"></div>
-                                                                </div>
-                                                                <div class="spoke-container">
-                                                                    <div class="spoke"></div>
-                                                                </div>
-                                                                <div class="spoke-container">
-                                                                    <div class="spoke"></div>
-                                                                </div>
-                                                                <div class="spoke-container">
-                                                                    <div class="spoke"></div>
-                                                                </div>
-                                                                <div class="spoke-container">
-                                                                    <div class="spoke"></div>
-                                                                </div>
-                                                                <div class="spoke-container">
-                                                                    <div class="spoke"></div>
-                                                                </div>
+
+
+                                                </div>
+                                                <div class="amount-loading">
+                                                    <div class="loader">
+                                                        <div class="loading-spokes">
+                                                            <div class="spoke-container">
+                                                                <div class="spoke"></div>
+                                                            </div>
+                                                            <div class="spoke-container">
+                                                                <div class="spoke"></div>
+                                                            </div>
+                                                            <div class="spoke-container">
+                                                                <div class="spoke"></div>
+                                                            </div>
+                                                            <div class="spoke-container">
+                                                                <div class="spoke"></div>
+                                                            </div>
+                                                            <div class="spoke-container">
+                                                                <div class="spoke"></div>
+                                                            </div>
+                                                            <div class="spoke-container">
+                                                                <div class="spoke"></div>
+                                                            </div>
+                                                            <div class="spoke-container">
+                                                                <div class="spoke"></div>
+                                                            </div>
+                                                            <div class="spoke-container">
+                                                                <div class="spoke"></div>
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
-                                        <button  class=" primary-button button-default-ct w-100 mb-fix-20"  type="submit" style="float: right">
-                                            Nạp ngay
-                                        </button>
+                                        <div class="data_napthe_login">
+                                            <a  class="primary-button button-default-ct w-100 mb-fix-20 text-center" onclick="openLoginModal();" style="float: right">
+                                                Nạp ngay
+                                            </a>
+                                        </div>
+                                        <div class="data_napthe_home">
+                                            <button  class="primary-button button-default-ct w-100 mb-fix-20 text-center" type="submit" style="float: right">
+                                                Nạp ngay
+                                            </button>
+                                        </div>
+
 
                                     </div>
-
-                                    @include('frontend.widget.modal.__charge')
+                                    <div class="row marginauto">
+                                        <div class="col-md-12 canhbao__napthe__col">
+                                            <span>Nạp thẻ vui lòng trọn mệnh giá,trong trường hợp bạn không chọn mệnh giá rất có thể thẻ cào của bạn sẽ mất trận trọng!</span>
+                                        </div>
+                                    </div>
+                                    @include('frontend.widget.modal.__confirm_charge')
                                 </div>
                             </form>
                         </div>
@@ -226,6 +303,26 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="tab-pane fade  mt-3 detailViewBlock" id="intro_charge" role="tabpanel" >
+                            <div class="charge-content-img" style="">
+                            </div>
+
+                            <div class="col-md-12 left-right d-none">
+                                <span class="detailViewBlockTitle">Thông báo</span>
+                            </div>
+                            @if (setting('sys_charge_content') != "")
+                                <div class="charge-content-detail_mobile detailViewBlockContent" style="  ">
+                                    <div class="" role="alert">
+                                        {!! setting('sys_charge_content') !!}
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="col-md-12 left-right text-center js-toggle-content noselect">
+                                <div class="view-more">
+                                    <a href="javascript:void(0)" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/theme_3/image/svg/xemthem.svg)"></i></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -234,19 +331,16 @@
             <div class="charge-content" style="">
                 <div class="charge-content-img" style="">
                 </div>
-                @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2' )
-                    <div class="charge-content-detail" style="  ">
-                        <div class="" role="alert">
-                            @if (setting('sys_charge_content') != "")
-
-                                {!! setting('sys_charge_content') !!}
-
-
-                            @endif
-                        </div>
+{{--                @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2' )--}}
+{{--                    --}}
+{{--                @endif--}}
+                @if (setting('sys_charge_content') != "")
+                <div class="charge-content-detail" style="  ">
+                    <div class="" role="alert">
+                        {!! setting('sys_charge_content') !!}
                     </div>
+                </div>
                 @endif
-
             </div>
 
         </div>

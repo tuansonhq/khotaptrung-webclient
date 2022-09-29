@@ -1,6 +1,6 @@
-$('#service-form').on('submit', function (e) {
+$('.service-form').on('submit', function (e) {
     e.preventDefault();
-    let keyword = convertToSlug($('#keyword--search').val());
+    let keyword = convertToSlug($(this).find('[name="search"]').val());
     let is_empty = true;
     let text_empty = $('#text-empty');
     text_empty.hide();
@@ -160,22 +160,64 @@ if (input_params_hide.length){
         // trong khoảng
         case '6':
             $('.js-selected').on('change', function () {
-                UpdatePrice6();
+
+                var type = $(this).data("type");
+
+                UpdatePrice6(type);
             });
+
             UpdatePrice6();
 
-        function UpdatePrice6() {
-            let rank_from = $('select[name=rank_from] option').filter(':selected').val();
-            let rank_to = $('select[name=rank_to] option').filter(':selected').val();
+        function UpdatePrice6(type) {
+            let rank_from = ($('select[name=rank_from]').val()) * 1;
+            let rank_to = ($('select[name=rank_to]').val()) * 1;
+
             let rank_from_name = $('select[name=rank_from] option').filter(':selected').text();
             let rank_to_name = $('select[name=rank_to] option').filter(':selected').text();
             let price = data_params.price;
 
             let total = 0;
             if (rank_from < rank_to) {
-                for (var i = parseInt(rank_from + 1); i <= rank_to; i++) {
+                // console.log(parseInt(rank_from + 1),rank_to)
+                for (var i = parseInt(rank_from) + 1; i <= rank_to; i++) {
                     total += parseInt(price[i] - price[i - 1]);
                 }
+            }else {
+
+                if (type == 0){
+
+                    $('.data-select-rank-end ul li[data-value=' + rank_to + ']').removeClass('selected');
+
+                    rank_to = rank_from + 1;
+                    for (var i = parseInt(rank_from) + 1; i <= rank_to; i++) {
+                        total += parseInt(price[i] - price[i - 1]);
+                    }
+                    $('select[name=rank_to]').val(rank_to);
+                    $('.data-select-rank-end ul li[data-value=' + rank_to + ']').addClass('selected');
+                    rank_to_name = $('.data-select-rank-end ul li[data-value=' + rank_to + ']').text();
+
+                    $('.data-select-rank-end .current').html('');
+                    $('.data-select-rank-end .current').html(rank_to_name);
+
+                }else{
+
+                    $('.data-select-rank-start ul li[data-value=' + rank_from + ']').removeClass('selected');
+
+                    rank_from = rank_to - 1;
+                    for (var i = parseInt(rank_from) + 1; i <= rank_to; i++) {
+                        total += parseInt(price[i] - price[i - 1]);
+                    }
+                    $('select[name=rank_from]').val(rank_from);
+                    // $('select[name=rank_from] option').val(rank_from);
+                    $('.data-select-rank-start ul li[data-value=' + rank_from + ']').addClass('selected');
+                    rank_from_name = $('.data-select-rank-start ul li[data-value=' + rank_from + ']').text();
+
+                    $('.data-select-rank-start .current').html('');
+                    $('.data-select-rank-start .current').html(rank_from_name);
+                }
+
+                // txt_price.html('Mức rank chọn không hợp lệ');
+                // return
             }
 
 
@@ -223,7 +265,15 @@ if (input_params_hide.length){
                 } else {
                     var s_price = data_params["price"];
                     var s_discount = data_params["discount"];
-                    discount = s_discount[server_id];
+                    discount = s_discount[0];
+                    for (let i = 0; i< s_price.length; i++){
+                        if (i){
+                            if (price >= s_price[i]){
+                                discount = s_discount[i];
+                            }
+                        }
+                    }
+                    // discount = s_discount[server_id];
                     total = price * discount;
                 }
                 total = parseInt(total / 1000 * data_params.input_pack_rate);
@@ -264,12 +314,26 @@ function checkboxRequired(selector) {
 }
 
 $('.submit-form').on('click', function () {
+    /*check conf tiền hay ko*/
+    let price_balance = ($('#surplus').val()) * 1;
+    let elm_text_total = Array.from($('.total--price'));
+    let elm_price = $(document).width() > 992 ? elm_text_total[0] : elm_text_total[1];
+    let price_total = ($(elm_price).text().match(/\d/g).join("")) * 1;
+    if (price_balance < price_total) {
+        $('#openOrder').modal('hide');
+        $('#rechargeModal').modal('show');
+        return
+    }
+
     let data_form = $('#formDataService').serializeArray().reduce(function (obj, item) {
         obj[item.name] = item.value;
         return obj;
     }, {});
+
     let url = $('#formDataService').attr('action');
-    data_form.selected = data_form.selected.replace(/\./g, "");
+    if (data_form.selected){
+        data_form.selected = data_form.selected.replace(/\./g, "");
+    }
 
     //loading btn;
     $(this).html('Đang xử lý...');
@@ -299,6 +363,7 @@ $('.submit-form').on('click', function () {
 
     // BOT
     let table_bot = $('#table-bot');
+if (table_bot.length){
     $.ajax({
         type: 'GET',
         url: '/show-bot',
@@ -312,4 +377,5 @@ $('.submit-form').on('click', function () {
             }
         },
     })
-
+}
+// Sau khi nhập đúng thì in ra màn hình

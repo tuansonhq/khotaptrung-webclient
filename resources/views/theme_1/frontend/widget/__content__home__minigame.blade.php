@@ -19,9 +19,9 @@
 
                                 @endif
                                 @if(isset($item->image))
-                                    <img class="game-list-image-in lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
+                                    <img class="game-list-image-in lazy" data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
                                 @else
-                                    <img class="game-list-image-in lazy" src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
+                                    <img class="game-list-image-in lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
                                 @endif
 {{--                                                                                Anh chinh--}}
 
@@ -34,7 +34,7 @@
                         </div>
                         <div class="game-list-description">
                             <div class="countime"></div>
-                            <p>Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}} </p>
+                            <p>Đã quay:  {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}} </p>
 
                             <div class="row marginauto price-minigame">
                                 <div class="col-md-12 left-right">

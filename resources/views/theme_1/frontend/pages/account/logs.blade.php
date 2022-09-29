@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('meta_robots')
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="noindex,nofollow" />
 @endsection
 @section('content')
 
@@ -12,6 +12,7 @@
                 <div class="account_sidebar_content">
                     <div class="account_sidebar_content_title">
                         <p>TÀI KHOẢN ĐÃ MUA</p>
+                        
                         <div class="account_sidebar_content_line"></div>
                     </div>
 

@@ -6,10 +6,6 @@
         <thead>
         <tr>
             <th>Thời gian</th>
-{{--            <th>Mã yêu cầu</th>--}}
-{{--            <th>Ngân hàng</th>--}}
-{{--            <th>Chủ tài khoản</th>--}}
-{{--            <th>Số tài khoản</th>--}}
             <th>Số tiền</th>
             <th>Thực nhận</th>
             <th>Trạng thái</th>
@@ -22,12 +18,6 @@
                 @foreach ($data as $item)
                     <tr>
                         <td>{{ formatDateTime($item->created_at) }}</td>
-{{--                        <td>{{ $item->params->content_bank }}</td>--}}
-{{--                        <td>{{ $item->bank->title }}</td>--}}
-{{--                        <td>{{ $item->bank->params->account_name }}</td>--}}
-{{--                        <td>--}}
-{{--                            {{ $item->bank->params->number_account }}--}}
-{{--                        </td>--}}
                         <td>
                             {{ str_replace(',','.',number_format($item->price)) }} đ
                         </td>
@@ -40,13 +30,13 @@
                         </td>
                         <td>
                             @if($item->status == 2 )
-                                <span class="badge badge-warning">{{config('module.tranfer.status.2')}}</span>
+                                <span class="badge badge-warning">{{config('module.transfer.status.2')}}</span>
                             @elseif($item->status == 1)
-                                <span class="badge badge-primary">{{config('module.tranfer.status.1')}}</span>
+                                <span class="badge badge-primary">{{config('module.transfer.status.1')}}</span>
                             @elseif($item->status == 0)
-                                <span class="badge badge-warning">{{config('module.tranfer.status.0')}}</span>
+                                <span class="badge badge-warning">{{config('module.transfer.status.0')}}</span>
                             @elseif($item->status == 3)
-                                <span class="badge badge-danger">{{config('module.tranfer.status.3')}}</span>
+                                <span class="badge badge-danger">{{config('module.transfer.status.3')}}</span>
                             @endif
                         </td>
                     </tr>

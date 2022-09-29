@@ -1,4 +1,4 @@
-@if(isset($data_bot))
+@if(isset($data_bot) && count($data_bot))
     <div class="col-md-12 left-right px-3 px-lg-0">
         <div class="row marginauto">
             <div class="col-md-12 col-8 body-header-col-km-left-ct">

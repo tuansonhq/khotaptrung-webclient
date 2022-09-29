@@ -8,7 +8,7 @@
                         <span>
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/vongquayindex.svg" alt="">
                         </span>
-                    <h2 class="text-title" >Vòng quay may mắn</h2>
+                    <h2 class="text-title" >{{ $title??'Vòng quay may mắn' }}</h2>
                     <div class="navbar-spacer"></div>
 
                     <div class="text-view-more">
@@ -23,14 +23,14 @@
                         @foreach($data as $key => $item)
                             @if($key == 0)
                             <div class="list-minigame_box-left col-md-8 px-2">
-                            <div class="item-minigame_first ">
-                                <a href="/minigame-{{ $item->slug }}">
+                            <div class="item-minigame_first y_content-item">
+                                <a href="/minigame-{{ $item->slug }}" class="y_item">
 
                                     @if(isset($item->image))
-                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                        <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                     @endif
 
-                                    <div class="item-minigame-content">
+                                    <div class="item-minigame-content y_caption">
                                         <div class="item-minigame-name">{{ $item->title }}</div>
                                         <div class="item-minigame-user">Đã chơi: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</div>
                                         <div class="item-minigame-price">
@@ -63,12 +63,12 @@
                                 @foreach($data as $key => $item)
                                     @if($key == 1 || $key == 2)
                                         <div class="col-md-12 pr-fix-8 pl-fix-8 ">
-                                    <div class="item-minigame_second">
-                                        <a href="/minigame-{{ $item->slug }}">
+                                    <div class="item-minigame_second y_content-item">
+                                        <a href="/minigame-{{ $item->slug }}" class="y_item">
                                             @if(isset($item->image))
-                                                <img class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                                <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                             @endif
-                                            <div class="item-minigame-content">
+                                            <div class="item-minigame-content y_caption">
                                                 <div class="item-minigame-name">{{ $item->title }}</div>
                                                 <div class="item-minigame-user">Đã chơi: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</div>
                                                 <div class="item-minigame-price">
@@ -101,12 +101,12 @@
                                 @foreach($data as $key => $item)
                                     @if($key == 3 || $key == 4 || $key == 5)
                                         <div class="col-md-4 pr-fix-8 pl-fix-8 ">
-                                            <div class="item-minigame_second">
-                                                <a href="/minigame-{{ $item->slug }}">
+                                            <div class="item-minigame_second y_content-item">
+                                                <a href="/minigame-{{ $item->slug }}" class="y_item">
                                                     @if(isset($item->image))
-                                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                                        <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                                     @endif
-                                                    <div class="item-minigame-content">
+                                                    <div class="item-minigame-content y_caption">
                                                         <div class="item-minigame-name">{{ $item->title }}</div>
                                                         <div class="item-minigame-user">Đã chơi: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</div>
                                                         <div class="item-minigame-price">
@@ -143,7 +143,7 @@
                                 <a href="/minigame-{{ $item->slug }}">
 
                                     @if(isset($item->image))
-                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                        <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                     @endif
 
                                     <div class="item-minigame-content">
@@ -181,7 +181,7 @@
                                         <a href="/minigame-{{ $item->slug }}">
 
                                             @if(isset($item->image))
-                                                <img class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                                <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                             @endif
 
                                             <div class="item-minigame-content">

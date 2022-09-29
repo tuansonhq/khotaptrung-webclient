@@ -1,110 +1,52 @@
-
-@if(empty($data->data))
-
-<div class="col-md-12 left-right">
-    <table class="table table-striped table-hover table-logs" id="table-default">
-        <thead><tr><th>Thời gian</th><th>Chủ tài khoản</th><th>Ngân hàng</th><th>Số tài khoản</th><th>Tiền</th><th>Thực nhận</th><th>Trạng thái</th></tr></thead>
-        <tbody>
-        @if(isset($data) && count($data) > 0)
-            @php
-                $prev = null;
-            @endphp
-            @foreach ($data as $key => $item)
-                @php
-                    $curr = \App\Library\Helpers::formatDate($item->created_at);
-                @endphp
-                @if($curr != $prev)
-                    <tr>
-                        <td colspan="8" class="text-left"><b>Ngày {{$curr}}</b></td>
-                    </tr>
-                    <tr>
-                        <td>{{ formatDateTime($item->created_at) }}</td>
-                        <td>HOANG NGOC KY</td>
-
-                        <td>Techcombank</td>
-                        <td>
-                            19032218296688
-                        </td>
-
-                        <td>
-                            {{ str_replace(',','.',number_format($item->price)) }} đ
-                        </td>
-                        <td>
-                            @if(isset($item->real_received_price))
-                                {{ str_replace(',','.',number_format($item->real_received_price)) }} đ
-                            @else
-                                0
-                            @endif
-                        </td>
-                        <td>
-                            @if($item->status == 2 )
-                                <span class="badge badge-warning">{{config('module.tranfer.status.2')}}</span>
-                            @elseif($item->status == 1)
-                                <span class="badge badge-primary">{{config('module.tranfer.status.1')}}</span>
-                            @elseif($item->status == 0)
-                                <span class="badge badge-warning">{{config('module.tranfer.status.0')}}</span>
-                            @elseif($item->status == 3)
-                                <span class="badge badge-danger">{{config('module.tranfer.status.3')}}</span>
-                            @endif
-                        </td>
-                    </tr>
-                    @php
-                        $prev = $curr;
-                    @endphp
-                @else
-                    <tr>
-                        <td>{{ formatDateTime($item->created_at) }}</td>
-                        <td>HOANG NGOC KY</td>
-
-                        <td>Techcombank</td>
-                        <td>
-                            19032218296688
-                        </td>
-
-                        <td>
-                            {{ str_replace(',','.',number_format($item->price)) }} đ
-                        </td>
-                        <td>
-                            @if(isset($item->real_received_price))
-                                {{ str_replace(',','.',number_format($item->real_received_price)) }} đ
-                            @else
-                                0
-                            @endif
-                        </td>
-                        <td>
-                            @if($item->status == 2 )
-                                <span class="badge badge-warning">{{config('module.tranfer.status.2')}}</span>
-                            @elseif($item->status == 1)
-                                <span class="badge badge-primary">{{config('module.tranfer.status.1')}}</span>
-                            @elseif($item->status == 0)
-                                <span class="badge badge-warning">{{config('module.tranfer.status.0')}}</span>
-                            @elseif($item->status == 3)
-                                <span class="badge badge-danger">{{config('module.tranfer.status.3')}}</span>
-                            @endif
-                        </td>
-                    </tr>
-                @endif
-            @endforeach
-        @endif
-
-        </tbody>
-    </table>
-</div>
-
-<div class="col-md-12 left-right justify-content-end default-paginate-addpadding default-paginate">
-
-    @if(isset($data) )
-        @if($data->total()>1)
-            <div class="row marinautooo justify-content-center">
-                <div class="col-auto">
-                    <div class="data_paginate paginate__v1 paging_bootstrap paginations_custom" style="text-align: center">
-                        {{ $data->appends(request()->query())->links('pagination::bootstrap-default-4') }}
-                    </div>
-                </div>
-            </div>
-        @endif
+@php
+    $result = array();
+    foreach ($data as $element) {
+        $result[date('m/y',strtotime($element->created_at))][] = $element;
+    }
+    $prev = null;
+@endphp
+@forelse($result as $key => $group)
+    @if(date('m-y',strtotime($key)) != $prev)
+        <div class="text-title-bold fw-500 c-mb-12">Tháng {{date('m',strtotime($key))}}</div>
+        @php
+            $prev = date('m-y',strtotime($key));
+        @endphp
     @endif
-</div>
 
-@endif
+    <ul class="trans-list">
+        @forelse($group as $item)
+            <li class="trans-item">
+                <a href="/lich-su-atm-tu-dong-{{ $item->id }}">
+                    <div class="text-left">
+                    <span class="t-body-2 title-color c-mb-0 text-limit limit-1 bread-word">
+                        Chuyển tới ngân hàng Techcombank (#{{ $item->id }})
+                    </span>
+                        <span class="t-body-1 link-color">
+                        {{date('d/m/Y - H:i', strtotime($item->created_at))}}
+                    </span>
+                    </div>
+                    <div class="text-right">
+                        <span class="fw-500 d-block c-mb-0">{{ number_format($item->real_received_price, 0, ',', '.') }}đ</span>
+                        @switch($item->status)
+                            @case(1)
+                            <span class="success-color c-mb-0">{{config('module.transfer.status.1')}}</span>
+                            @break
+                            @case(0)
+                            <span class="warning-color c-mb-0">{{config('module.transfer.status.0')}}</span>
+                            @break
+                            @case(3)
+                            <span class="invalid-color c-mb-0">{{config('module.transfer.status.3')}}</span>
+                            @break
+                            @case(2)
+                            <span class="warning-color c-mb-0">{{config('module.transfer.status.2')}}</span>
+                            @break
+                        @endswitch
+                    </div>
+                </a>
+            </li>
+        @empty
+        @endforelse
+    </ul>
+@empty
+@endforelse
 

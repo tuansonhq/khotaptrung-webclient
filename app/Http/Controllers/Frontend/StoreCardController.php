@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Library\AuthCustom;
 use App\Library\DirectAPI;
+use App\Library\Helpers;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Session;
 use Illuminate\Support\Facades\Log;
+use function PHPUnit\Framework\isEmpty;
 
 class StoreCardController extends Controller
 {
@@ -131,10 +134,114 @@ class StoreCardController extends Controller
 
     public function showListCard($name)
     {
-        return view('frontend.pages.storecard-v2.card-list');
+        return view('frontend.pages.storecard-v2.card-list',['key'=>$name]);
     }
     public function showDetailCard($name,$value)
     {
-        return view('frontend.pages.storecard-v2.card-single');
+        return view('frontend.pages.storecard-v2.card-single',['key'=>$name,'value'=>$value]);
+    }
+
+    public function getStoreCardHistory(Request $request)
+    {
+        if (AuthCustom::check()) {
+
+            $method = "GET";
+
+            if ($request->ajax()) {
+                $page = $request->page;
+
+                $url = '/store-card/history';
+
+                $val = array();
+                $jwt = Session::get('jwt');
+                if (empty($jwt)) {
+                    return response()->json([
+                        'status' => "LOGIN"
+                    ]);
+                }
+
+                $val['token'] = $jwt;
+                $val['page'] = $page;
+
+                if ($request->filled('id')) {
+                    $val['id'] = $request->id;
+                }
+
+                if ($request->filled('telecom')) {
+                    $val['telecom'] = $request->telecom;
+                }
+
+                if ($request->filled('started_at')) {
+                    $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
+                    $val['started_at'] = $started_at;
+                }
+
+                if ($request->filled('ended_at')) {
+                    $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
+                    $val['ended_at'] = $ended_at;
+                }
+                $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+                $response_data = $result_Api->response_data??null;
+
+                if(isset($response_data) && $response_data->status == 1){
+
+                    $data = $response_data->data;
+
+                    $arrpin = array();
+                    $arrserial = array();
+
+                    $per_page = 0;
+                    $total = 0;
+                    if (isset($data->total)){
+                        $total = $data->total;
+                    }
+
+                    if (isset($data->to)){
+                        $per_page = $data->to;
+                    }
+
+                    if (isEmpty($data->data)) {
+                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                        $data->setPath($request->url());
+                    }
+                    $html =  view('frontend.pages.storecard.widget.__store__card__history')->with('total',$total)->with('per_page',$per_page)
+                        ->with('data',$data)->with('arrpin',$arrpin)->with('arrserial',$arrserial)->render();
+
+                    return response()->json([
+                        'status' => 1,
+                        'data' => $html,
+                        'message' => 'Load du lieu thanh cong.',
+                    ]);
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                    ]);
+                }
+            }
+
+            $url_telecome = '/store-card/history';
+
+            $sendDatatele = array();
+
+            $result_telecome_Api = DirectAPI::_makeRequest($url_telecome, $sendDatatele, $method);
+
+            $response_tele_data = $result_telecome_Api->response_data??null;
+
+            if(isset($response_tele_data) && $response_tele_data->status == 1){
+
+                $data_telecome = $response_tele_data->data;
+
+                return view('frontend.pages.storecard.logs')->with('data_telecome', $data_telecome);
+
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
+        }
     }
 }

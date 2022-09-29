@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
-@section('seo_head')
-    @include('frontend.widget.__seo_head')
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
 @endsection
 @section('content')
 
@@ -48,8 +48,11 @@
                     <div class="row marginauto logs-content">
                         <div class="col-md-12 left-right">
                             <div class="row marginauto logs-title">
-                                <div class="col-md-12 left-right">
+                                <div class="col-md-8 left-right">
                                     <span>LỊCH SỬ CHƠI {{$group->title}} TRÚNG ACC</span>
+                                </div>
+                                <div class="col-auto ml-auto pr-0">
+                                    <span class="lammoi_lichsu" style="font-size: 13px;color: #ffffff" onClick="window.location.reload();"><i class="fas fa-redo mr-1" ></i>Làm mới</span>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +146,7 @@
                                                 <td>{{$item->group->title}}</td>
                                             </tr>
                                         @empty
-                                            <tr style="width: 100%" id="table-notdata"><td colspan="7"><span>Không có dữ liệu</span></td></tr>
+                                            <tr style="width: 100%" id="table-notdata"><td colspan="7"><span>Tài khoản của quý khách chưa phát sinh giao dịch.</span></td></tr>
                                         @endforelse
 
                                         </tbody>

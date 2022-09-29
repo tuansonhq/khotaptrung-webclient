@@ -70,16 +70,16 @@
                                 @endif
 
                                 @php
-                                    if (isset($data->params->price_old)) {
-                                        $sale_percent = (($data->params->price_old - $data->params->price) / $data->params->price_old) * 100;
+                                    if (isset($data->price_old)) {
+                                        $sale_percent = (($data->price_old - $data->price) / $data->price_old) * 100;
                                         $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
                                     } else {
                                         $sale_percent = 0;
                                     }
                                 @endphp
-                                @if(isset($data->params) && isset($data->params->price))
-                                <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0;margin-top: 8px">{{ str_replace(',','.',number_format($data->params->price)) }}đ</h2>
-                                <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">{{ str_replace(',','.',number_format($data->params->price_old??$data->params->price)) }}đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">{{ $sale_percent }}%</span></p>
+                                @if(isset($data->price))
+                                <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0;margin-top: 8px">{{ str_replace(',','.',number_format($data->price)) }}đ</h2>
+                                <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">{{ str_replace(',','.',number_format($data->price_old??$data->price)) }}đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">{{ $sale_percent }}%</span></p>
                                 @endif
 
                                 @if(App\Library\AuthCustom::check())
@@ -134,11 +134,8 @@
                                                             <tr>
                                                                 <td>Giá tiền:</td>
                                                                 <th style="color: rgb(238, 70, 35)">
-                                                                    @if(isset($data->params) && isset($data->params->price))
-                                                                        {{ str_replace(',','.',number_format($data->params->price)) }}đ
-                                                                    @else
-                                                                        {{ str_replace(',','.',number_format($item->price)) }}đ
-                                                                        {{--                                                {{ formatPrice($item->price) }}đ--}}
+                                                                    @if(isset($data->price))
+                                                                        {{ str_replace(',','.',number_format($data->price)) }}đ
                                                                     @endif
                                                                 </th>
                                                             </tr>
@@ -226,7 +223,7 @@
                                     <div class="form-group form-group_buyacc ">
                                         @if(App\Library\AuthCustom::check())
 
-                                            @if(App\Library\AuthCustom::user()->balance < $data->params->price)
+                                            @if(App\Library\AuthCustom::user()->balance < $data->price)
                                                 <div class="col-md-12"><label class="form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</label></div>
                                             @else
                                                 <div class="col-md-12"><label class="form-control-label" style="text-align: center;margin: 10px 0; ">Tài khoản của bạn chưa cấu hình bảo mật ODP nên chỉ cần click vào nút xác nhận mua để hoàn tất giao dịch</label></div>
@@ -245,7 +242,7 @@
 
                                     @if(App\Library\AuthCustom::check())
 
-                                        @if(App\Library\AuthCustom::user()->balance < $data->params->price)
+                                        @if(App\Library\AuthCustom::user()->balance < $data->price)
                                             <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2 btn-success" href="/nap-the" id="d3">Nạp thẻ cào</a>
                                             <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2 btn-success" style="color: #FFFFFF" href="/recharge-atm">Nạp từ ATM - Ví điện tử</a>
                                         @else

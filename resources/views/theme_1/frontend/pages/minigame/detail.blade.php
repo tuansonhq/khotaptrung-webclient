@@ -3,11 +3,12 @@
     @include('frontend.widget.__seo_head',with(['data'=>$result->group]))
 @endsection
 @section('content')
+    <div class="item_play">
+        <div class="container">
 
-    @switch($position)
-        @case('rubywheel')
-        <div class="item_play">
-            <div class="container">
+            @switch($position)
+                @case('rubywheel')
+
                 <div class="item_play_title">
                     <h1>{{$result->group->title}}</h1>
                     <div class="item_play_line"></div>
@@ -63,10 +64,10 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if($result->group->params->is_try == 1)
+                            @if(isset($result->group->params->is_try) && $result->group->params->is_try == 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
-                            <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
@@ -205,13 +206,11 @@
                     <span class="item_play_intro_viewmore">Xem tất cả »</span>
                     <span class="item_play_intro_viewless">Thu gọn »</span>
                 </div>
-            </div>
-        </div>
-        @break
 
-        @case('flip')
-        <div class="item_play">
-            <div class="container">
+                @break
+
+                @case('flip')
+
                 <div class="item_play_title">
                     <p>{{$result->group->title}}</p>
                     <div class="item_play_line"></div>
@@ -284,7 +283,7 @@
                             @if($result->group->params->is_try == 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
-                            <a class="btn btn-success play" id="start-played"><i class="fas fa-bolt"></i> Chơi ngay</a>
+                            <a class="btn btn-success play k_start" id="start-played"><i class="fas fa-bolt"></i> Chơi ngay</a>
                             <!-- <a class="btn btn-success continue" style="display: none"><i class="fas fa-bolt"></i> Chơi tiếp</a> -->
                         </div>
                     </div>
@@ -423,13 +422,11 @@
                     <span class="item_play_intro_viewmore">Xem tất cả »</span>
                     <span class="item_play_intro_viewless">Thu gọn »</span>
                 </div>
-            </div>
-        </div>
-        @break
 
-        @case('slotmachine')
-        <div class="item_play">
-            <div class="container">
+                @break
+
+                @case('slotmachine')
+
                 <div class="item_play_title">
                     <h1>{{$result->group->title}}</h1>
                     <div class="item_play_line"></div>
@@ -488,7 +485,7 @@
                             @if($result->group->params->is_try == 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
-                            <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -574,13 +571,11 @@
                     <span class="item_play_intro_viewmore">Xem tất cả »</span>
                     <span class="item_play_intro_viewless">Thu gọn »</span>
                 </div>
-            </div>
-        </div>
-        @break
 
-        @case('slotmachine5')
-        <div class="item_play">
-            <div class="container">
+                @break
+
+                @case('slotmachine5')
+
                 <div class="item_play_title">
                     <h1>{{$result->group->title}}</h1>
                     <div class="item_play_line"></div>
@@ -643,7 +638,7 @@
                             @if($result->group->params->is_try == 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
-                            <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -729,13 +724,11 @@
                     <span class="item_play_intro_viewmore">Xem tất cả »</span>
                     <span class="item_play_intro_viewless">Thu gọn »</span>
                 </div>
-            </div>
-        </div>
-        @break
 
-        @case('squarewheel')
-        <div class="item_play">
-            <div class="container">
+                @break
+
+                @case('squarewheel')
+
                 <div class="item_play_title">
                     <h1>{{$result->group->title}}</h1>
                     <div class="item_play_line"></div>
@@ -830,7 +823,7 @@
                             @if($result->group->params->is_try == 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
-                            <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
                         </div>
                     </div>
 
@@ -920,15 +913,13 @@
                     <span class="item_play_intro_viewmore">Xem tất cả »</span>
                     <span class="item_play_intro_viewless">Thu gọn »</span>
                 </div>
-            </div>
-        </div>
-        @break
 
-        @case('smashwheel')
-        @case('rungcay')
-        @case('gieoque')
-        <div class="item_play">
-            <div class="container">
+                @break
+
+                @case('smashwheel')
+                @case('rungcay')
+                @case('gieoque')
+
                 <div class="item_play_title">
                     <h1>{{$result->group->title}}</h1>
                     <div class="item_play_line"></div>
@@ -950,7 +941,7 @@
                                 </div>
                             @endif
 
-                            <div id="start-played" class="item_play_spin_shake">
+                            <div id="start-played" class="item_play_spin_shake k_start">
                                 <img src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}">
                             </div>
 
@@ -991,7 +982,7 @@
                             @if($result->group->params->is_try == 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
-                            <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -1075,11 +1066,12 @@
                     <span class="item_play_intro_viewmore">Xem tất cả »</span>
                     <span class="item_play_intro_viewless">Thu gọn »</span>
                 </div>
-            </div>
-        </div>
-        @break
-    @endswitch
 
+                @break
+            @endswitch
+
+        </div>
+    </div>
 
     @switch($position)
         @case('slotmachine')
@@ -1435,6 +1427,7 @@
                             },
                             type: 'POST',
                             success: function (data) {
+
                                 if (data.status == 4) {
                                     location.href = '/login?return_url=' + window.location.href;
                                 } else if (data.status == 3) {
@@ -1651,6 +1644,8 @@
                     }
                 }
             });
+
+
             $('body').delegate('.reLoad', 'click', function () {
                 location.reload();
             })
@@ -1768,6 +1763,7 @@
                             },
                             type: 'post',
                             success: function (data) {
+                                console.log(data)
                                 gift_detail = data.gift_detail;
                                 setTimeout(function(){
                                     if(gift_detail != undefined){

@@ -2,6 +2,9 @@
 @section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('content')
     {{--  Header mobile  --}}
     <section class="media-mobile">
@@ -26,6 +29,26 @@
 
     {{--    Banner--}}
 
+    @if($data == null)
+        <div class="item_buy">
+
+            <div class="container pt-3">
+                <div class="row pb-3 pt-3">
+                    <div class="col-md-12 text-center">
+                        <span style="color: red;font-size: 16px;">
+                            @if(isset($message))
+                                {{ $message }}
+                            @else
+                                Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                            @endif
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    @else
     {{--  Menu  --}}
     <section class="media-web">
         <div class="container container-fix menu-container-ct">
@@ -40,7 +63,6 @@
             </ul>
         </div>
     </section>
-
     {{--   Bopđyy --}}
     <section>
         <div class="container container-fix body-container-ct">
@@ -49,7 +71,7 @@
                 <div class="col-md-12 left-right">
                     <div class="row marginauto nick-list-bg" style="background: #FFFFFF">
                         <div class="col-md-12 left-right">
-                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/list-nick-bg.png" alt="">
+                            <img class="lazy theme_3_imagebanner" src="{{ isset($data->custom->image_banner) ? \App\Library\MediaHelpers::media($data->custom->image_banner) : \App\Library\MediaHelpers::media($data->image_banner) }}" alt="">
                         </div>
                     </div>
                     <div class="row marginauto body-row-nick-ct">
@@ -60,7 +82,7 @@
                                     <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
                                 </div>
                                 <div class="col-md-10 col-10 body-header-col-ct">
-                                    <h1>{{ $data->custom->title ? $data->custom->title : $data->title }}</h1>
+                                    <span class="body-header-col-ct-titile">{{ $data->custom->title ? $data->custom->title : $data->title }}</span>
                                 </div>
                             </div>
                         </div>
@@ -115,39 +137,42 @@
                             </div>
                         </div>
 {{--End find   --}}
-                        <div class="col-md-12 left-right media-web">
+                        <div class="col-md-12 left-right d-none d-lg-block">
                             <div class="row marginauto body-search-ct sort-nick">
                                 <div class="col-auto text-left left-right sort-nick-left">
-                                    <span>Sắp xếp theo</span>
+                                    <span class="nick_total"></span>
                                 </div>
                                 <div class="col-auto left-right sort-nick-right">
-                                    <div class="row marginauto">
+                                    <div class="row marginauto align-items-center">
+                                        <div class="col-auto left-right">
+                                            <span>Sắp xếp theo:</span>
+                                        </div>
                                         <div class="col-auto left-right item-sort-nick">
-                                            <input id="sort-1" class="sort" type="radio" name="sort" value="random" hidden>
+                                            <input checked id="sort-1" class="sort" type="radio" name="sort" value="random" hidden>
                                             <label for="sort-1" class="item-sort-nick-label">
                                                 <span>Ngẫu nhiên</span>
                                             </label>
                                         </div>
                                         <div class="col-auto left-right item-sort-nick">
-                                            <input checked id="sort-2" class="sort" type="radio" name="sort" value="price_start" hidden>
+                                            <input id="sort-2" class="sort" type="radio" name="sort" value="price_start" hidden>
                                             <label for="sort-2" class="item-sort-nick-label">
                                                 <span>Giá giảm dần</span>
                                             </label>
                                         </div>
                                         <div class="col-auto left-right item-sort-nick">
-                                            <input checked id="sort-3" class="sort" type="radio" name="sort" value="price_end" hidden>
+                                            <input id="sort-3" class="sort" type="radio" name="sort" value="price_end" hidden>
                                             <label for="sort-3" class="item-sort-nick-label">
                                                 <span>Giá tăng dần</span>
                                             </label>
                                         </div>
                                         <div class="col-auto left-right item-sort-nick">
-                                            <input checked id="sort-4" class="sort" type="radio" name="sort" value="created_at_start" hidden>
+                                            <input id="sort-4" class="sort" type="radio" name="sort" value="created_at_start" hidden>
                                             <label for="sort-4" class="item-sort-nick-label">
                                                 <span>Mới nhất</span>
                                             </label>
                                         </div>
                                         <div class="col-auto left-right item-sort-nick">
-                                            <input checked id="sort-5" class="sort" type="radio" name="sort" value="created_at_end" hidden>
+                                            <input id="sort-5" class="sort" type="radio" name="sort" value="created_at_end" hidden>
                                             <label for="sort-5" class="item-sort-nick-label">
                                                 <span>Cũ nhất</span>
                                             </label>
@@ -162,7 +187,7 @@
 
                         </div>
 
-                        <div id="listLoader" style="width: 100%;">
+                        <div id="listLoader" class="w-100" style="min-height: 500px">
                             <div class="loader position-relative" style="padding: 1rem">
                                 <div class="loading-spokes">
                                     <div class="spoke-container">
@@ -200,6 +225,7 @@
             </div>
         </div>
     </section>
+
     <section class="media-mobile">
         <div class="row marginauto intermediary-ct" style="height: 20px;background: #EFEFEF">
 
@@ -235,7 +261,7 @@
                                         <small>Mã số</small>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct">
-                                        <input autocomplete="off" class="input-defautf-ct id" type="text" name="id_data" placeholder="Nhập mã số">
+                                        <input autocomplete="off" class="input-defautf-ct id" type="text" data-query="id_data" placeholder="Nhập mã số">
                                     </div>
                                 </div>
                             </div>
@@ -246,7 +272,7 @@
                                         <small>Giá tiền</small>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct price-finter-nick">
-                                        <select class="wide price" name="price">
+                                        <select class="wide price" data-query="price_data">
                                             <option value="" selected disabled>Chọn giá tiền</option>
                                             <option value="0-50000">Dưới 50K</option>
                                             <option value="50000-200000">Từ 50K - 200K</option>
@@ -260,23 +286,23 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12 left-right modal-nick-padding">
-                                <div class="row marginauto">
-                                    <div class="col-12 left-right background-nick-col-top-ct">
-                                        <small>Trạng thái</small>
-                                    </div>
-                                    <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
-                                        <select class="wide status" name="status">
-                                            <option value="" selected disabled>Chọn trạng thái</option>
-                                            <option value="1">Chưa bán</option>
-                                            <option value="2">Đã bán</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="col-md-12 left-right modal-nick-padding">--}}
+{{--                                <div class="row marginauto">--}}
+{{--                                    <div class="col-12 left-right background-nick-col-top-ct">--}}
+{{--                                        <small>Trạng thái</small>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">--}}
+{{--                                        <select class="wide status" name="status_data">--}}
+{{--                                            <option value="" selected disabled>Chọn trạng thái</option>--}}
+{{--                                            <option value="1">Chưa bán</option>--}}
+{{--                                            <option value="2">Đã bán</option>--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
                             @if(isset($dataAttribute) && count($dataAttribute) > 0)
-                                @foreach($dataAttribute as $val)
+                                @foreach($dataAttribute as $key_val => $val)
                                     @if($val->position == 'select')
                                         <div class="col-md-12 left-right modal-nick-padding">
                                             <div class="row marginauto">
@@ -284,7 +310,7 @@
                                                     <small>{{ $val->title }}</small>
                                                 </div>
                                                 <div class="col-12 left-right background-nick-col-bottom-ct">
-                                                    <select class="wide account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}">
+                                                    <select class="wide account-filter-field" data-query="select_data_{{ $key_val }}"  data-title="{{ $val->title }}">
                                                         <option value="" selected disabled>--Không chọn--</option>
                                                         @foreach($val->childs as $child)
                                                             <option value="{{ $child->id }}">{{ $child->title }}</option>
@@ -334,7 +360,7 @@
                     <div class="row marginauto modal-header-order-ct">
                         <div class="col-12 span__donhang text-center" style="position: relative">
                             <span>Mua tài khoản thành công</span>
-                            <img class="lazy img-close-ct close-modal-success" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                            <img class="lazy img-close-ct close-modal-success" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" data-dismiss="modal" alt="">
                         </div>
                     </div>
 
@@ -445,6 +471,7 @@
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick--update.js?v={{time()}}"></script>
+    @endif
 @endsection
 
 

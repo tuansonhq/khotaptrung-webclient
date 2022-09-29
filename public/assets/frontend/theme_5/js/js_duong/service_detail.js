@@ -37,7 +37,6 @@ if (input_params_hide.length){
             if (itemselect_value == -1) {
                 return;
             }
-
             if (data_params.server_mode == 1 && data_params.server_price == 1) {
                 let s_price = data_params["price" + server];
                 price = parseInt(s_price[itemselect_value]);
@@ -59,13 +58,13 @@ if (input_params_hide.length){
             break;
         // Dạng chọn nhiều
         case '5':
-            $('#select-multi input[type="checkbox"]').change(function () {
+            $('.select-multi input[type="checkbox"]').change(function () {
                 UpdatePrice5();
                 checkPack();
             });
 
         function UpdatePrice5() {
-            let checked = $('#select-multi input[type="checkbox"]:checked');
+            let checked = $('.select-multi input[type="checkbox"]:checked');
             var total = 0;
             var itemselect = '';
             if (data_params.server_mode == 1 && data_params.server_price == 1) {
@@ -92,11 +91,11 @@ if (input_params_hide.length){
         }
 
         function checkPack() {
-            let checked = $('#select-multi input[type="checkbox"]:checked');
+            let checked = $('.select-multi input[type="checkbox"]:checked');
             if (checked.length) {
                 $('.service_pack').html('');
                 checked.each(function (elm) {
-                    let text = $(this).parent().find('label').text().trim();
+                    let text = $(this).parent().find('.text-label').text().trim();
                     let html = '';
                     html += `<div>`;
                     html += `${text}`;
@@ -141,13 +140,11 @@ if (input_params_hide.length){
             break;
         // điền số tiền
         case '7':
-
         function UpdateTotal() {
-
             var price = parseInt(input_pack.val().replace(/\./g, ''));
             if (typeof price != 'number' || price < data_params['input_pack_min'] || price > data_params['input_pack_max']) {
                 // $('button[type="submit"]').addClass('not-allow');
-                txt_price.text('Tiền nhập không đúng');
+                txt_price.text('Tiền nhập sai');
                 return;
             }
             var total = 0;
@@ -158,6 +155,7 @@ if (input_params_hide.length){
             let price_show = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
             price_show = price_show.split('').reverse().join('').replace(/^[\.]/, '');
             if (!!price) {
+
                 if (data_params.server_mode == 1 && data_params.server_price == 1) {
                     var s_price = data_params["price" + server_id];
                     var s_discount = data_params["discount" + server_id];
@@ -176,6 +174,7 @@ if (input_params_hide.length){
                     discount = s_discount[server_id];
                     total = price * discount;
                 }
+
                 total = parseInt(total / 1000 * data_params.input_pack_rate);
                 $('#txt-discount').val(discount);
                 total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
@@ -187,10 +186,10 @@ if (input_params_hide.length){
                 $('.service_pack').html(`<div>${total} ${purchase_name}</div>`);
                 $('.total--price').text(`${price_show} VNĐ`);
             } else {
-                txt_price.text('Tiền nhập không đúng');
+                txt_price.text('Tiền nhập sai');
 
                 // thông tin modal
-                $('.service_pack').html(`<div>Tiền nhập không đúng</div>`);
+                $('.service_pack').html(`<div>Tiền nhập sai</div>`);
                 $('.total--price').text(`${price_show} VNĐ`);
             }
         }
@@ -213,6 +212,7 @@ function checkboxRequired(selector) {
     let checkboxs = $(`${selector}:checked`);
     return !checkboxs.length;
 }
+/* js submit form */
 
 $('.submit-form').on('click', function () {
     let data_form = $('#formDataService').serializeArray().reduce(function (obj, item) {
@@ -230,12 +230,13 @@ $('.submit-form').on('click', function () {
         data: data_form,
         success: function (res) {
             if (res.status) {
-                $('.js-message-res span').text(res.message)
+                    $('.js-message-res span').text(res.message)
                 if ($(document).width() > 1200){
                     $('.openSuccess').trigger('click')
                 } else {
                     $('.button-next-step-two').trigger('click');
                 }
+                $('#successModal').modal('show');
             }
             else {
                 $('.modal__error__message small').text(res.message)
@@ -247,3 +248,128 @@ $('.submit-form').on('click', function () {
     });
 
 })
+
+// BOT
+let table_bot = $('#table-bot');
+$.ajax({
+    type: 'GET',
+    url: '/show-bot',
+    data: {
+        slug: $('#slug').val(),
+    },
+    success: (response) => {
+        if (response.status){
+            table_bot.html('');
+            table_bot.html(response.data);
+        }
+    },
+})
+
+
+/* check dk show modal vs step*/
+$('body').on('click','.btnPay',function(){
+    let is_ok = 1;
+    let balanceCheck = 0;
+    let required = $('input[required_service]');
+    let html = '';
+    let userBalance = parseInt($('#userBalance').val());
+    let price = parseInt($('input[name="value"]').val());
+    if (required.length){
+        required.each(function () {
+            $(this).toggleClass('invalid',!$(this).val().trim());
+            if (!$(this).val().trim()){
+                is_ok = 0;
+                let text = $(this).parent().prev().text().trim().toLowerCase();
+                $(this).parent().next().html(html)
+            }else {
+                $(this).parent().next().text('')
+            }
+        });
+    }
+
+    
+    if (userBalance >= price) {
+        balanceCheck = 1;
+    } else {
+        balanceCheck = 0;
+    }
+
+    if (is_ok){
+        if (balanceCheck) {
+            if ($(document).width() > 1200) {
+                $('#orderModal').modal('show');
+            }else {
+                $('.stepService').trigger('click')
+            }
+        } else {
+            $('#notBuy').modal('show');
+        }
+    }
+});
+
+
+$('.openSuccess').on('click', function(){
+    $('#successModal').modal('show');
+    $('#orderModal').modal('hide');
+})
+
+/* js validate form service */
+    let errorMsg = Array.from($(".error"));
+// Adding the submit event Listener
+let validate_input = $('[required_service]');
+$('.btnPay').on('click', function(e){
+    e.preventDefault();
+    engine(validate_input[0], 0, "Vui lòng điền thông tin yêu cầu !");
+    engine(validate_input[1], 1, "Vui lòng nhập mật khẩu !");
+    engine(validate_input[2], 2, "Vui lòng điền thông tin yêu cầu !");
+    engine(validate_input[3], 3, "Vui lòng điền thông tin yêu cầu !");
+});
+
+// engine function which will do all the works
+
+function engine (id, serial, message) {
+    if (id.value.trim() === "") {
+        setTimeout(function () {
+            errorMsg[serial].innerHTML = message;
+        },5)
+        id.style.border = "1px solid red";
+    } else {
+        errorMsg[serial].innerHTML = "";
+        id.style.border = "1px solid green";
+    }
+};
+
+/* show bot*/
+$(document).ready(function() {
+    const media = "http://cdn.upanh.info/";
+
+    var slug = $('#slug').val();
+
+    getShowBot(slug)
+
+    function getShowBot(slug) {
+        request = $.ajax({
+            type: 'GET',
+            url: '/show-bot',
+            data: {
+                slug: slug
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (response) => {
+
+                if (response.status == 1) {
+                    $('.data-bot').html('');
+                    $('.data-bot').html(response.data);
+                }
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+
+            }
+        });
+    }
+});

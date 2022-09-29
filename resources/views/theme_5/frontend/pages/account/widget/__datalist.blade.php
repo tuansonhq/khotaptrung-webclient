@@ -11,8 +11,7 @@
                         <div class="card">
                             <a href="javascript:void(0)" data-id="{{ $item->randId }}" class="card-body scale-thumb buyacc">
                                 <div class="account-thumb c-mb-8">
-                                    <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{\App\Library\MediaHelpers::media($item->title)}}"
-                                         class="account-thumb-image lazy">
+                                    <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="{{\App\Library\MediaHelpers::media($data->title)}}" class="account-thumb-image lazy" onerror="imgError(this)">
                                 </div>
                                 <div class="account-title">
                                     <div class="text-title fw-700 text-limit limit-1">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</div>
@@ -35,21 +34,21 @@
                                     </div>
                                 </div>
                                 @php
-                                    if (isset($item->price_old)) {
-                                        $sale_percent = (($item->price_old - $item->price) / $item->price_old) * 100;
+                                    if (isset($data->price_old)) {
+                                        $sale_percent = (($data->price_old - $data->price) / $data->price_old) * 100;
                                         $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
                                     } else {
                                         $sale_percent = 0;
                                     }
                                 @endphp
                                 <div class="price">
-                                    <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
-                                    <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($item->price_old)) }}đ</div>
+                                    <div class="price-current w-100">{{ str_replace(',','.',number_format($data->price)) }}đ</div>
+                                    <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($data->price_old)) }}đ</div>
                                     <div class="discount">{{$sale_percent}}%</div>
                                 </div>
                                 @if(App\Library\AuthCustom::check())
 
-                                    @if(App\Library\AuthCustom::user()->balance < $data->params->price)
+                                    @if(App\Library\AuthCustom::user()->balance < $data->price)
                                         <div class="price c-p-12 c-p-lg-8">
                                             <a href="javascript:void(0)" class="btn secondary w-100 the-cao-atm">Mua ngay</a>
                                         </div>
@@ -92,7 +91,7 @@
                                         <div class="card--attr__name fw-400 fz-13 text-center">
                                             Giá tiền
                                         </div>
-                                        <div class="card--attr__value fz-13 fw-500">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                        <div class="card--attr__value fz-13 fw-500">{{ str_replace(',','.',number_format($data->price)) }} đ</div>
                                     </div>
                                 </div>
 
@@ -165,7 +164,7 @@
                                         <div class="card--attr__name fw-400 fz-13 text-center">
                                             Tổng thanh toán
                                         </div>
-                                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">9.900 đ</a></div>
+                                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">{{ str_replace(',','.',number_format($data->price)) }} đ</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +180,7 @@
                         <div class="card">
                             <a href="/acc/{{ $item->randId }}" class="card-body scale-thumb">
                                 <div class="account-thumb c-mb-8">
-                                    <img  src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title??'' }}"
+                                    <img onerror="imgError(this)"  src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}"
                                          class="account-thumb-image lazy">
                                 </div>
                                 <div class="account-title">
@@ -288,7 +287,7 @@
 
 <div class="c-pt-24 w-100">
     @if(isset($items) && count($items))
-        {{ $items->appends(request()->query())->links('pagination::bootstrap-default-4') }}
+        {{ $items->appends(request()->query())->links('pagination::pagination_3_0') }}
     @endif
 </div>
 

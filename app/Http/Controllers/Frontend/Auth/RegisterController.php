@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
+use Cookie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
@@ -35,11 +36,17 @@ class RegisterController extends Controller
             ]);
         }
         try{
+
+            $utm_source = Cookie::get('utm_source')??'';
+            $utm_campaign = Cookie::get('utm_campaign')??'';
+
             $url = '/register';
             $method = "POST";
             $data = array();
             $data['username'] = $request->username;
             $data['password'] = $request->password;
+            $data['utm_source'] = $utm_source;
+            $data['utm_campain'] = $utm_campaign;
             $data['password_confirmation'] = $request->password_confirmation;
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
             $response_data = $result_Api->response_data??null;
