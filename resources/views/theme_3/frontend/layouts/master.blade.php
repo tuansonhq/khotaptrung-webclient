@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=0, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    @yield('seo_head')
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="robots" content="index,follow"/>
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
@@ -56,8 +57,6 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
 
-
-    @yield('seo_head')
     @if(setting('sys_google_tag_manager_head') != '')
     <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

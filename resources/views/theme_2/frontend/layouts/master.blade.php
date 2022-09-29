@@ -5,6 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @yield('seo_head')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="path" content="" />
     @yield('meta_robots')
@@ -42,7 +43,7 @@
 {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js"></script>--}}
     @stack('js')
 
-    @yield('seo_head')
+
 
         @if(setting('sys_google_tag_manager_head') != '')
     <!-- Google Tag Manager -->
