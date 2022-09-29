@@ -5,6 +5,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    @yield('seo_head')
+
     @yield('meta_robots')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="path" content="" />
@@ -131,7 +134,6 @@
 
     @stack('js')
 
-    @yield('seo_head')
         @if(Request::is('/'))
         <style>
             .content{
