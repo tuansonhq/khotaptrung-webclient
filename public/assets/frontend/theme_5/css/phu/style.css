@@ -1536,4 +1536,21 @@ input[type=text].buy-card-amount-input {
     transition: all .2s ease-out;
 }
 
+@media (max-width: 992px) {
+    /* Type 1: Hover card in swiper slide */
+    .card-list .swiper-slide:hover {
+        box-shadow: none;
+        top: 0;
+        transition: none;
+        border-radius: 12px;
+    }
+
+    /* Type 2: Hover card without slide */
+    .card-hover:hover {
+        box-shadow: none;
+        top: 0;
+        transition: none;
+    }
+}
+
 /* End Component Card Hover Effect */
