@@ -114,6 +114,35 @@ let c_swiper_config_category = new Swiper('.class-config-account-viewed',{
     },
 });
 
+let c_section_category_minigame = new Swiper('.c_section-category .class-config-demo',{
+    autoplay: false,
+    updateOnImagesReady: true,
+    watchSlidesVisibility: false,
+    lazyLoadingInPrevNext: false,
+    lazyLoadingOnTransitionStart: false,
+    slidesPerView: 5,
+    speed: 300,
+    spaceBetween: 16,
+    touchMove: true,
+    grabCursor: true,
+    observer: true,
+    observeParents: true,
+    breakpoints: {
+        992: {
+            freeMode: true,
+            slidesPerView: 3,
+        },
+        768: {
+            freeMode: true,
+            slidesPerView: 2.3,
+        }
+    },
+    navigation: {
+        nextEl: ".class-config-demo .navigation.slider-next",
+        prevEl: ".class-config-demo .navigation.slider-prev",
+    },
+});
+
 let swiper_config_category_tab = new Swiper('.section-category-tab .class-config-demo',{
     autoplay: false,
     updateOnImagesReady: true,
