@@ -7,6 +7,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/main.js"></script>
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.css">
 @endsection
+
 @section('content')
     <div class="container-fix container">
         <ul class="breadcrumb-list">
@@ -120,8 +121,9 @@
             </div>
         </div>
     </div>
-</div>
-
+        @include('frontend.widget.__menu__category__article_theme_5')
+     </div>
+    </div>
 @endsection
 
 
