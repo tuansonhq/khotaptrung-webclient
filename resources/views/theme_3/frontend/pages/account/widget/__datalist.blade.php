@@ -224,7 +224,7 @@
                                                                 @if(App\Library\AuthCustom::check())
 
                                                                     @if(App\Library\AuthCustom::user()->balance >= $data->price)
-                                                                        <button class="button-default-ct button-next-step-two" type="submit" data-dismiss="modal">Xác nhận</button>
+                                                                        <button class="button-default-ct button-next-step-two" type="submit">Xác nhận</button>
                                                                     @else
                                                                         <button class="button-default-ct btn-open-recharge" type="button" data-tab="1" data-dismiss="modal">Nạp tiền</button>
                                                                     @endif

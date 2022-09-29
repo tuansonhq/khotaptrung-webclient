@@ -108,7 +108,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'GET',
-            url: '/lich-su-mua-nick',
+            url: '/lich-su-mua-account',
             data: {
                 page:page,
                 id:id_data,

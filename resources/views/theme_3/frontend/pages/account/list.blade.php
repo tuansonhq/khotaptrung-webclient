@@ -353,15 +353,16 @@
 
         <div class="modal fade login show order-modal" id="successModal" aria-modal="true">
 
-            <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
-                <!--        <div class="image-login"></div>-->
-                <div class="modal-content">
-                    <div class="modal-header p-0" style="border-bottom: 0">
-                        <div class="row marginauto modal-header-order-ct">
-                            <div class="col-12 span__donhang text-center" style="position: relative">
-                                <span>Mua tài khoản thành công</span>
-                                <img class="lazy img-close-ct close-modal-success" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
-                            </div>
+
+        <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
+            <!--        <div class="image-login"></div>-->
+            <div class="modal-content">
+                <div class="modal-header p-0" style="border-bottom: 0">
+                    <div class="row marginauto modal-header-order-ct">
+                        <div class="col-12 span__donhang text-center" style="position: relative">
+                            <span>Mua tài khoản thành công</span>
+                            <img class="lazy img-close-ct close-modal-success" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" data-dismiss="modal" alt="">
+
                         </div>
 
                     </div>
