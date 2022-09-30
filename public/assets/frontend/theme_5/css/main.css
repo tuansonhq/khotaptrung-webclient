@@ -921,6 +921,7 @@ a.tab {
     opacity: 1;
     outline: none;
     z-index: 1;
+    cursor: pointer;
 }
 
 .modal-header .modal-title.center {

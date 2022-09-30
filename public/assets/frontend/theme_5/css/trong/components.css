@@ -797,6 +797,7 @@ section.outstanding-service {
 .gallery-thumbs .gallery-photo {
     border-radius: 8px;
     overflow: hidden;
+    cursor: pointer;
 }
 .gallery-photo {
     width: 100%;

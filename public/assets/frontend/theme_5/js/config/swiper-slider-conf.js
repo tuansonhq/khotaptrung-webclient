@@ -279,7 +279,7 @@ function initSwiperGallery() {
                 touchRatio: 0.2,
                 slidesPerView: "auto",
                 slideToClickedSlide: true,
-                loop: false,
+                loop: true,
                 watchSlidesVisibility: true,
                 watchSlidesProgress: true,
                 direction: "vertical",
