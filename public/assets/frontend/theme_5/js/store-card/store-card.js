@@ -357,7 +357,7 @@ $(document).ready(function () {
                             e.preventDefault();
                             prepareAmountWidget();
                         });
-                        $('input[name="card-amount"]').on('input', function (e) {
+                        $('input[name="card-amount"]').on('input change', function (e) {
                             e.preventDefault();
                             prepareAmountWidget();
                         });
@@ -387,7 +387,7 @@ $(document).ready(function () {
             $('.buy-card-discount').text(`${100 - discountCardValue}%`);
         }
 
-        if (isNaN(formatNumber( calculatePrice() ))) {
+        if (isNaN(calculatePrice())) {
             $('.buy-card-total').text(`0 đ`);
         } else {
             $('.buy-card-total').text(`${formatNumber( calculatePrice() )} đ`);

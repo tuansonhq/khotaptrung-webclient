@@ -609,17 +609,20 @@ section.outstanding-service {
 
 /*Section Content */
 .section-category .navigation,
-.section-category-tab .navigation {
+.section-category-tab .navigation,
+.c_section-category .navigation {
     top: 25%;
 }
 
 .section-category .navigation.slider-next,
-.section-category-tab .navigation.slider-next {
+.section-category-tab .navigation.slider-next,
+.c_section-category .navigation.slider-next {
     right: 16px;
 }
 
 .section-category .navigation.slider-prev,
-.section-category-tab .navigation.slider-prev {
+.section-category-tab .navigation.slider-prev,
+.c_section-category .navigation.slider-prev {
     left: 16px;
 }
 
