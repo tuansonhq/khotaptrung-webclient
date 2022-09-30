@@ -19,8 +19,10 @@
                 <div class="item-thumb mb-2">
                     <div class="media-placeholder ratio-2-1">
                         <div class="bg item-image " >
+
                             @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
                             <a href="/blog/{{ $item->slug }}">
+
                                 <img class="img-fluid" src="{{\App\Library\MediaHelpers::media($item->image)}}" title="{{ $item->title }}">
                             </a>
                             @else

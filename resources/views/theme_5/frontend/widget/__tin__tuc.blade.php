@@ -11,7 +11,7 @@
         <a href="/tin-tuc" class="link arr-right">Xem thêm</a>
     </div>
     <!-- Desktop -->
-    <div class="swiper js-swiper-news d-none d-lg-block">
+    <div class="swiper js-swiper-news card-list d-none d-lg-block">
         <div class="swiper-wrapper">
             @foreach($data as $key => $item)
                 <div class="swiper-slide">

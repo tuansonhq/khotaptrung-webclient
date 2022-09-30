@@ -27,6 +27,6 @@
         @endif
     </nav>
 </header>
-<form id="logout-form" action="{{ url('/logout') }}" method="POST" class="d-none">
+<form id="logout-form" action="{{ url('/ajax/logout') }}" method="POST" class="d-none">
     @csrf
 </form>

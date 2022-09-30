@@ -542,11 +542,8 @@ section.outstanding-service {
 }
 
 .section-pay .btn {
-    position: absolute;
-    width: 255px;
-    top: 50%;
     right: 16px;
-    transform: translateY(-50%);
+    display: block;
 }
 
 .service-detail .footer-mobile .btn {
@@ -557,7 +554,7 @@ section.outstanding-service {
 }
 
 .service-select .card-body {
-    max-height: 584px;
+    max-height: 400px;
 }
 
 /*scrollbar*/
@@ -593,6 +590,11 @@ section.outstanding-service {
     margin-bottom: 12px;
 }
 
+.service-select .input-checkbox:nth-child(4n) .checkmark,
+.sheet-body .input-checkbox:nth-child(4n) .checkmark{
+    top: calc(50% - 6.5px);
+}
+
 .service-select .input-checkbox:nth-child(4n),
 .sheet-body .input-checkbox:nth-child(4n) {
     padding-bottom: 13px;
@@ -607,17 +609,20 @@ section.outstanding-service {
 
 /*Section Content */
 .section-category .navigation,
-.section-category-tab .navigation {
+.section-category-tab .navigation,
+.c_section-category .navigation {
     top: 25%;
 }
 
 .section-category .navigation.slider-next,
-.section-category-tab .navigation.slider-next {
+.section-category-tab .navigation.slider-next,
+.c_section-category .navigation.slider-next {
     right: 16px;
 }
 
 .section-category .navigation.slider-prev,
-.section-category-tab .navigation.slider-prev {
+.section-category-tab .navigation.slider-prev,
+.c_section-category .navigation.slider-prev {
     left: 16px;
 }
 
@@ -1027,6 +1032,31 @@ section.outstanding-service {
     transform: translate(-50%,-50%);
 }
 
+
+.captcha {
+    align-self: center;
+}
+
+.shake-animate {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    perspective: 1000px;
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
 @media screen and (max-width: 992px) {
     .section-category-tab,
     .flash-sale,
@@ -1307,4 +1337,7 @@ section.outstanding-service {
         bottom: 0;
     }
 
+    .service-detail .input-group {
+        width: 100%;
+    }
 }

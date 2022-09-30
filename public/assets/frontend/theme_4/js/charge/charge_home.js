@@ -16,7 +16,7 @@ $(document).ready(function(){
     $('#reload_trangchu').click(function () {
         $.ajax({
             type: 'GET',
-            url: 'reload-captcha',
+            url: '/ajax/reload-captcha',
             success: function (data) {
                 $(".captcha_trangchu span").html(data.captcha);
             }
@@ -27,7 +27,7 @@ $(document).ready(function(){
     function reload_captcha_home() {
         $.ajax({
             type: 'GET',
-            url: 'reload-captcha',
+            url: '/ajax/reload-captcha',
             success: function (data) {
                 $(".captcha_trangchu span").html(data.captcha);
             }
@@ -36,7 +36,7 @@ $(document).ready(function(){
 
     function getTelecom(){
 
-        var url = '/get-tele-card';
+        var url = '/ajax/get-tele-card';
         $.ajax({
             type: "GET",
             url: url,
@@ -97,7 +97,7 @@ $(document).ready(function(){
             $('slect#amount').html(html)
             return;
         }
-        var url = '/get-amount-tele-card';
+        var url = '/ajax/get-amount-tele-card';
         $.ajax({
             type: "GET",
             url: url,

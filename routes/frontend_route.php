@@ -52,20 +52,42 @@ Route::get('/github/test', function (Request $request)
     \File::append($path.Carbon::now()->format('Y-m-d').".txt",$txt."\n");
 });
 
-Route::get('/test111', function ()
+Route::get('/test111', function (Request $request)
 {
-    return 1111;
+
+    if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+        $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+    }
+
+    $client  = @$_SERVER['HTTP_CLIENT_IP'];
+    $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+    $remote  = $_SERVER['REMOTE_ADDR'];
+
+    if(filter_var($client, FILTER_VALIDATE_IP))
+    {
+        $ip = $client;
+    }
+    elseif(filter_var($forward, FILTER_VALIDATE_IP))
+    {
+        $ip = $forward;
+    }
+    else
+    {
+        $ip = $remote;
+    }
+
+    $user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+    return "Ip= ".$ip." User agent= ".$user_agent;
+
 })->middleware('throttle:5,1');
 Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name('getTheme');
 
 
 Route::get('/tesstt', function ()
 {
-    $url = '/get-random-acc';
-    $method = "GET";
-    $dataSend = array();
 
-    $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
     return view('index');
 });
@@ -74,26 +96,23 @@ Route::group(array('middleware' => ['theme']) , function (){
     Route::group(array('middleware' => ['throttle:300,1','verify_shop']) , function (){
 
         Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
-        Route::group(['middleware' => ['cacheResponse: 2592000','tracking']], function (){
-
+        Route::group(['middleware' => ['cacheResponse: 2592000','tracking','tokenRemember']], function (){
 
             Route::group(['middleware' => ['intend']], function () {
-                Route::get('/', [HomeController::class , "index"])->middleware('intend');
+                Route::get('/', [HomeController::class , "index"])->name('homeIndex')->middleware('intend');
 
-                Route::get('/tin-tuc', [ArticleController::class , "getList"]);
-                Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"]);
+                Route::get('/tin-tuc', [ArticleController::class , "getList"])->name('articleList');
+                Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"])->name('articleDetail');
 
                 Route::get('/blog', [ArticleController::class , "getList"]);
+
                 Route::get('/blog/{slug}', [ArticleController::class , "getDetail"]);
 
 
-                Route::get('/dich-vu', [ServiceController::class, "getList"]);
-                Route::get('/dich-vu/{slug}', [ServiceController::class, "getDetail"]);
-                Route::get('/mua-acc', [AccController::class , "getCategory"]);
+                Route::get('/dich-vu', [ServiceController::class, "getList"])->name('serviceList');
+                Route::get('/dich-vu/{slug}', [ServiceController::class, "getDetail"])->name('serviceDetail');
+                Route::get('/mua-acc', [AccController::class , "getCategory"])->name('accIndex');
                 Route::get('/minigame', [\App\Http\Controllers\Frontend\MinigameController::class , 'getCategory'])->name('getCategory');
-
-
-
 
                 Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
                 Route::get('/mua-the-{card}-{value}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showDetailCard'])->name('showDetailCard');
@@ -108,26 +127,32 @@ Route::group(array('middleware' => ['theme']) , function (){
 
             });
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
-                Route::group(['middleware' => ['intend']], function (){
 
-                    Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
-                    Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
+                Route::post('/ajax/user/account_info', [UserController::class , "getInfo"]);
+
+                Route::group(['middleware' => ['intend']], function (){
+//                    Route::get('/mua-nick-random', [AccController::class , "getShowAccRandom"]);
+                    Route::get('/mua-acc/{slug}', [AccController::class , "getList"])->name('accList');
+                    Route::get('/acc/{slug}', [AccController::class , "getDetail"])->name('accDetail');
                     Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
 
                 });
-                Route::get('/mua-nick-random', [AccController::class , "getShowAccRandom"]);
+                Route::get('/ajax/mua-nick-random', [AccController::class , "getShowAccRandom"]);
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
                 Route::post('/lich-su-mua-nick-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])->name('getShowpassNick');
                 Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);
-                Route::post('/user/account_info', [UserController::class , "getInfo"]);
+
+
+
                 Route::get('/profile', [UserController::class , "profileSidebar"])->name('profile');
                 // lấy nhà mạng mua thẻ
-                Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
+                Route::get('/ajax/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
                 Route::get('/lich-su-mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCardHistory']);
                 // lấy mệnh giá trong mua thẻ
-                Route::get('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])->name('getAmountStoreCard');
+
+                Route::get('/ajax/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])->name('getAmountStoreCard');
 //                get api atm
-                Route::get('/transfer-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])->name('getIdCode');
+                Route::get('/ajax/transfer-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])->name('getIdCode');
 //                captcha
                 Route::get('/first-captcha', [ChargeController::class , 'myCaptcha']);
                 Route::get('/reload-captcha', [ChargeController::class , 'reloadCaptcha']);
@@ -145,7 +170,6 @@ Route::group(array('middleware' => ['theme']) , function (){
 //                    lịch sử nạp thẻ
                     Route::get('/lich-su-nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistory'])->name('getChargeDepositHistory');
                     Route::get('/lich-su-nap-the-{id}', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistoryDetail'])->name('getChargeDepositHistoryDetail');
-                    Route::post('{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
 
                     if (theme('')->theme_key == "theme_1"||theme('')->theme_key == "theme_4"){
                         /*Theme_1*/
@@ -155,6 +179,8 @@ Route::group(array('middleware' => ['theme']) , function (){
                         Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class ,  'getLogsCustom'])->name('nick-buyed');
                     }
                     Route::get('/lich-su-mua-account-{id}', [\App\Http\Controllers\Frontend\AccController::class , 'getLogsCustomDetails'])->name('getLogsCustomDetails');
+                    Route::post('/ajax/{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
+
                     Route::get('/lich-su-mua-account/get-first-pass', [\App\Http\Controllers\Frontend\AccController::class , 'getFirstPass'])->name('get-first-pass');
                     Route::get('/lich-su-mua-account/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpass'])->name('getShowpass');
 //                    dịch vụ
@@ -186,22 +212,23 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/get-amount-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getAmountCharge'])->name('getAmountCharge');
                 Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])->name('changePasswordApi');
 
-                Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
+                Route::get('/ajax/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
                 Route::get('/get-tele-card/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData']);
-                Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
+                Route::get('/ajax/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
                 Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
+
             });
             // Route không cần Auth load dữ liệu không cache
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
 //                đăng nhập, đăng xuất, đăng ký
-                Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
+                Route::post('/ajax/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
                 Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])->name('login');
                 Route::get('/user/access', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'accesUser']);
-                Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
-                Route::post('/loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])->name('loginApi');
+                Route::post('/ajax/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
+//                Route::post('/loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])->name('loginApi');
                 Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])->name('loginfacebook');
                 Route::get('/register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'showFormRegister'])->name('register');
-                Route::post('register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
+                Route::post('/ajax/register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
 //                site map
                 Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SiteMapController::class , 'index']);
                 Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
@@ -228,10 +255,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 {
                     return response()->view('frontend.pages.rss.nick')->header('Content-Type', 'application/xml');
                 });
-                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
-                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
-                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
-                Route::get('/rss', [\App\Http\Controllers\Frontend\RssController::class , 'index']);
+
 //                404
                 Route::get('/404', function ()
                 {
@@ -290,7 +314,7 @@ Route::group(array('middleware' => ['theme']) , function (){
             });
         });
 
-        Route::post('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
+        Route::post('/ajax/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
         Route::get('/service-mobile', [\App\Http\Controllers\Frontend\ServiceController::class , 'getListMobile'])->name('getListMobile');
     });
 });
