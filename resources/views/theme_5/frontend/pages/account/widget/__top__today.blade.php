@@ -6,7 +6,7 @@
         </div>
 
     </div>
-    <div class="swiper js-flash-sale-swiper">
+    <div class="swiper js-flash-sale-swiper card-list">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <div class="block-item scale-thumb">

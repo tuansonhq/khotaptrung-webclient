@@ -1,3 +1,4 @@
+
 <div class="block-card-item mt-fix-20">
     <div class="row">
         <div class="col-lg-8 col-md-12"  style="min-height: 100%">
@@ -38,37 +39,37 @@
                     </div>
                     <div class=" tab-content">
                         <div class="tab-pane fade active show  mt-3" id="charge_card" role="tabpanel" >
-                            <div class="loading-data">
-                                <div class="loader">
-                                    <div class="loading-spokes">
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <form action="{{route('postTelecomDepositAuto')}}" method="POST" class="form-charge hide_charge" id="form-charge2">
+{{--                            <div class="loading-data">--}}
+{{--                                <div class="loader">--}}
+{{--                                    <div class="loading-spokes">--}}
+{{--                                        <div class="spoke-container">--}}
+{{--                                            <div class="spoke"></div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="spoke-container">--}}
+{{--                                            <div class="spoke"></div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="spoke-container">--}}
+{{--                                            <div class="spoke"></div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="spoke-container">--}}
+{{--                                            <div class="spoke"></div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="spoke-container">--}}
+{{--                                            <div class="spoke"></div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="spoke-container">--}}
+{{--                                            <div class="spoke"></div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="spoke-container">--}}
+{{--                                            <div class="spoke"></div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="spoke-container">--}}
+{{--                                            <div class="spoke"></div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+                            <form action="{{route('postTelecomDepositAuto')}}" method="POST" class="form-charge " id="form-charge2">
                                 @csrf
                                 <div class="box-charge-card row">
                                     <div class="col-md-6">
@@ -76,7 +77,9 @@
                                             <label class="text-form">Nhà cung cấp</label>
                                             <div class="col-md-12 p-0" >
                                                 <select class="select-form w-100" name="type" id="telecom">
-
+                                                     @foreach($data as $val)
+                                                        <option value="{{$val->key}}">{{$val->title}}</option>
+                                                    @endforeach
 
                                                 </select>
                                             </div>

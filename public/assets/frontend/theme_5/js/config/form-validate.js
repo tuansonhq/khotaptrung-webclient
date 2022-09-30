@@ -148,3 +148,17 @@ Validator({
         showHomeConfirmContent();
     }
 });
+
+Validator({
+    form:'#chargeCardModalForm',
+    formGroupSelector:'.input-group',
+    errorSelector:'.text-error',
+    rules:[
+        Validator.isRequired('[name=pin]','Bạn chưa nhập mã pin'),
+        Validator.isRequired('[name=serial]','Bạn chưa nhập số sê-ri'),
+        Validator.isRequired('[name=captcha]','Bạn chưa nhập mã captcha'),
+    ],
+    onSubmit:function () {
+        showModalConfirmContent();
+    }
+});

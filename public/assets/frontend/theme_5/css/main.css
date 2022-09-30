@@ -921,6 +921,7 @@ a.tab {
     opacity: 1;
     outline: none;
     z-index: 1;
+    cursor: pointer;
 }
 
 .modal-header .modal-title.center {
@@ -1919,6 +1920,24 @@ i.title-info:after {
 
 .js-quantity .js-quantity-add:before {
     background-image: url(../image/svg/add.svg);
+}
+
+/*tag status */
+.status {
+    display: inline-block;
+    padding: 0 0.25rem;
+    font-weight: 500;
+    font-size: 10px;
+    border-radius: 4px;
+    line-height: 1.6;
+}
+.status.success {
+    background: var(--status-success-color);
+    color: #fff;
+}
+.status.danger {
+    background: var(--invalid-color);
+    color: #fff;
 }
 @media (min-width: 1200px) {
     .c-container {

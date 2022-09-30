@@ -7,7 +7,7 @@ $(document).ready(function(){
     function reload_captcha() {
         $.ajax({
             type: 'GET',
-            url: 'reload-captcha',
+            url: '/reload-captcha',
             success: function (data) {
 
                 $(".captcha_1 span").html(data.captcha);
@@ -29,7 +29,7 @@ $(document).ready(function(){
     });
 
     function getTelecom(){
-        var url = '/get-tele-card';
+        var url = '/ajax/get-tele-card';
         $.ajax({
             type: "GET",
             url: url,
@@ -59,22 +59,17 @@ $(document).ready(function(){
                 }
             },
             error: function (data) {
-                swal({
-                    title: "Lỗi !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(getTelecom)')
+
             },
             complete: function (data) {
             }
         });
-    }
 
+    }
+    $('.charge_name').html(' <small>'+telecom+'</small>')
     function getAmount(telecom){
-        var url = '/get-amount-tele-card';
+        var url = '/ajax/get-amount-tele-card';
         $.ajax({
             type: "GET",
             url: url,
@@ -82,11 +77,17 @@ $(document).ready(function(){
                 telecom:telecom
             },
             beforeSend: function (xhr) {
-
+                $('.amount-loading').removeClass('d-none');
+                $('#amount').addClass('d-none');
+                $('#amount_mobile').addClass('d-none');
             },
             success: function (data) {
+                $('.amount-loading').addClass('d-none');
+
                 if(data.status == 1){
-                    $('.amount-loading').remove();
+                    $('#amount').removeClass('d-none');
+                    $('#amount_mobile').removeClass('d-none');
+
                     let html = '';
                     // html += '<option value="">-- Vui lòng chọn mệnh giá, sai mất thẻ --</option>';
                     if(data.data.length > 0){
@@ -128,26 +129,16 @@ $(document).ready(function(){
 
                     reload_captcha()
                 }
-                // else{
-                //     swal({
-                //         title: "Có lỗi xảy ra !",
-                //         text: data.message,
-                //         icon: "error",
-                //         buttons: {
-                //             cancel: "Đóng",
-                //         },
-                //     })
-                // }
+                else{
+                    console.log('Có lỗi xảy ra ('+data.message+')')
+
+
+                }
             },
             error: function (data) {
-                swal({
-                    title: "Lỗi !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(getAmount)')
+
+
             },
             complete: function (data) {
 
@@ -166,7 +157,7 @@ $(document).ready(function(){
         getAmount(telecom)
     });
 
-    getTelecom();
+    // getTelecom();
 
     var formSubmit = $('#form-charge2');
     var url = formSubmit.attr('action');
@@ -186,7 +177,6 @@ $(document).ready(function(){
 
             },
             success: function (data) {
-                console.log(69999)
                 $('#openCharge').modal('hide');
 
                 if(data.status == 1){
@@ -202,25 +192,15 @@ $(document).ready(function(){
                     $('#reject_charge').html(data.message)
                 }
                 else{
-                    swal({
-                        title: "Có lỗi xảy ra !",
-                        text: data.message,
-                        icon: "error",
-                        buttons: {
-                            cancel: "Đóng",
-                        },
-                    })
+
+                    console.log('Có lỗi xảy ra ('+data.message+')')
+
                 }
             },
             error: function (data) {
-                swal({
-                    title: "Có lỗi xảy ra !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý. (post charge)')
+
+
             },
             complete: function (data) {
                 $('#reload_1').trigger('click');

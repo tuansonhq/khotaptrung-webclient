@@ -28,10 +28,11 @@
                 </div>
                 <div class="c-ml-16 c-ml-lg-0 c-history-right">
                     <div class="card unset-lg withdraw-items">
-                        <div class="card-header d-none d-lg-block">
+                        <div class="card-header d-none d-lg-flex justify-content-between align-items-center">
                             <h1 class="text-title-bold fz-20 lh-28">
                                 Rút vật phẩm
                             </h1>
+                            <span class="reload-page" onclick="window.location.reload()"><i class="fas fa-redo"></i>Làm mới</span>
                         </div>
                         <div class="card-body c-px-16 c-py-0">
                             <ul class="nav nav-tabs size-auto c-pb-16" role="tablist">
