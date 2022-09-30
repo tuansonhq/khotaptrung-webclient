@@ -51,7 +51,7 @@ $(document).ready(function(){
                     html += '</div>';
 
                     $('.account-logined').html(html);
-                    $('.account-logined').removeClass('box-account-open');
+                    $('.account-logined').removeClass("box-account-open");
                     $('.account-logined').attr('onclick','openLoginModal()');
                     $('.box-account_nologined').show();
                     $('.box-account_logined').hide();
@@ -59,7 +59,21 @@ $(document).ready(function(){
 
                 }
                 if(data.status == 401){
+                    $('.box-loading').hide();
+                    $('.box-logined').show();
+                    $('.box-account').hide();
+                    // đăng nhập, đăng ký
+                    let html = '';
+                    html += '<div class="box-icon brs-8 " >';
+                    html += ' <img src="/assets/frontend/theme_5/image/nam/profile.svg" alt="" >';
+                    html += '</div>';
 
+                    $('.account-logined').html(html);
+                    $('.account-logined').removeClass("box-account-open");
+                    $('.account-logined').attr('onclick','openLoginModal()');
+                    $('.box-account_nologined').show();
+                    $('.box-account_logined').hide();
+                    $('meta[name="jwt"]').attr('content','');
 
                 }
                 if(data.status === "ERROR"){
