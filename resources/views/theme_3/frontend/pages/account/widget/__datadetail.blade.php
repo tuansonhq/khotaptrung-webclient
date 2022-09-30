@@ -39,6 +39,7 @@
 
                                                                         <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                                                                     </a>
+
                                                                 </div>
                                                             @endforeach
                                                         </div>
