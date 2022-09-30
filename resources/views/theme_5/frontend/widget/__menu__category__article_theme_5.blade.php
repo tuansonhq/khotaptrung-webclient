@@ -12,7 +12,7 @@
                                         <span>{{ $val->categoryarticle->title }}</span>
                                         <div class="navbar-spacer"></div>
                                         <div class="text-view-more">
-                                            <a href="/tin-tuc/{{ $val->categoryarticle->slug }}" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/theme_3/image/svg/arrowright.svg)"></i></a>
+                                            <a href="/tin-tuc/{{ $val->categoryarticle->slug }}" class="global__link">Xem tất cả<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/theme_5/image/duong/arrowright.svg)"></i></a>
                                         </div>
                                     </div>
                                 </div>
