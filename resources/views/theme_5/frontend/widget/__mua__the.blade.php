@@ -17,13 +17,6 @@
                 </div>
             </div>
         </div>
-        <div class="head-mobile">
-            <a href="javascript:void(0)" class="link-back"></a>
-
-            <h1 class="head-title text-title">Mua thẻ</h1>
-
-            <a href="/" class="home"></a>
-        </div>
         <div class="col-12 col-lg-9 c-pl-12 c-p-sm-0">
             <div class="row mw-100 mx-0">
                 <div class=" tab-content col-12 col-lg-6 c-pr-12 c-pl-12 c-px-sm-16">

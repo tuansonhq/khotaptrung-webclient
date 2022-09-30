@@ -122,7 +122,7 @@ $(document).ready(function () {
     $(document).on('click', '#orderCharge #confirmSubmitButton', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/ajax/nap-the',
+            url:'/nap-the',
             type:'POST',
             data: chargeDataSend,
             beforeSend: function () {
@@ -169,7 +169,7 @@ $(document).ready(function () {
     $(document).on('click', '#chargeConfirmStep #confirmSubmitButtonMobile', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/ajax/nap-the',
+            url:'/nap-the',
             type:'POST',
             data: chargeDataSend,
             beforeSend: function () {
