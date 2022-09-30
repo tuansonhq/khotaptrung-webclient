@@ -6,7 +6,6 @@
         <h2 class="section-title">
             <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/speaker.svg)"></i>
             {{ $title??'' }}
-
         </h2>
         <a href="/tin-tuc" class="link arr-right">Xem thêm</a>
     </div>

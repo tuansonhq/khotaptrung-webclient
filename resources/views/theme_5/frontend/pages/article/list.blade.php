@@ -29,7 +29,7 @@
         @include('frontend.widget.__slide__news')
      <div class="row">
         <div class="col-12 col-lg-8" id="list-article">
-             <div class="card --custom c-mt-24" id="weeky-hot-games">
+             <div class="card --custom c-mt-24" style="display: none" id="weeky-hot-games">
                 <div class="card--header">
                     <div class="card--header__title">
                         Game hot trong tuần
