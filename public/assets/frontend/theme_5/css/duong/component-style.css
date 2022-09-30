@@ -112,12 +112,24 @@
         font-size: 15px;
         line-height: 24px;
         padding: 0;
+        overflow: hidden;
+        -webkit-line-clamp: 3;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        word-break: break-word;
+        transition: all ease .2s;
     }
     .item-intro-img{
         padding: 0 !important;
     }
     .list-intro-content{
         padding: 0;
+        overflow: hidden;
+        -webkit-line-clamp: 4;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        word-break: break-word;
+        transition: all ease .2s;
     }
 }
 /* end about us*/
