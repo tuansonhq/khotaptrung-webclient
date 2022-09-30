@@ -31,6 +31,7 @@
                     <div class="c-history-right-body brs-12 brs-lg-0 c-p-16">
                         <div class="c-history-title c-pb-16 c-pb-lg-12 media-web">
                             <h3 class="fw-700 fz-20 fz-lg-16 lh-28 lh-lg-20 mb-0">Lịch sử chơi {{$group->title}} trúng vật phẩm</h3>
+                            <span class="reload-page" onclick="window.location.reload()"><i class="fas fa-redo"></i>Làm mới</span>
                         </div>
 
                         <div class="tags d-none d-lg-flex justify-content-end" id="params-filter">

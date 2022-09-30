@@ -16,10 +16,16 @@ class TranferController extends Controller
 {
     public function index(Request $request)
     {
+        $url = '/deposit-auto/get-telecom';
+        $method = "GET";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $data = $result_Api->response_data??null;
+
         if (theme('')->theme_key == 'theme_1' || theme('')->theme_key == 'theme_4'){
             return view(''.theme('')->theme_key.'.frontend.pages.transfer.index');
         }else{
-            return view(''.theme('')->theme_key.'.frontend.pages.charge.index');
+            return view(''.theme('')->theme_key.'.frontend.pages.charge.index',['data'=>$data->data??null]);
         }
 
 

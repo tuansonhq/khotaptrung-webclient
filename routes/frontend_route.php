@@ -317,6 +317,7 @@ Route::group(array('middleware' => ['theme']) , function (){
         });
 
         Route::post('/ajax/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
+
     });
 });
 

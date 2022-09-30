@@ -44,7 +44,7 @@ $(document).ready(function () {
     $(document).on('click', '#confirmSubmitButton', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/ajax/nap-the',
+            url:'/nap-the',
             type:'POST',
             data: dataSend,
             beforeSend: function () {
@@ -91,7 +91,7 @@ $(document).ready(function () {
     $(document).on('click', '#confirmSubmitButtonMobile', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/ajax/nap-the',
+            url:'/nap-the',
             type:'POST',
             data: dataSend,
             beforeSend: function () {
