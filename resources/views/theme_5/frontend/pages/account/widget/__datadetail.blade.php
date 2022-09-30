@@ -27,7 +27,11 @@
                                     <div class="swiper-wrapper">
                                         @foreach(explode('|',$data->image_extension) as $val)
                                         <div class="swiper-slide">
-                                            <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                            <div class="gallery-photo d-none d-lg-block" data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+                                                <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                            </div>
+
+                                            <div class="gallery-photo d-lg-none" data-fancybox="galleryNickDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
                                                 <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                             </div>
                                         </div>
@@ -810,3 +814,159 @@
 </div>
 
 
+<div class="modal fade login show order-modal" id="accDetail" aria-modal="true" data-backdrop="static" data-keyboard="false">
+
+    <div class="modal-dialog step-tab-panel  modal-dialog-centered  animated">
+        <!--        <div class="image-login"></div>-->
+        <div class="modal-content p-0">
+            <div class="modal-header p-0" style="border-bottom: 0">
+                <div class="row marginauto modal-header-order-ct pt-fix-16 pb-fix-16">
+                    <div class="col-12 span__donhang" style="position: relative">
+                        <div class="row marginauto ">
+                            <div class="col-md-12 left-right">
+                                <span class="fw-600">Mã số: {{ $data->randId }}</span>
+                            </div>
+                            <div class="col-md-12 left-right">
+                                <small>MỤC: {{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}</small>
+                            </div>
+                        </div>
+                        <div class="close" data-dismiss="modal" aria-label="Close">
+                            <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-body modal-body-order-ct">
+                <div class="row marginauto">
+
+                    <div class="d-flex">
+                    {{--                                <div id="myCarousel" class="carousel slide acc-holder" data-ride="carousel">--}}
+                    {{--                                    <!-- Indicators -->--}}
+                    {{--                                    <ol class="">--}}
+                    {{--                                        @foreach(explode('|',$data->image_extension) as $key => $val)--}}
+                    {{--                                            <li data-target="#myCarousel" data-slide-to="{{$key+1}}" class="acc-holder_slides">--}}
+                    {{--                                                <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" />--}}
+                    {{--                                            </li>--}}
+
+                    {{--                                        @endforeach--}}
+                    {{--                                    </ol>--}}
+                    {{--                                </div>--}}
+                    {{--                                <div class="prevAccount">--}}
+                    {{--                                    <a class="prev" onclick="plusSlides(-1)">--}}
+                    {{--                                        <img src="/assets/frontend/theme_3/image/swiper-prev.svg" alt="">--}}
+                    {{--                                    </a>--}}
+                    {{--                                </div>--}}
+                    {{--                                <div class="nextAccount">--}}
+                    {{--                                    <a class="next" onclick="plusSlides(1)">--}}
+                    {{--                                        <img src="/assets/frontend/theme_3/image/swiper-next.svg" alt="">--}}
+                    {{--                                    </a>--}}
+                    {{--                                </div>--}}
+
+
+
+                    <!-- main images -->
+                        <div class="acc-holder ">
+                            @foreach(explode('|',$data->image_extension) as $key => $val)
+
+                                <div class="acc-holder_slides " >
+                                    <a class="acc-holder_expand" data-fancybox="galleryAccount" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                        <i class="__icon__profile --sm__profile --link__profile --link--acc" style="--path : url(/assets/frontend/theme_5/image/nam/expand-acc.svg)"></i>
+                                        {{--                                            <img src="/assets/frontend/theme_3/image/svg/expand-acc.svg" alt="">--}}
+                                    </a>
+                                    <div class="acc-holder_badge">{{$key+1}} / {{count(explode('|',$data->image_extension))}}</div>
+                                    <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" />
+                                </div>
+                            @endforeach
+
+
+                            <div class="prevAccount">
+                                <a class="prev" onclick="plusSlides(-1)">
+                                    <img src="/assets/frontend/theme_3/image/swiper-prev.svg" alt="">
+                                </a>
+                            </div>
+                            <div class="nextAccount">
+                                <a class="next" onclick="plusSlides(1)">
+                                    <img src="/assets/frontend/theme_3/image/swiper-next.svg" alt="">
+                                </a>
+                            </div>
+
+
+                        </div>
+
+                        <!-- thumnails in a row -->
+                        <div class="flex-grow-1 ml-fix-12">
+                            <div class="row acc-thumbnail  mx-0">
+                                @foreach(explode('|',$data->image_extension) as $key => $val)
+                                    <div class="acc-thumbnail_column col-md-3 c-px-6 c-mb-12 ">
+                                        <div class="acc-thumbnail_badge" onclick="currentSlide({{$key+1}})">{{$key+1}}</div>
+                                        <img class="acc-thumbnail-image" src="{{\App\Library\MediaHelpers::media($val)}}" onclick="currentSlide({{$key+1}})" alt="Caption One">
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    var slideIndex = 1;
+    var slideIndex1 = 1;
+    var ImageIndex = 0;
+    function swipe(event, direction){
+        var midpoint = Math.floor(screen.width/2);
+        var px = event.pageX;
+        var items = document.getElementsByClassName('acc-holder_slides');
+        var itemActive = items[ImageIndex];
+        if (direction === 'left') {
+            itemActive.style.marginLeft = '-100%';
+            itemActive.style.transition = '1s ';
+            ImageIndex = ImageIndex < items.length - 1 ? ImageIndex + 1 : ImageIndex;
+        }else{
+            itemActive.style.marginLeft = '0';
+            itemActive.style.transition = '1s ';
+            ImageIndex = ImageIndex >= 1 ? ImageIndex - 1 : 0;
+        }
+    }
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("acc-holder_slides");
+        var dots = document.getElementsByClassName("acc-thumbnail_column");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+            // slides[i].style.display = "inline";
+        }
+
+
+
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        // slides[slideIndex-1].style.display = "inline";
+        dots[slideIndex-1].className += " active";
+    }
+
+
+
+</script>
