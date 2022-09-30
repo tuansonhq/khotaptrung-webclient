@@ -11,10 +11,7 @@
                 <a href="/" class="breadcrumb-link">Trang chủ</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="/mua-acc" class="breadcrumb-link">Shop Account</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="/mua-acc/id" class="breadcrumb-link">Danh sách Nick Liên Quân</a>
+                <a href="/nap-the" class="breadcrumb-link">Nạp thẻ</a>
             </li>
         </ul>
 
@@ -44,7 +41,6 @@
                             </li>
                         </ul>
                     </div>
-
                     <div class="tab-content">
                         <div class="tab-pane fade active show c-p-16" id="charge_card" role="tabpanel">
                             <form class="w-100" action="" id="chargeCardForm">
@@ -53,6 +49,7 @@
                                         <div class="money-form-group c-mb-16">
                                             <label class="text-form fz-13 fw-500 c-mb-4">Nhà cung cấp</label>
                                             <div class="col-md-12 p-0">
+                                                @if(isset($data))
                                                 <select class="select-form w-100" name="type" id="telecom">
                                                     @forelse($data as $telecom)
                                                         <option value="{{ @$telecom->key }}">{{ @$telecom->title }}</option>
@@ -60,6 +57,7 @@
                                                         <option value="">Chưa cấu hình loại thẻ</option>
                                                     @endforelse
                                                 </select>
+                                                    @endif
                                             </div>
                                         </div>
                                         <div class="money-form-group c-mb-12 d-block d-lg-none">
@@ -94,7 +92,7 @@
                                             </div>
                                             <div class="col-md-12 p-0">
                                                 <div class="row m-0 c-mx-n4" id="cardAmountMobile">
-    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -178,7 +176,7 @@
                                             </div>
                                             <div class="col-md-12 p-0">
                                                 <div class="row m-0" id="cardAmount">
-    
+
                                                 </div>
                                             </div>
                                         </div>

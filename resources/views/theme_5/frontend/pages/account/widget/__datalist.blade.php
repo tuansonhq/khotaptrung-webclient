@@ -9,7 +9,11 @@
 
                     <div class="item-account">
                         <div class="card card-hover">
-                            <a href="javascript:void(0)" data-id="{{ $item->randId }}" class="card-body scale-thumb buyacc">
+                            @if(\App\Library\AuthCustom::check())
+                                <a href="javascript:void(0)" data-id="{{ $item->randId }}" class="card-body scale-thumb {{ App\Library\AuthCustom::user()->balance < $data->price ? 'the-cao-atm' : 'buyacc' }}">
+                                @else
+                                <a href="javascript:void(0)" data-id="{{ $item->randId }}" class="card-body scale-thumb" onclick="openLoginModal()">
+                            @endif
                                 <div class="account-thumb c-mb-8">
                                     <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="{{\App\Library\MediaHelpers::media($data->title)}}" class="account-thumb-image lazy" onerror="imgError(this)">
                                 </div>

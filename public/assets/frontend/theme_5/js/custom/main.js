@@ -105,6 +105,12 @@ $(document).ready(function() {
         placement: 'right',
     });
 
+    tippy('.box-sale,.box-notify', {
+        // default
+        content: "Sắp ra mắt",
+        placement: 'top',
+    });
+
     $('.js-copy-text').on('click', function () {
         let text_value = $(this).parent().find('.card__info').text().trim();
         navigator.clipboard.writeText(text_value);
