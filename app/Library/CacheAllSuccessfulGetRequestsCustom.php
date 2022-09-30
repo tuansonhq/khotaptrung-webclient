@@ -61,7 +61,7 @@ class CacheAllSuccessfulGetRequestsCustom extends BaseCacheProfile {
             return false;
         }
 
-
+        return $request->isMethod('get');
     }
 
     public function shouldCacheResponse(Response $response): bool
