@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fix container">
+    <div class="c-container container">
         <ul class="breadcrumb-list">
             <li class="breadcrumb-item">
                 <a href="/" class="breadcrumb-link">Trang chủ</a>

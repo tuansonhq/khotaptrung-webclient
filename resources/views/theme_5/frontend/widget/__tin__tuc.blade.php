@@ -5,7 +5,8 @@
     <div class="section-header c-mb-24 c-mb-lg-24 justify-content-between">
         <h2 class="section-title">
             <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/speaker.svg)"></i>
-            {{ $title??'' }}
+            {{ $title??'Tin tức' }}
+
         </h2>
         <a href="/tin-tuc" class="link arr-right">Xem thêm</a>
     </div>

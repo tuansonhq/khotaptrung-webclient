@@ -1,12 +1,12 @@
 <div class="container c-container header-container">
     <div class="box-logo ">
         <a href="/">
-            <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="" class="d-lg-block d-none w-50">
-            <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo_mobile'))}}" alt="" class="d-lg-none w-50">
+            <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="" class="d-lg-block d-none">
+            <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo_mobile'))}}" alt="" class="d-lg-none">
         </a>
     </div>
-    <div class="d-none d-md-flex ">
-        <div class="box-menu c-mr-16">
+    <div class="d-none d-md-flex h-100">
+        <div class="box-menu c-mr-16 c-py-10">
             <div class="box-menu-bar  ">
                 <div class="box-icon brs-8 c-mr-8" >
                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/menu.svg" alt="" >
@@ -21,7 +21,7 @@
 
             </div>
         </div>
-        <div class="box-sale d-flex">
+        <div class="box-sale d-flex c-py-10">
             <div class="box-icon brs-8 c-mr-8" data-notity="5">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/sale.svg" alt="" >
             </div>
