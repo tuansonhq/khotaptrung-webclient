@@ -259,6 +259,10 @@
     /*filter: var(--filter-primary-color);*/
     transition: .2s;
     display: block;
+    background-image: var(--path);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .acc-holder_expand .__icon__profile.--sm__profile {
     width: 20px;

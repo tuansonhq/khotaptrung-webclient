@@ -30,6 +30,7 @@ function changePassword(data) {
                 $('#successModal').modal('show');
                 $('.password-error').html('')
             }else {
+                $('#FailChangePasswordModal').modal('show');
                 $('.password-error').html(res.message)
 
             }

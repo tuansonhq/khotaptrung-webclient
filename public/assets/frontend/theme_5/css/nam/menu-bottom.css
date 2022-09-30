@@ -54,4 +54,10 @@
     .menu-bottom-item.is-active .menu-bottom_text{
         color: #0E3EDA;
     }
+    .menu-bottom-item:hover .menu-bottom_icon{
+        background-color: #F5F6FC;
+    }
+    .menu-bottom-item:hover .menu-bottom_text{
+        font-weight: 600;
+    }
 }
