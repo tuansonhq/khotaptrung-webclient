@@ -61,6 +61,7 @@ Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name
 
 Route::get('/tesstt', function ()
 {
+    dd(11);
     $url = '/get-random-acc';
     $method = "GET";
     $dataSend = array();
