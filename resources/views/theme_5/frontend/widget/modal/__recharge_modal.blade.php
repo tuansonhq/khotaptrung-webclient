@@ -10,23 +10,23 @@
                     <div class="c-mb-16 c-mb-lg-16">
                         <ul class="nav nav-tabs size-auto" role="tablist" style="width: 100%;margin: 0 auto">
                             <li class="nav-item" role="presentation">
-                                <a class="tab active" data-toggle="tab" href="#charge_card" role="tab" aria-selected="true">Nạp thẻ cào</a>
+                                <a class="tab active" data-toggle="tab" href="#charge_card_modal" role="tab" aria-selected="true">Nạp thẻ cào</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="tab" data-toggle="tab" href="#atm_card" role="tab" aria-selected="false">ATM tự động</a>
+                                <a class="tab" data-toggle="tab" href="#atm_card_modal" role="tab" aria-selected="false">ATM tự động</a>
                             </li>
                         </ul>
                     </div>
 
                     <div class="tab-content c-pl-24 c-pl-lg-16 c-pr-24 c-pr-lg-16">
-                        <div class="tab-pane fade show active" id="charge_card" role="tabpanel">
-                            <form class="w-100" action="" id="chargeCardForm">
+                        <div class="tab-pane fade show active" id="charge_card_modal" role="tabpanel">
+                            <form class="w-100" action="" id="chargeCardModalForm">
                                 <div class="row content-block">
                                     <div class="col-12 c-pr-8">
                                         <div class="money-form-group c-mb-16">
                                             <label class="text-form fz-13 fw-500 c-mb-4">Nhà cung cấp</label>
                                             <div class="col-md-12 p-0">
-                                                <select class="select-form w-100" name="type" id="telecom">
+                                                <select class="select-form w-100" name="type" id="telecom_modal">
                                                     @forelse($data as $telecom)
                                                         <option value="{{ @$telecom->key }}">{{ @$telecom->title }}</option>
                                                     @empty
@@ -70,12 +70,12 @@
                                                     </div>
                                                     <div class="captcha c-mx-8">
                                                         <div>
-                                                        <span id="capchaImage">
+                                                        <span class="capchaImage">
                                                             {!! captcha_img('flat') !!}
                                                         </span>
                                                         </div>
                                                     </div>
-                                                    <button class="refresh-captcha brs-8" type="button" id="reload_1">
+                                                    <button class="refresh-captcha brs-8" type="button" id="reload_modal_btn">
                                                         <img class="spinImg paused" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/captcha_refresh.png" alt="">
                                                     </button>
                                                 </div>
@@ -86,69 +86,82 @@
                                             @if (\App\Library\AuthCustom::check())
                                                 <button class="btn primary" type="submit">Nạp ngay</button>
                                             @else
-                                                <button class="btn primary" onclick="openLoginModal();">Nạp ngay</button>
+                                                <button class="btn primary" type="button" onclick="openLoginModal();" data-dismiss="modal">Nạp ngay</button>
                                             @endif
                                         </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <div class="tab-pane fade" id="atm_card" role="tabpanel">
-                            <div class="row text-center loader-container">
-                                <div class="col-12">
-                                    <div class="loader position-relative" style="margin: 2rem 0">
-                                        <div class="loading-spokes">
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
+                        <div class="tab-pane fade" id="atm_card_modal" role="tabpanel">
+                            @if (!\App\Library\AuthCustom::check())
+                                <div class="row content-block">
+                                    <div class="col-12 col-lg-12">
+                                        <div class="atm-recharge-right c-p-16 brs-8">
+                                            <div class="atm-recharge-guide">
+                                                <img class="w-100 c-mb-16" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/atm_recharge_guide.png" alt="">
+                                                <p class="fz-13 fw-400">Để hoàn tất đơn nạp, bạn vui lòng chuyển khoản theo cú pháp sau:</p>
                                             </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
+                                            <div class="atm-recharge-content c-p-sm-12 brs-sm-8">
+                                                @if (setting('sys_tranfer_content') != "")
+                                                    {!! setting('sys_tranfer_content') !!}
+                                                @endif
+                                                <div class="atm-recharge-attr" style="text-align: center">
+                                                    <p class="fz-14 fw-600 mb-0" style="color: red; max-width: 100% !important;">Vui lòng đăng nhập để nhận được nội dung chuyển tiền!</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row content-block d-none">
-                                {{-- <div class="col-12 col-lg-6 c-pr-8 d-none d-lg-block">
-                                    <div class="atm-recharge-left c-p-16 brs-8 d-flex justify-content-between align-items-center">
-                                        <p class="fz-13 fw-400 mb-0">Ngân hàng Kỹ thương Việt Nam (Techcombank)</p>
-                                        <div>
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/tech_logo.png" alt="">
-                                        </div>
-                                    </div>
-                                </div> --}}
-                                <div class="col-12 col-lg-12">
-                                    <div class="atm-recharge-right c-p-16 brs-8">
-                                        <div class="atm-recharge-content c-p-sm-12 brs-sm-8">
-                                            @if (setting('sys_tranfer_content') != "")
-                                                {!! setting('sys_tranfer_content') !!}
-                                            @endif
-                                            <div class="atm-recharge-attr d-flex justify-content-between align-items-center">
-                                                <p class="fz-13 fw-400 mb-0">Nội dung chuyển khoản</p>
-                                                <div class="fz-13 fw-500" id="transactionContent"></div>
+                            @else
+                                <div class="row text-center loader-container">
+                                    <div class="col-12">
+                                        <div class="loader position-relative" style="margin: 2rem 0">
+                                            <div class="loading-spokes">
+                                                <div class="spoke-container">
+                                                    <div class="spoke"></div>
+                                                </div>
+                                                <div class="spoke-container">
+                                                    <div class="spoke"></div>
+                                                </div>
+                                                <div class="spoke-container">
+                                                    <div class="spoke"></div>
+                                                </div>
+                                                <div class="spoke-container">
+                                                    <div class="spoke"></div>
+                                                </div>
+                                                <div class="spoke-container">
+                                                    <div class="spoke"></div>
+                                                </div>
+                                                <div class="spoke-container">
+                                                    <div class="spoke"></div>
+                                                </div>
+                                                <div class="spoke-container">
+                                                    <div class="spoke"></div>
+                                                </div>
+                                                <div class="spoke-container">
+                                                    <div class="spoke"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="row content-block d-none">
+                                    <div class="col-12 col-lg-12">
+                                        <div class="atm-recharge-right c-p-16 brs-8">
+                                            <div class="atm-recharge-content c-p-sm-12 brs-sm-8">
+                                                @if (setting('sys_tranfer_content') != "")
+                                                    {!! setting('sys_tranfer_content') !!}
+                                                @endif
+                                                <div class="atm-recharge-attr d-flex justify-content-between align-items-center">
+                                                    <p class="fz-13 fw-400 mb-0">Nội dung chuyển khoản</p>
+                                                    <div class="fz-13 fw-500" id="transactionContentModal"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
 

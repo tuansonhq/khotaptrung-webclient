@@ -51,6 +51,8 @@ $(document).ready(function(){
                     html += '</div>';
 
                     $('.account-logined').html(html);
+                    $('.account-logined').removeClass('box-account-open');
+                    $('.account-logined').attr('onclick','openLoginModal()');
                     $('.box-account_nologined').show();
                     $('.box-account_logined').hide();
                     $('meta[name="jwt"]').attr('content','');
@@ -68,6 +70,7 @@ $(document).ready(function(){
                     $('.box-loading').hide();
                     $('.box-account_nologined').hide();
                     $('.box-account_logined').show();
+                    $('.account-logined').addClass('box-account-open');
 
                     // profile
                     let html = '';
@@ -77,7 +80,7 @@ $(document).ready(function(){
                     html += '<div class="account-balance fw-400">Số dư: '+formatNumber(data.info.balance)+'</div>';
                     html += '</div>';
                     html += '<div class="account-avatar c-ml-12">';
-                    html += '<img src="/assets/frontend/theme_5/image/nam/avatar.png" alt="">';
+                    html += '<img src="/assets/frontend/theme_5/image/nam/anhdaidien.svg" alt="">';
                     html += '</div>';
                     html += '</div>';
 

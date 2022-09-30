@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/header.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/menu-category.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/menu-bottom.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/nick-detail.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/slide-banner.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/change-password.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/range-slider-master/css/rSlider.min.css">
