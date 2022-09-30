@@ -315,6 +315,10 @@ Route::group(array('middleware' => ['theme']) , function (){
         });
 
         Route::post('/ajax/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
+    dd(11);
+    $url = '/get-random-acc';
+    $method = "GET";
+    $dataSend = array();
         Route::get('/service-mobile', [\App\Http\Controllers\Frontend\ServiceController::class , 'getListMobile'])->name('getListMobile');
     });
 });
