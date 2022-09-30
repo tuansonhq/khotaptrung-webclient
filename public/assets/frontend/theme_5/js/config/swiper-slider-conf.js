@@ -272,37 +272,119 @@ let swiper_card_bought = new Swiper(".slider--card", {
 function initSwiperGallery() {
 
     if ($('.gallery-top').length) {
-        let galleryTop = new Swiper('.gallery-top', {
-            centeredSlides: true,
-            spaceBetween: 16,
-            touchRatio: 0.2,
-            slidesPerView: "auto",
-            slideToClickedSlide: true,
-            loop: true,
-            watchSlidesVisibility: true,
-            watchSlidesProgress: true,
-            direction: "vertical",
-            observer: true,
-            observeParents: true,
-        });
-        let galleryThumbs = new Swiper('.gallery-thumbs', {
-            loop: true,
-            clickable: true,
-            slideToClickedSlide: true,
-            slidesPerView: "auto",
-            navigation: {
-                nextEl: ".acc-detail .navigation.slider-next",
-                prevEl: ".acc-detail .navigation.slider-prev",
-            },
-            pagination: {
-                el: ".tab-show-acc.count-thumb",
-                type: "fraction",
-            },
-            observer: true,
-            observeParents: true,
-        });
-        galleryTop.controller.control = galleryThumbs;
-        galleryThumbs.controller.control = galleryTop;
+        if($(window).width() > 992){
+            let galleryTop = new Swiper('.gallery-top', {
+                centeredSlides: true,
+                spaceBetween: 16,
+                touchRatio: 0.2,
+                slidesPerView: "auto",
+                slideToClickedSlide: true,
+                loop: true,
+                watchSlidesVisibility: true,
+                watchSlidesProgress: true,
+                direction: "vertical",
+                observer: true,
+                observeParents: true,
+                reakpoints: {
+
+                    992: {
+                        loop: false,
+                    },
+
+
+                    480: {
+                        loop: false,
+
+                    }
+                }
+            });
+            let galleryThumbs = new Swiper('.gallery-thumbs', {
+                loop: true,
+                clickable: true,
+                slideToClickedSlide: true,
+                slidesPerView: "auto",
+                navigation: {
+                    nextEl: ".acc-detail .navigation.slider-next",
+                    prevEl: ".acc-detail .navigation.slider-prev",
+                },
+                pagination: {
+                    el: ".tab-show-acc.count-thumb",
+                    type: "fraction",
+                },
+                observer: true,
+                observeParents: true,
+                breakpoints: {
+
+                    992: {
+                        loop: false,
+                    },
+
+
+                    480: {
+                        loop: false,
+
+                    }
+                }
+            });
+            galleryTop.controller.control = galleryThumbs;
+            galleryThumbs.controller.control = galleryTop;
+        }else {
+            let galleryTop = new Swiper('.gallery-top', {
+                centeredSlides: false,
+                spaceBetween: 16,
+                touchRatio: 0.2,
+                slidesPerView: "auto",
+                slideToClickedSlide: true,
+                loop: false,
+                watchSlidesVisibility: true,
+                watchSlidesProgress: true,
+                direction: "vertical",
+                observer: true,
+                observeParents: true,
+                reakpoints: {
+
+                    992: {
+                        loop: false,
+                    },
+
+
+                    480: {
+                        loop: false,
+
+                    }
+                }
+            });
+            let galleryThumbs = new Swiper('.gallery-thumbs', {
+                loop: false,
+                clickable: true,
+                slideToClickedSlide: true,
+                slidesPerView: "auto",
+                navigation: {
+                    nextEl: ".acc-detail .navigation.slider-next",
+                    prevEl: ".acc-detail .navigation.slider-prev",
+                },
+                pagination: {
+                    el: ".tab-show-acc.count-thumb",
+                    type: "fraction",
+                },
+                observer: true,
+                observeParents: true,
+                breakpoints: {
+
+                    992: {
+                        loop: false,
+                    },
+
+
+                    480: {
+                        loop: false,
+
+                    }
+                }
+            });
+
+        }
+
     }
 }
 
