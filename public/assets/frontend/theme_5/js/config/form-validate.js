@@ -85,9 +85,6 @@ Validator({
         Validator.isRequired('[name=username]','Bạn chưa nhập tên tài khoản'),
         Validator.isRequired('[name=password]','Bạn chưa nhập mật khẩu'),
     ],
-    onSubmit:function (data) {
-        // alert('Form đã được submit');
-    }
 });
 Validator({
     form:'#formRegister',

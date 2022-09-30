@@ -49,7 +49,7 @@
                         </span>
                         <div class="w-100 input-group">
                             <div class="password-input-container c-mt-8 ">
-                                <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu" autocomplete="off">
+                                <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu" autocomplete="off" required>
                                 <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/son/eye-show.svg" alt="" style="display: none" required>
                                 <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/son/eye-hide.svg" alt="" >
 
