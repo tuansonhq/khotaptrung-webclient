@@ -166,15 +166,24 @@
                                 <span class="buy-card-total fw-500 fz-15"></span>
                             </div>
                         </div>
-                        <button class="btn primary w-100 d-none d-lg-block" id="btn-confirm" data-toggle="modal"
-                                data-target="#modalConfirmPayment" type="button">
-                            Mua ngay
-                        </button>
-                        <div class="group-btn c-pt-16 d-flex d-lg-none">
-                            <button id="btn-confirm-mobile" class="btn primary js-step" data-target="#step2"
-                                    type="button">Mua ngay
+                        @if (\App\Library\AuthCustom::check())
+                            <button class="btn primary w-100 d-none d-lg-block" id="btn-confirm" data-toggle="modal"
+                                    data-target="#modalConfirmPayment" type="button">
+                                Mua ngay
                             </button>
-                        </div>
+                            <div class="group-btn c-pt-16 d-flex d-lg-none">
+                                <button id="btn-confirm-mobile" class="btn primary js-step" data-target="#step2"
+                                        type="button">Mua ngay
+                                </button>
+                            </div>
+                        @else
+                            <button class="btn primary w-100 d-none d-lg-block" onclick="openLoginModal();" type="button">
+                                Mua ngay
+                            </button>
+                            <div class="group-btn c-pt-16 d-flex d-lg-none">
+                                <button id="btn-confirm-mobile" class="btn primary js-step" onclick="openLoginModal();" type="button">Mua ngay</button>
+                            </div>
+                        @endif
                     </div>
 
                 </div>
