@@ -7,12 +7,12 @@
 
 {{--        nạp thẻ--}}
 
-<div class="row c-mt-16 c-pb-12 c-pb-6 c-mt-lg-50 c-mt-md-8" id="charge-detail">
+<div class="row c-mt-16 c-pb-12 c-pb-6 c-mt-lg-50 c-mt-md-8 c-mx-lg-n16" id="charge-detail">
 
     <div class="col-12 col-lg-8 c-pr-8 c-px-sm-0 ">
         <div class="recharge-money-container brs-12 brs-sm-0 c-pt-lg-4">
             <div class="recharge-money-tab c-px-16">
-                <ul class="nav justify-content-between row" role="tablist" >
+                <ul class="nav justify-content-between row c-mx-lg-n16" role="tablist" >
                     <li class="nav-item col-6 p-0" role="presentation">
                         <p class="nav-link active text-center mb-0 fw-400 fz-13" data-toggle="tab" href="#charge_card" role="tab" aria-selected="true">Nạp thẻ cào </p>
                     </li >
