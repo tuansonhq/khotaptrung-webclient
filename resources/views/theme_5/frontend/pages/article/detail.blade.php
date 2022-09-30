@@ -6,7 +6,6 @@
     <meta name="robots" content="index,follow" />
 @endsection
 @section('content')
-
     @if(isset($data->params) && isset($data->params->article_type))
         {!! $data->params->article_type !!}
     @endif
@@ -56,44 +55,15 @@
                     </article>
                 </div>
             </div>
-            <div class="col-lg-4 game-relate-article">
-                <div class="d-flex col-12 left-right news-article-category">
-                    <span>Mini game liên quan</span>
-                    <div class="navbar-spacer"></div>
-                    <div class="text-view-more">
-                        <a href="" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/theme_5/image/duong/right.svg)"></i></a>
-                    </div>
-                </div>
 
-                <div class="hot-news-detail-category">
+                @include('frontend.pages.article.widget.__ads__article__theme__5')
 
-                    <div class="category-image-article">
-                        <img src="/assets/frontend/theme_5/image/duong/image_2.png" alt="">
-                    </div>
-                    <div>
-                        <div class="title-detail-article">
-                            Acc liên quan siêu vip
-                        </div>
-                        <div class="sold-detail-article">
-                            Đã bán: 68,9K
-                        </div>
-                        <div class="price-detail-article">
-                            15.000đ
-                        </div>
-                        <div class="discount-detail-article">
-                            <span>30.000đ</span>
-                            <p>-50%</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         {{--        Cùng chủ đề--}}
         <div class="c-pb-24">
             @include('frontend.widget.__bai__viet__lien__quan')
         </div>
-
     </div>
 @endsection
 @section('scripts')
