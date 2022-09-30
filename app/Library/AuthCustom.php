@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AuthCustom{
     public static function check(){
-        if(session()->has('jwt')){
+        if(session()->has('auth_custom')){
             return true;
         }
         return false;
