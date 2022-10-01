@@ -92,7 +92,7 @@
                         </div>
 
                         <div class="form-random formDonhangAccount{{ $item->randId }}">
-                            <form class="formDonhangAccount" action="/acc/{{ $item->randId }}/databuy" method="POST">
+                            <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
                                 {{ csrf_field() }}
 
                                 <div class="modal-header" style="padding-left: 16px;padding-right: 16px">

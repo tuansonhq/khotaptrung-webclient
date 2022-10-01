@@ -2,7 +2,7 @@
     <div class="list-service">
         @forelse($data as $service)
             <div class="item-service js-service">
-                <div class="card">
+                <div class="card card-hover">
                     <a href="/dich-vu/{{@$service->slug}}" class="card-body scale-thumb c-p-16 c-p-lg-12">
                         <div class="account-thumb c-mb-8">
                             <img onerror="imgError(this)" src="{{@\App\Library\MediaHelpers::media($service->image)}}" alt="{{@$service->slug}}"

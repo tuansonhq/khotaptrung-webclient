@@ -224,7 +224,7 @@
                         </div>
 
                         <div class="formDonhangAccount{{ $item->randId }} hide">
-                            <form class="formDonhangAccount" action="/acc/{{ $item->randId }}/databuy" method="POST">
+                            <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
                                 {{ csrf_field() }}
 
                                 <div class="modal-header">

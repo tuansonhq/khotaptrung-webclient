@@ -85,9 +85,6 @@ Validator({
         Validator.isRequired('[name=username]','Bạn chưa nhập tên tài khoản'),
         Validator.isRequired('[name=password]','Bạn chưa nhập mật khẩu'),
     ],
-    onSubmit:function (data) {
-        // alert('Form đã được submit');
-    }
 });
 Validator({
     form:'#formRegister',
@@ -146,5 +143,19 @@ Validator({
     ],
     onSubmit:function () {
         showHomeConfirmContent();
+    }
+});
+
+Validator({
+    form:'#chargeCardModalForm',
+    formGroupSelector:'.input-group',
+    errorSelector:'.text-error',
+    rules:[
+        Validator.isRequired('[name=pin]','Bạn chưa nhập mã pin'),
+        Validator.isRequired('[name=serial]','Bạn chưa nhập số sê-ri'),
+        Validator.isRequired('[name=captcha]','Bạn chưa nhập mã captcha'),
+    ],
+    onSubmit:function () {
+        showModalConfirmContent();
     }
 });

@@ -5,45 +5,50 @@ $(document).ready(function () {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
 
-    /*Get Telecom*/
-    if (modal_charge.length){
-        $.ajax({
-            url:'/get-tele-card',
-            type:'GET',
-            success:function (res) {
-                if (res.status === 1){
-                    let telecoms = res.data;
-                    let html = '';
-                    if (telecoms.length){
-                        telecoms.forEach(function (telecom) {
-                            html += `<option value="${telecom.key}">${telecom.title}</option>`;
-                        });
-                    }else {
-                        html += '<option value="">-- Vui lòng chọn nhà mạng --</option>';
-                    }
-                    modal_charge.find('#modal-telecom').html(html);
-                }
-                $('select').niceSelect();
-                $('#modal-telecom').trigger('change');
-            },
-            error: function (data) {
-                swal({
-                    title: "Lỗi !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
-            },
-        });
+    // /*Get Telecom*/
+    // if (modal_charge.length){
+    //     $.ajax({
+    //         url:'/ajax/get-tele-card',
+    //         type:'GET',
+    //         success:function (res) {
+    //             if (res.status === 1){
+    //                 let telecoms = res.data;
+    //                 let html = '';
+    //                 if (telecoms.length){
+    //                     telecoms.forEach(function (telecom) {
+    //                         html += `<option value="${telecom.key}">${telecom.title}</option>`;
+    //                     });
+    //                 }else {
+    //                     html += '<option value="">-- Vui lòng chọn nhà mạng --</option>';
+    //                 }
+    //                 modal_charge.find('#modal-telecom').html(html);
+    //             }
+    //             $('select').niceSelect();
+    //             $('#modal-telecom').trigger('change');
+    //         },
+    //         error: function (data) {
+    //             console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(get telecom)')
+    //
+    //         },
+    //     });
+    // }
+    $('select').niceSelect();
+    $('#modal-telecom').trigger('change');
+
+    ele = $('select#modal-telecom option').first();
+    var telecom = ele.val();
+    if (telecom){
+        getAmount(telecom);
     }
+
     $(document).on('change','#modal-telecom',function () {
         getAmount($(this).val());
     });
 
+ 
+
     function getAmount(telecom){
-        var url = '/get-amount-tele-card';
+        var url = '/ajax/get-amount-tele-card';
         $.ajax({
             type: "GET",
             url: url,
@@ -70,14 +75,9 @@ $(document).ready(function () {
                 }
             },
             error: function (data) {
-                swal({
-                    title: "Lỗi !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(getAmount)')
+
+
             },
             complete: function (data) {
 
@@ -123,14 +123,8 @@ $(document).ready(function () {
                 reload_captcha();
             },
             error: function (data) {
-                swal({
-                    title: "Có lỗi xảy ra !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(postCharge)')
+
             },
             complete: function (data) {
                 form.closest('.tab-content').toggleClass('load-overlay',false);
@@ -150,8 +144,10 @@ $(document).ready(function () {
             }
         });
     });
+
     form.on('submit',function (e) {
         e.preventDefault();
         postCharge();
     });
+
 });

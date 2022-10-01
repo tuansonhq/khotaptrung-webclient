@@ -57,10 +57,22 @@ class AccController extends Controller
         $method = "GET";
 
         if (empty($response_cate_data)) {
-            $dataSendCate = array();
-            $dataSendCate['data'] = 'property_lienminh_auto';
-            $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-            $response_cate_data = $result_Api_cate->response_data??null;
+
+            if ($slug == config('module.acc.slug-auto')){
+
+                $dataSendCate = array();
+                $dataSendCate['data'] = 'property_lienminh_auto';
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
+
+            } else {
+                $dataSendCate = array();
+                $dataSendCate['data'] = 'category_detail';
+                $dataSendCate['slug'] = $slug;
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
+
+            }
 
             cache(["game_props_list_{$slug}" => $response_cate_data], 604800);
         }
@@ -1155,7 +1167,9 @@ class AccController extends Controller
     }
 
     public function getShowAccRandom(Request $request){
+
         if ($request->ajax()){
+
             $url = '/acc';
             $method = "GET";
             $dataSend = array();
@@ -1171,7 +1185,7 @@ class AccController extends Controller
             if(isset($response_data) && $response_data->status == 1){
                 $data = $response_data->data;
 
-                $html = view('frontend.widget.__data__nick__random')
+                $html = view(''.theme('')->theme_key.'.frontend.widget.__data__nick__random')
                     ->with('data',$data)->render();
 
                 return response()->json([

@@ -14,7 +14,7 @@
                 <div class="row marginauto banner-mobile-row-ct">
                     <div class="col-auto left-right" style="width: 10%">
                         <a href="/"  class="box-account-mobile_open">
-                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
+                            <img   src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                         </a>
 
                     </div>
@@ -31,7 +31,7 @@
             <div class=" menu-container-ct">
                 <ul class="d-flex" style="float: inherit">
                     <li><a href="/">Trang chủ</a></li>
-                    <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
+                    <li class="menu-container-li-ct"><img   src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                     <li class="menu-container-li-ct"><a href="">Danh mục vòng quay</a></li>
                 </ul>
             </div>
@@ -69,7 +69,7 @@
                             <div class="col-md-12 left-right">
                                 <div class="row marginauto body-header-ct">
                                     <div class="col-auto left-right">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/vongquayindex.svg" alt="">
+                                        <img   src="/assets/frontend/{{theme('')->theme_key}}/image/svg/vongquayindex.svg" alt="">
                                     </div>
                                     <div class="col-md-10 col-10 body-header-col-ct">
                                         <h1>Danh sách Mini Game</h1>
@@ -92,7 +92,7 @@
                                     <div class="row marginauto body-form-search-ct">
                                         <div class="col-auto left-right">
                                             <input autocomplete="off" type="text" name="search" class="input-search-ct" placeholder="Tìm kiếm theo minigame">
-                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
+                                            <img   src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                         </div>
                                         <div class="col-4 body-form-search-button-ct">
                                             <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
@@ -107,7 +107,7 @@
                                     <div class="row marginauto body-form-search-ct">
                                         <div class="col-12 left-right" type="">
                                             <input autocomplete="off" type="text" name="search-mobile" class="input-search-ct" placeholder="Tìm kiếm theo minigame">
-                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
+                                            <img   src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                         </div>
                                     </div>
                                 </form>

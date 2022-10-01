@@ -42,7 +42,7 @@ $(document).ready(function () {
     $(document).on('click', '#modal--confirm__payment #confirmSubmitButton', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/mua-the',
+            url:'/ajax/mua-the',
             type:'POST',
             data: dataSend,
             beforeSend: function () {
@@ -147,7 +147,7 @@ $(document).ready(function () {
     $('#confirmMobileButton').on('click', function(e) {
         e.preventDefault();
         $.ajax({
-            url:'/mua-the',
+            url:'/ajax/mua-the',
             type:'POST',
             data: dataSend,
             beforeSend: function () {
@@ -247,7 +247,7 @@ $(document).ready(function () {
 
     function getListCard () {
         $.ajax({
-            url: '/store-card/get-telecom',
+            url: '/ajax/store-card/get-telecom',
             type: 'GET',
             success: function (res) {
                 if (res.status) {
@@ -331,7 +331,8 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                alert("Đã xảy ra lỗi khi load dữ liệu! Vui lòng load lại trang!")
+                console.log('Đã xảy ra lỗi khi load dữ liệu! Vui lòng load lại trang! (getListCard storecard)')
+                // alert("Đã xảy ra lỗi khi load dữ liệu! Vui lòng load lại trang!")
             },
             complete: function () {
                 $('#cardGameList .loader').addClass('d-none');
@@ -341,7 +342,7 @@ $(document).ready(function () {
 
     function getCardAmount (cardKey) {
         $.ajax({
-            url: '/store-card/get-amount',
+            url: '/ajax/store-card/get-amount',
             type: 'GET',
             data: {
                 telecom: cardKey
@@ -363,9 +364,10 @@ $(document).ready(function () {
 
                     if (!data.length) {
 
-                            $('#cardAmountList').append('<p class="text-center c-mb-0">Chưa có mệnh giá của thẻ</p>');
+                        $('#cardAmountList').append('<p class="text-center c-mb-0">Chưa có mệnh giá của thẻ</p>');
 
                         resetAmountWidget();
+
                         $('#btn-confirm').prop('disabled', true);
                     } else {
                         data.forEach(function (card) {

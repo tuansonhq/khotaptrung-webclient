@@ -169,6 +169,28 @@ class MinigameController extends Controller
                         }
                     }
 
+
+                    $arrUserName = Cache::get('arrUserName' . $group->id);
+
+                    if ($arrUserName == null) {
+                        $arrUserName = array();
+                        for ($i = 1; $i < 100; $i++) {
+                            $fname = $firstname[rand(0, count($firstname) - 1)];
+                            $lname = $lastname[rand(0, count($lastname) - 1)];
+                            $name = substr($fname, 0, rand(2, 3));
+                            $name .= '*****';
+                            $name .= substr($lname, (strlen($lname) - rand(2, 3)), strlen($lname));
+
+                            array_push($arrUserName,$name);
+                        }
+//                        array_multisort(array_column($arrUserName), SORT_DESC, SORT_NATURAL | SORT_FLAG_CASE, $arrUserName);
+                        $expiresAt = Carbon::now()->addHours(24 * 7);
+                        Cache::put('arrUserName' . $group->id, $arrUserName, $expiresAt);
+                    }
+
+//                    $firstname = ['424459519501275', 'huongGE', '387640593340197', 'Bac', 'sontest', 'tuanson', 'Hakai', '532077135115028', 'linhleo', 'namhun', '714066143281607', 'namdo', 'Djdj', '263043669219900', 'webnick.vn_truong', '2332135983756613', 'tien', 'Thanh', 'datpro', 'Lyhuyen', 'Hongngat', 'phu', 'linh', 'ngominh', 'tuanson', 'dohai', 'nguyenvan', 'tranvan', 'nguyencong', 'nguyenthanh', 'phamvan', 'phingoc', 'phamtien', 'letram', 'vingoc', 'nguyentien', 'dangvan', 'tranvan', 'sontung', 'hoangquoc', 'nguyenanh', 'chuduc', 'phammanh', 'phanquang', 'phanthi', 'lulu', 'nguyentien', 'nguyenkhanh', 'dothi', 'vuthi', 'tony', 'buituan', 'lymac', 'tranvan', 'nguyenba', 'nguyenkhanh', 'phamvan', 'tranvan', 'Peter', 'Kyle', 'Walter', 'Ethan', 'Jeremy', 'Harold', 'Keith', 'Christian', 'Roger', 'Noah', 'Gerald', 'Carl', 'Terry', 'Sean', 'Austin', 'Arthur', 'Lawrence', 'Jesse', 'Dylan', 'Bryan', 'Joe', 'Jordan', 'Billy', 'Bruce', 'Albert', 'Willie', 'Gabriel', 'Logan', 'Alan', 'Juan', 'Wayne', 'Roy', 'Ralph', 'Randy', 'Eugene', 'Vincent', 'Russell', 'Elijah', 'Louis', 'Bobby', 'Philip', 'Johnny', 'Mary', 'Patricia', 'Jennifer', 'Linda', 'Elizabeth', 'Barbara', 'Susan', 'Jessica', 'Sarah', 'Karen', 'Nancy', 'Lisa', 'Betty', 'Margaret', 'Sandra', 'Ashley', 'Kimberly', 'Emily', 'Donna', 'Michelle', 'Dorothy', 'Carol', 'Amanda', 'Melissa', 'Deborah', 'Stephanie', 'Rebecca', 'Sharon', 'Laura', 'Cynthia'];
+//                    $lastname = ['@facebook.com', 'test', '@facebook.com', '2006', 'frontend', '8575', '243751', '@facebook.com', 'xinh', 'nam1n', '@facebook.com', '2009', '2022', '@facebook.com', 'test01', '@facebook.com', '2001', '991135', '096', 'tram', '01', 'demo', 'uiopa', 'youtuber', 'trai', 'bui', 'tan', 'nam', 'hung', 'danh', 'vietanh', 'van', 'trong', 'van', 'huy', 'anh', 'dung', 'phu', 'truong', 'son', 'MTV', 'viet', 'tu', 'duong', 'tuong', 'dat', 'hatrang', 'mina', 'de', 'linh', 'ngoc', 'thanhhuyen', 'jaja', 'son', 'sau', 'toan', 'cong', 'chinh', 'linh', 'quyet', 'dong', 'Schroeder', 'Block', 'Mayoral', 'Fleishman', 'Roberie', 'Latson', 'Lupo', 'Motsinger', 'Drews', 'Coby', 'Redner', 'Culton', 'Howe', 'Stoval', 'Michaud', 'Mote', 'Menjivar', 'Wiers', 'Paris', 'Grisby', 'Noren', 'Damron', 'Kazmierczak', 'Haslett', 'Guillemette', 'Buresh', 'Center', 'Kucera', 'Catt', 'Badon', 'Grumbles', 'Antes', 'Byron', 'Volkman', 'Klemp', 'Pekar', 'Pecora', 'Schewe', 'Ramage'];
+
 //                    lich su trung thuong
                     $url_logs = '/minigame/get-log';
                     $data['id'] = $group->id;
@@ -176,9 +198,13 @@ class MinigameController extends Controller
                     $data['page'] = 1;
                     $result_Api_logs = DirectAPI::_makeRequest($url_logs, $data, $method);
 
+
+
+
                     if (isset($result_Api_logs) && $result_Api_logs->response_code == 200) {
                         $data_view = [
                             'result' => $result,
+                            'arrUserName' => $arrUserName,
                             'groups_other' => $groups_other,
                             'numPlay' => $numPlay,
                             'topDayList' => $topDayList,
@@ -205,6 +231,7 @@ class MinigameController extends Controller
                             'result' => $result,
                             'groups_other' => $groups_other,
                             'numPlay' => $numPlay,
+                            'arrUserName' => $arrUserName,
                             'topDayList' => $topDayList,
                             'top7DayList' => $top7DayList,
                             'currentPlayList' => $currentPlayList,
@@ -601,7 +628,10 @@ class MinigameController extends Controller
                 }
             } catch (\Exception $e) {
                 logger($e);
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                return response()->json([
+                    'status'=>0,
+                    'message'=>$e->getMessage(),
+                ]);
             }
         } else {
             return response()->json([

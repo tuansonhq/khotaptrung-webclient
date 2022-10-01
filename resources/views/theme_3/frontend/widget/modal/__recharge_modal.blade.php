@@ -27,6 +27,9 @@
                             <div class="t-sub-2 mb-2">Nhà cung cấp</div>
                             <select name="type" class="mb-fix-12" id="modal-telecom">
                                 <!-- JS PASTE CODE HERE -->
+                                @foreach($data as $val)
+                                    <option value="{{$val->key}}">{{$val->title}}</option>
+                                @endforeach
                             </select>
 
                             <div class="t-sub-2 mb-2">Chọn mệnh giá</div>

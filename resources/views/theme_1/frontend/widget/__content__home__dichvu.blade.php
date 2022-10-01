@@ -38,7 +38,6 @@
                             <div class="game-list-description">
                                 <div class="countime"></div>
 
-                                <p></p>
                                 @if(isset($item->total_order))
                                     @if($item->params_plus)
                                         @foreach($item->params_plus as $key => $val)

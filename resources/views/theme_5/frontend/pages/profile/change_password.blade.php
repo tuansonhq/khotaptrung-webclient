@@ -110,7 +110,26 @@
                     <div class="modal-footer c-p-24">
                         <a href="/" class="btn secondary" data-dismiss="modal">Về trang chủ</a>
                         <a href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn primary">Đăng nhập lại</a>
-                        <form id="logout-form" action="http://127.0.0.1:8000/logout" method="POST" class="d-none"></form>
+                        <form id="logout-form" action="http://127.0.0.1:8000/ajax/logout" method="POST" class="d-none"></form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade modal-small" id="FailChangePasswordModal">
+            <div class="modal-dialog modal-dialog-centered modal-custom">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center p-0">
+                        <img class="c-pt-20 c-pb-20" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png" alt="">
+                    </div>
+                    <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
+                        {{--                    Content 1  --}}
+                        <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Thay đổi mật khẩu không thành công</p>
+                        <p class="fw-400 fz-13 c-mt-10 mb-0"><div class="password-error"></div></p>
+
+                    </div>
+                    <div class="modal-footer c-p-24">
+                        <a href="javascript:void(0)" class="btn secondary" data-dismiss="modal">Đóng</a>
+
                     </div>
                 </div>
             </div>

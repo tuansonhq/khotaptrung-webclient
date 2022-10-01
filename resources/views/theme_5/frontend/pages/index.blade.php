@@ -228,7 +228,9 @@
                             <div class="card--attr__name fw-400 fz-13 text-center">
                                 Tổng thanh toán
                             </div>
-                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary" id="totalBill"></a></div>
+                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)"
+                                                                           class="c-text-primary" id="totalBill"></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -291,7 +293,8 @@
         <div class="modal-dialog modal-dialog-centered modal-custom">
             <div class="modal-content">
                 <div class="modal-header justify-content-center p-0">
-                    <img class="c-pt-16 c-pb-16" src="/assets/frontend/{{theme('')->theme_key}}/image/son/thatbai.png" alt="">
+                    <img class="c-pt-16 c-pb-16" src="/assets/frontend/{{theme('')->theme_key}}/image/son/thatbai.png"
+                         alt="">
                 </div>
                 <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
                     <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua thẻ thất bại</p>
@@ -305,4 +308,6 @@
     </div>
 
 @endsection
-
+@section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/store-card.js"></script>
+@endsection

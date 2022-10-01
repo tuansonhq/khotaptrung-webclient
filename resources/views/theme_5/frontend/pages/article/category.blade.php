@@ -36,7 +36,7 @@
                 <div class=" --custom p-3" id="new-article-update">
                     @include('frontend.widget.__menu__category__article')
 
-                    <div class="tab-content mt-4">
+                    <div class="tab-content-title mt-4">
                         <div class="card--body">
                             @if(isset($data) && count($data))
                                 @forelse($data as $key=> $item)
@@ -44,14 +44,14 @@
                                         <a href="/tin-tuc/{{ $item->slug }}">
                                             <div class="card">
                                                 <div class="card-body c-p-16 c-p-lg-8">
-                                                    <div class="article-thumb c-mb-16 c-mb-lg-0">
+                                                    <div class="article-thumb c-mb-lg-0">
                                                         <img onerror="imgError(this)" src="{{ @\App\Library\MediaHelpers::media($item->image)}}" class="article-thumb-image" alt="article-thumbnail">
                                                     </div>
-                                                    <div class="article-body">
+                                                    <div class="article-body" style="flex: 1">
                                                         <div class="article-title text-limit limit-2 limit-lg-3 fz-lg-13 lh-lg-20 c-ml-12">
                                                             {{ @$item->title }}
                                                         </div>
-                                                        <div class="article--description d-none d-lg-block c-pt-16 c-ml-12 c-pb-48">
+                                                        <div class="article--description d-none d-lg-block c-pt-16 c-ml-12">
                                                             {!! $item->description !!}
                                                         </div>
                                                         <div class="article-info c-mt-16 c-mt-lg-6 c-ml-12">
