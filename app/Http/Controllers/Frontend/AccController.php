@@ -57,6 +57,7 @@ class AccController extends Controller
         $method = "GET";
 
         if (empty($response_cate_data)) {
+
             if ($slug == config('module.acc.slug-auto')){
 
                 $dataSendCate = array();
