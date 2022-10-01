@@ -135,8 +135,12 @@ class AccController extends Controller
                     }
 
                     if ($arr_auto == ''){
+
+                    }else{
                         $dataSend['auto_category'] = $arr_auto;
                     }
+
+
                 }
 
                 $dataSend['data'] = 'list_acc';
@@ -204,13 +208,13 @@ class AccController extends Controller
 
                 if(isset($response_data) && $response_data->status == 1){
 
-                    if ($request->filled('champions_data') || $request->filled('skill_data') || $request->filled('tftcompanions_data') || $request->filled('tftdamageskins_data') || $request->filled('tftmapskins_data'))  {
-                        $items = $response_data->data;
-                        $items = $items->items;
-                    }else{
-                        $items = $response_data->data;
-                    }
-
+//                    if ($request->filled('champions_data') || $request->filled('skill_data') || $request->filled('tftcompanions_data') || $request->filled('tftdamageskins_data') || $request->filled('tftmapskins_data'))  {
+//                        $items = $response_data->data;
+//                        $items = $items->items;
+//                    }else{
+//
+//                    }
+                    $items = $response_data->data;
                     if (isset($items->status) && $items->status == 0){
                         return response()->json([
                             'status' => 0,
@@ -408,7 +412,6 @@ class AccController extends Controller
 //                $atm_percent = setting('sys_atm_percent');
                 $htmlmenu = view('frontend.pages.account.widget.__datamenu')
                     ->with('data',$data)->render();
-
 
                 $html = view('frontend.pages.account.widget.__datadetail')
                     ->with('data_category',$data_category)

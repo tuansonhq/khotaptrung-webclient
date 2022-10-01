@@ -1,5 +1,4 @@
 @if(isset($data) && count($data))
-
     <div class="shop_product_another pt-3">
         <div class="c-content-title-1">
             <h3 class="c-center c-font-uppercase c-font-bold title__tklienquan">Tài khoản liên quan</h3>
@@ -66,7 +65,66 @@
                                             @endif
                                         @endforeach
                                     @endif
+                                    @if(isset($item->params))
+                                            @if(isset($item->params->rank_info))
 
+                                                @foreach($item->params->rank_info as $rank_info)
+                                                    @if($rank_info->queueType == "RANKED_TFT")
+                                                    @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                        <?php
+                                                        $index = $index + 1;
+                                                        ?>
+                                                            <div class="row" style="margin: 0 auto;width: 100%">
+                                                                <div class="col-auto item_buy_list_info_inacc fixcssacount">
+                                                                    Rank :
+                                                                </div>
+                                                                <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                    {{--                                                                {{ $att_valuev2->title??null }}--}}
+                                                                    @if($rank_info->tier == "NONE")
+                                                                        {{ $rank_info->tier }}
+                                                                    @else
+                                                                        {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                    @endif
+
+                                                                </div>
+                                                            </div>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                            @if(isset($item->params->count))
+                                                @if(isset($item->params->count->champions))
+                                                    <?php
+                                                    $index = $index + 1;
+                                                    ?>
+                                                        <div class="row" style="margin: 0 auto;width: 100%">
+                                                            <div class="col-auto item_buy_list_info_inacc fixcssacount">
+                                                                Số tướng :
+                                                            </div>
+                                                            <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                {{--                                                                {{ $att_valuev2->title??null }}--}}
+                                                                {{ $item->params->count->champions }}
+
+                                                            </div>
+                                                        </div>
+
+                                                @endif
+                                                @if(isset($item->params->count->skins))
+                                                    <?php
+                                                    $index = $index + 1;
+                                                    ?>
+                                                        <div class="row" style="margin: 0 auto;width: 100%">
+                                                            <div class="col-auto item_buy_list_info_inacc fixcssacount">
+                                                                Trang phục :
+                                                            </div>
+                                                            <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                {{--                                                                {{ $att_valuev2->title??null }}--}}
+                                                                {{ $item->params->count->skins }}
+
+                                                            </div>
+                                                        </div>
+                                                @endif
+                                            @endif
+                                        @endif
                                     @if(isset($item->params) && isset($item->params->ext_info))
                                             <?php $params = json_decode(json_encode($item->params->ext_info),true) ?>
                                             @if(isset($item->category->childs) && count($item->category->childs)>0)
@@ -76,10 +134,16 @@
                                                             @foreach($att->childs as $child)
                                                                 @foreach($params as $key => $param)
                                                                     @if($key == $child->id)
-                                                                        <tr>
-                                                                            <td style="width:50%">{{ $child->title }}:</td>
-                                                                            <td class="text-danger" style="font-weight: 700">{{ $param }}</td>
-                                                                        </tr>
+                                                                        <div class="row" style="margin: 0 auto;width: 100%">
+                                                                            <div class="col-auto item_buy_list_info_inacc fixcssacount">
+                                                                                {{ $child->title }}:
+                                                                            </div>
+                                                                            <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                                {{--                                                                {{ $att_valuev2->title??null }}--}}
+                                                                                {{ $param }}
+
+                                                                            </div>
+                                                                        </div>
                                                                     @endif
                                                                 @endforeach
                                                             @endforeach
@@ -89,6 +153,8 @@
                                                 @endforeach
                                             @endif
                                         @endif
+
+
 
                                 </div>
                             </div>
