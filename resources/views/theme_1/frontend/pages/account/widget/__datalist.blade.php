@@ -627,23 +627,23 @@
 
                                                 @foreach($item->params->rank_info as $rank_info)
                                                     @if($rank_info->queueType == "RANKED_TFT")
-                                                        <div class="row" style="margin: 0 auto;width: 100%">
-                                                            <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                                RANKED TFT :
-                                                            </div>
-                                                            <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                {{--                                                                                        {{ $param??null }}--}}
-                                                                @if($rank_info->tier == "NONE")
-                                                                    {{ $rank_info->tier }}
-                                                                @else
-                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                                @endif
-                                                            </div>
-                                                        </div>
+{{--                                                        <div class="row" style="margin: 0 auto;width: 100%">--}}
+{{--                                                            <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">--}}
+{{--                                                                RANKED TFT :--}}
+{{--                                                            </div>--}}
+{{--                                                            <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">--}}
+{{--                                                                --}}{{--                                                                                        {{ $param??null }}--}}
+{{--                                                                @if($rank_info->tier == "NONE")--}}
+{{--                                                                    {{ $rank_info->tier }}--}}
+{{--                                                                @else--}}
+{{--                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}--}}
+{{--                                                                @endif--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
                                                     @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
                                                         <div class="row" style="margin: 0 auto;width: 100%">
                                                             <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                                RANKED SOLO :
+                                                                Rank :
                                                             </div>
                                                             <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
                                                                 {{--                                                                                        {{ $param??null }}--}}
@@ -667,6 +667,30 @@
                                                         {{ $item->params->rank_level }}
                                                     </div>
                                                 </div>
+                                            @endif
+                                            @if(isset($item->params->count))
+                                                @if(isset($item->params->count->champions))
+                                                <div class="row" style="margin: 0 auto;width: 100%">
+                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                        Số tướng :
+                                                    </div>
+                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                        {{--                                                                                        {{ $param??null }}--}}
+                                                        {{ $item->params->count->champions }}
+                                                    </div>
+                                                </div>
+                                                @endif
+                                                @if(isset($item->params->count->skins))
+                                                    <div class="row" style="margin: 0 auto;width: 100%">
+                                                        <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                            Trang phục :
+                                                        </div>
+                                                        <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                            {{--                                                                                        {{ $param??null }}--}}
+                                                            {{ $item->params->count->skins }}
+                                                        </div>
+                                                    </div>
+                                                @endif
                                             @endif
                                         @endif
                                     @endif

@@ -322,16 +322,16 @@
 
                                             @foreach($item->params->rank_info as $rank_info)
                                                 @if($rank_info->queueType == "RANKED_TFT")
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">RANKED TFT:
-                                                        @if($rank_info->tier == "NONE")
-                                                            {{ $rank_info->tier }}
-                                                        @else
-                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                        @endif
-                                                    </p>
+{{--                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">RANKED TFT:--}}
+{{--                                                        @if($rank_info->tier == "NONE")--}}
+{{--                                                            {{ $rank_info->tier }}--}}
+{{--                                                        @else--}}
+{{--                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}--}}
+{{--                                                        @endif--}}
+{{--                                                    </p>--}}
 
                                                 @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">RANKED SOLO:
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Rank:
                                                         @if($rank_info->tier == "NONE")
                                                             {{ $rank_info->tier }}
                                                         @else
@@ -346,6 +346,19 @@
                                                 {{ $item->params->rank_level }}
                                             </p>
 
+                                        @endif
+
+                                        @if(isset($item->params->count))
+                                            @if(isset($item->params->count->champions))
+                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Số tướng :
+                                                    {{ $item->params->count->champions }}
+                                                </p>
+                                            @endif
+                                            @if(isset($item->params->count->skins))
+                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Trang phục :
+                                                    {{ $item->params->count->skins }}
+                                                </p>
+                                            @endif
                                         @endif
                                     @endif
                                 @endif

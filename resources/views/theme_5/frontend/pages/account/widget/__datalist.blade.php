@@ -67,9 +67,16 @@
                                     </div>
                                 @endif
 
-                            </a>
+
+                            @if(\App\Library\AuthCustom::check())
+                                </a>
+                            @else
+                                </a>
+                            @endif
                         </div>
+
                     </div>
+
 
 {{--                    Form thanh toán nick random  formThanhToanNickRandom --}}
 
@@ -272,24 +279,24 @@
                                                 @foreach($item->params->rank_info as $rank_info)
 
                                                     @if($rank_info->queueType == "RANKED_TFT")
-                                                        <?php
-                                                            $total = $total + 1;
-                                                        ?>
-                                                            <div class="info-attr">
-                                                                RANKED TFT :
-                                                                @if($rank_info->tier == "NONE")
-                                                                    {{ $rank_info->tier }}
-                                                                @else
-                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                                @endif
-                                                            </div>
+{{--                                                        <?php--}}
+{{--                                                            $total = $total + 1;--}}
+{{--                                                        ?>--}}
+{{--                                                            <div class="info-attr">--}}
+{{--                                                                RANKED TFT :--}}
+{{--                                                                @if($rank_info->tier == "NONE")--}}
+{{--                                                                    {{ $rank_info->tier }}--}}
+{{--                                                                @else--}}
+{{--                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}--}}
+{{--                                                                @endif--}}
+{{--                                                            </div>--}}
 
                                                     @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
                                                         <?php
                                                         $total = $total + 1;
                                                         ?>
                                                         <div class="info-attr">
-                                                            RANKED SOLO :
+                                                            Rank :
                                                             @if($rank_info->tier == "NONE")
                                                                 {{ $rank_info->tier }}
                                                             @else
@@ -307,6 +314,28 @@
                                                     Level :
                                                     {{ $item->params->rank_level }}
                                                 </div>
+                                            @endif
+                                            @if(isset($item->params->count))
+                                                @if(isset($item->params->count->champions))
+                                                    <?php
+                                                    $total = $total + 1;
+                                                    ?>
+                                                    <div class="info-attr">
+                                                        Số tướng :
+                                                        {{ $item->params->count->champions }}
+                                                    </div>
+
+                                                @endif
+                                                @if(isset($item->params->count->skins))
+                                                    <?php
+                                                    $total = $total + 1;
+                                                    ?>
+                                                    <div class="info-attr">
+                                                        Trang phục :
+                                                        {{ $item->params->count->skins }}
+                                                    </div>
+
+                                                @endif
                                             @endif
                                         @endif
                                     @endif
