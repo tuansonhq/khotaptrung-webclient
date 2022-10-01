@@ -552,40 +552,126 @@
                                 </div>
                                 <div class="item_buy_list_info item_buy_list_info_custom">
                                     <div class="row item_buy_list_info__row">
-                                    @if($data->slug != "nick-lien-minh")
                                         <?php
                                         $total = 0;
                                         ?>
-                                        @if(isset($item->groups))
-                                            <?php
-                                            $att_values = $item->groups;
-                                            ?>
 
-                                            {{--                                            @dd($att_values)--}}
-                                            @foreach($att_values as $att_value)
-                                                {{--            @dd($att_value)--}}
-                                                @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                    {{--                                                        @dd($att_value->parent)--}}
-                                                    @if(isset($att_value->parent))
-                                                        @if($total < 4)
-                                                            <?php
-                                                            $total = $total + 1;
-                                                            ?>
-                                                            <div class="row" style="margin: 0 auto;width: 100%">
-                                                                <div class="col-auto text-left fixcssacount item_buy_list_info_inacc"">
-                                                                {{ $att_value->parent->title??null }} :
-                                                            </div>
-                                                            <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                {{--                                                                    {{ $att_value->title??null }}--}}
-                                                                {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}
-                                                            </div>
-                                    </div>
+                                    @if(isset($item->groups))
+                                        <?php
+                                        $att_values = $item->groups;
+                                        ?>
+
+                                        {{--                                            @dd($att_values)--}}
+                                        @foreach($att_values as $att_value)
+                                            {{--            @dd($att_value)--}}
+                                            @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                {{--                                                        @dd($att_value->parent)--}}
+                                            @if(isset($att_value->parent))
+                                                    @if($total < 4)
+                                                        <?php
+                                                        $total = $total + 1;
+                                                        ?>
+                                                        <div class="row" style="margin: 0 auto;width: 100%">
+                                                            <div class="col-auto text-left fixcssacount item_buy_list_info_inacc"">
+                                                            {{ $att_value->parent->title??null }} :
+                                                        </div>
+                                                        <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                            {{--                                                                    {{ $att_value->title??null }}--}}
+                                                            {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}
+                                                        </div>
+                                </div>
+                                @endif
+                                @endif
+                                            @endif
+                                        @endforeach
                                     @endif
+                                    @if(isset($item->params))
+                                        @if(isset($item->params->rank_info))
+
+                                            @foreach($item->params->rank_info as $rank_info)
+                                                @if($rank_info->queueType == "RANKED_TFT")
+                                                    {{--<!--                                                        --><?php--}}
+                                                    {{--//                                                            $total = $total + 1;--}}
+                                                    {{--//                                                        ?>--}}
+                                                    {{--                                                        <div class="row" style="margin: 0 auto;width: 100%">--}}
+                                                    {{--                                                            <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">--}}
+                                                    {{--                                                                RANKED TFT :--}}
+                                                    {{--                                                            </div>--}}
+                                                    {{--                                                            <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">--}}
+                                                    {{--                                                                                                                                                        {{ $param??null }}--}}
+                                                    {{--                                                                @if($rank_info->tier == "NONE")--}}
+                                                    {{--                                                                    {{ $rank_info->tier }}--}}
+                                                    {{--                                                                @else--}}
+                                                    {{--                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}--}}
+                                                    {{--                                                                @endif--}}
+                                                    {{--                                                            </div>--}}
+                                                    {{--                                                        </div>--}}
+                                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                    <?php
+                                                    $total = $total + 1;
+                                                    ?>
+                                                    <div class="row" style="margin: 0 auto;width: 100%">
+                                                        <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                            Rank :
+                                                        </div>
+                                                        <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                            {{--                                                                                        {{ $param??null }}--}}
+                                                            @if($rank_info->tier == "NONE")
+                                                                {{ $rank_info->tier }}
+                                                            @else
+                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                        @if(isset($item->params->rank_level))
+                                            {{--                                                    <?php--}}
+                                            {{--                                                    $total = $total + 1;--}}
+                                            {{--                                                    ?>--}}
+                                            {{--                                                <div class="row" style="margin: 0 auto;width: 100%">--}}
+                                            {{--                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">--}}
+                                            {{--                                                        Level :--}}
+                                            {{--                                                    </div>--}}
+                                            {{--                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">--}}
+                                            {{--                                                                                                                                                {{ $param??null }}--}}
+                                            {{--                                                        {{ $item->params->rank_level }}--}}
+                                            {{--                                                    </div>--}}
+                                            {{--                                                </div>--}}
+                                        @endif
+                                        @if(isset($item->params->count))
+                                            @if(isset($item->params->count->champions))
+                                                <?php
+                                                $total = $total + 1;
+                                                ?>
+                                                <div class="row" style="margin: 0 auto;width: 100%">
+                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                        Số tướng :
+                                                    </div>
+                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                        {{--                                                                                        {{ $param??null }}--}}
+                                                        {{ $item->params->count->champions }}
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            @if(isset($item->params->count->skins))
+                                                <?php
+                                                $total = $total + 1;
+                                                ?>
+                                                <div class="row" style="margin: 0 auto;width: 100%">
+                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                        Trang phục :
+                                                    </div>
+                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                        {{--                                                                                        {{ $param??null }}--}}
+                                                        {{ $item->params->count->skins }}
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endif
                                     @endif
-                                    @endif
-                                    @endforeach
-                                    @endif
-                                        @if(isset($item->params) && isset($item->params->ext_info))
+                                    @if(isset($item->params) && isset($item->params->ext_info))
                                             <?php
                                             $params = json_decode(json_encode($item->params->ext_info),true);
                                             ?>
@@ -621,79 +707,6 @@
                                                 @endif
                                             @endif
                                         @endif
-                                    @else
-                                        @if(isset($item->params))
-                                            @if(isset($item->params->rank_info))
-
-                                                @foreach($item->params->rank_info as $rank_info)
-                                                    @if($rank_info->queueType == "RANKED_TFT")
-{{--                                                        <div class="row" style="margin: 0 auto;width: 100%">--}}
-{{--                                                            <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">--}}
-{{--                                                                RANKED TFT :--}}
-{{--                                                            </div>--}}
-{{--                                                            <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">--}}
-{{--                                                                --}}{{--                                                                                        {{ $param??null }}--}}
-{{--                                                                @if($rank_info->tier == "NONE")--}}
-{{--                                                                    {{ $rank_info->tier }}--}}
-{{--                                                                @else--}}
-{{--                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}--}}
-{{--                                                                @endif--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-                                                    @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
-                                                        <div class="row" style="margin: 0 auto;width: 100%">
-                                                            <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                                Rank :
-                                                            </div>
-                                                            <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                {{--                                                                                        {{ $param??null }}--}}
-                                                                @if($rank_info->tier == "NONE")
-                                                                    {{ $rank_info->tier }}
-                                                                @else
-                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                    @endif
-                                                @endforeach
-                                            @endif
-                                            @if(isset($item->params->rank_level))
-                                                <div class="row" style="margin: 0 auto;width: 100%">
-                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                        Level :
-                                                    </div>
-                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                        {{--                                                                                        {{ $param??null }}--}}
-                                                        {{ $item->params->rank_level }}
-                                                    </div>
-                                                </div>
-                                            @endif
-                                            @if(isset($item->params->count))
-                                                @if(isset($item->params->count->champions))
-                                                <div class="row" style="margin: 0 auto;width: 100%">
-                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                        Số tướng :
-                                                    </div>
-                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                        {{--                                                                                        {{ $param??null }}--}}
-                                                        {{ $item->params->count->champions }}
-                                                    </div>
-                                                </div>
-                                                @endif
-                                                @if(isset($item->params->count->skins))
-                                                    <div class="row" style="margin: 0 auto;width: 100%">
-                                                        <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                            Trang phục :
-                                                        </div>
-                                                        <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                            {{--                                                                                        {{ $param??null }}--}}
-                                                            {{ $item->params->count->skins }}
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                            @endif
-                                        @endif
-                                    @endif
                                 </div>
                             </div>
                             <div class="item_buy_list_more">
