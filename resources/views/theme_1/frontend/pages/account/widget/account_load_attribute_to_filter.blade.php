@@ -22,26 +22,6 @@
     </div>
 </div>
 
-@if(isset($dataAttribute) && count($dataAttribute) > 0)
-    @foreach($dataAttribute as $val)
-        {{--        @dd($val)--}}
-        @if($val->position == 'select')
-            <div class="col-3 item_buy_form_search">
-                <div class="input-group">
-                    <span class="input-group-addon">{{ $val->title }}</span>
-                    <select type="text" class="form-control select" name="attribute_id_{{ $val->id }}">
-                        <option value="">--Không chọn--</option>
-                        @foreach($val->childs as $child)
-                            <option value="{{ $child->id }}">{{ $child->title }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-            </div>
-        @endif
-    @endforeach
-@endif
-
 @if(isset($auto_properties))
     @foreach($auto_properties as $auto_propertie)
         @if($auto_propertie->key == 'champions')
@@ -121,6 +101,26 @@
             </div>
         @endif
     @endforeach
+@else
+    @if(isset($dataAttribute) && count($dataAttribute) > 0)
+        @foreach($dataAttribute as $val)
+            {{--        @dd($val)--}}
+            @if($val->position == 'select')
+                <div class="col-3 item_buy_form_search">
+                    <div class="input-group">
+                        <span class="input-group-addon">{{ $val->title }}</span>
+                        <select type="text" class="form-control select" name="attribute_id_{{ $val->id }}">
+                            <option value="">--Không chọn--</option>
+                            @foreach($val->childs as $child)
+                                <option value="{{ $child->id }}">{{ $child->title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                </div>
+            @endif
+        @endforeach
+    @endif
 @endif
 
 

@@ -83,38 +83,64 @@ class AccController extends Controller
             if(isset($response_cate_data) && $response_cate_data->status == 1){
 
                 $data = $response_cate_data->data;
+
                 $dataAttribute = $data->childs;
                 $dataSend = array();
+                $arr_auto = '';
 
                 if ($request->filled('champions_data') || $request->filled('skill_data') || $request->filled('tftcompanions_data') || $request->filled('tftdamageskins_data') || $request->filled('tftmapskins_data'))  {
-                    $dataSend['data'] = 'property_lienminh_auto';
+//                    $dataSend['data'] = 'property_lienminh_auto';
 
                     if ($request->filled('tftmapskins_data')){
-                        $auto_id = $request->tftmapskins_data;
+
+                        if ($arr_auto == ''){
+                            $arr_auto = $request->tftmapskins_data;
+                        }else{
+                            $arr_auto = $arr_auto.','.$request->tftmapskins_data;
+                        }
                     }
 
                     if ($request->filled('tftdamageskins_data')){
-                        $auto_id = $request->tftdamageskins_data;
+
+                        if ($arr_auto == ''){
+                            $arr_auto = $request->tftdamageskins_data;
+                        }else{
+                            $arr_auto = $arr_auto.','.$request->tftdamageskins_data;
+                        }
                     }
 
                     if ($request->filled('tftcompanions_data')){
-                        $auto_id = $request->tftcompanions_data;
+
+                        if ($arr_auto == ''){
+                            $arr_auto = $request->tftcompanions_data;
+                        }else{
+                            $arr_auto = $arr_auto.','.$request->tftcompanions_data;
+                        }
                     }
 
                     if ($request->filled('skill_data')){
-                        $auto_id = $request->skill_data;
+                        if ($arr_auto == ''){
+                            $arr_auto = $request->skill_data;
+                        }else{
+                            $arr_auto = $arr_auto.','.$request->skill_data;
+                        }
                     }
 
                     if ($request->filled('champions_data')){
-                        $auto_id = $request->champions_data;
+                        if ($arr_auto == ''){
+                            $arr_auto = $request->champions_data;
+                        }else{
+                            $arr_auto = $arr_auto.','.$request->champions_data;
+                        }
                     }
 
-                    $dataSend['id'] = $auto_id;
-                }else{
-                    $dataSend['data'] = 'list_acc';
-                    $dataSend['cat_slug'] = $slug;
+                    if ($arr_auto == ''){
+                        $dataSend['auto_category'] = $arr_auto;
+                    }
                 }
 
+                $dataSend['data'] = 'list_acc';
+                $dataSend['cat_slug'] = $slug;
                 $dataSend['page'] = $page;
                 $dataSend['status'] = 1;
                 $dataSend['limit'] =  12;
@@ -145,7 +171,6 @@ class AccController extends Controller
                     $group_ids = array();
                     foreach(explode('|',$select_data) as $v){
                         if ($v == "" || $v == null){
-
 
                         }else{
                             array_push($group_ids,$v);
