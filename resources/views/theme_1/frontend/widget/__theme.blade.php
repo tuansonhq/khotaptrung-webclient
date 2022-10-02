@@ -180,6 +180,10 @@
         .nav-bar-category .nav li ul li a {
             color: white;
         }
+        .oldPrice {
+            color:  {{setting('sys_theme_color_text')}};
+
+        }
     </style>
 @else
     <style>

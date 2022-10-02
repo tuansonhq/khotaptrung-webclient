@@ -2526,3 +2526,18 @@ footer{
     max-height: 48px;
     height: 48px;
 }
+
+
+/*theme*/
+.game-list-more-view .btn-view-more {
+    text-align: center;
+    border: 2px solid #cccccc;
+    padding: 5px;
+    color: #3f444a;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+.game-list-more-view .btn-view-more:hover {
+    border: 2px solid #32c5d2;
+    color: #32c5d2;
+}
