@@ -881,8 +881,8 @@ header .nav-bar{
     /*border: 1px solid #ccc;*/
     /*border: 1px solid rgba(0,0,0,.15);*/
     border-radius: 4px;
-    -webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
-    box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+    /*-webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);*/
+    /*box-shadow: 0 6px 12px rgb(0 0 0 / 18%);*/
 }
 .nav-bar-category .menu-item ul li{
 

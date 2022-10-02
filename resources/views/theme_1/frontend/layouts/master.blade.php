@@ -53,14 +53,7 @@
 {{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_banner)){{theme('')->theme_config->sys_config_banner ? theme('')->theme_config->sys_config_banner : ''}}@endif/theme.css">--}}
 {{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_menu_news)){{theme('')->theme_config->sys_config_menu_news ? theme('')->theme_config->sys_config_menu_news : ''}}@endif/theme.css">--}}
     @stack('style')
-    <style>
-        .main-lay-out{
-            background:#000 url(/assets/frontend/{{theme('')->theme_key}}/images/background_image.jpg);
-            background-attachment: fixed;background-size: 100%;
 
-            padding-bottom: 40px;
-        }
-    </style>
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
@@ -90,7 +83,6 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/script.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
-
     <script>
         $(document).ready(function () {
             @if(Request::is('thong-tin'))
@@ -194,6 +186,7 @@
 
 </head>
 <body>
+@include('frontend.widget.__theme')
 
 @if(setting('sys_google_tag_manager_body') != '')
     <!-- Google Tag Manager (noscript) -->
