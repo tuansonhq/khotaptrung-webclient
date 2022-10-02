@@ -184,6 +184,12 @@
             color:  {{setting('sys_theme_color_text')}};
 
         }
+        .content-advertise .container marquee p{
+            color: {{setting('sys_theme_color_text')}};
+        }
+        .content-advertise .container{
+            border: 1px solid {{setting('sys_theme_color_text')}};
+        }
     </style>
 @else
     <style>
