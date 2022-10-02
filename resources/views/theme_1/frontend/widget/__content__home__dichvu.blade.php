@@ -77,7 +77,20 @@
                                                 @endif
                                             @endforeach
                                         @else
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/images/muangay.jpg" alt="">
+                                            @if(isset(theme('')->theme_config->sys_button_home))
+                                                @if(theme('')->theme_config->sys_button_home == 'sys_button_home_text')
+                                                    <div class="col-xs-12 w-75 m-auto">
+                                                        <div class="btn-view-more mt-3">
+                                                            Xem tất cả
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/images/muangay.jpg" alt="">
+
+                                                @endif
+                                            @else
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/images/muangay.jpg" alt="">
+                                            @endif
                                         @endif
                                     </a>
                                 </div>
