@@ -120,11 +120,10 @@
             @endif
             @include('frontend.widget.__dich__vu__noi__bat')
 
-
-            @include('frontend.widget.__content__home__game')
+            @include('frontend.widget.__content__home__minigame')
 
             @include('frontend.widget.__content__home__dichvu')
-            @include('frontend.widget.__content__home__minigame')
+            @include('frontend.widget.__content__home__game')
 
             <div class="content-video intro_text" id="lockmoney_taget">
                 <div class="container">
