@@ -79,9 +79,11 @@
                     </marquee>
                 </div>
             </div>
-            @include('frontend.widget.__content__home__minigame')
 
             @include('frontend.widget.__dich__vu__noi__bat')
+            @include('frontend.widget.__content__home__minigame')
+
+
 
             @include('frontend.widget.__content__home__game')
 

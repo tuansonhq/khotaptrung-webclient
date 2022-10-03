@@ -160,6 +160,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                         Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getLogs'])->name('getBuyAccountHistory');
 
                     }
+
                     Route::get('/lich-su-mua-account-{id}', [\App\Http\Controllers\Frontend\AccController::class , 'getLogsCustomDetails'])->name('getLogsCustomDetails');
                     Route::post('/ajax/{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
 

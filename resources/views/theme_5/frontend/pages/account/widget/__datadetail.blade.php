@@ -270,15 +270,19 @@
                         <div class="card disabled-color">
                             <div class="card-body text-center c-p-0">
                                 <div class="price-acc">
-                                    <div class="price-old fz-lg-12 lh-lg-16">
-                                        {{ str_replace(',','.',number_format($data->price_old)) }}đ
-                                    </div>
+                                    @if ($sale_percent > 0)
+                                        <div class="price-old fz-lg-12 lh-lg-16">
+                                            {{ str_replace(',','.',number_format($data->price_old)) }}đ
+                                        </div>
+                                    @endif
                                     <div class="price-current fz-lg-20 lh-lg-28 c-mx-8">
                                         {{ str_replace(',','.',number_format($data->price)) }}đ
                                     </div>
-                                    <div class="discount">
-                                        -{{ $sale_percent }}%
-                                    </div>
+                                    @if ($sale_percent > 0)
+                                        <div class="discount">
+                                            -{{ $sale_percent }}%
+                                        </div>
+                                    @endif
                                 </div>
                                 <span>
                                     Rẻ vô đối, giá tốt nhất thị trường
