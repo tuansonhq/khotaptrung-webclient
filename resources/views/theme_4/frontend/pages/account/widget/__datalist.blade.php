@@ -262,58 +262,108 @@
                                 <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                      alt="{{ $item->title }}" class="entries_item-img">
                                 <h2 class="text-title text-left  fw-bold" style="color: #434657;margin-bottom: 8px;font-weight: 700">#{{ $item->randId }}</h2>
-                                <?php
-                                $total = 0;
-                                ?>
-                                @if(isset($item->groups))
+
+                                @if($data->slug != "nick-lien-minh")
                                     <?php
-                                    $att_values = $item->groups;
+                                    $total = 0;
                                     ?>
-                                    @foreach($att_values as $att_value)
-                                        {{--            @dd($att_value)--}}
-                                        @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                            {{--                                                        @dd($att_value->parent)--}}
-                                            @if(isset($att_value->parent))
-                                                @if($total < 4)
-                                                    <?php
-                                                    $total = $total + 1;
-                                                    ?>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $att_value->parent->title??null }}: {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}</p>
+                                    @if(isset($item->groups))
+                                        <?php
+                                        $att_values = $item->groups;
+                                        ?>
+                                        @foreach($att_values as $att_value)
+                                            {{--            @dd($att_value)--}}
+                                            @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                {{--                                                        @dd($att_value->parent)--}}
+                                                @if(isset($att_value->parent))
+                                                    @if($total < 4)
+                                                        <?php
+                                                        $total = $total + 1;
+                                                        ?>
+                                                        <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $att_value->parent->title??null }}: {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}</p>
+                                                    @endif
                                                 @endif
                                             @endif
-                                        @endif
-                                    @endforeach
-                                @endif
+                                        @endforeach
+                                    @endif
 
-                                @if(isset($item->params) && isset($item->params->ext_info))
-                                    <?php
-                                    $params = json_decode(json_encode($item->params->ext_info),true);
-                                    ?>
+                                    @if(isset($item->params) && isset($item->params->ext_info))
+                                        <?php
+                                        $params = json_decode(json_encode($item->params->ext_info),true);
+                                        ?>
 
-                                    @if($total < 4)
-                                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                            @foreach($dataAttribute as $index=>$att)
-                                                @if($att->position == 'text')
-                                                    @if(isset($att->childs))
-                                                        @foreach($att->childs as $child)
-                                                            @foreach($params as $key => $param)
-                                                                @if($key == $child->id && $child->is_slug_override == null)
+                                        @if($total < 4)
+                                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                                @foreach($dataAttribute as $index=>$att)
+                                                    @if($att->position == 'text')
+                                                        @if(isset($att->childs))
+                                                            @foreach($att->childs as $child)
+                                                                @foreach($params as $key => $param)
+                                                                    @if($key == $child->id && $child->is_slug_override == null)
 
-                                                                    @if($total < 4)
-                                                                        <?php
-                                                                        $total = $total + 1;
-                                                                        ?>
-                                                                        <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $child->title??null }}: {{ isset($param) ? \Str::limit($param,16) : null }}</p>
+                                                                        @if($total < 4)
+                                                                            <?php
+                                                                            $total = $total + 1;
+                                                                            ?>
+                                                                            <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $child->title??null }}: {{ isset($param) ? \Str::limit($param,16) : null }}</p>
+                                                                        @endif
                                                                     @endif
-                                                                @endif
+                                                                @endforeach
                                                             @endforeach
-                                                        @endforeach
+                                                        @endif
                                                     @endif
+                                                @endforeach
+                                            @endif
+                                        @endif
+                                    @endif
+                                @else
+                                    @if(isset($item->params))
+                                        @if(isset($item->params->rank_info))
+
+                                            @foreach($item->params->rank_info as $rank_info)
+                                                @if($rank_info->queueType == "RANKED_TFT")
+{{--                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">RANKED TFT:--}}
+{{--                                                        @if($rank_info->tier == "NONE")--}}
+{{--                                                            {{ $rank_info->tier }}--}}
+{{--                                                        @else--}}
+{{--                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}--}}
+{{--                                                        @endif--}}
+{{--                                                    </p>--}}
+
+                                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Rank:
+                                                        @if($rank_info->tier == "NONE")
+                                                            {{ $rank_info->tier }}
+                                                        @else
+                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                        @endif
+                                                    </p>
                                                 @endif
                                             @endforeach
                                         @endif
+                                        @if(isset($item->params->rank_level))
+                                            <p class="text-left" style="color: #82869E;margin-bottom: 4px">Level:
+                                                {{ $item->params->rank_level }}
+                                            </p>
+
+                                        @endif
+
+                                        @if(isset($item->params->count))
+                                            @if(isset($item->params->count->champions))
+                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Số tướng :
+                                                    {{ $item->params->count->champions }}
+                                                </p>
+                                            @endif
+                                            @if(isset($item->params->count->skins))
+                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Trang phục :
+                                                    {{ $item->params->count->skins }}
+                                                </p>
+                                            @endif
+                                        @endif
                                     @endif
                                 @endif
+
+
                                 @php
                                     if (isset($item->price_old)) {
                                         $sale_percent = (($item->price_old - $item->price) / $item->price_old) * 100;

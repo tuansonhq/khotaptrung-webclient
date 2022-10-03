@@ -445,8 +445,9 @@
                     </span>
                     </div>
                     <div class="modal-footer group-btn c-mt-24" style="--data-between: 12px">
+                        <a href="/" class="btn primary">Trang chủ</a>
+
                         <button type="button" class="btn ghost" data-dismiss="modal">Đóng</button>
-                        <a href="/nap-tien" class="btn primary">Nạp tiền</a>
                     </div>
                 </div>
             </div>

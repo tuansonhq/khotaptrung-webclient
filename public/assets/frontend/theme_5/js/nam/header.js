@@ -31,8 +31,9 @@ $(document).ready(function () {
             $('.box-account-logined').fadeOut(200);
 
         });
+        $(document).on("click",".box-account-open",function(e) {
 
-        $('.box-account-open').click(function(e) {
+            // $('.box-account-open').click(function(e) {
             // e.preventDefault(); // stops link from making page jump to the top
             let login_content = $('.box-account-logined');
             e.stopPropagation();
