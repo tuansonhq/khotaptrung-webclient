@@ -10,7 +10,9 @@ return [
         '6' => 'Fifa online 4',
         '7' => 'Fifa online 4 mobile',
         '8' => 'Pubg mobile',
-        '9' => 'Audition mobile'
+        '9' => 'Audition mobile',
+        '10' => 'BlockMango'
+
     ],
     'game_type_map' => [
         '1' => 'lienquan',
@@ -21,7 +23,8 @@ return [
         '6' => 'fo4',
         '7' => 'fo4m',
         '8' => 'pubgm',
-        '9' => 'aumobile'
+        '9' => 'aumobile',
+        '10' => 'blockmango'
     ],
     'withdraw_status' => [
         '0'=>'Chờ xử lý',
