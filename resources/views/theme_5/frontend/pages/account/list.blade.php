@@ -54,7 +54,7 @@
 
             <section class="list-account">
                 <div class="section-header justify-content-between  d-none d-lg-flex c-py-16">
-                    <h2 class="section-title">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</h2>
+                    <h2 class="section-title">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }} </h2>
                     <form action="" class="form-search position-relative">
                         <input type="search" placeholder="Tìm kiếm" class="has-submit">
                         <button type="submit"></button>
@@ -72,15 +72,18 @@
                     </div>
                 </div>
                 <div class="sort-account c-mb-16 d-none d-lg-flex">
-                    <div class="text-title fw-700">
-                        Sắp xếp theo:
-                    </div>
-                    <div class="value-sort">
-                        <a href="#" class="selection active md" data-sort="random">Ngẫu nhiên</a>
-                        <a href="#" class="selection md" data-sort="price_start">Giá từ cao đến thấp</a>
-                        <a href="#" class="selection md" data-sort="price_end">Giá từ thấp đến cao</a>
-                        <a href="#" class="selection md" data-sort="created_at_start">Mới nhất</a>
-                        <a href="#" class="selection md" data-sort="created_at_end">Cũ nhất</a>
+                    <span class="t-sub-1 count-result"></span>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="text-title fw-700 c-mr-16">
+                            Sắp xếp theo:
+                        </div>
+                        <div class="value-sort">
+                            <a href="#" class="selection active md" data-sort="random">Ngẫu nhiên</a>
+                            <a href="#" class="selection md" data-sort="price_start">Giá từ cao đến thấp</a>
+                            <a href="#" class="selection md" data-sort="price_end">Giá từ thấp đến cao</a>
+                            <a href="#" class="selection md" data-sort="created_at_start">Mới nhất</a>
+                            <a href="#" class="selection md" data-sort="created_at_end">Cũ nhất</a>
+                        </div>
                     </div>
                 </div>
 

@@ -36,6 +36,7 @@ function loadDataApi(query) {
                 let html ='';
                 html = res.data;
                 content_history.html(html);
+                $('.count-result').empty().text(`${res.nick_total} sản phẩm`);
             }
             if (res.status === 0) {
                 let html = `<div class="invalid-color text-center">${res.message}</div>`;
