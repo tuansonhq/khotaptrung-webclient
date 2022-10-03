@@ -58,7 +58,6 @@ Route::get('/test111', function (Request $request)
 })->middleware('throttle:5,1');
 Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name('getTheme');
 
-
 Route::get('/405', function ()
 {
     return view('errors.405');
@@ -69,8 +68,8 @@ Route::get('/406', function ()
     return view('errors.406');
 });
 
-
 Route::group(array('middleware' => ['theme']) , function (){
+
     Route::group(array('middleware' => ['throttle:300,1','verify_shop']) , function (){
 
         Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
