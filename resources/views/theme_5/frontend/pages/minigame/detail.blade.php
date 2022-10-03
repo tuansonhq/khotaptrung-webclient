@@ -393,6 +393,38 @@
                     <div class="c-mb-16 c-pl-lg-16 c-pr-lg-16">
                         {{--                        @include('frontend.pages.components.description')--}}
                     </div>
+                    {{-- button mobile--}}
+                    <div class="d-block d-lg-none c-mb-16">
+                        @if (\App\Library\AuthCustom::check())
+                            <div class="c-px-16">
+                                <div class="leaderboard-items brs-8 c-mb-4 c-px-12 c-py-8 d-flex align-items-center">
+                                    <span class="fw-400 fz-13 c-mr-8 lh-16">Bạn đang có:</span>
+                                    <p class="c-mb-0 fw-700 fz-15 lh-24">{{ str_replace(',','.',number_format($result->number_item)) }} {{ $result->name_item->image }}</p>
+                                </div>
+                            </div>
+                        @endif
+                        <div class="leaderboard-buttons c-px-16 c-py-8 row no-gutters" style="border-bottom: none;">
+                            @if (!\App\Library\AuthCustom::check())
+                                <div class="col-6 c-pr-5">
+                                    <a href="javascript:void(0)" class="btn secondary w-100" onclick="openLoginModal();">
+                                        Lịch sử quay
+                                    </a>
+                                </div>
+                                <div class="col-6 c-pl-5">
+                                    <a href="javascript:void(0)" class="btn primary w-100" onclick="openLoginModal();">Rút quà</a>
+                                </div>
+                            @else
+                                <div class="col-6 c-pr-5">
+                                    <a href="javascript:void(0)" class="btn secondary w-100 logsHisMinigameMobile open-sheet" data-target="#sheet-filter-02" >
+                                        Lịch sử quay
+                                    </a>
+                                </div>
+                                <div class="col-6 c-pl-5">
+                                    <a class="btn primary w-100" href="/withdrawitem-{{$result->group->params->game_type}}">Rút quà</a>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
                     {{--                    top quay thưởng--}}
                     <div class="d-block d-lg-none c-mb-16">
                         <div class="rotation-leaderboard c-p-lg-0">
@@ -480,27 +512,6 @@
                             <div class="leaderboard-seemore">
                                 <p>Xem thêm</p>
                             </div>
-                            <div class="leaderboard-buttons c-px-16 c-py-8 row no-gutters" style="border-bottom: none;">
-                                @if (!\App\Library\AuthCustom::check())
-                                    <div class="col-6 c-pr-5">
-                                        <a href="javascript:void(0)" class="btn secondary w-100" onclick="openLoginModal();">
-                                            Lịch sử quay
-                                        </a>
-                                    </div>
-                                    <div class="col-6 c-pl-5">
-                                        <a href="javascript:void(0)" class="btn primary w-100" onclick="openLoginModal();">Rút quà</a>
-                                    </div>
-                                @else
-                                    <div class="col-6 c-pr-5">
-                                        <a href="javascript:void(0)" class="btn secondary w-100 logsHisMinigameMobile open-sheet" data-target="#sheet-filter-02" >
-                                            Lịch sử quay
-                                        </a>
-                                    </div>
-                                    <div class="col-6 c-pl-5">
-                                        <a class="btn primary w-100" href="/withdrawitem-{{$result->group->params->game_type}}">Rút quà</a>
-                                    </div>
-                                @endif
-                            </div>
                         </div>
                     </div>
                     {{--                    top quay thưởng--}}
@@ -527,7 +538,13 @@
                 </div>
 
                 <div class="col-12 col-lg-4 c-pl-8 d-none d-lg-block">
-                    <div class="rotation-leaderboard c-py-24 c-px-16 brs-12">
+                    <div class="rotation-leaderboard c-py-16 c-px-16 brs-12">
+                        @if (\App\Library\AuthCustom::check())
+                            <div class="leaderboard-items brs-8 c-mb-12 c-px-12 c-py-8 d-flex align-items-center">
+                                <span class="fw-400 fz-13 c-mr-8 lh-16">Bạn đang có:</span>
+                                <p class="c-mb-0 fw-700 fz-15 lh-24">{{ str_replace(',','.',number_format($result->number_item)) }} {{ $result->name_item->image }}</p>
+                            </div>
+                        @endif
                         <div class="leaderboard-buttons c-pb-24 c-mb-16 row no-gutters">
                             @if (!\App\Library\AuthCustom::check())
                                 <div class="col-6 c-pr-5">
