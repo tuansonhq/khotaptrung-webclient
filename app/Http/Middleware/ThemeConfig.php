@@ -19,9 +19,15 @@ class ThemeConfig
     {
 
         if(\App\Library\Theme::getTheme('') == true) {
-            View::getFinder()->prependLocation(
-                resource_path('views') . '/'.theme('')->theme_key
-            );
+            $theme = \App\Library\Theme::getTheme('');
+
+            if ($theme->shop == 2 || $theme->shop == 3){
+                return redirect('/405');
+            }else{
+                View::getFinder()->prependLocation(
+                    resource_path('views') . '/'.theme('')->theme_key
+                );
+            }
         }
         return $next($request);
     }
