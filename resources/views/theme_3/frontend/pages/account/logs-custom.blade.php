@@ -390,8 +390,8 @@
     </div>
 
     {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/logs.js"></script>--}}
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/logs--update.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/logs--update.js?v={{time()}}"></script>
 @endsection
 
 
