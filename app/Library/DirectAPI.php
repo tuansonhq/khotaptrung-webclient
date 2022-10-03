@@ -45,7 +45,7 @@ class DirectAPI{
 
         $client  = @$_SERVER['HTTP_CLIENT_IP'];
         $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-        $remote  = $_SERVER['REMOTE_ADDR'];
+        $remote  = @$_SERVER['REMOTE_ADDR'];
 
         if(filter_var($client, FILTER_VALIDATE_IP))
         {
@@ -60,7 +60,7 @@ class DirectAPI{
             $ip = $remote;
         }
 
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        $user_agent = @$_SERVER['HTTP_USER_AGENT'];
 
         $accesuser = Session::get('access_user');
 

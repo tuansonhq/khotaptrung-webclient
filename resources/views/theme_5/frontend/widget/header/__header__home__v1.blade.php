@@ -54,7 +54,7 @@
                     <div class="loading-child"></div>
                 </div>
             </div>
-            <div class="account-logined box-account-open ">
+            <div class="account-logined ">
 
             </div>
             <div class="box-account-logined position-absolute brs-12">
