@@ -64,7 +64,7 @@
                     <li class="nav-item item-menu d-lg-none ms-2">
                         <a href="#" class="nav-link"><i class="las la-bars"></i></a>
                     </li>
-                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" class="d-none">
+                    <form id="logout-form" action="{{ url('/ajax/logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
                 </ul>

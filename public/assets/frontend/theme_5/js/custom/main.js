@@ -57,9 +57,11 @@ $(document).ready(function() {
     $(document).on('input','.js-quantity-input',function () {
         if ($(this).val() > 20 || isNaN($(this).val())){
             $(this).val(20);
+            $(this).trigger('change');
         }
         if ($(this).val() < 1 || isNaN($(this).val())){
             $(this).val(1);
+            $(this).trigger('change');
         }
     });
     /*End quantity*/
@@ -101,6 +103,12 @@ $(document).ready(function() {
         trigger: 'click',
         content: "Đã coppy !",
         placement: 'right',
+    });
+
+    tippy('.box-sale,.box-notify', {
+        // default
+        content: "Sắp ra mắt",
+        placement: 'top',
     });
 
     $('.js-copy-text').on('click', function () {

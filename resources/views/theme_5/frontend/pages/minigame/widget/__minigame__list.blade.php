@@ -11,7 +11,7 @@
 <!-- Đặt tên class cho swiper sau đó config trong file "public/assets/frontend/{{theme('')->theme_key}}/js/swiper-slider-conf/swiper-slider-conf.js" -->
     <!-- Nếu có giao diện giống nhau hoàn toàn thì có thể dùng chung config (chung tên class 'class-config-demo') -->
     @if(isset($data) && count($data) > 0)
-    <div class="swiper class-config-account-viewed">
+    <div class="swiper class-config-account-viewed card-list">
         <div class="swiper-wrapper">
 
             @foreach($data as $key => $item)

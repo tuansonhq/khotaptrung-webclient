@@ -31,8 +31,9 @@ $(document).ready(function () {
             $('.box-account-logined').fadeOut(200);
 
         });
+        $(document).on("click",".box-account-open",function(e) {
 
-        $('.box-account-open').click(function(e) {
+            // $('.box-account-open').click(function(e) {
             // e.preventDefault(); // stops link from making page jump to the top
             let login_content = $('.box-account-logined');
             e.stopPropagation();
@@ -99,6 +100,87 @@ $(document).ready(function () {
 
     });
 
+    $(function() {
 
+        $('.lazy').Lazy({
+            // your configuration goes here
+            placeholder: "data:image/gif;base64,R0lGODlhEALAPQAPzl5uLr9Nrl8e7...",
+            // scrollDirection: 'vertical',
+            effect: 'fadeIn',
+            visibleOnly: true,
+            afterLoad: function(element) {
+                $('img.lazy').css('background-image','unset')
+            },
+            onFinishedAll: function() {
+                // called once all elements was handled
+            }
+
+        });
+
+    });
+
+    Fancybox.bind('[data-fancybox="galleryAccount"]', {
+        infinite: true,
+        Thumbs : false,
+        toolbar         : false,
+        dragToClose: true,
+        animated: true,
+        closeButton: "top",
+        openSpeed: 300,
+        Image: {
+            zoom: true,
+            // zoom: 200
+        },
+        caption: function (fancybox, carousel, slide) {
+            return (
+                `${slide.index + 1} / ${carousel.slides.length} <br />` + slide.caption
+            );
+        },
+        slideshow: true,
+        Toolbar: {
+
+            display: [
+                { id: "prev", position: "center" },
+                { id: "counter", position: "center" },
+                { id: "next", position: "center" },
+                { id: "zoom", position: "center" },
+                "close",
+            ],
+
+        },
+
+    });
+    Fancybox.bind('[data-fancybox="galleryNickDetail"]', {
+        infinite: false,
+        Thumbs : true,
+        toolbar         : true,
+        dragToClose: true,
+        animated: true,
+        loop:false,
+        closeButton: "top",
+        openSpeed: 300,
+        Image: {
+            zoom: true,
+            // zoom: 200
+        },
+        caption: function (fancybox, carousel, slide) {
+            return (
+                `${slide.index + 1} / ${carousel.slides.length} <br />` + slide.caption
+            );
+        },
+        slideshow: true,
+        Toolbar: {
+
+            display: [
+                { id: "prev", position: "center" },
+                { id: "counter", position: "center" },
+                { id: "next", position: "center" },
+                { id: "zoom", position: "center" },
+                "close",
+            ],
+
+        },
+
+    });
 });
 

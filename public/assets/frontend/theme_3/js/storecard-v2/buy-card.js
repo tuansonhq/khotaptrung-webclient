@@ -1,70 +1,4 @@
-let swiper_buy_card = new Swiper(".js--swiper__banner", {
-    autoplay: {
-        disableOnInteraction: true,
-        delay: 3000
-    },
-    pagination: {
-        el: ".swiper-pagination.--custom",
-        clickable: true
-    },
-    speed: 500,
-    loop: true,
-});
 
-let service_swiper = new Swiper(".js-swipe-service", {
-    autoplay: {
-        delay: 3000
-    },
-    freeMode: true,
-    spaceBetween: 16,
-    slidesPerView: 3.75,
-    breakpoints: {
-        1190: {
-            slidesPerView: 1.45,
-        }
-    },
-    speed: 500,
-    observer: true,
-    observeParents: true,
-});
-
-let card_other_swiper = new Swiper(".card--other__swipe", {
-    autoplay: {
-        delay: 3000
-    },
-    navigation: {
-        nextEl: ".card-other-next",
-        prevEl: ".card-other-prev",
-    },
-    breakpoints: {
-        1190: {
-            slidesPerView: 1.5,
-        }
-    },
-    spaceBetween: 16,
-    freeMode: true,
-    slidesPerView: 4,
-    speed: 500,
-    observer: true,
-    observeParents: true,
-});
-
-let swipe_card = new Swiper(".js--card__swipe", {
-    autoplay: {
-        delay: 3000
-    },
-    breakpoints: {
-        1190: {
-            freeMode: true,
-        }
-    },
-    freeMode: true,
-    spaceBetween: 16,
-    slidesPerView: 1.5,
-    speed: 500,
-    observer: true,
-    observeParents: true,
-});
 
 let url_edited = window.location.href.toLowerCase();
 window.history.pushState({}, null, url_edited);
@@ -79,7 +13,7 @@ $(document).ready(function () {
     let temp = {};
     if (route_is === 'getStoreCard' || route_is === 'showDetailCard' || route_is === 'showListCard') {
         $.ajax({
-            url: '/store-card/get-telecom',
+            url: '/ajax/store-card/get-telecom',
             type: 'GET',
             success: function (res) {
                 if (res.status) {
@@ -173,7 +107,7 @@ $(document).ready(function () {
     function getListAmount(){
         if (route_is === 'showListCard' || route_is === 'showDetailCard') {
             $.ajax({
-                url: '/store-card/get-amount',
+                url: '/ajax/store-card/get-amount',
                 type: 'GET',
                 data: {
                     telecom: card_is
@@ -410,7 +344,7 @@ $(document).ready(function () {
         $('.js-send-data').on('click',function () {
             // call ajax here
             $.ajax({
-                url:'/mua-the',
+                url:'/ajax/mua-the',
                 type:'POST',
                 data: data_send,
                 success:function (res) {
@@ -556,7 +490,7 @@ $(document).ready(function () {
         $('.js-send-data').on('click',function () {
             // call ajax here
             $.ajax({
-                url:'/mua-the',
+                url:'/ajax/mua-the',
                 type:'POST',
                 data: data_send,
                 success:function (res) {

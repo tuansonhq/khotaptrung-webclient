@@ -230,28 +230,6 @@
                             </div>
                         </div>
 
-{{--                        <div class="col-md-12">--}}
-{{--                            <div class="row gallery__03">--}}
-{{--                                <div class="col-md-12 gallery__01__row">--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-auto span__dangky__auto">--}}
-{{--                                            <i class="fas fa-angle-right"></i>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-4 col-4 pl-0">--}}
-{{--                                            <span class="span__dangky">Thông tin chung</span>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-1 col-3 pl-0">--}}
-{{--                                            <span class="span__dangky">{{ $total_thongtinchung }}</span>--}}
-
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-6 col-4 pl-0 pr-0">--}}
-{{--                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_thongtinchung">Xem</a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
                         <div class="col-md-12">
                             <div class="row gallery__03">
                                 <div class="col-md-12 gallery__01__row">
@@ -274,69 +252,6 @@
                             </div>
                         </div>
 
-{{--                        <div class="col-md-12">--}}
-{{--                            <div class="row gallery__03">--}}
-{{--                                <div class="col-md-12 gallery__01__row">--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-auto span__dangky__auto">--}}
-{{--                                            <i class="fas fa-angle-right"></i>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-4 col-4 pl-0">--}}
-{{--                                            <span class="span__dangky">Sàn đấu TFT</span>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-1 col-3 pl-0">--}}
-{{--                                            <span class="span__dangky">{{ $total_sandau }}</span>--}}
-
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-6 col-4 pl-0 pr-0">--}}
-{{--                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_sandau">Xem</a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="col-md-12">--}}
-{{--                            <div class="row gallery__03">--}}
-{{--                                <div class="col-md-12 gallery__01__row">--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-auto span__dangky__auto">--}}
-{{--                                            <i class="fas fa-angle-right"></i>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-4 col-4 pl-0">--}}
-{{--                                            <span class="span__dangky">Dame đòn đánh TFT</span>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-1 col-3 pl-0">--}}
-{{--                                            <span class="span__dangky">{{ $total_chuongluc }}</span>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-6 col-4 pl-0 pr-0">--}}
-{{--                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_damedondanh">Xem</a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                        <div class="col-md-12">--}}
-{{--                            <div class="row gallery__03">--}}
-{{--                                <div class="col-md-12 gallery__01__row">--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-auto span__dangky__auto">--}}
-{{--                                            <i class="fas fa-angle-right"></i>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-4 col-4 pl-0">--}}
-{{--                                            <span class="span__dangky">Biểu cảm</span>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-1 col-3 pl-0">--}}
-{{--                                            <span class="span__dangky">{{ $total_bieucam }}</span>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-6 col-4 pl-0 pr-0">--}}
-{{--                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_bieucam">Xem</a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
                     @if(isset($data->params))
                         @if(isset($data->params->rank_info) && count($data->params->rank_info))
 
@@ -503,7 +418,7 @@
                 <div class="loader" style="text-align: center"><img src="/assets/frontend/{{theme('')->theme_key}}/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
                 <div class="modal-content modal-content_accountlist">
 
-                    <form class="formDonhangAccount" action="/acc/{{ $data->randId }}/databuy" method="POST">
+                    <form class="formDonhangAccount" action="/ajax/acc/{{ $data->randId }}/databuy" method="POST">
                         {{ csrf_field() }}
 
                         <div class="modal-header">
@@ -532,10 +447,20 @@
                                                         <th colspan="2">Thông tin tài khoản #{{ $data->randId }}</th>
                                                     </tr>
                                                     </tbody><tbody>
-                                                    <tr>
-                                                        <td>Nhà phát hành:</td>
-                                                        <th>{{ $data->groups[0]->title }}</th>
-                                                    </tr>
+                                                    @if(isset($data->params))
+                                                        @if(isset($data->params->rank_info) && count($data->params->rank_info))
+                                                            <tr>
+                                                                <td>Nhà phát hành:</td>
+                                                                <th>Garena</th>
+                                                            </tr>
+                                                        @else
+                                                            <tr>
+                                                                <td>Nhà phát hành:</td>
+                                                                <th>{{  @$data->groups[0]->title }}</th>
+                                                            </tr>
+                                                        @endif
+                                                    @endif
+
                                                     <tr>
                                                         <td>Tên game:</td>
 
@@ -564,6 +489,88 @@
                                                     <tr>
                                                         <th colspan="2">Chi tiết tài khoản #{{ $data->randId }}</th>
                                                     </tr>
+
+                                                    @if(isset($game_auto_props) && count($game_auto_props))
+
+                                                        @php
+                                                            $total_tuong = 0;
+                                                            $total_bieucam = 0;
+                                                            $total_chuongluc = 0;
+                                                            $total_sandau = 0;
+                                                            $total_linhthu = 0;
+                                                            $total_trangphuc = 0;
+                                                            $total_thongtinchung = 0;
+
+                                                            if(isset($game_auto_props) && count($game_auto_props)){
+                                                                foreach($game_auto_props as $game_auto_prop){
+                                                                    if($game_auto_prop->key == 'champions'){
+                                                                        $total_tuong = $total_tuong + 1;
+                                                                        if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
+                                                                            foreach($game_auto_prop->childs as $c_child){
+                                                                                $total_trangphuc = $total_trangphuc + 1;
+                                                                            }
+                                                                        }
+                                                                    }elseif ($game_auto_prop->key == 'emotes'){
+                                                                        $total_bieucam = $total_bieucam + 1;
+                                                                    }elseif ($game_auto_prop->key == 'tftdamageskins'){
+                                                                        $total_chuongluc = $total_chuongluc + 1;
+                                                                    }elseif ($game_auto_prop->key == 'tftmapskins'){
+                                                                        $total_sandau = $total_sandau + 1;
+                                                                    }elseif ($game_auto_prop->key == 'tftcompanions'){
+                                                                        $total_linhthu = $total_linhthu + 1;
+                                                                    }
+                                                                }
+                                                            }
+                                                        @endphp
+                                                        <tr>
+                                                            <td style="width:50%">Tướng:</td>
+                                                            <td class="text-danger" style="font-weight: 700">
+                                                                {{ $total_tuong }}
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td style="width:50%">Linh thú TFT:</td>
+                                                            <td class="text-danger" style="font-weight: 700">
+                                                                {{ $total_linhthu }}
+                                                            </td>
+                                                        </tr>
+
+                                                        @if(isset($data->params))
+                                                        @if(isset($data->params->rank_info) && count($data->params->rank_info))
+
+                                                            @foreach($data->params->rank_info as $key_rank => $rank_info)
+                                                                @if($rank_info->queueType == "RANKED_TFT")
+                                                                    <tr>
+                                                                        <td style="width:50%">RANKED TFT:</td>
+                                                                        <td class="text-danger" style="font-weight: 700">
+                                                                            @if($rank_info->tier == "NONE")
+                                                                                {{ $rank_info->tier }}
+                                                                            @else
+
+                                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+
+                                                                            @endif
+                                                                        </td>
+                                                                    </tr>
+                                                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                                    <td style="width:50%">RANKED SOLO:</td>
+                                                                    <td class="text-danger" style="font-weight: 700">
+                                                                        @if($rank_info->tier == "NONE")
+                                                                            {{ $rank_info->tier }}
+                                                                        @else
+
+                                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+
+                                                                        @endif
+                                                                    </td>
+                                                                @endif
+                                                            @endforeach
+
+                                                        @endif
+                                                    @endif
+                                                    @endif
+
                                                     @if(isset($data->groups))
                                                         <?php $att_values = $data->groups ?>
 

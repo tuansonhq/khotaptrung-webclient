@@ -773,6 +773,12 @@ header .nav-bar{
     border: 1px solid #cccccc;
     background-color: white;
 }
+#modal-login .log-in-body{
+    width: auto;
+    margin: auto;
+    padding: 20px;
+    border: none;
+}
 .log-in-body p{
     margin: 0;
     color: black;
@@ -808,7 +814,7 @@ header .nav-bar{
     display: block;
     width: 34px;
     height: 34px;
-    line-height: 34px;
+    line-height: 38px;
     text-align: center;
     pointer-events: none;
 }
@@ -819,6 +825,7 @@ header .nav-bar{
     color: black;
     float: right;
 }
+
 .social-auth{
     text-align: center;
     margin-top: 12px;
@@ -847,6 +854,18 @@ header .nav-bar{
 .social-auth p{
     color: #666;
     font-weight: 500;
+}
+/*modal login*/
+#modal-login .log-in-body .form-login label{
+    color: #000000;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 0;
+}
+#modal-login .log-in-body .form-login i{
+    color: #95989B;
+
 }
 @media only screen and (max-width: 480px) {
     .log-in-body{

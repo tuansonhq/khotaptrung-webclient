@@ -373,7 +373,7 @@
         {{--  sử lý step  --}}
 
             <div class="step" id="step2">
-                <form class="formDonhangAccount" action="/acc/{{ $data->randId }}/databuy" method="POST">
+                <form class="formDonhangAccount" action="/ajax/acc/{{ $data->randId }}/databuy" method="POST">
                     {{ csrf_field() }}
                 <div class="head-mobile">
                     <a href="javascript:void(0) " class="link-back close-step"></a>
@@ -625,7 +625,7 @@
 <div class="modal fade modal-big loadModal__acount" id="orderModal">
     <div class="modal-dialog modal-dialog-centered modal-custom">
         <div class="modal-content c-p-24">
-            <form class="formDonhangAccount" action="/acc/{{ $data->randId }}/databuy" method="POST">
+            <form class="formDonhangAccount" action="/ajax/acc/{{ $data->randId }}/databuy" method="POST">
                 {{ csrf_field() }}
             <div class="modal-header">
                 <h2 class="modal-title center">Xác nhận thanh toán</h2>

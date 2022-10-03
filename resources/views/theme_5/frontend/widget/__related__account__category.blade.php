@@ -5,7 +5,7 @@
         </h2>
         <a href="" class="link arr-right">Xem tất cả</a>
     </div>
-    <div class="swiper swiper-related-service">
+    <div class="swiper swiper-related-service card-list">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <div class="card">

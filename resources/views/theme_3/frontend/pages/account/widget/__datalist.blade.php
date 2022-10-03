@@ -58,7 +58,7 @@
                                         </a>
                                     </div>
                                     <div class="formDonhangAccount{{ $item->randId }}" style="display: none">
-                                        <form class="formDonhangAccount" action="/acc/{{ $item->randId }}/databuy" method="POST">
+                                        <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
                                             {{ csrf_field() }}
                                             <div class="modal-header p-0" style="border-bottom: 0">
                                                 <div class="row marginauto modal-header-order-ct">
@@ -258,71 +258,149 @@
                                                             <span>ID: {{ $item->randId }}</span>
                                                         </div>
                                                         <?php
-                                                            $total = 0;
+                                                        $total = 0;
                                                         ?>
-                                                        @if(isset($item->groups))
-                                                            <?php
-                                                                $att_values = $item->groups;
-                                                            ?>
-                                                            @foreach($att_values as $att_value)
-                                                                @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                                    @if(isset($att_value->parent))
-                                                                        @if($total < 4)
-                                                                            <?php
-                                                                                $total = $total + 1;
-                                                                            ?>
+                                                        @if($data->slug != "nick-lien-minh")
 
-                                                                            <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
-                                                                                <small>{{ $att_value->parent->title??null }}: {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}</small>
-                                                                            </div>
+                                                            @if(isset($item->groups))
+                                                                <?php
+                                                                    $att_values = $item->groups;
+                                                                ?>
+                                                                @foreach($att_values as $att_value)
+                                                                    @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                                        @if(isset($att_value->parent))
+                                                                            @if($total < 4)
+                                                                                <?php
+                                                                                    $total = $total + 1;
+                                                                                ?>
 
+                                                                                <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                                    <small>{{ $att_value->parent->title??null }}: {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}</small>
+                                                                                </div>
+
+                                                                            @endif
                                                                         @endif
                                                                     @endif
-                                                                @endif
-                                                            @endforeach
-                                                        @endif
+                                                                @endforeach
+                                                            @endif
 
-                                                        @if(isset($item->params) && isset($item->params->ext_info))
-                                                            <?php
-                                                                $params = json_decode(json_encode($item->params->ext_info),true);
-                                                            ?>
+                                                            @if(isset($item->params) && isset($item->params->ext_info))
+                                                                <?php
+                                                                    $params = json_decode(json_encode($item->params->ext_info),true);
+                                                                ?>
 
-                                                            @if($total < 4)
-                                                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                                                    @foreach($dataAttribute as $index=>$att)
-                                                                        @if($att->position == 'text')
-                                                                            @if(isset($att->childs))
-                                                                                @foreach($att->childs as $child)
-                                                                                    @foreach($params as $key => $param)
-                                                                                        @if($key == $child->id && $child->is_slug_override == null)
+                                                                @if($total < 4)
+                                                                    @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                                                        @foreach($dataAttribute as $index=>$att)
+                                                                            @if($att->position == 'text')
+                                                                                @if(isset($att->childs))
+                                                                                    @foreach($att->childs as $child)
+                                                                                        @foreach($params as $key => $param)
+                                                                                            @if($key == $child->id && $child->is_slug_override == null)
 
-                                                                                            @if($total < 4)
-                                                                                                <?php
-                                                                                                    $total = $total + 1;
-                                                                                                ?>
+                                                                                                @if($total < 4)
+                                                                                                    <?php
+                                                                                                        $total = $total + 1;
+                                                                                                    ?>
 
-                                                                                                <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
-                                                                                                    <small>{{ $child->title??null }}: {{ isset($param) ? \Str::limit($param,16) : null }}</small>
-                                                                                                </div>
-                                                                                            @else
+                                                                                                    <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                                                        <small>{{ $child->title??null }}: {{ isset($param) ? \Str::limit($param,16) : null }}</small>
+                                                                                                    </div>
+                                                                                                @else
+                                                                                                @endif
                                                                                             @endif
-                                                                                        @endif
+                                                                                        @endforeach
                                                                                     @endforeach
-                                                                                @endforeach
-                                                                            @endif
+                                                                                @endif
 
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endif
+                                                            @endif
+
+                                                        @else
+                                                            @if(isset($item->params))
+                                                                @if(isset($item->params->rank_info))
+
+                                                                    @foreach($item->params->rank_info as $rank_info)
+
+                                                                        @if($rank_info->queueType == "RANKED_TFT")
+{{--                                                                            <?php--}}
+{{--                                                                            $total = $total + 1;--}}
+{{--                                                                            ?>--}}
+{{--                                                                            <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">--}}
+{{--                                                                                <small>--}}
+{{--                                                                                    RANKED TFT :--}}
+{{--                                                                                    @if($rank_info->tier == "NONE")--}}
+{{--                                                                                        {{ $rank_info->tier }}--}}
+{{--                                                                                    @else--}}
+{{--                                                                                        {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}--}}
+{{--                                                                                    @endif--}}
+{{--                                                                                </small>--}}
+{{--                                                                            </div>--}}
+                                                                        @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                                            <?php
+                                                                            $total = $total + 1;
+                                                                            ?>
+                                                                            <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                                <small>
+                                                                                    Rank :
+                                                                                    @if($rank_info->tier == "NONE")
+                                                                                        {{ $rank_info->tier }}
+                                                                                    @else
+                                                                                        {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                                    @endif
+                                                                                </small>
+                                                                            </div>
                                                                         @endif
                                                                     @endforeach
                                                                 @endif
+                                                                @if(isset($item->params->rank_level))
+                                                                        <?php
+                                                                        $total = $total + 1;
+                                                                        ?>
+                                                                    <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                        <small>
+                                                                            Level :
+                                                                            {{ $item->params->rank_level }}
+                                                                        </small>
+                                                                    </div>
+                                                                @endif
+
+                                                                @if(isset($item->params->count))
+                                                                    @if(isset($item->params->count->champions))
+                                                                        <?php
+                                                                        $total = $total + 1;
+                                                                        ?>
+                                                                        <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                            <small>
+                                                                                Số tướng :
+                                                                                {{ $item->params->count->champions }}
+                                                                            </small>
+                                                                        </div>
+
+
+                                                                    @endif
+                                                                    @if(isset($item->params->count->skins))
+                                                                        <?php
+                                                                        $total = $total + 1;
+                                                                        ?>
+                                                                        <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                            <small>
+                                                                                Trang phục :
+                                                                                {{ $item->params->count->skins }}
+                                                                            </small>
+                                                                        </div>
+                                                                    @endif
+                                                                @endif
                                                             @endif
                                                         @endif
-
                                                         @if ($total < 4)
                                                             @for ($i = 0; $i < 4 - $total; $i++)
                                                                 <div class="col-md-12 left-right text-left body-detail-account-small-span-ct"></div>
                                                             @endfor
                                                         @endif
-
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <ul>
                                                                 @if(isset($data->params) && isset($data->params->price))

@@ -6,7 +6,6 @@
     <meta name="robots" content="index,follow" />
 @endsection
 @section('content')
-
     @if(isset($data->params) && isset($data->params->article_type))
         {!! $data->params->article_type !!}
     @endif
@@ -32,32 +31,39 @@
             <a href="/" class="home"></a>
         </div>
         {{--content--}}
-        <div class=" --custom p-3 mb-3 content-detail">
-            <article id="article--detail">
-                <h3 class="article--title">
-                    {{ @$data->title }}
-                </h3>
-                <div class="article--info">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/time.svg"
-                         class="c-mr-6"><span>{{ formatDateTime($data->created_at) }}</span>
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/group.svg"
-                         class="c-mr-6 c-ml-6"><span>{{ @$data->author->username }}</span>
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class=" --custom p-3 mb-3 content-detail">
+                    <article id="article--detail">
+                        <h3 class="article--title">
+                            {{ @$data->title }}
+                        </h3>
+                        <div class="article--info">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/time.svg"
+                                 class="c-mr-6"><span>{{ formatDateTime($data->created_at) }}</span>
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/group.svg"
+                                 class="c-mr-6 c-ml-6"><span>{{ @$data->author->username }}</span>
+                        </div>
+                        <div class="py-4">
+                            <img src="{{ @$data->image }}" alt="" class="article--thumbnail__image py-3 w-100">
+                        </div>
+                        <div class="article--content pb-3">
+                            <div class="article--content__text pb-2">
+                                {!! @$data->content !!}
+                            </div>
+                        </div>
+                    </article>
                 </div>
-                <div class="py-4">
-                    <img src="{{ @$data->image }}" alt="" class="article--thumbnail__image py-3 w-100">
-                </div>
-                <div class="article--content pb-3">
-                    <div class="article--content__text pb-2">
-                        {!! @$data->content !!}
-                    </div>
-                </div>
-            </article>
+            </div>
+
+                @include('frontend.pages.article.widget.__ads__article__theme__5')
+
         </div>
+
         {{--        Cùng chủ đề--}}
         <div class="c-pb-24">
             @include('frontend.widget.__bai__viet__lien__quan')
         </div>
-
     </div>
 @endsection
 @section('scripts')

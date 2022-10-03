@@ -6,7 +6,7 @@
         </h2>
         <a href="/dich-vu" class="link arr-right">Xem tất cả</a>
     </div>
-    <div class="swiper swiper-related-service">
+    <div class="swiper swiper-related-service card-list">
         <div class="swiper-wrapper">
             @foreach($datacate as $k_cat => $service)
             <div class="swiper-slide">

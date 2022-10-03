@@ -81,7 +81,7 @@
 {{--                    Form thanh toán nick random  formThanhToanNickRandom --}}
 
                     <div class="formDonhangAccount{{ $item->randId }} formThanhToanNickRandom">
-                        <form class="formDonhangAccount" action="/acc/{{ $item->randId }}/databuy" method="POST">
+                        <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
                             {{ csrf_field() }}
                             <div class="modal-header">
                                 <h2 class="modal-title center">Xác nhận thanh toán</h2>
@@ -230,61 +230,111 @@
                                     <div class="info-attr c-mb-8">
                                         ID: #{{ $item->randId }}
                                     </div>
-
+                                    @if($data->slug != "nick-lien-minh")
                                     <?php
-                                    $total = 0;
-                                    ?>
-                                    @if(isset($item->groups))
-                                        <?php
-                                        $att_values = $item->groups;
+                                        $total = 0;
                                         ?>
+                                        @if(isset($item->groups))
+                                            <?php
+                                            $att_values = $item->groups;
+                                            ?>
 
-                                        {{--                                            @dd($att_values)--}}
-                                        @foreach($att_values as $att_value)
-                                            {{--            @dd($att_value)--}}
-                                            @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                @if(isset($att_value->parent))
-                                                    @if($total < 4)
-                                                        <?php
-                                                        $total = $total + 1;
-                                                        ?>
-                                                            <div class="info-attr">
-                                                                {{ $att_value->parent->title??null }}: {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}
-                                                            </div>
-                                                    @endif
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    @endif
-
-                                    @if(isset($item->params) && isset($item->params->ext_info))
-                                        <?php
-                                        $params = json_decode(json_encode($item->params->ext_info),true);
-                                        ?>
-
-                                        @if($total < 4)
-                                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                                @foreach($dataAttribute as $index=>$att)
-                                                    @if($att->position == 'text')
-                                                        @if(isset($att->childs))
-                                                            @foreach($att->childs as $child)
-                                                                @foreach($params as $key => $param)
-                                                                    @if($key == $child->id && $child->is_slug_override == null)
-
-                                                                        @if($total < 4)
-                                                                            <?php
-                                                                            $total = $total + 1;
-                                                                            ?>
-                                                                                <div class="info-attr">
-                                                                                    {{ $child->title??null }}: {{ isset($param) ? \Str::limit($param,16) : null }}
-                                                                                </div>
-                                                                        @endif
-                                                                    @endif
-                                                                @endforeach
-                                                            @endforeach
+                                            {{--                                            @dd($att_values)--}}
+                                            @foreach($att_values as $att_value)
+                                                {{--            @dd($att_value)--}}
+                                                @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                    @if(isset($att_value->parent))
+                                                        @if($total < 4)
+                                                            <?php
+                                                            $total = $total + 1;
+                                                            ?>
+                                                                <div class="info-attr">
+                                                                    {{ $att_value->parent->title??null }}: {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}
+                                                                </div>
                                                         @endif
                                                     @endif
+                                                @endif
+                                            @endforeach
+                                        @endif
+
+                                        @if(isset($item->params) && isset($item->params->ext_info))
+                                            <?php
+                                            $params = json_decode(json_encode($item->params->ext_info),true);
+                                            ?>
+
+                                            @if($total < 4)
+                                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                                    @foreach($dataAttribute as $index=>$att)
+                                                        @if($att->position == 'text')
+                                                            @if(isset($att->childs))
+                                                                @foreach($att->childs as $child)
+                                                                    @foreach($params as $key => $param)
+                                                                        @if($key == $child->id && $child->is_slug_override == null)
+
+                                                                            @if($total < 4)
+                                                                                <?php
+                                                                                $total = $total + 1;
+                                                                                ?>
+                                                                                    <div class="info-attr">
+                                                                                        {{ $child->title??null }}: {{ isset($param) ? \Str::limit($param,16) : null }}
+                                                                                    </div>
+                                                                            @endif
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endforeach
+                                                            @endif
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @endif
+                                        @endif
+                                    @else
+                                        @if(isset($item->params))
+                                            @if(isset($item->params->rank_info))
+
+                                                @foreach($item->params->rank_info as $rank_info)
+                                                    @if($rank_info->queueType == "RANKED_TFT")
+{{--                                                        <div class="info-attr">--}}
+{{--                                                            RANKED TFT:--}}
+{{--                                                            @if($rank_info->tier == "NONE")--}}
+{{--                                                                {{ $rank_info->tier }}--}}
+{{--                                                            @else--}}
+{{--                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}--}}
+{{--                                                            @endif--}}
+{{--                                                        </div>--}}
+
+                                                    @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                        <div class="info-attr">
+                                                            Rank:
+                                                            @if($rank_info->tier == "NONE")
+                                                                {{ $rank_info->tier }}
+                                                            @else
+                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                            @endif
+                                                        </div>
+                                                    @endif
                                                 @endforeach
+                                            @endif
+                                            @if(isset($item->params->rank_level))
+                                                <div class="info-attr">
+                                                    Level:
+                                                    {{ $item->params->rank_level }}
+                                                </div>
+                                            @endif
+                                            @if(isset($item->params->count))
+                                                @if(isset($item->params->count->champions))
+                                                    <div class="info-attr">
+                                                        Số tướng :
+                                                        {{ $item->params->count->champions }}
+                                                    </div>
+
+                                                @endif
+                                                @if(isset($item->params->count->skins))
+                                                    <div class="info-attr">
+                                                        Trang phục :
+                                                        {{ $item->params->count->skins }}
+                                                    </div>
+                                                @endif
                                             @endif
                                         @endif
                                     @endif

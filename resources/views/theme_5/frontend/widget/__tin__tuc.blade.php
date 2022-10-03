@@ -5,13 +5,13 @@
     <div class="section-header c-mb-24 c-mb-lg-24 justify-content-between">
         <h2 class="section-title">
             <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/speaker.svg)"></i>
-            {{ $title??'' }}
+            {{ $title??'Tin tức' }}
 
         </h2>
         <a href="/tin-tuc" class="link arr-right">Xem thêm</a>
     </div>
     <!-- Desktop -->
-    <div class="swiper js-swiper-news d-none d-lg-block">
+    <div class="swiper js-swiper-news card-list d-none d-lg-block">
         <div class="swiper-wrapper">
             @foreach($data as $key => $item)
                 <div class="swiper-slide">
