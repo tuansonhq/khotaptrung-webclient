@@ -149,13 +149,13 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/lich-su-nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistory'])->name('getChargeDepositHistory');
                     Route::get('/lich-su-nap-the-{id}', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistoryDetail'])->name('getChargeDepositHistoryDetail');
 
-                    if (theme('')->theme_key == "theme_1"||theme('')->theme_key == "theme_4"){
-                        /*Theme_1*/
-                        Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getLogs'])->name('getBuyAccountHistory');
-                    }else {
-                        /*Theme_3*/
-                        Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class ,  'getLogsCustom'])->name('nick-buyed');
-                    }
+//                    if (theme('')->theme_key == "theme_1"||theme('')->theme_key == "theme_4"){
+//                        /*Theme_1*/
+//                        Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getLogs'])->name('getBuyAccountHistory');
+//                    }else {
+//                        /*Theme_3*/
+//                        Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class ,  'getLogsCustom'])->name('nick-buyed');
+//                    }
                     Route::get('/lich-su-mua-account-{id}', [\App\Http\Controllers\Frontend\AccController::class , 'getLogsCustomDetails'])->name('getLogsCustomDetails');
                     Route::post('/ajax/{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
 
