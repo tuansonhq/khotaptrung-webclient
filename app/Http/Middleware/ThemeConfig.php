@@ -21,12 +21,16 @@ class ThemeConfig
         if(\App\Library\Theme::getTheme('') == true) {
             $theme = \App\Library\Theme::getTheme('');
 
-            if ($theme->shop == 2 || $theme->shop == 3){
-                return redirect('/405');
+            if (isset($theme->shop)){
+                if ($theme->shop == 2 || $theme->shop == 3){
+                    return redirect('/405');
+                }else{
+                    View::getFinder()->prependLocation(
+                        resource_path('views') . '/'.theme('')->theme_key
+                    );
+                }
             }else{
-                View::getFinder()->prependLocation(
-                    resource_path('views') . '/'.theme('')->theme_key
-                );
+                return response('Shop không có quyền truy cập!'.\Request::server ("HTTP_HOST"),403);
             }
         }
         return $next($request);
