@@ -59,10 +59,6 @@
 
     @stack('style')
 
-    <style>
-        .main-lay-out {
-            background:#000 url(/assets/frontend/{{theme('')->theme_key}}/images/background_image.jpg);
-            background-attachment: fixed;background-size: 100%;
 
 {{--    <link rel="stylesheet" href="/js/{{theme('')->theme_key}}/main.js?v={{time()}}">--}}
 
