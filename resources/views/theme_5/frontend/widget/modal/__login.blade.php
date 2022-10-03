@@ -5,7 +5,7 @@
             <div class="modal-login-container" id="modal-login-container">
                 <div class="modal-login-form-container sign-up-container">
                     <img class="close-login-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
-                    <form class="modal-login-form formRegister" id="formRegister" action="{{route('register')}}" method="POST">
+                    <form class="modal-login-form formRegister" id="formRegister" action="{{ url('/ajax/register') }}" method="POST">
                         @csrf
                         <p class="fw-700 fz-24 fz-lg-24 fz-md-18 fz-sm-16 color-pink lh-24">Đăng ký</p>
                         <small class="fz-13 fz-md-12 fz-sm-10 fw-400 c-mb-12">Vui lòng đăng nhập để sử dụng dịch vụ của chúng tôi</small>
@@ -35,7 +35,7 @@
                     </form>
                 </div>
                 <div class="modal-login-form-container sign-in-container"   >
-                    <form class="modal-login-form formLogin" action="{{route('login')}}" id="formLogin"  method="POST">
+                    <form class="modal-login-form formLogin" action="{{ url('/ajax/login') }}" id="formLogin"  method="POST">
                         @csrf
                         <p class="fw-700 fz-24 fz-lg-24 fz-md-18 fz-sm-16 lh-32">Đăng nhập</p>
 
@@ -49,7 +49,7 @@
                         </span>
                         <div class="w-100 input-group">
                             <div class="password-input-container c-mt-8 ">
-                                <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu" autocomplete="off">
+                                <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu" autocomplete="off" required>
                                 <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/son/eye-show.svg" alt="" style="display: none" required>
                                 <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/son/eye-hide.svg" alt="" >
 
@@ -94,7 +94,7 @@
 
     <div class="mobile-auth-form c-px-16 c-pt-50">
 
-        <form action="{{route('register')}}" method="POST" id="formRegisterMobile" class="flex-column justify-content-center aligin-items-center text-center formRegister">
+        <form action="{{ url('/ajax/register') }}" method="POST" id="formRegisterMobile" class="flex-column justify-content-center aligin-items-center text-center formRegister">
             @csrf
             <div class="c-mt-40">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/logo.png" alt="">
@@ -125,7 +125,7 @@
             <p class="mobile-auth-change-form fw-400 fz-12 lh-16 c-mt-24" >Bạn đã có tài khoản? <span class="changeFormLogin">Đăng nhập tại đây</span></p>
         </form>
 
-        <form action="{{route('login')}}" id="formLoginMobile" class="flex-column justify-content-center aligin-items-center text-center formLogin">
+        <form action="{{ url('/ajax/login') }}" id="formLoginMobile" class="flex-column justify-content-center aligin-items-center text-center formLogin">
             @csrf
             <div class="c-mt-40">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/logo.png" alt="">

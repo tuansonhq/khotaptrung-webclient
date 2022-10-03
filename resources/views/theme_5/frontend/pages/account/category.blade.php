@@ -66,7 +66,7 @@
             @if(isset($data) && count($data))
                 @foreach($data as $item)
                 <div class="item-service js-service">
-                    <div class="card">
+                    <div class="card card-hover">
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="card-body scale-thumb c-p-16 c-p-lg-12">
                             <div class="account-thumb c-mb-8">
                                 <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="account-thumb-image lazy" onerror="imgError(this)">

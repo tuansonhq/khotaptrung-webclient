@@ -8,7 +8,9 @@
     <meta name="robots" content="index,follow"/>
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <meta name="path" content=""/>
-    <meta name="jwt" content="jwt"/>
+
+    <meta name="jwt" content="" />
+
     @yield('meta_robots')
     {{--    <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
@@ -41,6 +43,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/header.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/menu-category.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/menu-bottom.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/nick-detail.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/slide-banner.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/change-password.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/range-slider-master/css/rSlider.min.css">
@@ -53,7 +56,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick-random.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/buyaccrandomhome.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/store-card.js"></script>
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/store-card.js"></script>--}}
     <!-- js chứa các hàm cần load trước tiên -->
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/custom/preload.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
@@ -222,222 +225,7 @@
 </div>
 
 {{-- Modal mua thẻ cho người dùng --}}
-<div class="modal fade modal-big" id="rechargeModal">
-    <div class="modal-dialog modal-dialog-centered modal-custom">
-        <div class="modal-content p-0">
-            <div class="modal-header c-pl-24 c-pr-24 c-pt-24 c-pb-16" style="border-bottom: 1px solid #E4E5F0">
-                <h2 class="modal-title center">Nạp tiền</h2>
-                <button type="button" class="close" data-dismiss="modal" style="right: 24px;top: 36px"></button>
-            </div>
-            <div class="modal-body pl-0 pr-0 c-pt-0 c-pb-24">
-                <section class="section-category-tab">
-                    <div class="c-mb-16 c-mb-lg-16">
-                        <ul class="nav nav-tabs size-auto" role="tablist" style="width: 100%;margin: 0 auto">
-                            <li class="nav-item" role="presentation">
-                                <a class="tab active" data-toggle="tab" href="#charge_card" role="tab" aria-selected="true">Nạp thẻ cào</a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="tab" data-toggle="tab" href="#atm_card" role="tab" aria-selected="false">ATM tự động</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="tab-content c-pl-24 c-pl-lg-16 c-pr-24 c-pr-lg-16">
-                        <div class="tab-pane fade show active" id="charge_card" role="tabpanel">
-                            <div class="row text-center loader-container">
-                                <div class="col-12">
-                                    <div class="loader position-relative" style="margin: 2rem 0">
-                                        <div class="loading-spokes">
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <form class="w-100" action="" id="chargeCardForm">
-                                <div class="row content-block d-none">
-                                    <div class="col-12 c-pr-8">
-                                        <div class="money-form-group c-mb-16">
-                                            <label class="text-form fz-13 fw-500 c-mb-4">Nhà cung cấp</label>
-                                            <div class="col-md-12 p-0">
-                                                <select class="select-form w-100" name="type" id="telecom">
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="money-form-group c-mb-12">
-                                            <label class="text-form fz-13 fw-500 c-mb-8">Chọn mệnh giá</label>
-                                            <div class="loader position-relative">
-                                                <div class="loading-spokes">
-                                                    <div class="spoke-container">
-                                                        <div class="spoke"></div>
-                                                    </div>
-                                                    <div class="spoke-container">
-                                                        <div class="spoke"></div>
-                                                    </div>
-                                                    <div class="spoke-container">
-                                                        <div class="spoke"></div>
-                                                    </div>
-                                                    <div class="spoke-container">
-                                                        <div class="spoke"></div>
-                                                    </div>
-                                                    <div class="spoke-container">
-                                                        <div class="spoke"></div>
-                                                    </div>
-                                                    <div class="spoke-container">
-                                                        <div class="spoke"></div>
-                                                    </div>
-                                                    <div class="spoke-container">
-                                                        <div class="spoke"></div>
-                                                    </div>
-                                                    <div class="spoke-container">
-                                                        <div class="spoke"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 p-0">
-                                                <div class="row m-0 c-mx-n4" id="cardAmountModal">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="money-form-group c-mb-8">
-                                            <label class="text-form fz-13 fw-500 c-mb-4 d-none d-lg-block">Mã số thẻ</label>
-                                            <div class="col-md-12 p-0">
-                                                <div class="input-group">
-                                                    <input class="input-form w-100" name="pin" type="text" placeholder="Nhập mã số thẻ của bạn">
-                                                    <p class="text-error c-mb-0 c-mt-4"></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="money-form-group c-mb-8">
-                                            <label class="text-form fz-13 fw-500 c-mb-4 d-none d-lg-block">Số sê-ri</label>
-                                            <div class="col-md-12 p-0">
-                                                <div class="input-group">
-                                                    <input class="input-form w-100" name="serial" type="text" placeholder="Nhập mã số sê-ri trên thẻ">
-                                                    <p class="text-error c-mb-0 c-mt-4"></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="money-form-group">
-                                            <label class="text-form fz-13 fw-500 c-mb-4 d-none d-lg-block">Mã bảo vệ</label>
-                                            <div class="input-group">
-                                                <div class="col-md-12 p-0 d-flex">
-                                                    <div style="flex: 1;">
-                                                        <input class="input-form w-100" name="captcha" type="text" placeholder="Nhập mã bảo vệ ">
-                                                    </div>
-                                                    <div class="captcha c-mx-8">
-                                                        <div>
-                                                        <span id="capchaImage">
-                                                            {!! captcha_img('flat') !!}
-                                                        </span>
-                                                        </div>
-                                                    </div>
-                                                    <button class="refresh-captcha brs-8" type="button" id="reload_1">
-                                                        <img class="spinImg paused" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/captcha_refresh.png" alt="">
-                                                    </button>
-                                                </div>
-                                                <p class="text-error c-mb-0 c-mt-4"></p>
-                                            </div>
-                                        </div>
-                                        <div class="group-btn c-mt-24 d-flex">
-                                            @if (\App\Library\AuthCustom::check())
-                                                <button class="btn primary" type="submit">Nạp ngay</button>
-                                            @else
-                                                <button class="btn primary" onclick="openLoginModal();">Nạp ngay</button>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane fade" id="atm_card" role="tabpanel">
-                            <div class="row text-center loader-container">
-                                <div class="col-12">
-                                    <div class="loader position-relative" style="margin: 2rem 0">
-                                        <div class="loading-spokes">
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                            <div class="spoke-container">
-                                                <div class="spoke"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row content-block d-none">
-                                {{-- <div class="col-12 col-lg-6 c-pr-8 d-none d-lg-block">
-                                    <div class="atm-recharge-left c-p-16 brs-8 d-flex justify-content-between align-items-center">
-                                        <p class="fz-13 fw-400 mb-0">Ngân hàng Kỹ thương Việt Nam (Techcombank)</p>
-                                        <div>
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/tech_logo.png" alt="">
-                                        </div>
-                                    </div>
-                                </div> --}}
-                                <div class="col-12 col-lg-12">
-                                    <div class="atm-recharge-right c-p-16 brs-8">
-                                        <div class="atm-recharge-content c-p-sm-12 brs-sm-8">
-                                            @if (setting('sys_tranfer_content') != "")
-                                                {!! setting('sys_tranfer_content') !!}
-                                            @endif
-                                            <div class="atm-recharge-attr d-flex justify-content-between align-items-center">
-                                                <p class="fz-13 fw-400 mb-0">Nội dung chuyển khoản</p>
-                                                <div class="fz-13 fw-500" id="transactionContent"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </section>
-            </div>
-
-        </div>
-    </div>
-</div>
+@include('frontend.widget.modal.__recharge_modal')
 
 {{--  sử lý step thanh toán --}}
 <div class="step" id="chargeConfirmStep">
@@ -598,7 +386,8 @@
 </div>
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazy/jquery.lazy.min.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazy/jquery.lazy.plugins.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/wnumb-1.2.0/wNumb.min.js"></script>
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>

@@ -6,9 +6,13 @@
     <meta name="robots" content="index,follow" />
 @endsection
 @section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/format-currency.js" type="text/javascript"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/service.js?v={{time()}}" type="text/javascript"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/validate.js" type="text/javascript"></script>
+
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/format-currency.js" type="text/javascript"></script>--}}
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/service.js?v={{time()}}" type="text/javascript"></script>--}}
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/validate.js" type="text/javascript"></script>--}}
+
+
+
 @endsection
 @section('content')
 
@@ -32,7 +36,7 @@
                 <div class="container container-fix banner-mobile-container-ct">
                     <div class="row marginauto banner-mobile-row-ct">
                         <div class="col-auto left-right" style="width: 10%">
-                            <a href="/dich-vu"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt=""></a>
+                            <a href="/dich-vu"><img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt=""></a>
                         </div>
 
                         <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
@@ -47,11 +51,11 @@
                 <div class="container container-fix menu-container-ct pl-0">
                     <ul class="mb-3">
                         <li><a href="/">Trang chủ</a></li>
-                        <li class="menu-container-li-ct"><img class="lazy"
+                        <li class="menu-container-li-ct"><img
                                                               src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png"
                                                               alt=""></li>
                         <li class="menu-container-li-ct"><a href="/dich-vu">Dịch vụ</a></li>
-                        <li class="menu-container-li-ct"><img class="lazy"
+                        <li class="menu-container-li-ct"><img
                                                               src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png"
                                                               alt=""></li>
                         <li class="menu-container-li-ct"><a href="/dich-vu/{{ @$data->slug }}">{{ @$data->title }}</a>
@@ -473,30 +477,44 @@
                         </div>
                         {{--End BOT--}}
 
-                        <div class="col-md-12 left-right px-3 px-lg-0">
-                            <div class="row marginauto">
-                                <div class="col-md-12 col-8 body-header-col-km-left-ct">
-                                    <small>Mô tả dịch vụ</small>
-                                </div>
-                            </div>
-                        </div>
+                        @if(isset($data->content))
+                            <section>
+                                <div class="container container-fix body-container-ct pt-0">
+                                    <div class="row marginauto body-container-row-ct pt-0">
+                                        <div class="col-md-12 left-right detailViewBlock">
+                                            <div class="row marginauto body-row-ct footer-row-ct p-0">
+                                                <div class="col-md-12 left-right">
+                                                    <span class="detailViewBlockTitle">Mô tả dịch vụ</span>
+                                                </div>
+                                                @if(substr($data->content,1200))
+                                                    <div class="col-md-12 left-right footer-row-col-ct content-video-in content-video-in-add detailViewBlockContent">
+                                                        @else
+                                                            <div class="col-md-12 left-right footer-row-col-ct content-video-in  detailViewBlockContent">
+                                                                @endif
+                                                                {!!  $data->content !!}
+                                                            </div>
+                                                            @if(substr($data->content,1200))
+                                                                <div class="col-md-12 left-right text-center js-toggle-content noselect">
+                                                                    <div class="view-more">
+                                                                        <a href="javascript:void(0)" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/xemthem.svg)"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                    </div>
+                                            </div>
 
-                        <div class="col-md-12 left-right card--desc px-3 px-lg-0">
-                            <div class="row marginauto body-title-ct show-detail-caythue-ct-fix">
-                                <div
-                                    class="col-md-12 text-left left-right content-video-in double-click content-video-in ">
-                                    {!! @$data->content !!}
-                                </div>
-                                <div class="col-md-12 left-right text-center js-toggle-content">
-                                </div>
-                            </div>
-                        </div>
+                                        </div>
+                                    </div>
+                            </section>
+                        @endif
 
                     </div>
                 </div>
             </section>
 
+
             @include('frontend.pages.service.widget.__related',['current_id'=>$data->id])
+
             <div class="modal fade login show default-Modal" id="successModal" aria-modal="true">
                 <div class="modal-dialog modal-md modal-dialog-centered login animated">
                     <!--        <div class="image-login"></div>-->
@@ -810,8 +828,8 @@
     @if(\App\Library\AuthCustom::check())
         <input id="surplus" type="hidden" value="{{ \App\Library\AuthCustom::user()->balance }}">
     @endif
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/cay-thue/cay-thue-detail.js?v={{time()}}"></script>
-
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/cay-thue/cay-thue-detail.js?v={{time()}}"></script>--}}
+    <script src="/js/{{theme('')->theme_key}}/cay-thue/cay-thue-detail.js" type="text/javascript"></script>
 @endsection
 
 

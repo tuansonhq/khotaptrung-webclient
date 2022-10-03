@@ -69,7 +69,7 @@ class ArticleController extends Controller
 
     public function getDetail(Request $request,$slug){
 
-        $url = '/article/'.$slug;
+            $url = '/article/'.$slug;
         $method = "GET";
         $dataSend = array();
         $dataSend['page'] = $request->page;

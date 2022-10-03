@@ -6,8 +6,18 @@
     @include('frontend.widget.__seo_head',with(['datakey'=>$value,'dataname'=>$key]))
 @endsection
 @section('meta_robots')
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="index,follow"/>
 @endsection
+@php
+    function format_k($number) {
+        if($number >= 1000) {
+           return $number/1000 . "k";   // NB: you will want to round this
+        }
+        else {
+            return $number;
+        }
+    }
+@endphp
 @section('content')
     <div class="c-container container">
         <!-- head mobile -->
@@ -15,7 +25,7 @@
             <a href="/mua-the-{{@$key}}" class="link-back"></a>
 
             <h1 class="head-title t-sub-2 text-capitalize">
-                Thẻ {{ @$key }} {{ @$value }}
+                Thẻ {{ @strtolower($key) }} {{ @$value }}
             </h1>
 
             <a href="/" class="home"></a>
@@ -29,7 +39,8 @@
                 <a href="/mua-the" class="breadcrumb-link">Mua thẻ</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="/mua-the-{{ @$key }}" class="breadcrumb-link text-capitalize">Thẻ {{ @$key }}</a>
+                <a href="/mua-the-{{ @strtolower($key) }}"
+                   class="breadcrumb-link text-capitalize">Thẻ {{ @strtolower($key) }}</a>
             </li>
             <li class="breadcrumb-item">
                 <a href="" class="breadcrumb-link text-capitalize">Thẻ {{ @$key }} {{ @$value }}</a>
@@ -53,30 +64,80 @@
                         <div class="t-title-1 title-color">Danh mục thẻ</div>
                     </div>
                     <div class="card-body c-p-0">
-                        <a class="section--card p-lg-3" data-toggle="collapse" href="#card--game__nav" role="button" aria-expanded="true">
+                        <a class="section--card p-lg-3" data-toggle="collapse" href="#card--game__nav" role="button"
+                           aria-expanded="true">
                             <span class="t-sub-1">
                                 THẺ GAME
                             </span>
                             <span class="d-flex align-items-center">
-                                <i class="icon-default size-20" style="--path : url(/assets/frontend/theme_5/image/svg/arrow-down.svg)"></i>
+                                <i class="icon-default size-20"
+                                   style="--path : url(/assets/frontend/theme_5/image/svg/arrow-down.svg)"></i>
                             </span>
                         </a>
-                        <ul class="collapse card-list show is-load" id="card--game__nav">
-                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
-                            <!-- JS PASTE HTML HERE -->
+                        <ul class="collapse card-list show" id="card--game__nav">
+                            @if( $data_telecoms->status == 1 )
+                                @forelse($data_telecoms->data as $telecom)
+                                    @if(strtolower($telecom->key) == strtolower($key))
+                                        @php
+                                            $card_is = $telecom;
+                                        @endphp
+                                    @else
+                                    @endif
+                                    @if($telecom->params->teltecom_type == 2)
+                                        <li class="card-item {{ strtolower($telecom->key) == $key ? 'active' : '' }}">
+                                            <a href="/mua-the-{{ strtolower($telecom->key) }}" class="card-item_link">
+                                                <div class="card-item_thumb mr-2">
+                                                    <img src="{{ @\App\Library\MediaHelpers::media($telecom->image) }}"
+                                                         alt="">
+                                                </div>
+                                                <span
+                                                    class="card-item_name t-capitalize">Thẻ {{ strtolower($telecom->title) }}</span>
+                                            </a>
+                                        </li>
+                                    @else
+                                    @endif
+                                @empty
+                                @endforelse
+                            @else
+                            @endif
                         </ul>
 
-                        <a class="section--card p-lg-3" data-toggle="collapse" href="#card--phone__nav" role="button" aria-expanded="true">
+                        <a class="section--card p-lg-3" data-toggle="collapse" href="#card--phone__nav" role="button"
+                           aria-expanded="true">
                             <span class="t-sub-1">
                                 THẺ ĐIỆN THOẠI
                             </span>
                             <span class="d-flex align-items-center">
-                                <i class="icon-default size-20" style="--path : url(/assets/frontend/theme_5/image/svg/arrow-down.svg)"></i>
+                                <i class="icon-default size-20"
+                                   style="--path : url(/assets/frontend/theme_5/image/svg/arrow-down.svg)"></i>
                             </span>
                         </a>
-                        <ul class="collapse card-list show is-load" id="card--phone__nav">
-                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
-                            <!-- JS PASTE HTML HERE -->
+                        <ul class="collapse card-list show" id="card--phone__nav">
+                            @if( $data_telecoms->status == 1 )
+                                @forelse($data_telecoms->data as $telecom)
+                                    @if(strtolower($telecom->key) == strtolower($key))
+                                        @php
+                                            $card_is = $telecom;
+                                        @endphp
+                                    @else
+                                    @endif
+                                    @if($telecom->params->teltecom_type != 2)
+                                        <li class="card-item {{ strtolower($telecom->key) == $key ? 'active' : '' }}">
+                                            <a href="/mua-the-{{ strtolower($telecom->key) }}" class="card-item_link">
+                                                <div class="card-item_thumb mr-2">
+                                                    <img src="{{ @\App\Library\MediaHelpers::media($telecom->image) }}"
+                                                         alt="">
+                                                </div>
+                                                <span
+                                                    class="card-item_name t-capitalize">Thẻ {{ strtolower($telecom->title) }}</span>
+                                            </a>
+                                        </li>
+                                    @else
+                                    @endif
+                                @empty
+                                @endforelse
+                            @else
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -87,10 +148,55 @@
                 <!-- Các mệnh giá thẻ -->
                 <div class="row c-mx-n8">
 
-                    <div class="col-12 col-lg-3 c-px-8 c-mb-16 list-card is-load" id="card-single">
-                        <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
-                        <!-- JS PASTE HTML HERE -->
-                    </div>
+                @forelse($data_amounts->data as $amount)
+                    @if(format_k($amount->amount) == strtolower($value))
+                        @php
+                            $amount_paid = $amount->amount - ($amount->amount * (100 - $amount->ratio_default)/100);
+                        @endphp
+                            <div class="col-12 col-lg-3 c-px-8 c-mb-16 list-card" id="card-single"><div class="card unset-lg">
+                                    <div class="card-body c-p-16 c-p-lg-0">
+                                        <div class="scratch-card c-mb-12 card-single">
+                                            <div class="card--thumb">
+                                                <img src="{{ \App\Library\MediaHelpers::media($card_is->image) }}" class="card--thumb__image py-1 py-lg-0" alt="{{ $card_is->title }}">
+                                            </div>
+                                            <div class="card--name t-title-2 deno-card-color" data-amount="{{ $amount->amount  }}" data-discount="{{ $amount->ratio_default }}">
+                                                {{ str_replace(',','.',number_format($amount->amount)) }} VND
+                                            </div>
+                                        </div>
+                                        <span class="t-sub-2 text-capitalize">
+                                    Thẻ {{ strtolower($key) }} {{ format_k($amount->amount) }}
+                                </span>
+                                        <div class="t-body-1 link-color">
+                                            Đơn giá: {{ format_k($amount_paid) }}
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center c-mt-12">
+                                    <span class="t-body-2">
+                                        Số lượng
+                                    </span>
+                                            <div class="js-quantity sm">
+                                                <div class="js-quantity-minus"></div>
+                                                <input type="text" class="js-quantity-input" value="1">
+                                                <div class="js-quantity-add"></div>
+                                            </div>
+                                        </div>
+                                        <div class="group-btn c-mt-16">
+                                            @if(\App\Library\AuthCustom::check())
+                                                <button type="button" class="btn secondary show-modal-confirm">
+                                                    Chọn mua
+                                                </button>
+                                            @else
+                                                <button type="button" class="btn secondary" onclick="openLoginModal()">
+                                                    Chọn mua
+                                                </button>
+                                            @endif
+
+                                        </div>
+                                    </div>
+                                </div></div>
+                    @else
+                    @endif
+                @empty
+                @endforelse
                     <!-- Desktop -->
                     <div class="col-12 col-lg-9 c-pl-24 d-none d-lg-block">
                         <div class="t-title-2 c-mb-12">
@@ -134,9 +240,23 @@
                         </h2>
                         <hr>
                         <div class="swiper swiper-card c-my-12">
-                            <div class="swiper-wrapper is-load" id="card-other">
-                                <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
-                                <!-- JS PASTE HTML HERE -->
+                            <div class="swiper-wrapper" id="card-other">
+                                @forelse($data_amounts->data as $amount)
+                                    @if(format_k($amount->amount) != strtolower($value))
+                                        <div class="swiper-slide">
+                                            <a href="/mua-the-{{ strtolower($key) }}-{{ format_k($amount->amount) }}" class="scratch-card">
+                                                <div class="card--thumb">
+                                                    <img src="{{ \App\Library\MediaHelpers::media($card_is->image) }}" class="card--thumb__image py-1 py-lg-0" alt="{{ $card_is->title }}">
+                                                </div>
+                                                <div class="card--name t-sub-2 text-capitalize deno-card-color">
+                                                    {{ str_replace(',','.',number_format($amount->amount)) }} VND
+                                                </div>
+                                            </a>
+                                        </div>
+                                    @else
+                                    @endif
+                                @empty
+                                @endforelse
                             </div>
                         </div>
                         <div class="navigation slider-prev"></div>
@@ -145,8 +265,6 @@
                 </div>
             </div>
         </div>
-
-        <input type="hidden" value="detail" data-key="{{ @$key }}" data-amount="{{@$value}}" id="is_view">
 
         <!-- Modal-confirm -->
         <div class="modal fade modal-big" id="modal-confirm">
@@ -295,7 +413,8 @@
                 <div class="modal-content">
                     <div class="modal-body text-center c-p-0">
                         <div class="banner">
-                            <img width="143" height="114" class="" src="/assets/frontend/{{theme('')->theme_key}}/image/trong/modal-failed.png" alt="">
+                            <img width="143" height="114" class=""
+                                 src="/assets/frontend/{{theme('')->theme_key}}/image/trong/modal-failed.png" alt="">
                         </div>
                         <p class="t-sub-1 title-color">Mua thẻ thất bại</p>
                         <span class="t-body-1 res-message">
@@ -303,8 +422,8 @@
                     </span>
                     </div>
                     <div class="modal-footer group-btn c-mt-24" style="--data-between: 12px">
+                        <a href="/" class="btn primary">Trang chủ</a>
                         <button type="button" class="btn ghost" data-dismiss="modal">Đóng</button>
-                        <a href="/nap-tien" class="btn primary">Nạp tiền</a>
                     </div>
                 </div>
             </div>
@@ -327,7 +446,7 @@
                                     <div class="link-color t-body-1">
                                         Loại thẻ
                                     </div>
-                                    <div class="t-body-2 text-capitalize">{{ @$key }}</div>
+                                    <div class="t-body-2 text-capitalize">{{ @strtolower($key) }}</div>
                                 </div>
                                 <div class="justify-content-between d-flex c-py-4">
                                     <div class="link-color t-body-1">
@@ -376,7 +495,7 @@
                     <div class="card-body c-px-12 c-py-4">
                         <div class="d-flex justify-content-between c-py-4">
                             <div class="t-body-1 link-color">Loại thẻ</div>
-                            <div class="t-body-2 text-capitalize">{{ @$key }}</div>
+                            <div class="t-body-2 text-capitalize">{{ @strtolower($key) }}</div>
                         </div>
                         <div class="d-flex justify-content-between c-py-4">
                             <div class="t-body-1 link-color">Mệnh giá</div>
@@ -398,7 +517,7 @@
                 <a href="/mua-the" class="btn primary" type="button">Mua thêm</a>
             </div>
         </div>
-@endsection
-@section('scripts')
-            <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card-v2/main.js"></script>
+        @endsection
+        @section('scripts')
+            <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card-v2/main.js?v={{ time() }}"></script>
 @endsection

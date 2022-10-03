@@ -150,7 +150,7 @@
                                                 <div class="row marginauto body-form-search-ct">
                                                     <div class="col-auto left-right">
                                                         <input autocomplete="off" type="text" name="search" class="input-search-log-ct search" placeholder="Nhập từ khóa">
-                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
+                                                        <img   src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                                     </div>
                                                     <div class="col-4 body-form-search-button-ct media-web">
                                                         <button type="submit" class="timkiem-button-ct btn-timkiem" style="position: relative">
@@ -169,7 +169,7 @@
                                                     <ul>
                                                         <li class="li-boloc">Bộ lọc</li>
                                                         <li class="margin-findter">
-                                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/filter.png" alt="">
+                                                            <img   src="/assets/frontend/{{theme('')->theme_key}}/image/nick/filter.png" alt="">
                                                             <span class="overlay-find">0</span>
                                                         </li>
                                                     </ul>
@@ -204,7 +204,7 @@
                         <div class="row marginauto body-form-search-ct">
                             <div class="col-10 px-0">
                                 <input autocomplete="off" type="text" name="search" class="input-search-log-ct search w-100" placeholder="Nhập từ khóa">
-                                <img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/search.png" alt="">
+                                <img   src="/assets/frontend/theme_3/image/cay-thue/search.png" alt="">
                             </div>
                             <div class="col-2 body-form-search-button-ct media-web">
                                 <button type="submit" class="timkiem-button-ct btn-timkiem w-100" style="position: relative">
@@ -1005,7 +1005,7 @@
                         <div class="col-md-12 text-center" style="position: relative">
                             <span>Thông báo</span>
                             <div class="close" data-dismiss="modal" aria-label="Close">
-                                <img class="lazy img-close-ct close-modal-default"
+                                <img class=" img-close-ct close-modal-default"
                                      src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
 
                             </div>
@@ -1016,7 +1016,7 @@
                 <div class="modal-body modal-body-success-ct">
                     <div class="row marginauto justify-content-center">
                         <div class="col-auto">
-                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/reject.png"
+                            <img   src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/reject.png"
                                  alt="">
                         </div>
                     </div>
@@ -1055,11 +1055,22 @@
         </div>
     </div>
 
+{{--    <input type="text" value="{{ isset($result->seddingchat)? $result->seddingchat->params_plus : '' }}" class="chatArrayDefault">--}}
+
+{{--    <input type="text" value="{{ isset($result->seddingchat)? $result->seddingchat->params : '' }}" class="chatArray">--}}
+
+    <input type="hidden" value="{{ json_encode($arrUserName)??'' }}" class="arrUserName">
+
+    <input type="hidden" value="{{ isset($result->seddingchat)? $result->seddingchat->total_item : 12 }}" class="total_item">
+
+    <input type="hidden" value="{{ isset($result->seddingchat)? $result->seddingchat->price : 120 }}" class="max_time">
+
+    <input type="hidden" value="{{ isset($result->seddingchat)? $result->seddingchat->price_old : 30 }}" class="min_time">
+
     @foreach(config('constants.'.'game_type') as $item => $key)
         <input type="hidden" id="withdrawruby_{{$item}}" value="{{$key}}">
     @endforeach
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
     <input type="hidden" id="position_input" value="{{ @$position }}">
     <input type="hidden" id="group_id" value="{{ @$result->group->id}}">
     <input type="hidden" id="image_static"

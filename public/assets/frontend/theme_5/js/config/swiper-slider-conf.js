@@ -114,6 +114,35 @@ let c_swiper_config_category = new Swiper('.class-config-account-viewed',{
     },
 });
 
+let c_section_category_minigame = new Swiper('.c_section-category .class-config-demo',{
+    autoplay: false,
+    updateOnImagesReady: true,
+    watchSlidesVisibility: false,
+    lazyLoadingInPrevNext: false,
+    lazyLoadingOnTransitionStart: false,
+    slidesPerView: 5,
+    speed: 300,
+    spaceBetween: 16,
+    touchMove: true,
+    grabCursor: true,
+    observer: true,
+    observeParents: true,
+    breakpoints: {
+        992: {
+            freeMode: true,
+            slidesPerView: 3,
+        },
+        768: {
+            freeMode: true,
+            slidesPerView: 2.3,
+        }
+    },
+    navigation: {
+        nextEl: ".class-config-demo .navigation.slider-next",
+        prevEl: ".class-config-demo .navigation.slider-prev",
+    },
+});
+
 let swiper_config_category_tab = new Swiper('.section-category-tab .class-config-demo',{
     autoplay: false,
     updateOnImagesReady: true,
@@ -243,37 +272,119 @@ let swiper_card_bought = new Swiper(".slider--card", {
 function initSwiperGallery() {
 
     if ($('.gallery-top').length) {
-        let galleryTop = new Swiper('.gallery-top', {
-            centeredSlides: true,
-            spaceBetween: 16,
-            touchRatio: 0.2,
-            slidesPerView: "auto",
-            slideToClickedSlide: true,
-            loop: true,
-            watchSlidesVisibility: true,
-            watchSlidesProgress: true,
-            direction: "vertical",
-            observer: true,
-            observeParents: true,
-        });
-        let galleryThumbs = new Swiper('.gallery-thumbs', {
-            loop: true,
-            clickable: true,
-            slideToClickedSlide: true,
-            slidesPerView: "auto",
-            navigation: {
-                nextEl: ".acc-detail .navigation.slider-next",
-                prevEl: ".acc-detail .navigation.slider-prev",
-            },
-            pagination: {
-                el: ".tab-show-acc.count-thumb",
-                type: "fraction",
-            },
-            observer: true,
-            observeParents: true,
-        });
-        galleryTop.controller.control = galleryThumbs;
-        galleryThumbs.controller.control = galleryTop;
+        if($(window).width() > 992){
+            let galleryTop = new Swiper('.gallery-top', {
+                centeredSlides: true,
+                spaceBetween: 16,
+                touchRatio: 0.2,
+                slidesPerView: "auto",
+                slideToClickedSlide: true,
+                loop: true,
+                watchSlidesVisibility: true,
+                watchSlidesProgress: true,
+                direction: "vertical",
+                observer: true,
+                observeParents: true,
+                reakpoints: {
+
+                    992: {
+                        loop: false,
+                    },
+
+
+                    480: {
+                        loop: false,
+
+                    }
+                }
+            });
+            let galleryThumbs = new Swiper('.gallery-thumbs', {
+                loop: true,
+                clickable: true,
+                slideToClickedSlide: true,
+                slidesPerView: "auto",
+                navigation: {
+                    nextEl: ".acc-detail .navigation.slider-next",
+                    prevEl: ".acc-detail .navigation.slider-prev",
+                },
+                pagination: {
+                    el: ".tab-show-acc.count-thumb",
+                    type: "fraction",
+                },
+                observer: true,
+                observeParents: true,
+                breakpoints: {
+
+                    992: {
+                        loop: false,
+                    },
+
+
+                    480: {
+                        loop: false,
+
+                    }
+                }
+            });
+            galleryTop.controller.control = galleryThumbs;
+            galleryThumbs.controller.control = galleryTop;
+        }else {
+            let galleryTop = new Swiper('.gallery-top', {
+                centeredSlides: false,
+                spaceBetween: 16,
+                touchRatio: 0.2,
+                slidesPerView: "auto",
+                slideToClickedSlide: true,
+                loop: false,
+                watchSlidesVisibility: true,
+                watchSlidesProgress: true,
+                direction: "vertical",
+                observer: true,
+                observeParents: true,
+                reakpoints: {
+
+                    992: {
+                        loop: false,
+                    },
+
+
+                    480: {
+                        loop: false,
+
+                    }
+                }
+            });
+            let galleryThumbs = new Swiper('.gallery-thumbs', {
+                loop: false,
+                clickable: true,
+                slideToClickedSlide: true,
+                slidesPerView: "auto",
+                navigation: {
+                    nextEl: ".acc-detail .navigation.slider-next",
+                    prevEl: ".acc-detail .navigation.slider-prev",
+                },
+                pagination: {
+                    el: ".tab-show-acc.count-thumb",
+                    type: "fraction",
+                },
+                observer: true,
+                observeParents: true,
+                breakpoints: {
+
+                    992: {
+                        loop: false,
+                    },
+
+
+                    480: {
+                        loop: false,
+
+                    }
+                }
+            });
+
+        }
+
     }
 }
 
@@ -339,5 +450,33 @@ function initSwiperConfigAccGame() {
                 spaceBetween: 12,
             }
         },
+    });
+}
+
+
+let swiper_auto_config = $('.swiper-config-auto');
+if (swiper_auto_config.length){
+    Array.from(swiper_auto_config).forEach(function (elm) {
+        let perview = $(elm).data('perview') * 1;
+        let between = $(elm).data('between') * 1;
+        let id = $(elm).attr('id');
+        new Swiper(elm,{
+            autoplay: false,
+            updateOnImagesReady: true,
+            watchSlidesVisibility: false,
+            lazyLoadingInPrevNext: false,
+            lazyLoadingOnTransitionStart: false,
+            slidesPerView: perview,
+            speed: 300,
+            spaceBetween: between,
+            touchMove: false,
+            grabCursor: false,
+            observer: true,
+            observeParents: true,
+            navigation: {
+                nextEl: `#${id} .navigation.slider-next`,
+                prevEl: `#${id} .navigation.slider-prev`,
+            },
+        });
     });
 }

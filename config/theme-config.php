@@ -20,4 +20,18 @@ return [
         'getChargeDepositHistory',
         'getChargeDepositHistory',
     ],
+    'theme_dup_route-name-header' => [            // presence alias
+        'homeIndex',
+        'getIndex',
+        'accIndex',
+        'accDetail',
+        'accList',
+        'login',
+        'register',
+        'getCategory',
+        'serviceList',
+        'serviceDetail',
+        'articleList',
+        'articleDetail',
+    ],
 ];

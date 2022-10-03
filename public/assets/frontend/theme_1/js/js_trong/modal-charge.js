@@ -8,7 +8,7 @@ $(document).ready(function () {
     /*Get Telecom*/
     if (modal_charge.length){
         $.ajax({
-            url:'/get-tele-card',
+            url:'/ajax/get-tele-card',
             type:'GET',
             success:function (res) {
                 if (res.status === 1){
@@ -43,7 +43,7 @@ $(document).ready(function () {
     });
 
     function getAmount(telecom){
-        var url = '/get-amount-tele-card';
+        var url = '/ajax/get-amount-tele-card';
         $.ajax({
             type: "GET",
             url: url,

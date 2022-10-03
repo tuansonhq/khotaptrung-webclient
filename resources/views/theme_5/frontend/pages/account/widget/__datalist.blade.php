@@ -8,8 +8,12 @@
                 @if($data->display_type == 2)
 
                     <div class="item-account">
-                        <div class="card">
-                            <a href="javascript:void(0)" data-id="{{ $item->randId }}" class="card-body scale-thumb buyacc">
+                        <div class="card card-hover">
+                            @if(\App\Library\AuthCustom::check())
+                                <a href="javascript:void(0)" data-id="{{ $item->randId }}" class="card-body scale-thumb {{ App\Library\AuthCustom::user()->balance < $data->price ? 'the-cao-atm' : 'buyacc' }}">
+                                @else
+                                <a href="javascript:void(0)" data-id="{{ $item->randId }}" class="card-body scale-thumb" onclick="openLoginModal()">
+                            @endif
                                 <div class="account-thumb c-mb-8">
                                     <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="{{\App\Library\MediaHelpers::media($data->title)}}" class="account-thumb-image lazy" onerror="imgError(this)">
                                 </div>
@@ -63,14 +67,21 @@
                                     </div>
                                 @endif
 
-                            </a>
+
+                            @if(\App\Library\AuthCustom::check())
+                                </a>
+                            @else
+                                </a>
+                            @endif
                         </div>
+
                     </div>
+
 
 {{--                    Form thanh toán nick random  formThanhToanNickRandom --}}
 
                     <div class="formDonhangAccount{{ $item->randId }} formThanhToanNickRandom">
-                        <form class="formDonhangAccount" action="/acc/{{ $item->randId }}/databuy" method="POST">
+                        <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
                             {{ csrf_field() }}
                             <div class="modal-header">
                                 <h2 class="modal-title center">Xác nhận thanh toán</h2>
@@ -177,7 +188,7 @@
                 @else
 
                     <div class="item-account">
-                        <div class="card">
+                        <div class="card card-hover">
                             <a href="/acc/{{ $item->randId }}" class="card-body scale-thumb">
                                 <div class="account-thumb c-mb-8">
                                     <img onerror="imgError(this)"  src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}"
@@ -202,10 +213,11 @@
                                     <div class="info-attr c-mb-8">
                                         ID: #{{ $item->randId }}
                                     </div>
-
                                     <?php
                                     $total = 0;
                                     ?>
+                                    @if($data->slug != "nick-lien-minh")
+
                                     @if(isset($item->groups))
                                         <?php
                                         $att_values = $item->groups;
@@ -257,6 +269,73 @@
                                                         @endif
                                                     @endif
                                                 @endforeach
+                                            @endif
+                                        @endif
+                                    @endif
+                                    @else
+                                        @if(isset($item->params))
+                                            @if(isset($item->params->rank_info))
+
+                                                @foreach($item->params->rank_info as $rank_info)
+
+                                                    @if($rank_info->queueType == "RANKED_TFT")
+{{--                                                        <?php--}}
+{{--                                                            $total = $total + 1;--}}
+{{--                                                        ?>--}}
+{{--                                                            <div class="info-attr">--}}
+{{--                                                                RANKED TFT :--}}
+{{--                                                                @if($rank_info->tier == "NONE")--}}
+{{--                                                                    {{ $rank_info->tier }}--}}
+{{--                                                                @else--}}
+{{--                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}--}}
+{{--                                                                @endif--}}
+{{--                                                            </div>--}}
+
+                                                    @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                        <?php
+                                                        $total = $total + 1;
+                                                        ?>
+                                                        <div class="info-attr">
+                                                            Rank :
+                                                            @if($rank_info->tier == "NONE")
+                                                                {{ $rank_info->tier }}
+                                                            @else
+                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                            @endif
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                            @if(isset($item->params->rank_level))
+                                                    <?php
+                                                    $total = $total + 1;
+                                                    ?>
+                                                <div class="info-attr">
+                                                    Level :
+                                                    {{ $item->params->rank_level }}
+                                                </div>
+                                            @endif
+                                            @if(isset($item->params->count))
+                                                @if(isset($item->params->count->champions))
+                                                    <?php
+                                                    $total = $total + 1;
+                                                    ?>
+                                                    <div class="info-attr">
+                                                        Số tướng :
+                                                        {{ $item->params->count->champions }}
+                                                    </div>
+
+                                                @endif
+                                                @if(isset($item->params->count->skins))
+                                                    <?php
+                                                    $total = $total + 1;
+                                                    ?>
+                                                    <div class="info-attr">
+                                                        Trang phục :
+                                                        {{ $item->params->count->skins }}
+                                                    </div>
+
+                                                @endif
                                             @endif
                                         @endif
                                     @endif

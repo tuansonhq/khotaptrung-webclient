@@ -21,7 +21,7 @@
     <!-- Nếu có giao diện giống nhau hoàn toàn thì có thể dùng chung config (chung tên class 'class-config-demo') -->
     <div class="tab-content c-mt-24 c-mt-lg-8">
         <div class="tab-pane fade show active" id="tab-1" role="tabpanel">
-            <div class="swiper class-config-demo">
+            <div class="swiper class-config-demo card-list">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="item-category">
@@ -204,7 +204,7 @@
             </div>
         </div>
         <div class="tab-pane fade" id="tab-2" role="tabpanel">
-            <div class="swiper class-config-demo">
+            <div class="swiper class-config-demo card-list">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="item-category">
@@ -387,7 +387,7 @@
             </div>
         </div>
         <div class="tab-pane fade" id="tab-3" role="tabpanel">
-            <div class="swiper class-config-demo">
+            <div class="swiper class-config-demo card-list">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="item-category">

@@ -1,5 +1,6 @@
 
 @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
+
 {{--    @if(Request::is('/'))--}}
 {{--        <script>--}}
 {{--            $(document).on('scroll',function(){--}}
@@ -47,6 +48,7 @@
 @endif
 
 @if(Session::has('check_login'))
+
     <script>
         $(document).ready(function () {
             let width = $(window).width();
@@ -66,6 +68,7 @@
         Session::pull('check_login');
     @endphp
 @endif
+
 
 @if (!\App\Library\AuthCustom::check())
     @include('frontend.widget.modal.__login')
