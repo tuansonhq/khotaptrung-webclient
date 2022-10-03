@@ -636,8 +636,8 @@
                                                     <div class="item_play_dif_slide_img">
                                                         <a href="{{route('getIndex',[$item->slug])}}">
                                                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{$item->title}}"  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
-                                                            @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
-                                                                <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}" alt="{{$item->title}}" class="item_play_dif_slide_img_sale">
+                                                            @if(isset($item->params->item_play_dif_slide_img_sale) && $item->params->item_play_dif_slide_img_sale!=null)
+                                                                <img src="{{\App\Library\MediaHelpers::media($item->params->item_play_dif_slide_img_sale)}}" alt="{{$item->title}}" class="item_play_dif_slide_img_sale">
                                                             @endif
                                                         </a>
                                                     </div>
