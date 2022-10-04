@@ -28,7 +28,7 @@
             </div>
         @else
 
-        <ul class="breadcrumb-list c-mb-lg-12">
+        <ul class="breadcrumb-list c-mb-lg-12 d-none d-lg-flex">
             <li class="breadcrumb-item">
                 <a href="/" class="breadcrumb-link">Trang chủ</a>
             </li>
@@ -84,7 +84,7 @@
                 </div>
 
                 <!-- Mobile -->
-                <form action="" class="form-search c-mb-24 d-lg-none">
+                <form action="" class="form-search c-py-16 d-lg-none">
                     <input type="search" placeholder="Tìm kiếm" class="search">
                 </form>
                 <div class="text-title fw-700 c-mb-8 d-lg-none">Nick Freefire cực phẩm</div>

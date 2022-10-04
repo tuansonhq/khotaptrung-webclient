@@ -287,19 +287,6 @@
                                                                         @foreach($item->params->rank_info as $rank_info)
 
                                                                             @if($rank_info->queueType == "RANKED_TFT")
-                                                                                {{--                                                                            <?php--}}
-                                                                                {{--                                                                            $total = $total + 1;--}}
-                                                                                {{--                                                                            ?>--}}
-                                                                                {{--                                                                            <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">--}}
-                                                                                {{--                                                                                <small>--}}
-                                                                                {{--                                                                                    RANKED TFT :--}}
-                                                                                {{--                                                                                    @if($rank_info->tier == "NONE")--}}
-                                                                                {{--                                                                                        {{ $rank_info->tier }}--}}
-                                                                                {{--                                                                                    @else--}}
-                                                                                {{--                                                                                        {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}--}}
-                                                                                {{--                                                                                    @endif--}}
-                                                                                {{--                                                                                </small>--}}
-                                                                                {{--                                                                            </div>--}}
                                                                             @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
                                                                                 <?php
                                                                                 $total = $total + 1;
