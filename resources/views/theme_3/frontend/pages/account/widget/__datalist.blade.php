@@ -51,7 +51,7 @@
                                                             </ul>
                                                         </div>
 
-                                                        <button class="button-secondary list-item-nick-button " data-id="{{ $item->randId }}">Mua ngay</button>
+                                                        <button class="button-secondary list-item-nick-button buy-random-acc" data-id="{{ $item->randId }}">Mua ngay</button>
                                                     </div>
                                                 </div>
                                             </div>
