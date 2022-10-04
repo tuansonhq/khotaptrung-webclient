@@ -66,7 +66,7 @@ $(document).ready(function () {
                     }
                     $('#modal-amounts').html(html);
 
-                    reload_captcha();
+                    reload_captcha1();
                 }
             },
             error: function (data) {
@@ -85,7 +85,7 @@ $(document).ready(function () {
         });
     }
 
-    function reload_captcha() {
+    function reload_captcha1() {
         $.ajax({
             type: 'GET',
             url: '/ajax/reload-captcha',
