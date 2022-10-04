@@ -272,3 +272,21 @@ header nav.heading .header-container {
 .box-logo img{
     width: 140px;
 }
+
+/* Header responsive */
+#formSearchHeader {
+    width: 400px;
+}
+
+@media (max-width: 1200px) {
+    #formSearchHeader {
+        width: 250px;
+    }
+
+    .btn-loading{
+        padding:6px 15px;
+        /*background: #EBEBEB;*/
+        border-radius: 8px;
+    }
+}
+/* End Header responsive */
