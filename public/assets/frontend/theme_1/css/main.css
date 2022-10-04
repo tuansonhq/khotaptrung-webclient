@@ -2083,7 +2083,7 @@ footer{
         overflow: hidden;
     }
 }
-@media only screen and (max-width: 992px) {
+@media        only screen and (max-width: 992px) {
     .game-list-image a{
         position: relative;
         display: block;
@@ -2572,5 +2572,4 @@ footer{
         display: block;
         height: 120px;
     }
-
 }
