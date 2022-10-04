@@ -20,10 +20,10 @@ class DirectAPI{
             return $resultChange;
         }
 
-        $data ['domain'] = str_replace('www.','',$http_url);
-        $data ['client'] =  str_replace('www.','',$http_url);
-//        $data ['domain'] = config('api.client');
-//        $data ['client'] =config('api.client');
+//        $data ['domain'] = str_replace('www.','',$http_url);
+//        $data ['client'] =  str_replace('www.','',$http_url);
+        $data ['domain'] = config('api.client');
+        $data ['client'] =config('api.client');
 
         if(session()->has('jwt')){
             $data['token'] = session()->get('jwt');
@@ -45,7 +45,7 @@ class DirectAPI{
 
         $client  = @$_SERVER['HTTP_CLIENT_IP'];
         $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-        $remote  = $_SERVER['REMOTE_ADDR'];
+        $remote  = @$_SERVER['REMOTE_ADDR'];
 
         if(filter_var($client, FILTER_VALIDATE_IP))
         {
