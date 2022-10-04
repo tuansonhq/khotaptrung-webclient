@@ -547,9 +547,47 @@
                                         <span>MS: {{ $item->randId }}</span>
                                     </a>
                                 </div>
-                                <div class="item_buy_list_description">
-                                    bảo hành 100%,lỗi hoàn tiền
-                                </div>
+                                @php
+                                    $checkindex = 0;
+                                @endphp
+                                @if(isset($item->params) && isset($item->params->ext_info))
+                                    <?php
+                                    $params = json_decode(json_encode($item->params->ext_info),true);
+                                    ?>
+                                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                            @foreach($dataAttribute as $index=>$att)
+                                                @if($att->position == 'text')
+                                                    @if(isset($att->childs))
+                                                        @foreach($att->childs as $child)
+
+                                                            @if($child->slug == "noi-bat")
+
+                                                                @foreach($params as $key => $param)
+                                                                    @if($key == $child->id && $child->is_slug_override == null)
+                                                                        @php
+                                                                            $checkindex = 1;
+                                                                        @endphp
+                                                                        <div class="item_buy_list_description">
+                                                                            {{ isset($param) ? \Str::limit($param,25) : null }}
+                                                                        </div>
+
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                @else
+
+                                @endif
+                                @if($checkindex == 0)
+                                    <div class="item_buy_list_description" style="height: 28px">
+
+                                    </div>
+                                @endif
+
                                 <div class="item_buy_list_info item_buy_list_info_custom">
                                     <div class="row item_buy_list_info__row">
                                         <?php
