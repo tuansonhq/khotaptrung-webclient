@@ -27,6 +27,7 @@
 
                                     <?php
                                     $total = 0;
+                                    $index = 0;
                                     ?>
                                     @if(isset($item->groups))
                                         <?php
@@ -70,7 +71,45 @@
                                             @endforeach
                                         @endif
                                     @endif
+                                    @if(isset($item->params))
+                                        @if(isset($item->params->rank_info))
 
+                                            @foreach($item->params->rank_info as $rank_info)
+                                                @if($rank_info->queueType == "RANKED_TFT")
+                                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                    <?php
+                                                    $index = $index + 1;
+                                                    ?>
+                                                    <div class="info-attr">
+                                                        Rank :
+                                                        @if($rank_info->tier == "NONE")
+                                                            {{ $rank_info->tier }}
+                                                        @else
+                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                        @endif
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                        @if(isset($item->params->count))
+                                            @if(isset($item->params->count->champions))
+                                                <?php
+                                                $index = $index + 1;
+                                                ?>
+                                                <div class="info-attr">
+                                                    Số tướng : {{ $item->params->count->champions }}
+                                                </div>
+                                            @endif
+                                            @if(isset($item->params->count->skins))
+                                                <?php
+                                                $index = $index + 1;
+                                                ?>
+                                                <div class="info-attr">
+                                                    Trang phục : {{ $item->params->count->skins }}
+                                                </div>
+                                            @endif
+                                        @endif
+                                    @endif
                                     @php
                                         if (isset($item->price_old)) {
                                             $sale_percent = (($item->price_old - $item->price) / $item->price_old) * 100;
@@ -79,12 +118,14 @@
                                             $sale_percent = 0;
                                         }
                                     @endphp
-                                    <div class="price c-mt-8">
+                                    <div class="price mt-auto">
                                         @if($sale_percent > 0)
                                             <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
                                         @else
                                             <div class="price-current w-100 c-pb-16">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
                                         @endif
+
+
                                         @if($sale_percent > 0)
                                             <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($item->price_old)) }}đ</div>
                                         @endif

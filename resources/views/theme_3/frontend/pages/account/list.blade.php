@@ -369,7 +369,7 @@
                                                         <small>{{ $auto_propertie->name }}</small>
                                                     </div>
                                                     <div class="col-12 left-right background-nick-col-bottom-ct">
-                                                        <select class="select-2-custom account-filter-field" data-query="tftdamageskins_data"  data-title="">
+                                                        <select class="select-2-custom account-filter-field" data-query="tftmapskins_data"  data-title="">
                                                             <option value="" selected disabled>--Không chọn--</option>
                                                             @if($auto_propertie->childs)
                                                                 @foreach($auto_propertie->childs as $child)

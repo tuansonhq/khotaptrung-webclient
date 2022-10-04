@@ -237,7 +237,6 @@
                                                                     @endif
 
                                                                 @else
-
                                                                 @endif
                                                                 @if(isset($data->groups))
                                                                     <?php $att_values = $data->groups ?>
