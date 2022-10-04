@@ -1507,3 +1507,17 @@ section.outstanding-service {
     box-shadow: 0px 2px 4px rgb(0 0 0 / 5%);
     border-radius: 4px;
 }
+
+
+.class-config-demo .swiper-slide {
+    height: auto;
+}
+.class-config-demo .swiper-slide .item-category,
+.class-config-demo .swiper-slide .card {
+    height: 100%;
+}
+
+#showdetailacc .card-body {
+    padding-left: 16px;
+    padding-right: 16px;
+}
