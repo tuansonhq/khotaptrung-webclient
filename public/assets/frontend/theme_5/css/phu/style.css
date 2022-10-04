@@ -1008,6 +1008,18 @@ input[type=text].buy-card-amount-input {
     transition: top 0.2s ease-in;
 }
 
+.leaderboard-items {
+    background-color: #F3F3F7;
+}
+
+.leaderboard-items span {
+    color: var(--text-color);
+}
+
+.leaderboard-items p {
+    color: var(--primary-color);
+}
+
 .leaderboard-buttons {
     border-bottom: 1px solid var(--border-default-color);
 }

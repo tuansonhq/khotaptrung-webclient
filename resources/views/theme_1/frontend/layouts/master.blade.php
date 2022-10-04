@@ -60,7 +60,6 @@
     @stack('style')
 
 
-
 {{--    <link rel="stylesheet" href="/js/{{theme('')->theme_key}}/main.js?v={{time()}}">--}}
 
 
