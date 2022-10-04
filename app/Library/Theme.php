@@ -25,6 +25,7 @@ class Theme
             });
         }else{
             return Cache::rememberForever('_theme', function() {
+                $seo = null;
                 $url = '/theme/get-theme-config';
                 $method = "GET";
                 $data = array();

@@ -77,9 +77,13 @@
                                             <label class="text-form">Nhà cung cấp</label>
                                             <div class="col-md-12 p-0" >
                                                 <select class="select-form w-100" name="type" id="telecom">
-                                                     @foreach($data as $val)
-                                                        <option value="{{$val->key}}">{{$val->title}}</option>
-                                                    @endforeach
+                                                    @if(isset($data))
+                                                        @foreach($data as $val)
+                                                            <option value="{{$val->key}}">{{$val->title}}</option>
+                                                        @endforeach
+
+                                                    @endif
+
 
                                                 </select>
                                             </div>
