@@ -31,7 +31,7 @@
     </div>
 
     <div class="box-search d-none d-lg-block ">
-        <form action="" class="form-search" style="width: 400px">
+        <form action="" class="form-search" id="formSearchHeader">
             <input type="search" placeholder="Tìm kiếm" class=" has-submit">
             <button type="submit"></button>
         </form>

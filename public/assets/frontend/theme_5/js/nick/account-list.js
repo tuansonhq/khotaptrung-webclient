@@ -36,10 +36,16 @@ function loadDataApi(query) {
                 let html ='';
                 html = res.data;
                 content_history.html(html);
+                if (res.nick_total) {
+                    $('#numberResult').text(`${res.nick_total} sản phẩm`);
+                } else {
+                    $('#numberResult').text("0 sản phẩm");
+                }
             }
             if (res.status === 0) {
                 let html = `<div class="invalid-color text-center">${res.message}</div>`;
                 content_history.html(html);
+                $('#numberResult').text("0 sản phẩm");
             }
         },
         error: function (data) {
