@@ -78,6 +78,7 @@
                                     <div class="input-block">
                                         <h6>Chọn loại vật phẩm khác</h6>
                                         <select class="select-primary withdraw-select" id="game_type" name="game_type">
+
                                             @if(count($result->listgametype)>0)
                                                 @foreach($result->listgametype as $item)
                                                     <option value="{{route('getWithdrawItem',[$item->parent_id])}}" {{$item->parent_id==$game_type?'selected':''}}>{{$item->title}}</option>
@@ -107,18 +108,23 @@
                                         <h6>{{isset($result->gametype->idkey)?$result->gametype->idkey:'ID trong game:'}}</h6>
                                         <input type="text" name="idgame" class="withdraw-inputs input-primary" placeholder="">
                                     </div>
-                                    @if($result->gametype->position == "Mật Khẩu" || $result->gametype->position == "Mật Khẩu Game")
-                                        <div class="input-block input-block-password">
-                                            <h6>{{isset($result->gametype->position)?$result->gametype->position:'Số điện thoại ( nếu có ):'}}</h6>
-                                            <input type="password" name="phone" class="withdraw-inputs input-primary" placeholder="Nhập mật khẩu trong game">
-                                            <img class="withdraw-password-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
-                                            <img class="withdraw-password-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="">
-                                        </div>
-                                    @else
-                                        <div class="input-block">
-                                            <h6>{{isset($result->gametype->position)?$result->gametype->position:'Số điện thoại ( nếu có ):'}}</h6>
-                                            <input type="text" name="phone" class="withdraw-inputs input-primary" placeholder="Nhập số điện thoại">
-                                        </div>
+
+
+                                    @if(isset($result->gametype->position))
+
+                                        @if($result->gametype->position == "Mật Khẩu" || $result->gametype->position == "Mật Khẩu Game")
+                                            <div class="input-block input-block-password">
+                                                <h6>{{isset($result->gametype->position)?$result->gametype->position:'Số điện thoại ( nếu có ):'}}</h6>
+                                                <input type="password" name="phone" class="withdraw-inputs input-primary" placeholder="Nhập mật khẩu trong game">
+                                                <img class="withdraw-password-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
+                                                <img class="withdraw-password-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="">
+                                            </div>
+                                        @else
+                                            <div class="input-block">
+                                                <h6>{{isset($result->gametype->position)?$result->gametype->position:'Số điện thoại ( nếu có ):'}}</h6>
+                                                <input type="text" name="phone" class="withdraw-inputs input-primary" placeholder="Nhập số điện thoại">
+                                            </div>
+                                        @endif
                                     @endif
 
                                     <div class="input-button">

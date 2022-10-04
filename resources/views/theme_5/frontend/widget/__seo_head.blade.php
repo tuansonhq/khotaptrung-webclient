@@ -192,7 +192,6 @@
                         "reviewCount": "793986"
                     },
                     "sku": "{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}",
-                    "gtin8": "{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}",
                     "mpn": "{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}",
                     "offers": {
                             "@type": "Offer",
@@ -268,7 +267,6 @@
                         "reviewCount": "793986"
                     },
                     "sku": "{{ $data->slug??'' }}",
-                    "gtin8": "{{ $data->slug??'' }}",
                     "mpn": "{{ $data->slug??'' }}",
                     "offers": {
                             "@type": "Offer",
