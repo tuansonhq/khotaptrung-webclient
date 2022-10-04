@@ -32,7 +32,7 @@
     background: #F3F3F7;
 }
 .nice-select:active, .nice-select.open, .nice-select:focus {
-    border-color: #F67600;
+    border-color: #32c5d2;
     background: #F3F3F7;
 }
 .nice-select:after {
