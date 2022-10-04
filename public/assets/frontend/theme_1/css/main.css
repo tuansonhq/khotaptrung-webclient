@@ -2083,7 +2083,7 @@ footer{
         overflow: hidden;
     }
 }
-@media        only screen and (max-width: 992px) {
+@media only screen and (max-width: 992px) {
     .game-list-image a{
         position: relative;
         display: block;
@@ -2559,4 +2559,11 @@ footer{
 .game-list-more-view .btn-view-more:hover {
     border: 2px solid #32c5d2;
     color: #32c5d2;
+}
+@media only screen and (max-width: 992px) {
+    .content-items-spin .game-list-image a{
+        position: relative;
+        display: block;
+        height: 120px;
+    }
 }
