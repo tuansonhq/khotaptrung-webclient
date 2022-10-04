@@ -59,14 +59,6 @@
 
     @stack('style')
 
-    <style>
-        .main-lay-out {
-            background:#000 url(/assets/frontend/{{theme('')->theme_key}}/images/background_image.jpg);
-            background-attachment: fixed;background-size: 100%;
-
-            padding-bottom: 40px;
-        }
-    </style>
 
 {{--    <link rel="stylesheet" href="/js/{{theme('')->theme_key}}/main.js?v={{time()}}">--}}
 
@@ -96,10 +88,12 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
+
 {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/script.js?v={{time()}}"></script>--}}
 {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>--}}
 {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>--}}
     <script src="/js/{{theme('')->theme_key}}/main_top.js?v={{time()}}"></script>
+
     <script>
         $(document).ready(function () {
             @if(Request::is('thong-tin'))
@@ -203,6 +197,7 @@
 
 </head>
 <body>
+@include('frontend.widget.__theme')
 
 
 @if(setting('sys_google_tag_manager_body') != '')

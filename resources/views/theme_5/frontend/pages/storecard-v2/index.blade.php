@@ -5,15 +5,15 @@
 @section('content')
     <div class="c-container container">
         <!-- head mobile -->
-    {{--        <div class="head-mobile">--}}
-    {{--            <a href="/service-mobile" class="link-back"></a>--}}
+            <div class="head-mobile">
+                <a href="/service-mobile" class="link-back"></a>
 
-    {{--            <h1 class="head-title t-sub-2">--}}
-    {{--                Mua thẻ--}}
-    {{--            </h1>--}}
+                <h1 class="head-title t-sub-2">
+                    Mua thẻ
+                </h1>
 
-    {{--            <a href="/" class="home"></a>--}}
-    {{--        </div>--}}
+                <a href="/" class="home"></a>
+            </div>
     <!-- breadcrum -->
         <ul class="breadcrumb-list">
             <li class="breadcrumb-item">

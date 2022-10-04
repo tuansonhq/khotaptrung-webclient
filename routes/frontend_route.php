@@ -55,44 +55,21 @@ Route::get('/github/test', function (Request $request)
 Route::get('/test111', function (Request $request)
 {
 
-    if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
-        $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
-        $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
-    }
-
-    $client  = @$_SERVER['HTTP_CLIENT_IP'];
-    $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-    $remote  = $_SERVER['REMOTE_ADDR'];
-
-    if(filter_var($client, FILTER_VALIDATE_IP))
-    {
-        $ip = $client;
-    }
-    elseif(filter_var($forward, FILTER_VALIDATE_IP))
-    {
-        $ip = $forward;
-    }
-    else
-    {
-        $ip = $remote;
-    }
-
-    $user_agent = $_SERVER['HTTP_USER_AGENT'];
-
-    return "Ip= ".$ip." User agent= ".$user_agent;
-
 })->middleware('throttle:5,1');
 Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name('getTheme');
 
-
-Route::get('/tesstt', function ()
+Route::get('/405', function ()
 {
+    return view('errors.405');
+});
 
-
-    return view('index');
+Route::get('/406', function ()
+{
+    return view('errors.406');
 });
 
 Route::group(array('middleware' => ['theme']) , function (){
+
     Route::group(array('middleware' => ['throttle:300,1','verify_shop']) , function (){
 
         Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
@@ -171,13 +148,19 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/lich-su-nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistory'])->name('getChargeDepositHistory');
                     Route::get('/lich-su-nap-the-{id}', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistoryDetail'])->name('getChargeDepositHistoryDetail');
 
-                    if (theme('')->theme_key == "theme_1"||theme('')->theme_key == "theme_4"){
-                        /*Theme_1*/
+                    if (isset(theme('')->theme_key)){
+                        if (theme('')->theme_key == "theme_1"||theme('')->theme_key == "theme_4"){
+                            /*Theme_1*/
+                            Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getLogs'])->name('getBuyAccountHistory');
+                        }else {
+                            /*Theme_3*/
+                            Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class ,  'getLogsCustom'])->name('nick-buyed');
+                        }
+                    }else{
                         Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getLogs'])->name('getBuyAccountHistory');
-                    }else {
-                        /*Theme_3*/
-                        Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class ,  'getLogsCustom'])->name('nick-buyed');
+
                     }
+
                     Route::get('/lich-su-mua-account-{id}', [\App\Http\Controllers\Frontend\AccController::class , 'getLogsCustomDetails'])->name('getLogsCustomDetails');
                     Route::post('/ajax/{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
 
@@ -310,12 +293,14 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])->name('getIndex');
 
                 });
+                Route::get('/service-mobile', [\App\Http\Controllers\Frontend\ServiceController::class , 'getListMobile'])->name('getListMobile');
+
 
             });
         });
 
         Route::post('/ajax/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
-        Route::get('/service-mobile', [\App\Http\Controllers\Frontend\ServiceController::class , 'getListMobile'])->name('getListMobile');
+
     });
 });
 

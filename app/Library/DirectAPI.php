@@ -60,7 +60,7 @@ class DirectAPI{
             $ip = $remote;
         }
 
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        $user_agent = @$_SERVER['HTTP_USER_AGENT'];
 
         $accesuser = Session::get('access_user');
 

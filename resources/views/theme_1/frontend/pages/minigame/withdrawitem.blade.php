@@ -123,7 +123,7 @@
                     <tr>
                         <th>Thời gian</th>
                         <th>ID</th>
-                        <th>Số kim cương</th>
+                        <th>Số vật phẩm rút</th>
                         <th>Ghi chú</th>
                         <th>Thông báo</th>
                         <th>Trạng thái</th>

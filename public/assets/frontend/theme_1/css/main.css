@@ -900,8 +900,8 @@ header .nav-bar{
     /*border: 1px solid #ccc;*/
     /*border: 1px solid rgba(0,0,0,.15);*/
     border-radius: 4px;
-    -webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
-    box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+    /*-webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);*/
+    /*box-shadow: 0 6px 12px rgb(0 0 0 / 18%);*/
 }
 .nav-bar-category .menu-item ul li{
 
@@ -2544,4 +2544,19 @@ footer{
 .item_play_dif_slide_title_hea{
     max-height: 48px;
     height: 48px;
+}
+
+
+/*theme*/
+.game-list-more-view .btn-view-more {
+    text-align: center;
+    border: 2px solid #cccccc;
+    padding: 5px;
+    color: #3f444a;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+.game-list-more-view .btn-view-more:hover {
+    border: 2px solid #32c5d2;
+    color: #32c5d2;
 }

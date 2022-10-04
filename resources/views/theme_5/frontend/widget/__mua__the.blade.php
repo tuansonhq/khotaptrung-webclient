@@ -1,5 +1,5 @@
 @if(isset($telecoms))
-    <div class="row c-mt-16 c-mb-lg-24">
+    <div class="row c-mt-16 c-mb-lg-24 c-mx-lg-n16">
         <div class="col-12 col-lg-3 c-pr-12 c-p-sm-0">
             <h1 class="buy-card-title fw-700 fz-20 lh-28 c-mt-0 c-mb-8 c-py-8 d-none d-lg-block">{{ $title??'' }}</h1>
             <div class="buy-card-container brs-12 brs-lg-0">
@@ -16,13 +16,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="head-mobile">
-            <a href="javascript:void(0)" class="link-back"></a>
-
-            <h1 class="head-title text-title">Mua thẻ</h1>
-
-            <a href="/" class="home"></a>
         </div>
         <div class="col-12 col-lg-9 c-pl-12 c-p-sm-0">
             <div class="row mw-100 mx-0">
