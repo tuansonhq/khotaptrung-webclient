@@ -185,6 +185,6 @@
     <input type="hidden" name="sort_by_data" class="sort_by_data" value="">
     <input type="hidden" name="id_data" class="id_data" value="">
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/acc-history.js"></script>--}}
-    <script src="/js/{{theme('')->theme_key}}/account/logs.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/acc-history.js"></script>
+{{--    <script src="/js/{{theme('')->theme_key}}/account/logs.js"></script>--}}
 @endsection
