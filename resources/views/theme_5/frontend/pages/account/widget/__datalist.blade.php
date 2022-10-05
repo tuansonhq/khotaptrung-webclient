@@ -264,15 +264,15 @@
                                                 @endif
                                             @endforeach
                                         @endif
-                                        @if(isset($item->params->rank_level))
-                                            <?php
-                                            $total = $total + 1;
-                                            ?>
-                                            <div class="info-attr">
-                                                Level :
-                                                {{ $item->params->rank_level }}
-                                            </div>
-                                        @endif
+{{--                                        @if(isset($item->params->rank_level))--}}
+{{--                                            <?php--}}
+{{--                                            $total = $total + 1;--}}
+{{--                                            ?>--}}
+{{--                                            <div class="info-attr">--}}
+{{--                                                Level :--}}
+{{--                                                {{ $item->params->rank_level }}--}}
+{{--                                            </div>--}}
+{{--                                        @endif--}}
                                         @if(isset($item->params->count))
                                             @if(isset($item->params->count->champions))
                                                 <?php

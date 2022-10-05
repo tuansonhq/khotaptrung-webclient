@@ -304,17 +304,17 @@
                                                                             @endif
                                                                         @endforeach
                                                                     @endif
-                                                                    @if(isset($item->params->rank_level))
-                                                                        <?php
-                                                                        $total = $total + 1;
-                                                                        ?>
-                                                                        <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
-                                                                            <small>
-                                                                                Level :
-                                                                                {{ $item->params->rank_level }}
-                                                                            </small>
-                                                                        </div>
-                                                                    @endif
+{{--                                                                    @if(isset($item->params->rank_level))--}}
+{{--                                                                        <?php--}}
+{{--                                                                        $total = $total + 1;--}}
+{{--                                                                        ?>--}}
+{{--                                                                        <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">--}}
+{{--                                                                            <small>--}}
+{{--                                                                                Level :--}}
+{{--                                                                                {{ $item->params->rank_level }}--}}
+{{--                                                                            </small>--}}
+{{--                                                                        </div>--}}
+{{--                                                                    @endif--}}
 
                                                                     @if(isset($item->params->count))
                                                                         @if(isset($item->params->count->champions))
