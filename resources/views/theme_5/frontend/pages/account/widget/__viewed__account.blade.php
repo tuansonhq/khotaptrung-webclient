@@ -31,9 +31,17 @@ $data_viewed = json_decode($data_viewed,true);
                                 <div class="info-attr">ID: #{{ @$acc_viewed['randId'] }}</div>
                             </div>
                             <div class="price">
-                                <div class="price-current w-100">{{ str_replace(',','.',number_format($acc_viewed['price'])) }} đ</div>
-                                <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($acc_viewed['price_old'])) }} đ</div>
-                                <div class="discount">{{ @$acc_viewed['promotion'] }} %</div>
+                                @if(@$acc_viewed['promotion'] > 0)
+                                    <div class="price-current w-100">{{ str_replace(',','.',number_format($acc_viewed['price'])) }}đ</div>
+                                @else
+                                    <div class="price-current w-100 c-pb-16">{{ str_replace(',','.',number_format($acc_viewed['price'])) }}đ</div>
+                                @endif
+                                @if(@$acc_viewed['promotion'] > 0)
+                                    <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($acc_viewed['price_old'])) }}đ</div>
+                                @endif
+                                @if(@$acc_viewed['promotion'] > 0)
+                                    <div class="discount">{{@$acc_viewed['promotion']}}%</div>
+                                @endif
                             </div>
                         </a>
                     </div>

@@ -9,7 +9,7 @@
 
                         <li class="w-100 c-px-4">
                             <a href="javascript:void(0);" onclick="openLoginModal();" @if($item->target==1) target="_blank" @endif >
-                                <div class="c-p-8 brs-8 {{ '/'.request()->path() == $item->url ? 'active' : ''}}  d-flex justify-content-center">
+                                <div class="c-p-8 brs-8 {{ '/'.request()->path() == $item->url ? 'active' : ''}}  d-flex justify-content-center" style="white-space: nowrap;">
                                     @if($item->image_icon)
                                         <img src="{{\App\Library\MediaHelpers::media($item->image_icon)}}" alt="" class="c-pr-4">
                                     @else
@@ -22,7 +22,7 @@
                     @else
                         <li class="w-100 c-px-4">
                             <a href="{{$item->url}}" @if($item->target==1) target="_blank" @endif >
-                                <div class="c-p-8 brs-8 {{ '/'.request()->path() == $item->url ? 'active' : ''}}  d-flex justify-content-center">
+                                <div class="c-p-8 brs-8 {{ '/'.request()->path() == $item->url ? 'active' : ''}}  d-flex justify-content-center" style="white-space: nowrap;">
                                     @if($item->image_icon)
                                         <img src="{{\App\Library\MediaHelpers::media($item->image_icon)}}" alt="" class="c-pr-4">
                                     @else
@@ -36,7 +36,7 @@
                 @else
                     <li class="w-100 c-px-4">
                         <a href="{{$item->url}}" @if($item->target==1) target="_blank" @endif >
-                            <div class="c-p-8 brs-8 {{ '/'.request()->path() == $item->url ? 'active' : ''}}  d-flex justify-content-center">
+                            <div class="c-p-8 brs-8 {{ '/'.request()->path() == $item->url ? 'active' : ''}}  d-flex justify-content-center" style="white-space: nowrap;">
                                 @if($item->image_icon)
                                     <img src="{{\App\Library\MediaHelpers::media($item->image_icon)}}" alt="" class="c-pr-4">
                                 @else
