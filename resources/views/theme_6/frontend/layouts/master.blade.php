@@ -52,17 +52,6 @@
 
     @stack('style')
 
-    <style>
-        .main-lay-out {
-            background:#000 url(https://shoptruongstar.com/assets/frontend/home/images/bg-top.png);
-            padding: 20px 0;
-            background-size: cover;
-        }
-        .main-lay-out-hide{
-            background: unset;
-        }
-    </style>
-
 {{--    <link rel="stylesheet" href="/js/{{theme('')->theme_key}}/main.js?v={{time()}}">--}}
 
 
@@ -178,6 +167,7 @@
 </head>
 <body>
 
+@include('frontend.widget.__theme')
 
 
 @if(setting('sys_google_tag_manager_body') != '')

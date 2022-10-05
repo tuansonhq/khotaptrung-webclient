@@ -76,7 +76,9 @@
                                                 @endif
                                             @endforeach
                                         @else
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/images/muangay.jpg" alt="">
+                                            <div class="custom-showmore">
+                                                Xem tất cả
+                                            </div>
                                         @endif
                                     </a>
                                 </div>

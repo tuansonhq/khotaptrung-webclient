@@ -278,12 +278,15 @@
                                                         <span class="item_play_dif_slide_description-new-price">{{number_format($item->price)}}đ</span>
                                                     </div>
                                                     <div class="item_play_dif_slide_more">
-                                                        <div class="item_play_dif_slide_more_view" >
+                                                        <div class="item_play_dif_slide_more_view py-2" >
                                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                                 @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                                     <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    Chơi ngay
+                                                                    <div class="custom-showmore">
+                                                                        Quay ngay
+                                                                    </div>
+
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -502,12 +505,15 @@
                                                         <span class="item_play_dif_slide_description-new-price">{{number_format($item->price)}}đ</span>
                                                     </div>
                                                     <div class="item_play_dif_slide_more">
-                                                        <div class="item_play_dif_slide_more_view" >
+                                                        <div class="item_play_dif_slide_more_view py-2" >
                                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                                 @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
-                                                                    <img src="{{ \App\Library\MediaHelpers::media($item->params->image_view_all) }}"  alt="{{$item->title}}">
+                                                                    <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    Chơi ngay
+                                                                    <div class="custom-showmore">
+                                                                        Quay ngay
+                                                                    </div>
+
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -651,12 +657,15 @@
                                                         <span class="item_play_dif_slide_description-new-price">{{number_format($item->price)}}đ</span>
                                                     </div>
                                                     <div class="item_play_dif_slide_more">
-                                                        <div class="item_play_dif_slide_more_view" >
+                                                        <div class="item_play_dif_slide_more_view py-2" >
                                                             <a href="{{route('getIndex',[$item->slug])}}">
-                                                                @if(isset($item->params->image_percent_sale) && $item->params->image_percent_sale!=null)
+                                                                @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                                     <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    Quay ngay
+                                                                    <div class="custom-showmore">
+                                                                        Quay ngay
+                                                                    </div>
+
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -804,12 +813,15 @@
                                                         <span class="item_play_dif_slide_description-new-price">{{number_format($item->price)}}đ</span>
                                                     </div>
                                                     <div class="item_play_dif_slide_more">
-                                                        <div class="item_play_dif_slide_more_view" >
+                                                        <div class="item_play_dif_slide_more_view py-2" >
                                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                                 @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                                     <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    Quay ngay
+                                                                    <div class="custom-showmore">
+                                                                        Quay ngay
+                                                                    </div>
+
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -993,12 +1005,15 @@
                                                         <span class="item_play_dif_slide_description-new-price">{{number_format($item->price)}}đ</span>
                                                     </div>
                                                     <div class="item_play_dif_slide_more">
-                                                        <div class="item_play_dif_slide_more_view" >
+                                                        <div class="item_play_dif_slide_more_view py-2" >
                                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                                 @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                                     <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    Quay ngay
+                                                                    <div class="custom-showmore">
+                                                                        Quay ngay
+                                                                    </div>
+
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -1146,12 +1161,15 @@
                                                         <span class="item_play_dif_slide_description-new-price">{{number_format($item->price)}}đ</span>
                                                     </div>
                                                     <div class="item_play_dif_slide_more">
-                                                        <div class="item_play_dif_slide_more_view" >
+                                                        <div class="item_play_dif_slide_more_view py-2" >
                                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                                 @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
-                                                                    <img src="{{ \App\Library\MediaHelpers::media($item->params->image_view_all) }}"  alt="{{$item->title}}">
+                                                                    <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    Chơi ngay
+                                                                    <div class="custom-showmore">
+                                                                        Quay ngay
+                                                                    </div>
+
                                                                 @endif
                                                             </a>
                                                         </div>
