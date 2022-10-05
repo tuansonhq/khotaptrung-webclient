@@ -138,7 +138,10 @@
                                             @endif
                                         @endforeach
                                     @else
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/images/muangay.jpg" alt="">
+                                        <div class="custom-showmore">
+                                            Xem tất cả
+                                        </div>
+{{--                                    <img src="/assets/frontend/{{theme('')->theme_key}}/images/muangay.jpg" alt="">--}}
                                     @endif
                                 </a>
                             </div>

@@ -2618,3 +2618,18 @@ footer{
 .content-items-spin .game-list-description p{
     margin-top: 24px;
 }
+.custom-showmore {
+    display: inline-block;
+    width: 136px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ef282b;
+    outline: 0;
+    background: #ffffff;
+    border: 1px #ef282b solid;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
