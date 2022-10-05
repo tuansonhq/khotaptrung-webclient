@@ -130,656 +130,7 @@
                 </div>
             </div>
 
-            {{--    Modal lmht tướng--}}
 
-            <div class="c-modal__nick-lmht c-modal__nick-lmht-tuong"
-                 style="z-index: 1005; background: rgba(67, 70, 87, 0.5);">
-                <div
-                    class="header-modal__nick-lmht c-px-24 c-pt-24 pb-0 position-relative text-uppercase text-center ml-auto mr-auto fw-700">
-                    <div class="row marginauto c-pb-24 header-modal__nick-lmht-row">
-                        <div class="col-auto pl-0 pr-0 mb-0 c-mr-24">
-                            <h2 class="fw-700 fz-24 lh-32 mb-0">Tướng</h2>
-                            <p class="fw-400 fz-13 lh-20 mb-0">(100 tướng)</p>
-                        </div>
-                        <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
-                            <input id="keyword--search" type="search" placeholder="Tìm kiếm"
-                                   class="has-submit input-search-lmht">
-                            <button class="submit--search" type="submit"></button>
-                        </div>
-                        <img class="c-close-modal" src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/close.svg"
-                             alt="">
-                    </div>
-                </div>
-                <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">
-                    <div class="row marginauto modal-container-body">
-                        <div class="col-md-12 c-px-6 c-py-8 body-modal__nick__text-error">
-                            <div class="text-error c-mt-4">Không có kết quả phù hợp.</div>
-                        </div>
-                        <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
-                            <a href="">
-                                <div class="row marginauto item-nick-lmht__border">
-                                    <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                        <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                             src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                             alt="Axtrox">
-                                    </div>
-                                    <div class="col-md-12 pl-0 pr-0 text-center">
-                                        <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Axtrox</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
-                            <a href="">
-                                <div class="row marginauto item-nick-lmht__border">
-                                    <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                        <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                             src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                             alt="Amumu">
-                                    </div>
-                                    <div class="col-md-12 pl-0 pr-0 text-center">
-                                        <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Amumu</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
-                            <a href="">
-                                <div class="row marginauto item-nick-lmht__border">
-                                    <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                        <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                             src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                             alt="Garen">
-                                    </div>
-                                    <div class="col-md-12 pl-0 pr-0 text-center">
-                                        <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Garen</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
-                            <a href="">
-                                <div class="row marginauto item-nick-lmht__border">
-                                    <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                        <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                             src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                             alt="Sona">
-                                    </div>
-                                    <div class="col-md-12 pl-0 pr-0 text-center">
-                                        <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Sona</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
-                            <a href="">
-                                <div class="row marginauto item-nick-lmht__border">
-                                    <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                        <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                             src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                             alt="Axtrox">
-                                    </div>
-                                    <div class="col-md-12 pl-0 pr-0 text-center">
-                                        <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Axtrox</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
-                            <a href="">
-                                <div class="row marginauto item-nick-lmht__border">
-                                    <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                        <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                             src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                             alt="Amumu">
-                                    </div>
-                                    <div class="col-md-12 pl-0 pr-0 text-center">
-                                        <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Amumu</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer" style="height: 16px">
-
-                    </div>
-                </div>
-
-            </div>
-
-            {{--   Modal trang phục   --}}
-            <div class="c-modal__nick-lmht c-modal__nick-lmht-trang-phuc"
-                 style="z-index: 1005; background: rgba(67,70,87,0.5);">
-                <div
-                    class="header-modal__nick-lmht c-px-24 c-pt-24 pb-0 position-relative text-uppercase text-center ml-auto mr-auto fw-700">
-                    <div class="row marginauto c-pb-24 header-modal__nick-lmht-row">
-                        <div class="col-auto pl-0 pr-0 mb-0 c-mr-24">
-                            <h2 class="fw-700 fz-24 lh-32 mb-0">Tướng</h2>
-                            <p class="fw-400 fz-13 lh-20 mb-0">(100 tướng)</p>
-                        </div>
-                        <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
-                            <input id="keyword--search" type="search" placeholder="Tìm kiếm"
-                                   class="has-submit input-search-lmht">
-                            <button class="submit--search" type="submit"></button>
-                        </div>
-                        <img class="c-close-modal" src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/close.svg"
-                             alt="">
-                    </div>
-                </div>
-                <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">
-                    <div class="row marginauto modal-container-body">
-                        <div class="col-md-12 c-px-6 c-py-8 body-modal__nick__text-error">
-                            <div class="text-error c-mt-4">Không có kết quả phù hợp.</div>
-                        </div>
-                        <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
-                            <a href="">
-                                <div class="row marginauto item-nick-lmht__border">
-                                    <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                        <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                             src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                             alt="Axtrox">
-                                    </div>
-                                    <div class="col-md-12 pl-0 pr-0 text-center">
-                                        <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Axtrox</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
-                            <a href="">
-                                <div class="row marginauto item-nick-lmht__border">
-                                    <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                        <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                             src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                             alt="Amumu">
-                                    </div>
-                                    <div class="col-md-12 pl-0 pr-0 text-center">
-                                        <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Amumu</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
-                            <a href="">
-                                <div class="row marginauto item-nick-lmht__border">
-                                    <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                        <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                             src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                             alt="Garen">
-                                    </div>
-                                    <div class="col-md-12 pl-0 pr-0 text-center">
-                                        <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Garen</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
-                            <a href="">
-                                <div class="row marginauto item-nick-lmht__border">
-                                    <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                        <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                             src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                             alt="Sona">
-                                    </div>
-                                    <div class="col-md-12 pl-0 pr-0 text-center">
-                                        <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Sona</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
-                            <a href="">
-                                <div class="row marginauto item-nick-lmht__border">
-                                    <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                        <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                             src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                             alt="Axtrox">
-                                    </div>
-                                    <div class="col-md-12 pl-0 pr-0 text-center">
-                                        <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Axtrox</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
-                            <a href="">
-                                <div class="row marginauto item-nick-lmht__border">
-                                    <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                        <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                             src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                             alt="Amumu">
-                                    </div>
-                                    <div class="col-md-12 pl-0 pr-0 text-center">
-                                        <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Amumu</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer" style="height: 16px">
-
-                    </div>
-                </div>
-
-            </div>
-
-            {{--    Modal thông tin khác   --}}
-
-            <div class="c-modal__nick-lmht c-modal__nick-lmht-ttk"
-                 style="z-index: 1005; background: rgba(67, 70, 87, 0.5);">
-                <div
-                    class="header-modal__nick-lmht c-px-24 c-pt-24 pb-0 position-relative text-uppercase text-center ml-auto mr-auto fw-700">
-                    <div class="row marginauto c-pb-24 header-modal__nick-lmht-row">
-                        <div class="col-auto pl-0 pr-0 mb-0 c-mr-24">
-                            <h2 class="fw-700 fz-24 lh-32 mb-0">Thông tin khác</h2>
-                            <p class="fw-400 fz-13 lh-20 mb-0">(10)</p>
-                        </div>
-                        <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
-                            <input id="keyword--search" type="search" placeholder="Tìm kiếm"
-                                   class="has-submit input-search-lmht">
-                            <button class="submit--search" type="submit"></button>
-                        </div>
-                        <img class="c-close-modal" src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/close.svg"
-                             alt="">
-                    </div>
-                </div>
-                <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">
-                    <div class="row marginauto modal-container-body">
-                        <div class="col-md-12 c-px-6 c-py-8 body-modal__nick__text-error">
-                            <div class="text-error c-mt-4">Không có kết quả phù hợp.</div>
-                        </div>
-                        <div class="col-md-12 pl-0 pr-0 c-px-6 c-py-8">
-                            <a href="">
-                                <div class="row marginauto">
-                                    <div class="col-md-12 pl-0 pr-0">
-                                        <img class="w-100 h-auto brs-4"
-                                             src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                             alt="Axtrox">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-12 pl-0 pr-0 c-px-6 c-py-8">
-                            <a href="">
-                                <div class="row marginauto">
-                                    <div class="col-md-12 pl-0 pr-0">
-                                        <img class="w-100 h-auto brs-4"
-                                             src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                             alt="Axtrox">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-12 pl-0 pr-0 c-px-6 c-py-8">
-                            <a href="">
-                                <div class="row marginauto">
-                                    <div class="col-md-12 pl-0 pr-0">
-                                        <img class="w-100 h-auto brs-4"
-                                             src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                             alt="Axtrox">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-12 pl-0 pr-0 c-px-6 c-py-8">
-                            <a href="">
-                                <div class="row marginauto">
-                                    <div class="col-md-12 pl-0 pr-0">
-                                        <img class="w-100 h-auto brs-4"
-                                             src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                             alt="Axtrox">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="modal-footer" style="height: 16px">
-
-                    </div>
-                </div>
-
-            </div>
-
-            {{-- Thanh toans thanhf coong  --}}
-
-            <div class="modal fade modal-small" id="orderSuccses">
-                <div class="modal-dialog modal-dialog-centered modal-custom">
-                    <div class="modal-content">
-                        <div class="modal-header justify-content-center p-0">
-                            <img class="c-pt-20 c-pb-20"
-                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/success.png" alt="">
-                        </div>
-                        <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
-                            <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua tài khoản thành công</p>
-                            <p class="fw-400 fz-13 c-mt-10 mb-0">
-                                Để bảo mật bạn vui lòng thay đổi mật khẩu và tên đăng nhập của tải khoản đã mua!
-                            </p>
-                        </div>
-                        <div class="modal-footer c-p-24">
-                            <a class="btn primary" data-dismiss="modal">Lịch sử</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tuowngs lmht mobile -->
-            <div class="bottom-sheet" id="sheet-hero" aria-hidden="true" data-height="80">
-                <div class="layer"></div>
-                <div class="content-bottom-sheet bar-slide">
-                    <div class="sheet-header">
-                        <h2 class="text-title center">
-                            Tướng(100)
-                        </h2>
-                        <label for="check-bottom-sheet" class="close"></label>
-                    </div>
-                    <div class="sheet-body">
-                        <!-- body -->
-
-                        <div class="input-group">
-                            <input type="search" class="search">
-                        </div>
-
-                        <div class="row c-pl-10 c-pr-10">
-                            <div class="col-md-12 c-px-6 c-py-8 body-modal__nick__text-error">
-                                <div class="text-error c-mt-4">Không có kết quả phù hợp.</div>
-                            </div>
-                            <div class="col-6 c-px-6 c-py-8 item-nick-lmht">
-                                <a href="">
-                                    <div class="row marginauto item-nick-lmht__border">
-                                        <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                                 alt="Axtrox">
-                                        </div>
-                                        <div class="col-md-12 pl-0 pr-0 text-center">
-                                            <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Axtrox</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-6 c-px-6 c-py-8 item-nick-lmht">
-                                <a href="">
-                                    <div class="row marginauto item-nick-lmht__border">
-                                        <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                                 alt="Amumu">
-                                        </div>
-                                        <div class="col-md-12 pl-0 pr-0 text-center">
-                                            <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Amumu</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-6 c-px-6 c-py-8 item-nick-lmht">
-                                <a href="">
-                                    <div class="row marginauto item-nick-lmht__border">
-                                        <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                                 alt="Garen">
-                                        </div>
-                                        <div class="col-md-12 pl-0 pr-0 text-center">
-                                            <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Garen</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-6 c-px-6 c-py-8 item-nick-lmht">
-                                <a href="">
-                                    <div class="row marginauto item-nick-lmht__border">
-                                        <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                                 alt="Sona">
-                                        </div>
-                                        <div class="col-md-12 pl-0 pr-0 text-center">
-                                            <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Sona</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-6 c-px-6 c-py-8 item-nick-lmht">
-                                <a href="">
-                                    <div class="row marginauto item-nick-lmht__border">
-                                        <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                                 alt="Axtrox">
-                                        </div>
-                                        <div class="col-md-12 pl-0 pr-0 text-center">
-                                            <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Axtrox</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-6 c-px-6 c-py-8 item-nick-lmht">
-                                <a href="">
-                                    <div class="row marginauto item-nick-lmht__border">
-                                        <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                                 alt="Amumu">
-                                        </div>
-                                        <div class="col-md-12 pl-0 pr-0 text-center">
-                                            <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Amumu</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {{--            <div class="sheet-footer">--}}
-                    {{--                <button class="btn ghost">Xoá bộ lọc</button>--}}
-                    {{--                <button class="btn primary">Xem kết quả</button>--}}
-                    {{--            </div>--}}
-                </div>
-            </div>
-
-            <!-- trang phucj lmht mobile -->
-            <div class="bottom-sheet" id="sheet-fashion" aria-hidden="true" data-height="80">
-                <div class="layer"></div>
-                <div class="content-bottom-sheet bar-slide">
-                    <div class="sheet-header">
-                        <h2 class="text-title center">
-                            Trang phục(100)
-                        </h2>
-                        <label for="check-bottom-sheet" class="close"></label>
-                    </div>
-                    <div class="sheet-body">
-                        <!-- body -->
-
-                        <div class="input-group">
-                            <input type="search" class="search">
-                        </div>
-
-                        <div class="row c-pl-10 c-pr-10">
-                            <div class="col-md-12 c-px-6 c-py-8 body-modal__nick__text-error">
-                                <div class="text-error c-mt-4">Không có kết quả phù hợp.</div>
-                            </div>
-                            <div class="col-6 c-px-6 c-py-8 item-nick-lmht">
-                                <a href="">
-                                    <div class="row marginauto item-nick-lmht__border">
-                                        <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                                 alt="Axtrox">
-                                        </div>
-                                        <div class="col-md-12 pl-0 pr-0 text-center">
-                                            <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Axtrox</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-6 c-px-6 c-py-8 item-nick-lmht">
-                                <a href="">
-                                    <div class="row marginauto item-nick-lmht__border">
-                                        <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                                 alt="Amumu">
-                                        </div>
-                                        <div class="col-md-12 pl-0 pr-0 text-center">
-                                            <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Amumu</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-6 c-px-6 c-py-8 item-nick-lmht">
-                                <a href="">
-                                    <div class="row marginauto item-nick-lmht__border">
-                                        <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                                 alt="Garen">
-                                        </div>
-                                        <div class="col-md-12 pl-0 pr-0 text-center">
-                                            <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Garen</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-6 c-px-6 c-py-8 item-nick-lmht">
-                                <a href="">
-                                    <div class="row marginauto item-nick-lmht__border">
-                                        <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                                 alt="Sona">
-                                        </div>
-                                        <div class="col-md-12 pl-0 pr-0 text-center">
-                                            <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Sona</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-6 c-px-6 c-py-8 item-nick-lmht">
-                                <a href="">
-                                    <div class="row marginauto item-nick-lmht__border">
-                                        <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                                 alt="Axtrox">
-                                        </div>
-                                        <div class="col-md-12 pl-0 pr-0 text-center">
-                                            <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Axtrox</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-6 c-px-6 c-py-8 item-nick-lmht">
-                                <a href="">
-                                    <div class="row marginauto item-nick-lmht__border">
-                                        <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
-                                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                                 alt="Amumu">
-                                        </div>
-                                        <div class="col-md-12 pl-0 pr-0 text-center">
-                                            <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme">Amumu</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {{--            <div class="sheet-footer">--}}
-                    {{--                <button class="btn ghost">Xoá bộ lọc</button>--}}
-                    {{--                <button class="btn primary">Xem kết quả</button>--}}
-                    {{--            </div>--}}
-                </div>
-            </div>
-
-            <!-- thongtin lmht mobile -->
-            <div class="bottom-sheet" id="sheet-profile" aria-hidden="true" data-height="80">
-                <div class="layer"></div>
-                <div class="content-bottom-sheet bar-slide">
-                    <div class="sheet-header">
-                        <h2 class="text-title center">
-                            Thông tin khác
-                        </h2>
-                        <label for="check-bottom-sheet" class="close"></label>
-                    </div>
-                    <div class="sheet-body">
-                        <!-- body -->
-
-                        <div class="row c-pl-10 c-pr-10">
-
-                            <div class="col-md-12 pl-0 pr-0 c-px-6 c-py-8">
-                                <a href="">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 pl-0 pr-0">
-                                            <img class="w-100 h-auto brs-4"
-                                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                                 alt="Axtrox">
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-12 pl-0 pr-0 c-px-6 c-py-8">
-                                <a href="">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 pl-0 pr-0">
-                                            <img class="w-100 h-auto brs-4"
-                                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                                 alt="Axtrox">
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-12 pl-0 pr-0 c-px-6 c-py-8">
-                                <a href="">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 pl-0 pr-0">
-                                            <img class="w-100 h-auto brs-4"
-                                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                                 alt="Axtrox">
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-12 pl-0 pr-0 c-px-6 c-py-8">
-                                <a href="">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 pl-0 pr-0">
-                                            <img class="w-100 h-auto brs-4"
-                                                 src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/test.png"
-                                                 alt="Axtrox">
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                    {{--            <div class="sheet-footer">--}}
-                    {{--                <button class="btn ghost">Xoá bộ lọc</button>--}}
-                    {{--                <button class="btn primary">Xem kết quả</button>--}}
-                    {{--            </div>--}}
-                </div>
-            </div>
 
             <!-- Modal 04 -->
             <div class="modal fade modal-small" id="notInbox">
@@ -822,6 +173,151 @@
                     </div>
                 </div>
             </div>
+
+            @if(isset($game_auto_props) && count($game_auto_props))
+                @php
+                    $total_tuong = 0;
+                    $total_bieucam = 0;
+                    $total_chuongluc = 0;
+                    $total_sandau = 0;
+                    $total_linhthu = 0;
+                    $total_trangphuc = 0;
+                    $total_thongtinchung = 0;
+
+                    if(isset($game_auto_props) && count($game_auto_props)){
+                        foreach($game_auto_props as $game_auto_prop){
+                            if($game_auto_prop->key == 'champions'){
+                                $total_tuong = $total_tuong + 1;
+                                if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
+                                    foreach($game_auto_prop->childs as $c_child){
+                                        $total_trangphuc = $total_trangphuc + 1;
+                                    }
+                                }
+                            }elseif ($game_auto_prop->key == 'emotes'){
+                                $total_bieucam = $total_bieucam + 1;
+                            }elseif ($game_auto_prop->key == 'tftdamageskins'){
+                                $total_chuongluc = $total_chuongluc + 1;
+                            }elseif ($game_auto_prop->key == 'tftmapskins'){
+                                $total_sandau = $total_sandau + 1;
+                            }elseif ($game_auto_prop->key == 'tftcompanions'){
+                                $total_linhthu = $total_linhthu + 1;
+                            }
+                        }
+                    }
+                @endphp
+            <!-- Modal Tướng -->
+                <div class="modal fade show modal-lmht" id="modal-champ" aria-modal="true">
+                    <div class="modal-dialog modal-dialog-centered animated">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="d-block d-lg-flex w-100">
+                                    <div class="modal-title w-auto">Tướng ({{ $total_tuong??0 }} tướng)</div>
+                                    <form action="" class="form-search-modal c-ml-16 c-ml-lg-0">
+                                        <input type="text" class="input-primary" placeholder="Tìm kiếm...">
+                                        <button class="btn -primary d-none d-lg-inline-block" type="submit"></button>
+                                    </form>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body px-0">
+                                <div class="text-invalid text-center">Không tìm thấy kết quả nào !</div>
+                                <div class="row">
+                                    @foreach($game_auto_props as $game_auto_prop)
+                                        @if($game_auto_prop->key == 'champions')
+                                            <div class="col-lg-2 col-6">
+                                                <div class="card card-lmht">
+                                                    <div class="card-thumb">
+                                                        <img data-src="https://backend.dev.tichhop.pro/{{ $game_auto_prop->thumb }}" alt="" class="card-thumb-image lazy">
+                                                    </div>
+                                                    <div class="card-name">
+                                                        {{ $game_auto_prop->name }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Skin -->
+                <div class="modal fade show modal-lmht" id="modal-skin" aria-modal="true">
+                    <div class="modal-dialog modal-dialog-centered animated">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="d-block d-lg-flex w-100">
+                                    <div class="modal-title w-auto">Trang phục ({{ $total_trangphuc }} Trang phục)</div>
+                                    <form action="" class="form-search-modal c-ml-16 c-ml-lg-0">
+                                        <input type="text" class="input-primary" placeholder="Tìm kiếm...">
+                                        <button class="btn -primary d-none d-lg-inline-block" type="submit"></button>
+                                    </form>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body px-0">
+                                <div class="text-invalid text-center">Không tìm thấy kết quả nào !</div>
+                                <div class="row">
+                                    @foreach($game_auto_props as $game_auto_prop)
+                                        @if($game_auto_prop->key == 'champions')
+                                            @if(isset($game_auto_prop->childs) && count($game_auto_prop->childs))
+                                                @foreach($game_auto_prop->childs as $c_child)
+                                                    <div class="col-lg-2 col-6">
+                                                        <div class="card card-lmht">
+                                                            <div class="card-thumb">
+                                                                <img data-src="{{\App\Library\MediaHelpers::media($c_child->thumb)}}" alt="Icon Skin" class="card-thumb-image lazy">
+                                                            </div>
+                                                            <div class="card-name">
+                                                                {{ $c_child->name }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Animal -->
+                <div class="modal fade show modal-lmht" id="modal-animal" aria-modal="true">
+                    <div class="modal-dialog modal-dialog-centered animated">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="d-block d-lg-flex w-100">
+                                    <div class="modal-title w-auto">Linh thú TFT ({{ $total_linhthu }} linh thú)</div>
+                                    <form action="" class="form-search-modal c-ml-16 c-ml-lg-0">
+                                        <input type="text" class="input-primary" placeholder="Tìm kiếm...">
+                                        <button class="btn -primary d-none d-lg-inline-block" type="submit"></button>
+                                    </form>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body px-0">
+                                <div class="text-invalid text-center">Không tìm thấy kết quả nào !</div>
+                                <div class="row">
+                                    @foreach($game_auto_props as $game_auto_prop)
+                                        @if($game_auto_prop->key == 'tftcompanions')
+                                            <div class="col-lg-2 col-6">
+                                                <div class="card card-lmht">
+                                                    <div class="card-thumb">
+                                                        <img data-src="{{\App\Library\MediaHelpers::media($game_auto_prop->thumb)}}" alt="Icon Animal" class="card-thumb-image lazy">
+                                                    </div>
+                                                    <div class="card-name">
+                                                        {{ $game_auto_prop->name }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
 
             <input type="hidden" name="slug" class="slug" value="{{ $slug }}">
 
