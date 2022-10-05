@@ -72,12 +72,12 @@
                     </div>
                 </div>
                 <div class="sort-account c-mb-16 d-none d-lg-flex">
-                    <span class="t-sub-1 count-result"></span>
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-title fw-700" id="numberResult"></div>
+                    <div class="value-sort d-flex align-items-center">
                         <div class="text-title fw-700 c-mr-16">
                             Sắp xếp theo:
                         </div>
-                        <div class="value-sort">
+                        <div>
                             <a href="#" class="selection active md" data-sort="random">Ngẫu nhiên</a>
                             <a href="#" class="selection md" data-sort="price_start">Giá từ cao đến thấp</a>
                             <a href="#" class="selection md" data-sort="price_end">Giá từ thấp đến cao</a>
