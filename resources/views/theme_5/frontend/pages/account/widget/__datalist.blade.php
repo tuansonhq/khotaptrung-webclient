@@ -46,9 +46,13 @@
                                     }
                                 @endphp
                                 <div class="price">
-                                    <div class="price-current w-100">{{ str_replace(',','.',number_format($data->price)) }}đ</div>
-                                    <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($data->price_old)) }}đ</div>
-                                    <div class="discount">{{$sale_percent}}%</div>
+                                    @if ($sale_percent > 0)
+                                        <div class="price-current w-100">{{ str_replace(',','.',number_format($data->price)) }}đ</div>
+                                        <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($data->price_old)) }}đ</div>
+                                        <div class="discount">{{$sale_percent}}%</div>
+                                    @else
+                                        <div class="price-current w-100 c-pb-16">{{ str_replace(',','.',number_format($data->price)) }}đ</div>
+                                    @endif
                                 </div>
                                 @if(App\Library\AuthCustom::check())
 
@@ -349,9 +353,13 @@
                                     }
                                 @endphp
                                 <div class="price">
-                                    <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
-                                    <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($item->price_old)) }}đ</div>
-                                    <div class="discount">{{$sale_percent}}%</div>
+                                    @if ($sale_percent > 0)
+                                        <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
+                                        <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($item->price_old)) }}đ</div>
+                                        <div class="discount">{{$sale_percent}}%</div>
+                                    @else
+                                        <div class="price-current w-100 c-pb-16">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
+                                    @endif
                                 </div>
                             </a>
                         </div>
