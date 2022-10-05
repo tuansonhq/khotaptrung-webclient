@@ -558,7 +558,7 @@
             </div>
 
         </div>
-
+        </div>
         <div class="modal fade login show order-modal" id="openOrder" aria-modal="true">
 
             <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
@@ -571,11 +571,9 @@
 
         <input type="hidden" value="{{ $slug }}" name="slug" class="slug">
 
-        <script src="/js/{{theme('')->theme_key}}/nick/nick--list.js?v={{time()}}"></script>
 
-        {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js"></script>--}}
-        {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick--update.js?v={{time()}}"></script>--}}
-        </div>
+            <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js"></script>
+            <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick--update.js?v={{time()}}"></script>
     @endif
 
 @endsection

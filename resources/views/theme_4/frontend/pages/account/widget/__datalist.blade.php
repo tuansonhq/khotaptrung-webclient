@@ -122,9 +122,19 @@
                                                                 <th colspan="2">Thông tin tài khoản #{{ $item->randId }}</th>
                                                             </tr>
                                                             </tbody><tbody>
+                                                            @php
+                                                                $title_nph = '';
+                                                                if (isset($item->groups) && count($item->groups)){
+                                                                    foreach ($item->groups as $t_group){
+                                                                        if ($t_group->module == "acc_provider"){
+                                                                            $title_nph = $t_group->title;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            @endphp
                                                             <tr>
                                                                 <td>Nhà phát hành:</td>
-                                                                <th>{{ $item->groups[0]->title }}</th>
+                                                                <th>{{ $title_nph }}</th>
                                                             </tr>
                                                             <tr>
                                                                 <td>Tên game:</td>

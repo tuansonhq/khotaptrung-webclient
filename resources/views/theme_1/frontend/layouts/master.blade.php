@@ -213,6 +213,8 @@
     </div>
 </div>
 
+
+
 <!-- Modal nạp tiền -->
 <div class="modal fade show" id="rechargeModal" aria-modal="true">
     <div class="modal-dialog modal-lg modal-dialog-centered animated">
@@ -402,6 +404,7 @@
 
 
 </script>
+
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.umd.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.js"></script>
