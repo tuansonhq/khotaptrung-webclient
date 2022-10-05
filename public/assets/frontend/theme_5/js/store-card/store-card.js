@@ -1,15 +1,16 @@
+// tabActive sẽ là biến để xác định người dùng đang ở tab nào ( thẻ game or thẻ điện thoại )
+
+
+//select the first card radio
+if ($(document).width() >= 992 ){
+    $('#cardGameList .card-type-form:first-child input').prop('checked',true);
+    $('#cardPhoneList .card-type-form:first-child input').prop('checked',true);
+} else {
+    $('#slider-card-game .card-type-form:first-child input').prop('checked',true);
+    $('#slider-card-phone .card-type-form:first-child input').prop('checked',true);
+}
+
 $(document).ready(function () {
-    // getListCard();
-
-    $('input[name="card-type"]').on('change',function (e) {
-        e.preventDefault();
-        getCardAmount($(this).val())
-    })
-    $('input[name="card-type"]:checked').trigger('change');
-
-    if ($(document).width() > 992 ){
-        $('#cardGameList .card-type-form:first-child input').prop('checked',true)
-    }
     var swiper_card = new Swiper(".slider--card", {
         slidesPerView: 1,
         spaceBetween: 16,
@@ -25,13 +26,39 @@ $(document).ready(function () {
         _token: $('meta[name="csrf-token"]').attr('content'),
     }
 
+    $('input[name="card-type-game"]').on('change',function (e) {
+        e.preventDefault();
+        getCardAmount($(this).val(), 1);
+    });
+
+    $('input[name="card-type-mobile"]').on('change',function (e) {
+        e.preventDefault();
+        getCardAmount($(this).val(), 2);
+    });
+
+    $('input[name="card-type-game"]:checked').trigger('change');
+    $('input[name="card-type-mobile"]:checked').trigger('change');
+
     $('#btn-confirm, #btn-confirm-mobile').on('click', function (e) {
         e.preventDefault();
+
+        let tabActive = getTabActive();
+
         resetConfirmModal();
-        prepareConfirmModal();
+        prepareConfirmModal(tabActive);
         resetMobileConfirm();
-        prepareMobileConfirm();
-        prepareDataSend();
+        prepareMobileConfirm(tabActive);
+        prepareDataSend(tabActive);
+    });
+
+    $('#gameCardNav').on('click', function(e) {
+        prepareAmountWidget(1);
+        checkCardAvailable(1);
+    });
+
+    $('#mobileCardNav').on('click', function(e) {
+        prepareAmountWidget(2);
+        checkCardAvailable(2);
     });
 
     $(document).on('click', '#modalConfirmPayment #confirmSubmitButton', function(e) {
@@ -236,6 +263,37 @@ $(document).ready(function () {
 
     });
 
+    function getTabActive() {
+        if ($('#gameCardNav').hasClass('active')) {
+            return 1;
+        }
+        if ($('#mobileCardNav').hasClass('active')) {
+            return 2;
+        }
+
+        return 1;
+    }
+
+    function checkCardAvailable(tabActive) {
+        if ( tabActive == 1 ) {
+            if ( $("#cardAmountListGame .card-price-form").length ) {
+                $('#btn-confirm').prop('disabled', false);
+                $('#btn-confirm-mobile').prop('disabled', false);
+            } else {
+                $('#btn-confirm').prop('disabled', true);
+                $('#btn-confirm-mobile').prop('disabled', true);
+            }
+        } else if ( tabActive == 2 ) {
+            if ( $("#cardAmountListMobile .card-price-form").length ) {
+                $('#btn-confirm').prop('disabled', false);
+                $('#btn-confirm-mobile').prop('disabled', false);
+            } else {
+                $('#btn-confirm').prop('disabled', true);
+                $('#btn-confirm-mobile').prop('disabled', true);
+            }
+        }
+    }
+
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
@@ -300,7 +358,7 @@ $(document).ready(function () {
         });
     };
 
-    function getCardAmount (cardKey) {
+    function getCardAmount (cardKey, tabActive) {
         $.ajax({
             url: '/ajax/store-card/get-amount',
             type: 'GET',
@@ -308,77 +366,121 @@ $(document).ready(function () {
                 telecom: cardKey
             },
             beforeSend: function () {
-                //Display none wrapper
-                $('#cardPriceContent').addClass('d-none');
-                //Add loading effect
-                $('#cardPriceInfo .loader').removeClass('d-none');
+                resetAmountWidget();
+                $('#btn-confirm').prop('disabled', true);
+                $('#btn-confirm-mobile').prop('disabled', true);
+                if ( tabActive == 1) {
+                    $('#cardAmountListGame').empty();
+                    $('#gameCard .amount-card-section .loader').removeClass('d-none');
+                } else if ( tabActive == 2 ) {
+                    $('#cardAmountListMobile').empty();
+                    $('#mobileCard .amount-card-section .loader').removeClass('d-none');
+                }
             },
             success: function (res) {
                 if (res.status) {
                     let data = res.data;
 
                     //Empty element
-                    $('#cardAmountList').empty();
-
-                    if (!data.length) {
-                        $('#cardAmountList').append('<p class="text-center c-mb-0">Chưa có mệnh giá của thẻ</p>');
-                        resetAmountWidget();
-                        $('#btn-confirm').prop('disabled', true);
-                    } else {
+                    if ( tabActive == 1 ) {
+                        $('#cardAmountListGame').empty();
+                        if (!data.length) {
+                            $('#cardAmountListGame').append('<p class="text-center c-mb-0" style="padding-left: 4px;">Chưa có mệnh giá của thẻ</p>');
+                        }
+                    } else if ( tabActive == 2 ) {
+                        $('#cardAmountListMobile').empty();
+                        if (!data.length) {
+                            $('#cardAmountListMobile').append('<p class="text-center c-mb-0" style="padding-left: 4px;">Chưa có mệnh giá của thẻ</p>');
+                        }
+                    }
+                    
+                    if (data.length) {
                         let loop_index = 0;
 
                         data.forEach(function (card) {
-                            let html = '';
-                            html += `<div class="col-4 c-px-4 card-price-form">`;
-                            //Check if it is the first loop
-                            if (loop_index === 0) {
-                                html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value" checked hidden>`;
-                                //Increase loop index
-                                loop_index++;
-                            } else {
-                                html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value" hidden>`;
+                            if ( tabActive == 1) {
+                                let html = '';
+                                html += `<div class="col-4 col-lg-2 c-px-4 card-price-form">`;
+                                //Check if it is the first loop
+                                if (loop_index === 0) {
+                                    html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value-game" checked hidden>`;
+                                    //Increase loop index
+                                    loop_index++;
+                                } else {
+                                    html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value-game" hidden>`;
+                                }
+                                html += `<label for="amount-${card.id}" class="c-py-21 c-px-8 c-mb-8 brs-8">`;
+                                html += `<p class="fw-500 fs-15 mb-0">${formatNumber(card.amount)} đ</p>`;
+                                html += `</label>`;
+                                html += `</div>`;
+
+                                // Append new HTML amount
+                                $('#cardAmountListGame').append(html);
+                            } else if ( tabActive == 2 ) {
+                                let html = '';
+                                html += `<div class="col-4 col-lg-2 c-px-4 card-price-form">`;
+                                //Check if it is the first loop
+                                if (loop_index === 0) {
+                                    html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value-mobile" checked hidden>`;
+                                    //Increase loop index
+                                    loop_index++;
+                                } else {
+                                    html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value-mobile" hidden>`;
+                                }
+                                html += `<label for="amount-${card.id}" class="c-py-21 c-px-8 c-mb-8 brs-8">`;
+                                html += `<p class="fw-500 fs-15 mb-0">${formatNumber(card.amount)} đ</p>`;
+                                html += `</label>`;
+                                html += `</div>`;
+
+                                $('#cardAmountListMobile').append(html);
                             }
-                            html += `<label for="amount-${card.id}" class="c-py-21 c-px-8 c-mb-8 brs-8">`;
-                            html += `<p class="fw-500 fs-15 mb-0">${formatNumber(card.amount)} đ</p>`;
-                            html += `</label>`;
-                            html += `</div>`;
-
-
-                            // Append new HTML amount
-                            $('#cardAmountList').append(html);
                         });
 
                         //prepare the input field and update price related value
                         $('input[name="card-amount"]').val(1);
-                        prepareAmountWidget();
+                        prepareAmountWidget(tabActive);
 
                         //Activate onchange, oninput function for input field inside
-                        $('input[name="card-value"]').change(function (e) {
+                        $('input[name="card-value-game"]').change(function (e) {
                             e.preventDefault();
-                            prepareAmountWidget();
+                            prepareAmountWidget(1);
+                        });
+                        $('input[name="card-value-mobile"]').change(function (e) {
+                            e.preventDefault();
+                            prepareAmountWidget(2);
                         });
                         $('input[name="card-amount"]').on('input change', function (e) {
                             e.preventDefault();
-                            prepareAmountWidget();
+                            if ( getTabActive() == 1 ) {
+                                prepareAmountWidget(1);
+                            } else if ( getTabActive() == 2 ) {
+                                prepareAmountWidget(2);
+                            }
                         });
 
                         //Make btn no longer disable when failed get data
-                        $('#btn-confirm').prop('disabled', false);
+                        checkCardAvailable(tabActive);
 
                     }
-
-                    $('#cardPriceContent').removeClass('d-none');
-
                 }
             },
             complete: function () {
-                $('#cardPriceInfo .loader').addClass('d-none');
+                if ( tabActive == 1) {
+                    $('#gameCard .amount-card-section .loader').addClass('d-none');
+                } else if ( tabActive == 2 ) {
+                    $('#mobileCard .amount-card-section .loader').addClass('d-none');
+                }
             }
         });
     };
 
-    function prepareAmountWidget () {
-        let discountCardValue = $('input[name="card-value"]:checked').data('discount');
+    function prepareAmountWidget (tabActive) {
+        let discountCardValue, price;
+        if (tabActive == 1) {
+            discountCardValue = $('input[name="card-value-game"]:checked').data('discount');
+        } else if ( tabActive == 2 ) {
+            discountCardValue = $('input[name="card-value-mobile"]:checked').data('discount');
+        }
         $('input[name="card-discount"]').val(discountCardValue);
 
         if (isNaN(100 - discountCardValue)) {
@@ -387,10 +489,12 @@ $(document).ready(function () {
             $('.buy-card-discount').text(`${100 - discountCardValue}%`);
         }
 
-        if (isNaN(calculatePrice())) {
+        price = calculatePrice(tabActive);
+        
+        if (isNaN(price)) {
             $('.buy-card-total').text(`0 đ`);
         } else {
-            $('.buy-card-total').text(`${formatNumber( calculatePrice() )} đ`);
+            $('.buy-card-total').text(`${formatNumber( price )} đ`);
         }
     }
 
@@ -400,8 +504,13 @@ $(document).ready(function () {
     }
 
     //Calculate price
-    function calculatePrice () {
-        let amount = $('input[name="card-value"]:checked').val();
+    function calculatePrice (tabActive) {
+        let amount;
+        if (tabActive == 1) {
+            amount = $('input[name="card-value-game"]:checked').val();
+        } else if (tabActive == 2) {
+            amount = $('input[name="card-value-mobile"]:checked').val();
+        }
         let quantity = $('input[name="card-amount"]').val();
         let discount = $('input[name="card-discount"]').val();
 
@@ -451,40 +560,64 @@ $(document).ready(function () {
     }
 
     //append new data into confirm modal
-    function prepareConfirmModal() {
-        let confirmTitle = $('input[name="card-type"]:checked').data('title');
-        let confirmPrice = $('input[name="card-value"]:checked').val();
-        let confirmQuantity = $('input[name="card-amount"]').val();
-        let confirmDiscount = $('input[name="card-value"]:checked').data('discount');
+    function prepareConfirmModal(tabActive) {
+        let confirmTitle, confirmPrice, confirmQuantity, confirmDiscount;
+
+        if ( tabActive == 1 ) {
+            confirmTitle = $('input[name="card-type-game"]:checked').data('title');
+            confirmPrice = $('input[name="card-value-game"]:checked').val();
+            confirmDiscount = $('input[name="card-value-game"]:checked').data('discount');
+        } else if ( tabActive == 2 ) {
+            confirmTitle = $('input[name="card-type-mobile"]:checked').data('title');
+            confirmPrice = $('input[name="card-value-mobile"]:checked').val();
+            confirmDiscount = $('input[name="card-value-mobile"]:checked').data('discount');
+        }
+        
+        confirmQuantity = $('input[name="card-amount"]').val();
 
         $('#modalConfirmPayment #confirmTitle').text(confirmTitle);
         $('#modalConfirmPayment #confirmPrice').text(`${formatNumber( confirmPrice )} đ`);
         $('#modalConfirmPayment #confirmQuantity').text(confirmQuantity);
         $('#modalConfirmPayment #confirmDiscount').text(`${100 - confirmDiscount}%`);
-        $('#modalConfirmPayment #confirmTotal').text(`${formatNumber( calculatePrice() )} đ`);
-        $('#modalConfirmPayment #totalBill').text(`${formatNumber( calculatePrice() )} đ`);
+        $('#modalConfirmPayment #confirmTotal').text(`${formatNumber( calculatePrice(tabActive) )} đ`);
+        $('#modalConfirmPayment #totalBill').text(`${formatNumber( calculatePrice(tabActive) )} đ`);
     }
 
-    function prepareMobileConfirm () {
-        let confirmTitle = $('input[name="card-type"]:checked').data('title');
-        let confirmPrice = $('input[name="card-value"]:checked').val();
-        let confirmQuantity = $('input[name="card-amount"]').val();
-        let confirmDiscount = $('input[name="card-value"]:checked').data('discount');
+    function prepareMobileConfirm (tabActive) {
+        let confirmTitle, confirmPrice, confirmQuantity, confirmDiscount;
+        if ( tabActive == 1 ) {
+            confirmTitle = $('input[name="card-type-game"]:checked').data('title');
+            confirmPrice = $('input[name="card-value-game"]:checked').val();
+            confirmDiscount = $('input[name="card-value-game"]:checked').data('discount');
+        } else if ( tabActive == 2 ) {
+            confirmTitle = $('input[name="card-type-mobile"]:checked').data('title');
+            confirmPrice = $('input[name="card-value-mobile"]:checked').val();
+            confirmDiscount = $('input[name="card-value-mobile"]:checked').data('discount');
+        }
+
+        confirmQuantity = $('input[name="card-amount"]').val();
 
         $('#confirmMobileCard').text(confirmTitle);
         $('#confirmMobilePrice').text(`${formatNumber( confirmPrice )} đ`);
         $('#confirmMobileQuantity').text(confirmQuantity);
         $('#confirmMobileDiscount').text(`${100 - confirmDiscount}%`);
-        $('#confirmMobileTotal').text(`${formatNumber( calculatePrice() )} đ`);
-        $('#totalMobileBill').text(`${formatNumber( calculatePrice() )} đ`);
+        $('#confirmMobileTotal').text(`${formatNumber( calculatePrice(tabActive) )} đ`);
+        $('#totalMobileBill').text(`${formatNumber( calculatePrice(tabActive) )} đ`);
     }
 
     //Append new data to submit to backend
-    function prepareDataSend() {
-        let amount = $('input[name="card-value"]:checked').val();
-        let telecom = $('input[name="card-type"]:checked').val();
-        let quantity = $('input[name="card-amount"]').val();
+    function prepareDataSend(tabActive) {
+        let amount, telecom, quantity;
+        if ( tabActive == 1 ) {
+            amount = $('input[name="card-value-game"]:checked').val();
+            telecom = $('input[name="card-type-game"]:checked').val();
+        } else if ( tabActive == 2 ) {
+            amount = $('input[name="card-value-mobile"]:checked').val();
+            telecom = $('input[name="card-type-mobile"]:checked').val();
+        }
 
+        quantity = $('input[name="card-amount"]').val();
+        
         storeDataSend.amount = amount;
         storeDataSend.telecom = telecom.toUpperCase();
         storeDataSend.quantity = quantity;
