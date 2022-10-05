@@ -192,6 +192,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade modal-small" id="notBuyHome">
     <div class="modal-dialog modal-dialog-centered modal-custom">
         <div class="modal-content">
@@ -217,6 +218,9 @@
 <div id="fb-customer-chat" class="fb-customerchat">
 </div>
 <script>
+
+
+
     var chatbox = document.getElementById('fb-customer-chat');
     chatbox.setAttribute("page_id", "{{setting('sys_id_chat_message') }}");
 

@@ -130,7 +130,7 @@
     padding-left: 10px;
 }
 tr.selected td{
-    background: #dcdcdc !important;
+    /*background: #dcdcdc !important;*/
 }
 .btn-style{
     background-color: white;

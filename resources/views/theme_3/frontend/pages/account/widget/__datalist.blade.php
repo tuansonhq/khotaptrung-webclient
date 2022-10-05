@@ -51,7 +51,7 @@
                                                             </ul>
                                                         </div>
 
-                                                        <button class="button-secondary list-item-nick-button " data-id="{{ $item->randId }}">Mua ngay</button>
+                                                        <button class="button-secondary list-item-nick-button buy-random-acc" data-id="{{ $item->randId }}">Mua ngay</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -103,8 +103,18 @@
                                                                     <div class="col-auto left-right background-order-col-left-ct">
                                                                         <span>Nhà phát hành</span>
                                                                     </div>
+                                                                    @php
+                                                                        $title_nph = '';
+                                                                        if (isset($item->groups) && count($item->groups)){
+                                                                            foreach ($item->groups as $t_group){
+                                                                                if ($t_group->module == "acc_provider"){
+                                                                                    $title_nph = $t_group->title;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    @endphp
                                                                     <div class="col-auto left-right background-order-col-right-ct">
-                                                                        <small>{{ $item->groups[0]->title }}</small>
+                                                                        <small>{{ $title_nph }}</small>
                                                                     </div>
                                                                 </div>
 
