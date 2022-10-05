@@ -55,7 +55,10 @@
                                     @if(isset($item->params->image_view_all))
                                         <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}" alt="" class="lazy">
                                     @else
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/images/muangay.jpg" alt="">
+                                        <div class="custom-showmore">
+                                            Quay ngay
+                                        </div>
+{{--                                        <img src="/assets/frontend/{{theme('')->theme_key}}/images/muangay.jpg" alt="">--}}
                                     @endif
                                 </a>
                             </div>

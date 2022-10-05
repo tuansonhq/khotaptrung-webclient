@@ -17,38 +17,79 @@
         <div class="content-layout" >
             <div class=" main-lay-out ">
                 <div class="container px-2 content-banner">
-                    <div class="content-banner-card" style="background-color: #1d1d1d">
-                        <ul class="nav " role="tablist" >
-                            <li role="presentation" class="nav-item active" >
-                                <a  class="active" data-toggle="tab" href="#top_napthe" role="tab"  >
-                                    TOP NẠP THẺ THÁNG 0{{Carbon\Carbon::now()->month}}
-                                </a>
-                            </li>
-                            <li role="presentation" class="" >
+                    @if(isset(theme('')->theme_config->sys_charge_home))
+                        @if(theme('')->theme_config->sys_charge_home == 'sys_charge_home_ver1')
+                            <div class="content-banner-card" style="background-color: #1d1d1d">
+                                <ul class="nav " role="tablist" >
+                                    <li role="presentation" class="nav-item active" >
 
-                                <a  class="nav-item " data-toggle="tab" href="#napthe" role="tab"  >
-                                    NẠP THẺ
+                                        <a  class="nav-item active " data-toggle="tab" href="#napthe" role="tab"  >
+                                            NẠP THẺ
 
-                                </a>
-                            </li>
-                        </ul>
+                                        </a>
+                                    </li>
+                                    <li role="presentation" class="nav-item " >
+                                        <a  class="" data-toggle="tab" href="#top_napthe" role="tab"  >
+                                            TOP NẠP THẺ THÁNG {{Carbon\Carbon::now()->month}}
+                                        </a>
+                                    </li>
 
-                        <div class="tab-content px-3" >
-                            <div class="tab-pane  fade show active" id="top_napthe">
-                                <div class="content-banner-card-box">
-                                    @include('frontend.widget.__top_nap_the')
+                                </ul>
 
+                                <div class="tab-content px-3" >
+                                    <div class="tab-pane  fade show active" id="napthe">
+                                        <div class="content-banner-card-form">
+                                            @include('frontend.widget.__nap_the')
+                                            {{--                                {!! widget('frontend.widget.__nap_the') !!}--}}
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane  fade show " id="top_napthe">
+                                        <div class="content-banner-card-box">
+                                            @include('frontend.widget.__top_nap_the')
+
+
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
-                            <div class="tab-pane  fade show " id="napthe">
-                                <div class="content-banner-card-form">
-                                    @include('frontend.widget.__nap_the')
-                                    {{--                                {!! widget('frontend.widget.__nap_the') !!}--}}
+                        @endif
+                    @else
+                        <div class="content-banner-card" style="background-color: #1d1d1d">
+                            <ul class="nav " role="tablist" >
+                                <li role="presentation" class="nav-item active" >
+
+                                    <a  class="nav-item active " data-toggle="tab" href="#napthe" role="tab"  >
+                                        NẠP THẺ
+
+                                    </a>
+                                </li>
+                                <li role="presentation" class="nav-item " >
+                                    <a  class="" data-toggle="tab" href="#top_napthe" role="tab"  >
+                                        TOP NẠP THẺ THÁNG {{Carbon\Carbon::now()->month}}
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content px-3" >
+                                <div class="tab-pane  fade show active" id="napthe">
+                                    <div class="content-banner-card-form">
+                                        @include('frontend.widget.__nap_the')
+                                        {{--                                {!! widget('frontend.widget.__nap_the') !!}--}}
+                                    </div>
                                 </div>
+                                <div class="tab-pane  fade show " id="top_napthe">
+                                    <div class="content-banner-card-box">
+                                        @include('frontend.widget.__top_nap_the')
+
+
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="content-banner-slide">
                         <div class="slider "  >
                             <div class="row" style="position: relative">
@@ -72,7 +113,7 @@
                 </div>
 
             </div>
-
+            @if(setting('sys_marquee'))
             <div class="content-advertise ">
                 <div class="container">
                     <marquee width="100%" behavior="scroll" >
@@ -82,6 +123,7 @@
                     </marquee>
                 </div>
             </div>
+            @endif
 
             @include('frontend.widget.__dich__vu__noi__bat')
             @include('frontend.widget.__content__home__minigame')
@@ -92,20 +134,23 @@
 
             @include('frontend.widget.__content__home__dichvu')
 
+            @if(setting('sys_intro_text'))
 
-            <div class="content-video intro_text" id="lockmoney_taget">
-                <div class="container">
-                    <div class="content-video-in">
-                        {!! setting('sys_intro_text') !!}
-                    </div>
-                    <div class="view-more">
-                        Xem tất cả »
-                    </div>
-                    <div class="view-less">
-                        « Thu gọn
+                <div class="content-video intro_text" id="lockmoney_taget">
+                    <div class="container">
+                        <div class="content-video-in">
+                            {!! setting('sys_intro_text') !!}
+                        </div>
+                        <div class="view-more">
+                            Xem tất cả »
+                        </div>
+                        <div class="view-less">
+                            « Thu gọn
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
+
 
         </div>
 

@@ -10,8 +10,8 @@
     @if($data == null)
         <div class="item_buy">
 
-            <div class="container pt-3 item_buy-form">
-                <div class="row pb-3 pt-3">
+            <div class="container item_buy-form">
+                <div class="row ">
                     <div class="col-md-12 text-center">
                         <span style="color: red;font-size: 16px;">
                             @if(isset($message))

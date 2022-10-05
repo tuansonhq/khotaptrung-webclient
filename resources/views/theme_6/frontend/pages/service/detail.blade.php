@@ -76,7 +76,7 @@
         <div class="c-content-box c-size-lg c-overflow-hide c-bg-white font-roboto service-thumb">
             <div class="container">
                 <div class="text-center showcontent mb-0  pt-4">
-                    <h1 style="font-size: 30px;font-weight: bold;text-transform: uppercase;color: white">DỊCH VỤ {{ $data->title }}</h1>
+                    <h1 style="font-size: 30px;font-weight: bold;text-transform: uppercase;">DỊCH VỤ {{ $data->title }}</h1>
                     <div class="news_content_line m-auto"></div>
                     @if(isset($data->groups[0]->slug))
                         <div class="row d-sm-none  d-md-none  d-lg-none text-center">
@@ -105,7 +105,7 @@
                                                 </div>
                                             </div>
                                             <div class="row__face">
-                                                <p style="margin-top: 15px;color: white" class="bb"><i class="fas fa-calendar-check" aria-hidden="true"></i> {{ $data->title }}</p>
+                                                <p style="margin-top: 15px;" class="bb"><i class="fas fa-calendar-check" aria-hidden="true"></i> {{ $data->title }}</p>
                                             </div>
                                         </div>
                                         <div class="col-md-7">
@@ -115,7 +115,7 @@
                                                     $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->params);
                                                     $server_id = \App\Library\HelpersDecode::DecodeJson('server_id',$data->params);
                                                 @endphp
-                                                <span class="mb-15 control-label bb text-left" style="color: white">Chọn máy chủ:</span>
+                                                <span class="mb-15 control-label bb text-left" style="">Chọn máy chủ:</span>
                                                 @if(!empty($server_data))
                                                     {{--                                        @dd($server_data)--}}
                                                     <div class="mb-15">
@@ -136,7 +136,7 @@
                                                 $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
                                             @endphp
                                             @if(!empty($name))
-                                                <span class="mb-15 control-label bb text-left" style="color: white">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
+                                                <span class="mb-15 control-label bb text-left" style="">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
                                                 <div class="mb-15">
                                                     <select name="selected" class="s-filter form-control t14" style="">
                                                         @for ($i = 0; $i < count($name); $i++)
@@ -149,17 +149,17 @@
                                             @endif
 
                                             @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "7"){{--////dạng nhập tiền thành toán--}}
-                                            <span class="mb-15 control-label bb text-left" style="color: white">Nhập số tiền cần mua:</span>
+                                            <span class="mb-15 control-label bb text-left" style="">Nhập số tiền cần mua:</span>
                                             <div class="mb-15">
                                                 <input autofocus="" value="{{old('input_pack',\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}" class="form-control t14 price " id="input_pack" type="text" placeholder="Số tiền">
-                                                <span style="font-size: 14px; color: white">Số tiền thanh toán phải từ <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))) }}đ</b>  đến <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))) }}đ</b> </span>
+                                                <span style="font-size: 14px; ">Số tiền thanh toán phải từ <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))) }}đ</b>  đến <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))) }}đ</b> </span>
                                             </div>
-                                            <span class="mb-15 control-label bb text-left" style="color: white">Hệ số:</span>
+                                            <span class="mb-15 control-label bb text-left" style="">Hệ số:</span>
                                             <div class="mb-15">
                                                 <input type="text" id="txtDiscount" class="form-control t14" placeholder="" value="" readonly="">
                                             </div>
                                             @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
-                                            <span class="mb-15 control-label bb text-left" style="color: white">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
+                                            <span class="mb-15 control-label bb text-left" style="">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
                                             <div class="simple-checkbox s-filter">
                                                 @php
                                                     $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
@@ -212,7 +212,7 @@
                                     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css">
                                     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/responsive.css">
                                     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/chosen.css">
-                                    <span class="mb-15 control-label bb text-left" style="color: white">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
+                                    <span class="mb-15 control-label bb text-left" style="">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
 
                                     <div class="range_slider" style="">
                                         <div class="nstSlider" data-range_min="0" data-cur_min="0">
@@ -356,7 +356,7 @@
 
                                             @for ($i = 0; $i < count($send_name); $i++)
                                                 @if($send_name[$i]!=null)
-                                                    <span class="mb-15 control-label bb text-left" style="color: white">{{$send_name[$i]}}:</span>
+                                                    <span class="mb-15 control-label bb text-left" style="">{{$send_name[$i]}}:</span>
                                                     {{--check trường của sendname--}}
                                                     @if($send_type[$i]==1 || $send_type[$i]==2||$send_type[$i]==3)
                                                         @php
@@ -388,7 +388,7 @@
                                                             $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
                                                         @endphp
                                                         <div class="mb-15">
-                                                            <select name="customer_data{{$i}}" required class="mb-15 control-label bb text-left" style="color: white">
+                                                            <select name="customer_data{{$i}}" required class="mb-15 control-label bb text-left" style="">
                                                                 @if(!empty($send_data))
                                                                     @for ($sn = 0; $sn < count($send_data); $sn++)
                                                                         <option value="{{$sn}}">{{$send_data[$sn]}}</option>
@@ -448,7 +448,7 @@
                     <div class="row">
                         <div class="col-lg-12 column">
                             <div class="job-details">
-                                <h2 style="margin-bottom: 23px;font-size: 20px;font-weight: bold;text-transform: uppercase;color: white">Mô tả</h2>
+                                <h2 style="margin-bottom: 23px;font-size: 20px;font-weight: bold;text-transform: uppercase;">Mô tả</h2>
                                 <div class="news_content_line"></div>
                                 <div class="article-content hidetext">
                                     {!! $data->content  !!}

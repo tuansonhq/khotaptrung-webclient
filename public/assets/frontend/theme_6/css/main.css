@@ -131,7 +131,7 @@ header .nav-bar{
     right: 0;
     z-index: 1002;
     background-color: white;
-    box-shadow: inset 0px -1px 0px #363636;
+    /*box-shadow: inset 0px -1px 0px #363636;*/
 }
 .nav-bar-container {
     height: 120px;
@@ -186,7 +186,7 @@ header .nav-bar{
     /*font-weight: 500 !important;*/
     font-size: 14px !important;
     transition: 0.2s;
-    line-height: 90px;
+    line-height: 120px;
     padding: 12px;
     color: #ffffff;
     -webkit-border-radius: 5px;
@@ -269,10 +269,7 @@ header .nav-bar{
     flex-wrap: wrap;
     margin-top: 12px;
 }
-.item_buy-form{
-    background-color: rgba(0,0,0,0.4);
 
-}
 .slider{
     padding-top: 12px;
     padding-bottom: 12px;
@@ -711,10 +708,11 @@ header .nav-bar{
     padding-top: 20px;
 }
 .content-video .container{
-    background-color: rgba(0,0,0,0.8);
+    border: 1px solid #cccccc;
     padding-top: 15px;
     padding-bottom: 15px;
-
+    border-radius: 4px;
+    margin-bottom: 20px;
 }
 .content-video h4{
     text-align: center;
@@ -834,9 +832,8 @@ header .nav-bar{
     margin: 8% auto 10%;
     padding: 20px;
     color: #fff;
-    border: 1px solid black;
-    background-color: rgba(0,0,0,0.8);
-    border-radius: 4px;
+    border: 1px solid #cccccc;
+    background-color: white;
 }
 #modal-login .log-in-body{
     width: auto;
@@ -846,7 +843,7 @@ header .nav-bar{
 }
 .log-in-body p{
     margin: 0;
-    color: white;
+    color: black;
     text-align: center;
     padding: 0 20px 20px 20px;
     text-align: center;
@@ -884,7 +881,7 @@ header .nav-bar{
     pointer-events: none;
 }
 .log-in-body .checkbox label{
-    color: white;
+    color: black;
 }
 .log-in-body .col-sm-6 a{
     color: red;
@@ -1085,7 +1082,7 @@ header .nav-bar{
 .c-content-title-1 > .c-line-center {
     width: 90px;
     height: 3px;
-    background-color: #32c5d2;
+    background: -webkit-linear-gradient(bottom, #985614 0%, #ff0000 100%);
     margin: 0 auto 24px auto;
     margin-top: 30px;
 }
@@ -1192,7 +1189,7 @@ footer{
         margin-top: 20px!important;
     }
 
-    .item_play_dif_slide_img img{
+    .item_play_dif_slide_img img:first-child{
         background-size: cover;
         width: 100%;
         max-width: 100%;
@@ -1200,7 +1197,7 @@ footer{
         max-height: 120px!important;
         min-height: 120px!important;
     }
-    #dichvunoibat .item_play_dif_slide_img img{
+    #dichvunoibat .item_play_dif_slide_img img:first-child{
         /*background-size: cover;*/
         width: 100%;
         max-width: 100%!important;
@@ -1321,7 +1318,7 @@ footer{
     .gallery .swiper-button-next{
         right: 16px!important;
     }
-    .item_play_dif_slide_img img{
+    .item_play_dif_slide_img img:first-child{
         background-size: cover;
         width: 100%;
         max-width: 100%;
@@ -1329,7 +1326,7 @@ footer{
         max-height: 120px!important;
         min-height: 120px!important;
     }
-    #dichvunoibat .item_play_dif_slide_img img{
+    #dichvunoibat .item_play_dif_slide_img img:first-child{
         /*background-size: cover;*/
         width: 100%;
         max-width: 100%!important;
@@ -1465,7 +1462,7 @@ footer{
         padding-right: 0!important;
     }
 
-    .item_play_dif_slide_img img{
+    .item_play_dif_slide_img img:first-child{
         background-size: cover;
         width: 100%;
         max-width: 100%;
@@ -1473,7 +1470,7 @@ footer{
         max-height: 120px!important;
         min-height: 120px!important;
     }
-    #dichvunoibat .item_play_dif_slide_img img{
+    #dichvunoibat .item_play_dif_slide_img img:first-child{
         /*background-size: cover;*/
         width: 100%;
         max-width: 100%!important;
@@ -1666,7 +1663,7 @@ footer{
         width: 86px!important;
     }
 
-    .item_play_dif_slide_img img{
+    .item_play_dif_slide_img img:first-child{
         background-size: cover;
         width: 100%;
         max-width: 100%;
@@ -1674,7 +1671,7 @@ footer{
         max-height: 100px!important;
         min-height: 100px!important;
     }
-    #dichvunoibat .item_play_dif_slide_img img{
+    #dichvunoibat .item_play_dif_slide_img img:first-child{
         /*background-size: cover;*/
         width: 100%;
         max-width: 100%!important;
@@ -1948,7 +1945,7 @@ footer{
         width: 86px!important;
     }
 
-    .item_play_dif_slide_img img{
+    .item_play_dif_slide_img img:first-child{
         background-size: cover;
         width: 100%;
         max-width: 100%;
@@ -1956,7 +1953,7 @@ footer{
         max-height: 100px!important;
         min-height: 100px!important;
     }
-    #dichvunoibat .item_play_dif_slide_img img{
+    #dichvunoibat .item_play_dif_slide_img img:first-child{
         /*background-size: cover;*/
         width: 100%;
         max-width: 100%!important;
@@ -2027,7 +2024,7 @@ footer{
 }
 .title__tklienquan{
     text-align: center;
-    color: white;
+    color: #f6bd00;
     font-size: 24px;
     margin: 10px 0;
     text-transform: uppercase;
@@ -2044,7 +2041,7 @@ footer{
 .view-more,.view-less{
     display: flex;
     cursor: pointer;
-    color: #f1c40f;
+    color: #ef282b;
     padding-top: 10px;
     justify-content: flex-end;
     font-size: 18px;
@@ -2235,7 +2232,7 @@ footer{
 /*    height: 160px;*/
 /*    max-height: 160px;*/
 /*}*/
-/*.item_play_dif_slide_img img{*/
+/*.item_play_dif_slide_img img:first-child{*/
 /*    min-width: 270px;*/
 /*    max-width: 270px;*/
 /*    width: 270px;*/
@@ -2278,7 +2275,7 @@ footer{
     text-overflow: ellipsis;
 }
 
-.item_play_dif_slide_img img{
+.item_play_dif_slide_img img:first-child{
     background-size: cover;
     width: 100%;
     max-width: 100%;
@@ -2287,7 +2284,7 @@ footer{
     min-height: 160px;
     object-fit: cover;
 }
-#dichvunoibat .item_play_dif_slide_img img{
+#dichvunoibat .item_play_dif_slide_img img:first-child{
     /*background-size: cover;*/
     width: 100%;
     max-width: 100%!important;
@@ -2471,7 +2468,7 @@ footer{
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;
-    color: white;
+    color: #f6bd00;
 }
 
 .edu-hisinfo h3{
@@ -2612,13 +2609,4 @@ footer{
 .item_play_dif_slide_title_hea{
     max-height: 48px;
     height: 48px;
-}
-/*fix dup*/
-.service-thumb>.container {
-    background: rgba(0,0,0,0.7);
-    padding-bottom: 12px;
- /*padding: 12px 0;*/
-}
-.content-items-spin .game-list-description p{
-    margin-top: 24px;
 }
