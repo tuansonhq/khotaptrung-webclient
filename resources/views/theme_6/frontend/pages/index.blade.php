@@ -158,7 +158,28 @@
 {{--        @include('frontend.widget.__menu__taget')--}}
 
     </div>
-
+    @if(setting('sys_noti_popup') != '')
+        <div class="modal fade in" id="noticeModal">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông báo</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="font-family: helvetica, arial, sans-serif;">
+                        {!! setting('sys_noti_popup') !!}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-turnoff-noti btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase openModalNoti" data-dismiss="modal">Tắt trong 1h</button>
+                        <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/notification.js"></script>
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/top_charge/top_charge.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge_home.js?v={{time()}}"></script>
