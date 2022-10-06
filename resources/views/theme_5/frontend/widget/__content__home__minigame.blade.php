@@ -1,5 +1,5 @@
 @if(isset($data) && count($data) > 0)
-<section class="section-category c-pt-12 c-pt-lg-6 c-pb-12 c-pb-lg-6">
+<section class="section-category c-pt-32 c-pt-lg-24 c-pb-lg-6">
     <div class="section-header c-mb-24 c-mb-lg-20 justify-content-between">
         <h2 class="section-title">
             <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/1362.svg)"></i>
@@ -50,4 +50,5 @@
     </div>
 
 </section>
+<div class="c-pt-8 border-bottom-destop c-pt-lg-2"></div>
 @endif
