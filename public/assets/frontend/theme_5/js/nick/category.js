@@ -1,3 +1,13 @@
+//Hide random or normal category based on the query type parameter
+const urlSearchParamsAccount = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParamsAccount.entries());
+
+if (params.type == "1") {
+    $('.randomAccountItem').remove();
+} else if ( params.type == "2" ) {
+    $('.normalAccountItem').remove();
+}
+
 $(document).ready(function(){
 
     $('#account-category #service-form').on('submit', function (e) {

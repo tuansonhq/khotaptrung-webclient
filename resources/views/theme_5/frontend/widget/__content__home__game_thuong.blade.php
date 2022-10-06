@@ -5,7 +5,7 @@
                 <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/acc-game.svg)"></i>
                 {{ $title??'Nick thường' }}
             </h2>
-            <a href="/mua-acc" class="link arr-right">Xem tất cả</a>
+            <a href="/mua-acc?type=1" class="link arr-right">Xem tất cả</a>
         </div>
         <div class="swiper swiper-related-service card-list">
             <div class="swiper-wrapper">
@@ -58,7 +58,7 @@
                 <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/acc-game.svg)"></i>
                 {{ $title??'' }}
             </h2>
-            <a href="/muac-acc" class="link arr-right">Xem tất cả</a>
+            <a href="/mua-acc?type=1" class="link arr-right">Xem tất cả</a>
         </div>
         <div class="list-category content-desc-nick hide">
             @foreach($data as $item)
