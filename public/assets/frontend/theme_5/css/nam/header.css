@@ -280,7 +280,7 @@ header nav.heading .header-container {
 
 @media (max-width: 1200px) {
     #formSearchHeader {
-        width: 250px;
+        width: 200px;
     }
 
     .btn-loading{

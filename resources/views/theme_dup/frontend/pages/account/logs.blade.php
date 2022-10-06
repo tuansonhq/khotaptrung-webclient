@@ -99,24 +99,24 @@
                                             </div>
 
                                         </div>
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <div class="row justify-content-end">--}}
-{{--                                                <div class="col-12 col-md-auto">--}}
-{{--                                                    <div class="input-group">--}}
-{{--                                                        <span class="input-group-addon">Sắp xếp theo</span>--}}
-{{--                                                        <select type="text" name="sort_by" class="form-control sort_by">--}}
-{{--                                                            <option value="">Chọn cách sắp xếp</option>--}}
-{{--                                                            <option value="random">Ngẫu nhiên</option>--}}
-{{--                                                            <option value="price_start">Giá tiền từ cao đến thấp</option>--}}
-{{--                                                            <option value="price_end">Giá tiền từ thấp đến cao</option>--}}
-{{--                                                            <option value="published_at">Ngày Mua</option>--}}
-{{--                                                            <option value="created_at_start">Mới nhất</option>--}}
-{{--                                                            <option value="created_at_end">Cũ nhất</option>--}}
-{{--                                                        </select>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
+                                        {{--                                        <div class="col-md-6">--}}
+                                        {{--                                            <div class="row justify-content-end">--}}
+                                        {{--                                                <div class="col-12 col-md-auto">--}}
+                                        {{--                                                    <div class="input-group">--}}
+                                        {{--                                                        <span class="input-group-addon">Sắp xếp theo</span>--}}
+                                        {{--                                                        <select type="text" name="sort_by" class="form-control sort_by">--}}
+                                        {{--                                                            <option value="">Chọn cách sắp xếp</option>--}}
+                                        {{--                                                            <option value="random">Ngẫu nhiên</option>--}}
+                                        {{--                                                            <option value="price_start">Giá tiền từ cao đến thấp</option>--}}
+                                        {{--                                                            <option value="price_end">Giá tiền từ thấp đến cao</option>--}}
+                                        {{--                                                            <option value="published_at">Ngày Mua</option>--}}
+                                        {{--                                                            <option value="created_at_start">Mới nhất</option>--}}
+                                        {{--                                                            <option value="created_at_end">Cũ nhất</option>--}}
+                                        {{--                                                        </select>--}}
+                                        {{--                                                    </div>--}}
+                                        {{--                                                </div>--}}
+                                        {{--                                            </div>--}}
+                                        {{--                                        </div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +156,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
                 </div>
-{{--                </form>--}}
+                {{--                </form>--}}
             </div>
         </div>
     </div>
@@ -185,6 +185,6 @@
     <input type="hidden" name="sort_by_data" class="sort_by_data" value="">
     <input type="hidden" name="id_data" class="id_data" value="">
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/acc-history.js"></script>--}}
-    <script src="/js/{{theme('')->theme_key}}/account/logs.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/acc-history.js"></script>
+    {{--    <script src="/js/{{theme('')->theme_key}}/account/logs.js"></script>--}}
 @endsection

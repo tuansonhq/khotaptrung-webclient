@@ -1,6 +1,6 @@
 .news_breadcrumbs{
     padding: 0 0;
-    background: #363636;
+    background: #f7fafb;
 }
 .news_breadcrumbs .container{
     /*display: flex;*/
@@ -41,7 +41,6 @@
     display: inline-block;
     margin: 0;
     padding: 8px 4px 8px 4px;
-    color: #ff0;
 }
 .news_breadcrumbs_theme li a{
     color: #7f8c97;
@@ -55,14 +54,7 @@
 }
 
 
-/*content */
-.news_content{
-    padding: 12px 0 30px 0;
-}
-.news_content .container{
-    background: rgba(0,0,0,0.7);
-    padding: 24px 12px;
-}
+
 /*form tìm kiếm*/
 .news_content form{
     margin-bottom: 20px ;
@@ -103,7 +95,7 @@
     width: 40%;
     padding: 4px;
     line-height: 1.42857;
-    border: 1px solid antiquewhite;
+    border: 1px solid #ddd;
     border-radius: 4px;
     -webkit-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
@@ -125,13 +117,13 @@
 .news_content_list_title a{
     font-size: 20px;
     text-decoration:none;
-    color: antiquewhite;
+    color: #3f444a;
     font-weight: 600;
 }
 .news_content_list_date {
     font-size: 14px;
     margin-bottom: 10px;
-    color: white;
+    color: #5c6873;
 }
 .news_content_list_date>div{
     display: inline-block;
@@ -145,14 +137,14 @@
     color: white;
 }
 .news_content_list_decription{
-    color: whitesmoke;
+    color: #5c6873;
 }
 .news_content_category{
     margin-top: 0;
 }
 .news_content_category_title p{
     font-size: 20px;
-    color: white;
+    color: #505050;
     margin-bottom: 22px;
     font-weight: 600;
 }
@@ -181,7 +173,7 @@
     margin: 2px 10px 0 0;
 }
 .news_content_category_menu li a{
-    color: whitesmoke;
+    color: #3f444a;
     font-weight: 400;
     text-decoration: none;
     transition: 0.2s ease;
@@ -225,7 +217,6 @@
     font-weight: 600 !important;
     text-transform: uppercase;
     font-size: 22px;
-    color: white;
 }
 .news_content_line{
     width: 100px;
@@ -251,7 +242,7 @@
 .news_breadcrumbs_theme_trangchu,
 .news_breadcrumbs_theme_tintuc,
 .news_breadcrumbs_theme_title{
-    color: #ff0!important;
+    color: #7f8c97!important;
     font-size: 16px!important;
     font-weight: 400!important;
 }
@@ -388,15 +379,6 @@
     padding: 4px 0;
 }
 
-/*fix dup*/
-.shop_product_detailS .container:nth-child(2){
-    background: rgba(0,0,0,0.6);
-    margin-top: 12px;
-}
-.shop_product_detailS .gallery__right{
-    padding-right: 30px;
-}
-.news .container:nth-child(3){
-    background: rgba(0,0,0,0.7);
-    padding: 24px 12px;
+.news_content {
+    padding: 20px 0 ;
 }

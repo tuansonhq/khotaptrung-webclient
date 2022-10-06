@@ -480,36 +480,24 @@
 
                     </div>
                 </div>
-                <div class="account-desc c-mt-16">
+                <div class="account-desc c-mt-16 detailViewBlock">
                     <h2 class="text-title-bold d-block d-lg-none c-mb-8">Chi tiết dịch vụ</h2>
                     <div class="card overflow-hidden">
                         <div class="card-body c-px-16">
-                            <h2 class="text-title-bold d-none d-lg-block c-mb-24">Chi tiết dịch vụ</h2>
-                            <div class="content-desc">
+                            <h2 class="text-title-bold d-none d-lg-block c-mb-24 detailViewBlockTitle">Chi tiết dịch vụ</h2>
+                            @if(substr($data->description, 1200))
+                            <div class="content-desc hide detailViewBlockContent">
+                            @else
+                            <div class="content-desc detailViewBlockContent">
+                            @endif
                                 {!! $data->description !!}
                             </div>
                         </div>
+                        @if(substr($data->description, 1200))
                         <div class="card-footer text-center">
-                            <span class="see-more open-sheet" data-content="Xem thêm nội dung" data-target="#sheet-description"></span>
+                            <span class="see-more open-sheet" data-content="Xem thêm nội dung" data-target="#sheet-view-more"></span>
                         </div>
-                    </div>
-                    <!-- handle bottom sheet -->
-                    <div class="bottom-sheet" id="sheet-description" aria-hidden="true" data-height="80">
-                        <div class="layer"></div>
-                        <div class="content-bottom-sheet bar-slide" >
-                            <div class="sheet-header">
-                                <h2 class="text-title center">
-                                    Chi tiết dịch vụ
-                                </h2>
-                                <label for="check-bottom-sheet" class="close"></label>
-                            </div>
-                            <div class="sheet-body">
-                                <!-- body -->
-                                <div>
-                                    {!! $data->description !!}
-                                </div>
-                            </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
