@@ -389,6 +389,7 @@
 @include('frontend.widget.modal.viewmore_modal')
 {{-- Bottom Sheet xem thêm --}}
 @include('frontend.widget.modal.viewmore_sheet')
+@include('frontend.widget.__theme')
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazy/jquery.lazy.min.js"></script>
