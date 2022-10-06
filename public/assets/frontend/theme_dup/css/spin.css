@@ -1605,7 +1605,7 @@ td{
     background: rgba(0,0,0,0.7);
     padding: 8px;
 }
-.item_spin_list .table thead th,.item_spin_list .table thead tr,.item_spin_list .table tbody tr,.item_spin_list .table tbody tr{
+.item_spin_list .table thead th,.item_spin_list .table thead tr,.item_spin_list .table tbody tr,.item_spin_list .table tbody tr td{
     color: white;
 }
 .item_play_dif_slide_more_view{

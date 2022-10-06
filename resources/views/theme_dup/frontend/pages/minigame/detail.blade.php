@@ -283,7 +283,9 @@
                                                                 @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                                     <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    Chơi ngay
+                                                                    <div class="custom-showmore">
+                                                                        Chơi ngay
+                                                                    </div>
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -507,7 +509,9 @@
                                                                 @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                                     <img src="{{ \App\Library\MediaHelpers::media($item->params->image_view_all) }}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    Chơi ngay
+                                                                    <div class="custom-showmore">
+                                                                        Chơi ngay
+                                                                    </div>
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -1157,7 +1161,9 @@
                                                                 @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                                     <img src="{{ \App\Library\MediaHelpers::media($item->params->image_view_all) }}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    Chơi ngay
+                                                                    <div class="custom-showmore">
+                                                                        Chơi ngay
+                                                                    </div>
                                                                 @endif
                                                             </a>
                                                         </div>
