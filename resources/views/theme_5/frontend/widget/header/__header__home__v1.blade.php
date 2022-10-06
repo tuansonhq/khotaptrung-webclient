@@ -5,7 +5,7 @@
             <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo_mobile'))}}" alt="" class="d-lg-none">
         </a>
     </div>
-    <div class="d-none d-md-flex h-100">
+    <div class="d-none d-lg-flex h-100">
         <div class="box-menu c-mr-16 c-py-10">
             <div class="box-menu-bar  ">
                 <div class="box-icon brs-8 c-mr-8" >
