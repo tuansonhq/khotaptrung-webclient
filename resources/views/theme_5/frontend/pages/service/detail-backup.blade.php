@@ -310,16 +310,22 @@
                         <div class="d-none d-lg-block c-pb-22 c-pt-2"></div>
                         <div class="c-mb-16">
                             <h2 class="text-title-bold d-block d-lg-none c-mb-8">Chi tiết dịch vụ</h2>
-                            <div class="card overflow-hidden">
+                            <div class="card overflow-hidden detailViewBlock">
                                 <div class="card-body c-px-16">
-                                    <h2 class="text-title-bold d-none d-lg-block c-mb-24">Chi tiết dịch vụ</h2>
-                                    <div class="content-desc">
+                                    <h2 class="text-title-bold d-none d-lg-block c-mb-24 detailViewBlockTitle">Chi tiết dịch vụ</h2>
+                                    @if(substr($data->description, 1200))
+                                    <div class="content-desc hide detailViewBlockContent">
+                                    @else
+                                    <div class="content-desc detailViewBlockContent">
+                                    @endif
                                         {!! $data->description !!}
                                     </div>
                                 </div>
+                                @if(substr($data->description, 1200))
                                 <div class="card-footer text-center">
                                     <span class="see-more open-sheet" data-content="Xem thêm nội dung" data-target="#sheet-description"></span>
                                 </div>
+                                @endif
                             </div>
                             <!-- handle bottom sheet -->
                             <div class="bottom-sheet" id="sheet-description" aria-hidden="true" data-height="80">
