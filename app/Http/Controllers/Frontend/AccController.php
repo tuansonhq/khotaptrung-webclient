@@ -56,20 +56,24 @@ class AccController extends Controller
         $url = '/acc';
         $method = "GET";
 
-        if ($slug == config('module.acc.slug-auto')){
+        if (empty($response_cate_data)) {
+            if ($slug == config('module.acc.slug-auto')){
 
-            $dataSendCate = array();
-            $dataSendCate['data'] = 'property_lienminh_auto';
-            $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-            $response_cate_data = $result_Api_cate->response_data??null;
+                $dataSendCate = array();
+                $dataSendCate['data'] = 'property_lienminh_auto';
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
 
-        } else {
-            $dataSendCate = array();
-            $dataSendCate['data'] = 'category_detail';
-            $dataSendCate['slug'] = $slug;
-            $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-            $response_cate_data = $result_Api_cate->response_data??null;
+            }else{
+                $dataSendCate = array();
+                $dataSendCate['data'] = 'category_detail';
+                $dataSendCate['slug'] = $slug;
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
 
+            }
+
+            cache(["game_props_list_{$slug}" => $response_cate_data], 604800);
         }
 
         if ($request->ajax()){
