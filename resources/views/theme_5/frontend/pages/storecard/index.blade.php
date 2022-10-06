@@ -265,9 +265,10 @@
         </div>
 
         <h2 class="text-title-bold fz-20 lh-28 d-none d-lg-block c-mb-8">Mô tả dịch vụ</h2>
-        <div class="card overflow-hidden d-none d-lg-block">
+        <div class="card overflow-hidden d-none d-lg-block detailViewBlock">
+            <p class="d-none detailViewBlockTitle">Mô tả dịch vụ</p>
             <div class="card-body c-px-16">
-                <div class="content-desc">
+                <div class="content-desc hide detailViewBlockContent">
                     Garena Liên Quân Mobile có nguồn gốc từ trò chơi Vương Giả Vinh Diệu (Honor of Kings) của Tencent
                     Games phát triển và phát hành tại Trung Quốc. Vì trò chơi Vương Giả Vinh Diệu có những nhân vật
                     trong lịch sử Trung Quốc nên không phát hành ở nước ngoài. Vì vậy Tencent Games đã thay đổi, cải

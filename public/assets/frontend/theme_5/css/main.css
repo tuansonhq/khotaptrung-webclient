@@ -1559,6 +1559,50 @@ label {
     transform: translateY(-50%) rotate(-180deg);
 }
 
+.see-more-nick {
+    display: inline-block;
+    text-align: center;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    height: 16px;
+    color: var(--primary-color);
+    position: relative;
+    padding-right: 20px;
+    cursor: pointer;
+}
+
+.see-more-nick:hover {
+    color: var(--primary-hover-color);
+}
+
+.see-more-nick:active {
+    color: var(--primary-focus-color);
+}
+
+.see-more-nick:before {
+    content: attr(data-content);
+}
+
+.see-more-nick:after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-image: url(../image/svg/see-more.svg);
+    background-repeat: no-repeat;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background-position: 100% center;
+    transition: transform .15s linear;
+    transform-origin: center center;
+}
+
+.see-more-nick.hide:after {
+    transform: translateY(-50%) rotate(-180deg);
+}
+
 .datetime,
 .author {
     color: var(--text-link-default-color);
