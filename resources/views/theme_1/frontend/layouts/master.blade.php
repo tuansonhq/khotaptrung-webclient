@@ -83,16 +83,16 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/sweetalert.min.js"></script>
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/auto-link.js?v={{time()}}"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/auto-link.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/script.js?v={{time()}}"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>--}}
-    <script src="/js/{{theme('')->theme_key}}/main_top.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/script.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
+{{--    <script src="/js/{{theme('')->theme_key}}/main_top.js?v={{time()}}"></script>--}}
 
     <script>
         $(document).ready(function () {
@@ -212,6 +212,8 @@
         @yield('content')
     </div>
 </div>
+
+
 
 <!-- Modal nạp tiền -->
 <div class="modal fade show" id="rechargeModal" aria-modal="true">
@@ -403,21 +405,22 @@
 
 </script>
 
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.umd.js"></script>--}}
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.js"></script>--}}
 
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/lib/OwlCarousel2/OwlCarousel2.min.js"></script>--}}
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>--}}
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.umd.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.js"></script>
 
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/js/action.js?v={{time()}}"></script>--}}
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/OwlCarousel2/OwlCarousel2.min.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>
+
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/action.js?v={{time()}}"></script>
 {{--<script src="/assets/frontend/{{theme('')->theme_key}}/js/@if(isset(theme('')->theme_config->sys_config_menu)){{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}@endif/theme.js"></script>--}}
 
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>--}}
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
 
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/js/swiper.js?v={{time()}}"></script>--}}
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/js/jquery.cookie.min.js"></script>--}}
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/swiper.js?v={{time()}}"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/jquery.cookie.min.js"></script>
 
-<script src="/js/{{theme('')->theme_key}}/main_bot.js?v={{time()}}"></script>
+{{--<script src="/js/{{theme('')->theme_key}}/main_bot.js?v={{time()}}"></script>--}}
 
 <div id="copy"></div>
 <script>

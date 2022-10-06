@@ -24,38 +24,6 @@
 
             <div class="tab-content">
                 <div class="tab-pane fade active show c-p-16 c-pb-lg-0" id="charge_card" role="tabpanel">
-{{--                    <div class="row text-center loader-container">--}}
-{{--                        <div class="col-12">--}}
-{{--                            <div class="loader position-relative" style="margin: 2rem 0">--}}
-{{--                                <div class="loading-spokes">--}}
-{{--                                    <div class="spoke-container">--}}
-{{--                                        <div class="spoke"></div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="spoke-container">--}}
-{{--                                        <div class="spoke"></div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="spoke-container">--}}
-{{--                                        <div class="spoke"></div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="spoke-container">--}}
-{{--                                        <div class="spoke"></div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="spoke-container">--}}
-{{--                                        <div class="spoke"></div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="spoke-container">--}}
-{{--                                        <div class="spoke"></div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="spoke-container">--}}
-{{--                                        <div class="spoke"></div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="spoke-container">--}}
-{{--                                        <div class="spoke"></div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                     <form class="w-100" action="" id="chargeCardHomeForm">
                         <div class="row content-block">
                             <div class="col-12 col-lg-6 c-pr-8 c-pr-lg-16">

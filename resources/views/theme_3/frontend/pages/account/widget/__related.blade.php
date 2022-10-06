@@ -62,17 +62,54 @@
                                                             @endforeach
                                                         @endif
 
-                                                        @if ($index < 4)
-                                                            @for ($i = 0; $i < 4 - $index; $i++)
-                                                            <div class="col-md-12 left-right text-left body-detail-account-small-span-ct"></div>
-                                                            @endfor
-                                                        @endif
+{{--                                                        @if ($index < 4)--}}
+{{--                                                            @for ($i = 0; $i < 4 - $index; $i++)--}}
+{{--                                                            <div class="col-md-12 left-right text-left body-detail-account-small-span-ct"></div>--}}
+{{--                                                            @endfor--}}
+{{--                                                        @endif--}}
+                                                        @if(isset($item->params))
+                                                            @if(isset($item->params->rank_info))
 
+                                                                @foreach($item->params->rank_info as $rank_info)
+                                                                    @if($rank_info->queueType == "RANKED_TFT")
+                                                                    @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                                        <?php
+                                                                        $index = $index + 1;
+                                                                        ?>
+                                                                            <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                                <small>Rank : @if($rank_info->tier == "NONE")
+                                                                                        {{ $rank_info->tier }}
+                                                                                    @else
+                                                                                        {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                                    @endif</small>
+                                                                            </div>
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                            @if(isset($item->params->count))
+                                                                @if(isset($item->params->count->champions))
+                                                                    <?php
+                                                                    $index = $index + 1;
+                                                                    ?>
+                                                                        <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                            <small>Số tướng : {{ $item->params->count->champions }}</small>
+                                                                        </div>
+
+                                                                @endif
+                                                                @if(isset($item->params->count->skins))
+                                                                    <?php
+                                                                    $index = $index + 1;
+                                                                    ?>
+                                                                        <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                            <small>Trang phục : {{ $item->params->count->skins }}</small>
+                                                                        </div>
+                                                                @endif
+                                                            @endif
+                                                        @endif
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <ul>
                                                                 @if(isset($item->price))
                                                                     <li class="fist-li-account">{{ str_replace(',','.',number_format($item->price)) }}đ</li>
-                                                                    <li class="second-li-account">{{ str_replace(',','.',number_format($item->price_old??$item->price)) }}đ</li>
                                                                     @php
                                                                         if (isset($item->price_old)) {
                                                                             $sale_percent = (($item->price_old - $item->price) / $item->price_old) * 100;
@@ -82,6 +119,7 @@
                                                                         }
                                                                     @endphp
                                                                     @if($sale_percent > 0)
+                                                                        <li class="second-li-account">{{ str_replace(',','.',number_format($item->price_old??$item->price)) }}đ</li>
                                                                         <li class="three-li-account">-{{$sale_percent}}%</li>
                                                                     @endif
                                                                 @endif

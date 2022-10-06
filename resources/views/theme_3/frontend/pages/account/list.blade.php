@@ -301,26 +301,127 @@
                                 {{--                                </div>--}}
                                 {{--                            </div>--}}
 
-                                @if(isset($dataAttribute) && count($dataAttribute) > 0)
-                                    @foreach($dataAttribute as $key_val => $val)
-                                        @if($val->position == 'select')
+                                @if(isset($auto_properties))
+                                    @foreach($auto_properties as $auto_propertie)
+                                        @if($auto_propertie->key == 'champions')
                                             <div class="col-md-12 left-right modal-nick-padding">
                                                 <div class="row marginauto">
                                                     <div class="col-12 left-right background-nick-col-top-ct">
-                                                        <small>{{ $val->title }}</small>
+                                                        <small>{{ $auto_propertie->name }}</small>
                                                     </div>
                                                     <div class="col-12 left-right background-nick-col-bottom-ct">
-                                                        <select class="wide account-filter-field" data-query="select_data_{{ $key_val }}"  data-title="{{ $val->title }}">
+                                                        <select class="select-2-custom account-filter-field" data-query="champions_data"  data-title="">
+                                                            <option value="">--Không chọn--</option>
+                                                            @if(isset($auto_propertie->childs))
+                                                                @foreach($auto_propertie->childs as $child)
+                                                                    <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 left-right modal-nick-padding">
+                                                <div class="row marginauto">
+                                                    <div class="col-12 left-right background-nick-col-top-ct">
+                                                        <small>Trang phục</small>
+                                                    </div>
+                                                    <div class="col-12 left-right background-nick-col-bottom-ct">
+                                                        <select class="select-2-custom account-filter-field" data-query="skill_data"  data-title="">
                                                             <option value="" selected disabled>--Không chọn--</option>
-                                                            @foreach($val->childs as $child)
-                                                                <option value="{{ $child->id }}">{{ $child->title }}</option>
-                                                            @endforeach
+                                                            @if(isset($auto_propertie->childs) && count($auto_propertie->childs))
+                                                                @foreach($auto_propertie->childs as $child)
+
+                                                                    @if(isset($child->childs) && count($child->childs))
+                                                                        @foreach($child->childs as $c_child)
+                                                                            <option value="{{ $c_child->id }}">{{ $c_child->name }}</option>
+                                                                        @endforeach
+                                                                    @endif
+
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @elseif($auto_propertie->key == 'tftcompanions')
+                                            <div class="col-md-12 left-right modal-nick-padding">
+                                                <div class="row marginauto">
+                                                    <div class="col-12 left-right background-nick-col-top-ct">
+                                                        <small>{{ $auto_propertie->name }}</small>
+                                                    </div>
+                                                    <div class="col-12 left-right background-nick-col-bottom-ct">
+                                                        <select class="select-2-custom account-filter-field" data-query="tftcompanions_data"  data-title="">
+                                                            <option value="" selected disabled>--Không chọn--</option>
+                                                            @if($auto_propertie->childs)
+                                                                @foreach($auto_propertie->childs as $child)
+                                                                    <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @elseif($auto_propertie->key == 'tftmapskins')
+                                            <div class="col-md-12 left-right modal-nick-padding">
+                                                <div class="row marginauto">
+                                                    <div class="col-12 left-right background-nick-col-top-ct">
+                                                        <small>{{ $auto_propertie->name }}</small>
+                                                    </div>
+                                                    <div class="col-12 left-right background-nick-col-bottom-ct">
+                                                        <select class="select-2-custom account-filter-field" data-query="tftmapskins_data"  data-title="">
+                                                            <option value="" selected disabled>--Không chọn--</option>
+                                                            @if($auto_propertie->childs)
+                                                                @foreach($auto_propertie->childs as $child)
+                                                                    <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @elseif($auto_propertie->key == 'tftdamageskins')
+                                            <div class="col-md-12 left-right modal-nick-padding">
+                                                <div class="row marginauto">
+                                                    <div class="col-12 left-right background-nick-col-top-ct">
+                                                        <small>{{ $auto_propertie->name }}</small>
+                                                    </div>
+                                                    <div class="col-12 left-right background-nick-col-bottom-ct">
+                                                        <select class="select-2-custom account-filter-field" data-query="tftdamageskins_data"  data-title="">
+                                                            <option value="" selected disabled>--Không chọn--</option>
+                                                            @if($auto_propertie->childs)
+                                                                @foreach($auto_propertie->childs as $child)
+                                                                    <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                                @endforeach
+                                                            @endif
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
                                         @endif
                                     @endforeach
+                                @else
+                                    @if(isset($dataAttribute) && count($dataAttribute) > 0)
+                                        @foreach($dataAttribute as $key_val => $val)
+                                            @if($val->position == 'select')
+                                                <div class="col-md-12 left-right modal-nick-padding">
+                                                    <div class="row marginauto">
+                                                        <div class="col-12 left-right background-nick-col-top-ct">
+                                                            <small>{{ $val->title }}</small>
+                                                        </div>
+                                                        <div class="col-12 left-right background-nick-col-bottom-ct">
+                                                            <select class="select-2-custom account-filter-field" data-query="select_data_{{ $key_val }}"  data-title="{{ $val->title }}">
+                                                                <option value="" selected disabled>--Không chọn--</option>
+                                                                @foreach($val->childs as $child)
+                                                                    <option value="{{ $child->id }}">{{ $child->title }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 @endif
 
                                 <div class="col-md-12 left-right padding-nicks-footer-ct">
@@ -457,7 +558,7 @@
             </div>
 
         </div>
-
+        </div>
         <div class="modal fade login show order-modal" id="openOrder" aria-modal="true">
 
             <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
@@ -470,11 +571,21 @@
 
         <input type="hidden" value="{{ $slug }}" name="slug" class="slug">
 
-        <script src="/js/{{theme('')->theme_key}}/nick/nick--list.js?v={{time()}}"></script>
 
-        {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js"></script>--}}
-        {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick--update.js?v={{time()}}"></script>--}}
-
+            <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js"></script>
+            <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick--update.js?v={{time()}}"></script>
     @endif
 
+@endsection
+@section('scripts')
+    <script>
+        // config select 2
+
+        let $select_2 = $('.select-2-custom');
+        $select_2.select2({
+            placeholder: '--Không chọn--',
+            allowClear: true,
+            tags: false
+        });
+    </script>
 @endsection

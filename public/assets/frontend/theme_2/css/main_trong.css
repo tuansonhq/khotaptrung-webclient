@@ -804,22 +804,21 @@ a.tab {
 
 /*Seclection button*/
 /*Size*/
-.selection.xl {
+.value-sort .selection.xl {
     padding: 18px 12px;
     height: 56px;
 }
 
-.selection.lg {
+.value-sort .selection.lg {
     padding: 14px 10px;
     height: 48px;
 }
 
-.selection.md {
+.value-sort .selection.md {
     padding: 10px 10px;
     height: 40px;
 }
-
-.selection {
+.value-sort .selection {
     display: inline-block;
     color: var(--text-color);
     padding: 5px 11px;
@@ -834,24 +833,24 @@ a.tab {
     text-align: center;
 }
 
-.selection:hover {
+.value-sort .selection:hover {
     text-decoration: none;
     border: 1px solid var(--ghost-border-default-color);
     color: var(--text-color);
 }
 
-.selection.active,
-.selection:active {
+.value-sort .selection.active,
+.value-sort .selection:active {
     border: 1px solid var(--primary-color);
     color: var(--primary-hover-color);
 }
 
-.selection.dropdown {
+.value-sort .selection.dropdown {
     padding-right: 39px;
     position: relative;
 }
 
-.selection.dropdown:after {
+.value-sort .selection.dropdown:after {
     content: '';
     display: block;
     position: absolute;
@@ -867,8 +866,8 @@ a.tab {
     background-color: var(--button-text-disable-color);
 }
 
-.selection.active.dropdown:after,
-.selection.dropdown:active:after {
+.value-sort .selection.active.dropdown:after,
+.value-sort .selection.dropdown:active:after {
     background-color: var(--primary-color);
 }
 

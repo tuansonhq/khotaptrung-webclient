@@ -1,11 +1,10 @@
-// $(document).ready(function () {
-//     $(document).on('scroll',function(){
-//         if ($(this).scrollTop() > 180) {
-//             $('.rotation-leaderboard').css('top', '140px');
-//         } else {
-//             $('.rotation-leaderboard').css('top', '64px');
-//         }
-//     });
-// });
+$(document).ready(function () {
+    function randomIntFromInterval(min, max) { // min and max included 
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
+    const rndInt = randomIntFromInterval(300, 1000);
+    $('.userCount').text(`${rndInt} người đang chơi`);
+});
 
 

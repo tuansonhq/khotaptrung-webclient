@@ -8,6 +8,51 @@
 @section('styles')
 
 @endsection
+@php
+    if (isset($data->price_old)) {
+        $sale_percent = (($data->price_old - $data->price) / $data->price_old) * 100;
+        $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
+    } else {
+        $sale_percent = 0;
+    }
+@endphp
+@php
+    $totalaccount = 0;
+    if(isset($data->category->items_count)){
+        if ((isset($data->category->account_fake) && $data->category->account_fake > 1) || (isset($data->category->custom->account_fake) && $data->category->custom->account_fake > 1)){
+            $totalaccount = str_replace(',','.',number_format(round(isset($data->category->custom->account_fake) ? $data->category->items_count*$data->category->custom->account_fake : $data->category->items_count*$data->category->account_fake)));
+        }
+    }else{
+        $totalaccount = 0;
+    }
+@endphp
+@php
+    $data_cookie = Cookie::get('viewed_account') ?? '[]';
+    $flag_viewed = true;
+    $data_cookie = json_decode($data_cookie,true);
+        foreach ($data_cookie as $key => $acc_viewed){
+            if($acc_viewed['randId'] == $data->randId){
+             $flag_viewed = false;
+            }
+        }
+        if ($flag_viewed){
+                if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {
+                     array_pop($data_cookie);
+                 }
+                $data_save = [
+                    'image'=>$data->image,
+                    'category'=>isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title,
+                    'randId'=>$data->randId,
+                    'price'=>$data->price,
+                    'price_old'=>$data->price_old,
+                    'promotion'=>$sale_percent,
+                    'buy_account'=>$totalaccount,
+                 ];
+                array_unshift($data_cookie,$data_save);
+                $data_cookie = json_encode($data_cookie);
+                Cookie::queue('viewed_account',$data_cookie,43200);
+        }
+@endphp
 @section('content')
 
     @if($data == null)
@@ -104,6 +149,12 @@
                                 </div>
                             </div>
                         @endif
+                    </div>
+                </div>
+
+                <div class="row marginauto d-none">
+                    <div class="col-md-12 left-right" id="section-viewed-account">
+                        @include('frontend.pages.account.widget.__viewed__account')
                     </div>
                 </div>
 
@@ -711,15 +762,12 @@
 
         </script>
         @endif
-{{--        <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>--}}
-{{--        <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>--}}
-{{--        <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>--}}
-{{--        <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccslider.js"></script>--}}
-        <script src="/js/{{theme('')->theme_key}}/account/detail.js"></script>
-{{--        <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">--}}
-        <link rel="stylesheet" href="/css/{{theme('')->theme_key}}/account/detail.css">
-        {{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">--}}
 
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccslider.js"></script>
+        <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
 
     @endif
 @endsection

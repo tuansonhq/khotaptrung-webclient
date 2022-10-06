@@ -18,13 +18,16 @@
         @endphp
 
         <div class="container c-container">
-            @foreach($data_widget as $key => $value)
+            <input type="search" placeholder="Tìm kiếm" class="search c-mt-16 d-lg-none">
+
+        @foreach($data_widget as $key => $value)
                 @include('frontend.widget.'.$value.'',with(['title'=>$data_title[$key]]))
             @endforeach
         </div>
 
     @else
         <div class="container c-container">
+            <input type="search" placeholder="Tìm kiếm" class="search c-mt-16 d-lg-none">
 
             {{--        Slider banner  --}}
             @include('frontend.widget.__slider__banner__home')

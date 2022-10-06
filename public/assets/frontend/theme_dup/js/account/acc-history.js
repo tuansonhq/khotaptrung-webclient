@@ -310,12 +310,12 @@ $(document).ready(function(){
                 }else if (data.status == 0){
                     var html = '';
                     html += '<div class="table-responsive" id="tableacchstory">';
-                        html += '<table class="table table-hover table-custom-res">';
-                            html += '<thead><tr><th>Thời gian</th><th>ID</th><th>Game</th><th>Tài khoản</th><th>Trị giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>';
-                            html += '<tbody>';
-                                html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
-                            html += '</tbody>';
-                        html += '</table>';
+                    html += '<table class="table table-hover table-custom-res">';
+                    html += '<thead><tr><th>Thời gian</th><th>ID</th><th>Game</th><th>Tài khoản</th><th>Trị giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>';
+                    html += '<tbody>';
+                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                    html += '</tbody>';
+                    html += '</table>';
                     html += '</div>';
 
                     $("#data_pay_account_history").empty().html('');

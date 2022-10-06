@@ -122,7 +122,88 @@
                     </div>
 
                     <table class="table-acc-info c-mb-24 d-table d-lg-none">
+                        @if(isset($game_auto_props) && count($game_auto_props))
+                            @php
+                                $total_tuong = 0;
+                                $total_bieucam = 0;
+                                $total_chuongluc = 0;
+                                $total_sandau = 0;
+                                $total_linhthu = 0;
+                                $total_trangphuc = 0;
+                                $total_thongtinchung = 0;
 
+                                if(isset($game_auto_props) && count($game_auto_props)){
+                                    foreach($game_auto_props as $game_auto_prop){
+                                        if($game_auto_prop->key == 'champions'){
+                                            $total_tuong = $total_tuong + 1;
+                                            if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
+                                                foreach($game_auto_prop->childs as $c_child){
+                                                    $total_trangphuc = $total_trangphuc + 1;
+                                                }
+                                            }
+                                        }elseif ($game_auto_prop->key == 'emotes'){
+                                            $total_bieucam = $total_bieucam + 1;
+                                        }elseif ($game_auto_prop->key == 'tftdamageskins'){
+                                            $total_chuongluc = $total_chuongluc + 1;
+                                        }elseif ($game_auto_prop->key == 'tftmapskins'){
+                                            $total_sandau = $total_sandau + 1;
+                                        }elseif ($game_auto_prop->key == 'tftcompanions'){
+                                            $total_linhthu = $total_linhthu + 1;
+                                        }
+                                    }
+                                }
+                            @endphp
+                            <tr>
+                                <td><span class="link-color">Tướng</span></td>
+                                <td><span>{{ $total_tuong }}</span></td>
+                                <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-champ">Xem</a></td>
+                            </tr>
+                            <tr>
+                                <td><span class="link-color">Trang phục</span></td>
+                                <td><span>{{ $total_trangphuc }}</span></td>
+                                <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-skin">Xem</a></td>
+                            </tr>
+                            <tr>
+                                <td><span class="link-color">Linh thú TFT</span></td>
+                                <td><span>{{ $total_linhthu }}</span></td>
+                                <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-animal">Xem</a></td>
+                            </tr>
+
+                            @if(isset($data->params))
+                                @if(isset($data->params->rank_info) && count($data->params->rank_info))
+
+                                    @foreach($data->params->rank_info as $key_rank => $rank_info)
+                                        @if($rank_info->queueType == "RANKED_TFT")
+                                            <tr>
+                                                <td><span class="link-color">RANKED TFT</span></td>
+                                                <td><span>@if($rank_info->tier == "NONE")
+                                                            {{ $rank_info->tier }}
+                                                        @else
+                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                        @endif</span></td>
+                                                <td></td>
+                                            </tr>
+                                        @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+
+                                            <tr>
+                                                <td><span class="link-color">RANKED SOLO</span></td>
+                                                <td><span>
+                                                    @if($rank_info->tier == "NONE")
+                                                            {{ $rank_info->tier }}
+                                                        @else
+                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                        @endif
+                                                    </span>
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+
+                                @endif
+                            @endif
+                        @else
+                        @endif
                         @if(isset($data->groups))
                             <?php $att_values = $data->groups ?>
                             @foreach($att_values as $att_value)
@@ -200,6 +281,58 @@
                         </div>
 
                         <table class="table-acc-info c-mb-24 d-none d-lg-table">
+                            @if(isset($game_auto_props) && count($game_auto_props))
+                                <tr>
+                                    <td><span class="link-color">Tướng</span></td>
+                                    <td><span>{{ $total_tuong }}</span></td>
+                                    <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-champ">Xem</a></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="link-color">Trang phục</span></td>
+                                    <td><span>{{ $total_trangphuc }}</span></td>
+                                    <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-skin">Xem</a></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="link-color">Linh thú TFT</span></td>
+                                    <td><span>{{ $total_linhthu }}</span></td>
+                                    <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-animal">Xem</a></td>
+                                </tr>
+
+                                @if(isset($data->params))
+                                    @if(isset($data->params->rank_info) && count($data->params->rank_info))
+
+                                        @foreach($data->params->rank_info as $key_rank => $rank_info)
+                                            @if($rank_info->queueType == "RANKED_TFT")
+                                                <tr>
+                                                    <td><span class="link-color">RANKED TFT</span></td>
+                                                    <td><span>@if($rank_info->tier == "NONE")
+                                                                {{ $rank_info->tier }}
+                                                            @else
+                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                            @endif</span></td>
+                                                    <td></td>
+                                                </tr>
+                                            @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+
+                                                <tr>
+                                                    <td><span class="link-color">RANKED SOLO</span></td>
+                                                    <td><span>
+                                                    @if($rank_info->tier == "NONE")
+                                                                {{ $rank_info->tier }}
+                                                            @else
+                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                            @endif
+                                                    </span>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+
+                                    @endif
+                                @endif
+                            @else
+                            @endif
                             @if(isset($data->groups))
                                 <?php $att_values = $data->groups ?>
                                 @foreach($att_values as $att_value)
@@ -348,36 +481,24 @@
 
                     </div>
                 </div>
-                <div class="account-desc c-mt-16">
+                <div class="account-desc c-mt-16 detailViewBlock">
                     <h2 class="text-title-bold d-block d-lg-none c-mb-8">Chi tiết dịch vụ</h2>
                     <div class="card overflow-hidden">
                         <div class="card-body c-px-16">
-                            <h2 class="text-title-bold d-none d-lg-block c-mb-24">Chi tiết dịch vụ</h2>
-                            <div class="content-desc">
+                            <h2 class="text-title-bold d-none d-lg-block c-mb-24 detailViewBlockTitle">Chi tiết dịch vụ</h2>
+                            @if(substr($data->description, 1200))
+                            <div class="content-desc hide detailViewBlockContent">
+                            @else
+                            <div class="content-desc detailViewBlockContent">
+                            @endif
                                 {!! $data->description !!}
                             </div>
                         </div>
+                        @if(substr($data->description, 1200))
                         <div class="card-footer text-center">
-                            <span class="see-more open-sheet" data-content="Xem thêm nội dung" data-target="#sheet-description"></span>
+                            <span class="see-more open-sheet" data-content="Xem thêm nội dung" data-target="#sheet-view-more"></span>
                         </div>
-                    </div>
-                    <!-- handle bottom sheet -->
-                    <div class="bottom-sheet" id="sheet-description" aria-hidden="true" data-height="80">
-                        <div class="layer"></div>
-                        <div class="content-bottom-sheet bar-slide" >
-                            <div class="sheet-header">
-                                <h2 class="text-title center">
-                                    Chi tiết dịch vụ
-                                </h2>
-                                <label for="check-bottom-sheet" class="close"></label>
-                            </div>
-                            <div class="sheet-body">
-                                <!-- body -->
-                                <div>
-                                    {!! $data->description !!}
-                                </div>
-                            </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

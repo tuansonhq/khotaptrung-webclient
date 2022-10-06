@@ -32,7 +32,7 @@ $(document).ready(function () {
     //         },
     //     });
     // }
-    $('select').niceSelect();
+    $('select.wide').niceSelect();
     $('#modal-telecom').trigger('change');
 
     ele = $('select#modal-telecom option').first();
@@ -45,7 +45,7 @@ $(document).ready(function () {
         getAmount($(this).val());
     });
 
- 
+
 
     function getAmount(telecom){
         var url = '/ajax/get-amount-tele-card';

@@ -77,9 +77,13 @@
                                             <label class="text-form">Nhà cung cấp</label>
                                             <div class="col-md-12 p-0" >
                                                 <select class="select-form w-100" name="type" id="telecom">
-                                                     @foreach($data as $val)
-                                                        <option value="{{$val->key}}">{{$val->title}}</option>
-                                                    @endforeach
+                                                    @if(isset($data))
+                                                        @foreach($data as $val)
+                                                            <option value="{{$val->key}}">{{$val->title}}</option>
+                                                        @endforeach
+
+                                                    @endif
+
 
                                                 </select>
                                             </div>
@@ -164,6 +168,11 @@
                                                 </div>
 
 
+                                            </div>
+                                            <div class="row marginauto mt-2">
+                                                <div class="col-md-12 canhbao__napthe__col">
+                                                    <span>*Chú ý: Nạp thẻ sai mệnh giá mất 100% giá trị thẻ</span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="default-form-group mb-fix-20">
@@ -251,6 +260,11 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row marginauto mt-2">
+                                                <div class="col-md-12 canhbao__napthe__col">
+                                                    <span>*Chú ý: Nạp thẻ sai mệnh giá mất 100% giá trị thẻ</span>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="data_napthe_login">
                                             <a  class="primary-button button-default-ct w-100 mb-fix-20 text-center" onclick="openLoginModal();" style="float: right">
@@ -265,11 +279,7 @@
 
 
                                     </div>
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 canhbao__napthe__col">
-                                            <span>Nạp thẻ vui lòng trọn mệnh giá,trong trường hợp bạn không chọn mệnh giá rất có thể thẻ cào của bạn sẽ mất trận trọng!</span>
-                                        </div>
-                                    </div>
+
                                     @include('frontend.widget.modal.__confirm_charge')
                                 </div>
                             </form>

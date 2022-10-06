@@ -18,14 +18,14 @@
             <div class="content-banner container px-2" style="background-color: #363636">
                 <div class="content-banner-card" style="background-color: #1d1d1d">
                     <ul class="nav " role="tablist" >
-                        <li role="presentation" class="nav-item active" >
-                            <a  class="active" data-toggle="tab" href="#top_napthe" role="tab"  >
-                                TOP NẠP THẺ THÁNG 0{{Carbon\Carbon::now()->month}}
+                        <li role="presentation" class="nav-item " >
+                            <a  class="" data-toggle="tab" href="#top_napthe" role="tab"  >
+                                TOP NẠP THẺ THÁNG {{Carbon\Carbon::now()->month}}
                             </a>
                         </li>
-                        <li role="presentation" class="" >
+                        <li role="presentation" class="active" >
 
-                            <a  class="nav-item " data-toggle="tab" href="#napthe" role="tab"  >
+                            <a  class="nav-item active" data-toggle="tab" href="#napthe" role="tab"  >
                                 NẠP THẺ
 
                             </a>
@@ -33,14 +33,14 @@
                     </ul>
 
                     <div class="tab-content px-3" >
-                        <div class="tab-pane  fade show active" id="top_napthe">
+                        <div class="tab-pane  fade show " id="top_napthe">
                             <div class="content-banner-card-box">
                                 @include('frontend.widget.__top_nap_the')
 
 
                             </div>
                         </div>
-                        <div class="tab-pane  fade show " id="napthe">
+                        <div class="tab-pane  fade show active" id="napthe">
                             <div class="content-banner-card-form">
                                 @include('frontend.widget.__nap_the')
 {{--                                {!! widget('frontend.widget.__nap_the') !!}--}}
@@ -111,7 +111,28 @@
 
     </div>
 
-
+    @if(setting('sys_noti_popup') != '')
+        <div class="modal fade in" id="noticeModal">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông báo</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="font-family: helvetica, arial, sans-serif;">
+                        {!! setting('sys_noti_popup') !!}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-turnoff-noti btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase openModalNoti" data-dismiss="modal">Tắt trong 1h</button>
+                        <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/notification.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/top_charge/top_charge.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge_home.js?v={{time()}}"></script>
 

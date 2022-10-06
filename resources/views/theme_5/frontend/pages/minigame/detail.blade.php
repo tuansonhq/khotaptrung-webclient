@@ -50,11 +50,7 @@
                         <div class="rotation-header-mobile d-flex justify-content-between">
                             <div class="rotation-header c-pb-8">
                                 <h3 class="fw-700 fz-18 lh-24">{{$result->group->title}}</h3>
-                                @if(isset($result->group->params->fake_num_play))
-                                    <p class="fw-400 fz-13 mb-0">
-                                        <span id="userCount">{{ str_replace(',','.',number_format($result->group->params->fake_num_play)) }}</span> người đang chơi
-                                    </p>
-                                @endif
+                                <p class="fw-400 fz-13 mb-0"> <span class="userCount"></span> </p>
 
                             </div>
                             @if(isset($result->group->params->thele))
@@ -124,12 +120,10 @@
                                         <p class="fw-400 fz-13 mb-0 c_thele">Thể lệ <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/minigame_info.svg" alt=""></p>
                                     @endif
                                 </div>
-                                @if(isset($currentPlayList) && $currentPlayList != '')
-                                    <div class="rotation-player d-flex align-items-center">
-                                        <img class="c-mr-4" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/security-user1.svg" alt="">
-                                        <p class="fw-400 fz-13 mb-0"><span id="userCount">{{ str_replace(',','.',number_format($result->group->params->fake_num_play)) }}</span> người đang chơi</p>
-                                    </div>
-                                @endif
+                                <div class="rotation-player d-flex align-items-center">
+                                    <img class="c-mr-4" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/security-user1.svg" alt="">
+                                    <p class="fw-400 fz-13 mb-0"><span class="userCount"></span></p>
+                                </div>
                             </div>
                             <div class="rotation-header-sale d-flex align-items-start">
                                 {{--                                <div class="d-inline-flex align-items-center c-mr-10">--}}
