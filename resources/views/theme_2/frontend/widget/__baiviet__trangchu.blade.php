@@ -10,11 +10,11 @@
                     <div class="bg item-image">
                         @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
                         <a href="/blog/{{ $item->slug }}">
-                            <img class="img-fluid" src="{{\App\Library\MediaHelpers::media($item->image)}}" title="{{$item->title}}">
+                            <img class="img-fluid lazy" data-src="{{\App\Library\MediaHelpers::media($item->image)}}" title="{{$item->title}}">
                         </a>
                         @else
                             <a href="/tin-tuc/{{ $item->slug }}">
-                                <img class="img-fluid" src="{{\App\Library\MediaHelpers::media($item->image)}}" title="{{$item->title}}">
+                                <img class="img-fluid lazy" data-src="{{\App\Library\MediaHelpers::media($item->image)}}" title="{{$item->title}}">
                             </a>
                         @endif
                     </div>

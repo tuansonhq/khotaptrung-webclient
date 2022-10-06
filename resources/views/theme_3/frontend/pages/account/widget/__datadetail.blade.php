@@ -135,6 +135,109 @@
                                                                 <?php
                                                                 $total = 0;
                                                                 ?>
+
+                                                                @if(isset($game_auto_props) && count($game_auto_props))
+
+                                                                    @php
+                                                                        $total_tuong = 0;
+                                                                        $total_bieucam = 0;
+                                                                        $total_chuongluc = 0;
+                                                                        $total_sandau = 0;
+                                                                        $total_linhthu = 0;
+                                                                        $total_trangphuc = 0;
+                                                                        $total_thongtinchung = 0;
+
+                                                                        if(isset($game_auto_props) && count($game_auto_props)){
+                                                                            foreach($game_auto_props as $game_auto_prop){
+                                                                                if($game_auto_prop->key == 'champions'){
+                                                                                    $total_tuong = $total_tuong + 1;
+                                                                                    if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
+                                                                                        foreach($game_auto_prop->childs as $c_child){
+                                                                                            $total_trangphuc = $total_trangphuc + 1;
+                                                                                        }
+                                                                                    }
+                                                                                }elseif ($game_auto_prop->key == 'emotes'){
+                                                                                    $total_bieucam = $total_bieucam + 1;
+                                                                                }elseif ($game_auto_prop->key == 'tftdamageskins'){
+                                                                                    $total_chuongluc = $total_chuongluc + 1;
+                                                                                }elseif ($game_auto_prop->key == 'tftmapskins'){
+                                                                                    $total_sandau = $total_sandau + 1;
+                                                                                }elseif ($game_auto_prop->key == 'tftcompanions'){
+                                                                                    $total_linhthu = $total_linhthu + 1;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    @endphp
+                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                        <div class="col-auto gallery-col-auto-left left-right">
+                                                                            <small>Tướng</small>
+                                                                        </div>
+                                                                        <div class="col-auto gallery-col-auto-right left-right d-flex justify-content-between">
+                                                                            <span>{{ $total_tuong }}</span>
+                                                                            <span class="see-modal-acc" id="show-modal-champ">Xem</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                        <div class="col-auto gallery-col-auto-left left-right">
+                                                                            <small>Trang phục</small>
+                                                                        </div>
+                                                                        <div class="col-auto gallery-col-auto-right left-right d-flex justify-content-between">
+                                                                            <span>{{ $total_trangphuc }}</span>
+                                                                            <span class="see-modal-acc" id="show-modal-skin">Xem</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span ">
+                                                                        <div class="col-auto gallery-col-auto-left left-right">
+                                                                            <small>Linh thú TFT</small>
+                                                                        </div>
+                                                                        <div class="col-auto gallery-col-auto-right left-right  d-flex justify-content-between">
+                                                                            <span>{{ $total_linhthu }}</span>
+                                                                            <span class="see-modal-acc" id="show-modal-animal">Xem</span>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    @if(isset($data->params))
+                                                                        @if(isset($data->params->rank_info) && count($data->params->rank_info))
+
+                                                                            @foreach($data->params->rank_info as $key_rank => $rank_info)
+                                                                                @if($rank_info->queueType == "RANKED_TFT")
+                                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                        <div class="col-auto gallery-col-auto-left left-right">
+                                                                                            <small>RANKED TFT</small>
+                                                                                        </div>
+                                                                                        <div class="col-auto gallery-col-auto-right left-right">
+                                                                                            <span>
+                                                                                                @if($rank_info->tier == "NONE")
+                                                                                                    {{ $rank_info->tier }}
+                                                                                                @else
+                                                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                                                @endif
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                        <div class="col-auto gallery-col-auto-left left-right">
+                                                                                            <small>RANKED SOLO</small>
+                                                                                        </div>
+                                                                                        <div class="col-auto gallery-col-auto-right left-right">
+                                                                                            <span>
+                                                                                                @if($rank_info->tier == "NONE")
+                                                                                                    {{ $rank_info->tier }}
+                                                                                                @else
+                                                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                                                @endif
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endif
+                                                                            @endforeach
+
+                                                                        @endif
+                                                                    @endif
+
+                                                                @else
+                                                                @endif
                                                                 @if(isset($data->groups))
                                                                     <?php $att_values = $data->groups ?>
                                                                     @foreach($att_values as $att_value)
@@ -407,7 +510,78 @@
                                                                         <span>Thông tin acc</span>
                                                                     </div>
                                                                 </div>
+                                                                @if(isset($game_auto_props) && count($game_auto_props))
+                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                        <div class="col-auto gallery-col-auto-left left-right">
+                                                                            <small>Tướng</small>
+                                                                        </div>
+                                                                        <div class="col-auto gallery-col-auto-right left-right d-flex justify-content-between">
+                                                                            <span>{{ $total_tuong }}</span>
+                                                                            <span class="see-modal-acc" id="show-modal-champ">Xem</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                        <div class="col-auto gallery-col-auto-left left-right">
+                                                                            <small>Trang phục</small>
+                                                                        </div>
+                                                                        <div class="col-auto gallery-col-auto-right left-right d-flex justify-content-between">
+                                                                            <span>{{ $total_trangphuc }}</span>
+                                                                            <span class="see-modal-acc" id="show-modal-skin">Xem</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span ">
+                                                                        <div class="col-auto gallery-col-auto-left left-right">
+                                                                            <small>Linh thú TFT</small>
+                                                                        </div>
+                                                                        <div class="col-auto gallery-col-auto-right left-right  d-flex justify-content-between">
+                                                                            <span>{{ $total_linhthu }}</span>
+                                                                            <span class="see-modal-acc" id="show-modal-animal">Xem</span>
+                                                                        </div>
+                                                                    </div>
 
+                                                                    @if(isset($data->params))
+                                                                        @if(isset($data->params->rank_info) && count($data->params->rank_info))
+
+                                                                            @foreach($data->params->rank_info as $key_rank => $rank_info)
+                                                                                @if($rank_info->queueType == "RANKED_TFT")
+                                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                        <div class="col-auto gallery-col-auto-left left-right">
+                                                                                            <small>RANKED TFT</small>
+                                                                                        </div>
+                                                                                        <div class="col-auto gallery-col-auto-right left-right">
+                                                                                            <span>
+                                                                                                @if($rank_info->tier == "NONE")
+                                                                                                    {{ $rank_info->tier }}
+                                                                                                @else
+                                                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                                                @endif
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                        <div class="col-auto gallery-col-auto-left left-right">
+                                                                                            <small>RANKED SOLO</small>
+                                                                                        </div>
+                                                                                        <div class="col-auto gallery-col-auto-right left-right">
+                                                                                            <span>
+                                                                                                @if($rank_info->tier == "NONE")
+                                                                                                    {{ $rank_info->tier }}
+                                                                                                @else
+                                                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                                                @endif
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endif
+                                                                            @endforeach
+
+                                                                        @endif
+                                                                    @endif
+
+                                                                @else
+
+                                                                @endif
                                                                 {{--                                                    bat dau vonh lap   --}}
                                                                 @if(isset($data->groups))
                                                                     <?php $att_values = $data->groups ?>

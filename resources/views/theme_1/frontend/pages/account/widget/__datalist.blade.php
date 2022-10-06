@@ -639,22 +639,6 @@
 
                                             @foreach($item->params->rank_info as $rank_info)
                                                 @if($rank_info->queueType == "RANKED_TFT")
-                                                    {{--<!--                                                        --><?php--}}
-                                                    {{--//                                                            $total = $total + 1;--}}
-                                                    {{--//                                                        ?>--}}
-                                                    {{--                                                        <div class="row" style="margin: 0 auto;width: 100%">--}}
-                                                    {{--                                                            <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">--}}
-                                                    {{--                                                                RANKED TFT :--}}
-                                                    {{--                                                            </div>--}}
-                                                    {{--                                                            <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">--}}
-                                                    {{--                                                                                                                                                        {{ $param??null }}--}}
-                                                    {{--                                                                @if($rank_info->tier == "NONE")--}}
-                                                    {{--                                                                    {{ $rank_info->tier }}--}}
-                                                    {{--                                                                @else--}}
-                                                    {{--                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}--}}
-                                                    {{--                                                                @endif--}}
-                                                    {{--                                                            </div>--}}
-                                                    {{--                                                        </div>--}}
                                                 @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
                                                     <?php
                                                     $total = $total + 1;
@@ -676,18 +660,6 @@
                                             @endforeach
                                         @endif
                                         @if(isset($item->params->rank_level))
-                                            {{--                                                    <?php--}}
-                                            {{--                                                    $total = $total + 1;--}}
-                                            {{--                                                    ?>--}}
-                                            {{--                                                <div class="row" style="margin: 0 auto;width: 100%">--}}
-                                            {{--                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">--}}
-                                            {{--                                                        Level :--}}
-                                            {{--                                                    </div>--}}
-                                            {{--                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">--}}
-                                            {{--                                                                                                                                                {{ $param??null }}--}}
-                                            {{--                                                        {{ $item->params->rank_level }}--}}
-                                            {{--                                                    </div>--}}
-                                            {{--                                                </div>--}}
                                         @endif
                                         @if(isset($item->params->count))
                                             @if(isset($item->params->count->champions))

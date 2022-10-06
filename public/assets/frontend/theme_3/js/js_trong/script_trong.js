@@ -26,8 +26,6 @@ $('.js-amount').on('click', function () {
     $('input[name=card-amount]').trigger('input');
 });
 
-$('select').niceSelect();
-
 // Coppy text vào bộ nhớ
 $('.js-copy-text').on('click', function () {
     let text_value = $(this).parent().find('.card__info').text().trim();
