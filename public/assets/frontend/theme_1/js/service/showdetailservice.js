@@ -36,6 +36,10 @@ $(document).ready(function(){
 
     $('body').on('click','#btnPurchase',function(e){
         e.preventDefault();
+        if (!auth_check) {
+            window.location.href =  '/login';
+            return
+        }
         var selected = $('[name="selected"]').val();
 
         if (selected == null || selected == '' || selected == undefined){
