@@ -55,7 +55,9 @@
                                     @if(isset($item->params->image_view_all))
                                         <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}" alt="" class="lazy">
                                     @else
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/images/muangay.jpg" alt="">
+                                        <div class="custom-showmore">
+                                           Chơi ngay
+                                        </div>
                                     @endif
                                 </a>
                             </div>

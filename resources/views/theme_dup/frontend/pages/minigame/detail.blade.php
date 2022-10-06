@@ -653,10 +653,12 @@
                                                     <div class="item_play_dif_slide_more">
                                                         <div class="item_play_dif_slide_more_view" >
                                                             <a href="{{route('getIndex',[$item->slug])}}">
-                                                                @if(isset($item->params->image_percent_sale) && $item->params->image_percent_sale!=null)
+                                                                @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                                     <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    Quay ngay
+                                                                    <div class="custom-showmore">
+                                                                        Chơi ngay
+                                                                    </div>
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -809,7 +811,9 @@
                                                                 @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                                     <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    Quay ngay
+                                                                    <div class="custom-showmore">
+                                                                        Chơi ngay
+                                                                    </div>
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -998,7 +1002,9 @@
                                                                 @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                                     <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    Quay ngay
+                                                                    <div class="custom-showmore">
+                                                                        Chơi ngay
+                                                                    </div>
                                                                 @endif
                                                             </a>
                                                         </div>

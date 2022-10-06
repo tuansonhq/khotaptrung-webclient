@@ -2626,10 +2626,10 @@ footer{
     text-align: center;
     font-size: 16px;
     font-weight: bold;
-    color: #ef282b;
     outline: 0;
-    background: #ffffff;
-    border: 1px #ef282b solid;
+    color: white;
+    border: 2px #FED587 solid;
     border-radius: 5px;
     text-transform: uppercase;
+    background: #8f0d11
 }
