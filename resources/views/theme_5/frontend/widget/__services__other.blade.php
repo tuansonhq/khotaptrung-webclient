@@ -6,8 +6,8 @@
     </div>
 </div>
 
-<div class="menu-category media-web c-mb-32 services-other">
-    <ul class="d-flex justify-content-between px-0 menu-category_fixm ">
+<div class="menu-category media-web c-mb-32 services-other service-other-swiper">
+    <ul class="d-flex justify-content-between px-0 menu-category_fixm">
         @foreach($data as $item)
         <li class="w-100 c-px-8">
             @if(isset($item->target))

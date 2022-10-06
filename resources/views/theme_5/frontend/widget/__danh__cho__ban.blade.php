@@ -1,4 +1,4 @@
-<section class="section-category-tab c-pt-12 c-pt-lg-6 c-pb-12 c-pb-lg-6">
+<section class="section-category-tab c-pt-32 c-pt-lg-24 c-pb-lg-6">
     <div class="section-header c-mb-20 c-mb-lg-16 justify-content-between">
         <h2 class="section-title c-py-lg-8">
 
@@ -574,3 +574,4 @@
     </div>
 
 </section>
+<div class="c-pt-8 border-bottom-destop c-pt-lg-2"></div>

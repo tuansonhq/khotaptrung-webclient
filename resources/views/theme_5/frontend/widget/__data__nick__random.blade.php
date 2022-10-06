@@ -8,7 +8,7 @@
             }
         @endphp
 
-        <section class="acc-game c-pt-12 c-pb-12 c-pt-lg-6 c-pb-lg-6">
+        <section class="acc-game c-pt-32 c-pt-lg-24 c-pb-lg-6">
             <div class="section-header c-mb-24 c-mb-lg-16 justify-content-between">
                 <h2 class="section-title fz-lg-15 lh-lg-24">
                     @if(isset($items->image_icon) || isset($items->custom->image_icon))
@@ -249,5 +249,6 @@
                 </div>
             @endif
         </section>
+        <div class="c-pt-8 border-bottom-destop"></div>
     @endforeach
 @endif

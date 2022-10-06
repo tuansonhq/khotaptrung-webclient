@@ -1,6 +1,6 @@
 
 @if(isset($data) && count($data) > 0)
-    <section class="section-related-service c-mt-12 c-mt-lg-6 c-mb-12 c-mb-lg-6 media-web">
+    <section class="section-related-service c-pt-32 c-mt-lg-6 c-mb-lg-6 media-web">
         <div class="section-header c-mb-8 c-mb-lg-16 justify-content-between">
             <h2 class="section-title fz-lg-15 lh-lg-24">
                 <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/acc-game.svg)"></i>
@@ -81,7 +81,7 @@
             <div class="navigation slider-prev"></div>
         </div>
     </section>
-    <section class="acc-game-v2 media-mobile c-mt-12 c-mt-lg-6 c-mb-12 c-mb-lg-6">
+    <section class="acc-game-v2 media-mobile c-mt-12 c-mt-lg-24 c-mb-12 c-mb-lg-6">
         <div class="section-header c-mb-24 c-mb-lg-20 justify-content-between">
             <h2 class="section-title fz-lg-20 lh-lg-24">
                 <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/acc-game.svg)"></i>
@@ -125,4 +125,6 @@
             <span class="see-more-nick" data-content="Xem thêm nội dung"></span>
         </div>
     </section>
+    <div class="c-pt-8 border-bottom-destop c-pt-lg-16"></div>
+
 @endif

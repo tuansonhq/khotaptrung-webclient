@@ -1,3 +1,4 @@
+@dd($data)
 @if(isset($data))
     @if($data->status == 1)
 
