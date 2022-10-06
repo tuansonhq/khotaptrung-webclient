@@ -120,11 +120,37 @@
             @endif
             @include('frontend.widget.__dich__vu__noi__bat')
 
+            @if(setting('sys_theme_ver_page_build') != '')
+
+
+                @php
+                    $dat = explode(',',setting('sys_theme_ver_page_build'));
+                    $data_title = null;
+                    $data_widget = null;
+                    foreach($dat as $key => $it){
+                        if ($key == 0){
+                            $data_title = explode('|',$it);
+                        }else{
+                            $data_widget = explode('|',$it);
+                        }
+                    }
+                @endphp
+
+                <div class="container container-fix">
+                    @foreach($data_widget as $key => $value)
+                        @include('frontend.widget.'.$value.'',with(['title'=>$data_title[$key]]))
+                    @endforeach
+                </div>
+
+            @else
+
             @include('frontend.widget.__content__home__game')
 
             @include('frontend.widget.__content__home__dichvu')
 
             @include('frontend.widget.__content__home__minigame')
+
+            @endif
 
 
             <div class="content-video intro_text" id="lockmoney_taget">
