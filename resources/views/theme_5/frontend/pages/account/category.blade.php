@@ -65,32 +65,38 @@
             <div class="list-service">
             @if(isset($data) && count($data))
                 @foreach($data as $item)
-                <div class="item-service js-service">
-                    <div class="card card-hover">
-                        <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="card-body scale-thumb c-p-16 c-p-lg-12">
-                            <div class="account-thumb c-mb-8">
-                                <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="account-thumb-image lazy" onerror="imgError(this)">
-                            </div>
-                            <div class="account-title">
-                                <div class="text-title fw-700 text-limit limit-1">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</div>
-                            </div>
-                            <div class="account-info">
-                                <div class="info-attr">
-                                    @if(isset($item->items_count))
-                                        @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
-                                            Đã bán: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }}
-                                        @else
-                                            Đã bán: {{ $item->items_count }}
-                                        @endif
-
-                                    @else
-                                        Đã bán: 9999
-                                    @endif
+                    @if ($item->display_type == 2)
+                    <div class="item-service js-service randomAccountItem">
+                    @elseif ($item->display_type == 1)
+                    <div class="item-service js-service normalAccountItem">
+                    @else
+                    <div class="item-service js-service">
+                    @endif
+                        <div class="card card-hover">
+                            <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="card-body scale-thumb c-p-16 c-p-lg-12">
+                                <div class="account-thumb c-mb-8">
+                                    <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="account-thumb-image lazy" onerror="imgError(this)">
                                 </div>
-                            </div>
-                        </a>
+                                <div class="account-title">
+                                    <div class="text-title fw-700 text-limit limit-1">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</div>
+                                </div>
+                                <div class="account-info">
+                                    <div class="info-attr">
+                                        @if(isset($item->items_count))
+                                            @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
+                                                Đã bán: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }}
+                                            @else
+                                                Đã bán: {{ $item->items_count }}
+                                            @endif
+
+                                        @else
+                                            Đã bán: 9999
+                                        @endif
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </div>
                 @endforeach
                 <div class="col-12  text-center my-3" id="text-empty" style="display: none">
                     <span class="text-danger">Không có kết quả nào phù hợp</span>
