@@ -33,7 +33,7 @@
                                     <li>/</li>
                                     <li>
                                         @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                                        <a href="/blog" class="news_breadcrumbs_theme_tintuc_a"><h3 class="news_breadcrumbs_theme_tintuc">Blog</h3></a>
+                                        <a href="{{ setting('sys_zip_shop') }}" class="news_breadcrumbs_theme_tintuc_a"><h3 class="news_breadcrumbs_theme_tintuc">Tin tức</h3></a>
                                         @else
                                             <a href="/tin-tuc" class="news_breadcrumbs_theme_tintuc_a"><h3 class="news_breadcrumbs_theme_tintuc">Tin tức</h3></a>
                                         @endif
@@ -41,7 +41,7 @@
                                     <li>/</li>
                                     <li>
                                         @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                                        <a href="/blog/{{ $title->slug }}" class="news_breadcrumbs_theme_title_a"><h1 class="news_breadcrumbs_theme_title">{{ $title->title }}</h1></a>
+                                        <a href="{{ setting('sys_zip_shop') }}/{{ $title->slug }}" class="news_breadcrumbs_theme_title_a"><h1 class="news_breadcrumbs_theme_title">{{ $title->title }}</h1></a>
                                         @else
                                             <a href="/tin-tuc/{{ $title->slug }}" class="news_breadcrumbs_theme_title_a"><h1 class="news_breadcrumbs_theme_title">{{ $title->title }}</h1></a>
                                         @endif
@@ -64,7 +64,7 @@
                                         <div class="col-md-4">
                                             <input type="submit" class="btn btn-news" value="Tìm kiếm">
                                             @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                                            <a href="/blog" class="btn btn-danger">Tất Cả</a>
+                                            <a href="{{ setting('sys_zip_shop') }}" class="btn btn-danger">Tất Cả</a>
                                             @else
                                                 <a href="/tin-tuc" class="btn btn-danger">Tất Cả</a>
                                             @endif

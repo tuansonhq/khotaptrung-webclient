@@ -4,7 +4,7 @@
         @if($item->url == "/tin-tuc")
             @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
                 <li>
-                    <a @foreach ($data as $key_child => $child_item) @if ($item->id == $child_item->parent_id) data-toggle="collapse" class="nav_mobile-collapse" href="#menuchild_item" role="button" aria-expanded="true" aria-controls="collapseExample"  @else href="/blog" @endif  @endforeach @if($item->target==1) target="_blank" @endif>{{$item->title}}</a>
+                    <a @foreach ($data as $key_child => $child_item) @if ($item->id == $child_item->parent_id) data-toggle="collapse" class="nav_mobile-collapse" href="#menuchild_item" role="button" aria-expanded="true" aria-controls="collapseExample"  @else href="{{ setting('sys_zip_shop') }}" @endif  @endforeach @if($item->target==1) target="_blank" @endif>{{$item->title}}</a>
                 </li>
             @else
                 <li>

@@ -10,7 +10,7 @@
                         </a>
                     @else
                         @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                            <a href="/blog/{{ $item->slug }}">
+                            <a href="{{ setting('sys_zip_shop') }}/{{ $item->slug }}">
                                 <img src="{{\App\Library\MediaHelpers::media($item->image)}}" class="lazy" alt="">
                             </a>
                         @else
@@ -29,7 +29,7 @@
                             <a target="_blank" href="{{ $item->url_redirect_301 }}"> {{ $item->title }} </a>
                         @else
                             @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                            <a href="/blog/{{ $item->slug }}"> {{ $item->title }} </a>
+                            <a href="{{ setting('sys_zip_shop') }}/{{ $item->slug }}"> {{ $item->title }} </a>
                             @else
                                 <a href="/tin-tuc/{{ $item->slug }}"> {{ $item->title }} </a>
                             @endif

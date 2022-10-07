@@ -9,7 +9,7 @@
                 <div class="media-placeholder ratio-2-1">
                     <div class="bg item-image">
                         @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                        <a href="/blog/{{ $item->slug }}">
+                        <a href="{{ setting('sys_zip_shop') }}/{{ $item->slug }}">
                             <img class="img-fluid" src="{{\App\Library\MediaHelpers::media($item->image)}}" title="{{$item->title}}">
                         </a>
                         @else
@@ -22,7 +22,7 @@
             </div>
             <div class="item-content">
                 @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                <h6 class="item-title"><a href="/blog/{{ $item->slug }}">{{ $item->title }}</a></h6>
+                <h6 class="item-title"><a href="{{ setting('sys_zip_shop') }}/{{ $item->slug }}">{{ $item->title }}</a></h6>
                 @else
                     <h6 class="item-title"><a href="/tin-tuc/{{ $item->slug }}">{{ $item->title }}</a></h6>
                 @endif

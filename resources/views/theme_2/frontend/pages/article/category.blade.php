@@ -29,7 +29,7 @@
             <ul class="nav nav-line">
                 <li class="nav-item">
                     @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                    <a href="/blog" class="nav-link">Tin tức chung</a>
+                    <a href="{{ setting('sys_zip_shop') }}" class="nav-link">Tin tức chung</a>
                     @else
                         <a href="/tin-tuc" class="nav-link">Tin tức chung</a>
                     @endif
@@ -39,7 +39,7 @@
             <div>
                 <div class="input-group input-group-search">
                     @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                    <form action="/blog" method="get" class="form_new input-group input-group-search">
+                    <form action="{{ setting('sys_zip_shop') }}" method="get" class="form_new input-group input-group-search">
                         <input name="querry" type="text" value="" placeholder="Từ khóa" class="form-control btn_new">
                         <button class="btn bg-transparent text-secondary" type="submit"><i class="las la-search"></i></button>
                     </form>
