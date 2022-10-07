@@ -186,20 +186,3 @@ var product_hotgames = new Swiper('.swiper-weekly-hot-games', {
 });
 
 
-/* js swiper dich vu lien quan */
-var service_other = new Swiper('.service-other-swiper', {
-    autoplay: false,
-    updateOnImagesReady: true,
-    watchSlidesVisibility: false,
-    lazyLoadingInPrevNext: false,
-    lazyLoadingOnTransitionStart: false,
-    loop: false,
-    slidesPerView: 6,
-    speed: 500,
-    spaceBetween: 20,
-    freeMode: true,
-    touchMove: true,
-    grabCursor: true,
-    observer: true,
-    observeParents: true,
-});

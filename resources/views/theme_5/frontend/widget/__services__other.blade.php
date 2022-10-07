@@ -1,7 +1,4 @@
 @if(isset($data) && count($data) > 0)
-@section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/style.js"></script>
-@endsection
 <div class="section-header c-mb-16 c-pt-12 c-pt-lg-8 media-web services-other-title">
     <div class="section-title fz-lg-20 lh-lg-24">
         {{ $title??'Dịch vụ liên quan' }}
