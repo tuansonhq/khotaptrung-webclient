@@ -163,6 +163,8 @@
         .content-advertise .container{
             border: 1px solid {{setting('sys_theme_color_text')}};
         }
+
+
     </style>
 
 @endif
