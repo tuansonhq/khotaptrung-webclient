@@ -5,9 +5,6 @@
 @section('meta_robots')
     <meta name="robots" content="index,follow" />
 @endsection
-@section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/style.js"></script>
-@endsection
 @section('content')
     <div class="container c-container" id="account-category">
         <ul class="breadcrumb-list">

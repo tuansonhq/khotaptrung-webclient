@@ -194,34 +194,12 @@ var service_other = new Swiper('.service-other-swiper', {
     lazyLoadingInPrevNext: false,
     lazyLoadingOnTransitionStart: false,
     loop: false,
-    centeredSlides: false,
     slidesPerView: 6,
-    slidesPerGroup: 3,
     speed: 500,
     spaceBetween: 20,
     freeMode: true,
-    velocityRatio: 20,
     touchMove: true,
-    freeModeSticky:true,
     grabCursor: true,
     observer: true,
     observeParents: true,
-    keyboard: {
-        enabled: true,
-    },
-    breakpoints: {
-        1024: {
-            slidesPerView: 6,
-        },
-        992: {
-            slidesPerView: 6,
-        },
-
-        768: {
-            slidesPerView: 5,
-        },
-        480: {
-            slidesPerView: 3.5,
-        }
-    }
 });
