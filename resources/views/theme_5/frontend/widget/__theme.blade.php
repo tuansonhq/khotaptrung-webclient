@@ -218,8 +218,13 @@
         .leaderboard-item:nth-child(odd) {
             background-color:  {{setting('sys_theme_color_disable')}}   ;
         }
+        .footer-default-two,.link-footer {
+            background: {{setting('sys_theme_color_disable')}} ;
 
-
+        }
+        .atm-recharge-left, .atm-recharge-right {
+            background-color: {{setting('sys_theme_color_disable')}};
+        }
     </style>
 
 
@@ -228,6 +233,12 @@
     <style>
         :root{
             --text-color: {{setting('sys_theme_color_text')}};
+        }
+        .footer-default-two li a {
+            color: {{setting('sys_theme_color_text')}};
+        }
+        .text-title-theme {
+            color: {{setting('sys_theme_color_text')}};
         }
     </style>
 
@@ -286,6 +297,9 @@
             background-color:  {{setting('sys_theme_color_click')}};
         }
         .menu-category a .active {
+            background-color: {{setting('sys_theme_color_click')}};
+        }
+        .leaderboard-items {
             background-color: {{setting('sys_theme_color_click')}};
         }
     </style>
