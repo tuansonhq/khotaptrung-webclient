@@ -16,12 +16,7 @@
                 <a href="/" class="breadcrum--link">Trang chủ</a>
             </li>
             <li class="breadcrum--item">
-                @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                <a href="" class="breadcrum--link">Blog</a>
-
-                @else
-                    <a href="" class="breadcrum--link">Tin tức</a>
-                @endif
+                <a href="#" class="breadcrum--link">Tin tức</a>
             </li>
             <li class="breadcrum--item">
                 <a href="" class="breadcrum--link">{{ $title->title??'' }}</a>
@@ -30,7 +25,7 @@
         {{--content--}}
         <div class="card--mobile__title">
             @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-            <a href="/blog" class="card--back">
+            <a href="{{ setting('sys_zip_shop') }}" class="card--back">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
             </a>
             @else
@@ -92,7 +87,7 @@
                                             <div class="col-4 col-lg-4 p-0">
                                                 <div class="article--thumbnail">
                                                     @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                                                    <a href="/blog/{{ $item->slug }}">
+                                                    <a href="{{ setting('sys_zip_shop') }}/{{ $item->slug }}">
                                                         <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="article--thumbnail__image">
                                                     </a>
                                                     @else
@@ -105,7 +100,7 @@
                                             <div class="col-8 col-lg-8 article--info">
                                                 <div class="article--title mb-3 mb-lg-0">
                                                     @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                                                    <a href="/blog/{{ $item->slug }}" class="article--title__link">
+                                                    <a href="{{ setting('sys_zip_shop') }}/{{ $item->slug }}" class="article--title__link">
                                                         {{ $item->title }}
                                                     </a>
                                                     @else

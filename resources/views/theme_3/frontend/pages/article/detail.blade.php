@@ -41,10 +41,11 @@
             </li>
             <li class="breadcrum--item">
                 @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                <a href="/blog" class="breadcrum--link">Blog</a>
+                    <a href="{{ setting('sys_zip_shop') }}" class="breadcrum--link">Tin tức</a>
                 @else
                     <a href="/tin-tuc" class="breadcrum--link">Tin tức</a>
                 @endif
+
             </li>
             <li class="breadcrum--item">
                 <a href="javascript:void(0)" class="breadcrum--link">{{$data -> title}}</a>
@@ -52,14 +53,17 @@
         </ul>
         {{--content--}}
         <div class="card--mobile__title">
-            <a href="/tin-tuc" class="card--back">
-                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
-            </a>
             @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-            <p>Chi tiết tin tức</p>
+                <a href="{{ setting('sys_zip_shop') }}" class="card--back">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
+                </a>
             @else
-                <p>Chi tiết blog</p>
+                <a href="/tin-tuc" class="card--back">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
+                </a>
             @endif
+
+            <p>Chi tiết tin tức</p>
         </div>
         <div class="row mb-0 mb-lg-3">
             <div class="col-12 col-lg-9" id="article-detail-left">

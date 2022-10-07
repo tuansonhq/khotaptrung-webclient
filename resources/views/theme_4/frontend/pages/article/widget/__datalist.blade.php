@@ -9,7 +9,7 @@
                                 <a target="_blank" href="{{ $item->url_redirect_301 }}"><img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}"></a>
                             @else
                                 @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                                <a href="/blog/{{ $item->slug }}"><img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}"></a>
+                                <a href="{{ setting('sys_zip_shop') }}/{{ $item->slug }}"><img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}"></a>
                                 @else
                                     <a href="/tin-tuc/{{ $item->slug }}"><img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}"></a>
                                 @endif
@@ -23,7 +23,7 @@
                                         <a target="_blank" href="{{ $item->url_redirect_301 }}" style="text-transform: initial;">{{ $item->title }}</a>
                                     @else
                                         @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                                        <a href="/blog/{{ $item->slug }}" style="text-transform: initial;">{{ $item->title }}</a>
+                                        <a href="{{ setting('sys_zip_shop') }}/{{ $item->slug }}" style="text-transform: initial;">{{ $item->title }}</a>
                                         @else
                                             <a href="/tin-tuc/{{ $item->slug }}" style="text-transform: initial;">{{ $item->title }}</a>
                                         @endif
@@ -47,7 +47,7 @@
                                 <div style="display: inline-block">
                                     <i class="far fa-newspaper" aria-hidden="true"></i>
                                     @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                                    <a href="/blog/{{ $item->groups[0]->slug }}" title="Hướng dẫn">{{ $item->groups[0]->title }}</a>
+                                    <a href="{{ setting('sys_zip_shop') }}/{{ $item->groups[0]->slug }}" title="Hướng dẫn">{{ $item->groups[0]->title }}</a>
                                     @else
                                         <a href="/tin-tuc/{{ $item->groups[0]->slug }}" title="Hướng dẫn">{{ $item->groups[0]->title }}</a>
                                     @endif

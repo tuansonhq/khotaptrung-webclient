@@ -5,7 +5,7 @@
                 <div class="article mb-3">
                     <div class="article--thumbnail">
                         @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                        <a href="/blog/{{ $item->slug }}">
+                        <a href="{{ setting('sys_zip_shop') }}/{{ $item->slug }}">
                             <img onerror="imgError(this)"
                                 src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                 alt="" class="article--thumbnail__image">
@@ -20,7 +20,7 @@
                     </div>
                     <div class="article--title my-3">
                         @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                        <a href="/blog/{{ $item->slug }}" class="article--title__link">
+                        <a href="{{ setting('sys_zip_shop') }}/{{ $item->slug }}" class="article--title__link">
                             {{ $item->title}}
                         </a>
                         @else
