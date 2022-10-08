@@ -1140,7 +1140,7 @@
 
     @switch($position)
         @case('rubywheel')
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/rubywheel.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/rubywheel.js?v={{time()}}"></script>
         @break
         @case('flip')
         <style type="text/css">
@@ -1158,14 +1158,14 @@
                 }
             }
         </style>
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/flip.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/flip.js?v={{time()}}"></script>
         @foreach($result->group->items as $item)
             <input type="hidden" class="image_gift"
                    value="{{ \App\Library\MediaHelpers::media($item->parrent->image) }}">
         @endforeach
         @break
         @case('slotmachine')
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine.js?v={{time()}}"></script>
         <style>
             @php
     $count = 0;
@@ -1232,7 +1232,7 @@
         </style>
         @break
         @case('slotmachine5')
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine5.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine5.js?v={{time()}}"></script>
         <style>
             @php
     $count = 0;
@@ -1315,7 +1315,7 @@
         @case('smashwheel')
         @case('rungcay')
         @case('gieoque')
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/smashwheel.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/smashwheel.js?v={{time()}}"></script>
         @break
     @endswitch
 @endsection
