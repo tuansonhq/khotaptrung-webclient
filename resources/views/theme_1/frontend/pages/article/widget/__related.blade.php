@@ -13,7 +13,7 @@
                                 <div class="item_play_dif_slide_detail_in_active item_play_dif_slide_detail_in_active__size">
                                     <div class="item_play_dif_slide_img">
                                         @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                                        <a href="/blog/{{ $item->slug }}">
+                                        <a href="{{ setting('sys_zip_shop') }}/{{ $item->slug }}">
                                             @if(isset($item->image))
                                                 <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt=""  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
                                             @else

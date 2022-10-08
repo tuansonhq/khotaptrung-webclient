@@ -32,12 +32,18 @@
                     <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
                     <li class="breadcrumb-item">
                         @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                        <a href="/blog">Blog</a>
+                        <a href="{{ setting('sys_zip_shop') }}">Tin tức</a>
                         @else
                             <a href="/tin-tuc">Tin tức</a>
                         @endif
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="/tin-tuc/{{ $title->slug }}">{{ $title->title }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                        <a href="{{ setting('sys_zip_shop') }}/{{ $title->slug }}">{{ $title->title }}</a>
+                        @else
+                            <a href="/tin-tuc/{{ $title->slug }}">{{ $title->title }}</a>
+                        @endif
+                    </li>
                 </ol>
             </nav>
 

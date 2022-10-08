@@ -58,9 +58,8 @@ $(document).ready(function () {
         loadDataTable(query);
     });
 
-    $(document).on('click', '.buy-random-acc',function (e){
+    $('body').on('click', '.buy-random-acc',function (e){
         e.preventDefault();
-        console.log(1111111111)
         let id = $(this).data("id");
         var html = $('.formDonhangAccount' + id + '').html();
 
