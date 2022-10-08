@@ -10,7 +10,7 @@
                     <a href="/" class="breadcrumb-link">Trang chủ</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="/lich-su-mua-nick" class="breadcrumb-link">Tài khoản trả góp</a>
+                    <a href="/lich-su-mua-account" class="breadcrumb-link">Tài khoản trả góp</a>
                 </li>
             </ul>
 

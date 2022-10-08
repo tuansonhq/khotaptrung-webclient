@@ -56,6 +56,7 @@ function loadDataTable(query ={  page:1, config:'',status:'',started_at:'',ended
                 html += `<tr style="width: 100%" id="table-notdata"><td colspan="8" class="text-center"><span>${res.message}</span></td></tr>`;
                 $('table#table-default tbody').html(html);
                 $('#data_lich__su_history .default-paginate').html('');
+                tbody.removeClass('is_load');
             }
             // $('#data_pay_account_history .table-logs').toggleClass('table-responsive',!!res.status)
             $('#data_lich__su_history .default-paginate').removeClass('default-paginate-addpadding');

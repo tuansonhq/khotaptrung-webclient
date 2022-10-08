@@ -63,6 +63,7 @@ function loadDataTable(query = {
                 html += `<tr style="width: 100%" id="table-notdata"><td colspan="7" class="text-center"><span>Tài khoản của quý khách chưa phát sinh giao dịch.</span></td></tr>`;
                 $('table#table-default tbody').html(html);
                 $('#data_service_history .default-paginate').html('');
+                tbody.removeClass('is_load');
             }
             // $('#data_service_history .table-logs').toggleClass('table-responsive',!!res.status)
             $('#data_service_history .default-paginate').removeClass('default-paginate-addpadding');
