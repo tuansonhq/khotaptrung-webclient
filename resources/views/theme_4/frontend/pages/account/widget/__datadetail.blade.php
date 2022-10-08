@@ -306,10 +306,19 @@
                                                             <th colspan="2">Thông tin tài khoản #{{ $data->randId }}</th>
                                                         </tr>
                                                         </tbody><tbody>
-                                                        <tr>
-                                                            <td>Nhà phát hành:</td>
-                                                            <th>{{ $data->groups[0]->title }}</th>
-                                                        </tr>
+                                                        @if(isset($data->params))
+                                                            @if(isset($data->params->rank_info) && count($data->params->rank_info))
+                                                                <tr>
+                                                                    <td>Nhà phát hành:</td>
+                                                                    <th>Garena</th>
+                                                                </tr>
+                                                            @else
+                                                                <tr>
+                                                                    <td>Nhà phát hành:</td>
+                                                                    <th>{{  @$data->groups[0]->title }}</th>
+                                                                </tr>
+                                                            @endif
+                                                        @endif
                                                         <tr>
                                                             <td>Tên game:</td>
 
