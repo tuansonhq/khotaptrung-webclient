@@ -1008,6 +1008,18 @@ input[type=text].buy-card-amount-input {
     transition: top 0.2s ease-in;
 }
 
+.leaderboard-items {
+    background-color: #F3F3F7;
+}
+
+.leaderboard-items span {
+    color: var(--text-color);
+}
+
+.leaderboard-items p {
+    color: var(--primary-color);
+}
+
 .leaderboard-buttons {
     border-bottom: 1px solid var(--border-default-color);
 }
@@ -1554,3 +1566,63 @@ input[type=text].buy-card-amount-input {
 }
 
 /* End Component Card Hover Effect */
+
+/* Viewmore Modal */
+#viewMore .login .modal-content {
+    position: relative;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    z-index: 1;
+    border: none;
+}
+
+#viewMore .login{
+    margin: 0 auto;
+    max-width: 1380px!important;
+    padding: 16px;
+}
+
+#viewMore{
+    padding-right: 0!important;
+}
+
+#viewMore .modal-viewmore-body {
+    overflow-y: scroll;
+    max-height: 500px;
+    margin: 16px 8px 16px 0;
+    padding: 0 8px 0 16px;
+}
+
+#viewMore .modal-viewmore-body img {
+    max-width: 100%;
+}
+
+#viewMore .modal-viewmore-body::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+#viewMore .modal-viewmore-body::-webkit-scrollbar-thumb {
+    background: #E4E5F0;
+    border-radius: 100px;
+    border: none;
+}
+
+#viewMore .modal-viewmore-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+@media screen and (min-width: 1200px){
+    #viewMore span {
+        font-size: unset;
+    }
+}
+
+@media (max-width: 1200px) {
+    #viewMore .login{
+        max-width: 1060px!important;
+    } 
+}
+
+
+/* End Viewmore Modal */

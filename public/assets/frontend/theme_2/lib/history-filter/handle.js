@@ -102,16 +102,18 @@ $(document).ready(function () {
         let form_filter = width < 992 ? $('.bottom-sheet .form-filter') : $('.modal .form-filter');
         if (form_filter.length) {
             form_filter.on('submit',function (e) {
+
                 e.preventDefault();
+                if (width > 992) {
+                    $('html #modal-filter').modal('hide');
+                } else {
+                    closeSheet();
+                }
                 loadData($(this));
                 setParamsUrlToQuery();
                 loadDataApi(query);
                 page_history = 1;
-                if (width > 992) {
-                    $(this).closest('.modal').find('.close').trigger('click');
-                } else {
-                    closeSheet();
-                }
+
             });
             form_filter.on('reset',function () {
                 $('.form-filter select').niceSelect('update');

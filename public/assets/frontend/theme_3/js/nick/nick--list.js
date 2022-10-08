@@ -32,11 +32,11 @@ $(document).ready(function () {
         loadData();
         loadDataTable();
         $('#openFinter').modal('hide');
-        $('#data_sort select').niceSelect('update');
+        $('#data_sort select.wide').niceSelect('update');
     });
     $(document).on('click','.reset-find',function(){
         $('#data_sort')[0].reset();
-        $('#data_sort select').niceSelect('update');
+        $('#data_sort select.wide').niceSelect('update');
         loadData();
         loadDataTable();
         $('#openFinter').modal('hide');
@@ -365,7 +365,7 @@ function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',st
             let input = $(`#data_sort [data-query=${key}]`);
             input.val(params[key]);
         });
-        $('#data_sort select').niceSelect('update');
+        $('#data_sort select.wide').niceSelect('update');
     }
     $.ajax({
         type: 'GET',

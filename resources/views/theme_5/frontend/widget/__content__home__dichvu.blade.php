@@ -69,7 +69,7 @@
             </h2>
             <a href="/dich-vu" class="link arr-right">Xem tất cả</a>
         </div>
-        <div class="list-category content-desc-nick">
+        <div class="list-category content-desc-nick hide">
             @foreach($data as $item)
 
                 <div class="item-category c-px-8 c-mb-12 c-px-lg-6">
@@ -118,7 +118,7 @@
             @endforeach
         </div>
         <div class="card-footer-nick text-center">
-            <span class="see-more" data-content="Xem thêm nội dung"></span>
+            <span class="see-more-nick" data-content="Xem thêm nội dung"></span>
         </div>
     </section>
 @endif

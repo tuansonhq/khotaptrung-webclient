@@ -1,11 +1,11 @@
 @if(isset($data) && count($data) > 0)
-    <section class="section-related-service c-mt-12 c-mt-lg-6 c-mb-12 c-mb-lg-6 media-web">
+    <section class="section-related-service c-pt-32 c-mt-lg-6 c-mb-lg-6 media-web">
         <div class="section-header c-mb-8 c-mb-lg-16 justify-content-between">
             <h2 class="section-title fz-lg-15 lh-lg-24">
                 <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/acc-game.svg)"></i>
                 {{ $title??'Nick random' }}
             </h2>
-            <a href="/mua-acc" class="link arr-right" >Xem tất cả</a>
+            <a href="/mua-acc?type=2" class="link arr-right" >Xem tất cả</a>
         </div>
 
         <div class="swiper swiper-related-service card-list">
@@ -51,9 +51,13 @@
                                         @endphp
                                         @if(isset($item->price))
                                         <div class="price">
-                                            <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
-                                            <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($item->price_old??$item->price)) }} đ</div>
-                                            <div class="discount">{{ $sale_percent }}%</div>
+                                            @if ($sale_percent > 0)
+                                                <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
+                                                <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($item->price_old??$item->price)) }}đ</div>
+                                                <div class="discount">{{$sale_percent}}%</div>
+                                            @else
+                                                <div class="price-current w-100 c-pb-16">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
+                                            @endif
                                         </div>
                                         @else
                                             <div style="height: 40px">
@@ -77,15 +81,15 @@
             <div class="navigation slider-prev"></div>
         </div>
     </section>
-    <section class="acc-game-v2 media-mobile c-mt-12 c-mt-lg-6 c-mb-12 c-mb-lg-6">
+    <section class="acc-game-v2 media-mobile c-mt-12 c-mt-lg-24 c-mb-12 c-mb-lg-6">
         <div class="section-header c-mb-24 c-mb-lg-20 justify-content-between">
             <h2 class="section-title fz-lg-20 lh-lg-24">
                 <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/acc-game.svg)"></i>
                 {{ $title??'' }}
             </h2>
-            <a href="/muac-acc" class="link arr-right">Xem tất cả</a>
+            <a href="/mua-acc?type=1" class="link arr-right">Xem tất cả</a>
         </div>
-        <div class="list-category content-desc-nick">
+        <div class="list-category content-desc-nick hide">
             @foreach($data as $item)
                 <div class="item-category c-px-8 c-mb-12 c-px-lg-6">
                     <div class="card">
@@ -118,7 +122,8 @@
             @endforeach
         </div>
         <div class="card-footer-nick text-center">
-            <span class="see-more" data-content="Xem thêm nội dung"></span>
+            <span class="see-more-nick" data-content="Xem thêm nội dung"></span>
         </div>
     </section>
+    <div class="c-pt-8 border-bottom-destop c-pt-lg-16"></div>
 @endif

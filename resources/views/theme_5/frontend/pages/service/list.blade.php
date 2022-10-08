@@ -6,7 +6,6 @@
     <meta name="robots" content="index,follow" />
 @endsection
 @section('content')
-
     <div class="container c-container" id="account-category">
         <ul class="breadcrumb-list">
             <li class="breadcrumb-item">

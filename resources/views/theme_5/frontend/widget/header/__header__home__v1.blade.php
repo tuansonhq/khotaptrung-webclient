@@ -5,7 +5,7 @@
             <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo_mobile'))}}" alt="" class="d-lg-none">
         </a>
     </div>
-    <div class="d-none d-md-flex h-100">
+    <div class="d-none d-lg-flex h-100">
         <div class="box-menu c-mr-16 c-py-10">
             <div class="box-menu-bar  ">
                 <div class="box-icon brs-8 c-mr-8" >
@@ -31,13 +31,13 @@
     </div>
 
     <div class="box-search d-none d-lg-block ">
-        <form action="" class="form-search" style="width: 400px">
+        <form action="" class="form-search" id="formSearchHeader">
             <input type="search" placeholder="Tìm kiếm" class=" has-submit">
             <button type="submit"></button>
         </form>
     </div>
     <div  class="d-flex">
-        <a class="btn primary handle-recharge-modal c-px-34 c-mr-16 d-none d-lg-block" href="javascript:void(0)" data-tab="1">Nạp tiền</a>
+        <a class="btn primary handle-recharge-modal c-px-xl-20 c-px-34 c-mr-16 d-none d-lg-block" href="javascript:void(0)" data-tab="1">Nạp tiền</a>
         <div class="box-notify  d-flex ">
             <div class="box-icon brs-8 " data-notity="5">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/ring.svg" alt="" >

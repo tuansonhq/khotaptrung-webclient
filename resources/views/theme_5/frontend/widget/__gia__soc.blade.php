@@ -179,4 +179,4 @@
         <div class="navigation slider-prev"></div>
     </div>
 </section>
-
+<div class="c-pt-8 border-bottom-destop c-pt-lg-16"></div>

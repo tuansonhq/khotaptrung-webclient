@@ -32,6 +32,7 @@ class Theme
                 $result = DirectAPI::_makeRequest($url ,$data ,$method);
 
                 if(isset($result) && $result->response_code == 200){
+
                     $seo = $result->response_data->data;
                     if (empty(get_object_vars($seo))){
                         $data = new \stdClass();

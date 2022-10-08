@@ -8,7 +8,7 @@
             }
         @endphp
 
-        <section class="acc-game c-pt-12 c-pb-12 c-pt-lg-6 c-pb-lg-6">
+        <section class="acc-game c-pt-32 c-pt-lg-24 c-pb-lg-6">
             <div class="section-header c-mb-24 c-mb-lg-16 justify-content-between">
                 <h2 class="section-title fz-lg-15 lh-lg-24">
                     @if(isset($items->image_icon) || isset($items->custom->image_icon))
@@ -58,9 +58,13 @@
                                                 @endphp
                                                 @if(isset($items->price))
                                                     <div class="price">
-                                                        <div class="price-current w-100">{{ str_replace(',','.',number_format($items->price)) }} đ</div>
-                                                        <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($items->price_old??$items->price)) }} đ</div>
-                                                        <div class="discount">{{ $sale_percent }}%</div>
+                                                        @if ($sale_percent > 0)
+                                                            <div class="price-current w-100">{{ str_replace(',','.',number_format($items->price)) }}đ</div>
+                                                            <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($items->price_old??$items->price)) }}đ</div>
+                                                            <div class="discount">{{$sale_percent}}%</div>
+                                                        @else
+                                                            <div class="price-current w-100 c-pb-16">{{ str_replace(',','.',number_format($items->price)) }}đ</div>
+                                                        @endif
                                                     </div>
                                                 @else
                                                     <div style="height: 40px">
@@ -227,9 +231,13 @@
                                                     }
                                                 @endphp
                                                 <div class="price">
-                                                    <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
-                                                    <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($item->price_old)) }}đ</div>
-                                                    <div class="discount">{{$sale_percent}}%</div>
+                                                    @if ($sale_percent > 0)
+                                                        <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
+                                                        <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($item->price_old)) }}đ</div>
+                                                        <div class="discount">{{$sale_percent}}%</div>
+                                                    @else
+                                                        <div class="price-current w-100 c-pb-16">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
+                                                    @endif
                                                 </div>
                                             </a>
                                         </div>
@@ -241,5 +249,6 @@
                 </div>
             @endif
         </section>
+        <div class="c-pt-8 border-bottom-destop"></div>
     @endforeach
 @endif

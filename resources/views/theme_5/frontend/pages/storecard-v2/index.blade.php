@@ -206,16 +206,22 @@
                 <!-- Dịch vụ liên quan -->
             @include('frontend.widget.__services__other')
             <!-- Mô tả dịch vụ -->
-                <div class="card overflow-hidden c-mt-16 c-mb-24 c-mb-lg-16">
+                <div class="card overflow-hidden c-mt-16 c-mb-24 c-mb-lg-16 detailViewBlock">
                     <div class="card-body c-px-16">
-                        <h2 class="text-title-bold c-mb-24">Chi tiết dịch vụ</h2>
-                        <div class="content-desc">
+                        <h2 class="text-title-bold c-mb-24 detailViewBlockTitle">Chi tiết dịch vụ</h2>
+                        @if(substr(setting('sys_store_card_content'), 1200))
+                        <div class="content-desc hide detailViewBlockContent">
+                        @else
+                        <div class="content-desc detailViewBlockContent">
+                        @endif
                             {!! setting('sys_store_card_content') !!}
                         </div>
                     </div>
+                    @if(substr(setting('sys_store_card_content'), 1200))
                     <div class="card-footer text-center">
                         <span class="see-more" data-content="Xem thêm nội dung"></span>
                     </div>
+                    @endif
                 </div>
             </div>
             <!-- end -->
