@@ -328,6 +328,7 @@
                                                     </div>
                                                     <div class="col-12 left-right background-nick-col-bottom-ct">
                                                         <select class="select-2-custom account-filter-field" data-query="skill_data"  data-title="">
+
                                                             <option value="" selected disabled>--Không chọn--</option>
                                                             @if(isset($auto_propertie->childs) && count($auto_propertie->childs))
                                                                 @foreach($auto_propertie->childs as $child)
@@ -353,6 +354,7 @@
                                                     <div class="col-12 left-right background-nick-col-bottom-ct">
                                                         <select class="select-2-custom account-filter-field" data-query="tftcompanions_data"  data-title="">
                                                             <option value="" selected disabled>--Không chọn--</option>
+
                                                             @if($auto_propertie->childs)
                                                                 @foreach($auto_propertie->childs as $child)
                                                                     <option value="{{ $child->id }}">{{ $child->name }}</option>
@@ -574,7 +576,9 @@
 
             <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js?v={{time()}}"></script>
             <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick--update.js?v={{time()}}"></script>
+
         </div>
+
     @endif
 
 @endsection

@@ -773,16 +773,9 @@ section.outstanding-service {
 .account-thumb .card-body {
     max-height: 400px;
 }
-.section-content > div {
-    display: inline-block;
-}
-.acc-detail .section-content .account-thumb,
-.acc-detail .section-content .account-desc{
-    width: calc(60% - 16px);
-}
-.acc-detail .section-content .account-detail-info {
-    width: 40%;
-    float: right;
+.account-thumb:only-child {
+    height: 100%;
+    justify-content: space-between;
 }
 .gallery-top {
     width: 80px;
@@ -1382,32 +1375,15 @@ section.outstanding-service {
     /*Chi tiết nick*/
     .section-content {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column-reverse;
     }
 
     .section-content .card.account-detail-info,
     .acc-detail .section-content .account-thumb {
-        all: unset;
+        border: none;
+        box-shadow: none;
     }
 
-    .acc-detail .section-content .account-thumb,
-    .acc-detail .section-content .account-desc,
-    .acc-detail .section-content .account-detail-info {
-        width: 100%;
-        float: none;
-    }
-
-    .acc-detail .section-content .account-desc {
-        order: 3;
-    }
-
-    .acc-detail .section-content .account-thumb {
-        order: 2;
-    }
-
-    .acc-detail .section-content .account-detail-info {
-        order: 1;
-    }
     .card.disabled-color {
         border-radius: 12px;
         background-color: #fff;

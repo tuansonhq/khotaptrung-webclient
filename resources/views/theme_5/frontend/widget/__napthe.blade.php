@@ -1,4 +1,4 @@
-<div class="section-header c-pt-12 c-pt-lg-6 c-mb-24 c-mb-lg-20 justify-content-between">
+<div class="section-header c-pt-32 c-pt-lg-24 c-mb-24 c-mb-lg-20 justify-content-between">
     <h2 class="section-title">
         <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/son/naptien.svg)"></i>
         {{ $title??'Nạp tiền' }}
@@ -7,7 +7,7 @@
 
 {{--        nạp thẻ--}}
 
-<div class="row c-mt-16 c-pb-12 c-pb-6 c-mt-lg-50 c-mt-md-8 c-mx-lg-n16" id="charge-detail">
+<div class="row c-mt-16 c-pb-12 c-pb-6  c-mt-md-8 c-mx-lg-n16" id="charge-detail">
 
     <div class="col-12 col-lg-8 c-pr-8 c-px-sm-0 ">
         <div class="recharge-money-container brs-12 brs-sm-0 c-pt-lg-4">
@@ -24,38 +24,6 @@
 
             <div class="tab-content">
                 <div class="tab-pane fade active show c-p-16 c-pb-lg-0" id="charge_card" role="tabpanel">
-{{--                    <div class="row text-center loader-container">--}}
-{{--                        <div class="col-12">--}}
-{{--                            <div class="loader position-relative" style="margin: 2rem 0">--}}
-{{--                                <div class="loading-spokes">--}}
-{{--                                    <div class="spoke-container">--}}
-{{--                                        <div class="spoke"></div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="spoke-container">--}}
-{{--                                        <div class="spoke"></div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="spoke-container">--}}
-{{--                                        <div class="spoke"></div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="spoke-container">--}}
-{{--                                        <div class="spoke"></div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="spoke-container">--}}
-{{--                                        <div class="spoke"></div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="spoke-container">--}}
-{{--                                        <div class="spoke"></div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="spoke-container">--}}
-{{--                                        <div class="spoke"></div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="spoke-container">--}}
-{{--                                        <div class="spoke"></div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                     <form class="w-100" action="" id="chargeCardHomeForm">
                         <div class="row content-block">
                             <div class="col-12 col-lg-6 c-pr-8 c-pr-lg-16">
@@ -291,3 +259,5 @@
         </a>
     </div>
 </div>
+<div class="c-pt-12 border-bottom-destop"></div>
+

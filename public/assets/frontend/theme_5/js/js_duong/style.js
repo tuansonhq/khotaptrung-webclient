@@ -184,3 +184,5 @@ var product_hotgames = new Swiper('.swiper-weekly-hot-games', {
         }
     }
 });
+
+

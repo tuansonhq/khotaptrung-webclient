@@ -36,6 +36,7 @@ class DirectAPI{
             $dataPost = $data;
         }
 
+
 //        Lấy ip user agent khách hàng
 
         if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {

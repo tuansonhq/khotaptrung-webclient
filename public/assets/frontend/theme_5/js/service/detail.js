@@ -185,7 +185,7 @@ if ($input_params.length) {
                 return;
             }
             let server_id = $server;
-            let total, index, current, discount;
+            let total = 0, index, current, discount = 0;
             if (!!price) {
 
                 if ($params.server_mode * 1 === 1 && $params.server_price * 1 === 1) {
@@ -195,8 +195,7 @@ if ($input_params.length) {
                     let s_discount = $params["discount" + server_id];
 
                     for (let i = 0; i < s_price.length; i++) {
-
-                        if (price >= s_price[i] && s_price[i] != null) {
+                        if (price >= s_price[i] && !!s_price[i]) {
                             current = s_price[i];
                             index = i;
                             discount = s_discount[i];
@@ -221,6 +220,7 @@ if ($input_params.length) {
                 $('#txt-discount').val(discount);// input hệ số:
 
                 total = number_format.to(total);
+
                 $text_total.text(total);
                 let html_pack = `<div class="t-sub-3 text-right">${total}</div>`;
                 $('.show-pack').html(html_pack);

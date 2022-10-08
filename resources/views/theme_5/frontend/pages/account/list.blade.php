@@ -5,6 +5,7 @@
 @section('meta_robots')
     <meta name="robots" content="index,follow" />
 @endsection
+
 @section('content')
     <div class="container c-container" id="account-list">
         @if($data == null)
@@ -136,7 +137,7 @@
                                     <label class="form-label">
                                         Giá tiền
                                     </label>
-                                    <select name="price" class="price" id="">
+                                    <select name="price_data" class="price" id="">
                                         <option value="" selected>Chọn giá tiền</option>
                                         <option value="0-50000">Dưới 50K</option>
                                         <option value="50000-200000">Từ 50K - 200K</option>
@@ -313,7 +314,7 @@
                                 <label class="form-label">
                                     Giá tiền
                                 </label>
-                                <select name="price" class="price" id="">
+                                <select name="price_data" class="price" id="">
                                     <option value="" selected disabled>Chọn giá tiền</option>
                                     <option value="0-50000">Dưới 50K</option>
                                     <option value="50000-200000">Từ 50K - 200K</option>
