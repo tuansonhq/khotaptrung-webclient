@@ -1,7 +1,9 @@
 .tk_watched{
     display: none;
 }
-
+.news_detail_content img{
+    height: auto;
+}
 .card.--custom {
     --primary-color: #F67600;
     border-radius: 12px;
