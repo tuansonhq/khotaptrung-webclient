@@ -311,6 +311,7 @@
                                     </div>
 
                                     <img onerror="imgError(this)" style="width: 100%"
+
                                          src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"
                                          alt="{{$result->group->title}}" id="rotate-play">
                                 </div>
@@ -477,7 +478,9 @@
 
                             <div class="rotation">
                                 <div class="rotation-button rotation-button-quanhuy" {{ \App\Library\AuthCustom::check() ?  'id=start-played' : 'onclick=openLoginModal();'}}>
+
                                     <img onerror="imgError(this)"
+
                                          src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="">
                                 </div>
                                 <img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"
