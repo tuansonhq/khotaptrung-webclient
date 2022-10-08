@@ -5956,7 +5956,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     .table-logs{
         display: block;
         width: 100%;
-        overflow-x: auto;
+        overflow-x: scroll;
         -webkit-overflow-scrolling: touch;
     }
     .default-paginate-addpadding{
