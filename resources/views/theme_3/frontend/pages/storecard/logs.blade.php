@@ -266,7 +266,7 @@
     <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/logs--update.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/logs--update.js?v={{time()}}"></script>
 @endsection
 
 

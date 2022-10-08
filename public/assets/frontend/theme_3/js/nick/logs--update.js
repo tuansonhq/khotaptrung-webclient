@@ -220,6 +220,7 @@ function loadDataTable(query = {page:1,serial:'',key:'',price:'',status:'',start
                 html += `<tr style="width: 100%" id="table-notdata"><td colspan="7" class="text-center"><span>Tài khoản của quý khách chưa phát sinh giao dịch.</span></td></tr>`;
                 $('table#table-default tbody').html(html);
                 $('#data_pay_account_history .default-paginate').html('');
+                tbody.removeClass('is_load');
             }
             // $('#data_pay_account_history .table-logs').toggleClass('table-responsive',!!res.status)
             $('#data_pay_account_history .default-paginate').removeClass('default-paginate-addpadding');
