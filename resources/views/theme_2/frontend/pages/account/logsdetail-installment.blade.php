@@ -12,7 +12,7 @@
             </ul>
 
             <div class="head-mobile">
-                <a href="/lich-su-mua-nick" class="link-back"></a>
+                <a href="/lich-su-mua-account" class="link-back"></a>
 
                 <h1 class="head-title text-title">Chi tiết nạp thẻ</h1>
 

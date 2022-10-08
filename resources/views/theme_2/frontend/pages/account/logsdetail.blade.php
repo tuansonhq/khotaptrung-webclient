@@ -134,7 +134,7 @@
 
                                 <div class="footer-mobile v2 group-btn c-my-24 c-my-lg-0 c-px-lg-16 c-pt-lg-16 button-password" style="--data-between:12px">
 
-                                    <button class="btn primary his__detail__button btn-data" id="handleGetPasswordButton" data-url="/lich-su-mua-nick-{{ $item->randId }}/showpass" type="button" style="position: relative">
+                                    <button class="btn primary his__detail__button btn-data" id="handleGetPasswordButton" data-url="/lich-su-mua-account-{{ $item->randId }}/showpass" type="button" style="position: relative">
                                         Lấy mật khẩu
                                     </button>
 
