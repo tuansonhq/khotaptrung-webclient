@@ -280,7 +280,7 @@ $(document).ready(function(e) {
                             if (!gift_revice[$i]['parrent'].params.value){
                                 gift_revice[$i]['parrent'].params.value = 0;
                             }
-                            
+
                             $totalRevice +=  parseInt(gift_revice[$i]['parrent'].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
 
                         }
