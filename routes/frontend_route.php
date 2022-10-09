@@ -52,10 +52,7 @@ Route::get('/github/test', function (Request $request)
     \File::append($path.Carbon::now()->format('Y-m-d').".txt",$txt."\n");
 });
 
-Route::get('/test111', function (Request $request)
-{
 
-})->middleware('throttle:5,1');
 Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name('getTheme');
 
 Route::get('/updategit-dev', function ()
