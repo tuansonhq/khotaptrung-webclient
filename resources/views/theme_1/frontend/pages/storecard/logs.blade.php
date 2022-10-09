@@ -27,32 +27,6 @@
 
                                     </div>
                                 </div>
-{{--                                @if(isset($data_telecome) && count($data_telecome) > 0)--}}
-{{--                                    <div class="col-md-4">--}}
-{{--                                        <div class="input-group">--}}
-{{--                                            <span >Loại thẻ</span>--}}
-{{--                                            <select name="key" class="form-control key">--}}
-{{--                                                <option value="">--Tất cả loại thẻ--</option>--}}
-{{--                                                @forelse($data_category['telecoms'] as $key => $telecom)--}}
-{{--                                                    <option value="{{ @$telecom->title }}">{{ @$telecom->title }}</option>--}}
-{{--                                                @empty--}}
-{{--                                                @endforelse--}}
-{{--                                            </select>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                @endif--}}
-{{--                                <div class="col-md-4">--}}
-{{--                                    <div class="input-group">--}}
-{{--                                        <span >Trạng thái</span>--}}
-{{--                                        <select class="status" data-query="status">--}}
-{{--                                            <option value="">Chọn</option>--}}
-{{--                                            @forelse($data_category['status'] as $key => $status)--}}
-{{--                                                <option value="{{ @$key }}">{{ @$status }}</option>--}}
-{{--                                            @empty--}}
-{{--                                            @endforelse--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <div class="input-group date" id="transaction_history_start">
