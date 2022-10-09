@@ -8,6 +8,8 @@
         @if(isset($data) && count($data) > 0)
 
             @foreach ($data as $key => $item)
+
+            @if(isset($item->card) && count($item->card))
                 @foreach($item->card as $itemCard)
 
                     <div class="col-lg-4 col-md-6">
@@ -56,6 +58,9 @@
                     </div>
                     <!-- END List Items -->
                 @endforeach
+
+            @else
+            @endif
             @endforeach
         @else
             {{--            <div class="col-md-12 data-card">--}}
