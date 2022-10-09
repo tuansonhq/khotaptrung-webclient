@@ -58,6 +58,30 @@ Route::get('/test111', function (Request $request)
 })->middleware('throttle:5,1');
 Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name('getTheme');
 
+Route::get('/updategit-dev', function ()
+{
+    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
+    $output = shell_exec($command);
+    \Artisan::call('cache:clear');
+    return response()->json([
+        'status' => 1,
+        'message' => 'Thành công!',
+        'message-git' => $output,
+    ]);
+});
+
+Route::get('/updategit-master', function ()
+{
+    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git master 2>&1';
+    $output = shell_exec($command);
+    \Artisan::call('cache:clear');
+    return response()->json([
+        'status' => 1,
+        'message' => 'Thành công!',
+        'message-git' => $output,
+    ]);
+});
+
 Route::get('/405', function ()
 {
     return view('errors.405');
@@ -259,17 +283,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                         'message' => 'Thành công!'
                     ]);
                 });
-                Route::get('/updategit', function ()
-                {
-                    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
-                    $output = shell_exec($command);
-                    \Artisan::call('cache:clear');
-                    return response()->json([
-                        'status' => 1,
-                        'message' => 'Thành công!',
-                        'message-git' => $output,
-                    ]);
-                });
+
             });
 
             //minigame
