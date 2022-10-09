@@ -19,16 +19,16 @@
                     </div>
                     <div class="wapper-grid profile">
 
-                        <form class="form-horizontal form-find m-b-20" role="form" method="get">
+                        <form class="form-store-card account_content_transaction_history__v2">
 
                             <div class="row">
 
                                 <div class="form-row mb-3 col-md-4">
 
                                     <div class="col-12">
-                                        <input type="text" class="form-control c-square c-theme" name="id"
+                                        <input type="text" class="form-control c-square c-theme" name="serial"
                                                value=""
-                                               placeholder="Mã ID">
+                                               placeholder="Mã thẻ, Serial...">
                                     </div>
                                 </div>
 
@@ -73,50 +73,23 @@
 
                             <div class="row mb-4">
                                 <div class="col-md-4">
-                                    <input type="submit" class="btn btn-success c-theme-btn c-btn-square m-b-10"
-                                           value="Tìm kiếm">
-                                    <a class="btn c-btn-square m-b-10 btn-danger" href="https://napgamegiare.net/mua-the/log">Tất cả</a>
+                                    <button class="btn c-theme-btn c-btn-square m-b-10" type="submit">
+                                        <i class="fas fa-search"></i> Tìm kiếm
+                                    </button>
                                 </div>
                             </div>
                         </form>
 
-
-                        <table class="table table-hover table-custom-res">
-                            <thead>
-                            <tr>
-                                <th class="hidden-xs">Thời gian</th>
-                                <th>ID</th>
-                                <th>Loại</th>
-                                <th>Mô tả</th>
-                                <th>Trị giá</th>
-                                <th>Trạng thái</th>
-                                <th>Thao tác</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <tbody>
-                            </tbody>
-                            <tr>
-                                <td>08/07/2022 10:42:48</td>
-                                <td>#123456</td>
-                                <td>Viettel</td>
-                                <td>Mua thẻ mệnh giá 500.000 đ</td>
-                                <td>500.000 đ</td>
-                                <td><span class="badge badge-success">Thành công</span></td>
-                                <td>
-                                    <a href="the-cao-da-mua-id" class="btn btn-default">Chi tiết</a>
-                                </td>
-                            </tr>
-{{--                            <tr style="background: #dee2e6;">--}}
-{{--                                <td colspan="7">Không có dữ liệu</td>--}}
-{{--                            </tr>--}}
-                        </table>
-                        <!-- END: PAGE CONTENT -->
-
-                        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-
+                        <div id="data_store_card" style="position: relative">
+                            <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">
+                                <div class="d-flex justify-content-center">
+                                    <span class="pulser"></span>
+                                </div>
+                            </div>
+{{--                            @include('frontend.pages.storecard.widget.__store__card__history')--}}
                         </div>
+
+                        <!-- END: PAGE CONTENT -->
 
                     </div>
                 </div>
@@ -126,6 +99,12 @@
 
     </div><!-- /.container -->
 
+    <input type="hidden" name="id_storecard" class="id_storecard" value="">
+    <input type="hidden" name="started_at_storecard" class="started_at_storecard" value="">
+    <input type="hidden" name="ended_at_storecard" class="ended_at_storecard" value="">
+    <input type="hidden" name="hidden_page_storecard" id="hidden_page_storecard" class="hidden_page_storecard" value="1" />
+
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/storecard-history.js?v={{time()}}"></script>
 
 </section>
 @endsection

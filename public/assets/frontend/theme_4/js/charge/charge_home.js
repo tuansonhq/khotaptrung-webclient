@@ -16,7 +16,7 @@ $(document).ready(function(){
     $('#reload_trangchu').click(function () {
         $.ajax({
             type: 'GET',
-            url: '/ajax/reload-captcha',
+            url: '/reload-captcha',
             success: function (data) {
                 $(".captcha_trangchu span").html(data.captcha);
             }
@@ -27,7 +27,7 @@ $(document).ready(function(){
     function reload_captcha_home() {
         $.ajax({
             type: 'GET',
-            url: '/ajax/reload-captcha',
+            url: '/reload-captcha',
             success: function (data) {
                 $(".captcha_trangchu span").html(data.captcha);
             }
