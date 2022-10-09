@@ -117,6 +117,9 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/ajax/mua-nick-random', [AccController::class , "getShowAccRandom"]);
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
                 Route::post('/lich-su-mua-nick-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])->name('getShowpassNick');
+
+                Route::post('/lich-su-mua-acoount-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])->name('getShowpassNick');
+
                 Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);
 
 
