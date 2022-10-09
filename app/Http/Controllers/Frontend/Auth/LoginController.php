@@ -80,7 +80,12 @@ class LoginController extends Controller
 
                 if (isset($response_data->refresh_token)) {
                     $jwt_refresh_token = $response_data->refresh_token;
-                    Cookie::queue('jwt_refresh_token',$jwt_refresh_token,20160);
+
+                    $http_url = \Request::server ("HTTP_HOST");
+                    $name_url =  str_replace('www.','',$http_url);
+                    $name_jwt = 'jwt_refresh_token_'.$name_url;
+
+                    Cookie::queue($name_jwt,$jwt_refresh_token,20160);
 
                 }
 
