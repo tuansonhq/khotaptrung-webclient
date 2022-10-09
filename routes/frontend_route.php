@@ -58,7 +58,7 @@ Route::get('/test111', function (Request $request)
 })->middleware('throttle:5,1');
 Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name('getTheme');
 
-Route::get('/updategit', function ()
+Route::get('/updategit-dev', function ()
 {
     $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
     $output = shell_exec($command);
@@ -66,7 +66,19 @@ Route::get('/updategit', function ()
     return response()->json([
         'status' => 1,
         'message' => 'Thành công!',
-        'message-git' => $command,
+        'message-git' => $output,
+    ]);
+});
+
+Route::get('/updategit-master', function ()
+{
+    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git master 2>&1';
+    $output = shell_exec($command);
+    \Artisan::call('cache:clear');
+    return response()->json([
+        'status' => 1,
+        'message' => 'Thành công!',
+        'message-git' => $output,
     ]);
 });
 
