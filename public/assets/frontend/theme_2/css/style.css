@@ -2496,3 +2496,6 @@ input[type="number"] {
 .data-card{
     display: none;
 }
+.news_detail_content img{
+    height: auto!important;
+}
