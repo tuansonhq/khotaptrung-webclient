@@ -8,13 +8,16 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8"/><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8"/>
-
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mua Thẻ Garena Online Giá Rẻ | Đổi Thẻ Garena Từ Thẻ Điện Thoại</title>
     @stack('style')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.css">
     <!-- <link media="screen" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" /> -->
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/responsive.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/blog.css?v={{time()}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
@@ -25,40 +28,10 @@
 <!--header section work start-->
 @include('frontend.layouts.includes.header')
 
-
-
 <!--Login Start-->
 <!-- đăng kí -->
 <!-- đăng nhập -->
-
-
 @include('frontend.widget.modal.__login')
-
-<!-- quên mật khẩu -->
-<div class="modal fade" id="forgotyourpassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-md">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times"></i></span><span class="sr-only">Close</span></button>
-                <div class="modal-title" id="myModalLabel"><i class="fa fa-sign-in"></i> Quên mật khẩu?</div>
-            </div>
-            <div class="panel-body">
-                <div class="form-group has-error">
-                    <label> Địa chỉ Email</label>
-                    <input type="email" class="form-control" placeholder="Email" id="ctrlforgotemailtxt" name="ctrlforgotemailtxt" required="required" tabindex="1" />
-                </div>
-                <div class="form-group">
-                    <button type="button" id="ctrlforgotpassbtn" class="btn btn-primary" tabindex="2"><i class="fa fa-sign-in"></i> Gửi lại mật khẩu</button>
-                </div>
-                <div class="form-group" id="Forgot_reply" style="color:#F36"></div>
-            </div>
-            <div class="panel-footer">
-                <button type="button" class="btn btn-primary pull-right" data-dismiss="modal" data-toggle="modal" data-target="#signin"><i class="fa fa-sign-in"></i> Đăng nhập</button>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-</div>
 <div id="modalinfo" tabindex="-1" role="dialog" class="modal fade" data-backdrop="static">
     <div class="modal-dialog modal-md">
         <div class="panel panel-primary">
@@ -79,11 +52,12 @@
     </div>
 </div>
 
+@if(\Illuminate\Support\Facades\Request::is('/'))
 <picture class="banner_index">
     <img src="https://thegarenagiare.com/upload-usr/images/4z9he1kvXA_1621052133.jpg" alt="mua-the-cao-gia-re" title="mua thẻ garena bảo mật, nhanh chóng, tiện lợi">
 </picture>
 
-
+@endif
 <div id="main_home">
     <div class="container">
         @yield('content')

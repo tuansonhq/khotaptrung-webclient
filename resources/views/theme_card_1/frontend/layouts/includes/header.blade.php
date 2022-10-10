@@ -23,6 +23,16 @@
                             <span class="btn_register" onclick="window.location.href = 'https://thegarenagiare.com/register';"><i class="icon_account ic_register"><img src="/assets/frontend/images/new_index/icon_register.svg" alt="register"></i>Đăng ký</span>
                         </div>
                     </li>
+{{--                    <li class="m1 after_login" id="litaikhoan">--}}
+{{--                        <a href="#" role="button" class="btnc btn-user dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <i class="fas fa-user"></i> <b>3061758440807996@facebook.com</b> <b class="caret"></b> </a>--}}
+{{--                        <ul class="mini_menu">--}}
+{{--                            <li class="money_sum"> <span>Số dư: </span> <span class="tienconlai"><b>0 VNĐ</b> </span> </li>--}}
+{{--                            <li> <a rel="nofollow" href="/user/profile"><i class="icon_user"><img src="/assets/frontend/images/new_index/card_history.svg" alt="Thông tin tài khoản"></i>Thông tin tài khoản</a> </li>--}}
+{{--                            <li> <a rel="nofollow" href="/user/tran-log"><i class="fas fa-handshake"></i> Lịch sử giao dịch</a> </li>--}}
+{{--                            <li> <a rel="nofollow" href="/user/change-password"><i class="fas fa-key"></i> Thay đổi mật khẩu</a> </li>--}}
+{{--                            <li> <a rel="nofollow" href="/logout" id="logoutbtn1"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a> </li>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
                 </ul>
             </nav>
             <div class="bg_gra"></div>
