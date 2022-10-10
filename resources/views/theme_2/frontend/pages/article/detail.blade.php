@@ -22,7 +22,7 @@
         <ul class="nav nav-line">
             <li class="nav-item">
                 @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                <a href="/blog" class="nav-link">Tin tức chung</a>
+                <a href="{{ setting('sys_zip_shop') }}" class="nav-link">Tin tức chung</a>
                 @else
                     <a href="/tin-tuc" class="nav-link">Tin tức chung</a>
                 @endif
@@ -42,14 +42,14 @@
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item">
                     @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                    <a href="/blog">Blog</a>
+                    <a href="{{ setting('sys_zip_shop') }}">Blog</a>
                     @else
                         <a href="/tin-tuc">Tin tức</a>
                     @endif
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
                     @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                    <a href="/blog/{{ $data->groups[0]->slug }}">{{ $data->groups[0]->title }}</a>
+                    <a href="{{ setting('sys_zip_shop') }}/{{ $data->groups[0]->slug }}">{{ $data->groups[0]->title }}</a>
                     @else
                         <a href="/tin-tuc/{{ $data->groups[0]->slug }}">{{ $data->groups[0]->title }}</a>
                     @endif

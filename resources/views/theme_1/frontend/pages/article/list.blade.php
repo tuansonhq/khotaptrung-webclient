@@ -33,7 +33,7 @@
                                 <li><a href="/" class="news_breadcrumbs_theme_trangchu news_breadcrumbs_theme_trangchu_a">Trang chủ</a></li>
                                 <li>/</li>
                                 @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                                    <li><a href="/blog" class="news_breadcrumbs_theme_title_a"><h1 class="news_breadcrumbs_theme_title">Blog</h1></a></li>
+                                    <li><a href="{{ setting('sys_zip_shop') }}" class="news_breadcrumbs_theme_title_a"><h1 class="news_breadcrumbs_theme_title">Tin tức</h1></a></li>
                                 @else
                                     <li><a href="/tin-tuc" class="news_breadcrumbs_theme_title_a"><h1 class="news_breadcrumbs_theme_title">Tin tức</h1></a></li>
                                 @endif
@@ -60,7 +60,7 @@
                                             </div>
                                             <div class="col-lg-5 col-md-6 col-6 pl-0">
                                                 @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                                                <a href="/blog" class="btn btn-danger">Tất Cả</a>
+                                                <a href="{{ setting('sys_zip_shop') }}" class="btn btn-danger">Tất Cả</a>
                                                 @else
                                                     <a href="/tin-tuc" class="btn btn-danger">Tất Cả</a>
                                                 @endif

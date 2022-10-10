@@ -797,7 +797,14 @@
                                                         <span>Nhà phát hành</span>
                                                     </div>
                                                     <div class="col-auto left-right background-order-col-right-ct">
-                                                        <small>{{ $data->groups[0]->title }}</small>
+                                                        @if(isset($data->params))
+                                                            @if(isset($data->params->rank_info) && count($data->params->rank_info))
+                                                                <small>Garena</small>
+                                                            @else
+                                                                <small>{{ $data->groups[0]->title }}</small>
+                                                            @endif
+                                                        @endif
+
                                                     </div>
                                                 </div>
 
@@ -997,7 +1004,13 @@
                                                 <span>Nhà phát hành</span>
                                             </div>
                                             <div class="col-auto left-right background-order-col-right-ct">
-                                                <small>{{ $data->groups[0]->title }}</small>
+                                                @if(isset($data->params))
+                                                    @if(isset($data->params->rank_info) && count($data->params->rank_info))
+                                                        <small>Garena</small>
+                                                    @else
+                                                        <small>{{ $data->groups[0]->title }}</small>
+                                                    @endif
+                                                @endif
                                             </div>
                                         </div>
 

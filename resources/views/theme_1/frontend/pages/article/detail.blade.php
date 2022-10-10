@@ -36,7 +36,7 @@
                             <li>/</li>
                             <li>
                                 @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                                <a href="/blog" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">Blog</p></a>
+                                <a href="{{ setting('sys_zip_shop') }}" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">Tin tức</p></a>
                                 @else
                                     <a href="/tin-tuc" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">Tin tức</p></a>
                                 @endif

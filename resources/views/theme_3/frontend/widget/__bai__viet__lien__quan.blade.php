@@ -20,7 +20,7 @@
 
                         <div class="swiper-slide" >
                             @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                            <a href="/blog/{{ $val->slug }}">
+                            <a href="{{ setting('sys_zip_shop') }}/{{ $val->slug }}">
                                 <div class="item-product__box-img item-news-img">
                                     @if(isset($val->image))
                                         <img onerror="imgError(this)" data-src="{{\App\Library\MediaHelpers::media($val->image)}}" alt="" class="lazy">

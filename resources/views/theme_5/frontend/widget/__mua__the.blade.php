@@ -1,6 +1,6 @@
 @if(isset($telecoms))
-    
-    <div class="section-header c-pt-12 c-pt-lg-6 c-mb-24 c-mb-lg-20 justify-content-between">
+
+    <div class="section-header c-pt-36 c-pt-lg-24 c-mb-24 c-mb-lg-20 justify-content-between">
         <h2 class="section-title">
             <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/son/naptien.svg)"></i>
             {{ $title??'Mua thẻ' }}
@@ -20,7 +20,7 @@
                         </li>
                     </ul>
                 </div>
-    
+
                 <div class="tab-content">
                     <div class="tab-pane fade active show c-p-16 c-pb-lg-0" id="gameCard" role="tabpanel">
                         <div class="buy-card-section c-mb-8 c-mb-sm-0">
@@ -94,7 +94,7 @@
                             </div>
                             <div class="col-md-12 p-0">
                                 <div class="row m-0 c-mx-n4" id="cardAmountListGame">
-            
+
                                 </div>
                             </div>
                         </div>
@@ -171,7 +171,7 @@
                             </div>
                             <div class="col-md-12 p-0">
                                 <div class="row m-0 c-mx-n4" id="cardAmountListMobile">
-            
+
                                 </div>
                             </div>
                         </div>
@@ -232,3 +232,4 @@
     </div>
 @else
 @endif
+<div class="c-pt-24 border-bottom-destop c-pt-lg-0"></div>

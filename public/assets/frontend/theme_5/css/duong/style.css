@@ -274,3 +274,8 @@ input.quantity-number:focus {
     border-radius: 20px 0 0 20px;
 
 }
+
+/* css border buttom gia soc*/
+.border-bottom-destop{
+    border-bottom: 1px solid #BCBFD6;
+}

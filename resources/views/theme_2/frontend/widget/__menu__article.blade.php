@@ -3,7 +3,7 @@
     @foreach($data as $val)
         <li class="nav-item active{{ $val->slug }}">
             @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-            <a href="/blog/{{ $val->slug }}" class="nav-link">{{ $val->title }}</a>
+            <a href="{{ setting('sys_zip_shop') }}/{{ $val->slug }}" class="nav-link">{{ $val->title }}</a>
             @else
                 <a href="/tin-tuc/{{ $val->slug }}" class="nav-link">{{ $val->title }}</a>
             @endif

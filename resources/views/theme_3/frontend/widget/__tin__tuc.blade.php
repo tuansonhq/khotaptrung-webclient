@@ -4,15 +4,11 @@
         <span>
             <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/tintucindex.svg" alt="">
         </span>
-        @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
         <h2 class="text-title">{{ $title??'Tin tức' }}</h2>
-        @else
-            <h2 class="text-title">{{ $title??'Blog' }}</h2>
-        @endif
         <div class="navbar-spacer"></div>
         <div class="text-view-more">
             @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-            <a href="/blog" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/arrowright.svg)"></i></a>
+            <a href="{{ setting('sys_zip_shop') }}" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/arrowright.svg)"></i></a>
             @else
                 <a href="/tin-tuc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/arrowright.svg)"></i></a>
             @endif
@@ -30,7 +26,7 @@
 
                         <div class="swiper-slide" >
                             @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                            <a href="/blog/{{ $val->slug }}">
+                            <a href="{{ setting('sys_zip_shop') }}/{{ $val->slug }}">
                                 <div class="item-product__box-img item-news-img">
                                     @if(isset($val->image))
                                     <img onerror="imgError(this)" class="lazy" data-src="{{\App\Library\MediaHelpers::media($val->image)}}" alt="">
