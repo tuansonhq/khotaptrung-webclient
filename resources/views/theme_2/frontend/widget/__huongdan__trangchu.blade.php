@@ -6,7 +6,7 @@
         @foreach($data as $key => $item)
             @if($key < 3)
                 @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                <li><a href="/blog/{{ $item->slug }}"><i class="las la-angle-right icon"></i> {{ $item->title }}</a></li>
+                <li><a href="{{ setting('sys_zip_shop') }}/{{ $item->slug }}"><i class="las la-angle-right icon"></i> {{ $item->title }}</a></li>
                 @else
                 <li><a href="/tin-tuc/{{ $item->slug }}"><i class="las la-angle-right icon"></i> {{ $item->title }}</a></li>
                 @endif
@@ -20,7 +20,7 @@
 
         <div class="mb-4">
             @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-            <a href="/blog/{{ $item->slug }}">
+            <a href="{{ setting('sys_zip_shop') }}/{{ $item->slug }}">
                 <div class="media-placeholder ratio-4-3">
                     <div class="media-inner bg-overlay gradient-from-bottom d-flex align-items-end">
                         <img src="{{\App\Library\MediaHelpers::media($item->image)}}" class="bg" alt="" style="object-fit: cover">

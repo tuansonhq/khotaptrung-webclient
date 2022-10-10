@@ -40,7 +40,7 @@
 
                 <li class="breadcrumb-item" aria-current="page">
                     @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                    <a href="/blog" title="tin-tuc">Blog</a>
+                    <a href="{{ setting('sys_zip_shop') }}" title="tin-tuc">Tin tức</a>
                     @else
                         <a href="/tin-tuc" title="tin-tuc">Tin tức</a>
                     @endif
@@ -60,7 +60,7 @@
                             <i class="far fa-newspaper" aria-hidden="true"></i>
                             @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
                             <a
-                                href="/blog/{{ $data->groups[0]->slug }}"
+                                href="{{ setting('sys_zip_shop') }}/{{ $data->groups[0]->slug }}"
                                 title="{{ $data->groups[0]->title }}">{{ $data->groups[0]->title }}</a>
                             @else
                                 <a

@@ -14,12 +14,13 @@
 
                 <div class="row marginauto nav-bar-nick nav-bar-child add-active_withdraw-money">
                     <div class="col-12 left-right">
-                        <a href="/tin-tuc">
-                            <div class="row marginauto">
-                                <div class="col-auto left-right">
-                                    <i class="__icon --md --path__custom" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/cat-news-all.png)"></i>
-                                </div>
-                                <div class="col-10 nav-bar-log-top-body-col">
+                        @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                            <a href="{{ setting('sys_zip_shop') }}">
+                                <div class="row marginauto">
+                                    <div class="col-auto left-right">
+                                        <i class="__icon --md --path__custom" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/cat-news-all.png)"></i>
+                                    </div>
+                                    <div class="col-10 nav-bar-log-top-body-col">
                                             <span> @php
                                                     $count = 0;
                                                     foreach ($data_category as $val){
@@ -27,26 +28,61 @@
                                                     }
                                                 @endphp
                                                 Tất cả ({{ $count }})</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        @else
+                            <a href="/tin-tuc">
+                                <div class="row marginauto">
+                                    <div class="col-auto left-right">
+                                        <i class="__icon --md --path__custom" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/cat-news-all.png)"></i>
+                                    </div>
+                                    <div class="col-10 nav-bar-log-top-body-col">
+                                            <span> @php
+                                                    $count = 0;
+                                                    foreach ($data_category as $val){
+                                                        $count = $count + $val->count_item;
+                                                    }
+                                                @endphp
+                                                Tất cả ({{ $count }})</span>
+                                    </div>
+                                </div>
+                            </a>
+                        @endif
+
                     </div>
                 </div>
                 @foreach($data_category as $val)
                     <div class="row marginauto nav-bar-nick nav-bar-child add-active_withdraw-items">
                         <div class="col-12 left-right">
-                            <a href="/tin-tuc/{{ $val->slug }}" data-slug="{{ $val->slug }}">
-                                <div class="row marginauto">
-                                    <div class="col-auto left-right">
-                                        <i class="__icon --md --path__custom" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/cat-news-game.png)"></i>
-                                    </div>
-                                    <div class="col-10 nav-bar-log-top-body-col">
+                            @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                                <a href="{{ setting('sys_zip_shop') }}/{{ $val->slug }}" data-slug="{{ $val->slug }}">
+                                    <div class="row marginauto">
+                                        <div class="col-auto left-right">
+                                            <i class="__icon --md --path__custom" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/cat-news-game.png)"></i>
+                                        </div>
+                                        <div class="col-10 nav-bar-log-top-body-col">
                                             <span>
                                                 {{ $val->title }} ({{ $val->count_item }})
                                             </span>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            @else
+                                <a href="/tin-tuc/{{ $val->slug }}" data-slug="{{ $val->slug }}">
+                                    <div class="row marginauto">
+                                        <div class="col-auto left-right">
+                                            <i class="__icon --md --path__custom" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/cat-news-game.png)"></i>
+                                        </div>
+                                        <div class="col-10 nav-bar-log-top-body-col">
+                                            <span>
+                                                {{ $val->title }} ({{ $val->count_item }})
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            @endif
+
                         </div>
                     </div>
                 @endforeach

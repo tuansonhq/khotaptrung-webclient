@@ -1,4 +1,5 @@
 @if(isset($data->custom->content))
+
     <section>
         <div class="container container-fix body-container-ct">
             <div class="row marginauto body-container-row-ct">
@@ -23,11 +24,13 @@
                         @endif
                     </div>
                 </div>
+                </div>
 
             </div>
         </div>
     </section>
 @else
+
     @if(isset($data->content))
         <section>
             <div class="container container-fix body-container-ct">

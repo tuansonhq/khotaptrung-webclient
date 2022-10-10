@@ -57,7 +57,7 @@
                             </td>
                             <td>
                                 @if($item->status == 0)
-                                    <a class="badge badge-info show_chitiet" href="/lich-su-mua-nick-{{ $item->randId }}">Chi tiết</a>
+                                    <a class="badge badge-info show_chitiet" href="/lich-su-mua-account-{{ $item->randId }}">Chi tiết</a>
                                 @endif
                             </td>
                         </tr>

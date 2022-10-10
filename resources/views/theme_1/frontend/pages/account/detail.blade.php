@@ -348,7 +348,7 @@
                                 <a href="javascript:void(0)">
                                     <div class="row marginauto item-nick-lmht__border">
                                         <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy" src="{{\App\Library\MediaHelpers::media($game_auto_prop->thumb)}}" alt="{{ $game_auto_prop->name }}">
+                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy" src="https://cdn.upanh.info/{{ $game_auto_prop->thumb }}" alt="{{ $game_auto_prop->name }}">
                                         </div>
                                         <div class="col-md-12 pl-0 pr-0 text-center">
                                             <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme text-limit limit-1">{{ $game_auto_prop->name }}</p>
@@ -397,7 +397,8 @@
                                     <a href="javascript:void(0)">
                                         <div class="row marginauto item-nick-lmht__border">
                                             <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                                <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy" src="{{\App\Library\MediaHelpers::media($c_child->thumb)}}" alt="{{ $c_child->name }}">
+
+                                                <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy" src="https://cdn.upanh.info/{{$c_child->thumb}}" alt="{{ $c_child->name }}">
                                             </div>
                                             <div class="col-md-12 pl-0 pr-0 text-center">
                                                 <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme text-limit limit-1">{{ $c_child->name }}</p>
@@ -446,7 +447,7 @@
                                 <a href="javascript:void(0)">
                                     <div class="row marginauto item-nick-lmht__border">
                                         <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy" src="https://backend.dev.tichhop.pro/{{ $game_auto_prop->thumb }}" alt="{{ $game_auto_prop->name }}">
+                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy" src="https://cdn.upanh.info/{{ $game_auto_prop->thumb }}" alt="{{ $game_auto_prop->name }}">
 {{--                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy" src="{{\App\Library\MediaHelpers::media($game_auto_prop->thumb)}}" alt="{{ $game_auto_prop->name }}">--}}
                                         </div>
                                         <div class="col-md-12 pl-0 pr-0 text-center">
@@ -531,7 +532,7 @@
 
 {{--        </div>--}}
 
-
+        <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.css">
         <input type="hidden" name="total_tuong" class="total_tuong" value="{{ $total_tuong }}">
 {{--        <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/main.css">--}}
         <script>

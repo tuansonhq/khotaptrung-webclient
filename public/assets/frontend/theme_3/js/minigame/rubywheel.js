@@ -263,6 +263,7 @@ $(document).ready(function(e) {
                     }
                     else
                     {
+
                         $totalRevice = 0;
                         $html += "<span>Kết quả chơi thử: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt quay.</span><br/>";
                         $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
@@ -276,7 +277,15 @@ $(document).ready(function(e) {
                             {
                                 $html +=""+msg_random_bonus[$i]+"<br/>";
                             }
+
+                            if (!gift_revice[$i]['parrent'].params.value){
+
+                                gift_revice[$i]['parrent'].params.value = 0;
+
+                            }
+
                             $totalRevice +=  parseInt(gift_revice[$i]['parrent'].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
+
                         }
 
                         $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
