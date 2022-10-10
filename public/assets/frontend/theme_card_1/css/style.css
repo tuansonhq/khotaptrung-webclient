@@ -65,7 +65,7 @@ li {
 }
 .topbar .sodienthoai {
     color: #999;
-       font-weight: 500;
+   font-weight: 600;
     line-height: 28px;
     margin: 0;
     float: left;
@@ -97,12 +97,12 @@ li {
 .menu li.m1 > a:hover {
     color: #ffc700;
     text-decoration: none;
-       font-weight: 500;
+   font-weight: 600;
 }
 .menu li a {
     text-transform: none;
     color: #fff;
-       font-weight: 500;
+   font-weight: 600;
     font-size: 16px;
     line-height: 19px;
     transition: all 0.25s;
@@ -216,21 +216,21 @@ header img {
     font-size: 24px !important;
     display: block;
     line-height: 28px;
-       font-weight: 500;
+   font-weight: 600;
 }
 .main_new_detail .article h2,
 .main_new_detail .article h2 span,
 .content_bvct h2 span {
     font-size: 20px !important;
     line-height: 24px !important;
-       font-weight: 500;
+   font-weight: 600;
 }
 .main_new_detail .article h3,
 .main_new_detail .article h3 span,
 .content_bvct h3 span {
     font-size: 18px !important;
     line-height: 22px !important;
-       font-weight: 500;
+   font-weight: 600;
 }
 .main_new_detail .article h4,
 .main_new_detail .article h4 span,
@@ -245,7 +245,7 @@ header img {
 .btn_login,
 .btn_register {
     font-size: 15px;
-       font-weight: 500;
+   font-weight: 600;
     line-height: 18px;
     cursor: pointer;
     color: #fff;
@@ -277,7 +277,7 @@ header img {
     float: left;
     color: #f35958;
     font-size: 13.5px;
-       font-weight: 500;
+   font-weight: 600;
     padding-top: 10px;
     padding-left: 15px;
     width: 100%;
@@ -298,10 +298,10 @@ header img {
     letter-spacing: 0.4px;
 }
 .item_bn b {
-       font-weight: 500;
+   font-weight: 600;
 }
 .color_do {
-       font-weight: 500;
+   font-weight: 600;
     color: #f35958;
 }
 .item_bn a {
@@ -333,7 +333,7 @@ header img {
     float: left;
     font-size: 18px;
     color: #555;
-       font-weight: 500;
+   font-weight: 600;
     width: 100%;
     text-align: center;
     padding-top: 20px;
@@ -396,7 +396,7 @@ section {
 .item-sale .percent {
     color: #fff;
     font-size: 18px;
-       font-weight: 500;
+   font-weight: 600;
     width: 100%;
     float: left;
     margin: 8px 0 0;
@@ -582,7 +582,7 @@ h3.nt-title1 {
     text-align: center;
     font-size: 12px;
     color: #fff;
-       font-weight: 500;
+   font-weight: 600;
     padding-left: 7px;
     display: none;
 }
@@ -663,7 +663,7 @@ input:checked ~ .control__indicator:after {
     color: #555;
     font-size: 13px;
     padding-left: 28px;
-       font-weight: 500;
+   font-weight: 600;
     padding-top: 3px;
     padding-right: 10px;
 }
@@ -787,7 +787,7 @@ input:checked ~ .control__indicator1:after {
     text-align: center;
     cursor: pointer;
     font-size: 14px;
-       font-weight: 500;
+   font-weight: 600;
     color: #fff;
     background: #f25922;
    font-family: 'Roboto', sans-serif;
@@ -805,7 +805,7 @@ input:checked ~ .control__indicator1:after {
     text-align: center;
     cursor: pointer;
     font-size: 14px;
-       font-weight: 500;
+   font-weight: 600;
     color: #fff;
     background: #f25922;
    font-family: 'Roboto', sans-serif;
@@ -835,7 +835,7 @@ input:checked ~ .control__indicator1:after {
     height: 34px;
     line-height: 38px;
     font-size: 14px;
-       font-weight: 500;
+   font-weight: 600;
     color: #fff;
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
@@ -854,7 +854,7 @@ input:checked ~ .control__indicator1:after {
    font-family: 'Roboto', sans-serif;
 
     font-size: 13px;
-       font-weight: 500;
+   font-weight: 600;
     color: #6c6a6a;
     border-top: 1px solid #c2c6cb;
     border-bottom: 1px solid #c2c6cb;
@@ -876,7 +876,7 @@ input:checked ~ .control__indicator1:after {
    font-family: 'Roboto', sans-serif;
 
     color: #555;
-       font-weight: 500;
+   font-weight: 600;
 }
 .last_ck b {
     color: #f35958;
@@ -894,7 +894,7 @@ input:checked ~ .control__indicator1:after {
     line-height: 40px;
     text-align: center;
     color: #fff;
-       font-weight: 500;
+   font-weight: 600;
     font-size: 14px;
     margin: 0;
     line-height: 36px;
@@ -912,7 +912,7 @@ input:checked ~ .control__indicator1:after {
     float: left;
     width: 100%;
     font-size: 12px;
-       font-weight: 500;
+   font-weight: 600;
    font-family: 'Roboto', sans-serif;
 
     color: #555;
@@ -1079,7 +1079,7 @@ input:checked ~ .control__indicator1:after {
     text-align: center;
     font-size: 14px;
     color: #555;
-       font-weight: 500;
+   font-weight: 600;
     line-height: 16px;
     padding-top: 5px;
 }
@@ -1478,7 +1478,7 @@ footer * {
     width: 100%;
     color: #333;
     font-size: 18px;
-       font-weight: 500;
+   font-weight: 600;
     padding-bottom: 10px;
 }
 .foot-cod-1 ul {
@@ -1535,7 +1535,7 @@ footer * {
 }
 .foot-cod-1 p {
     font-size: 18px;
-       font-weight: 500;
+   font-weight: 600;
     color: #333;
     padding-bottom: 10px;
 }
@@ -1670,7 +1670,7 @@ p.service_first_link {
     font-size: 16px;
     line-height: 19px;
     letter-spacing: 0.05em;
-       font-weight: 500;
+   font-weight: 600;
 }
 #main_home .content_bvct {
     height: 1000px;
@@ -1699,7 +1699,7 @@ p.service_first_link {
     font-size: 16px;
     color: #f25922;
     text-align: center;
-       font-weight: 500;
+   font-weight: 600;
     cursor: pointer;
 }
 #main_home .xt:before {
@@ -1745,7 +1745,7 @@ p.service_first_link {
     color: #000;
     align-self: flex-end;
     margin-left: 18px;
-       font-weight: 500;
+   font-weight: 600;
     display: flex;
     flex: 1;
 }
@@ -1878,7 +1878,7 @@ p.service_first_link {
     font-size: 16px;
     line-height: 19px;
     color: #4d4d4d;
-       font-weight: 500;
+   font-weight: 600;
     cursor: pointer;
 }
 .num_input {
@@ -1893,7 +1893,7 @@ p.service_first_link {
     border-left: 0.5px solid #a2a2a2;
     border-right: 0.5px solid #a2a2a2;
     border-radius: 0;
-       font-weight: 500;
+   font-weight: 600;
 }
 p.label_card_input {
     float: unset;
@@ -1901,7 +1901,7 @@ p.label_card_input {
     line-height: 19px;
     color: #212121;
     padding: 0;
-       font-weight: 500;
+   font-weight: 600;
 }
 #main_home .wp_num_input {
     width: 171px;
@@ -1920,7 +1920,7 @@ p.label_card_input {
     font-size: 16px;
     color: #fff;
     background: #f25922;
-       font-weight: 500;
+   font-weight: 600;
     padding: 12px 29px 10px;
     margin: 38px auto 0;
     text-transform: uppercase;
@@ -1948,7 +1948,7 @@ p.label_card_input {
     border: 0.6px solid #ccc;
 }
 .tbl_card_discount h3 {
-       font-weight: 500;
+   font-weight: 600;
     font-size: 17px;
     line-height: 27px;
     letter-spacing: 0.03em;
@@ -1979,12 +1979,12 @@ p.label_card_input {
 }
 .tbl_card_discount thead td {
     padding: 20px 0;
-       font-weight: 500;
+   font-weight: 600;
     font-size: 16px;
     line-height: 19px;
     color: #000;
     border: none;
-       font-weight: 500;
+   font-weight: 600;
 }
 .tbl_card_discount tbody tr:first-child td {
     padding-top: 20px;
@@ -2042,7 +2042,7 @@ p.label_card_input {
     font-family: "Roboto-Condensed", sans-serif;
     margin-top: 12px;
     text-transform: uppercase;
-       font-weight: 500;
+   font-weight: 600;
 }
 .h1_list a {
     color: #444;
@@ -2063,7 +2063,7 @@ p.label_card_input {
     float: left;
     width: 100%;
     font-size: 20px;
-       font-weight: 500;
+   font-weight: 600;
     color: #282323;
 }
 .item_list h3 a {
@@ -2121,7 +2121,7 @@ p.label_card_input {
     text-align: center;
     line-height: 35px;
     font-size: 13.5px;
-       font-weight: 500;
+   font-weight: 600;
     color: #fff;
     border-radius: 2px;
 }
@@ -2154,7 +2154,7 @@ p.label_card_input {
     font-size: 14px;
     color: #555;
     margin-right: 5px;
-       font-weight: 500;
+   font-weight: 600;
 }
 .jp-current {
     background: #38ada1 !important;
@@ -2219,23 +2219,23 @@ p.label_card_input {
     float: left;
     width: 100%;
     font-size: 23px;
-       font-weight: 500;
+   font-weight: 600;
     color: #282323;
-       font-weight: 500;
+   font-weight: 600;
 }
 .main_new_detail .description h2,
 .main_new_detail .description h2 span {
     font-size: 18px !important;
-       font-weight: 500;
+   font-weight: 600;
 }
 .main_new_detail .description h3,
 .main_new_detail .description h3 span {
     font-size: 16px !important;
-       font-weight: 500;
+   font-weight: 600;
 }
 .main_new_detail .description h4,
 .main_new_detail .description h4 span {
-       font-weight: 500;
+   font-weight: 600;
 }
 .description {
     float: left;
@@ -2331,7 +2331,7 @@ p.label_card_input {
     width: 100%;
     font-size: 14px;
     color: #555;
-       font-weight: 500;
+   font-weight: 600;
     line-height: 20px;
     padding-top: 5px;
 }
@@ -2348,7 +2348,7 @@ fieldset[disabled] .form-control {
     margin-top: 0;
     color: #333 !important;
     font-size: 16px !important;
-       font-weight: 500;
+   font-weight: 600;
     text-align: center;
 }
 .txt {
@@ -2492,7 +2492,7 @@ a.btn span {
    font-family: 'Roboto', sans-serif;
 
     font-size: 15.5px;
-       font-weight: 500;
+   font-weight: 600;
 }
 .main_item.main_user p {
     padding-left: 0;
@@ -2534,7 +2534,7 @@ a.btn span {
     color: #999;
     font-family: Roboto;
     font-size: 13px;
-       font-weight: 500;
+   font-weight: 600;
 }
 .user_row .nganhang {
     float: left;
@@ -2546,7 +2546,7 @@ a.btn span {
     color: #999;
     font-family: Roboto;
     font-size: 13px;
-       font-weight: 500;
+   font-weight: 600;
 }
 .sel_user {
     float: left;
@@ -2560,7 +2560,7 @@ a.btn span {
     color: #999;
     font-family: Roboto;
     font-size: 13px;
-       font-weight: 500;
+   font-weight: 600;
     font-style: normal;
 }
 .sel_user select.day {
@@ -2584,7 +2584,7 @@ a.btn span {
    font-family: 'Roboto', sans-serif;
 
     font-size: 13px;
-       font-weight: 500;
+   font-weight: 600;
     border: none;
 }
 .doi_mk {
@@ -2646,7 +2646,7 @@ a.btn span {
     padding-left: 20px;
     color: #2b2c2c;
     font-size: 13px;
-       font-weight: 500;
+   font-weight: 600;
     cursor: pointer;
 }
 .img_avt {
@@ -2675,7 +2675,7 @@ a.btn span {
     margin-top: 14px;
 }
 .main_info p {
-       font-weight: 500;
+   font-weight: 600;
     color: #656565;
     padding-top: 0;
     margin: 0;
@@ -2696,7 +2696,7 @@ a.btn span {
    font-family: 'Roboto', sans-serif;
 
     font-size: 16px;
-       font-weight: 500;
+   font-weight: 600;
 }
 .time_row {
     float: left;
@@ -2719,11 +2719,11 @@ a.btn span {
 }
 .item_nh strong {
     color: #282323;
-       font-weight: 500;
+   font-weight: 600;
 }
 .item_nh span {
     color: #f35958;
-       font-weight: 500;
+   font-weight: 600;
 }
 .item_nh a {
     color: #1ca799;
@@ -2837,7 +2837,7 @@ a.btn span {
 .main_mtn span,
 .main_mtn li {
     font-size: 14px;
-       font-weight: 500;
+   font-weight: 600;
 }
 .text_mar {
     margin-top: 25px;
@@ -2861,7 +2861,7 @@ a.btn span {
     border-radius: 3px;
     color: #fff;
     font-size: 13px;
-       font-weight: 500;
+   font-weight: 600;
     border: none;
 }
 .tab_sp {
@@ -2877,12 +2877,12 @@ a.btn span {
     background: #fbae39;
     border-radius: 2px;
     font-size: 13px;
-       font-weight: 500;
+   font-weight: 600;
     padding: 0;
     margin-bottom: 0;
     color: #656565;
     font-size: 14px;
-       font-weight: 500;
+   font-weight: 600;
    font-family: 'Roboto', sans-serif;
 
 }
@@ -2902,7 +2902,7 @@ a.btn span {
     border-right: 1px solid #ccc;
 }
 .tab_ttsp .trtieude td {
-       font-weight: 500;
+   font-weight: 600;
     border-bottom: 1px solid #ccc;
 }
 .tab_ttsp td:last-child {
@@ -3040,7 +3040,7 @@ a.btn span {
 .tong_tt p {
     font-size: 13px;
     color: #555;
-       font-weight: 500;
+   font-weight: 600;
    font-family: 'Roboto', sans-serif;
 
 }
@@ -3056,7 +3056,7 @@ a.btn span {
     border: none;
     color: #fff;
     font-size: 13px;
-       font-weight: 500;
+   font-weight: 600;
 }
 .listmenhgia {
     min-height: 125px;
@@ -3088,7 +3088,7 @@ a.btn span {
    font-family: 'Roboto', sans-serif;
 
     font-size: 14px;
-       font-weight: 500;
+   font-weight: 600;
     border: none;
     cursor: pointer;
 }
@@ -3097,7 +3097,7 @@ a.btn span {
    font-family: 'Roboto', sans-serif;
 
     font-size: 16px;
-       font-weight: 500;
+   font-weight: 600;
     padding-left: 0;
 }
 .item_tknt p {
@@ -3153,7 +3153,7 @@ a.btn span {
     font-size: 18px;
    font-family: 'Roboto', sans-serif;
 
-       font-weight: 500;
+   font-weight: 600;
     text-align: center;
 }
 .form_ghc .ftxt span {
@@ -3201,7 +3201,7 @@ a.btn span {
     list-style-image: url(../images/ico_3.html);
     font-style: 14px;
     color: #555;
-       font-weight: 500;
+   font-weight: 600;
 }
 .ghc_right span {
     color: #f35958;
@@ -3250,7 +3250,7 @@ a.btn span {
     position: relative;
     cursor: pointer;
     color: #777;
-       font-weight: 500;
+   font-weight: 600;
     border-top: 1px solid #ccc;
     border-top-left-radius: 4px 5px;
 }
@@ -3267,7 +3267,7 @@ a.btn span {
 .nav-tabs > li.active > a:focus {
     border: 0;
     color: #f25a59 !important;
-       font-weight: 500;
+   font-weight: 600;
 }
 .nav-tabs > li.active > a > span,
 .nav-tabs > li.active > a:hover > span,
@@ -3430,7 +3430,7 @@ a.btn span {
    font-family: 'Roboto', sans-serif;
 
     font-size: 14px;
-       font-weight: 500;
+   font-weight: 600;
     border: none;
     height: 33px;
     border-radius: 3px;
@@ -3513,7 +3513,7 @@ table.dataTable thead .sorting {
    font-family: 'Roboto', sans-serif;
 
     font-size: 14px;
-       font-weight: 500;
+   font-weight: 600;
     text-align: center;
 }
 .cam {
@@ -3534,12 +3534,12 @@ table.dataTable thead .sorting {
     padding-right: 20px;
     color: #f35958;
     font-size: 13px;
-       font-weight: 500;
+   font-weight: 600;
     margin-bottom: 8px;
 }
 .box_tt span {
     color: #555;
-       font-weight: 500;
+   font-weight: 600;
 }
 [placeholder] {
     color: #565656 !important;
@@ -3987,7 +3987,7 @@ table.dataTable thead .sorting {
         background-position: left 3px;
         background-repeat: no-repeat;
         padding-left: 30px;
-           font-weight: 500;
+       font-weight: 600;
     }
     .left .mobile_naptiendt,
     .left .mobile_naptienviettel {
@@ -4010,7 +4010,7 @@ table.dataTable thead .sorting {
         padding-left: 23px;
         font-size: 20px;
         font-family: Roboto;
-           font-weight: 500;
+       font-weight: 600;
     }
     .mobile_naptienviettel a {
         background-image: url(../images/bg_mobi_napdt.png);
@@ -4020,7 +4020,7 @@ table.dataTable thead .sorting {
         padding-left: 23px;
         font-size: 20px;
         font-family: Roboto;
-           font-weight: 500;
+       font-weight: 600;
     }
     .mobile_giahancuoc_b h3 {
         color: #282323;
@@ -4029,7 +4029,7 @@ table.dataTable thead .sorting {
         line-height: 24px;
         height: 20px;
         text-align: center;
-           font-weight: 500;
+       font-weight: 600;
     }
     .mobile_giahancuoc_b a {
         display: block;
@@ -4050,7 +4050,7 @@ table.dataTable thead .sorting {
         display: block;
         font-size: 15px;
         color: #555;
-           font-weight: 500;
+       font-weight: 600;
         text-align: center;
     }
     .left a.mobi_muathe,
@@ -4067,7 +4067,7 @@ table.dataTable thead .sorting {
        font-family: 'Roboto', sans-serif;
 
         font-size: 23px;
-           font-weight: 500;
+       font-weight: 600;
         text-align: center;
         position: absolute;
         margin-left: 3px;
@@ -4183,7 +4183,7 @@ table.dataTable thead .sorting {
        font-family: 'Roboto', sans-serif;
 
         color: #555;
-           font-weight: 500;
+       font-weight: 600;
     }
     .thanhtoancuoc {
         display: block;
@@ -4674,7 +4674,7 @@ img#captcha_code {
         background-position: left 3px;
         background-repeat: no-repeat;
         padding-left: 30px;
-           font-weight: 500;
+       font-weight: 600;
     }
     .left .mobile_naptiendt,
     .left .mobile_naptienviettel {
@@ -4697,7 +4697,7 @@ img#captcha_code {
         padding-left: 23px;
         font-size: 20px;
         font-family: Roboto;
-           font-weight: 500;
+       font-weight: 600;
     }
     .mobile_naptienviettel a {
         background-image: url(../images/bg_mobi_napdt.png);
@@ -4707,7 +4707,7 @@ img#captcha_code {
         padding-left: 23px;
         font-size: 20px;
         font-family: Roboto;
-           font-weight: 500;
+       font-weight: 600;
     }
     .mobile_giahancuoc_b h3 {
         color: #282323;
@@ -4716,7 +4716,7 @@ img#captcha_code {
         line-height: 24px;
         height: 20px;
         text-align: center;
-           font-weight: 500;
+       font-weight: 600;
     }
     .mobile_giahancuoc_b a {
         display: block;
@@ -4737,7 +4737,7 @@ img#captcha_code {
         display: block;
         font-size: 15px;
         color: #555;
-           font-weight: 500;
+       font-weight: 600;
         text-align: center;
     }
     .left a.mobi_muathe,
@@ -4754,7 +4754,7 @@ img#captcha_code {
        font-family: 'Roboto', sans-serif;
 
         font-size: 23px;
-           font-weight: 500;
+       font-weight: 600;
         text-align: center;
         position: absolute;
         margin-left: 3px;
@@ -4787,7 +4787,7 @@ img#captcha_code {
     float: left;
     font-size: 11px;
     color: #555;
-       font-weight: 500;
+   font-weight: 600;
    font-family: 'Roboto', sans-serif;
 
 }
@@ -4881,7 +4881,7 @@ img#captcha_code {
    font-family: 'Roboto', sans-serif;
 
     color: #555;
-       font-weight: 500;
+   font-weight: 600;
 }
 .thanhtoancuoc {
     display: block;
@@ -5223,7 +5223,7 @@ img#captcha_code {
     margin-right: 16px;
 }
 #buycardpreviewmodal .txtcon {
-       font-weight: 500;
+   font-weight: 600;
     font-size: 16px;
     line-height: 19px;
     letter-spacing: 0.02em;
@@ -5270,7 +5270,7 @@ ul#mini-nav.after_login .mini_menu {
 }
 li.money_sum {
     padding: 13px !important;
-       font-weight: 500;
+   font-weight: 600;
     font-size: 16px;
     line-height: 19px;
     letter-spacing: 0.01em;
@@ -5281,7 +5281,7 @@ li.money_sum {
     text-align: left;
 }
 .form_reg_for * {
-       font-weight: 500;
+   font-weight: 600;
     font-size: 15px;
     line-height: 26px;
     letter-spacing: 0.02em;
@@ -5297,7 +5297,7 @@ li.money_sum {
 #buycardpreviewmodal .btn-primary {
     border-radius: 100px;
     padding: 6px 26px 7px;
-       font-weight: 500;
+   font-weight: 600;
     font-size: 16px;
     line-height: 19px;
     letter-spacing: 0.02em;
@@ -5306,7 +5306,7 @@ li.money_sum {
     border: 1px solid red;
     border-radius: 100px;
     padding: 7px 15px;
-       font-weight: 500;
+   font-weight: 600;
     font-size: 16px;
     line-height: 19px;
     letter-spacing: 0.02em;
@@ -5358,7 +5358,7 @@ li.money_sum {
 .login .tooltip .tooltiptext a {
     float: left;
     width: 100%;
-       font-weight: 500;
+   font-weight: 600;
     line-height: 20px;
     color: #555;
 }
@@ -5415,7 +5415,7 @@ li.money_sum {
     border: 0;
     width: auto;
     margin: 0 20px;
-       font-weight: 500;
+   font-weight: 600;
 }
 .advquangcao p {
     line-height: 18px;
@@ -5435,7 +5435,7 @@ li.money_sum {
     font-weight: 400;
 }
 .advquangcao .muathengay .btn b {
-       font-weight: 500;
+   font-weight: 600;
 }
 .advquangcao .muathengay .btn.btn-default {
     margin-right: 20px;
@@ -5542,7 +5542,7 @@ li.money_sum {
     text-align: center;
     font-size: 12px;
     color: #fff;
-       font-weight: 500;
+   font-weight: 600;
     padding-left: 7px;
     display: none;
 }
@@ -5655,7 +5655,7 @@ td.text-center p {
 }
 #accordion h4.panel-title {
     text-align: center;
-       font-weight: 500;
+   font-weight: 600;
     color: #f60;
 }
 #accordion .panel {
@@ -5787,7 +5787,7 @@ td.text-center p {
 }
 #accordion5 h4.panel-title {
     text-align: center;
-       font-weight: 500;
+   font-weight: 600;
     color: #f60;
 }
 #accordion5 .panel {
@@ -5918,7 +5918,7 @@ td.text-center p {
     }
     #accordion h4.panel-title {
         text-align: center;
-           font-weight: 500;
+       font-weight: 600;
         color: #f60;
     }
     #accordion .panel {
@@ -6050,7 +6050,7 @@ td.text-center p {
     }
     #accordion5 h4.panel-title {
         text-align: center;
-           font-weight: 500;
+       font-weight: 600;
         color: #f60;
     }
     #accordion5 .panel {
@@ -6361,7 +6361,7 @@ div.msgInput text {
     text-align: center;
     font-size: 12px;
     color: #fff;
-       font-weight: 500;
+   font-weight: 600;
     padding-left: 7px;
     display: none;
 }
@@ -6600,7 +6600,7 @@ div.linktuychon ul li {
     margin-top: 0;
     color: #333 !important;
     font-size: 16px !important;
-       font-weight: 500;
+   font-weight: 600;
     text-align: center;
 }
 .txt {
@@ -6764,7 +6764,7 @@ pre a {
     padding: 3px 10px;
 }
 .chietkhau .panel-heading .panel-title {
-       font-weight: 500;
+   font-weight: 600;
     text-align: left;
     color: #444;
 }
@@ -6793,14 +6793,14 @@ pre a {
 .tt_naptien {
     font-family: Roboto;
     font-style: normal;
-       font-weight: 500;
+   font-weight: 600;
     font-size: 17px;
     line-height: 23px;
     color: #0098db;
     text-transform: uppercase;
 }
 .tt_taikhoan {
-       font-weight: 500;
+   font-weight: 600;
     font-size: 18px;
     margin-bottom: 0;
     margin-top: 20px;
@@ -6941,7 +6941,7 @@ pre a {
     display: none;
 }
 .modal_content .thtc {
-       font-weight: 500;
+   font-weight: 600;
     font-size: 16px;
     line-height: 26px;
     color: #03a9f4;
@@ -6966,7 +6966,7 @@ pre a {
 }
 .modal_content p {
     font-style: normal;
-       font-weight: 500;
+   font-weight: 600;
     font-size: 18px;
     line-height: 21px;
     text-align: center;
@@ -7031,7 +7031,7 @@ pre a {
 }
 .nd_tkbank strong {
     color: #0098db;
-       font-weight: 500;
+   font-weight: 600;
 }
 .box_ndmd {
     border: solid 1px #0098db;
@@ -7073,7 +7073,7 @@ pre a {
 }
 .muc_luc .title_phu_luc {
     font-size: 18px;
-       font-weight: 500;
+   font-weight: 600;
     text-indent: unset !important;
     color: #f35923;
     text-transform: uppercase;
@@ -7128,7 +7128,7 @@ pre a {
     font-size: 16px;
     padding: 15px 0;
     color: #fff;
-       font-weight: 500;
+   font-weight: 600;
     margin: 0 !important;
     text-indent: 0;
     text-align: center;
@@ -7731,4 +7731,45 @@ label.item-wapper img {
     min-width: 45px;
     position: fixed;
     bottom: 100px;
-    right: 30px;}
+    right: 30px;
+}
+.btn-group-vertical>.btn-group:after, .btn-group-vertical>.btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
+    display: table;
+    content: " ";
+}
+.btn-group-vertical>.btn-group:after, .btn-toolbar:after, .clearfix:after, .container-fluid:after, .container:after, .dl-horizontal dd:after, .form-horizontal .form-group:after, .modal-footer:after, .nav:after, .navbar-collapse:after, .navbar-header:after, .navbar:after, .pager:after, .panel-body:after, .row:after {
+    clear: both;
+}
+
+
+/*profile*/
+.m-menu__nav .active a{
+    color: #f25922;
+}
+.main-content{
+    background-color: #ffffff;
+}
+.bg-white{
+    background-color: #ffffff;
+}
+.pt-block{
+    padding-top: 20px;
+}
+
+.m-menu__nav{
+    padding-left: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+.m-menu__nav li{
+    margin-bottom: 19px;
+}
+.m-menu__nav li a {
+    text-transform: none;
+    color: #444;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    transition: all .25s;
+}
+.p-0{padding: 0}
