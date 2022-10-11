@@ -584,6 +584,10 @@
 
                                                                     @endif
                                                                 @endforeach
+                                                            @else
+                                                                <div class="item_buy_list_description">
+                                                                bảo hành 100%,lỗi hoàn tiền
+                                                                </div>
                                                             @endif
                                                         @endforeach
                                                     @endif
@@ -591,13 +595,15 @@
                                             @endforeach
                                         @endif
                                 @else
-
-                                @endif
-                                @if($checkindex == 0)
-                                    <div class="item_buy_list_description" style="height: 28px">
-
+                                    <div class="item_buy_list_description">
+                                        bảo hành 100%,lỗi hoàn tiền
                                     </div>
                                 @endif
+{{--                                @if($checkindex == 0)--}}
+{{--                                    <div class="item_buy_list_description" style="height: 28px">--}}
+
+{{--                                    </div>--}}
+{{--                                @endif--}}
 
                                 <div class="item_buy_list_info item_buy_list_info_custom">
                                     <div class="row item_buy_list_info__row">
