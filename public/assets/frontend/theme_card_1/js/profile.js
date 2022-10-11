@@ -17,7 +17,7 @@ $(document).ready(function(){
             type: "GET",
             url: url,
             beforeSend: function (xhr) {
-
+                console.log(3636)
             },
             success: function (data) {
                 if(data.status === "LOGIN"){
@@ -27,12 +27,12 @@ $(document).ready(function(){
                 }
                 if(data.status === "ERROR"){
                     console.log('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
+
                 }
                 if(data.status == true){
                     $('#info_id').html('<span>'+data.info.id+'</span>')
                     $('#info_name').html('<span>'+data.info.username+'</span>')
-                    $('#info_balance').html('<span>'+data.info.balance+'</span>')
-                    $('#info_balance').html('<span><i class="text-danger">'+formatNumber(data.info.balance)+'</i></span>')
+                    $('#info_balance').html('<span>'+formatNumber(data.info.balance)+ ' VNĐ</span>')
                 }
             },
             error: function (data) {

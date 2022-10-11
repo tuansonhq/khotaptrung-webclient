@@ -16,25 +16,20 @@
                             <tbody>
                             <tr>
                                 <th>ID của bạn:</th>
-                                <th>35012</th>
+                                <th id="info_id"></th>
                             </tr>
                             <tr>
                                 <th>Tên của bạn:</th>
-                                <th>Đỗ Hải Nam</th>
+                                <th id="info_name"></th>
                             </tr>
                             <tr>
                                 <th>Số dư tài khoản:</th>
-                                <th>0 VNĐ</th>
+                                <th id="info_balance"> </th>
                             </tr>
-                            <tr>
-                                <th>Ngày tham gia:</th>
-                                <th>
-                                    05/10/2022
-                                </th>
-                            </tr>
+
                             <tr>
                                 <th>Mật khẩu:</th>
-                                <th>************** </th>
+                                <th>******* <a href="/changepassword" style="color: red;text-decoration: none;font-weight: 600;font-style: italic">Đổi mật khẩu</a></th>
                             </tr>
                             </tbody>
                         </table>
@@ -45,4 +40,6 @@
 
 
     </div>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/profile.js?v={{time()}}"></script>
+
 @endsection
