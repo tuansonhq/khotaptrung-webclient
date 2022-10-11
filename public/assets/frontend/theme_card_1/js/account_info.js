@@ -1,153 +1,99 @@
-let auth_check = false;
 $(document).ready(function(){
     const csrf_token = $('meta[name="csrf-token"]').attr('content');
+    const token =  $('meta[name="jwt"]').attr('content');
     function getInfo(){
         const url = '/ajax/user/account_info';
+        // if(token == 'undefined' || token == null || token =='' || token == undefined){
+        //     if($(window).width() > 992){
+        //
+        //         $('.box-loading').hide();
+        //         $('.box-logined').show();
+        //         $('.box-account').hide();
+        //         // đăng nhập, đăng ký
+        //         let html = "";
+        //         html += '<a href="#" data-toggle="modal" data-target="#modal-login" style="text-transform: uppercase;font-weight: bold">';
+        //         html += '<i class="fa fa-user mr-1" aria-hidden="true"></i> Đăng nhập';
+        //         html += '</a>';
+        //         html += ' <span class="mr-2 ml-2">/</span>';
+        //         html += '<a href="#" data-toggle="modal" data-target="#modal-register" style="text-transform: uppercase;font-weight: bold">';
+        //         html += '<i class="fa fa-lock mr-1" aria-hidden="true"></i> Đăng ký';
+        //         html += '</a>';
+        //         $('.box-logined').html(html);
+        //
+        //     }else {
+        //         $('.box-loading').hide();
+        //         $('.box-account-mobile').show();
+        //         $('.box-account-mobile').html('<a href="#" data-toggle="modal" data-target="#modal-login"><i class="fas fa-user"></i></a>')
+        //     }
+        //     $('meta[name="jwt"]').attr('content','');
+        //     return;
+        // }
         $.ajax({
             type: "POST",
             url: url,
             cache:false,
             data: {
                 _token:csrf_token,
+                jwt:token
             },
             beforeSend: function (xhr) {
 
             },
             success: function (data) {
+                console.log(3636)
+
                 if(data.status === "LOGIN"){
-                    $('#info .loading').remove();
-                    $('#logout .loading').remove();
-                    if (window.location.pathname == '/login'){
-                        $('#info').attr('href','')
-                    }else {
-                        $('#info').attr('href','/login?return_url='+window.location.href)
-                    }
-                    if (window.location.pathname == '/login'){
-                        $('#info_tab_mobile').attr('href','#')
 
-                    }else {
-                        $('#info_tab_mobile').attr('href','/login?return_url='+window.location.href)
-                    }
-                    $('#logout').attr('href','/register')
-                    $('#info').html('<i class="fas fa-user"></i> Đăng nhập')
-                    $('#logout').html('<i class="fas fa-user"></i> Đăng kí')
-
-                    $('#info').addClass('open-modal-login');
+                    $('.box-loading').hide();
+                    $('.box-logined').show();
+                    $('.box-account').hide();
+                    // đăng nhập, đăng ký
+                    let html = "";
+                    html += '<div class="login">';
+                    html += '<span class="btn_login" data-toggle="modal" data-target="#signin"><i class="icon_account ic_login"><img src="/assets/frontend/images/new_index/icon_login.svg" alt="login"></i>Đăng nhập</span>\n';
+                    html += '<span style="border: 1px solid #FFFFFF;transform: rotate(104.43deg);background:#ffffff;width:20px;display:inline-block; vertical-align:middle;"></span>\n';
+                    html += '<span class="btn_register" onclick="window.location.href = \'/register\';"><i class="icon_account ic_register"><img src="/assets/frontend/images/new_index/icon_register.svg" alt="register"></i>Đăng ký</span>\n';
+                    html += ' </div>';
+                    $('.wp_login').html(html);
 
 
-                    $('#info_mobile .loading').remove();
-                    $('#logout_mobile .loading').remove();
-                    $('#info_mobile').attr('href','/login?return_url='+window.location.href)
-                    $('#logout_mobile').attr('href','/register')
-                    $('#info_mobile').html('Đăng nhập')
-                    $('#logout_mobile').html('Đăng kí')
-
-                    $('#info_tab_mobile .loading').remove();
-                    $('#logout_tab_mobile .loading').remove();
-                    // $('#info_tab_mobile').attr('href','/login?return_url='+window.location.href)
-                    $('#logout_tab_mobile').attr('href','/register')
-                    $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
-                    $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
                     $('meta[name="jwt"]').attr('content','');
-                    // $('#form-charge-submit').html('<a href="/login" class="btn btn-submit" >Nạp thẻ</a>')
 
                 }
                 if(data.status == 401){
-                    $('#info .loading').remove();
-                    $('#logout .loading').remove();
-                    if (window.location.pathname == '/login'){
-                        $('#info').attr('href','')
-                    }else {
-                        $('#info').attr('href','/login?return_url='+window.location.href)
-                    }
-                    if (window.location.pathname == '/login'){
-                        $('#info_tab_mobile').attr('href','#')
-
-                    }else {
-                        $('#info_tab_mobile').attr('href','/login?return_url='+window.location.href)
-                    }
-                    $('#logout').attr('href','/register')
-                    $('#info').html('<i class="fas fa-user"></i> Đăng nhập')
-                    $('#logout').html('<i class="fas fa-user"></i> Đăng kí')
-
-
-                    $('#info_mobile .loading').remove();
-                    $('#logout_mobile .loading').remove();
-                    $('#info_mobile').attr('href','/login?return_url='+window.location.href)
-                    $('#logout_mobile').attr('href','/register')
-                    $('#info_mobile').html('Đăng nhập')
-                    $('#logout_mobile').html('Đăng kí')
-
-                    $('#info_tab_mobile .loading').remove();
-                    $('#logout_tab_mobile .loading').remove();
-                    // $('#info_tab_mobile').attr('href','/login?return_url='+window.location.href)
-                    $('#logout_tab_mobile').attr('href','/register')
-                    $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
-                    $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
+                    $('.box-loading').hide();
+                    $('.box-logined').show();
+                    $('.box-account').hide();
+                    // đăng nhập, đăng ký
+                    let html = "";
+                    html += '<div class="login">';
+                    html += '<span class="btn_login" data-toggle="modal" data-target="#signin"><i class="icon_account ic_login"><img src="/assets/frontend/images/new_index/icon_login.svg" alt="login"></i>Đăng nhập</span>\n';
+                    html += '<span style="border: 1px solid #FFFFFF;transform: rotate(104.43deg);background:#ffffff;width:20px;display:inline-block; vertical-align:middle;"></span>\n';
+                    html += '<span class="btn_register" onclick="window.location.href = \'/register\';"><i class="icon_account ic_register"><img src="/assets/frontend/images/new_index/icon_register.svg" alt="register"></i>Đăng ký</span>\n';
+                    html += ' </div>';
+                    $('.wp_login').html(html);
                     $('meta[name="jwt"]').attr('content','');
-                    // $('#form-charge-submit').html('<a href="/login" class="btn btn-submit" >Nạp thẻ</a>')
 
                 }
                 if(data.status === "ERROR"){
-                    console.log('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
-
+                    alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
                 }
                 if(data.status == true){
-                    auth_check = true;
-                    $('#username').val(data.info.username);
-                    $('#info .loading').remove();
-                    $('#logout .loading').remove();
-                    $('#info').attr('href','/thong-tin')
-                    $('#logout').attr('href','/logout')
 
-                    // mobile tab
-                    $('#info_tab_mobile .loading').remove();
-                    $('#logout_tab_mobile .loading').remove();
-                    $('#info_tab_mobile').attr('href','/thong-tin')
-                    $('#logout_tab_mobile').attr('href','/logout')
+                    $('.box-loading').hide();
+                    $('.box-logined').hide();
+                    $('.box-account').show();
+                    $('#manageAcount').html('<a href="#" role="button" class="btnc btn-user dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <i class="fas fa-user"></i> <b>'+data.info.username+'</b> <b class="caret"></b> </a>');
+                    $('.money_sum').html('<span>Số dư: </span> <span class="tienconlai"><b>'+formatNumber(data.info.balance)+' VNĐ</b> </span>');
+                    $('.account_logout').html(' <a rel="nofollow"  onclick="event.preventDefault();\n' +
+                        'document.getElementById(\'logout-form\').submit();" id="logoutbtn1"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a> ');
 
-                    $('#logout-form').attr('href','/logout')
-
-                    $('#logout').attr('onclick','event.preventDefault();\ndocument.getElementById(\'logout-form\').submit();')
-                    $('#info').html('<i class="fas fa-user"></i> '+ fn(data.info.username, 6)  +' - $' +formatNumber(data.info.balance));
-
-                    $('#formProfile #user_id').val(data.info.id);
-
-                    $('#logout').html('<i class="fas fa-user"></i> Đăng xuất')
-
-
-                    // mobile
-                    $('#info_mobile .loading').remove();
-                    $('#logout_mobile .loading').remove();
-                    $('#info_mobile').attr('href','/thong-tin')
-                    // $('#logout_mobile').attr('href','/logout')
-
-                    $('#logout_mobile').attr('onclick','event.preventDefault();\ndocument.getElementById(\'logout-form\').submit();')
-                    $('#info_mobile').html(fn(data.info.username, 8) +' - $' +formatNumber(data.info.balance))
-                    $('#logout_mobile').css('display','none')
-
-
-                    $('#logout_tab_mobile').attr('onclick','event.preventDefault();\ndocument.getElementById(\'logout-form\').submit();')
-                    $('#info_tab_mobile').html('<i class="fas fa-user"></i> '+fn(data.info.username, 12) +' - $' +formatNumber(data.info.balance))
-                    $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng xuất');
-                    $('meta[name="jwt"]').attr('content',data.jwt);
-                    // $('#form-charge-submit').html('<button class="btn btn-submit" type="submit">Nạp thẻ</button>')
-                    $(document).on('scroll',function(){
-                        if($(window).width() > 1024){
-                            if ($(this).scrollTop() > 100) {
-                                $("#logout").css("display","none");
-
-                            } else {
-                                $("#logout").css("display","inline");
-                            }
-                        }
-
-                    });
+                    $('meta[name="jwt"]').attr('content',data.token);
 
                 }
             },
             error: function (data) {
-                console.log('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý(account_info)!')
+                // alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý(account_info)!')
                 return;
             },
             complete: function (data) {
@@ -163,11 +109,6 @@ $(document).ready(function(){
     function fn(text, count){
         return text.slice(0, count) + (text.length > count ? "..." : "");
     }
-
-
-    // let config =  JSON.parse($('#array-auto').val());
-
-    // $('#content').autoLink(config);
 
 });
 

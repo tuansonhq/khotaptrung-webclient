@@ -6,7 +6,6 @@
 @if(empty($data->data))
     <div class="row" >
         @if(isset($data) && count($data) > 0)
-
             @foreach ($data as $key => $item)
                 @foreach($item->card as $itemCard)
 

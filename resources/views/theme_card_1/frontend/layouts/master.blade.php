@@ -12,12 +12,16 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mua Thẻ Garena Online Giá Rẻ | Đổi Thẻ Garena Từ Thẻ Điện Thoại</title>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     @stack('style')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.css">
     <!-- <link media="screen" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" /> -->
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/responsive.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/blog.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_nam.css?v={{time()}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
@@ -323,6 +327,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazysizes.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert/sweetalert.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/main.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
 
 <button type="button" class="btn btn-danger btn-floating btn-lg ripple-surface" id="btn-back-to-top" style="display: none; min-width: 45px;z-index: 999">
     <i class="fas fa-arrow-up"></i>
