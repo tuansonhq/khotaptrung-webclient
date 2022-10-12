@@ -1,7 +1,6 @@
 @extends('theme_card_2.frontend.layouts.master')
 
 @section('content')
-
     <div id="blog" class="blog-custom" style="margin-top: 15px;">
         <div class="container">
             <div class="title-content">
