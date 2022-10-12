@@ -13,6 +13,17 @@
                     <a href="{{$item->url}}" @if($item->target==1) target="_blank" @endif>{{$item->title}}</a>
                 </li>
             @endif
+        @elseif($item->url == '/nap-the' || $item->url =='/recharge-atm')
+
+            @if(!App\Library\AuthCustom::check())
+                <li class="m1">
+                    <a href="#" data-toggle="modal" data-target="#signin" @if($item->target==1) target="_blank" @endif>{{$item->title}}</a>
+                </li>
+            @else
+                <li class="m1">
+                    <a href="{{$item->url}}" @if($item->target==1) target="_blank" @endif>{{$item->title}}</a>
+                </li>
+            @endif
         @else
             <li class="m1 ">
                 <a href="{{$item->url}}" @if($item->target==1) target="_blank" @endif>{{$item->title}}</a>

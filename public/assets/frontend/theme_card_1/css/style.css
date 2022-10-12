@@ -53,6 +53,11 @@ li {
 * {
     box-sizing: border-box;
 }
+:root{
+    /*--filter-primary-color:#f25922*/
+    --filter-primary-color: invert(45%) sepia(96%) saturate(2744%) hue-rotate(348deg) brightness(97%) contrast(96%);
+
+}
 .container {
     width: 1151px;
     margin: 0 auto;
