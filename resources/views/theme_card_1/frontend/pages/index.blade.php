@@ -13,34 +13,30 @@
 
 
         <div class="clr"></div>
+        @if(setting('sys_store_card_content'))
         <div class="wp_content_post_index">
-
             <div class="post_index">
-                <div class="content_bvct">
-                    {!! setting('sys_store_card_content') !!}
-                </div>
-                <span class="xt more">Xem thêm</span>
-                <span class="xt tg" style="display: none;">Thu gọn</span>
+                    <div class="content_bvct">
+                        {!! setting('sys_store_card_content') !!}
+                    </div>
+                    <span class="xt more">Xem thêm</span>
+                    <span class="xt tg" style="display: none;">Thu gọn</span>
 
-                <script type="text/javascript">
-                    $('.more').click(function () {
-                        $('.content_bvct').css('height', 'unset');
-                        $('.more').hide();
-                        $('.tg').show();
-                    });
-                    $('.tg').click(function () {
-                        $('.content_bvct').css('height', '1000px');
-                        $('.more').show();
-                        $('.tg').hide();
-                    });
-                </script>
-            </div>
-            <style>
-                #main_home .tg::after {
-                    transform: rotate(180deg);
-                }
-            </style>
+                    <script type="text/javascript">
+                        $('.more').click(function () {
+                            $('.content_bvct').css('height', 'unset');
+                            $('.more').hide();
+                            $('.tg').show();
+                        });
+                        $('.tg').click(function () {
+                            $('.content_bvct').css('height', '1000px');
+                            $('.more').show();
+                            $('.tg').hide();
+                        });
+                    </script>
+                </div>
         </div>
+        @endif
     </div>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard/store_card.js?v={{time()}}"></script>
 

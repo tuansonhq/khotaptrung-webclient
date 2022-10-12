@@ -11,7 +11,7 @@
                                     @if($key == 0)
                                         <li>
                                             <div class="nav-link link-supplier text-center">
-                                                <input name="telecom_key" value="{{ $telecom->key }}" id="myCheckbox{{ $telecom->id }}" type="radio" >
+                                                <input name="telecom" value="{{ $telecom->key }}" id="myCheckbox{{ $telecom->id }}" type="radio" >
                                                 <label class="item-wapper label-{{ $telecom->key }} store-telecom{{$key}}" for="myCheckbox{{ $telecom->id }}" onclick="reply_click(this.id)" id="{{ $telecom->key }}">
                                                     <img class="img-fluid" src="{{ $telecom->image }}" alt="{{ $telecom->key }}">
                                                 </label>
@@ -20,7 +20,7 @@
                                     @else
                                         <li>
                                             <div class="nav-link link-supplier text-center">
-                                                <input name="telecom_key" value="{{ $telecom->key }}" id="myCheckbox{{ $telecom->id }}" type="radio">
+                                                <input name="telecom" value="{{ $telecom->key }}" id="myCheckbox{{ $telecom->id }}" type="radio">
                                                 <label class="item-wapper label-{{ $telecom->key }} store-telecom{{$key}}" for="myCheckbox{{ $telecom->id }}" onclick="reply_click(this.id)" id="{{ $telecom->key }}">
                                                     <img class="img-fluid" src="{{ $telecom->image }}" alt="{{ $telecom->key }}">
                                                 </label>
@@ -172,7 +172,7 @@
         </form>
 
         <div class="modal fade" id="showInfor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">MUA THẺ THÀNH CÔNG</h4>
@@ -189,34 +189,41 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td width="40%"><b>Mã số</b></td>
-                                <td id="id-item"></td>
-                            </tr>
+{{--                            <tr>--}}
+{{--                                <td width="40%"><b>Mã số</b></td>--}}
+{{--                                <td id="id-item"></td>--}}
+{{--                            </tr>--}}
                             <tr>
                                 <td><b>Mô tả</b></td>
-                                <td id="description-item"></td>
+                                <td id="description-item" class="denominations"></td>
                             </tr>
                             <tr>
                                 <td><b>Trạng thái</b></td>
                                 <td><span class="btn btn-success btn-sm m-btn m-btn--custom ">Hoàn thành</span></td>
                             </tr>
                             <tr>
+                                <td><b>Mệnh giá</b></td>
+{{--                                <td id="money-item" class="price_supplier"></td>--}}
+                                <td class="price_supplier"></td>
+                            </tr>
+                            <tr>
                                 <td><b>Số tiền</b></td>
-                                <td id="money-item"></td>
+                                <td  class="total_price"></td>
                             </tr>
                             <tr>
                                 <td><b>Chiết khấu</b></td>
-                                <td id="txns-item"></td>
+{{--                                <td id="txns-item"></td>--}}
+                                <td class="ratio"></td>
                             </tr>
                             </tbody>
                         </table>
-                        <table class="table m-table m-table--head-bg-success">
+                        <table class="table m-table m-table--head-bg-success table-striped">
                             <thead>
                             <tr class="text-center" style="background-color: #eef1f5;">
-                                <td colspan="2" ><b>DANH SÁCH MÃ THẺ</b></td>
+                                <td colspan="3" ><b>DANH SÁCH MÃ THẺ</b></td>
                             </tr>
                             <tr class="text-center">
+                                <td></td>
                                 <td>Mã thẻ</td>
                                 <td>Serial</td>
                             </tr>

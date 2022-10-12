@@ -92,6 +92,23 @@
     margin: 40px auto;
     animation: spin 1.25s linear infinite;
 }
+.paycartdata .loading-wrap {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(0,-50%);
+    z-index: 10;
+
+}
+.loading {
+    width: 24px;
+    height: 24px;
+    background-image: linear-gradient(to right, transparent,#f5f5f5);
+    padding: 3px;
+    border-radius: 100%;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1.2s linear infinite;
+}
 @keyframes spin {
     to {
         -webkit-transform: rotate(360deg);
@@ -103,3 +120,65 @@
         -webkit-transform: rotate(360deg);
     }
 }
+/*pagninate custom start*/
+
+.frontend__panigate .pagination  > li:hover > a {
+    border-color: #f25922;
+    background: #f25922;
+    color: #fff;
+}
+
+.frontend__panigate .pagination > li.active > span, .pagination  > li.active > a,.pagination>.active>span {
+    border-color:#f25922;
+    background:#f25922;
+    color: #fff;
+}
+
+.frontend__panigate .pagination > li > span, .pagination > li > a {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    display: inline-block;
+    font-size: 17px;
+    color: #5c6873;
+    font-weight: 400;
+    padding: 6px 4px 6px;
+    border-radius: 40px;
+    border: 1px solid #cacaca;
+}
+
+.frontend__panigate .pagination>li {
+
+    display: inline-block;
+}
+
+.frontend__panigate .pagination>li:first-child>a, .pagination>li:first-child>span {
+    border-radius: 40px !important;
+}
+
+.frontend__panigate .pagination>li:last-child>a, .pagination>li:last-child>span {
+    border-radius: 40px !important;
+}
+
+.frontend__panigate .pagination>li>a, .pagination>li>span{
+    margin-left: 5px;
+}
+
+.paginate__history{
+    padding: 30px 0;
+}
+.frontend__panigate .page-item.active .page-link{
+    background-color: #f25922!important;
+    border-color: #f25922!important;
+    line-height: 28px!important;
+}
+.frontend__panigate .pagination-sm .page-link{
+    font-size: 16px!important;
+    line-height: 30px!important;
+}
+.page-item.disabled .page-link{
+    line-height: 28px!important;
+}
+/*end paginations_custom*/
+
+/*pagninate custom end*/

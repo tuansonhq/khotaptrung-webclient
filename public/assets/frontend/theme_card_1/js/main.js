@@ -39,6 +39,37 @@ $(function () {
     });
 });
 $(document).ready(function () {
+    console.log(222)
+    $('.started_at').datetimepicker({
+        format: 'DD-MM-YYYY LT',
+        useCurrent: false,
+        icons:
+            { time: 'fas fa-clock',
+                date: 'fas fa-calendar',
+                up: 'fas fa-arrow-up',
+                down: 'fas fa-arrow-down',
+                previous: 'fas fa-arrow-circle-left',
+                next: 'fas fa-arrow-circle-right',
+                today: 'far fa-calendar-check-o',
+                clear: 'fas fa-trash',
+                close: 'far fa-times' },
+
+    });
+    $('.ended_at').datetimepicker({
+        format: 'DD-MM-YYYY LT',
+        useCurrent: false,
+        icons:
+            { time: 'fas fa-clock',
+                date: 'fas fa-calendar',
+                up: 'fas fa-arrow-up',
+                down: 'fas fa-arrow-down',
+                previous: 'fas fa-arrow-circle-left',
+                next: 'fas fa-arrow-circle-right',
+                today: 'far fa-calendar-check-o',
+                clear: 'fas fa-trash',
+                close: 'far fa-times' },
+        maxDate: moment()
+    });
     $('.load-modal').each(function (index, elem) {
         $(elem).unbind().click(function (e) {
             e.preventDefault();

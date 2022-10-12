@@ -1704,8 +1704,7 @@ p.service_first_link {
 }
 #main_home .xt:before {
     height: 55px;
-    content: -webkit-gradient(
-        linear,
+    content: -webkit-gradient(linear,
         0% 100%,
         0% 0%,
         from(#fff),
@@ -1718,7 +1717,7 @@ p.service_first_link {
     content: "";
     width: 13px;
     height: 28px;
-    background: url(../images/new_index/dropdown.svg) no-repeat;
+    background: url(/assets/frontend/theme_card_1/image/svg/dropdown.svg) no-repeat;
     background-size: 100% 100%;
     display: inline-block;
     margin-left: 10px;
@@ -1785,7 +1784,7 @@ p.service_first_link {
 }
 #main_home .telco li.liactive::before {
     content: "";
-    background: url(../images/new_index/checked_card.svg) no-repeat;
+    background: url(/assets/frontend/theme_card_1/image/svg/checked_card.svg) no-repeat;
     background-size: 100% 100%;
     width: 23px;
     height: 23px;
@@ -1804,7 +1803,7 @@ p.service_first_link {
     border: 1px solid #f25922;
     position: relative;
 }
-/*.liactive::after{content:"";background:url(../images/new_index/active_card.svg)no-repeat;width:27px;height:13px;position:absolute;display:block;background-color:#fff;bottom:-32px;left:38%}*/
+/*.liactive::after{content:"";background:url(/assets/frontend/theme_card_1/image/svg/active_card.svg)no-repeat;width:27px;height:13px;position:absolute;display:block;background-color:#fff;bottom:-32px;left:38%}*/
 #main_home .control__indicator {
     display: none;
 }
@@ -2074,13 +2073,14 @@ p.label_card_input {
     width: 100%;
     background: url(../images/icon_time.png) no-repeat;
     background-size: 11px 11px;
-    padding-left: 15px;
-    font-size: 13px;
-    color: #555;
-    font-family: Rboto, sans-serif;
     background-position: 0 3px;
     margin-top: 8px;
     margin-bottom: 15px;
+}
+.time_list i{
+    font-size: 13px;
+    color: #f25922;
+    margin-right: 4px;
 }
 .box_tem {
     float: left;
@@ -5197,7 +5197,7 @@ img#captcha_code {
     background-color: transparent !important;
     padding: 16px 41px 68px;
     border: none;
-    background: url(../images/new_index/bg_giaodich.png) no-repeat;
+    background: url(/assets/frontend/theme_card_1/image/svg/bg_giaodich.png) no-repeat;
     background-size: 100% 100%;
 }
 #buycardpreviewmodal .modal-title {
@@ -7362,7 +7362,7 @@ pre a {
     }
     .telco::after {
         content: "";
-        background: url(../images/new_index/active_card.svg) no-repeat;
+        background: url(/assets/frontend/theme_card_1/image/svg/active_card.svg) no-repeat;
         width: 27px;
         height: 13px;
         position: absolute;
@@ -7554,7 +7554,7 @@ label.item-wapper img {
 
 #tab-supplier :checked + label::before {
     content: "";
-    background: url('https://thegarenagiare.com/assets/frontend/images/new_index/checked_card.svg') no-repeat;
+    background: url('/assets/frontend/theme_card_1/image/svg/checked_card.svg') no-repeat;
     background-size: 100% 100%;
     width: 23px;
     height: 23px;
@@ -7632,7 +7632,7 @@ label.item-wapper img {
 
 #render-supplier label.item-content.active::before {
     content: "";
-    background: url("https://thegarenagiare.com/assets/frontend/images/new_index/checked_card.svg") no-repeat;
+    background: url("/assets/frontend/theme_card_1/image/svg/checked_card.svg") no-repeat;
     background-size: 100% 100%;
     width: 23px;
     height: 23px;
@@ -7723,7 +7723,8 @@ label.item-wapper img {
 }
 .fixscroll header{position: fixed;
     width: 100%;
-    z-index: 9999;}
+    z-index: 99;
+}
 #btn-back-to-top{display: block;
     min-width: 45px;
     position: fixed;
@@ -7770,3 +7771,6 @@ label.item-wapper img {
     transition: all .25s;
 }
 .p-0{padding: 0}
+#main_home .tg::after {
+    transform: rotate(180deg);
+}
