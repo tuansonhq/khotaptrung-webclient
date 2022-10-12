@@ -1,14 +1,11 @@
 <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-
         <div class="modal-content">
-
             <div class="panel panel-primary card">
                 <div class="modal-header panel-heading">
                     <div class="modal-title card-title" id="myModalLabel" style="color:white;"><i class="fa fa-sign-in"></i> Đăng nhập</div>
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
                 </div>
-
                 <form id="form-login-modal" role="form" action="{{ url('/ajax/login') }}" method="POST">
                     @csrf
                     <div class="login_error text-center mt-3"  >
