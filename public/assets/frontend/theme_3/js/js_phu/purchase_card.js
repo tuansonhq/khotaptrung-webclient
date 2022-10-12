@@ -292,10 +292,10 @@ $(document).ready(function () {
     });
 
     //Get amount of the card just been choosen when render
-    getCardAmount($('input[name="card-type-mobile"]').val());
+    getCardAmount($('input[name="card-type"]').val());
 
     //Listen to onchange event in input card-type
-    $('input[name="card-type-mobile"]').change(function (e) {
+    $('input[name="card-type"]').change(function (e) {
         e.preventDefault();
         getCardAmount($(this).val());
     });
@@ -487,11 +487,13 @@ $(document).ready(function () {
     function prepareDataSend() {
         let amount = $('input[name="card-value"]:checked').val();
         let telecom = $('input[name="card-type"]:checked').val();
+
         let quantity = $('input[name="card-amount"]').val();
 
         dataSend.amount = amount;
-        dataSend.telecom = telecom.toUpperCase();
+        dataSend.telecom = telecom;
         dataSend.quantity = quantity;
+
     }
 
     //JS mua the module end
