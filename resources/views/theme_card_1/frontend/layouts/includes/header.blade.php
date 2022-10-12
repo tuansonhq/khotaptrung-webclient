@@ -2,20 +2,19 @@
     <div class="nav-top">
         <div class="container">
             <div class="logo">
-                <a href="/" title="Mua thẻ cao online"><img src="/upload-usr/images/7zFjHlXli6_1617873683.png"  alt="Mua thẻ cào online" /></a>
+                <a href="/" title="Mua thẻ cao online">
+                    <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="">
+                </a>
             </div>
             <nav id="navmenutop">
-                <a class="shownewx"><img src="/assets/frontend/images/new_index/ic_openmenu.svg" alt="Menu" /></a>
+                <a class="shownewx">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/ic_openmenu.svg" alt="Menu" />
+                </a>
                 <ul class="menu showmore">
-                    <span class="close_nav"><img src="/assets/frontend/images/new_index/close_nav.svg" alt="close"></span>
-                    <li class="m1 mmt "><a href="mua-ma-the.html" title="mua thẻ điện thoại">Mua thẻ điện thoại</a></li>
-                    <li class="m1 "><a href="/" title="trang chủ">Trang chủ</a></li>
+                    <span class="close_nav"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/close_nav.svg" alt="close"></span>
+                    @include('frontend.widget.__menu_category_desktop')
 
-                    <li class="m1 "><a href="nap-the" title="nạp tiền" data-toggle=modal data-target=#signin>Nạp tiền</a></li>
-                    <li class="m1 "><a href="/atm" rel="/atm" title="nạp ví - atm" class="load-modal">Nạp Ví - ATM</a></li>
 
-                    <li class="m1 "><a href="/user/tran-log" title="Lịch sử giao dịch" data-toggle=modal data-target=#signin>Lịch sử giao dịch</a></li>
-                    <li class="m1"> <a href="/blog" title="Giới thiệu">Tin tức</a>
                     <li class="m1 box-loading ">
                         <div class="btn-loading" >
                             <div class="loading">
@@ -32,16 +31,8 @@
                     </li>
                     <li class="m1 after_login box-account">
                         <div  id="manageAcount">
-
-
                         </div>
-                        <ul class="mini_menu">
-                            <li class="money_sum">  </li>
-                            <li> <a rel="nofollow" href="/user/profile"><i class="icon_user"><img src="/assets/frontend/images/new_index/card_history.svg" alt="Thông tin tài khoản"></i>Thông tin tài khoản</a> </li>
-                            <li> <a rel="nofollow" href="/user/tran-log"><i class="fas fa-handshake"></i> Lịch sử giao dịch</a> </li>
-                            <li> <a rel="nofollow" href="/user/change-password"><i class="fas fa-key"></i> Thay đổi mật khẩu</a> </li>
-                            <li class="account_logout"></li>
-                        </ul>
+                        @include('frontend.widget.__menu_header')
                     </li>
                     <form id="logout-form" action="{{ url('/ajax/logout') }}" method="POST" class="d-none">
                         @csrf
