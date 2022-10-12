@@ -530,5 +530,6 @@ $(document).ready(function () {
         dataSend.amount = amount;
         dataSend.telecom = telecom.toUpperCase();
         dataSend.quantity = quantity;
+
     }
 });
