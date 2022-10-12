@@ -4,9 +4,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong-style/buy-card.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
-@section('scripts')
 
-@endsection
 @section('seo_head')
     @include('frontend.widget.__seo_head',with(['datacard'=>$key]))
 @endsection
@@ -650,6 +648,8 @@
         </div>
     </div>
 
+@endsection
+@section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/script_trong.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/input.js?v={{time()}}"></script>
 @endsection
