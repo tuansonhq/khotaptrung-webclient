@@ -281,7 +281,7 @@ $(document).ready(function () {
 
         $('body').on('click','.js_step', function (e) {
             // chặn tất cả những sự kiện ( modal ... )
-            // e.stopPropagation();
+            e.stopPropagation();
             e.preventDefault();
             console.log("11111111111111")
             if (e.target.tagName === 'BUTTON'){
