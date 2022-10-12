@@ -281,9 +281,9 @@ $(document).ready(function () {
 
         $('body').on('click','.js_step', function (e) {
             // chặn tất cả những sự kiện ( modal ... )
-            e.stopPropagation();
+            // e.stopPropagation();
             e.preventDefault();
-
+            console.log("11111111111111")
             if (e.target.tagName === 'BUTTON'){
                 // set info card
                 let elm = $(this).parent();
@@ -307,7 +307,7 @@ $(document).ready(function () {
             handleToggleStep($(this).data('go_to'));
         });
         function handleToggleStep(step) {
-            console.log(step)
+
             step_1.fadeOut();
             step_2.fadeOut();
             step_3.fadeOut();
