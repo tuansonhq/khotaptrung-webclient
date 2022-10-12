@@ -307,6 +307,7 @@ $(document).ready(function () {
             handleToggleStep($(this).data('go_to'));
         });
         function handleToggleStep(step) {
+            console.log(step)
             step_1.fadeOut();
             step_2.fadeOut();
             step_3.fadeOut();
