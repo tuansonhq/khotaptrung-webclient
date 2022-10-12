@@ -95,11 +95,6 @@
                                 <button type="submit" class="btn btn-success btn-submit c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn-block" data-loading-text="<i class='fa fa-spinner fa-spin '></i>">
                                     Nạp thẻ
                                 </button>
-                                <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-                                    $(".form-charge").submit(function () {
-                                        $('.btn-submit').button('loading');
-                                    });
-                                </script>
 
                             </div>
                         </div>
