@@ -1,22 +1,33 @@
 <div class="card_process">
-    <div class="row">
-        <form enctype="multipart/form-data" class="recharge_supplier" id="recharge_supplier" name="recharge_supplier">
-
-            <input type="hidden" name="_token" value="LFU5vc7pZziGJQf9VIxouOMS69I1iKGKLLsACICJ">
+    <div class="">
+        <form method="POST" action="{{route('postStoreCard')}}"  enctype="multipart/form-data" class="recharge_supplier" id="recharge_supplier" name="recharge_supplier">
+            @csrf
             <div class="row">
-                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 col-12">
                     <div class="content-supplier">
                         <div id="supplier-flex">
                             <ul id="tab-supplier" class="nav nav-pills nav-pills--success">
                                 @foreach($telecoms as $key => $telecom)
-                                    <li>
-                                        <div class="nav-link link-supplier text-center">
-                                            <input name="telecom_key" value="{{ $telecom->key }}" id="myCheckbox{{ $telecom->id }}" type="radio">
-                                            <label class="item-wapper label-{{ $telecom->key }}" for="myCheckbox{{ $telecom->id }}" onclick="reply_click(this.id)" id="{{ $telecom->key }}">
-                                                <img class="img-fluid" src="{{ $telecom->image }}" alt="{{ $telecom->key }}">
-                                            </label>
-                                        </div>
-                                    </li>
+                                    @if($key == 0)
+                                        <li>
+                                            <div class="nav-link link-supplier text-center">
+                                                <input name="telecom_key" value="{{ $telecom->key }}" id="myCheckbox{{ $telecom->id }}" type="radio" >
+                                                <label class="item-wapper label-{{ $telecom->key }} store-telecom{{$key}}" for="myCheckbox{{ $telecom->id }}" onclick="reply_click(this.id)" id="{{ $telecom->key }}">
+                                                    <img class="img-fluid" src="{{ $telecom->image }}" alt="{{ $telecom->key }}">
+                                                </label>
+                                            </div>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <div class="nav-link link-supplier text-center">
+                                                <input name="telecom_key" value="{{ $telecom->key }}" id="myCheckbox{{ $telecom->id }}" type="radio">
+                                                <label class="item-wapper label-{{ $telecom->key }} store-telecom{{$key}}" for="myCheckbox{{ $telecom->id }}" onclick="reply_click(this.id)" id="{{ $telecom->key }}">
+                                                    <img class="img-fluid" src="{{ $telecom->image }}" alt="{{ $telecom->key }}">
+                                                </label>
+                                            </div>
+                                        </li>
+                                    @endif
+
                                 @endforeach
 
 
@@ -37,33 +48,26 @@
                                 Chọn mệnh giá thẻ <span style="color: #F25922;" class="denominations"></span>
                             </h3>
                         </div>
-                        {{--                                <div id="render-supplier" class="wapper-content justify-content-center">--}}
-                        {{--                                    <h5 style="color: #2F6A7C">Vui lòng chọn nhà cung cấp</h5>--}}
-                        {{--                                </div>--}}
-                        <div id="render-supplier" class="wapper-content justify-content-center">
-                            <div class="text-center">
-                                <input type="radio" name="amount" class="amount" id="CheckboxSupplier0" value="20000" rel-ratio="99.0">
-                                <input style="display: none" type="text" id="price_20000" class="ratio_default" value="99.0">
-                                <label class="item-content" for="CheckboxSupplier0">
-                                    <h5>20,000 VNĐ </h5>
-                                    <p>Giá: <span>19,800 VNĐ</span></p>
-                                </label>
+                        <div id="render-supplier" class="wapper-content justify-content-center position-relative">
+                            <div class="loading-wrap mb-3">
+                                <span class="modal-loader-spin mb-3"></span>
                             </div>
-                            <div class="text-center">
-                                <input type="radio" name="amount" class="amount" id="CheckboxSupplier1" value="50000" rel-ratio="95.5">
-                                <input style="display: none" type="text" id="price_50000" class="ratio_default" value="95.5">
-                                <label class="item-content" for="CheckboxSupplier1">
-                                    <h5>50,000 VNĐ </h5>
-                                    <p>Giá: <span>47,750 VNĐ</span></p>
-                                </label>
-                            </div>
+{{--                            <div class="text-center">--}}
+{{--                                <input type="radio" name="amount" class="amount" id="CheckboxSupplier0" value="20000" rel-ratio="99.0">--}}
+{{--                                <input style="display: none" type="text" id="price_20000" class="ratio_default" value="99.0">--}}
+{{--                                <label class="item-content" for="CheckboxSupplier0">--}}
+{{--                                    <h5>20,000 VNĐ </h5>--}}
+{{--                                    <p>Giá: <span>19,800 VNĐ</span></p>--}}
+{{--                                </label>--}}
+{{--                            </div>--}}
+
                         </div>
-                        <div id="button" class="my-5" style="margin-top: 22px;"></div>
+                        <div id="button" class="mt-5 mb-4" ></div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 ">
-                    <div class="tbl_card_discount active hidden-xs hidden-sm" id="vt_discount">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                    <div class="tbl_card_discount active hidden-xs d-none d-md-block" id="vt_discount">
                         <h3 class="text-center text-uppercase">Bảng chiết chi tiết giao dịch</h3>
                         <p class="text-center">(Dành cho khách hàng là thành viên của hệ thống)</p>
                         <hr>
@@ -103,22 +107,78 @@
                         </table>
                     </div>
 
-                    <div class="wapper-pay text-center">
-                        <button type="button" data-toggle="modal" data-target="#signin" class="btn ">Đăng
-                            nhập để thanh toán
+                    <div class="wapper-pay text-center position-relative">
+{{--                        <button type="button" data-toggle="modal" data-target="#signin" class="btn "   >--}}
+{{--                            Đăng nhập để thanh toán--}}
+{{--                        </button>--}}
+
+                        <button type="button" data-toggle="modal"  class="btn " id="store_pay">
+                            <div class="loading-wrap ">
+                                <span class="modal-loader-spin "></span>
+                            </div>
+{{--                            Thanh toán ngay--}}
                         </button>
                     </div>
                 </div>
             </div>
+
+            <div class="modal fade" id="modal_pay" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Xác nhận thanh toán</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="d-none d-lg-block d-none d-md-block">Bạn thực sự muốn thanh toán ?</p>
+                            <div class="tbl_card_discount hidden-lg d-md-none">
+                                <table class="info-payment">
+                                    <tbody>
+                                        <tr>
+                                            <td>Loại thẻ:</td>
+                                            <td class="denominations">Chưa chọn</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Phí giao dịch:</td>
+                                            <td>Miễn phí</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chiết khấu:</td>
+                                            <td class="ratio">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Số lượng:</td>
+                                            <td class="render_quantity">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span style="font-size: 19px">Tổng tiền:</span></td>
+                                            <td><span style="font-size: 19px;color: #F25922" class="total_price">0 VNĐ</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-primary" id="btnBuy">Thanh toán</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
         </form>
 
         <div class="modal fade" id="showInfor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
+                        <h4 class="modal-title">MUA THẺ THÀNH CÔNG</h4>
+
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">MUA THẺ THÀNH CÔNG</h4>
                     </div>
                     <div class="modal-body table-action">
                         <div id="showInforDetails"></div>

@@ -55,7 +55,7 @@ $(document).ready(function(){
                     html += '<span class="btn_register" onclick="window.location.href = \'/register\';"><i class="icon_account ic_register"><img src="/assets/frontend/images/new_index/icon_register.svg" alt="register"></i>Đăng ký</span>\n';
                     html += ' </div>';
                     $('.wp_login').html(html);
-
+                    $('#store_pay').attr('data-target','#signin').html('Đăng nhập để thanh toán');
 
                     $('meta[name="jwt"]').attr('content','');
 
@@ -73,7 +73,7 @@ $(document).ready(function(){
                     html += ' </div>';
                     $('.wp_login').html(html);
                     $('meta[name="jwt"]').attr('content','');
-
+                    $('#store_pay').attr('data-target','#signin').html('Đăng nhập để thanh toán');
                 }
                 if(data.status === "ERROR"){
                     alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
@@ -89,7 +89,7 @@ $(document).ready(function(){
                         'document.getElementById(\'logout-form\').submit();" id="logoutbtn1"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a> ');
 
                     $('meta[name="jwt"]').attr('content',data.token);
-
+                    $('#store_pay').attr('data-target','#modal_pay').html('Thanh toán ngay');
                 }
             },
             error: function (data) {
