@@ -59,3 +59,47 @@
 .box-logined,.box-account,.box-account-mobile{
     display: none;
 }
+/*loading*/
+.loading-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+
+}
+/*.modal-loader-spin {*/
+/*    width: 50px;*/
+/*    height: 50px;*/
+/*}*/
+.modal-loader-spin {
+    display: block;
+    border: 5px solid #F25922;
+    border-left-color: #FFF;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    margin: 40px auto;
+    animation: spin 1.25s linear infinite;
+}
+#store_pay .modal-loader-spin {
+    display: block;
+    border: 3px solid white;
+    border-left-color: orange;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    margin: 40px auto;
+    animation: spin 1.25s linear infinite;
+}
+@keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
