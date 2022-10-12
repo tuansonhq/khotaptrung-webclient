@@ -166,7 +166,7 @@
 
                             <div class="article-content content_post ">
                                 <div class="special-text">
-                                    
+                                    {!! setting('sys_store_card_content') !!}
                                 </div>
                                 <button class="expand-button">
                                     Xem thêm nội dung
