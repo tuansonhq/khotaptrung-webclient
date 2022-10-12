@@ -52,15 +52,7 @@ tippy('.js-copy-text', {
 });
 
 
-// option swiper card
-var swiper_card = new Swiper(".slider--card", {
-    slidesPerView: 1,
-    spaceBetween: 16,
-    freeMode: true,
-    observer: true,
-    observeParents: true,
-    loop:false,
-});
+
 
 // option swiper article banner
 var swiper_article= new Swiper(".article--slider", {
@@ -388,6 +380,16 @@ $(document).ready(function () {
                             html_card += `</div>`;
 
                             $('.mobile--success__payment .card--list').append(html_card);
+
+                            // option swiper card
+                            var swiper_card = new Swiper(".slider--card", {
+                                slidesPerView: 1,
+                                spaceBetween: 16,
+                                freeMode: true,
+                                observer: true,
+                                observeParents: true,
+                                loop:false,
+                            });
                         });
                         tippy('.js-copy-text', {
                             // default
