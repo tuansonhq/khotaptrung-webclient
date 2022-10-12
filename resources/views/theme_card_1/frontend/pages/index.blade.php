@@ -4,7 +4,7 @@
     <div style="width:100%;position: relative;" class="homeitem">
         <div class="item">
             <div class="index_title">
-                <span><img src="https://thegarenagiare.com/assets/frontend/images/new_index/ic_h1.svg" alt="mua thẻ điện thoại online"></span>
+                <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/ic_h1.svg" alt="mua thẻ điện thoại online"></span>
                 <h1> mua thẻ online</h1>
             </div>
             @include('frontend.widget.__card_purchase')
