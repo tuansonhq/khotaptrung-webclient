@@ -16,7 +16,7 @@
             @endphp
             <li>
                 @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                    <a href="/blog">Tất cả ({{ $count }})</a>
+                    <a href="{{ setting('sys_zip_shop') }}">Tất cả ({{ $count }})</a>
                 @else
                     <a href="/tin-tuc">Tất cả ({{ $count }})</a>
                 @endif
@@ -24,7 +24,7 @@
             @foreach($data as $val)
                 <li>
                     @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                    <a href="/tin-tuc/{{ $val->slug }}" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item }})</a>
+                    <a href="{{ setting('sys_zip_shop') }}/{{ $val->slug }}" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item }})</a>
                     @else
                         <a href="/blog/{{ $val->slug }}" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item }})</a>
                     @endif

@@ -42,21 +42,12 @@ Route::get('/session', function ()
     Session::flush();
     return redirect()->to('/');
 });
-Route::get('/github/test', function (Request $request)
-{
-    $path = storage_path() ."/logs/github/";
-    if(!\File::exists($path)){
-        \File::makeDirectory($path, $mode = "0755", true, true);
-    }
-    $txt = Carbon::now().":".$request->fullUrl().json_encode($request->all());
-    \File::append($path.Carbon::now()->format('Y-m-d').".txt",$txt."\n");
-});
 
-Route::get('/test111', function (Request $request)
-{
 
-})->middleware('throttle:5,1');
+
 Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name('getTheme');
+
+
 
 Route::get('/405', function ()
 {
@@ -117,6 +108,9 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/ajax/mua-nick-random', [AccController::class , "getShowAccRandom"]);
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
                 Route::post('/lich-su-mua-nick-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])->name('getShowpassNick');
+
+                Route::post('/lich-su-mua-acoount-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])->name('getShowpassNick');
+
                 Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);
 
 
@@ -203,6 +197,31 @@ Route::group(array('middleware' => ['theme']) , function (){
             });
             // Route không cần Auth load dữ liệu không cache
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
+
+                Route::get('/updategit-dev', function ()
+                {
+                    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
+                    $output = shell_exec($command);
+                    \Artisan::call('cache:clear');
+                    return response()->json([
+                        'status' => 1,
+                        'message' => 'Thành công!',
+                        'message-git' => $output,
+                    ]);
+                });
+
+                Route::get('/updategit-master', function ()
+                {
+                    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git master 2>&1';
+                    $output = shell_exec($command);
+                    \Artisan::call('cache:clear');
+                    return response()->json([
+                        'status' => 1,
+                        'message' => 'Thành công!',
+                        'message-git' => $output,
+                    ]);
+                });
+
 //                đăng nhập, đăng xuất, đăng ký
                 Route::post('/ajax/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
                 Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])->name('login');
@@ -256,17 +275,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                         'message' => 'Thành công!'
                     ]);
                 });
-                Route::get('/updategit', function ()
-                {
-                    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
-                    $output = shell_exec($command);
-                    \Artisan::call('cache:clear');
-                    return response()->json([
-                        'status' => 1,
-                        'message' => 'Thành công!',
-                        'message-git' => $output,
-                    ]);
-                });
+
             });
 
             //minigame

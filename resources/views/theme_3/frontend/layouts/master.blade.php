@@ -104,6 +104,8 @@
 <!-- Modal nạp tiền -->
 @include('frontend.widget.modal.__recharge_modal')
 
+@include('frontend.widget.modal.atm_auto_notify')
+
 {{-- Modal xem thêm --}}
 @include('frontend.widget.modal.viewmore_modal')
 
@@ -260,7 +262,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/main.js?v={{time()}}"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper.js?v={{time()}}"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper-banner.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/moment.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/i18n/vi.js"></script>

@@ -29,11 +29,7 @@
             <nav aria-label="breadcrumb" style="margin-top: 10px;">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-                    @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
-                    <li class="breadcrumb-item active" aria-current="page">Blog</li>
-                    @else
-                        <li class="breadcrumb-item active" aria-current="page">Tin tức</li>
-                    @endif
+                    <li class="breadcrumb-item active" aria-current="page">Tin tức</li>
                 </ol>
 
             </nav>

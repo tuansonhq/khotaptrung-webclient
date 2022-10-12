@@ -2,285 +2,146 @@
     @if($data->status == 1)
 
         <section class="acc-detail data-account-detail">
-            <div class="section-content">
-                <div class="card account-thumb">
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="tab-thumb" role="tabpanel">
-                            <div class="card-body c-p-16 c-p-lg-0 mx-n3 mx-lg-0 d-flex">
-                                <div class="swiper gallery-top d-none d-lg-block">
-                                    <div class="swiper-wrapper">
-                                        @foreach(explode('|',$data->image_extension) as $val)
-
+            <div class="section-content row">
+                <div class="col-12 col-lg-7 c-pr-8 c-pr-lg-15">
+                    <div class="card account-thumb">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="tab-thumb" role="tabpanel">
+                                <div class="card-body c-p-16 c-p-lg-0 mx-n3 mx-lg-0 d-flex">
+                                    <div class="swiper gallery-top d-none d-lg-block">
+                                        <div class="swiper-wrapper">
+                                            @foreach(explode('|',$data->image_extension) as $val)
+    
+                                                <div class="swiper-slide">
+                                                    <div class="gallery-photo" >
+                                                        <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                    </div>
+                                                </div>
+    
+                                            @endforeach
+    
+    
+                                        </div>
+                                    </div>
+    
+                                    <div class="swiper gallery-thumbs c-ml-16 c-ml-lg-0">
+                                        <div class="swiper-wrapper">
+                                            @foreach(explode('|',$data->image_extension) as $val)
                                             <div class="swiper-slide">
-{{--                                                <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">--}}
-                                                <div class="gallery-photo" >
+                                                <div class="gallery-photo d-none d-lg-block" data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+                                                    <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                </div>
+    
+                                                <div class="gallery-photo d-lg-none" data-fancybox="galleryNickDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
                                                     <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                                 </div>
                                             </div>
-
-                                        @endforeach
-
-
-                                    </div>
-                                </div>
-
-                                <div class="swiper gallery-thumbs c-ml-16 c-ml-lg-0">
-                                    <div class="swiper-wrapper">
-                                        @foreach(explode('|',$data->image_extension) as $val)
-                                        <div class="swiper-slide">
-                                            <div class="gallery-photo d-none d-lg-block" data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false">
-                                                <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
-                                            </div>
-
-                                            <div class="gallery-photo d-lg-none" data-fancybox="galleryNickDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                                <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
-                                            </div>
+                                            @endforeach
                                         </div>
-                                        @endforeach
                                     </div>
                                 </div>
                             </div>
+                            <div class="tab-pane fade" id="tab-video" role="tabpanel">
+                                Coming soon...
+                            </div>
                         </div>
-                        <div class="tab-pane fade" id="tab-video" role="tabpanel">
-                            Coming soon...
+                        <div class="nav-controller c-px-lg-0 c-my-lg-12">
+                            <div class="swiper-pagination d-none d-lg-flex">
+                                <div class="navigation slider-prev v2 c-mr-8"></div>
+                                <div class="navigation slider-next v2"></div>
+                            </div>
+                            <ul class="nav nav-tabs size-auto" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a class="tab-show-acc active count-thumb" data-toggle="tab" href="#tab-thumb" role="tab"
+                                       aria-selected="true"></a>
+                                </li>
+                                <li class="c-mx-4"></li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="tab-show-acc video" data-toggle="tab" href="#tab-video" role="tab"
+                                       aria-selected="false">Video</a>
+                                </li>
+                            </ul>
                         </div>
-                    </div>
-                    <div class="nav-controller c-px-lg-0 c-my-lg-12">
-                        <div class="swiper-pagination d-none d-lg-flex">
-                            <div class="navigation slider-prev v2 c-mr-8"></div>
-                            <div class="navigation slider-next v2"></div>
-                        </div>
-                        <ul class="nav nav-tabs size-auto" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <a class="tab-show-acc active count-thumb" data-toggle="tab" href="#tab-thumb" role="tab"
-                                   aria-selected="true"></a>
-                            </li>
-                            <li class="c-mx-4"></li>
-                            <li class="nav-item" role="presentation">
-                                <a class="tab-show-acc video" data-toggle="tab" href="#tab-video" role="tab"
-                                   aria-selected="false">Video</a>
-                            </li>
-                        </ul>
-                    </div>
-{{--                    <div class="group-btn d-flex d-lg-none" style="--data-between: 12px">--}}
-{{--                        <a href="/mua-the" class="btn pink two-line">--}}
-{{--                            <span class="line-1">Mua bằng Thẻ cào</span>--}}
-{{--                            <span class="line-2">Mua bằng Thẻ cào</span>--}}
-{{--                        </a>--}}
-{{--                        <a href="/recharge-atm" class="btn pink two-line">--}}
-{{--                            <span class="line-1">Mua bằng ATM, Momo</span>--}}
-{{--                            <span class="line-2">Mua bằng ATM, Momo</span>--}}
-{{--                        </a>--}}
-{{--                    </div>--}}
-
-                    @if(isset($card_percent))
-                        @if($card_percent == 0)
+    
+                        @if(isset($card_percent))
+                            @if($card_percent == 0)
+                                <div class="group-btn d-flex d-lg-none" style="--data-between: 12px">
+                                    <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="1">
+                                        <span class="line-1" style="white-space: nowrap;">Mua bằng Thẻ cào</span>
+                                        <span class="line-2">{{ str_replace(',','.',number_format(round($data->price))) }} đ</span>
+                                    </a>
+                                    @if(isset($data->price_atm))
+                                        <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="2">
+                                            <span class="line-1" style="white-space: nowrap;">Mua bằng ATM, Momo</span>
+                                            <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
+                                        </a>
+                                    @endif
+                                </div>
+                            @else
+                                @if(isset($data->price_atm))
+                                    <div class="group-btn d-flex d-lg-none" style="--data-between: 12px">
+                                        <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="2">
+                                            <span class="line-1" style="white-space: nowrap;">Mua bằng ATM, Momo</span>
+                                            <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
+                                        </a>
+                                    </div>
+                                @endif
+                            @endif
+                        @else
                             <div class="group-btn d-flex d-lg-none" style="--data-between: 12px">
                                 <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="1">
-                                    <span class="line-1">Mua bằng Thẻ cào</span>
+                                    <span class="line-1" style="white-space: nowrap;">Mua bằng Thẻ cào</span>
                                     <span class="line-2">{{ str_replace(',','.',number_format(round($data->price))) }} đ</span>
                                 </a>
                                 @if(isset($data->price_atm))
                                     <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="2">
-                                        <span class="line-1">Mua bằng ATM, Momo</span>
+                                        <span class="line-1" style="white-space: nowrap;">Mua bằng ATM, Momo</span>
                                         <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
                                     </a>
                                 @endif
                             </div>
-                        @else
-                            @if(isset($data->price_atm))
-                                <div class="group-btn d-flex d-lg-none" style="--data-between: 12px">
-                                    <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="2">
-                                        <span class="line-1">Mua bằng ATM, Momo</span>
-                                        <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
-                                    </a>
-                                </div>
-                            @endif
                         @endif
-                    @else
-                        <div class="group-btn d-flex d-lg-none" style="--data-between: 12px">
-                            <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="1">
-                                <span class="line-1">Mua bằng Thẻ cào</span>
-                                <span class="line-2">{{ str_replace(',','.',number_format(round($data->price))) }} đ</span>
-                            </a>
-                            @if(isset($data->price_atm))
-                                <a href="javascript:void(0);" class="handle-recharge-modal btn pink two-line" data-tab="2">
-                                    <span class="line-1">Mua bằng ATM, Momo</span>
-                                    <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
-                                </a>
-                            @endif
+
+                        <div class="d-block d-lg-none c-pt-28 c-pb-16">
+                            <hr>
                         </div>
-                    @endif
 
-                    <div class="d-block d-lg-none c-pt-28 c-pb-16">
-                        <hr>
-                    </div>
-
-                    <div class="text-title c-py-8 d-block d-lg-none">
-                        Thông tin acc
-                    </div>
-
-                    <table class="table-acc-info c-mb-24 d-table d-lg-none">
-                        @if(isset($game_auto_props) && count($game_auto_props))
-                            @php
-                                $total_tuong = 0;
-                                $total_bieucam = 0;
-                                $total_chuongluc = 0;
-                                $total_sandau = 0;
-                                $total_linhthu = 0;
-                                $total_trangphuc = 0;
-                                $total_thongtinchung = 0;
-
-                                if(isset($game_auto_props) && count($game_auto_props)){
-                                    foreach($game_auto_props as $game_auto_prop){
-                                        if($game_auto_prop->key == 'champions'){
-                                            $total_tuong = $total_tuong + 1;
-                                            if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
-                                                foreach($game_auto_prop->childs as $c_child){
-                                                    $total_trangphuc = $total_trangphuc + 1;
-                                                }
-                                            }
-                                        }elseif ($game_auto_prop->key == 'emotes'){
-                                            $total_bieucam = $total_bieucam + 1;
-                                        }elseif ($game_auto_prop->key == 'tftdamageskins'){
-                                            $total_chuongluc = $total_chuongluc + 1;
-                                        }elseif ($game_auto_prop->key == 'tftmapskins'){
-                                            $total_sandau = $total_sandau + 1;
-                                        }elseif ($game_auto_prop->key == 'tftcompanions'){
-                                            $total_linhthu = $total_linhthu + 1;
-                                        }
-                                    }
-                                }
-                            @endphp
-                            <tr>
-                                <td><span class="link-color">Tướng</span></td>
-                                <td><span>{{ $total_tuong }}</span></td>
-                                <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-champ">Xem</a></td>
-                            </tr>
-                            <tr>
-                                <td><span class="link-color">Trang phục</span></td>
-                                <td><span>{{ $total_trangphuc }}</span></td>
-                                <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-skin">Xem</a></td>
-                            </tr>
-                            <tr>
-                                <td><span class="link-color">Linh thú TFT</span></td>
-                                <td><span>{{ $total_linhthu }}</span></td>
-                                <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-animal">Xem</a></td>
-                            </tr>
-
-                            @if(isset($data->params))
-                                @if(isset($data->params->rank_info) && count($data->params->rank_info))
-
-                                    @foreach($data->params->rank_info as $key_rank => $rank_info)
-                                        @if($rank_info->queueType == "RANKED_TFT")
-                                            <tr>
-                                                <td><span class="link-color">RANKED TFT</span></td>
-                                                <td><span>@if($rank_info->tier == "NONE")
-                                                            {{ $rank_info->tier }}
-                                                        @else
-                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                        @endif</span></td>
-                                                <td></td>
-                                            </tr>
-                                        @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
-
-                                            <tr>
-                                                <td><span class="link-color">RANKED SOLO</span></td>
-                                                <td><span>
-                                                    @if($rank_info->tier == "NONE")
-                                                            {{ $rank_info->tier }}
-                                                        @else
-                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                        @endif
-                                                    </span>
-                                                </td>
-                                                <td></td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-
-                                @endif
-                            @endif
-                        @else
-                        @endif
-                        @if(isset($data->groups))
-                            <?php $att_values = $data->groups ?>
-                            @foreach($att_values as $att_value)
-                                @if(isset($att_value->module) && $att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                    @if(isset($att_value->parent))
-                                        <tr>
-                                            <td>
-                                                <span class="link-color">
-                                                    {{ $att_value->parent->title??null }}
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span>
-                                                    {{ $att_value->title??null }}
-                                                </span>
-                                            </td>
-                                            {{--                                                    <td>--}}
-                                            {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
-                                            {{--                                                    </td>--}}
-                                        </tr>
-                                    @endif
-                                @endif
-                            @endforeach
-                        @endif
-
-                        @if(isset($data->params) && isset($data->params->ext_info))
-                            <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
-                            @if(isset($dataAttribute))
-                                @foreach($dataAttribute as $index=>$att)
-                                    @if($att->position == 'text')
-                                        @if(isset($att->childs))
-                                            @foreach($att->childs as $child)
-                                                @foreach($params as $key => $param)
-                                                    @if($key == $child->id && $child->is_slug_override == null)
-                                                        <tr>
-                                                            <td>
-                                                                <span class="link-color">
-                                                                    {{ $child->title??'' }}
-                                                                </span>
-                                                            </td>
-                                                            <td>
-                                                                <span>
-                                                                    {{ $param }}
-                                                                </span>
-                                                            </td>
-                                                            {{--                                                    <td>--}}
-                                                            {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
-                                                            {{--                                                    </td>--}}
-                                                        </tr>
-
-                                                    @endif
-                                                @endforeach
-                                            @endforeach
-                                        @endif
-                                    @endif
-                                @endforeach
-                            @endif
-                        @endif
-
-                    </table>
-                </div>
-
-                <div class="card account-detail-info js_sticky" data-top="140">
-                    <div class="card-body c-p-16 mx-n3 mx-lg-0">
-                        <div class="section-title title-color fz-lg-18 lh-lg-24">{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}</div>
-                        <div class="text-title fw-700 c-mb-6 d-none d-lg-block">Mã số: #{{ $data->randId }}</div>
-                        <span class="d-block d-lg-none link-color c-mb-8">
-                            Mã số: {{ $data->randId }}
-                        </span>
-                        <hr>
-                        <div class="d-block d-lg-none c-pb-12"></div>
-
-                        <div class="text-title c-py-8 d-none d-lg-block">
+                        <div class="text-title c-py-8 d-block d-lg-none">
                             Thông tin acc
                         </div>
 
-                        <table class="table-acc-info c-mb-24 d-none d-lg-table">
+                        <table class="table-acc-info c-mb-24 d-table d-lg-none">
                             @if(isset($game_auto_props) && count($game_auto_props))
+                                @php
+                                    $total_tuong = 0;
+                                    $total_bieucam = 0;
+                                    $total_chuongluc = 0;
+                                    $total_sandau = 0;
+                                    $total_linhthu = 0;
+                                    $total_trangphuc = 0;
+                                    $total_thongtinchung = 0;
+
+                                    if(isset($game_auto_props) && count($game_auto_props)){
+                                        foreach($game_auto_props as $game_auto_prop){
+                                            if($game_auto_prop->key == 'champions'){
+                                                $total_tuong = $total_tuong + 1;
+                                                if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
+                                                    foreach($game_auto_prop->childs as $c_child){
+                                                        $total_trangphuc = $total_trangphuc + 1;
+                                                    }
+                                                }
+                                            }elseif ($game_auto_prop->key == 'emotes'){
+                                                $total_bieucam = $total_bieucam + 1;
+                                            }elseif ($game_auto_prop->key == 'tftdamageskins'){
+                                                $total_chuongluc = $total_chuongluc + 1;
+                                            }elseif ($game_auto_prop->key == 'tftmapskins'){
+                                                $total_sandau = $total_sandau + 1;
+                                            }elseif ($game_auto_prop->key == 'tftcompanions'){
+                                                $total_linhthu = $total_linhthu + 1;
+                                            }
+                                        }
+                                    }
+                                @endphp
                                 <tr>
                                     <td><span class="link-color">Tướng</span></td>
                                     <td><span>{{ $total_tuong }}</span></td>
@@ -316,12 +177,12 @@
                                                 <tr>
                                                     <td><span class="link-color">RANKED SOLO</span></td>
                                                     <td><span>
-                                                    @if($rank_info->tier == "NONE")
+                                                        @if($rank_info->tier == "NONE")
                                                                 {{ $rank_info->tier }}
                                                             @else
                                                                 {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                             @endif
-                                                    </span>
+                                                        </span>
                                                     </td>
                                                     <td></td>
                                                 </tr>
@@ -332,34 +193,37 @@
                                 @endif
                             @else
                             @endif
+                            
                             @if(isset($data->groups))
                                 <?php $att_values = $data->groups ?>
                                 @foreach($att_values as $att_value)
                                     @if(isset($att_value->module) && $att_value->module == 'acc_label' && $att_value->is_slug_override == null)
                                         @if(isset($att_value->parent))
-                                                <tr>
-                                                    <td>
-                                                        <span class="link-color">
-                                                            {{ $att_value->parent->title??null }}
-                                                        </span>
-                                                    </td>
-                                                    <td>
-                                                        <span>
-                                                            {{ $att_value->title??null }}
-                                                        </span>
-                                                    </td>
-{{--                                                    <td>--}}
-{{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
-{{--                                                    </td>--}}
-                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <span class="link-color">
+                                                        {{ $att_value->parent->title??null }}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span>
+                                                        {{ $att_value->title??null }}
+                                                    </span>
+                                                </td>
+                                                {{--                                                    <td>--}}
+                                                {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
+                                                {{--                                                    </td>--}}
+                                            </tr>
+
                                         @endif
                                     @endif
                                 @endforeach
+
                             @endif
 
                             @if(isset($data->params) && isset($data->params->ext_info))
                                 <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
-                                @if(isset($dataAttribute))
+                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)
                                     @foreach($dataAttribute as $index=>$att)
                                         @if($att->position == 'text')
                                             @if(isset($att->childs))
@@ -368,20 +232,16 @@
                                                         @if($key == $child->id && $child->is_slug_override == null)
                                                             <tr>
                                                                 <td>
-                                                            <span class="link-color">
-                                                                {{ $child->title??'' }}
-                                                            </span>
+                                                                    <span class="link-color">
+                                                                        {{ $child->title??'' }}
+                                                                    </span>
                                                                 </td>
                                                                 <td>
-                                                            <span>
-                                                                {{ $param }}
-                                                            </span>
+                                                                    <span>
+                                                                        {{ $param }}
+                                                                    </span>
                                                                 </td>
-                                                                {{--                                                    <td>--}}
-                                                                {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
-                                                                {{--                                                    </td>--}}
                                                             </tr>
-
                                                         @endif
                                                     @endforeach
                                                 @endforeach
@@ -392,115 +252,249 @@
                             @endif
 
                         </table>
-                        @php
-                            if (isset($data->price_old)) {
-                                $sale_percent = (($data->price_old - $data->price) / $data->price_old) * 100;
-                                $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
-                            } else {
-                                $sale_percent = 0;
-                            }
-                        @endphp
-                        <div class="card disabled-color">
-                            <div class="card-body text-center c-p-0">
-                                <div class="price-acc">
-                                    @if ($sale_percent > 0)
-                                        <div class="price-old fz-lg-12 lh-lg-16">
-                                            {{ str_replace(',','.',number_format($data->price_old)) }}đ
-                                        </div>
+                    </div>
+                    @if ($data->description || !empty($data->description))
+                        <div class="account-desc c-mt-16 detailViewBlock">
+                            <h2 class="text-title-bold d-block d-lg-none c-mb-8">Chi tiết dịch vụ</h2>
+                            <div class="card overflow-hidden">
+                                <div class="card-body c-px-16">
+                                    <h2 class="text-title-bold d-none d-lg-block c-mb-24 detailViewBlockTitle">Chi tiết dịch vụ</h2>
+                                    @if(substr($data->description, 1200))
+                                        <div class="content-desc hide detailViewBlockContent">
+                                    @else
+                                    <div class="content-desc detailViewBlockContent">
                                     @endif
-                                    <div class="price-current fz-lg-20 lh-lg-28 c-mx-8">
-                                        {{ str_replace(',','.',number_format($data->price)) }}đ
+                                        {!! $data->description !!}
                                     </div>
-                                    @if ($sale_percent > 0)
-                                        <div class="discount">
-                                            -{{ $sale_percent }}%
-                                        </div>
-                                    @endif
                                 </div>
-                                <span>
-                                    Rẻ vô đối, giá tốt nhất thị trường
-                                </span>
+                                @if(substr($data->description, 1200))
+                                    <div class="card-footer text-center">
+                                        <span class="see-more open-sheet" data-content="Xem thêm nội dung" data-target="#sheet-view-more"></span>
+                                    </div>
+                                @endif
                             </div>
                         </div>
-                        <div class="c-py-24 d-none d-lg-block">
+                    @endif
+                </div>
+
+                <div class="col-12 col-lg-5 c-pl-8 c-pl-lg-15">
+                    <div class="card account-detail-info js_sticky" data-top="140">
+                        <div class="card-body c-p-16 mx-n3 mx-lg-0">
+                            <div class="section-title title-color fz-lg-18 lh-lg-24">{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}</div>
+                            <div class="text-title fw-700 c-mb-6 d-none d-lg-block">Mã số: #{{ $data->randId }}</div>
+                            <span class="d-block d-lg-none link-color c-mb-8">
+                                Mã số: {{ $data->randId }}
+                            </span>
                             <hr>
-                        </div>
-                        <div class="group-btn c-mb-16 d-none d-lg-flex " style="--data-between: 12px">
-                            <button class="btn secondary tinhnang">Trả góp</button>
-                            @if(\App\Library\AuthCustom::check())
-                                @if(\App\Library\AuthCustom::user()->balance < $data->price)
-                                    <button type="button" class="btn primary the-cao-atm">Mua ngay</button>
+                            <div class="d-block d-lg-none c-pb-12"></div>
+    
+                            <div class="text-title c-py-8 d-none d-lg-block">
+                                Thông tin acc
+                            </div>
+    
+                            <table class="table-acc-info c-mb-24 d-none d-lg-table">
+                                @if(isset($game_auto_props) && count($game_auto_props))
+                                    <tr>
+                                        <td><span class="link-color">Tướng</span></td>
+                                        <td><span>{{ $total_tuong }}</span></td>
+                                        <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-champ">Xem</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="link-color">Trang phục</span></td>
+                                        <td><span>{{ $total_trangphuc }}</span></td>
+                                        <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-skin">Xem</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="link-color">Linh thú TFT</span></td>
+                                        <td><span>{{ $total_linhthu }}</span></td>
+                                        <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-animal">Xem</a></td>
+                                    </tr>
+    
+                                    @if(isset($data->params))
+                                        @if(isset($data->params->rank_info) && count($data->params->rank_info))
+    
+                                            @foreach($data->params->rank_info as $key_rank => $rank_info)
+                                                @if($rank_info->queueType == "RANKED_TFT")
+                                                    <tr>
+                                                        <td><span class="link-color">RANKED TFT</span></td>
+                                                        <td><span>@if($rank_info->tier == "NONE")
+                                                                    {{ $rank_info->tier }}
+                                                                @else
+                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                @endif</span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+    
+                                                    <tr>
+                                                        <td><span class="link-color">RANKED SOLO</span></td>
+                                                        <td><span>
+                                                        @if($rank_info->tier == "NONE")
+                                                                    {{ $rank_info->tier }}
+                                                                @else
+                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                @endif
+                                                        </span>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
+    
+                                        @endif
+                                    @endif
                                 @else
-                                    <button type="button" class="btn primary btn-muangay">Mua ngay</button>
+                                @endif
+
+                                @if(isset($data->groups))
+                                    <?php $att_values = $data->groups ?>
+                                    @foreach($att_values as $att_value)
+                                        @if(isset($att_value->module) && $att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                            @if(isset($att_value->parent))
+                                                    <tr>
+                                                        <td>
+                                                            <span class="link-color">
+                                                                {{ $att_value->parent->title??null }}
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                {{ $att_value->title??null }}
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @endif
+    
+                                @if(isset($data->params) && isset($data->params->ext_info))
+                                    <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
+                                    @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                        @foreach($dataAttribute as $index=>$att)
+                                            @if($att->position == 'text')
+                                                @if(isset($att->childs))
+                                                    @foreach($att->childs as $child)
+                                                        @foreach($params as $key => $param)
+                                                            @if($key == $child->id && $child->is_slug_override == null)
+                                                                <tr>
+                                                                    <td>
+                                                                <span class="link-color">
+                                                                    {{ $child->title??'' }}
+                                                                </span>
+                                                                    </td>
+                                                                    <td>
+                                                                <span>
+                                                                    {{ $param }}
+                                                                </span>
+                                                                    </td>
+                                                                    {{--                                                    <td>--}}
+                                                                    {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
+                                                                    {{--                                                    </td>--}}
+                                                                </tr>
+    
+                                                            @endif
+                                                        @endforeach
+                                                    @endforeach
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                @endif
+    
+                            </table>
+                            @php
+                                if (isset($data->price_old)) {
+                                    $sale_percent = (($data->price_old - $data->price) / $data->price_old) * 100;
+                                    $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
+                                } else {
+                                    $sale_percent = 0;
+                                }
+                            @endphp
+                            <div class="card disabled-color">
+                                <div class="card-body text-center c-p-0">
+                                    <div class="price-acc">
+                                        @if ($sale_percent > 0)
+                                            <div class="price-old fz-lg-12 lh-lg-16">
+                                                {{ str_replace(',','.',number_format($data->price_old)) }}đ
+                                            </div>
+                                        @endif
+                                        <div class="price-current fz-lg-20 lh-lg-28 c-mx-8">
+                                            {{ str_replace(',','.',number_format($data->price)) }}đ
+                                        </div>
+                                        @if ($sale_percent > 0)
+                                            <div class="discount">
+                                                -{{ $sale_percent }}%
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <span>
+                                        Rẻ vô đối, giá tốt nhất thị trường
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="c-py-24 d-none d-lg-block">
+                                <hr>
+                            </div>
+                            <div class="group-btn c-mb-16 d-none d-lg-flex " style="--data-between: 12px">
+                                <button class="btn secondary tinhnang">Trả góp</button>
+                                @if(\App\Library\AuthCustom::check())
+                                    @if(\App\Library\AuthCustom::user()->balance < $data->price)
+                                        <button type="button" class="btn primary the-cao-atm">Mua ngay</button>
+                                    @else
+                                        <button type="button" class="btn primary btn-muangay">Mua ngay</button>
+                                    @endif
+                                @else
+                                    <button type="button" class="btn primary" onclick="openLoginModal()">Mua ngay</button>
+                                @endif
+    
+    
+                            </div>
+                            @if(isset($card_percent))
+                                @if($card_percent == 0)
+                                    <div class="group-btn d-none d-lg-flex" style="--data-between: 12px">
+                                        <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="1">
+                                            <span class="line-1" style="white-space: nowrap;">Mua bằng Thẻ cào</span>
+                                            <span class="line-2">{{ str_replace(',','.',number_format(round($data->price))) }} đ</span>
+                                        </a>
+                                        @if(isset($data->price_atm))
+                                        <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="2">
+                                            <span class="line-1" style="white-space: nowrap;">Mua bằng ATM, Momo</span>
+                                            <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
+                                        </a>
+                                        @endif
+                                    </div>
+                                @else
+                                    @if(isset($data->price_atm))
+                                    <div class="group-btn d-none d-lg-flex" style="--data-between: 12px">
+                                        <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="2">
+                                            <span class="line-1" style="white-space: nowrap;">Mua bằng ATM, Momo</span>
+                                            <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
+                                        </a>
+                                    </div>
+                                    @endif
                                 @endif
                             @else
-                                <button type="button" class="btn primary" onclick="openLoginModal()">Mua ngay</button>
-                            @endif
-
-
-                        </div>
-                        @if(isset($card_percent))
-                            @if($card_percent == 0)
                                 <div class="group-btn d-none d-lg-flex" style="--data-between: 12px">
                                     <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="1">
-                                        <span class="line-1">Mua bằng Thẻ cào</span>
+                                        <span class="line-1" style="white-space: nowrap;">Mua bằng Thẻ cào</span>
                                         <span class="line-2">{{ str_replace(',','.',number_format(round($data->price))) }} đ</span>
                                     </a>
                                     @if(isset($data->price_atm))
                                     <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="2">
-                                        <span class="line-1">Mua bằng ATM, Momo</span>
+                                        <span class="line-1" style="white-space: nowrap;">Mua bằng ATM, Momo</span>
                                         <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
                                     </a>
                                     @endif
                                 </div>
-                            @else
-                                @if(isset($data->price_atm))
-                                <div class="group-btn d-none d-lg-flex" style="--data-between: 12px">
-                                    <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="2">
-                                        <span class="line-1">Mua bằng ATM, Momo</span>
-                                        <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
-                                    </a>
-                                </div>
-                                @endif
                             @endif
-                        @else
-                            <div class="group-btn d-none d-lg-flex" style="--data-between: 12px">
-                                <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="1">
-                                    <span class="line-1">Mua bằng Thẻ cào</span>
-                                    <span class="line-2">{{ str_replace(',','.',number_format(round($data->price))) }} đ</span>
-                                </a>
-                                @if(isset($data->price_atm))
-                                <a href="javascript:void(0);"  class="handle-recharge-modal btn pink two-line" data-tab="2">
-                                    <span class="line-1">Mua bằng ATM, Momo</span>
-                                    <span class="line-2">{{ str_replace(',','.',number_format(round($data->price_atm))) }} đ</span>
-                                </a>
-                                @endif
-                            </div>
-                        @endif
+    
+                        </div>
+                    </div>
+                </div>
 
-                    </div>
-                </div>
-                <div class="account-desc c-mt-16 detailViewBlock">
-                    <h2 class="text-title-bold d-block d-lg-none c-mb-8">Chi tiết dịch vụ</h2>
-                    <div class="card overflow-hidden">
-                        <div class="card-body c-px-16">
-                            <h2 class="text-title-bold d-none d-lg-block c-mb-24 detailViewBlockTitle">Chi tiết dịch vụ</h2>
-                            @if(substr($data->description, 1200))
-                            <div class="content-desc hide detailViewBlockContent">
-                            @else
-                            <div class="content-desc detailViewBlockContent">
-                            @endif
-                                {!! $data->description !!}
-                            </div>
-                        </div>
-                        @if(substr($data->description, 1200))
-                        <div class="card-footer text-center">
-                            <span class="see-more open-sheet" data-content="Xem thêm nội dung" data-target="#sheet-view-more"></span>
-                        </div>
-                        @endif
-                    </div>
-                </div>
             </div>
+
             <div class="footer-mobile">
                 <div class="group-btn" style="--data-between: 12px">
                     <button class="btn secondary tinhnang">Mua trả góp</button>
@@ -517,8 +511,7 @@
                 </div>
             </div>
 
-
-        {{--  sử lý step  --}}
+            {{--  sử lý step  --}}
 
             <div class="step" id="step2">
                 <form class="formDonhangAccount" action="/ajax/acc/{{ $data->randId }}/databuy" method="POST">
@@ -553,13 +546,71 @@
 
                         <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12 brs-8 g_mobile-content">
 
+                            @if(isset($game_auto_props) && count($game_auto_props))
+                                <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                    <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                        Tướng
+                                    </div>
+                                    <div class="card--attr__value fz-13 fw-500">{{ $total_tuong }}</div>
+                                </div>
+                                <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                    <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                        Trang phục
+                                    </div>
+                                    <div class="card--attr__value fz-13 fw-500">{{ $total_trangphuc }}</div>
+                                </div>
+                                <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                    <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                        Linh thú TFT
+                                    </div>
+                                    <div class="card--attr__value fz-13 fw-500">{{ $total_linhthu }}</div>
+                                </div>
+
+                                @if(isset($data->params))
+                                    @if(isset($data->params->rank_info) && count($data->params->rank_info))
+
+                                        @foreach($data->params->rank_info as $key_rank => $rank_info)
+                                            @if($rank_info->queueType == "RANKED_TFT")
+                                                <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                    <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                        RANKED TFT
+                                                    </div>
+                                                    <div class="card--attr__value fz-13 fw-500">
+                                                        @if($rank_info->tier == "NONE")
+                                                            {{ $rank_info->tier }}
+                                                        @else
+                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                    <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                        RANKED SOLO
+                                                    </div>
+                                                    <div class="card--attr__value fz-13 fw-500">
+                                                        @if($rank_info->tier == "NONE")
+                                                            {{ $rank_info->tier }}
+                                                        @else
+                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+
+                                    @endif
+                                @endif
+                            @else
+                            @endif
+
                             @if(isset($data->groups))
                                 <?php $att_values = $data->groups ?>
                                 @foreach($att_values as $att_value)
                                     @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
                                         @if(isset($att_value->parent))
-                                                <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
-                                                    <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                            <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                <div class="card--attr__name fw-400 fz-13 text-center text-order">
                                                     {{ $att_value->parent->title??null }}
                                                 </div>
                                                 <div class="card--attr__value fz-13 fw-500">{{ $att_value->title??null }}</div>
@@ -571,14 +622,26 @@
 
                             @if(isset($data->params) && isset($data->params->ext_info))
                                 <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
-                                @foreach($params as $key => $param)
-                                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
-                                        <div class="card--attr__name fw-400 fz-13 text-center text-order">
-                                            {{ $key }}
-                                        </div>
-                                        <div class="card--attr__value fz-13 fw-500">{{ $param }}</div>
-                                    </div>
-                                @endforeach
+                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                    @foreach($dataAttribute as $index=>$att)
+                                        @if($att->position == 'text')
+                                            @if(isset($att->childs))
+                                                @foreach($att->childs as $child)
+                                                    @foreach($params as $key => $param)
+                                                        @if($key == $child->id && $child->is_slug_override == null)
+                                                            <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                                <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                                    {{ $child->title??'' }}
+                                                                </div>
+                                                                <div class="card--attr__value fz-13 fw-500">{{ $param }}</div>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                @endforeach
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @endif
                             @endif
 
                         </div>
@@ -691,7 +754,7 @@
                             Thông tin trả góp
                         </div>
 
-        {{--                Thoong tin tra gop    --}}
+                        {{--                Thoong tin tra gop    --}}
                         <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12 brs-8 g_mobile-content">
                             <div class="c-mt-8">
                                 <label class="c-mb-4 fw-500 fz-13 lh-20">Trả lần 1</label>
@@ -750,7 +813,7 @@
                     </div>
                 </div>
             </div>
-</section>
+        </section>
     @else
         <div class="item_buy">
 
@@ -801,6 +864,64 @@
 
                 <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
 
+                    @if(isset($game_auto_props) && count($game_auto_props))
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Tướng
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500">{{ $total_tuong }}</div>
+                        </div>
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Trang phục
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500">{{ $total_trangphuc }}</div>
+                        </div>
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Linh thú TFT
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500">{{ $total_linhthu }}</div>
+                        </div>
+
+                        @if(isset($data->params))
+                            @if(isset($data->params->rank_info) && count($data->params->rank_info))
+
+                                @foreach($data->params->rank_info as $key_rank => $rank_info)
+                                    @if($rank_info->queueType == "RANKED_TFT")
+                                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                                RANKED TFT
+                                            </div>
+                                            <div class="card--attr__value fz-13 fw-500">
+                                                @if($rank_info->tier == "NONE")
+                                                    {{ $rank_info->tier }}
+                                                @else
+                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                                RANKED SOLO
+                                            </div>
+                                            <div class="card--attr__value fz-13 fw-500">
+                                                @if($rank_info->tier == "NONE")
+                                                    {{ $rank_info->tier }}
+                                                @else
+                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+
+                            @endif
+                        @endif
+                    @else
+                    @endif
+
                     @if(isset($data->groups))
                         <?php $att_values = $data->groups ?>
                         @foreach($att_values as $att_value)
@@ -819,14 +940,26 @@
 
                     @if(isset($data->params) && isset($data->params->ext_info))
                         <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
-                        @foreach($params as $key => $param)
-                            <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
-                                <div class="card--attr__name fw-400 fz-13 text-center">
-                                    {{ $key }}
-                                </div>
-                                <div class="card--attr__value fz-13 fw-500">{{ $param }}</div>
-                            </div>
-                        @endforeach
+                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                            @foreach($dataAttribute as $index=>$att)
+                                @if($att->position == 'text')
+                                    @if(isset($att->childs))
+                                        @foreach($att->childs as $child)
+                                            @foreach($params as $key => $param)
+                                                @if($key == $child->id && $child->is_slug_override == null)
+                                                    <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                                        <div class="card--attr__name fw-400 fz-13 text-center">
+                                                            {{ $child->title??'' }}
+                                                        </div>
+                                                        <div class="card--attr__value fz-13 fw-500">{{ $param }}</div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+                                    @endif
+                                @endif
+                            @endforeach
+                        @endif
                     @endif
 
                 </div>
