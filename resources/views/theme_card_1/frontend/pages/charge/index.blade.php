@@ -18,38 +18,17 @@
                     <p style="text-align: center;color: red">*Chú ý: Nạp thẻ sai mệnh giá mất 100% giá trị thẻ</p>
 
 
-                    <form method="POST" action="https://thegarena.net/nap-the" accept-charset="UTF-8" class="form-horizontal form-charge"><input name="_token" type="hidden" value="890rWe69QR86VO2jZqMDUSXsdzhby9CVmifhbUrw">
-
-
-                        <div class="form-group row">
-                            <label class="col-md-3 control-label text-right font-weight-bold my-auto">Tài khoản:</label>
-                            <div class="col-md-6">
-                                <input class="form-control  c-square c-theme" type="text"
-                                       value="3061758440807996@facebook.com" readonly>
-                            </div>
-                        </div>
-
-
+                    <form action="{{route('postTelecomDepositAuto')}}" method="POST"  id="form-charge2"  class="form-horizontal form-charge">
+                        @csrf
                         <div class="form-group row">
                             <label class="col-md-3 control-label text-right font-weight-bold my-auto">Loại thẻ:</label>
                             <div class="col-md-6">
-                                <select class="form-control  c-square c-theme" name="type" id="type">
-                                    <option value="GARENA">GARENA</option>
-
-                                    <option value="VIETTEL">VIETTEL</option>
-
-                                    <option value="VINAPHONE">VINAPHONE</option>
-
-                                    <option value="MOBIFONE">MOBIFONE</option>
-
-                                    <option value="VCOIN">VCOIN</option>
-
-                                    <option value="GATE">GATE</option>
-
-                                    <option value="ZING">ZING</option>
-
-                                    <option value="VIETNAMMOBILE">VIETNAMMOBILE</option>
-
+                                <select class="form-control  c-square c-theme" name="type" id="telecom">
+                                    @if(isset($data) && $data !== null)
+                                        @foreach($data as $val)
+                                            <option value="{{$val->key}}">{{$val->title}}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
@@ -78,19 +57,13 @@
                         <div class="form-group row">
                             <label class="col-md-3 control-label text-right font-weight-bold my-auto">Mã số thẻ:</label>
                             <div class="col-md-6">
-                                <input class="form-control  c-square c-theme " name="pin" type="text" maxlength="16"
-                                       required placeholder=""
-                                       required="" autofocus="">
+                                <input class="form-control  c-square c-theme " name="pin" type="text" maxlength="16"  placeholder=""  autofocus="" required>
                             </div>
                         </div>
-
-
                         <div class="form-group row">
                             <label class="col-md-3 control-label text-right font-weight-bold my-auto">Số serial:</label>
                             <div class="col-md-6">
-                                <input class="form-control c-square c-theme " name="serial" type="text" maxlength="16"
-                                       required placeholder=""
-                                       required="">
+                                <input class="form-control c-square c-theme " name="serial" type="text" maxlength="16" placeholder="" required>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -98,11 +71,19 @@
                             <div class="col-md-6">
                                 <div class="input-group">
 
-                                    <input type="text" class="form-control c-square" id="captcha" name="captcha"
-                                           placeholder="Mã bảo vệ" maxlength="3" autocomplete="off" required="">
-                                    <span class="input-group-addon" style="padding: 1px;">
-                                                            <img  src="https://thegarena.net/captcha/flat?0dzKSyTS" height="30px" style="max-width: unset !important;height: 30px !important;" id="imgcaptcha" onclick="document.getElementById('imgcaptcha').src ='https://thegarena.net/captcha/flat?D5qi5ANZ'+Math.random();document.getElementById('captcha').focus();">
-                                                        </span>
+                                    <input type="text" class="form-control c-square" id="captcha" name="captcha" placeholder="Mã bảo vệ" maxlength="3" autocomplete="off" required="">
+                                    <div style="    border: 1px solid #ced4da;height: 34px;display:flex">
+                                        <div class="captcha_1">
+                                          <span class="reload h-100 d-flex">
+
+                                              {!! captcha_img('flat') !!}</span>
+
+                                        </div>
+
+                                    </div>
+                                    <button type="button" class="btn reload"  id="reload_1" style="border-radius: 0;color: red;border: 1px solid #ced4da;height: 34px" >
+                                        &#x21bb;
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -111,103 +92,38 @@
                         <div class="form-group c-margin-t-40 row">
                             <div class="col-md-3"></div>
                             <div class=" col-md-6">
-                                <button type="submit"
-                                        class="btn btn-success btn-submit c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn-block"
-                                        data-loading-text="<i class='fa fa-spinner fa-spin '></i>">Nạp
-                                    thẻ
+                                <button type="submit" class="btn btn-success btn-submit c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn-block" data-loading-text="<i class='fa fa-spinner fa-spin '></i>">
+                                    Nạp thẻ
                                 </button>
-                                <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-                                    $(".form-charge").submit(function () {
-                                        $('.btn-submit').button('loading');
-                                    });
-                                </script>
 
                             </div>
                         </div>
                     </form>
-                    <div class="alert alert-info">
-                        <p style="text-align:center"><a href="https://muathegarena.com/blog/doi-the-cao-sang-the-garena-don-gian-tai-website-muathegarenacom"><span style="color:#2980b9"><strong>&gt;&gt; Hướng dẫn nạp thẻ c&agrave;o mua thẻ Garena &lt;&lt;&nbsp;</strong></span></a></p>
+                    @if (setting('sys_charge_content') != "")
+                        <div class="alert alert-info" role="alert">
+                            {!! setting('sys_charge_content') !!}
 
-                        <p style="text-align:center"><span style="color:#e74c3c"><strong>LƯU &Yacute;: Chọn Đ&uacute;ng Mệnh Gi&aacute; Thẻ. Chọn Sai M&atilde; Thẻ&nbsp;Bị Trừ 100% Kh&ocirc;ng Được Ho&agrave;n Tiền.</strong></span></p>
-
-                        <p style="text-align:center">Ưu ti&ecirc;n nạp bằng ATM - V&iacute; Điện Tử tỷ lệ 1 :1</p>
-
-                        <p style="text-align:center"><a href="https://thegarena.net/"><strong>MUA THẺ GARENA NGAY !!!</strong></a></p>
-
-                        <p>&nbsp;</p>
-                    </div>
+                        </div>
+                    @endif
                     <!-- END: PAGE CONTENT -->
+                    <div class="paycartdata">
+                        <div class="position-relative"  style="min-height: 200px" >
+                            <table class="table table-hover table-custom-res table-striped">
+                                <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>
 
+                                <tbody>
+                                <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">
+{{--                                    <div class="loading"></div>--}}
+                                    <div class="loading-wrap mb-3">
+                                        <span class="modal-loader-spin mb-3"></span>
+                                    </div>
+                                </div>
+                                </tbody>
+                            </table>
+                        </div>
+{{--                                                @include('frontend.pages.charge.widget.__charge_history')--}}
+                    </div>
 
-                    <table id="hand_card_recent" class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Thời gian</th>
-                            <th>Nhà mạng</th>
-                            <th>Mã thẻ</th>
-                            <th>Serial</th>
-                            <th>Kiểu nạp</th>
-                            <th>Mệnh giá</th>
-                            <th>Kết quả</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        <tr>
-                            <td>                                                11/10/2022 00:16:43
-                            </td>
-                            <td>GARENA</td>
-                            <td>1456465465465656</td>
-                            <td>20000164737782</td>
-                            <td>
-                                Nạp thẻ tự động
-                            </td>
-                            <td>20,000</td>
-                            <td>
-
-                                <b class='text-danger'>Thẻ sai</b>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-                            <td>                                                11/10/2022 00:16:32
-                            </td>
-                            <td>VIETTEL</td>
-                            <td>223036547055536</td>
-                            <td>654546546546545</td>
-                            <td>
-                                Nạp thẻ tự động
-                            </td>
-                            <td>10,000</td>
-                            <td>
-
-                                <b class='text-danger'>Thẻ sai</b>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-                            <td>                                                11/10/2022 00:16:20
-                            </td>
-                            <td>GARENA</td>
-                            <td>223036547055536</td>
-                            <td>20000164737782</td>
-                            <td>
-                                Nạp thẻ tự động
-                            </td>
-                            <td>100,000</td>
-                            <td>
-
-                                <b class='text-danger'>Thẻ sai</b>
-
-                            </td>
-
-                        </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
@@ -215,4 +131,8 @@
 
 
 </div>
+
+<input type="hidden" name="hidden_page_ls" id="hidden_page_service_nt" class="hidden_page_service_nt" value="1" />
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js?v={{time()}}"></script>
+
 @endsection

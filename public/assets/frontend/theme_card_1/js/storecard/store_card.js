@@ -200,131 +200,84 @@ $(document).ready(function(){
             //     quantity:quantity,
             // },
             beforeSend: function (xhr) {
-                // $(".overlay").fadeIn(300);
-                $("#overlay").fadeIn(300);
+                $(".content-ajax").hide();
+                $('#btnBuy').prop('disabled', true);
+                $('#btnBuy').html('<i class="fas fa-spinner fa-spin"></i> Chờ xử lý');
             },
             success: function (data) {
                 let html = '';
-                if(data.errors){
-                    $(".info-buy-card").remove();
-
-                    html += '<div class="alert alert-danger mb-3 text-center" role="alert">';
-                    html += '<p class="display-6 text-danger mb-0"><i class="las la-frown"></i></p>';
-                    html += '<h5 class="mb-0">uh oh, có lỗi xảy ra</h5>';
-                    html += '<p class="mb-0">'+data.errors+'</p>';
-                    html += '</div>';
-                }else{
 
 
-                    if(data.status == 1){
+                if(data.status == 1){
+                    $('#modal_pay').modal('hide');
+                    $('#showInfor').modal('show');
+                    // let html = '';
+                    // html += '<div class="id-infor" data-id="'+data.id+'"></div>';
+                    // $('#showInforDetails').html(html);
+                    // var id = $(".id-infor").data('id');
 
+                    // mua thẻ thành công
+                    // $("#id-item").html(id);
+                    // $("#description-item").html(data.data.description);
+                    // $("#money-item").html(formatNumber(data.data.price)+" VNĐ");
+                    // $("#txns-item").html(100-(data.data.txns[0].ratio)+" %");
+                    //
+                    // console.log(data.data.store_card);
+                    let html_card = '';
+                    if(data.data.data_card.length > 0){
 
-                        html += '<div class="alert alert-success mb-3 text-center" role="alert">';
-                        html += '<p class="display-6 mb-0 text-success"><i class="las la-glass-cheers"></i></p>';
-                        html += '<p class="mb-0">Cảm ơn bạn đã lựa chọn chúng tôi, thông tin mã thẻ dưới đây hoặc bạn có thể xem lại trong mục, hồ sơ cá nhân -> <a href="/thong-tin">thẻ đã mua</a></p>';
-                        html += '</div>';
-                        btnSubmit.prop('disabled', true);
-                        swal({
-                            title: "Thành công !",
-                            text: data.data.message,
-                            icon: "success",
-                        })
-                        let render_html = '';
-                        if(data.data.data_card.length > 0){
+                        $.each(data.data.data_card,function(key,value){
+                            html_card += '<tr>';
+                            html_card += '<td>Thẻ '+key+'</td>';
+                            html_card += '<td class="pin"><span>'+value.pin+'</span>&nbsp;<i style="cursor: pointer" class="fa fa-copy copyPin" aria-hidden="true"></i></td>';
+                            html_card += '<td class="serial"><span>'+value.serial+'</span>&nbsp;<i style="cursor: pointer" class="fa fa-copy copySerial" aria-hidden="true"></i></td>';
+                            html_card += '</tr>';
+                            html_card += '<tr>';
+                        });
+                        $('#store_card').html(html_card);
 
-                            $.each(data.data.data_card,function(key,value){
-                                // html+='<div class="col-md-4 p-2">'
-                                // html+='<div class="alert alert-info">'
-                                // html+='<p>Mã thẻ'+key+' </p>'
-                                // html+='<div class="success_storecard_pin">'
-                                // html+='<p>Mã thẻ <br>'
-                                // html+='<span>'+value.pin+'</span>'
-                                // html+='</p>'
-                                // html+='<b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.pin+'" aria-hidden="true"></i></b>'
-                                // html+='</div>'
-                                // html+='<div class="success_storecard_serial">'
-                                // html+='<p>Serial  <br>'
-                                // html+='<span>'+value.serial+'</span>'
-                                // html+='</p>'
-                                // html+='<b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.serial+'" aria-hidden="true"></i></b>'
-                                // html+='</div>'
-                                // html+='</div>'
-                                // html+='</div>'
-
-                                render_html += '<tbody>';
-                                render_html += '<tr>';
-                                render_html += '<td class="text-secondary">Thẻ '+key+'</td>';
-                                render_html += '<td colspan="2"></td>';
-                                render_html += '</tr>';
-                                render_html += '<tr>';
-                                render_html += '<td class="text-secondary">Loại mã thẻ</td>';
-                                render_html += '<td colspan="2">'+value.telecom_key+'</td>';
-                                render_html += '</tr>';
-                                render_html += '<tr>';
-                                render_html += '<td class="text-secondary">Mệnh giá</td>';
-                                render_html += '<td colspan="2">'+formatNumber(value.amount)+' VNĐ</td>';
-                                render_html += '</tr>';
-                                render_html += '<tr>';
-                                render_html += '<td class="text-secondary">Số series</td>';
-                                render_html += '<td colspan="2">'+value.serial+'</td>';
-                                render_html += '</tr>';
-                                render_html += '<tr>';
-                                render_html += '<td class="text-secondary">Mã Pin</td>';
-                                render_html += '<td><strong class="text-warning">'+value.pin+'</strong></td>';
-                                render_html += '<td width="30"><a href="#"><i class="las la-copy" data-id="' + value.pin + '"></i></a></td>';
-                                render_html += '</tr>';
-                                render_html += '</tbody>';
-                                render_html += '</br>';
-
-                            });
-                            $('.table-store-card').html(render_html);
-
-                        }
-                    }
-                    else if(data.status == 401){
-                        window.location.href = '/login';
-                    }
-                    else if(data.status == 0){
-                        $(".info-buy-card").remove();
-
-                        html += '<div class="alert alert-danger mb-3 text-center" role="alert">';
-                        html += '<p class="display-6 text-danger mb-0"><i class="las la-frown"></i></p>';
-                        html += '<h5 class="mb-0">Mua thẻ thất bại !</h5>';
-                        html += '<p class="mb-0">'+data.message+'</p>';
-                        html += '</div>';
-
-
-                        // swal({
-                        //     title: "Mua thẻ thất bại !",
-                        //     text: data.message,
-                        //     icon: "error",
-                        //     buttons: {
-                        //         cancel: "Đóng",
-                        //     },
-                        // })
-                    }
-                    else{
-                        // swal({
-                        //     title: "Có lỗi xảy ra !",
-                        //     text: data.message,
-                        //     icon: "error",
-                        //     buttons: {
-                        //         cancel: "Đóng",
-                        //     },
-                        // })
-
-                        $(".info-buy-card").remove();
-
-                        html += '<div class="alert alert-danger mb-3 text-center" role="alert">';
-                        html += '<p class="display-6 text-danger mb-0"><i class="las la-frown"></i></p>';
-                        html += '<h5 class="mb-0">Cố lỗi xảy ra !</h5>';
-                        html += '<p class="mb-0">'+data.message+'</p>';
-                        html += '</div>';
                     }
                 }
-                $(".content-notify-content").html(html)
+                else if(data.status == 401){
+                    window.location.href = '/login';
+                }
+                else if(data.status == 0){
+                    $('#modal_pay').modal('hide');
 
+                    swal({
+                        title: "Mua thẻ thất bại !",
+                        text: data.message,
+                        icon: "error",
+                        buttons: {
 
+                            charge: {
+                                text: "Nạp tiền",
+                                value: "charge",
+                            },
+                            cancel: "Đóng",
+                        },
+                    })
+                    //     .then((value) => {
+                    //     window.location.href = "https://thegarenagiare.com/nap-the";
+                    // });
+                }
+                else{
+                    $('#modal_pay').modal('hide');
+
+                    swal({
+                        title: "Mua thẻ thất bại !",
+                        text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
+                        icon: "error",
+                        buttons: {
+
+                            charge: {
+                                text: "Nạp tiền",
+                                value: "charge",
+                            },
+                            cancel: "Đóng",
+                        },
+                    })
+                }
             },
             error: function (data) {
                 swal({
@@ -337,332 +290,17 @@ $(document).ready(function(){
                 })
             },
             complete: function (data) {
-                setTimeout(function(){
-                    $("#overlay").fadeOut(300);
-                    $('.nav-steps-wrapper ul.nav-steps li.nav-item a.nav-link').removeClass('active');
-                    $('#step-example .tab-content').removeClass('active');
-                    $("#steps-3.tab-content").addClass('active');
-                    $('.nav-steps-wrapper ul.nav-steps li.nav-item a.steps-3').addClass('active');
-                    $(".content-notify-store").css('display','block');
-                },500);
+                $('.ajax-loader').hide();
+                $(".content-ajax").show();
+
+                $('#btnBuy').prop('disabled', false);
+                $('#btnBuy').html('Thanh toán');
             }
         });
-        // $.ajax({
-        //     type: 'POST',
-        //     url: '/mua-the',
-        //     data: formData,
-        //     cache: false,
-        //     contentType: false,
-        //     processData:false,
-        //     beforeSend: function(){
-        //         $(".content-ajax").hide();
-        //         $('#btnBuy').prop('disabled', true);
-        //         $('#btnBuy').html('<i class="fas fa-spinner fa-spin"></i> Chờ xử lý');
-        //     },
-        //     success: (data) =>{
-        //         if(data.errors){
-        //             $('#modal_pay').modal('hide');
-        //
-        //             swal({
-        //                 title: "Lỗi !",
-        //                 text: data.errors,
-        //                 icon: "error",
-        //                 buttons: {
-        //
-        //                     charge: {
-        //                         text: "Nạp tiền",
-        //                         value: "charge",
-        //                     },
-        //                     cancel: "Đóng",
-        //                 },
-        //             })
-        //                 .then((value) => {
-        //                     switch (value) {
-        //                         case "charge":
-        //                             window.location.href = "https://thegarenagiare.com/nap-the";
-        //                             break;
-        //                         default:
-        //
-        //                     }
-        //                 });
-        //         }else{
-        //             $('#modal_pay').modal('hide');
-        //             $('#showInfor').modal('show');
-        //             let html = '';
-        //             html += '<div class="id-infor" data-id="'+data.id+'"></div>';
-        //             $('#showInforDetails').html(html);
-        //             var id = $(".id-infor").data('id');
-        //             $.ajax({
-        //                 url: "/mua-the/"+id+"/thong-tin-the",
-        //                 type:"GET",
-        //                 success: function(data){
-        //                     // console.log(data.data.id);
-        //                     $("#id-item").html(id);
-        //                     $("#description-item").html(data.data.description);
-        //                     $("#money-item").html(formatNumber(data.data.price)+" VNĐ");
-        //                     $("#txns-item").html(100-(data.data.txns[0].ratio)+" %");
-        //                     //
-        //                     // console.log(data.data.store_card);
-        //                     let html = '';
-        //                     $.each(data.arr,function(key,value){
-        //                         html += '<tr>';
-        //                         html += '<td class="pin"><span>'+value['pin_item']+'</span>&nbsp;<i style="cursor: pointer" class="fa fa-copy copyPin" aria-hidden="true"></i></td>';
-        //                         html += '<td class="serial"><span>'+value['serial_item']+' </span>&nbsp;<i style="cursor: pointer" class="fa fa-copy copySerial" aria-hidden="true"></i></td>';
-        //                         html += '</tr>';
-        //                     });
-        //                     $('#store_card').html(html);
-        //                 }
-        //             });
-        //         }
-        //     },
-        //     complete: function(){
-        //         $('.ajax-loader').hide();
-        //         $(".content-ajax").show();
-        //
-        //         $('#btnBuy').prop('disabled', false);
-        //         $('#btnBuy').html('Thanh toán');
-        //
-        //     }
-        // });
+
     });
 
 
     // code cu
-
-    // ele = $('select#telecom_storecard option').first();
-    // var telecom = ele.val();
-    // getAmount(telecom);
-    // $("#buy_telecom_key").on('change', function () {
-    //     getAmount(telecom);
-    //
-    // });
-    //
-    // $("#buy_amount").on('change', function () {
-    //     UpdatePrice();
-    // });
-    //
-    // $("#quantity").on('change', function () {
-    //     UpdatePrice();
-    // });
-    // // $('#loading-data').remove();
-    // $('#loading-data-total').remove();
-    // $('#loading-data-pay').remove();
-    // // $('#formStoreCard').removeClass('hide');
-    // $('#StoreCardTotal').removeClass('hide');
-    // $('#StoreCardPay').removeClass('hide');
-    // function getAmount(telecom){
-    //     var url = '/ajax/store-card/get-amount';
-    //     $.ajax({
-    //         type: "GET",
-    //         url: url,
-    //         data: {
-    //             telecom:telecom
-    //         },
-    //         beforeSend: function (xhr) {
-    //
-    //         },
-    //         success: function (data) {
-    //
-    //             if(data.status == 1){
-    //
-    //                 let html = '';
-    //                 if(data.data.length > 0){
-    //                     $.each(data.data,function(key,value){
-    //                         // html+= '<p>'+value.amount +'</p>'
-    //                         html += '<option value="'+ value.amount +'" rel-ratio="'+ value.ratio_default+'">'+ formatNumber(value.amount)  +' VNĐ - ' + (100-value.ratio_default) +'% </option>';
-    //                     });
-    //                 }
-    //                 $('#amount_storecard').html(html);
-    //                 UpdatePrice();
-    //             }
-    //             else{
-    //                 // swal({
-    //                 //     title: "Có lỗi xảy ra !",
-    //                 //     text: data.message,
-    //                 //     icon: "error",
-    //                 //     buttons: {
-    //                 //         cancel: "Đóng",
-    //                 //     },
-    //                 // })
-    //             }
-    //         },
-    //         error: function (data) {
-    //             swal({
-    //                 title: "Lỗi !",
-    //                 text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-    //                 icon: "error",
-    //                 buttons: {
-    //                     cancel: "Đóng",
-    //                 },
-    //             })
-    //         },
-    //         complete: function (data) {
-    //
-    //         }
-    //     });
-    // }
-    // $('body').on('change','#telecom_storecard',function(){
-    //     var telecom = $(this).val();
-    //     getAmount(telecom)
-    // });
-    // // getTelecom();
-    // // $("#telecom_storecard").on('change', function () {
-    // //     getAmount();
-    // //
-    // // });
-    //
-    // $("#amount_storecard").on('change', function () {
-    //     UpdatePrice();
-    // });
-    //
-    // $("#quantity").on('change', function () {
-    //     UpdatePrice();
-    // });
-    //
-    // function UpdatePrice(){
-    //     var amount=$("#amount_storecard").val();
-    //     var ratio=$('#amount_storecard option:selected').attr('rel-ratio');
-    //     var quantity=$("#quantity").val();
-    //
-    //     if(amount=='' ||amount==null || ratio=='' ||ratio==null   || quantity=='' ||quantity==null){
-    //
-    //         $('#txtPrice').html('Tổng: ' + 0 + ' VNĐ');
-    //         $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-    //             $(this).removeClass();
-    //         });
-    //         return;
-    //     }
-    //     if(ratio<=0 || ratio=="" || ratio==null){
-    //         ratio=100;
-    //     }
-    //     var sale=amount-(amount*ratio/100);
-    //     var total=(amount-sale) *quantity;
-    //     // var total=sale*quantity;
-    //     var totalnotsale = amount*quantity
-    //     if(sale != 0){
-    //         $('#txtPrice').html('Tổng: ' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' VNĐ');
-    //         $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-    //             $(this).removeClass();
-    //         });
-    //     }else {
-    //         $('#txtPrice').html('Tổng: ' + totalnotsale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' VNĐ');
-    //         $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-    //             $(this).removeClass();
-    //         });
-    //     }
-    //
-    //
-    // }
-    // $(document).ready(function () {
-    //     $('#btnbeforePurchase').click(function () {
-    //         $('#success_storecard').modal('show');
-    //     });
-    // });
-    // $('body').on('click','.copyData',function(){
-    //     data = $(this).data('copy');
-    //     var $temp = $("<input>");
-    //     $("body").append($temp);
-    //     $temp.val($.trim(data)).select();
-    //     document.execCommand("copy");
-    //     $temp.remove();
-    //     toastr.success('Đã sao chép: '+ data);
-    // })
-    //
-    // $('#form-storecard').submit(function (e) {
-    //     e.preventDefault();
-    //     $('#homealert').modal("show");
-    //     var formSubmit = $(this);
-    //     var url = formSubmit.attr('action');
-    //     var btnSubmit = formSubmit.find(':submit');
-    //     // btnSubmit.text('Đang xử lý...');
-    //
-    //     $('#ok').off().on('click', function (m) {
-    //         $.ajax({
-    //             type: "POST",
-    //             url: url,
-    //             cache:false,
-    //             data: formSubmit.serialize(), // serializes the form's elements.
-    //             beforeSend: function (xhr) {
-    //
-    //             },
-    //             success: function (data) {
-    //                 if(data.status == 1){
-    //                     btnSubmit.prop('disabled', true);
-    //                     swal({
-    //                         title: "Thành công !",
-    //                         text: data.message,
-    //                         icon: "success",
-    //                     })
-    //                     $('#success_storecard').modal("show");
-    //                     let html = '';
-    //                     if(data.data.data_card.length > 0){
-    //                         $.each(data.data.data_card,function(key,value){
-    //
-    //                             html+='<div class="col-12 col-md-4 p-2">'
-    //                             html+='<div class="alert alert-info">'
-    //                             html+='<p>Mã thẻ '+key+' </p>'
-    //                             html+='<div class="success_storecard_pin">'
-    //                             html+='<p>Mã thẻ <br>'
-    //                             html+='<span>'+value.pin+'</span>'
-    //                             html+='</p>'
-    //                             html+='<b class="mt-4"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.pin+'" aria-hidden="true"></i></b>'
-    //                             html+='</div>'
-    //                             html+='<div class="success_storecard_serial">'
-    //                             html+='<p>Serial  <br>'
-    //                             html+='<span>'+value.serial+'</span>'
-    //                             html+='</p>'
-    //                             html+='<b class="mt-4"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.serial+'" aria-hidden="true"></i></b>'
-    //                             html+='</div>'
-    //                             html+='</div>'
-    //                             html+='</div>'
-    //
-    //                         });
-    //                     }
-    //                     $('.success_storecard').html(html);
-    //                 }
-    //                 else if(data.status == 401){
-    //                     window.location.href = '/login?return_url='+window.location.href;
-    //                 }
-    //                 else if(data.status == 0){
-    //                     swal({
-    //                         title: "Mua thẻ thất bại !",
-    //                         text: data.message,
-    //                         icon: "error",
-    //                         buttons: {
-    //                             cancel: "Đóng",
-    //                         },
-    //                     })
-    //                 }
-    //                 else{
-    //                     swal({
-    //                         title: "Có lỗi xảy ra !",
-    //                         text: data.message,
-    //                         icon: "error",
-    //                         buttons: {
-    //                             cancel: "Đóng",
-    //                         },
-    //                     })
-    //                 }
-    //             },
-    //             error: function (data) {
-    //                 swal({
-    //                     title: "Có lỗi xảy ra !",
-    //                     text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-    //                     icon: "error",
-    //                     buttons: {
-    //                         cancel: "Đóng",
-    //                     },
-    //                 })
-    //             },
-    //             complete: function (data) {
-    //                 $('span#reload').trigger('click');
-    //                 formSubmit.trigger("reset");
-    //                 // btnSubmit.text('Nạp thẻ');
-    //                 btnSubmit.prop('disabled', false);
-    //             }
-    //         });
-    //     });
-    //
-    // });
 
 });
