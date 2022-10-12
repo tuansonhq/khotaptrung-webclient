@@ -87,7 +87,7 @@
                                             @if($key == 0)
                                                  <div class="swiper-slide">
                                                      <div class="cards__item  w-100">
-                                                         <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type-mobile" checked hidden>
+                                                         <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" checked hidden>
 
                                                           <label for="card-mobile-{{ $telecom->id }}">
                                                               <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
@@ -97,7 +97,7 @@
                                             @else
                                                 <div class="swiper-slide">
                                                     <div class="cards__item  w-100">
-                                                        <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type-mobile" hidden>
+                                                        <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" hidden>
 
                                                         <label for="card-mobile-{{ $telecom->id }}">
                                                             <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
@@ -155,7 +155,7 @@
                                                 @if($key == 0)
                                                     <div class="swiper-slide">
                                                         <div class="cards__item  w-100">
-                                                            <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type-mobile" checked hidden>
+                                                            <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" checked hidden>
 
                                                             <label for="card-mobile-{{ $telecom->id }}">
                                                                 <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
@@ -165,7 +165,7 @@
                                                 @else
                                                     <div class="swiper-slide">
                                                         <div class="cards__item  w-100">
-                                                            <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type-mobile" hidden>
+                                                            <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" hidden>
 
                                                             <label for="card-mobile-{{ $telecom->id }}">
                                                                 <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
@@ -178,7 +178,7 @@
                                         @else
                                             <div class="swiper-slide">
                                                 <div class="cards__item  w-100">
-                                                    <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type-mobile" hidden>
+                                                    <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" hidden>
 
                                                     <label for="card-mobile-{{ $telecom->id }}">
                                                         <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
