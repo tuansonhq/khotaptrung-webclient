@@ -45,7 +45,7 @@
                     @else
                         <i class="fas fa-calendar-alt"></i> {{ formatDateTime($item->created_at) }}
                     @endif
-{{--                    <span class="mx-3">|</span> Danh mục : Hướng dẫn--}}
+                    <span class="mx-3">|</span> Danh mục : {{ $item->groups[0]->title ?? '' }}
                 </p>
                 <div class="item-content">
                     <p>  {!! $item->seo_description !!}</p>
