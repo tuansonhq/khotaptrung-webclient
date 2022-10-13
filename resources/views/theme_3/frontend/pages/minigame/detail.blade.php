@@ -575,6 +575,7 @@
                             </div>
                             <div class="col-12 col-lg-6 rotation-col">
                                 <div class="row">
+                                    @if(isset($result->group->params->is_try))
                                     @if($result->group->params->is_try == 1)
                                         <div class="col-6 button-col">
                                             @if(App\Library\AuthCustom::check())
@@ -585,6 +586,7 @@
                                                 </button>
                                             @endif
                                         </div>
+                                    @endif
                                     @endif
                                     @if (App\Library\AuthCustom::check())
                                         <div class="col-6 button-rainbow button-col" style="--bg-color: #ecf0f1">
