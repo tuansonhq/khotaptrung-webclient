@@ -10,6 +10,7 @@
                 $prev = null;
             @endphp
             @if(isset($data) && count($data) > 0)
+
                 @foreach ($data as $item)
 
                     @php

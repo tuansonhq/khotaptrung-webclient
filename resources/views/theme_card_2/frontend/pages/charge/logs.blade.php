@@ -126,91 +126,14 @@
 
 
                     </form>
-                    <div id="content-cart" class="m-portlet__body">
-                        <div style="overflow-x: auto" class="tab-content">
-                            <table class="table table-hover table-custom-res" id="deposit-table">
-                                <thead>
-                                <tr role="row">
-                                    <th>Thời gian</th>
-
-                                    <th>Kiểu nạp</th>
-                                    <th>Nhà mạng</th>
-                                    <th>Mã thẻ</th>
-                                    <th>Serial</th>
-                                    <th>Trị giá</th>
-                                    <th>Kết quả</th>
-                                    <th>Thực nhận</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                <tr class="" style="background-color: #abe7ed;">
-                                    <td colspan="2" class="row-date"><b>Tổng cộng các trang:</b></td>
-                                    <td class="row-date-sub"><b> 0 thẻ </b></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td class="row-date-sub"><b> 0 </b></td>
-                                    <td class="row-date-sub"><b> 0 </b></td>
-                                    <td class="row-date-sub"><b> 0 </b></td>
-
-                                </tr>
-
-
-
-                                <tr>
-                                    <td colspan="3"><b>Ngày 12/10/2022</b></td>
-
-
-
-
-
-
-
-
-
-                                    <td><b>1 thẻ</b></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><b>0 </b></td>
-                                    <td><b>0 </b></td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>15:25:43</td>
-
-                                    <td>
-                                        Nạp tự động
-                                    </td>
-                                    <td>VIETTEL</td>
-                                    <td>98798798789798</td>
-                                    <td>987987987897</td>
-                                    <td>10,000</td>
-                                    <td>
-
-                                        <b class='text-danger'>Thẻ sai</b>
-
-                                    </td>
-
-
-                                    <td>
-                                        <span class="c-font-bold text-info">+0đ</span>
-                                    </td>
-
-                                </tr>
-
-
-
-
-                                </tbody>
-                            </table>
-                            <!-- END: PAGE CONTENT -->
-
-                            <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-
+                    <div id="data_pay_card_history_ls" style="position: relative">
+                        <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">
+                            {{--                                    <div class="loading"></div>--}}
+                            <div class="loading-wrap mb-3">
+                                <span class="modal-loader-spin mb-3"></span>
                             </div>
-                            <!-- END: PAGE CONTENT -->
                         </div>
+                        @include('frontend.pages.charge.widget.__charge_history')
                     </div>
                 </div>
             </div>
@@ -218,3 +141,4 @@
     </div>
 </div>
 @endsection
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge-history.js"></script>

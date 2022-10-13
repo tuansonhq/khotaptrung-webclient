@@ -739,7 +739,6 @@ View::composer('frontend.pages.article.widget.__danh__muc', function ($view) {
         return $datacate = $result_Api->response_data->datacategory??null;
     });
 
-
     return $view->with('datacate', $datacate);
 
 });
@@ -1349,4 +1348,24 @@ View::composer('frontend.widget.__menu__category__article_theme_5', function ($v
     }
 
     return $view->with('data_category', $data)->with('data_detail', $dataDetail);
+});
+
+
+// theme card 2
+
+View::composer('frontend.widget.__tin__tuc__noi__bat', function ($view) {
+
+    $data = \Cache::rememberForever('__tin__tuc__noi__bat', function() {
+        $url = '/article';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['limit'] = 8;
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+        return $data = $result_Api->response_data->data->data??null;
+    });
+
+    return $view->with('data', $data);
+
 });

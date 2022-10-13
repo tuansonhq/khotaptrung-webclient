@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-12">
-                       @include('theme_card_2.frontend.pages.article.widget.__bai__viet__noi__bat')
+                       @include('theme_card_2.frontend.widget.__tin__tuc__noi__bat',['data_article' => $data])
                     </div>
                 </div>
             </div>
