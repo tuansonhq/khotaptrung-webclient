@@ -243,7 +243,7 @@ $(document).ready(function(){
                 }
                 else if(data.status == 0){
                     $('#modal_pay').modal('hide');
-
+                    // $('#showInfor').modal('show');
                     swal({
                         title: "Mua thẻ thất bại !",
                         text: data.message,

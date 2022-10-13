@@ -49,7 +49,7 @@ $(document).ready(function(){
                     let html = "";
                     html += ' <button style="font-family: \'Nunito\', sans-serif;" type="button" class="btn btn-header" data-toggle="modal" data-target="#modalLogin">Đăng nhập</button>';
                     $('.wp_login').html(html);
-                    $('#store_pay').attr('data-target','#signin').html('Đăng nhập để thanh toán');
+                    $('#store_pay').attr('data-target','#modalLogin').html('Đăng nhập để thanh toán').css('height','auto');
 
                     $('meta[name="jwt"]').attr('content','');
 
@@ -63,7 +63,7 @@ $(document).ready(function(){
                     let html = "";
                     html += ' <button style="font-family: \'Nunito\', sans-serif;" type="button" class="btn btn-header" data-toggle="modal" data-target="#modalLogin">Đăng nhập</button>';
                     $('.wp_login').html(html);
-                    $('#store_pay').attr('data-target','#signin').html('Đăng nhập để thanh toán');
+                    // $('#store_pay').attr('data-target','#signin').html('Đăng nhập để thanh toán');
 
                     $('meta[name="jwt"]').attr('content','');
                 }
@@ -90,7 +90,7 @@ $(document).ready(function(){
                         'document.getElementById(\'logout-form\').submit();" class="btn m-btn--pill tn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a> ');
 
                     $('meta[name="jwt"]').attr('content',data.token);
-                    $('#store_pay').attr('data-target','#modal_pay').html('Thanh toán ngay');
+                    $('#store_pay').attr('data-target','#modal_pay').html('Thanh toán ngay').css('height','auto');
                 }
             },
             error: function (data) {

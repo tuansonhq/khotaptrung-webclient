@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/owl.theme.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/owl.transitions.css">
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/vendors/vendors.bundle.js" type="text/javascript"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/owl.carousel.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/slider.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -504,6 +504,8 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2.js" type="text/javascript"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/dashboard.js" type="text/javascript"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/index.js" type="text/javascript"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert/sweetalert.min.js"></script>
+
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/main.js" type="text/javascript"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js" type="text/javascript"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap-datetimepicker/bootstrap-datetimepicker.js" type="text/javascript"></script>
