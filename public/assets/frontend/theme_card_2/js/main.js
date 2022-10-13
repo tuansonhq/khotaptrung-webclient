@@ -10,17 +10,17 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
-    if ($.cookie('noticeModal') != '1') {
-
-        $('#noticeModal').modal('show')
-        //show popup here
-        var date = new Date();
-        var minutes = 60 * 12;
-        date.setTime(date.getTime() + (minutes * 60 * 1000));
-        $.cookie('noticeModal', '1', {expires: date});
-    }
-});
+// $(document).ready(function () {
+//     if ($.cookie('noticeModal') != '1') {
+//
+//         $('#noticeModal').modal('show')
+//         //show popup here
+//         var date = new Date();
+//         var minutes = 60 * 12;
+//         date.setTime(date.getTime() + (minutes * 60 * 1000));
+//         $.cookie('noticeModal', '1', {expires: date});
+//     }
+// });
 $('body').delegate('.viewmore', 'click', function () {
     $(this).addClass('viewless').removeClass('viewmore');
     $(this).text('« Thu gọn');

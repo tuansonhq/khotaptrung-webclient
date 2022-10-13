@@ -80,7 +80,7 @@
 /*}*/
 .modal-loader-spin {
     display: block;
-    border: 5px solid #F25922;
+    border: 5px solid var(--primary-color);
     border-left-color: #FFF;
     border-radius: 100%;
     width: 40px;
