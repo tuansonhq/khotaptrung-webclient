@@ -181,7 +181,11 @@
                                         </div>
                                         <div class="group-btn c-mt-16">
                                             @if(\App\Library\AuthCustom::check())
-                                                <button type="button" class="btn secondary show-modal-confirm">
+                                                <button type="button" class="btn secondary show-modal-confirm d-none d-lg-block w-100">
+                                                    Chọn mua
+                                                </button>
+
+                                                <button type="button" class="btn secondary js-step show-step-confirm d-block d-lg-none w-100"  data-target="#step-confirm">
                                                     Chọn mua
                                                 </button>
                                             @else
@@ -371,7 +375,7 @@
                 <div class="card c-px-12 c-py-4 c-mb-16">
                     <div class="d-flex justify-content-between c-py-4">
                         <div class="t-body-1 link-color">Loại thẻ</div>
-                        <div class="t-body-2 t-type-card">Zing</div>
+                        <div class="t-body-2 t-type-card">{{ @$key }}</div>
                     </div>
                     <div class="d-flex justify-content-between c-py-4">
                         <div class="t-body-1 link-color">Số lượng</div>
