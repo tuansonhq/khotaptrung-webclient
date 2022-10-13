@@ -1,38 +1,44 @@
 @if(isset($data))
     @if($data->status == 1)
+
     <div class="row marginauto">
         <div class="col-lg-6 col-md-12 shop_product_detailS__col">
             <div class="gallery" style="overflow: hidden">
-                <div class="swiper gallery-slider">
-                    <div class="swiper-wrapper">
-                        @foreach(explode('|',$data->image_extension) as $val)
-                            <div class="swiper-slide">
-                                <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                    <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" >
-                                </a>
-                            </div>
-                        @endforeach
+                @if(isset($game_auto_props) && count($game_auto_props))
+                    <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" >
+                @else
+                    <div class="swiper gallery-slider">
+                        <div class="swiper-wrapper">
+                            @foreach(explode('|',$data->image_extension) as $val)
+                                <div class="swiper-slide">
+                                    <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                        <img src="{{\App\Library\MediaHelpers::media($val)}}" style="width: 100%" alt="" >
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <div class="swiper-button-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <div class="swiper-button-next">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
                     </div>
 
-                    <div class="swiper-button-prev">
-                        <i class="fas fa-chevron-left"></i>
+                    <div class="swiper gallery-thumbs gallery-thumbsmaxheadth">
+                        <div class="swiper-wrapper">
+                            @foreach(explode('|',$data->image_extension) as $val)
+                                <div class="swiper-slide">
+                                    <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                        <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
-                    <div class="swiper-button-next">
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                </div>
+                @endif
 
-                <div class="swiper gallery-thumbs gallery-thumbsmaxheadth">
-                    <div class="swiper-wrapper">
-                        @foreach(explode('|',$data->image_extension) as $val)
-                            <div class="swiper-slide">
-                                <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                    <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
-                                </a>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
             </div>
         </div>
         <div class="col-lg-6 col-md-12 gallery__right">
