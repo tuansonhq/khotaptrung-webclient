@@ -1,4 +1,4 @@
-@php
+    @php
     $result = array();
     foreach ($data as $element) {
         $result[date('m/y',strtotime($element->created_at))][] = $element;
