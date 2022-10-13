@@ -1,5 +1,4 @@
-$(document).ready(function(){
-
+$(document).ready(function () {
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
@@ -181,12 +180,12 @@ $(document).ready(function(){
 
         let html = '';
         html += ' <div class="position-relative"  style="min-height: 200px">';
-        html += '<table class="table table-hover table-custom-res">';
+        html += '<table class="table table-hover table-custom-res table-striped">';
         html += ' <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
         html += ' <tbody>';
-        html += ' <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">';
-        html += '  <div class="d-flex justify-content-center">';
-        html += ' <span class="pulser"></span>';
+        html += ' <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">';
+        html += '  <div class="loading-wrap mb-3">';
+        html += '  <span class="modal-loader-spin mb-3"></span>';
         html += ' </div>';
         html += ' </div>';
         html += '</tbody>';
@@ -213,7 +212,7 @@ $(document).ready(function(){
                 }else if (data.status == 0){
                     var html = '';
                     html += '<div class="table-responsive" id="tableacchstory">';
-                    html += '<table class="table table-hover table-custom-res">';
+                    html += '<table class="table table-hover table-custom-res table-striped">';
                     html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
                     html += '<tbody>';
                     html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';

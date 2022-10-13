@@ -184,9 +184,9 @@ $(document).ready(function(){
         html += '<table class="table table-hover table-custom-res">';
         html += ' <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
         html += ' <tbody>';
-        html += ' <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">';
-        html += '  <div class="d-flex justify-content-center">';
-        html += ' <span class="pulser"></span>';
+        html += ' <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">';
+        html += '  <div class="loading-wrap mb-3">';
+        html += '  <span class="modal-loader-spin mb-3"></span>';
         html += ' </div>';
         html += ' </div>';
         html += '</tbody>';
