@@ -52,6 +52,111 @@ tippy('.js-copy-text', {
 });
 
 
+// option swiper card
+var swiper_card = new Swiper(".slider--card", {
+    slidesPerView: 1,
+    spaceBetween: 16,
+    freeMode: true,
+    observer: true,
+    observeParents: true,
+    loop:false,
+});
+
+// option swiper article banner
+var swiper_article= new Swiper(".article--slider", {
+    autoplay: {
+        // disableOnInteraction: false,
+        delay:3000
+    },
+    speed:500,
+    pagination: {
+        el: ".swiper-pagination.--custom",
+        clickable: true
+    },
+    loop:true,
+});
+
+// option swiper article article
+var swiper_article_banner = new Swiper(".article--slider__news", {
+    spaceBetween: 16,
+    slidesPerView:4,
+    allowTouchMove: false,
+    breakpoints: {
+        1190: {
+            slidesPerView: 2.25,
+            allowTouchMove: true,
+        }
+    },
+});
+
+let swiper_buy_card = new Swiper(".js--swiper__banner", {
+    autoplay: {
+        disableOnInteraction: true,
+        delay: 3000
+    },
+    pagination: {
+        el: ".swiper-pagination.--custom",
+        clickable: true
+    },
+    speed: 500,
+    loop: true,
+});
+
+let service_swiper = new Swiper(".js-swipe-service", {
+    autoplay: {
+        delay: 3000
+    },
+    freeMode: true,
+    spaceBetween: 16,
+    slidesPerView: 3.75,
+    breakpoints: {
+        1190: {
+            slidesPerView: 1.45,
+        }
+    },
+    speed: 500,
+    observer: true,
+    observeParents: true,
+});
+
+let card_other_swiper = new Swiper(".card--other__swipe", {
+    autoplay: {
+        delay: 3000
+    },
+    navigation: {
+        nextEl: ".card-other-next",
+        prevEl: ".card-other-prev",
+    },
+    breakpoints: {
+        1190: {
+            slidesPerView: 1.5,
+        }
+    },
+    spaceBetween: 16,
+    freeMode: true,
+    slidesPerView: 4,
+    speed: 500,
+    observer: true,
+    observeParents: true,
+});
+
+let swipe_card = new Swiper(".js--card__swipe", {
+    autoplay: {
+        delay: 3000
+    },
+    breakpoints: {
+        1190: {
+            freeMode: true,
+        }
+    },
+    freeMode: true,
+    spaceBetween: 16,
+    slidesPerView: 1.5,
+    speed: 500,
+    observer: true,
+    observeParents: true,
+});
+
 $(document).ready(function () {
     let data_send = {
         amount: 0,
@@ -174,11 +279,11 @@ $(document).ready(function () {
         let step_3 = $('.mobile--success__payment');
         let step_3_1 = $('.mobile--fail__payment');
 
-        $(document).on('click','.js_step', function (e) {
+        $('body').on('click','.js_step', function (e) {
             // chặn tất cả những sự kiện ( modal ... )
             e.stopPropagation();
             e.preventDefault();
-
+            console.log("11111111111111")
             if (e.target.tagName === 'BUTTON'){
                 // set info card
                 let elm = $(this).parent();
@@ -202,6 +307,7 @@ $(document).ready(function () {
             handleToggleStep($(this).data('go_to'));
         });
         function handleToggleStep(step) {
+
             step_1.fadeOut();
             step_2.fadeOut();
             step_3.fadeOut();
@@ -283,111 +389,6 @@ $(document).ready(function () {
                             html_card += `</div>`;
 
                             $('.mobile--success__payment .card--list').append(html_card);
-
-                            // option swiper card
-                            var swiper_card = new Swiper(".slider--card", {
-                                slidesPerView: 1,
-                                spaceBetween: 16,
-                                freeMode: true,
-                                observer: true,
-                                observeParents: true,
-                                loop:false,
-                            });
-
-                            // option swiper article banner
-                            var swiper_article= new Swiper(".article--slider", {
-                                autoplay: {
-                                    // disableOnInteraction: false,
-                                    delay:3000
-                                },
-                                speed:500,
-                                pagination: {
-                                    el: ".swiper-pagination.--custom",
-                                    clickable: true
-                                },
-                                loop:true,
-                            });
-
-// option swiper article article
-                            var swiper_article_banner = new Swiper(".article--slider__news", {
-                                spaceBetween: 16,
-                                slidesPerView:4,
-                                allowTouchMove: false,
-                                breakpoints: {
-                                    1190: {
-                                        slidesPerView: 2.25,
-                                        allowTouchMove: true,
-                                    }
-                                },
-                            });
-
-                            let swiper_buy_card = new Swiper(".js--swiper__banner", {
-                                autoplay: {
-                                    disableOnInteraction: true,
-                                    delay: 3000
-                                },
-                                pagination: {
-                                    el: ".swiper-pagination.--custom",
-                                    clickable: true
-                                },
-                                speed: 500,
-                                loop: true,
-                            });
-
-                            let service_swiper = new Swiper(".js-swipe-service", {
-                                autoplay: {
-                                    delay: 3000
-                                },
-                                freeMode: true,
-                                spaceBetween: 16,
-                                slidesPerView: 3.75,
-                                breakpoints: {
-                                    1190: {
-                                        slidesPerView: 1.45,
-                                    }
-                                },
-                                speed: 500,
-                                observer: true,
-                                observeParents: true,
-                            });
-
-                            let card_other_swiper = new Swiper(".card--other__swipe", {
-                                autoplay: {
-                                    delay: 3000
-                                },
-                                navigation: {
-                                    nextEl: ".card-other-next",
-                                    prevEl: ".card-other-prev",
-                                },
-                                breakpoints: {
-                                    1190: {
-                                        slidesPerView: 1.5,
-                                    }
-                                },
-                                spaceBetween: 16,
-                                freeMode: true,
-                                slidesPerView: 4,
-                                speed: 500,
-                                observer: true,
-                                observeParents: true,
-                            });
-
-                            let swipe_card = new Swiper(".js--card__swipe", {
-                                autoplay: {
-                                    delay: 3000
-                                },
-                                breakpoints: {
-                                    1190: {
-                                        freeMode: true,
-                                    }
-                                },
-                                freeMode: true,
-                                spaceBetween: 16,
-                                slidesPerView: 1.5,
-                                speed: 500,
-                                observer: true,
-                                observeParents: true,
-                            });
                         });
                         tippy('.js-copy-text', {
                             // default

@@ -1,5 +1,7 @@
 /*code master*/
-
+:root{
+    --primary-color: #2F6A7C;
+}
 .modal-dialog:before {
     margin-top: 75px;
     display: inline-block;
