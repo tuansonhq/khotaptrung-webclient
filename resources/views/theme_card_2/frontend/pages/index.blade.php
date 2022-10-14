@@ -23,7 +23,7 @@
 </div>
 @endif
 {{--bài viết liên quan--}}
-    @include('theme_card_2.frontend.pages.news')
+    @include('frontend.widget.__baiviet__trangchu')
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard/store_card.js?v={{time()}}"></script>
 
 @endsection
