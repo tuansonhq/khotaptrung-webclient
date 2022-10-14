@@ -1086,28 +1086,5 @@
 
 
 @endif
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.xt').click(function () {
-            $('.content_bvct').css('height', 'unset');
-            $('.xt').hide();
-        });
 
-
-
-
-        $('.expand-button').on('click', function() {
-
-            $('.special-text').toggleClass('-expanded');
-
-            if ($('.special-text').hasClass('-expanded')) {
-                $('.expand-button').html('Thu gọn nội dung');
-            } else {
-                $('.expand-button').html('Xem thêm nội dung');
-            }
-        });
-    });
-
-
-</script>
 @endsection
