@@ -69,12 +69,20 @@ Route::group(array('middleware' => ['theme']) , function (){
             Route::group(['middleware' => ['intend']], function () {
                 Route::get('/', [HomeController::class , "index"])->name('homeIndex')->middleware('intend');
 
-                Route::get('/tin-tuc', [ArticleController::class , "getList"])->name('articleList');
-                Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"])->name('articleDetail');
+                if(setting('sys_zip_shop') && setting('sys_zip_shop') != ''){
+                    Route::get('/'. setting('sys_zip_shop') .'', [ArticleController::class , "getList"])->name('articleList');
 
-                Route::get('/blog', [ArticleController::class , "getList"]);
+                    Route::get('/'. setting('sys_zip_shop') .'/{slug}', [ArticleController::class , "getDetail"])->name('articleDetail');
+                }else{
+                    Route::get('/tin-tuc', [ArticleController::class , "getList"])->name('articleList');
 
-                Route::get('/blog/{slug}', [ArticleController::class , "getDetail"]);
+                    Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"])->name('articleDetail');
+                }
+
+//
+//                Route::get('/blog', [ArticleController::class , "getList"]);
+//
+//                Route::get('/blog/{slug}', [ArticleController::class , "getDetail"]);
 
 
                 Route::get('/dich-vu', [ServiceController::class, "getList"])->name('serviceList');
