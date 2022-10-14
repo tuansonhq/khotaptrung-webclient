@@ -10,6 +10,7 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/style.bundle.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/frontend/{{theme('')->theme_key}}/lib/vendors/vendors.bundle.css" rel="stylesheet" type="text/css"/>
 
@@ -32,7 +33,7 @@
 {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/owl.carousel.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/slider.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
 
 </head>

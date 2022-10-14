@@ -142,8 +142,11 @@
     color: #fff;
 }
 .card-table table{
-    background-color: #F9FAFC;
     color: #2F6A7C;
+}
+.card-table table thead{
+    background-color: #F9FAFC;
+
 }
 .card-table table thead th{
     font-weight: bold;
