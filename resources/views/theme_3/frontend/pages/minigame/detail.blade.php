@@ -918,7 +918,7 @@
                                         <div class="item-product__box-content">
 
 
-                                            <div class="item-product__box-name">
+                                            <div class="item-product__box-name limit-1">
                                                 {{$item->title}}
                                             </div>
                                             <div class="item-product__box-sale">

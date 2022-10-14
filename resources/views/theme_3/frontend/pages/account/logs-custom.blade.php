@@ -9,9 +9,9 @@
         <div class="container container-fix menu-container-ct">
             <ul>
                 <li><a href="/">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img   src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
-                <li class="menu-container-li-ct"><img   src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="">Tài khoản đã mua</a></li>
             </ul>
         </div>
