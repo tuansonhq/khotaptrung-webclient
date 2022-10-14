@@ -31,7 +31,7 @@
                                 <div class="input-group mb-2 c-square">
                                     <div class="input-group date date-picker" data-date-format="dd/mm/yyyy" data-rtl="false">
                                         <span class="input-group-btn">
-                                              <button class="btn default c-btn-square pl-2 pr-2" type="button">
+                                              <button class="btn default c-btn-square pl-2 pr-2 input-group-addon" type="button">
                                                   <i class="fa fa-calendar"></i>
                                               </button>
                                         </span>
@@ -43,7 +43,7 @@
                                 <div class="input-group mb-2 c-square">
                                     <div class="input-group date date-picker" data-date-format="dd/mm/yyyy" data-rtl="false">
                                         <span class="input-group-btn">
-                                            <button class="btn default c-btn-square pl-2 pr-2" type="button">
+                                            <button class="btn default c-btn-square pl-2 pr-2 input-group-addon" type="button">
                                                 <i class="fa fa-calendar"></i>
                                             </button>
                                         </span>

@@ -24,9 +24,9 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="input-group mb-2 c-square">
-                                    <div class="input-group date date-picker" data-date-format="dd/mm/yyyy" data-rtl="false">
+                                    <div class="input-group date date-picker " data-date-format="dd/mm/yyyy" data-rtl="false">
                                         <span class="input-group-btn">
-                                            <button class="btn default c-btn-square pl-2 pr-2" type="button"><i class="fa fa-calendar"></i></button>
+                                            <button class="btn default c-btn-square pl-2 pr-2 input-group-addon" type="button"><i class="fa fa-calendar"></i></button>
                                         </span>
                                         <input type="text" class="form-control c-square c-theme" name="started_at" autocomplete="off" autofocus placeholder="Từ ngày" value="">
                                     </div>
@@ -36,7 +36,7 @@
                                 <div class="input-group mb-2 c-square">
                                     <div class="input-group date date-picker" data-date-format="dd/mm/yyyy" data-rtl="false">
                                         <span class="input-group-btn">
-                                             <button class="btn default c-btn-square pl-2 pr-2" type="button"><i class="fa fa-calendar"></i></button>
+                                             <button class="btn default c-btn-square pl-2 pr-2 input-group-addon" type="button"><i class="fa fa-calendar"></i></button>
                                         </span>
                                         <input type="text" class="form-control c-square c-theme" name="ended_at" autocomplete="off" placeholder="Đến ngày" value="">
                                     </div>

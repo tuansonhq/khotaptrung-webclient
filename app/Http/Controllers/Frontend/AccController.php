@@ -155,7 +155,8 @@ class AccController extends Controller
                 }
 
                 if ($request->filled('id_data'))  {
-                    $dataSend['randId'] = $request->id_data;
+
+                    $dataSend['randId'] = \App\Library\Helpers::decodeItemID($request->id_data);
                 }
 
                 if ($request->filled('title_data'))  {
@@ -342,7 +343,7 @@ class AccController extends Controller
             $method = "GET";
             $dataSend = array();
             $dataSend['data'] = 'acc_detail';
-            $dataSend['id'] = $slug;
+            $dataSend['id'] = \App\Library\Helpers::decodeItemID($slug);
 
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $response_data = $result_Api->response_data??null;
@@ -391,7 +392,7 @@ class AccController extends Controller
             $method = "GET";
             $dataSend = array();
             $dataSend['data'] = 'acc_detail';
-            $dataSend['id'] = $slug;
+            $dataSend['id'] = \App\Library\Helpers::decodeItemID($slug);
 
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $response_data = $result_Api->response_data??null;

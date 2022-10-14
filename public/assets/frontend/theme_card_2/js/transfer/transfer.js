@@ -41,6 +41,21 @@ $(document).ready(function(){
 
         $('li').removeClass('active');
         $(this).parent().addClass('active');
+        let html = '';
+        html += ' <div class="position-relative"  style="min-height: 200px">';
+        html += '<table class="table table-hover table-custom-res table-striped">';
+        html += ' <thead><tr><th>Thời gian</th><th>Số tiền</th><th>Thực nhận</th><th>Trạng thái</th></tr></thead>';
+        html += ' <tbody>';
+        html += ' <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">';
+        html += '  <div class="loading-wrap mb-3">';
+        html += '  <span class="modal-loader-spin mb-3"></span>';
+        html += ' </div>';
+        html += ' </div>';
+        html += '</tbody>';
+        $(".recharge_atm_data").empty().html('');
+        $(".recharge_atm_data").empty().html(html);
+
+
         paycartDataChargeATMHistory(page);
 
 
@@ -66,7 +81,7 @@ $(document).ready(function(){
                 }else if (data.status == 0){
                     var html = '';
                     html += '<div class="table-responsive" id="tableacchstory">';
-                    html += '<table class="table table-hover table-custom-res">';
+                    html += '<table class="table table-hover table-custom-res table-striped">';
                     html += '<thead><tr> <th>Thời gian</th><th>Số tiền</th><th>Thực nhận</th><th>Trạng thái</th></tr></thead>';
                     html += '<tbody>';
                     html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';

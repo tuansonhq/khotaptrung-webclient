@@ -31,7 +31,7 @@
 
                                 <div class="row marginauto background-order-body-row-ct">
                                     <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Giá niêm yết</span>
+                                        <span>Mệnh giá</span>
                                     </div>
                                     <div class="col-auto left-right background-order-col-right-ct charge_amount" id="">
 {{--                                        <small>10.000 đ</small>--}}
