@@ -49,9 +49,11 @@
                                 <i class="fas fa-calendar-alt"></i> {{ formatDateTime($item->created_at) }}
                             @endif
                         </div>
+                        @if(isset($item->groups[0]))
                         <div>
                             <i class="fas fa-newspaper"></i><a href=""> {{ $item->groups[0]->title }} </a>
                         </div>
+                        @endif
                     </div>
 
                     <div class="news_content_list_decription">

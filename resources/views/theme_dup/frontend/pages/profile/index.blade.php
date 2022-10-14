@@ -45,10 +45,10 @@
                             <th scope="row">Số dư tài khoản:</th>
                             <th id="info_balance"></th>
                         </tr>
-                        <tr>
-                            <th scope="row">Mật khẩu</th>
-                            <td>*** <a href="/changepassword" style="color: red;text-decoration: none;font-weight: 600;font-style: italic">Đổi mật khẩu</a></td>
-                        </tr>
+{{--                        <tr>--}}
+{{--                            <th scope="row">Mật khẩu</th>--}}
+{{--                            <td>*** <a href="/changepassword" style="color: red;text-decoration: none;font-weight: 600;font-style: italic">Đổi mật khẩu</a></td>--}}
+{{--                        </tr>--}}
                         <tr></tr>
                         </tbody>
                     </table>

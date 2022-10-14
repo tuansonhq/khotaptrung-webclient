@@ -188,17 +188,17 @@ header .nav-bar{
     transition: 0.2s;
     line-height: 90px;
     padding: 12px;
-    color: #ffffff;
+    color: black;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    background: -webkit-linear-gradient(bottom, #985614 0%, #ff0000 100%);
+    background: -webkit-linear-gradient(bottom, #FFE900 0%, #F2AC00 100%)!important;
     font-weight: bold;
 }
 .nav-bar-category .nav li.nav-log-in a:hover,.nav-bar-category .nav li.nav-regist a:hover{
     /*background-color: #2f353b;*/
     transition: 0.2s;
-    background: -webkit-linear-gradient(bottom, #ff0000 0%, #985614 100%);
+    background: -webkit-linear-gradient(bottom, #F2AC00 0%, #FFE900 100%)!important;
 
 
 }
