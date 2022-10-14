@@ -1,7 +1,7 @@
 
 
 <div class="table-responsive">
-    <table class="table table-hover table-custom-res">
+    <table class="table table-hover table-custom-res table-striped">
         <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>
         <tbody>
         @if(empty($data->data))

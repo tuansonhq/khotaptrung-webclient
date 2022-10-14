@@ -1,4 +1,10 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+@endsection
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('content')
     @if($data == null)
         <div class="item_buy">
@@ -44,7 +50,8 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-12">
-                       @include('frontend.widget.__menu__category__article__index')
+                        @include('frontend.widget.__baiviet__lienquan',with(['id'=>$data->id]))
+                        @include('frontend.pages.article.widget.__danh__muc')
                     </div>
                 </div>
             </div>

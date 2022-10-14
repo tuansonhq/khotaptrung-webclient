@@ -20,7 +20,8 @@
                     </li>
                 @else
                     <li class="m-nav__item hvr-underline-from-left">
-                        <a href="{{$item->url}}" @if($item->target==1) target="_blank" @endif>{{$item->title}}</a>
+{{--                        <a href="{{$item->url}}" @if($item->target==1) target="_blank" @endif>{{$item->title}}</a>--}}
+                        <a href="{{$item->url}}" data-toggle="modal" data-target="#recharge_card" @if($item->target==1) target="_blank" @endif>{{$item->title}}</a>
                     </li>
                 @endif
             @else

@@ -160,7 +160,10 @@
 .card-table .table th,.card-table .table td {
 
     vertical-align: middle !important;
-
+    font-weight: 500;
+}
+.card-table .table th{
+    font-weight: 700;
 }
 .card-table .table td {
 
@@ -212,4 +215,57 @@
 }
 .box-loading_mobile{
     position: absolute;top: 50%;transform: translateY(-50%);right: 0
+}
+/*color icon*/
+
+.icon-sidebar {
+    width: 40px;
+    height: 40px;
+    background-color: var(--w-ghost-focus-color);
+    border-radius: 8px;
+    padding: 8px;
+    position: relative;
+}
+/*.m-menu__item:hover .icon-sidebar:before, .m-menu__item.active .icon-sidebar:before {*/
+/*    filter: var(--filter-primary-color);*/
+/*}*/
+:root{
+    --filter-primary-color: invert(32%) sepia(80%) saturate(332%) hue-rotate(147deg) brightness(94%) contrast(88%);
+
+}
+.m-menu__item.active .icon-sidebar:before {
+    filter: var(--filter-primary-color);
+}
+/*.m-menu__item:hover .icon-sidebar:before, .m-menu__item.active .icon-sidebar:before {*/
+/*    filter: var(--filter-primary-color);*/
+/*}*/
+.m-menu__item.active .icon-sidebar:before {
+    filter: var(--filter-primary-color);
+}
+.icon-sidebar:before {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: var(--path);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px 24px;
+    filter: var(--filter-primary-color);
+}
+.account-sidebar{
+    width: 4px;
+    background: #f25922;
+    margin-right: 12px;
+}
+
+
+#form-regist .m-input-icon > .m-input-icon__icon svg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
 }

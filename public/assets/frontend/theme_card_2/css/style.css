@@ -76,8 +76,8 @@
 }
 /*regist*/
 .login-box, .register-box {
-    margin: 7% auto;
-    padding: 20px;;
+    margin: 8% auto;
+    width: 400px;
 }
 @media (max-width: 991.98px) {
     .login-box{

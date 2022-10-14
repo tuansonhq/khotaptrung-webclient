@@ -73,12 +73,13 @@ $(document).ready(function(){
 
             },
             success: (data) => {
-
+                console.log(data)
                 if (data.status == 1){
 
                     $(".recharge_atm_data").empty().html('');
                     $(".recharge_atm_data").empty().html(data.data);
                 }else if (data.status == 0){
+
                     var html = '';
                     html += '<div class="table-responsive" id="tableacchstory">';
                     html += '<table class="table table-hover table-custom-res table-striped">';

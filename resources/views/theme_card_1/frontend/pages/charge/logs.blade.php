@@ -25,13 +25,13 @@
                             <div class="col-md-4">
                                 <div class="input-group mb-2 c-square ">
                                     <span class="input-group-addon" id="basic-addon1">Thẻ cào</span>
-                                    <input type="text" class="form-control c-square c-theme" name="serial" value="" autofocus placeholder="Mã thẻ,Serial...">
+                                    <input type="text" class="form-control c-square c-theme serial" name="serial" value="" autofocus placeholder="Mã thẻ,Serial...">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="input-group mb-2 c-square">
                                     <span class="input-group-addon" id="basic-addon1">Loại thẻ</span>
-                                    <select name="key" class="form-control c-square c-theme">.
+                                    <select name="key" class="form-control c-square c-theme key">.
                                         <option value=""> Tất cả loại thẻ</option>
                                         @foreach($data_telecome as $val)
                                             <option value="{{ $val->key }}">{{ $val->title }}</option>
@@ -42,7 +42,7 @@
                             <div class="col-md-4">
                                 <div class="input-group mb-2 c-square">
                                     <span class="input-group-addon" id="basic-addon1">Trạng thái</span>
-                                    {{Form::select('status',array(''=>'-- Chọn trạng thái --')+config('module.charge.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'form-control status c-square c-theme'))}}
+                                    {{Form::select('status',array(''=>'-- Chọn trạng thái --')+config('module.charge.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'form-control status c-square c-theme status'))}}
 
                                     {{--                                    <select name="status" id="status" class="form-control c-square c-theme">.--}}
 
