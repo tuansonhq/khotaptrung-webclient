@@ -13,13 +13,16 @@ class Setting{
             $setting = self::getAllSettings();
 
             $setting_get_key = null;
-            foreach ($setting as $item){
-                if(isset($item->name) && $item->name === $key){
-                    $setting_get_key = $item;
-                    break;
+            if (isset($setting) && count($setting)){
+                foreach ($setting as $item){
+                    if(isset($item->name) && $item->name === $key){
+                        $setting_get_key = $item;
+                        break;
+                    }
+                    continue;
                 }
-                continue;
             }
+
             if(empty($setting_get_key)){
                 return null;
             }
