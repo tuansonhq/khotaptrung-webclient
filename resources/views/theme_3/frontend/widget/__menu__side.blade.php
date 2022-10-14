@@ -1,7 +1,6 @@
 <div class="menu-side" style=" ">
     @foreach($data??[] as $item)
-
-
+        @if($item->parent_id == 0)
     @if($item->url == '/nap-the' || $item->url =='/recharge-atm')
         <div class="menu-side-item" style="">
             <a href="{{$item->url??'/'}}" class="check_auth_menu">
@@ -53,6 +52,7 @@
                 </a>
             </div>
     @endif
+        @endif
 
     @endforeach
 
