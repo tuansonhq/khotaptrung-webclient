@@ -16,8 +16,7 @@
                                 </a>
                             @else
                                 <a href="/tin-tuc/{{ $item->slug }}">
-                                    <img class="img-fluid lazy"
-                                         data-src="{{\App\Library\MediaHelpers::media($item->image)}}"
+                                    <img class="image" src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                          title="{{$item->title}}">
                                 </a>
                             @endif
@@ -36,8 +35,7 @@
                     @endif
                 @endforeach
             </div>
-            <h5 style="float: right"><a class="hvr-underline-from-left see-more" href="https://muathegarena.com/blog">Xem
-                    tất cả <i class="fas fa-angle-double-right"></i></a></h5>
+            <h5 style="float: right"><a class="hvr-underline-from-left see-more" href="/tin-tuc">Xem tất cả <i class="fas fa-angle-double-right"></i></a></h5>
         </div>
     </div>
 @endif

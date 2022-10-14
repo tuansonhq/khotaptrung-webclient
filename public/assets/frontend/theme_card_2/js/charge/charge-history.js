@@ -21,7 +21,7 @@ $(document).ready(function(){
 
         let html ='';
         html += '<div class="">';
-        html += ' <table class="table table-hover table-custom-res">';
+        html += ' <table class="table table-hover table-custom-res table-striped">';
         html += ' <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
         html += '  <tbody>';
         html += ' <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">';
@@ -64,7 +64,7 @@ $(document).ready(function(){
                 }else if (data.status == 0) {
                     var html = '';
                     html += '<div class="table-responsive" id="tableacchstory">';
-                    html += '<table class="table table-hover table-custom-res">';
+                    html += '<table class="table table-hover table-custom-res table-striped">';
                     html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
                     html += '<tbody>';
                     html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
@@ -133,7 +133,21 @@ $(document).ready(function(){
         var started_at = $('.started_at_data_ls').val();
         var ended_at =  $('.ended_at_data_ls').val();
         var page = $('#hidden_page_service_ls').val();
-
+        let html ='';
+        html += '<div class="">';
+        html += ' <table class="table table-hover table-custom-res table-striped">';
+        html += ' <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+        html += '  <tbody>';
+        html += ' <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">';
+        html += '   <div class="loading-wrap mb-3">';
+        html += ' <span class="modal-loader-spin mb-3"></span>';
+        html += ' </div>';
+        html += ' </div>';
+        html += ' <tbody>';
+        html += ' </table>';
+        html += '</div>';
+        $("#data_pay_card_history_ls").empty().html('');
+        $("#data_pay_card_history_ls").empty().html(html);
         loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
     });
 
@@ -160,7 +174,21 @@ $(document).ready(function(){
         var status =  $('.status_data_ls').val();
         var started_at = $('.started_at_data_ls').val();
         var ended_at =  $('.ended_at_data_ls').val();
-
+        let html ='';
+        html += '<div class="">';
+        html += ' <table class="table table-hover table-custom-res table-striped">';
+        html += ' <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+        html += '  <tbody>';
+        html += ' <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">';
+        html += '   <div class="loading-wrap mb-3">';
+        html += ' <span class="modal-loader-spin mb-3"></span>';
+        html += ' </div>';
+        html += ' </div>';
+        html += ' <tbody>';
+        html += ' </table>';
+        html += '</div>';
+        $("#data_pay_card_history_ls").empty().html('');
+        $("#data_pay_card_history_ls").empty().html(html);
         loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
 
     });
@@ -186,7 +214,21 @@ $(document).ready(function(){
         var status =  $('.status_data_ls').val();
         var started_at = $('.started_at_data_ls').val();
         var ended_at =  $('.ended_at_data_ls').val();
-
+        let html ='';
+        html += '<div class="">';
+        html += ' <table class="table table-hover table-custom-res table-striped">';
+        html += ' <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+        html += '  <tbody>';
+        html += ' <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">';
+        html += '   <div class="loading-wrap mb-3">';
+        html += ' <span class="modal-loader-spin mb-3"></span>';
+        html += ' </div>';
+        html += ' </div>';
+        html += ' <tbody>';
+        html += ' </table>';
+        html += '</div>';
+        $("#data_pay_card_history_ls").empty().html('');
+        $("#data_pay_card_history_ls").empty().html(html);
         loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
 
     });
@@ -212,7 +254,21 @@ $(document).ready(function(){
         var status =  $('.status_data_ls').val();
         var started_at = $('.started_at_data_ls').val();
         var ended_at =  $('.ended_at_data_ls').val();
-
+        let html ='';
+        html += '<div class="">';
+        html += ' <table class="table table-hover table-custom-res table-striped">';
+        html += ' <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+        html += '  <tbody>';
+        html += ' <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">';
+        html += '   <div class="loading-wrap mb-3">';
+        html += ' <span class="modal-loader-spin mb-3"></span>';
+        html += ' </div>';
+        html += ' </div>';
+        html += ' <tbody>';
+        html += ' </table>';
+        html += '</div>';
+        $("#data_pay_card_history_ls").empty().html('');
+        $("#data_pay_card_history_ls").empty().html(html);
         loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
 
     });
@@ -235,7 +291,21 @@ $(document).ready(function(){
         var status =  $('.status_data_ls').val();
         var started_at = $('.started_at_data_ls').val();
         var ended_at =  $('.ended_at_data_ls').val();
-
+        let html ='';
+        html += '<div class="">';
+        html += ' <table class="table table-hover table-custom-res table-striped">';
+        html += ' <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+        html += '  <tbody>';
+        html += ' <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">';
+        html += '   <div class="loading-wrap mb-3">';
+        html += ' <span class="modal-loader-spin mb-3"></span>';
+        html += ' </div>';
+        html += ' </div>';
+        html += ' <tbody>';
+        html += ' </table>';
+        html += '</div>';
+        $("#data_pay_card_history_ls").empty().html('');
+        $("#data_pay_card_history_ls").empty().html(html);
         loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
 
     });

@@ -41,12 +41,12 @@
                         </td>
                     </tr>
                 @endforeach
-{{--            @else--}}
-{{--                                <tr class="account_content_transaction_history">--}}
-{{--                                    <td colspan="8">--}}
-{{--                                        <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>--}}
-{{--                                    </td>--}}
-{{--                                </tr>--}}
+            @else
+                                <tr class="account_content_transaction_history">
+                                    <td colspan="8">
+                                        <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
+                                    </td>
+                                </tr>
             @endif
 
         @endif
