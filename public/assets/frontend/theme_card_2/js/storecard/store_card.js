@@ -2,6 +2,33 @@
 $(document).ready(function(){
 
 });
+function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+    toastr.success('Sao chép thành công!');
+}
+
+$('#store_card').on('click', '.copyPin', function () {
+    var text = $(this).prev().text()
+    var $temp = $("<input>");
+    $("#store_card").append($temp);
+    $temp.val(text).select();
+    document.execCommand("copy");
+    $temp.remove();
+    toastr.success('Sao chép thành công!');
+});
+$('#store_card').on('click', '.copySerial', function () {
+    var text = $(this).prev().text()
+    var $temp = $("<input>");
+    $("#store_card").append($temp);
+    $temp.val(text).select();
+    document.execCommand("copy");
+    $temp.remove();
+    toastr.success('Sao chép thành công!');
+});
 function reply_click(clicked_id) {
     let html = '';
     let button = '';
@@ -201,8 +228,8 @@ $(document).ready(function(){
             // },
             beforeSend: function (xhr) {
                 $(".content-ajax").hide();
-                $('#btnBuy').prop('disabled', true);
-                $('#btnBuy').html('<i class="fas fa-spinner fa-spin"></i> Chờ xử lý');
+                btnSubmit.prop('disabled', true);
+                btnSubmit.html('<i class="fas fa-spinner fa-spin"></i> Chờ xử lý');
             },
             success: function (data) {
                 let html = '';
@@ -243,7 +270,6 @@ $(document).ready(function(){
                 }
                 else if(data.status == 0){
                     $('#modal_pay').modal('hide');
-
                     swal({
                         title: "Mua thẻ thất bại !",
                         text: data.message,
@@ -260,6 +286,7 @@ $(document).ready(function(){
                     //     .then((value) => {
                     //     window.location.href = "https://thegarenagiare.com/nap-the";
                     // });
+
                 }
                 else{
                     $('#modal_pay').modal('hide');
@@ -293,8 +320,8 @@ $(document).ready(function(){
                 $('.ajax-loader').hide();
                 $(".content-ajax").show();
 
-                $('#btnBuy').prop('disabled', false);
-                $('#btnBuy').html('Thanh toán');
+                btnSubmit.prop('disabled', false);
+                btnSubmit.html('Thanh toán');
             }
         });
 

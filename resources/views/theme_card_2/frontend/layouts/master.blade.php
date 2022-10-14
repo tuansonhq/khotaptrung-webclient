@@ -20,8 +20,9 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/owl.theme.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/owl.transitions.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.css">
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/vendors/vendors.bundle.js" type="text/javascript"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/owl.carousel.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/slider.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -68,108 +69,108 @@
             </div>
         </div>
     </div>
-    <script>
-        $.ajax({
-            url: "/nap-the",
-            type: "GET",
-            success: function (data) {
-                let html = '';
-                html += '<option value>';
-                html += '-- Chọn loại thẻ --';
-                html += '</option>';
-                $.each(data.telecom, function (key, value) {
-                    html += '<option value="' + value['key'] + '">';
-                    html += value['key'];
-                    html += '</option>';
-                });
-                $('#type').html(html);
-            }
-        });
+{{--    <script>--}}
+{{--        $.ajax({--}}
+{{--            url: "/nap-the",--}}
+{{--            type: "GET",--}}
+{{--            success: function (data) {--}}
+{{--                let html = '';--}}
+{{--                html += '<option value>';--}}
+{{--                html += '-- Chọn loại thẻ --';--}}
+{{--                html += '</option>';--}}
+{{--                $.each(data.telecom, function (key, value) {--}}
+{{--                    html += '<option value="' + value['key'] + '">';--}}
+{{--                    html += value['key'];--}}
+{{--                    html += '</option>';--}}
+{{--                });--}}
+{{--                $('#type').html(html);--}}
+{{--            }--}}
+{{--        });--}}
 
-        GetAmount();
-        $("#type").on('change', function () {
-            GetAmount();
-        });
+{{--        GetAmount();--}}
+{{--        $("#type").on('change', function () {--}}
+{{--            GetAmount();--}}
+{{--        });--}}
 
-        function formatNumber(num) {
-            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-        }
+{{--        function formatNumber(num) {--}}
+{{--            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')--}}
+{{--        }--}}
 
-        function GetAmount() {
+{{--        function GetAmount() {--}}
 
-            var telecom_key = $("#type").val();
-            var getamount = $.get("/nap-the/get-auto-amount?telecom_key=" + telecom_key, function (data, status) {
-                let html = '';
-                html += '<option value>';
-                html += '-- Chọn mệnh giá --';
-                html += '</option>';
-                $.each(data.telecom_value, function (key, value) {
-                    html += '<option r-default="' + value['type_charge'] + '" rel-ratio="' + value['agency_ratio_true_amount'] + '" value="' + value['amount'] + '">';
-                    html += formatNumber(value['amount']);
-                    html += " VNĐ ";
-                    html += " - ";
-                    html += value['ratio_true_amount'];
-                    html += "%";
-                    html += '</option>';
+{{--            var telecom_key = $("#type").val();--}}
+{{--            var getamount = $.get("/nap-the/get-auto-amount?telecom_key=" + telecom_key, function (data, status) {--}}
+{{--                let html = '';--}}
+{{--                html += '<option value>';--}}
+{{--                html += '-- Chọn mệnh giá --';--}}
+{{--                html += '</option>';--}}
+{{--                $.each(data.telecom_value, function (key, value) {--}}
+{{--                    html += '<option r-default="' + value['type_charge'] + '" rel-ratio="' + value['agency_ratio_true_amount'] + '" value="' + value['amount'] + '">';--}}
+{{--                    html += formatNumber(value['amount']);--}}
+{{--                    html += " VNĐ ";--}}
+{{--                    html += " - ";--}}
+{{--                    html += value['ratio_true_amount'];--}}
+{{--                    html += "%";--}}
+{{--                    html += '</option>';--}}
 
-                    $('#amount').html(html);
-                });
-            }).done(function () {
+{{--                    $('#amount').html(html);--}}
+{{--                });--}}
+{{--            }).done(function () {--}}
 
-            });
-        }
+{{--            });--}}
+{{--        }--}}
 
-        $(document).ready(function () {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+{{--        $(document).ready(function () {--}}
+{{--            $.ajaxSetup({--}}
+{{--                headers: {--}}
+{{--                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+{{--                }--}}
+{{--            });--}}
 
-            $("#recharge-card-form").on('submit', function (event) {
-                event.preventDefault();
-                var formData = new FormData(this);
+{{--            $("#recharge-card-form").on('submit', function (event) {--}}
+{{--                event.preventDefault();--}}
+{{--                var formData = new FormData(this);--}}
 
-                $.ajax({
-                    type: 'POST',
-                    url: '/nap-the',
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    beforeSend: function () {
-                        $('.ajax-loader').show();
-                    },
-                    success: (data) => {
-                        if (data.errors) {
-                            $('#captcha').val('');
-                            $('#imgcaptcha').trigger('click');
-                            html = '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-                            html += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
-                            html += '</button>';
-                            html += '<span>' + data.errors + '</span>' + '<br>';
-                            html += '</div>';
-                            $('#render-errors').html(html);
-                        } else {
-                            $('#recharge_card').modal('hide');
-                            $('.refresh').val('');
-                            $('#imgcaptcha').trigger('click');
-                            swal(
-                                'Thành công !',
-                                data.success,
-                                'success'
-                            )
-                        }
-                    },
-                    complete: function () {
-                        $('.ajax-loader').hide();
-                    }
-                });
-            });
+{{--                $.ajax({--}}
+{{--                    type: 'POST',--}}
+{{--                    url: '/nap-the',--}}
+{{--                    data: formData,--}}
+{{--                    cache: false,--}}
+{{--                    contentType: false,--}}
+{{--                    processData: false,--}}
+{{--                    beforeSend: function () {--}}
+{{--                        $('.ajax-loader').show();--}}
+{{--                    },--}}
+{{--                    success: (data) => {--}}
+{{--                        if (data.errors) {--}}
+{{--                            $('#captcha').val('');--}}
+{{--                            $('#imgcaptcha').trigger('click');--}}
+{{--                            html = '<div class="alert alert-danger alert-dismissible fade show" role="alert">';--}}
+{{--                            html += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';--}}
+{{--                            html += '</button>';--}}
+{{--                            html += '<span>' + data.errors + '</span>' + '<br>';--}}
+{{--                            html += '</div>';--}}
+{{--                            $('#render-errors').html(html);--}}
+{{--                        } else {--}}
+{{--                            $('#recharge_card').modal('hide');--}}
+{{--                            $('.refresh').val('');--}}
+{{--                            $('#imgcaptcha').trigger('click');--}}
+{{--                            swal(--}}
+{{--                                'Thành công !',--}}
+{{--                                data.success,--}}
+{{--                                'success'--}}
+{{--                            )--}}
+{{--                        }--}}
+{{--                    },--}}
+{{--                    complete: function () {--}}
+{{--                        $('.ajax-loader').hide();--}}
+{{--                    }--}}
+{{--                });--}}
+{{--            });--}}
 
-        });
+{{--        });--}}
 
-    </script>
+{{--    </script>--}}
 
     <div class="ajax-loader"></div>
 
@@ -243,165 +244,6 @@
         </div>
     </div>
 </div>
-
-
-<script>
-    function copyToClipboard(element) {
-        var $temp = $("<input>");
-        $("body").append($temp);
-        $temp.val($(element).text()).select();
-        document.execCommand("copy");
-        $temp.remove();
-    }
-    //
-    // $.ajax({
-    //     url: "/mua-the",
-    //     type: "GET",
-    //     success: function (data) {
-    //         let html = '';
-    //         // html += '<div id="flex-box">';
-    //         $.each(data.store_telecom, function (key, value) {
-    //             html += '<li>';
-    //             html += '<div class="nav-link link-supplier text-center" >';
-    //             html += '<input name="telecom_key" value="' + value['key'] + '" id="myCheckbox' + key + '" type="radio" />';
-    //             html += '<label class="item-wapper ' + value['key'] + '" for="myCheckbox' + key + '" onClick="reply_click(this.id)" id="' + value['key'] + '">';
-    //             if (value['image']) {
-    //                 html += "<img class=\"img-fluid\" src=\"" + value["image"] + "\">";
-    //             } else {
-    //                 html += value['title'];
-    //             }
-    //             // html += value['title'];
-    //             html += '</label></div>';
-    //             html += '</li>';
-    //         });
-    //         // html += '</div>';
-    //         $('#tab-supplier').html(html);
-    //     }
-    // });
-    //
-    // function formatNumber(num) {
-    //     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-    // }
-    //
-    //
-    // function reply_click(clicked_id) {
-    //     let html = '';
-    //     var getamount = $.get("/mua-the/get-amount?telecom_key=" + clicked_id, function (data, status) {
-    //         $.each(data.store_telecom_value, function (key, value) {
-    //             html += '<div class="text-center">';
-    //             html += '<input type="radio" name="amount" class="amount" id="CheckboxSupplier' + key + '" value="' + value['amount'] + '" rel-ratio="' + value['ratio_default'] + '"/>';
-    //             html += '<input style="display: none" type="text" id="price_' + value['amount'] + '" class="ratio_default" value="' + value['ratio_default'] + '"/>';
-    //             html += '<label class="item-content" for="CheckboxSupplier' + key + '">';
-    //             html += '<h5>' + formatNumber(value['amount']) + ' VNĐ </h5>';
-    //             html += '<p>Giá: <span>' + formatNumber(value['amount'] * value['ratio_default'] / 100) + ' VNĐ</span></p>';
-    //             html += '</label></div>';
-    //         });
-    //         $('#render-supplier').html(html);
-    //
-    //         let button = '';
-    //         button += '<div class="form-group m-form__group row ml-1">';
-    //         button += '<label class="col-lg-2 col-md-4 col-sm-4 col-4 col-form-label" style="font-weight:bold;font-size:16px;color:#2F6A7C">Số lượng: </label>';
-    //         button += '<div class="col-lg-2 col-md-4 col-sm-4 col-4">';
-    //         button += '<select class="form-control m-input m-input--air" name="quantity" id="quantity" style="border-color: #0000004f;">';
-    //         for (i = 1; i <= 10; i++) {
-    //             button += '<option class="quantity" value="' + i + '">' + i + '</option>';
-    //         }
-    //
-    //         button += '</select></div></div>';
-    //         $('#button').html(button);
-    //
-    //         var render_denominations = clicked_id;
-    //         $('.denominations').html(render_denominations);
-    //         $(".price_supplier").html("Chưa chọn");
-    //         $(".price_sale").html("0");
-    //         $(".render_quantity").html("1");
-    //         $(".total_price").html("0");
-    //     });
-    //
-    //     var top = $("#content").offset().top;
-    //     $([document.documentElement, document.body]).animate({
-    //         scrollTop: top
-    //     }, 500);
-    //
-    // }
-    //
-    // $("#recharge_supplier").on('submit', function (event) {
-    //     event.preventDefault();
-    //     var formData = new FormData(this);
-    //     $.ajax({
-    //         type: 'POST',
-    //         url: '/mua-the',
-    //         data: formData,
-    //         cache: false,
-    //         contentType: false,
-    //         processData: false,
-    //         beforeSend: function () {
-    //             $(".content-ajax").hide();
-    //             $('.ajax-loader').show();
-    //         },
-    //         success: (data) => {
-    //             if (data.errors) {
-    //                 $('#modal_pay').modal('hide');
-    //                 swal(
-    //                     'Lỗi !',
-    //                     data.errors,
-    //                     'error'
-    //                 )
-    //             } else {
-    //                 $('#modal_pay').modal('hide');
-    //                 $('#showInfor').modal('show');
-    //                 let html = '';
-    //                 html += '<div class="id-infor" data-id="' + data.id + '"></div>';
-    //                 $('#showInforDetails').html(html);
-    //                 var id = $(".id-infor").data('id');
-    //                 $.ajax({
-    //                     url: "/mua-the/" + id + "/thong-tin-the",
-    //                     type: "GET",
-    //                     success: function (data) {
-    //                         // console.log(data.data.id);
-    //                         $("#id-item").html(id);
-    //                         $("#description-item").html(data.data.description);
-    //                         $("#money-item").html(formatNumber(data.data.price) + " VNĐ");
-    //                         $("#txns-item").html(100 - (data.data.txns[0].ratio) + " %");
-    //                         //
-    //                         // console.log(data.data.store_card);
-    //                         let html = '';
-    //                         $.each(data.arr, function (key, value) {
-    //                             html += '<tr>';
-    //                             html += '<td class="pin"><span>' + value['pin_item'] + '</span>&nbsp;<i style="cursor: pointer" class="fa fa-copy copyPin" aria-hidden="true"></i></td>';
-    //                             html += '<td class="serial"><span>' + value['serial_item'] + ' </span>&nbsp;<i style="cursor: pointer" class="fa fa-copy copySerial" aria-hidden="true"></i></td>';
-    //                             html += '</tr>';
-    //                         });
-    //                         $('#store_card').html(html);
-    //                     }
-    //                 });
-    //             }
-    //         },
-    //         complete: function () {
-    //             $('.ajax-loader').hide();
-    //             $(".content-ajax").show();
-    //         }
-    //     });
-    // });
-
-    $('#store_card').on('click', '.copyPin', function () {
-        var text = $(this).prev().text()
-        var $temp = $("<input>");
-        $("#store_card").append($temp);
-        $temp.val(text).select();
-        document.execCommand("copy");
-        $temp.remove();
-    });
-    $('#store_card').on('click', '.copySerial', function () {
-        var text = $(this).prev().text()
-        var $temp = $("<input>");
-        $("#store_card").append($temp);
-        $temp.val(text).select();
-        document.execCommand("copy");
-        $temp.remove();
-    });
-
-</script>
 
 
 <div id="togger"></div>
@@ -504,6 +346,8 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2.js" type="text/javascript"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/dashboard.js" type="text/javascript"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/index.js" type="text/javascript"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert/sweetalert.min.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/main.js" type="text/javascript"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js" type="text/javascript"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap-datetimepicker/bootstrap-datetimepicker.js" type="text/javascript"></script>

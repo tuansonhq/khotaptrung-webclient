@@ -1,4 +1,6 @@
-
+.btn{
+    font-family: Nunito, sans-serif !important;
+}
 @media only screen and (min-width: 992px) {
     .main-profile .wapper {
         padding: 20px 150px;
@@ -80,7 +82,7 @@
 /*}*/
 .modal-loader-spin {
     display: block;
-    border: 5px solid #F25922;
+    border: 5px solid var(--primary-color);
     border-left-color: #FFF;
     border-radius: 100%;
     width: 40px;
@@ -91,7 +93,7 @@
 #store_pay .modal-loader-spin {
     display: block;
     border: 3px solid white;
-    border-left-color: orange;
+    border-left-color: var(--primary-color);
     border-radius: 100%;
     width: 20px;
     height: 20px;
@@ -130,4 +132,81 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+}
+/*table*/
+.card-table a{
+    font-weight: bold;
+    color: #2F6A7C;
+}
+.card-table .active{
+    color: #fff;
+}
+.card-table table{
+    background-color: #F9FAFC;
+    color: #2F6A7C;
+}
+.card-table table thead th{
+    font-weight: bold;
+    font-size: 16px;
+}
+.card-table span.item-active{
+    color: #2F6A7C;
+    font-size: 16px;
+    font-weight: bold;
+}
+.card-table .table th,.card-table .table td {
+
+    vertical-align: middle !important;
+
+}
+.card-table .table td {
+
+    word-break: break-word;
+
+ }
+/*profile header mobile*/
+
+.profile_item_mobile{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+@media (max-width: 768px) {
+    .profile_item_mobile.m-dropdown.m-dropdown--mobile-full-width.m-dropdown--align-center > .m-dropdown__wrapper, .m-dropdown.m-dropdown--mobile-full-width > .m-dropdown__wrapper{
+        width: 245px !important;
+        left: auto !important;
+    }
+}
+
+.profile_item_mobile  img {
+    width: 35px;
+}
+
+.profile_item_mobile {
+    line-height: normal !important;
+}
+
+.profile_item_mobile .m-card-user__name{
+    /* color: #2F6A7C; */
+    font-weight: bold;
+}
+
+.profile_item_mobile .m-dropdown__header{
+    background-color: #2F6A7C !important;
+    color: #fff;
+}
+.profile_item_mobile .m-card-user__email{
+    color: #fff;
+}
+.box-logined-mobile {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.box-logined-mobile img{
+    border-radius: 100%;
+    width: 35px;
+}
+.box-loading_mobile{
+    position: absolute;top: 50%;transform: translateY(-50%);right: 0
 }

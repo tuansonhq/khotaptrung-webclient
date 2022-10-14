@@ -49,8 +49,8 @@ $(document).ready(function(){
                     let html = "";
                     html += ' <button style="font-family: \'Nunito\', sans-serif;" type="button" class="btn btn-header" data-toggle="modal" data-target="#modalLogin">Đăng nhập</button>';
                     $('.wp_login').html(html);
-                    $('#store_pay').attr('data-target','#signin').html('Đăng nhập để thanh toán');
-
+                    $('#store_pay').attr('data-target','#modalLogin').html('Đăng nhập để thanh toán').css('height','auto');
+                    // $('.box-login-mobile').html('<button type="button" class="btn btn-header" data-toggle="modal" data-target="#modalLogin">Đăng nhập</button>')
                     $('meta[name="jwt"]').attr('content','');
 
                 }
@@ -63,7 +63,8 @@ $(document).ready(function(){
                     let html = "";
                     html += ' <button style="font-family: \'Nunito\', sans-serif;" type="button" class="btn btn-header" data-toggle="modal" data-target="#modalLogin">Đăng nhập</button>';
                     $('.wp_login').html(html);
-                    $('#store_pay').attr('data-target','#signin').html('Đăng nhập để thanh toán');
+                    // $('#store_pay').attr('data-target','#signin').html('Đăng nhập để thanh toán');
+                    // $('.box-login-mobile').html('<button type="button" class="btn btn-header" data-toggle="modal" data-target="#modalLogin">Đăng nhập</button>')
 
                     $('meta[name="jwt"]').attr('content','');
                 }
@@ -89,8 +90,12 @@ $(document).ready(function(){
                     $('.account_logout').html(' <a rel="nofollow"  onclick="event.preventDefault();\n' +
                         'document.getElementById(\'logout-form\').submit();" class="btn m-btn--pill tn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a> ');
 
+                    $('.box-login-mobile').html('<button type="button" onclick="event.preventDefault();\n' +
+                        'document.getElementById(\'logout-form\').submit();" class="btn btn-header" >Đăng xuất</button>')
+
+
                     $('meta[name="jwt"]').attr('content',data.token);
-                    $('#store_pay').attr('data-target','#modal_pay').html('Thanh toán ngay');
+                    $('#store_pay').attr('data-target','#modal_pay').html('Thanh toán ngay').css('height','auto');
                 }
             },
             error: function (data) {
