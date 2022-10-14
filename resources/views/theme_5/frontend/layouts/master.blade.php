@@ -256,7 +256,7 @@
                 </div>
                 <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
                     <div class="card--attr__name fw-400 fz-13 text-center text-order">
-                        Giá niêm yết
+                        Mệnh giá
                     </div>
                     <div class="card--attr__value fz-13 fw-500" id="confirmPriceMobile"></div>
                 </div>
@@ -317,7 +317,7 @@
                     </div>
                     <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
                         <div class="card--attr__name fw-400 fz-13 text-center">
-                            Giá niêm yết
+                            Mệnh giá
                         </div>
                         <div class="card--attr__value fz-13 fw-500" id="confirmPrice"></div>
                     </div>
