@@ -26,23 +26,25 @@
                                     <div class="input-group-prepend"><span class="input-group-text">Loại thẻ</span></div>
                                     <select name="key" class="form-control c-square c-theme">.
                                         <option value=""> Tất cả loại thẻ</option>
-
+                                        @foreach($data_telecome as $val)
+                                            <option value="{{ $val->key }}">{{ $val->title }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="input-group m-input-group mb-4">
-                                    <div class="input-group-prepend"><span class="input-group-text">Kiểu nạp</span></div>
-                                    <select name="type_charge" id="type_charge" class="form-control c-square c-theme"    onchange="get_list_status();" onblur="get_list_status();">
-                                        <option value="0" selected>
-                                            Nạp tự động
-                                        </option>
-                                        <option value="1" >
-                                            Nạp chậm
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
+{{--                            <div class="col-md-4">--}}
+{{--                                <div class="input-group m-input-group mb-4">--}}
+{{--                                    <div class="input-group-prepend"><span class="input-group-text">Kiểu nạp</span></div>--}}
+{{--                                    <select name="type_charge" id="type_charge" class="form-control c-square c-theme"    onchange="get_list_status();" onblur="get_list_status();">--}}
+{{--                                        <option value="0" selected>--}}
+{{--                                            Nạp tự động--}}
+{{--                                        </option>--}}
+{{--                                        <option value="1" >--}}
+{{--                                            Nạp chậm--}}
+{{--                                        </option>--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
 
                         </div>

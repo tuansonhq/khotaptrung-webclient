@@ -10,7 +10,7 @@
                     <div class="content-profile">
                         <h3>LỊCH SỬ GIAO DỊCH</h3>
                         <hr class="lines">
-                        <form action="https://muathegarena.com/user/tran-log" class="form-horizontal form-find m-b-20"
+                        <form action="javascript:void(0)" class="form-horizontal form-find m-b-20"
                               role="form" method="get">
                             <div class="row mb-3">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -18,7 +18,7 @@
                                         <div class="input-group m-input-group date date-picker" data-rtl="false">
                                             <div class="input-group-prepend"><span
                                                     class="input-group-text">Từ ngày</span></div>
-                                            <input type="text" class="form-control c-square c-theme" id="m_datepicker_1" name="started_at" autocomplete="off" data-date-format="dd/mm/yyyy"
+                                            <input type="date" class="form-control c-square c-theme" id="m_datepicker_1" name="started_at" autocomplete="off" data-date-format="dd/mm/yyyy"
                                                    placeholder="Từ ngày" value="">
                                         </div>
                                     </div>
@@ -29,7 +29,7 @@
                                              data-date-format="dd/mm/yyyy" data-rtl="false">
                                             <div class="input-group-prepend"><span
                                                     class="input-group-text">Đến ngày</span></div>
-                                            <input type="text" class="form-control c-square c-theme" id="m_datepicker_1"
+                                            <input type="date" class="form-control c-square c-theme" id="m_datepicker_1"
                                                    name="ended_at" autocomplete="off" data-date-format="dd/mm/yyyy"
                                                    placeholder="Đến ngày" value="">
                                         </div>

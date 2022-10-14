@@ -1,5 +1,4 @@
-
-@extends('theme_card_2.frontend.layouts.master')
+@extends('frontend.layouts.master')
 @section('content')
     @if($data == null)
         <div class="item_buy">
@@ -45,7 +44,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 col-12">
-                       @include('theme_card_2.frontend.widget.__tin__tuc__noi__bat',['data_article' => $data])
+                       @include('frontend.widget.__menu__category__article__index')
                     </div>
                 </div>
             </div>
