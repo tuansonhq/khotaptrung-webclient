@@ -135,13 +135,13 @@
                         }
                     }
                 @endphp
-
+                @if(isset($data_widget))
                 <div class="container container-fix">
                     @foreach($data_widget as $key => $value)
                         @include('frontend.widget.'.$value.'',with(['title'=>$data_title[$key]]))
                     @endforeach
                 </div>
-
+                @endif
             @else
 
             @include('frontend.widget.__content__home__game')
