@@ -2,7 +2,7 @@
 <div class="content-items content-items-spin">
     <div class="container">
         <div class="items-title">
-            <h2>Danh mục minigame</h2>
+            <h2>Danh mục vòng quay</h2>
             <div class="items-title-lines"></div>
         </div>
         <div class="game-list row">
