@@ -22,14 +22,16 @@
                     $data_widget = explode('|',$it);
                 }
             }
-        @endphp
 
+
+        @endphp
+        @if(isset($data_widget))
         <div class="container container-fix">
             @foreach($data_widget as $key => $value)
                 @include('frontend.widget.'.$value.'',with(['title'=>$data_title[$key]]))
             @endforeach
         </div>
-
+        @endif
     @else
 {{--        <div class="banner-home " >--}}
 {{--            @include('frontend.widget.__slider__banner')--}}

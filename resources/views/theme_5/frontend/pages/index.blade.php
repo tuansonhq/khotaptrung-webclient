@@ -19,12 +19,12 @@
 
         <div class="container c-container">
             <input type="search" placeholder="Tìm kiếm" class="search c-mt-16 d-lg-none">
-
+        @if(isset($data_widget))
         @foreach($data_widget as $key => $value)
                 @include('frontend.widget.'.$value.'',with(['title'=>$data_title[$key]]))
             @endforeach
         </div>
-
+        @endif
     @else
         <div class="container c-container">
             <input type="search" placeholder="Tìm kiếm" class="search c-mt-16 d-lg-none">
