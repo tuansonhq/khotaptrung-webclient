@@ -80,7 +80,7 @@
                     //     window.location.href = return_url;
                     //
                     // }
-                    window.location.href = return_url;
+                    window.location.href = data.return_url;
                 }   else{
                     formSubmit.find('.login_error').html('<strong style="color: red">'+data.message+'</strong>');
 

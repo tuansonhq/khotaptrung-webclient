@@ -1,10 +1,10 @@
 
-
+@if(empty($data->data))
 <div class="table-responsive">
     <table class="table table-hover table-custom-res">
         <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>
         <tbody>
-        @if(empty($data->data))
+
             @if(isset($data) && count($data) > 0)
                 @php
                     $prev = null;
@@ -118,11 +118,12 @@
                 {{--                        </td>--}}
                 {{--                    </tr>--}}
             @endif
-        @endif
+
         </tbody>
 
     </table>
 </div>
+@endif
 
 <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1__ls paginate__v1_mobie frontend__panigate mt-3">
     @if(isset($data))

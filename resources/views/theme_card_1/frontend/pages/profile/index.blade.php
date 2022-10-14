@@ -1,5 +1,10 @@
 @extends('frontend.layouts.master')
-
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
     <div class="row my-3" >
         <div class="col-lg-3  col-sm-3 col-md-3 col-12">
