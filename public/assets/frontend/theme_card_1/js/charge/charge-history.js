@@ -57,7 +57,6 @@ $(document).ready(function(){
 
             },
             success: (data) => {
-
                 if (data.status == 1){
                     $("#data_pay_card_history_ls").empty().html('');
                     $("#data_pay_card_history_ls").empty().html(data.data);

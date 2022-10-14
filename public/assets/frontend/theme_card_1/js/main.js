@@ -13,7 +13,7 @@ $(document).ready(function () {
         $(this).find(".mini_menu").removeClass("show");
     });
     $(window).scroll(function() {
-        if ($(this).scrollTop()) {
+        if ($(this).scrollTop() > 10) {
             $('.c-layout-header-fixed').removeClass('fixtop');
             $('.c-layout-header-fixed').addClass('fixscroll');
             $("#btn-back-to-top").show();
@@ -41,7 +41,6 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-    console.log(222)
     $('.started_at').datetimepicker({
         format: 'DD-MM-YYYY LT',
         useCurrent: false,

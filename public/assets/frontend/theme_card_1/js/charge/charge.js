@@ -31,7 +31,6 @@ $(document).ready(function(){
     ele = $('select#telecom option').first();
     var telecom = ele.val();
     getAmount(telecom);
-    paycartDataChargeHistory();
     // $('#loading-data').remove();
     // $('#form-content').removeClass('hide');
     function getAmount(telecom){
@@ -168,6 +167,7 @@ $(document).ready(function(){
             }
         });
     });
+    let page = $('#hidden_page_service_nt').val();
 
     $(document).on('click', '.paginate__v1__nt .pagination a',function(event){
         event.preventDefault();
@@ -194,9 +194,11 @@ $(document).ready(function(){
         $(".paycartdata").empty().html(html);
         paycartDataChargeHistory(page);
     });
-
+    paycartDataChargeHistory();
     function paycartDataChargeHistory(page) {
-
+        if (page == null || page == '' || page == undefined){
+            page = 1;
+        }
         request = $.ajax({
             type: 'GET',
             url: '/get-tele-card/data',
@@ -204,17 +206,16 @@ $(document).ready(function(){
                 page:page,
             },
             beforeSend: function (xhr) {
-
+                console.log(page)
             },
             success: (data) => {
                 if (data.status == 1){
                     $(".paycartdata").empty().html('');
                     $(".paycartdata").empty().html(data.data);
                 }else if (data.status == 0){
-                    var html = '';
                     html += '<div class="table-responsive" id="tableacchstory">';
                     html += '<table class="table table-hover table-custom-res">';
-                    html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+                    html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
                     html += '<tbody>';
                     html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
                     html += '</tbody>';
