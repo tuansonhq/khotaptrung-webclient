@@ -27,9 +27,9 @@ $(document).ready(function(){
         var ended_at =  $('.ended_at_storecard').val();
 
         let html_loading = '';
-        html_loading += '<div class="text-center ajax-loading-store load_spinner ajax-loading-data" >';
-        html_loading += '<div class="cv-spinner">';
-        html_loading += '<span class="spinner"></span>';
+        html_loading += '<div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">';
+        html_loading += '<div class="loading-wrap mb-3">';
+        html_loading += '<span class="modal-loader-spin mb-3"></span>';
         html_loading += '</div>';
         html_loading += '</div>';
         $("#data_store_card").empty().html('');
@@ -117,9 +117,9 @@ $(document).ready(function(){
         var page = $('#hidden_page_storecard').val();
 
         let html_loading = '';
-        html_loading += '<div class="text-center ajax-loading-store load_spinner" >';
-        html_loading += '<div class="cv-spinner">';
-        html_loading += '<span class="spinner"></span>';
+        html_loading += '<div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">';
+        html_loading += '<div class="loading-wrap mb-3">';
+        html_loading += '<span class="modal-loader-spin mb-3"></span>';
         html_loading += '</div>';
         html_loading += '</div>';
         $("#data_store_card").empty().html('');

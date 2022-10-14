@@ -13,7 +13,7 @@
                     @include('frontend.layouts.includes.menu_profile')
                 </div>
                 <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-                    <div class="main-profile" style="min-height: 296px;">
+                    <div class="main-profile" style="min-height: 400px;">
                         <div class="content-profile">
                             <h3>Thẻ cào đã mua</h3>
                             <hr class="lines">
@@ -52,12 +52,13 @@
                                 </div>
                             </form>
                             <div id="data_store_card" style="position: relative">
-                                <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">
-                                    <div class="d-flex justify-content-center">
-                                        <span class="pulser"></span>
+                                <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">
+                                    {{--                                    <div class="loading"></div>--}}
+                                    <div class="loading-wrap mb-3">
+                                        <span class="modal-loader-spin mb-3"></span>
                                     </div>
                                 </div>
-                                @include('frontend.pages.storecard.widget.__store__card__history')
+{{--                                @include('frontend.pages.storecard.widget.__store__card__history')--}}
                             </div>
 
                         </div>

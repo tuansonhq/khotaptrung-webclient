@@ -31,6 +31,7 @@ $(document).ready(function(){
     ele = $('select#telecom option').first();
     var telecom = ele.val();
     getAmount(telecom);
+    paycartDataChargeHistory();
     // $('#loading-data').remove();
     // $('#form-content').removeClass('hide');
     function getAmount(telecom){
@@ -194,7 +195,7 @@ $(document).ready(function(){
         $(".paycartdata").empty().html(html);
         paycartDataChargeHistory(page);
     });
-    paycartDataChargeHistory();
+
     function paycartDataChargeHistory(page) {
         if (page == null || page == '' || page == undefined){
             page = 1;
@@ -213,6 +214,7 @@ $(document).ready(function(){
                     $(".paycartdata").empty().html('');
                     $(".paycartdata").empty().html(data.data);
                 }else if (data.status == 0){
+                    var html = '';
                     html += '<div class="table-responsive" id="tableacchstory">';
                     html += '<table class="table table-hover table-custom-res">';
                     html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';

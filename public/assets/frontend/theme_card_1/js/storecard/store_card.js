@@ -250,10 +250,10 @@ $(document).ready(function(){
                         icon: "error",
                         buttons: {
 
-                            charge: {
-                                text: "Nạp tiền",
-                                value: "charge",
-                            },
+                            // charge: {
+                            //     text: "Nạp tiền",
+                            //     value: "charge",
+                            // },
                             cancel: "Đóng",
                         },
                     })
