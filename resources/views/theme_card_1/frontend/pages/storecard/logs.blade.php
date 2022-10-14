@@ -52,12 +52,13 @@
                         </div>
                     </form>
                     <div id="data_store_card" style="position: relative">
-                        <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">
-                            <div class="d-flex justify-content-center">
-                                <span class="pulser"></span>
+                        <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">
+                            {{--                                    <div class="loading"></div>--}}
+                            <div class="loading-wrap mb-3">
+                                <span class="modal-loader-spin mb-3"></span>
                             </div>
                         </div>
-                        @include('frontend.pages.storecard.widget.__store__card__history')
+{{--                        @include('frontend.pages.storecard.widget.__store__card__history')--}}
                     </div>
 
                 </div>

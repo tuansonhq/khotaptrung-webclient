@@ -27,7 +27,6 @@
                             </div>
                             <form action="{{route('postTelecomDepositAuto')}}" id="modal-form-charge" class="recharge_card_pay">
                                 @csrf
-                                <div class="text-invalid message-form mt-2" style="    text-align: center; color: #dd4b39;font-weight: 500;    margin-bottom: 16px;"></div>
                                 <div class="form-group m-form__group row">
                                     <label for="" class="col-3 col-form-label">Loại thẻ:</label>
                                     <div class="col-9">
@@ -73,6 +72,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="text-invalid message-form mt-2" style="    text-align: center; color: #dd4b39;font-weight: 500;    margin-bottom: 16px;"></div>
+
                                 <div class="form-group m-form__group text-center">
                                     <button style="width:100%" type="submit" class="btn submit-modal-form-charge btn-success " data-loading-text="<i class='fa fa-spinner fa-spin '></i>"><span class="content-ajax">NẠP THẺ</span> </button>
                                 </div>

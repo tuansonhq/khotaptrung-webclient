@@ -18,6 +18,12 @@
                         <div class="content-profile">
                             <h3>Nạp thẻ</h3>
                             <hr class="lines">
+                            @if (setting('sys_charge_content') != "")
+
+                                    {!! setting('sys_charge_content') !!}
+
+
+                            @endif
                             <div class="wapper profile">
                                 <form action="{{route('postTelecomDepositAuto')}}" method="POST"  id="form-charge2"  class="recharge_card_pay" name="recharge-card-form">
                                     @csrf
@@ -78,12 +84,7 @@
                                         </button>
                                     </div>
                                 </form>
-                                @if (setting('sys_charge_content') != "")
-                                    <div class="alert alert-info" role="alert">
-                                        {!! setting('sys_charge_content') !!}
 
-                                    </div>
-                                @endif
                             </div>
 
 
