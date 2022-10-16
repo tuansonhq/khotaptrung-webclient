@@ -6,6 +6,10 @@ $(document).ready(function (e) {
 
     var product_list = new Swiper('.list-nap-game', {
         autoplay: false,
+        navigation: {
+            nextEl: '.swiper-nap-game .swiper-button-next',
+            prevEl: '.swiper-nap-game .swiper-button-prev',
+        },
         // preloadImages: false,
         updateOnImagesReady: true,
         // lazyLoading: false,
@@ -15,23 +19,25 @@ $(document).ready(function (e) {
 
         loop: false,
         centeredSlides: false,
-        slidesPerView: 8,
+        slidesPerView: 4.5,
+        slidesPerGroup: 3,
         speed: 800,
-        spaceBetween: 8,
+        spaceBetween: 16,
         touchMove: true,
+        freeMode:true,
         freeModeSticky:true,
         grabCursor: true,
         observer: true,
         observeParents: true,
         breakpoints: {
             992: {
-                slidesPerView: 6,
+                slidesPerView: 3.2,
             },
             768:{
-                slidesPerView: 4,
+                slidesPerView: 3.2,
             },
             480: {
-                slidesPerView: 3.5,
+                slidesPerView: 1.5,
 
             }
         }
@@ -41,36 +47,15 @@ $(document).ready(function (e) {
     $('.show-btn-password').on('click', function(){
 
         // Get the password field
-        var passwordField = $('#password');
-
-        // Get the current type of the password field will be password or text
-        var passwordFieldType = passwordField.attr('type');
-
-        // Check to see if the type is a password field
-        if(passwordFieldType == 'password')
-        {
-            // Change the password field to text
-            passwordField.attr('type', 'text');
-
-            var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyeshow.png" alt="">';
-            $('.show-btn-password').html('');
-            $('.show-btn-password').html(htmlpass);
-
-            // Change the Text on the show password button to Hide
-            $(this).val('Hide');
+        let passwordField = $('#password');
+        if (passwordField.attr('type') === "password") {
+            passwordField.attr('type','text');
+            $(this).find('img').attr('src','/assets/frontend/theme_3/image/images_1/eye-hide.svg')
         } else {
-            var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
-            $('.show-btn-password').html('');
-            $('.show-btn-password').html(htmlpass);
-
-            // If the password field type is not a password field then set it to password
-            passwordField.attr('type', 'password');
-
-            // Change the value of the show password button to Show
-            $(this).val('Show');
+            passwordField.attr('type','password')
+            $(this).find('img').attr('src','/assets/frontend/theme_3/image/images_1/eye-show.svg')
         }
+
     });
 
     $('.show-btn-password-mobile').on('click', function(){
@@ -88,7 +73,7 @@ $(document).ready(function (e) {
             passwordField.attr('type', 'text');
 
             var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyeshow.png" alt="">';
+            htmlpass += '<img class="lazy" src="/assets/theme_3/image/cay-thue/eyeshow.png" alt="">';
             $('.show-btn-password-mobile').html('');
             $('.show-btn-password-mobile').html(htmlpass);
 
@@ -96,7 +81,7 @@ $(document).ready(function (e) {
             $(this).val('Hide');
         } else {
             var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
+            htmlpass += '<img class="lazy" src="/assets/theme_3/image/cay-thue/eyehide.png" alt="">';
             $('.show-btn-password-mobile').html('');
             $('.show-btn-password-mobile').html(htmlpass);
 
@@ -108,11 +93,6 @@ $(document).ready(function (e) {
         }
     });
 
-    $('.open-modal').on('click', function(){
-        $('#openOrder').modal('show');
-
-    })
-
     $('.openSuccess').on('click', function(){
         $('#successModal').modal('show');
     })
@@ -120,14 +100,13 @@ $(document).ready(function (e) {
     // $('#successModal').modal('show');
     $('.wide').niceSelect();
 
-
     tippy('.checkbox-info-ct', {
         // default
         placement: 'top',
         arrow: true,
         animation: 'fade',
         theme: 'light',
-        content: "Đã copy!",
+        // content: $(this).data('name'),
     });
 
     tippy('.option-info-ct', {
@@ -141,7 +120,7 @@ $(document).ready(function (e) {
 
     //    Step
 
-    $('body').on('click','#mobile-caythue .button-next-step-one',function(){
+    $('body').on('click','.button-next-step-one',function(){
         if (animating) return false;
         animating = true;
 
@@ -167,7 +146,7 @@ $(document).ready(function (e) {
         });
     })
 
-    $('body').on('click','#mobile-caythue .previous-step-one',function(){
+    $('body').on('click','.previous-step-one',function(){
 
         if(animating) return false;
         animating = true;
@@ -199,7 +178,7 @@ $(document).ready(function (e) {
         });
     });
 
-    $('body').on('click','#mobile-caythue .button-next-step-two',function(){
+    $('body').on('click','.button-next-step-two',function(){
 
         if(animating) return false;
         animating = true;
@@ -233,27 +212,65 @@ $(document).ready(function (e) {
         $('#successModal').modal('show');
     });
 
-    $('.show-detail-service-ct .view-more').click(function(){
-        $('.show-detail-service-ct .view-less').css("display","block");
-        $('.show-detail-service-ct .view-more').css("display","none");
-        $(".show-detail-service-ct .content-video-in").addClass( "showtext" );
-    });
-    $('.show-detail-service-ct .view-less').click(function(){
-        $('.show-detail-service-ct .view-more').css("display","block");
-        $('.show-detail-service-ct .view-less').css("display","none");
-        $(".show-detail-service-ct .content-video-in").removeClass( "showtext");
+    $('body').on('click','.close-modal-default',function(e){
+        e.preventDefault();
+        $('#successModal').modal('hide');
+        $('#openOrder').modal('hide');
+    })
+
+    $('body').on('click','.btn-data',function(){
+        let is_ok = 1;
+        let html = '';
+
+        let required = $('#formDataService input[required]');
+        if (required.length){
+            required.each(function () {
+                $(this).toggleClass('invalid',!$(this).val().trim());
+                if (!$(this).val().trim()){
+                    is_ok = 0;
+                    let text = $(this).parent().prev().text().trim().toLowerCase();
+                    html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa nhập ${text}</small></div></div>`
+                    $(this).parent().next().html(html)
+                }else {
+                    $(this).parent().next().text('');
+                }
+            });
+        }
+
+        if ($('.allgame[type=checkbox]').length){
+            if (checkboxRequired('input.allgame[type=checkbox]')){
+                html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Phải chọn ít nhất một gói dịch vụ</small></div></div>`;
+                is_ok = 0;
+                $('#error-mes-checkbox').html(html)
+            }
+
+            else {
+                $('#error-mes-checkbox').html('');
+            }
+        }
+        let confirm_rules = $('.confirm-rules');
+        /*nếu có nút confirm thì kiểm tra xem được check chưa*/
+        if (confirm_rules.length){
+            if (!confirm_rules.is(':checked')){
+                html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Vui lòng xác nhận thông tin trên</small></div></div>`;
+                is_ok = 0;
+                confirm_rules.parent().next().html(html)
+            }
+            else {
+                confirm_rules.parent().next().html('')
+            }
+        }
+        if (is_ok){
+            if ($(document).width() > 1200) {
+                $('#openOrder').modal('show');
+            }else {
+                $('.button-next-step-one').trigger('click')
+            }
+        }
     });
 
-    $('.show-detail-caythue-ct .view-more').click(function(){
-        $('.show-detail-caythue-ct .view-less').css("display","block");
-        $('.show-detail-caythue-ct .view-more').css("display","none");
-        $(".show-detail-caythue-ct .content-video-in").addClass( "showtext" );
-    });
-    $('.show-detail-caythue-ct .view-less').click(function(){
-        $('.show-detail-caythue-ct .view-more').css("display","block");
-        $('.show-detail-caythue-ct .view-less').css("display","none");
-        $(".show-detail-caythue-ct .content-video-in").removeClass( "showtext");
-    });
-
-
+    $('body').on('click','.openSuccess',function(e){
+        $('#openOrder').modal('hide');
+        $('#successModal').modal('show');
+    })
 })

@@ -25,22 +25,13 @@
 
                             </div>
                         @endif
-                        <div class="row justify-content-center" id="loading-data">
-                            <div class="loading"></div>
-                        </div>
-                        <div class="col-auto pl-0 pr-0 hide" id="form-content">
+{{--                        <div class="row justify-content-center" id="loading-data">--}}
+{{--                            <div class="loading"></div>--}}
+{{--                        </div>--}}
+                        <div class="col-auto pl-0 pr-0 " id="form-content">
                             <form action="{{route('postTelecomDepositAuto')}}" method="POST" class="form-charge" id="form-charge2">
                                 @csrf
-                                {{--                   <div class="form-group row">--}}
-                                {{--                    <label class="col-md-3 control-label">--}}
-                                {{--                    Tài khoản--}}
-                                {{--                    </label>--}}
-                                {{--                    <div class="col-md-6">--}}
-                                {{--                       <div class="input-group" style="width: 100%">--}}
-                                {{--                          <input class="form-control" id="username" value="" readonly>--}}
-                                {{--                       </div>--}}
-                                {{--                    </div>--}}
-                                {{--                 </div>--}}
+
                                 <div class="form-group row ">
                                     <label class="col-md-3 control-label">
                                         Loại thẻ:
@@ -48,7 +39,9 @@
                                     <div class="col-md-6">
                                         <div class="input-group" style="width: 100%">
                                             <select id="telecom" name="type" class="form-control">
-
+                                                @foreach($data as $val)
+                                                    <option value="{{$val->key}}">{{$val->title}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -94,7 +87,7 @@
                                             <input type="text" class="form-control" name="captcha" id="captcha"  required>
                                             <div style="    border: 1px solid #ced4da;height: 38px;display:flex">
                                                 <div class="captcha_1">
-                                                  <span class="reload">
+                                                  <span class="reload h-100 d-flex">
                 {{--                                      <img src="{{captcha_src('flat')}}" onclick="document.getElementById('captchaCode').src = {{captcha_src('flat')}}+Math.random();document.getElementById('captcha').focus();" id="captchaCode" alt="" class="captcha">--}}
 
                                                             {!! captcha_img('flat') !!}
@@ -124,7 +117,18 @@
                     </div>
 
                     <div class="paycartdata">
-                        @include('frontend.pages.charge.widget.__charge')
+                        <div class="position-relative"  style="min-height: 200px" >
+                            <table class="table table-hover table-custom-res">
+                                <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>
+
+                                <tbody>
+                                    <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">
+                                        <div class="loading"></div>
+                                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+{{--                        @include('frontend.pages.charge.widget.__charge_history')--}}
                     </div>
                 </div>
             </div>

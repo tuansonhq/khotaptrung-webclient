@@ -52,11 +52,12 @@ $(document).ready(function () {
             },
             complete: function (data) {
 
+                $('.result-amount-loadding__nick-lien-quan').css('display','block');
+                getDichVuLienQuan(slug_category);
+                $('#section-viewed-account').parent().removeClass('d-none');
             }
         });
     }
-
-    getDichVuLienQuan(slug_category)
 
     function getDichVuLienQuan(slug_category) {
 
@@ -75,7 +76,9 @@ $(document).ready(function () {
                 if (data.status == 1){
 
                     $('#showslideracc').html('');
+
                     $('#showslideracc').html(data.dataslider);
+
                 }else if (data.status == 0){
 
                     var html = '';
@@ -94,6 +97,4 @@ $(document).ready(function () {
             }
         });
     }
-
-
 })

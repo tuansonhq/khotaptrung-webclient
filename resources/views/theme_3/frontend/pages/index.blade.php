@@ -1,1035 +1,120 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
+@section('styles')
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/lib_bootstrap.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/minigame.css">
+@endsection
 
 @section('content')
-
-    <div class="banner-home" style=" background: url(assets/frontend/{{theme('')->theme_key}}/image/banner.png) no-repeat center center / cover;">
-        <div class="container">
-            <div class="d-flex justify-content-between">
-                <div class="box-list-service">
-                    <p>Dịch vụ</p>
-                    <ul class="list-service">
-                        <li class="item-service">
-                            <a href="">
-                                <img src="assets/frontend/{{theme('')->theme_key}}/image/service_home.png" alt="">
-                                <span>Nạp thẻ cào</span>
-                            </a>
-
-                        </li>
-                        <li class="item-service">
-                            <a href="">
-                                <img src="assets/frontend/{{theme('')->theme_key}}/image/service_home2.png" alt="">
-                                <span>Nạp ATM- VÍ</span>
-                            </a>
-
-                        </li>
-                        <li class="item-service">
-                            <a href="">
-                                <img src="assets/frontend/{{theme('')->theme_key}}/image/service_home3.png" alt="">
-                                <span>Mua thẻ game</span>
-                            </a>
-
-                        </li>
-                        <li class="item-service">
-                            <a href="">
-                                <img src="assets/frontend/{{theme('')->theme_key}}/image/service_home.png" alt="">
-                                <span>Mua Acc game</span>
-                            </a>
-
-                        </li>
-                        <li class="item-service">
-                            <a href="">
-                                <img src="assets/frontend/{{theme('')->theme_key}}/image/service_home.png" alt="">
-                                <span>Dịch vụ game</span>
-                            </a>
-
-                        </li>
-                        <li class="item-service">
-                            <a href="">
-                                <img src="assets/frontend/{{theme('')->theme_key}}/image/service_home.png" alt="">
-                                <span>Vòng quay</span>
-                            </a>
-
-                        </li>
-                        <li class="item-service">
-                            <a href="">
-                                <img src="assets/frontend/{{theme('')->theme_key}}/image/service_home.png" alt="">
-                                <span>Mua Acc game</span>
-                            </a>
-
-                        </li>
-                        <li class="item-service">
-                            <a href="">
-                                <img src="assets/frontend/{{theme('')->theme_key}}/image/service_home.png" alt="">
-                                <span>Mua thẻ game</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-                <div class="box-list-top top-list">
-                    <p><img src="assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top nạp thẻ</p>
-                    <div class="top-days ">
-                        <ul class="nav justify-content-between row" role="tablist" >
-                            <li class="nav-item col-md-4 p-md-0" role="presentation">
-                                <a  class="nav-link active text-center" id="sevendays-tab" data-toggle="tab" href="#sevendays" role="tab" aria-selected="true">7 ngày</a>
-                            </li >
-                            <li class="nav-item col-md-4 p-md-0" role="presentation">
-                                <a  class="nav-link text-center"  id="thirtyday-tab" data-toggle="tab" href="#thirtydays" role="tab" aria-selected="false"> 30 ngày</a>
-                            </li>
-                            <li class="nav-item col-md-4 p-md-0" role="presentation">
-                                <a  class="nav-link text-center" id="sixty-tab" data-toggle="tab" href="#sixtydays" role="tab" aria-selected="false">60 ngày</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="top-content tab-content">
-                        <div class="tab-pane fade active show item-top mt-3" id="sevendays" role="tabpanel" aria-labelledby="sevendays-tab" >
-                            <ul class="nav flex-column">
-                                <li class="d-flex">
-                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                    <span class="top-name">Tên dài hai dòng </span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                    <span class="top-name">Tên dài </span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                    <span class="top-name">Tên dài </span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span class="top-rank"><div style="">4</div></span>
-                                    <span class="top-name">Tên dài hai dòng Tên dài hai dòng</span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                    <span class="top-name">Tên dài </span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
+    @if(isset(theme('')->theme_config->sys_theme_ver))
 
 
-                            </ul>
-                        </div>
-                        <div class="tab-pane fade item-top mt-3" id="thirtydays" role="tabpanel" aria-labelledby="thirtyday-tab">
-                            <ul class="nav flex-column">
-                                <li class="d-flex">
-                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                    <span class="top-name">Tên dài hai dòng </span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                    <span class="top-name">Tên dài </span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                    <span class="top-name">Tên dài </span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span class="top-rank"><div style="">4</div></span>
-                                    <span class="top-name">Tên dài hai dòng Tên dài hai dòng</span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                    <span class="top-name">Tên dài </span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
+        @php
+            $dat = explode(',',setting('sys_theme_ver_page_build'));
+            $data_title = null;
+            $data_widget = null;
+            foreach($dat as $key => $it){
+                if ($key == 0){
+                    $data_title = explode('|',$it);
+                }else{
+                    $data_widget = explode('|',$it);
+                }
+            }
 
 
-                            </ul>
-                        </div>
-                        <div class="tab-pane  fade item-top mt-3" id="sixtydays"  role="tabpanel" aria-labelledby="sixty-tab">
-                            <ul class="nav flex-column">
-                                <li class="d-flex">
-                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                    <span class="top-name">Tên dài hai dòng </span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                    <span class="top-name">Tên dài </span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                    <span class="top-name">Tên dài </span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span class="top-rank"><div style="">4</div></span>
-                                    <span class="top-name">Tên dài hai dòng Tên dài hai dòng</span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                    <span class="top-name">Tên dài </span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
+        @endphp
+        @if(isset($data_widget))
+        <div class="container container-fix">
+            @foreach($data_widget as $key => $value)
+                @include('frontend.widget.'.$value.'',with(['title'=>$data_title[$key]]))
+            @endforeach
+        </div>
+        @endif
+    @else
+{{--        <div class="banner-home " >--}}
+{{--            @include('frontend.widget.__slider__banner')--}}
+{{--            <div class="banner-content">--}}
+{{--                <div class="container  container-fix" >--}}
+{{--                    <div class="d-flex justify-content-between">--}}
+{{--                        <div class="box-list-service d-g-lg-none">--}}
+{{--                            <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/service-page-icon.png" alt="" id="menu_service">Danh mục dịch vụ</p>--}}
+{{--                            <hr>--}}
+{{--                            @include('frontend.widget.__list_service')--}}
+{{--                        </div>--}}
 
+{{--                        @if(setting('sys_marquee'))--}}
+{{--                            <div class="rotation-notify-home text-slider  ">--}}
+{{--                                <img class="img-text-slider" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">--}}
+{{--                                <marquee class="rotation-marquee marquee-move">--}}
 
-                            </ul>
-                        </div>
-                    </div>
+{{--                                    <div class="rotation-marquee-item marquee-item">--}}
+{{--                                        {!! setting('sys_marquee') !!}--}}
+{{--                                    </div>--}}
+{{--                                </marquee>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+{{--                        <div class="box-list-top top-list d-g-lg-none">--}}
+{{--                            <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt="" id="menu_top_list"> Top nạp T{{Carbon\Carbon::now()->month}}</p>--}}
 
+{{--                            @include('frontend.widget.__top_nap_the')--}}
 
-                </div>
-            </div>
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+        <div class="container container-fix">
+
+            @include('frontend.widget.__slider__banner__home')
+
+            @include('frontend.widget.__list_serve_remark_mobile')
+            {{--            Hot sale--}}
+            @include('frontend.widget.__hotsale')
+            {{--            Chơi gần đây--}}
+            @include('frontend.widget.__play__recently__home')
+            {{--            Top nạp thẻ mobile--}}
+            @include('frontend.widget.__top_nap_the_mobile')
+            {{--        Dịch vụ game--}}
+            @include('frontend.widget.__service_game')
+            {{--             Minigame--}}
+            @include('frontend.widget.__content__home__minigame')
+
+            @include('frontend.widget.__list_serve_remark')
+            {{--                        Nạp thẻ--}}
+            @include('frontend.widget.__nap_the')
+            {{--                Danh mục mua acc--}}
+            @include('frontend.widget.__content__home__game__random')
+            @include('frontend.widget.__content__home__game_thuong')
+            {{--                @include('frontend.widget.__random__account')--}}
+            {{--                     Dịch vụ nổi bật--}}
+            @include('frontend.widget.__tin__tuc')
+            @include('frontend.widget.__abount__us')
 
         </div>
-    </div>
-    <div class="container">
-        <div class="flash-sales block-product">
-            <div class="product-header d-flex">
-                    <span>
-                        <img src="assets/frontend/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
-                    </span>
-                <p class="text-title">Giảm sốc trong ngày</p>
-                <div class="timer" id="timer">
-                    <span>27</span>
-                    <span>27</span>
-                    <span>27</span>
-                </div>
-
-                <div class="text-view-more">
-                    <a href="">
-                        Xem thêm <img src="assets/frontend/{{theme('')->theme_key}}/image/view_more.png" alt="">
-                    </a>
-
-                </div>
-            </div>
-            <div class="box-product">
-                <div class="swiper-container list-product" >
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide" >
-                            <div class="item-product__box-img">
-                                <a href="">
-                                    <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                </a>
-                            </div>
-                            <div class="item-product__box-content">
-
-                                <a href="">
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
-
-                                        <p class="special-price">15.000đ</p>
-                                        <p class="old-price">30.000đ</p>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                        </div>
-                        <div class="swiper-slide" >
-                            <div class="item-product__box-img">
-                                <a href="">
-                                    <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                </a>
-                            </div>
-                            <div class="item-product__box-content">
-
-                                <a href="">
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
-
-                                        <p class="special-price">15.000đ</p>
-                                        <p class="old-price">30.000đ</p>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                        </div>
-                        <div class="swiper-slide" >
-                            <div class="item-product__box-img">
-                                <a href="">
-                                    <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                </a>
-                            </div>
-                            <div class="item-product__box-content">
-
-                                <a href="">
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
-
-                                        <p class="special-price">15.000đ</p>
-                                        <p class="old-price">30.000đ</p>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                        </div>
-                        <div class="swiper-slide" >
-                            <div class="item-product__box-img">
-                                <a href="">
-                                    <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                </a>
-                            </div>
-                            <div class="item-product__box-content">
-
-                                <a href="">
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
-
-                                        <p class="special-price">15.000đ</p>
-                                        <p class="old-price">30.000đ</p>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                        </div>
-                        <div class="swiper-slide" >
-                            <div class="item-product__box-img">
-                                <a href="">
-                                    <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                </a>
-                            </div>
-                            <div class="item-product__box-content">
-
-                                <a href="">
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
-
-                                        <p class="special-price">15.000đ</p>
-                                        <p class="old-price">30.000đ</p>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                        </div>
-                        <div class="swiper-slide" >
-                            <div class="item-product__box-img">
-                                <a href="">
-                                    <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                </a>
-                            </div>
-                            <div class="item-product__box-content">
-
-                                <a href="">
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
-
-                                        <p class="special-price">15.000đ</p>
-                                        <p class="old-price">30.000đ</p>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class=" block-product">
-            <div class="product-header d-flex">
-                    <span>
-                        <img src="assets/frontend/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
-                    </span>
-                <p class="text-title">Dành cho bạn</p>
-                <div class="product-catecory" >
-                    <ul class="nav" role="tablist" >
-                        <li class="nav-item" role="presentation">
-                            <a  class="nav-link active" id="account-tab" data-toggle="tab" href="#account" role="tab" aria-selected="true">Tài khoản game</a>
-                        </li >
-                        <li class="nav-item" role="presentation">
-                            <a  class="nav-link"  id="favourite_game-tab" data-toggle="tab" href="#favourite_game" role="tab" aria-selected="false"> Game yêu thích</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a  class="nav-link" id="suggestions-tab" data-toggle="tab" href="#suggestions" role="tab" aria-selected="false">Gợi ý cho bạn</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="text-view-more">
-                    <a href="">
-                        Xem thêm <img src="assets/frontend/{{theme('')->theme_key}}/image/view_more.png" alt="">
-                    </a>
-
-                </div>
-            </div>
-            <div class="box-product-content tab-content">
-                <div class="box-product tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
-                    <div class="swiper-container list-product" >
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box-product tab-pane fade" id="favourite_game" role="tabpanel" aria-labelledby="favourite_game-tab">
-                    <div class="swiper-container list-product" >
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product2.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box-product tab-pane fade" id="suggestions" role="tabpanel" aria-labelledby="suggestions-tab">
-                    <div class="swiper-container list-product" >
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product3.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="swiper-slide" >
-                                <div class="item-product__box-img">
-                                    <a href="">
-                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="item-product__box-content">
-
-                                    <a href="">
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <p class="special-price">15.000đ</p>
-                                            <p class="old-price">30.000đ</p>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="block-mini-game">
-            <div class="row">
-                <div class="col-md-8 p-md-2" >
-                    <div style="background-color: pink;height: 200px"></div>
-                </div>
-                <div class="col-md-4 p-md-2" >
-                    <div class=" top-list">
-                        <p><img src="assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top nạp thẻ</p>
-                        <div class="top-days ">
-                            <ul class="nav justify-content-between row" role="tablist" >
-                                <li class="nav-item col-md-4 p-md-0" role="presentation">
-                                    <a  class="nav-link active text-center" id="sevendays-tab" data-toggle="tab" href="#sevendays" role="tab" aria-selected="true">7 ngày</a>
-                                </li >
-                                <li class="nav-item col-md-4 p-md-0" role="presentation">
-                                    <a  class="nav-link text-center"  id="thirtyday-tab" data-toggle="tab" href="#thirtydays" role="tab" aria-selected="false"> 30 ngày</a>
-                                </li>
-                                <li class="nav-item col-md-4 p-md-0" role="presentation">
-                                    <a  class="nav-link text-center" id="sixty-tab" data-toggle="tab" href="#sixtydays" role="tab" aria-selected="false">60 ngày</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="top-content tab-content">
-                            <div class="tab-pane fade active show item-top mt-3" id="sevendays" role="tabpanel" aria-labelledby="sevendays-tab" >
-                                <ul class="nav flex-column">
-                                    <li class="d-flex">
-                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                        <span class="top-name">Tên dài hai dòng </span>
-                                        <span class="float-right top-amount">100.000.000đ</span>
-                                    </li>
-                                    <li class="d-flex">
-                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                        <span class="top-name">Tên dài </span>
-                                        <span class="float-right top-amount">100.000.000đ</span>
-                                    </li>
-                                    <li class="d-flex">
-                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                        <span class="top-name">Tên dài </span>
-                                        <span class="float-right top-amount">100.000.000đ</span>
-                                    </li>
-                                    <li class="d-flex">
-                                        <span class="top-rank"><div style="">4</div></span>
-                                        <span class="top-name">Tên dài hai dòng Tên dài hai dòng</span>
-                                        <span class="float-right top-amount">100.000.000đ</span>
-                                    </li>
-                                    <li class="d-flex">
-                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                        <span class="top-name">Tên dài </span>
-                                        <span class="float-right top-amount">100.000.000đ</span>
-                                    </li>
-
-
-                                </ul>
-                            </div>
-                            <div class="tab-pane fade item-top mt-3" id="thirtydays" role="tabpanel" aria-labelledby="thirtyday-tab">
-                                <ul class="nav flex-column">
-                                    <li class="d-flex">
-                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                        <span class="top-name">Tên dài hai dòng </span>
-                                        <span class="float-right top-amount">100.000.000đ</span>
-                                    </li>
-                                    <li class="d-flex">
-                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                        <span class="top-name">Tên dài </span>
-                                        <span class="float-right top-amount">100.000.000đ</span>
-                                    </li>
-                                    <li class="d-flex">
-                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                        <span class="top-name">Tên dài </span>
-                                        <span class="float-right top-amount">100.000.000đ</span>
-                                    </li>
-                                    <li class="d-flex">
-                                        <span class="top-rank"><div style="">4</div></span>
-                                        <span class="top-name">Tên dài hai dòng Tên dài hai dòng</span>
-                                        <span class="float-right top-amount">100.000.000đ</span>
-                                    </li>
-                                    <li class="d-flex">
-                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                        <span class="top-name">Tên dài </span>
-                                        <span class="float-right top-amount">100.000.000đ</span>
-                                    </li>
-
-
-                                </ul>
-                            </div>
-                            <div class="tab-pane  fade item-top mt-3" id="sixtydays"  role="tabpanel" aria-labelledby="sixty-tab">
-                                <ul class="nav flex-column">
-                                    <li class="d-flex">
-                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                        <span class="top-name">Tên dài hai dòng </span>
-                                        <span class="float-right top-amount">100.000.000đ</span>
-                                    </li>
-                                    <li class="d-flex">
-                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                        <span class="top-name">Tên dài </span>
-                                        <span class="float-right top-amount">100.000.000đ</span>
-                                    </li>
-                                    <li class="d-flex">
-                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                        <span class="top-name">Tên dài </span>
-                                        <span class="float-right top-amount">100.000.000đ</span>
-                                    </li>
-                                    <li class="d-flex">
-                                        <span class="top-rank"><div style="">4</div></span>
-                                        <span class="top-name">Tên dài hai dòng Tên dài hai dòng</span>
-                                        <span class="float-right top-amount">100.000.000đ</span>
-                                    </li>
-                                    <li class="d-flex">
-                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                        <span class="top-name">Tên dài </span>
-                                        <span class="float-right top-amount">100.000.000đ</span>
-                                    </li>
-
-
-                                </ul>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    @endif
+
+{{--    <div class="menu-side-item" style="">--}}
+{{--        <a href="#" class=" go-top" style="display: inline;">--}}
+{{--            <img src="/assets/frontend/theme_3/image/back-top.svg" alt="" style=" ">--}}
+{{--        </a>--}}
+{{--    </div>--}}
+
+    @include('theme_3.frontend.widget.modal.__confirm_charge')
+    @include('theme_3.frontend.widget.modal.__success_charge')
+    @include('theme_3.frontend.widget.modal.__reject_charge')
+    @include('theme_3.frontend.widget.modal.__success_charge_atm')
+    @include('theme_3.frontend.widget.modal.__success_wallet_card')
+    <script src="/assets/frontend/theme_3/js/js_phu/purchase_card.js?v={{time()}}"></script>
+{{--    <script src="https://cdnjs.com/libraries/handlebars.js"></script>--}}
+{{--    <script src="https://github.com/wycats/handlebars.js"></script>--}}
+    <script src="/assets/frontend/theme_3/js/charge/charge_home.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick-random.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/buyaccrandomhome.js?v={{time()}}"></script>
+    @if(\App\Library\AuthFrontendCustom::check())
+        <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
+    @endif
 @endsection
 

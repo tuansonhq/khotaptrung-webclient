@@ -17,14 +17,14 @@
 {{--                                                                                    Anh khuyen mai--}}
 
                                     @if(isset($item->image_icon))
-                                        <img class="game-list-image-sticky lazy" src="{{\App\Library\MediaHelpers::media($item->image_icon)}}" alt="">
+                                        <img class="game-list-image-sticky lazy" data-src="{{\App\Library\MediaHelpers::media($item->image_icon)}}" alt="">
                                     @else
 
                                     @endif
                                     @if(isset($item->image))
-                                        <img class="game-list-image-in lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
+                                        <img class="game-list-image-in lazy" data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
                                     @else
-                                        <img class="game-list-image-in lazy" src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
+                                        <img class="game-list-image-in lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
                                     @endif
 {{--                                                                                    Anh chinh --}}
 
@@ -38,7 +38,6 @@
                             <div class="game-list-description">
                                 <div class="countime"></div>
 
-                                <p></p>
                                 @if(isset($item->total_order))
                                     @if($item->params_plus)
                                         @foreach($item->params_plus as $key => $val)
@@ -73,11 +72,24 @@
                                         @if(isset($item->custom) && isset($item->custom->meta))
                                             @foreach($item->custom->meta as $key =>$val)
                                                 @if($key == "image_btn")
-                                                    <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
+                                                    <img data-src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
                                                 @endif
                                             @endforeach
                                         @else
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/images/muangay.jpg" alt="">
+                                            @if(isset(theme('')->theme_config->sys_button_home))
+                                                @if(theme('')->theme_config->sys_button_home == 'sys_button_home_text')
+                                                    <div class="col-xs-12 w-75 m-auto">
+                                                        <div class="btn-view-more mt-3">
+                                                            Xem tất cả
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/images/muangay.jpg" alt="">
+
+                                                @endif
+                                            @else
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/images/muangay.jpg" alt="">
+                                            @endif
                                         @endif
                                     </a>
                                 </div>

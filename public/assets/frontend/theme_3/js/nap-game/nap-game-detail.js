@@ -3,20 +3,12 @@ $(document).ready(function (e) {
     var left, opacity, scale; //fieldset properties which we will animate
     var animating; //flag to prevent quick multi-click glitches
 
-    $('.show-detail-napgame-ct .view-more').click(function(){
-        $('.show-detail-napgame-ct .view-less').css("display","block");
-        $('.show-detail-napgame-ct .view-more').css("display","none");
-        $(".show-detail-napgame-ct .content-video-in").addClass( "showtext" );
-    });
-
-    $('.show-detail-napgame-ct .view-less').click(function(){
-        $('.show-detail-napgame-ct .view-more').css("display","block");
-        $('.show-detail-napgame-ct .view-less').css("display","none");
-        $(".show-detail-napgame-ct .content-video-in").removeClass( "showtext");
-    });
-
     var product_list = new Swiper('.list-nap-game', {
         autoplay: false,
+        navigation: {
+            nextEl: '.swiper-nap-game .swiper-button-next',
+            prevEl: '.swiper-nap-game .swiper-button-prev',
+        },
         // preloadImages: false,
         updateOnImagesReady: true,
         // lazyLoading: false,
@@ -26,17 +18,19 @@ $(document).ready(function (e) {
 
         loop: false,
         centeredSlides: false,
-        slidesPerView: 8,
+        slidesPerView: 4,
+        slidesPerGroup: 3,
         speed: 800,
-        spaceBetween: 8,
+        spaceBetween: 16,
         touchMove: true,
+        freeMode:true,
         freeModeSticky:true,
         grabCursor: true,
         observer: true,
         observeParents: true,
         breakpoints: {
             992: {
-                slidesPerView: 6,
+                slidesPerView: 4,
             },
             768:{
                 slidesPerView: 4,
@@ -64,7 +58,7 @@ $(document).ready(function (e) {
             passwordField.attr('type', 'text');
 
             var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyeshow.png" alt="">';
+            htmlpass += '<img class="lazy" src="/assets/theme_3/image/cay-thue/eyeshow.png" alt="">';
             $('.show-btn-password').html('');
             $('.show-btn-password').html(htmlpass);
 
@@ -72,7 +66,7 @@ $(document).ready(function (e) {
             $(this).val('Hide');
         } else {
             var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
+            htmlpass += '<img class="lazy" src="/assets/theme_3/image/cay-thue/eyehide.png" alt="">';
             $('.show-btn-password').html('');
             $('.show-btn-password').html(htmlpass);
 
@@ -99,7 +93,7 @@ $(document).ready(function (e) {
             passwordField.attr('type', 'text');
 
             var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyeshow.png" alt="">';
+            htmlpass += '<img class="lazy" src="/assets/theme_3/image/cay-thue/eyeshow.png" alt="">';
             $('.show-btn-password-mobile').html('');
             $('.show-btn-password-mobile').html(htmlpass);
 
@@ -107,7 +101,7 @@ $(document).ready(function (e) {
             $(this).val('Hide');
         } else {
             var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
+            htmlpass += '<img class="lazy" src="/assets/theme_3/image/cay-thue/eyehide.png" alt="">';
             $('.show-btn-password-mobile').html('');
             $('.show-btn-password-mobile').html(htmlpass);
 
@@ -118,8 +112,6 @@ $(document).ready(function (e) {
             $(this).val('Show');
         }
     });
-
-    $('#successModal').modal('show');
 
     $('.wide').niceSelect();
 
@@ -143,7 +135,80 @@ $(document).ready(function (e) {
 
     //    Step
 
-    $('body').on('click','#mobile-caythue .button-next-step-one',function(){
+    $('body').on('click','.button-next-step-one',function(){
+
+        var amount = $('.amount').val();
+        var isSet = true;
+        if (amount == null || amount == undefined || amount == ''){
+            var htmlrp = '';
+            htmlrp += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa nhập RP.</small></div></div>';
+
+            $('.rp-errorr').html('');
+            $('.rp-errorr').html(htmlrp);
+
+            $('.amount').css('border-color','#DA4343');
+            isSet =  false;
+        }else {
+            $('.rp-errorr').html('');
+            $('.amount').css('border-color','#DCDEE9');
+        }
+
+        var username = $('.username').val();
+
+        if (username == null || username == undefined || username == ''){
+            var htmltk = '';
+            htmltk += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa nhập tài khoản game.</small></div></div>';
+
+            $('.tk-error').html('');
+            $('.tk-error').html(htmltk);
+
+            $('.username').css('border-color','#DA4343');
+            isSet =  false;
+        }else {
+            $('.tk-error').html('');
+            $('.username').css('border-color','#DCDEE9');
+        }
+
+        var password = $('.password').val();
+
+        if (password == null || password == undefined || password == ''){
+            var htmlpw = '';
+            htmlpw += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa nhập mật khẩu game.</small></div></div>';
+
+            $('.pw-error').html('');
+            $('.pw-error').html(htmlpw);
+
+            $('.password').css('border-color','#DA4343');
+
+            isSet =  false;
+        }else {
+            $('.password').css('border-color','#DCDEE9');
+            $('.pw-error').html('');
+        }
+
+        var capcha = $('.capcha').val();
+
+        if (capcha == null || capcha == undefined || capcha == ''){
+            var htmlpw = '';
+            htmlpw += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa nhập mã bảo vệ.</small></div></div>';
+
+            $('.cc-error').html('');
+            $('.cc-error').html(htmlpw);
+
+            $('.capcha').css('border-color','#DA4343');
+
+            isSet =  false;
+        }else {
+            $('.cc-error').html('');
+            $('.capcha').css('border-color','#DCDEE9');
+        }
+
+        if (isSet == false){
+            return false
+        }
+
+        //XU LY STEP
+
         if (animating) return false;
         animating = true;
 
@@ -169,7 +234,7 @@ $(document).ready(function (e) {
         });
     })
 
-    $('body').on('click','#mobile-caythue .previous-step-one',function(){
+    $('body').on('click','.previous-step-one',function(){
 
         if(animating) return false;
         animating = true;
@@ -201,7 +266,7 @@ $(document).ready(function (e) {
         });
     });
 
-    $('body').on('click','#mobile-caythue .button-next-step-two',function(){
+    $('body').on('click','.button-next-step-two',function(){
 
         if(animating) return false;
         animating = true;
@@ -234,4 +299,97 @@ $(document).ready(function (e) {
 
         $('#successModal').modal('show');
     });
+
+    $('body').on('click','.btn-data',function(e){
+        e.preventDefault();
+        var isSet = true;
+        var amount = $('.amount').val();
+
+        if (amount == null || amount == undefined || amount == ''){
+            var htmlrp = '';
+            htmlrp += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa nhập RP.</small></div></div>';
+
+            $('.rp-errorr').html('');
+            $('.rp-errorr').html(htmlrp);
+
+            $('.amount').css('border-color','#DA4343');
+            isSet =  false;
+        }else {
+            $('.rp-errorr').html('');
+            $('.amount').css('border-color','#DCDEE9');
+        }
+
+        var username = $('.username').val();
+
+        if (username == null || username == undefined || username == ''){
+            var htmltk = '';
+            htmltk += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa nhập tài khoản game.</small></div></div>';
+
+            $('.tk-error').html('');
+            $('.tk-error').html(htmltk);
+
+            $('.username').css('border-color','#DA4343');
+            isSet =  false;
+        }else {
+            $('.tk-error').html('');
+            $('.username').css('border-color','#DCDEE9');
+        }
+
+        var password = $('.password').val();
+
+        if (password == null || password == undefined || password == ''){
+            var htmlpw = '';
+            htmlpw += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa nhập mật khẩu game.</small></div></div>';
+
+            $('.pw-error').html('');
+            $('.pw-error').html(htmlpw);
+
+            $('.password').css('border-color','#DA4343');
+
+            isSet =  false;
+        }else {
+            $('.password').css('border-color','#DCDEE9');
+            $('.pw-error').html('');
+        }
+
+        var capcha = $('.capcha').val();
+
+        if (capcha == null || capcha == undefined || capcha == ''){
+            var htmlpw = '';
+            htmlpw += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa nhập mã bảo vệ.</small></div></div>';
+
+            $('.cc-error').html('');
+            $('.cc-error').html(htmlpw);
+
+            $('.capcha').css('border-color','#DA4343');
+
+            isSet =  false;
+        }else {
+            $('.cc-error').html('');
+            $('.capcha').css('border-color','#DCDEE9');
+        }
+
+        if (isSet == false){
+            return false
+        }
+
+        $('#openOrder').modal('show');
+
+    })
+
+    $('body').on('click','.btn-success-data',function(e){
+        e.preventDefault();
+
+        $('#successModal').modal('show');
+        $('#openOrder').modal('hide');
+    })
+
+    $('body').on('click','.close-modal-default',function(e){
+        e.preventDefault();
+        $('#successModal').modal('hide');
+        $('#rejectModal').modal('hide');
+        $('#openOrder').modal('hide');
+    })
+
+
 })
