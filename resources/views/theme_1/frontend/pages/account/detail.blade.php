@@ -40,7 +40,7 @@
                      array_pop($data_cookie);
                  }
                 $data_save = [
-                    'image'=>$data->image,
+                    'image'=>$data->image??'',
                     'category'=>isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title,
                     'randId'=>$data->randId,
                     'price'=>$data->price,

@@ -123,14 +123,9 @@ $(document).ready(function(){
                 // }
             },
             error: function (data) {
-                swal({
-                    title: "Lỗi !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(nạp thẻ (getAmount)(/nap-the))')
+
+
             },
             complete: function (data) {
 
@@ -196,14 +191,8 @@ $(document).ready(function(){
                 }
             },
             error: function (data) {
-                swal({
-                    title: "Có lỗi xảy ra !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(nạp thẻ (postCharge)(/nap-the))')
+
             },
             complete: function (data) {
                 $('#reload_1').trigger('click');

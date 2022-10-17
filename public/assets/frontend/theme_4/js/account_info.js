@@ -67,6 +67,7 @@ $(document).ready(function(){
 
                 }
                 if(data.status == 401){
+
                     if($(window).width() > 992){
 
                         $('.box-loading').hide();
@@ -89,7 +90,6 @@ $(document).ready(function(){
                     }
 
                     $('meta[name="jwt"]').attr('content','');
-
                 }
                 if(data.status === "ERROR"){
                     alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
