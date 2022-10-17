@@ -95,20 +95,7 @@ $(document).ready(function(){
 
             },
             complete: function (data) {
-                $('.lazy').Lazy({
-                    // your configuration goes here
-                    placeholder: "data:image/gif;base64,R0lGODlhEALAPQAPzl5uLr9Nrl8e7...",
-                    // scrollDirection: 'vertical',
-                    effect: 'fadeIn',
-                    visibleOnly: true,
-                    afterLoad: function(element) {
-                        $('img.lazy').css('background-image','unset')
-                    },
-                    onFinishedAll: function() {
-                        // called once all elements was handled
-                    }
-
-                });
+                LazyLoad();
             }
         });
     }
