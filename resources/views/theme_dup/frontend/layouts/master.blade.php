@@ -188,7 +188,8 @@
     <!-- End Google Tag Manager (noscript) -->
 @endif
 {{--<div class="{{ Request::is('/')?'main-lay-out':'' }}">--}}
-<div class="main-lay-out @hide('theme_dup_route-name-header')  main-lay-out-hide @endhide">
+{{--<div class="main-lay-out @hide('theme_dup_route-name-header')  main-lay-out-hide @endhide">--}}
+<div class="main-lay-out ">
     @include('frontend.layouts.includes.header')
     <div class="content" style="">
         @yield('content')

@@ -20,7 +20,7 @@
 .account_sidebar_menu_title p{
     font-size: 20px;
     margin-bottom: 22px;
-    color: #3f444a;
+    color: white;
     font-weight: 500;
     text-transform: uppercase;
 }
@@ -47,7 +47,7 @@
 }
 .account_sidebar_menu_nav ul li a{
     font-weight: 400;
-    color: #3f444a;
+    color: white;
 }
 .account_sidebar_menu_nav ul li a:hover{
     color: #32c5d2;
@@ -61,7 +61,7 @@
 /*thông tin tài khoản*/
 .account_sidebar_content_title p{
     font-size: 30px;
-    color: #505050;
+    color: white;
     margin: 0 0 30px 0;
     font-weight: 600;
     text-transform: uppercase;
@@ -144,6 +144,7 @@
 .account_pay_card .control-label{
     text-align: right;
     padding-top: 8px;
+    color: white;
 }
 /*.account_pay_card th,.account_pay_card td{*/
 /*    word-break: break-word;*/
@@ -509,4 +510,10 @@ button:focus{
 
 .result-amount-loadding__nick-lien-quan{
     display: none;
+}
+.account_content .container{
+    background: rgba(0,0,0,0.7);
+}
+.account_sidebar_content table th,.account_sidebar_content table td{
+    color: white;
 }

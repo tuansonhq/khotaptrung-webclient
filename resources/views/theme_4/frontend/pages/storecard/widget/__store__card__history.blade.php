@@ -1,10 +1,18 @@
 
-<!-- BEGIN List Items -->
-{{--@dd($data->data)--}}
-
-
 @if(empty($data->data))
-    <div class="row" >
+    <table class="table table-hover table-custom-res">
+        <thead>
+        <tr>
+            <th class="hidden-xs">Thời gian</th>
+            <th>ID</th>
+            <th>Loại</th>
+            <th>Mô tả</th>
+            <th>Trị giá</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
+        </tr>
+        </thead>
+        <tbody>
         @if(isset($data) && count($data) > 0)
 
             @foreach ($data as $key => $item)
@@ -150,65 +158,12 @@
             {{--            <div class="col-md-12 data-card">--}}
             {{--                <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>--}}
             {{--            </div>--}}
-
         @endif
-    </div>
+        <tbody>
+    </table>
 @endif
-<div class="row">
-    <div class="col-md-12 left-right justify-content-end">
-        <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row mt-2 border-top pt-3">
-            <div class="text-secondary mb-2">
-                @if(isset($total) && isset($per_page))
-                    Hiển thị {{ $per_page }} / {{ $total }} kết quả
-                @endif
-            </div>
+<!-- END: PAGE CONTENT -->
 
+<div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
 
-            <nav class="page-pagination mb-2 paginate__v1_storecard paginate__v1_mobie frontend__panigate">
-                @if(isset($data))
-                    @if($data->total()>1)
-                        <div class="row marinautooo paginate__history paginate__history__fix justify-content-end">
-                            <div class="col-auto paginate__category__col">
-                                <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-                                    {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                @endif
-            </nav>
-        </div>
-    </div>
 </div>
-
-{{--<div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row mt-2">--}}
-{{--    <div class="text-secondary mb-2">--}}
-{{--        Hiển thị 5 / 10 kết quả--}}
-{{--    </div>--}}
-{{--    <nav class="page-pagination mb-2">--}}
-{{--        <ul class="pagination">--}}
-{{--            <li class="page-item disabled">--}}
-{{--                <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i class="las la-angle-left"></i></a>--}}
-{{--            </li>--}}
-{{--            <li class="page-item"><a class="page-link" href="#">1</a></li>--}}
-{{--            <li class="page-item active" aria-current="page">--}}
-{{--                <a class="page-link" href="#">2</a>--}}
-{{--            </li>--}}
-{{--            <li class="page-item"><a class="page-link" href="#">3</a></li>--}}
-{{--            <li class="page-item">--}}
-{{--                <a class="page-link" href="#"><i class="las la-angle-right"></i></a>--}}
-{{--            </li>--}}
-{{--        </ul>--}}
-{{--    </nav>--}}
-{{--</div>--}}
-<script>
-    $('body').on('click','i.la-copy',function(e){
-        data = $(this).data('id');
-        var $temp = $("<input>");
-        $("body #copy").html($temp);
-        $temp.val($.trim(data)).select();
-        document.execCommand("copy");
-        $temp.remove();
-    });
-</script>
-
