@@ -21,15 +21,15 @@
                                         {{--                                                Anh khuyen mai--}}
                                         @if(isset($item->image_icon))
                                             @if(isset($item->custom->image_icon))
-                                                <img class="game-list-image-sticky lazy" data-src="{{ \App\Library\MediaHelpers::media($item->custom->image_icon) }}" alt="">
+                                                <img class="game-list-image-sticky lazy" data-original="{{ \App\Library\MediaHelpers::media($item->custom->image_icon) }}" alt="">
                                             @else
-                                                <img class="game-list-image-sticky" data-src="{{ \App\Library\MediaHelpers::media($item->image_icon) }}" alt="">
+                                                <img class="game-list-image-sticky" data-original="{{ \App\Library\MediaHelpers::media($item->image_icon) }}" alt="">
                                             @endif
                                         @endif
                                         @if(isset($item->image))
-                                            <img class="game-list-image-in lazy" data-src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
+                                            <img class="game-list-image-in lazy" data-original="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
                                         @else
-                                            <img class="game-list-image-in" data-src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
+                                            <img class="game-list-image-in" data-original="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
                                         @endif
                                         {{--                                                Anh chinh --}}
 
@@ -39,17 +39,17 @@
                                         {{--                                                Anh khuyen mai--}}
                                         @if(isset($item->image_icon))
                                             @if(isset($item->custom->image_icon))
-                                                <img class="game-list-image-sticky lazy" data-src="{{ \App\Library\MediaHelpers::media($item->custom->image_icon) }}" alt="">
+                                                <img class="game-list-image-sticky lazy" data-original="{{ \App\Library\MediaHelpers::media($item->custom->image_icon) }}" alt="">
                                             @else
-                                                <img class="game-list-image-sticky" data-src="{{ \App\Library\MediaHelpers::media($item->image_icon) }}" alt="">
+                                                <img class="game-list-image-sticky" data-original="{{ \App\Library\MediaHelpers::media($item->image_icon) }}" alt="">
                                             @endif
                                         @else
 
                                         @endif
                                         @if(isset($item->image))
-                                            <img class="game-list-image-in lazy" data-src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
+                                            <img class="game-list-image-in lazy" data-original="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
                                         @else
-                                            <img class="game-list-image-in" data-src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
+                                            <img class="game-list-image-in" data-original="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
                                         @endif
                                         {{--                                                Anh chinh --}}
 
@@ -60,17 +60,17 @@
                             {{--                                                Anh khuyen mai--}}
                                 @if(isset($item->image_icon))
                                     @if(isset($item->custom->image_icon))
-                                        <img class="game-list-image-sticky lazy" data-src="{{ \App\Library\MediaHelpers::media($item->custom->image_icon) }}" alt="">
+                                        <img class="game-list-image-sticky lazy" data-original="{{ \App\Library\MediaHelpers::media($item->custom->image_icon) }}" alt="">
                                     @else
-                                        <img class="game-list-image-sticky" data-src="{{ \App\Library\MediaHelpers::media($item->image_icon) }}" alt="">
+                                        <img class="game-list-image-sticky" data-original="{{ \App\Library\MediaHelpers::media($item->image_icon) }}" alt="">
                                     @endif
                                 @else
 
                                 @endif
                                 @if(isset($item->image))
-                                    <img class="game-list-image-in lazy" data-src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
+                                    <img class="game-list-image-in lazy" data-original="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
                                 @else
-                                    <img class="game-list-image-in" data-src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
+                                    <img class="game-list-image-in" data-original="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
                                 @endif
                                 {{--                                                Anh chinh --}}
 

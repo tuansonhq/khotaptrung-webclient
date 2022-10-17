@@ -17,14 +17,14 @@
 {{--                                                                                    Anh khuyen mai--}}
 
                                     @if(isset($item->image_icon))
-                                        <img class="game-list-image-sticky lazy" data-src="{{\App\Library\MediaHelpers::media($item->image_icon)}}" alt="">
+                                        <img class="game-list-image-sticky lazy" data-original="{{\App\Library\MediaHelpers::media($item->image_icon)}}" alt="">
                                     @else
 
                                     @endif
                                     @if(isset($item->image))
-                                        <img class="game-list-image-in lazy" data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
+                                        <img class="game-list-image-in lazy" data-original="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
                                     @else
-                                        <img class="game-list-image-in lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
+                                        <img class="game-list-image-in lazy" data-original="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
                                     @endif
 {{--                                                                                    Anh chinh --}}
 
@@ -72,7 +72,7 @@
                                         @if(isset($item->custom) && isset($item->custom->meta))
                                             @foreach($item->custom->meta as $key =>$val)
                                                 @if($key == "image_btn")
-                                                    <img data-src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
+                                                    <img data-original="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
                                                 @endif
                                             @endforeach
                                         @else
