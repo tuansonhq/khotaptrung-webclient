@@ -177,7 +177,9 @@ $(document).ready(function(){
                         buttons: {
                             cancel: "Đóng",
                         },
-                    })
+                    }).then((value) => {
+                        window.location.href = "/nap-the";
+                    });
                 }
                 else{
                     swal({

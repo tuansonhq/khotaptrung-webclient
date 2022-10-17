@@ -30,7 +30,7 @@
             </form>
             <div class="social-auth">
                 <p>- HOẶC -</p>
-                <a class="btn  btn-social btn-facebook btn-flat d-inline-block" href=""><i class="fab fa-facebook"></i> Login FB</a>
+                <a class="btn  btn-social btn-facebook btn-flat d-inline-block" href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}"><i class="fab fa-facebook"></i> Login FB</a>
             </div>
 
         </div>
