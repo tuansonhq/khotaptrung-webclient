@@ -51,6 +51,8 @@
                                     <span class="badge badge-dark">Thất bại</span>
                                 @elseif($item->status == 0)
                                     <span class="badge badge-danger">Đã hủy</span>
+                                @elseif($item->status == 7)
+                                    <span class="badge badge-dark">Kết nối với NCC thất bại</span>
                                 @endif
                             </td>
                             <td>
