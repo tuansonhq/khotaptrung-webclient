@@ -11,7 +11,7 @@
                     <a href="/" class="breadcrumb-link">Trang chủ</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="/lich-su-mua-nick" class="breadcrumb-link">Tài khoản đã mua</a>
+                    <a href="/lich-su-mua-account" class="breadcrumb-link">Tài khoản đã mua</a>
                 </li>
             </ul>
 
