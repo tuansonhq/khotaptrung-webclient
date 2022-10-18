@@ -108,8 +108,4 @@ $(document).ready(function () {
 
     })
 
-    $(document).on('click', '.the-cao-atm',function(e){
-        $('#notBuy').modal('show');
-    });
-
 });
