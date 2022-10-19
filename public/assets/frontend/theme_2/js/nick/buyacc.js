@@ -109,10 +109,6 @@ $(document).ready(function () {
         $('#notInbox').modal('show');
     });
 
-    $(document).on('click', '.the-cao-atm',function(e){
-        $('#notBuy').modal('show');
-    });
-
 
 
     function convertToSlug(title) {
