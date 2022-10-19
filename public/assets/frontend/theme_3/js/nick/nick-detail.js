@@ -679,4 +679,10 @@ $(document).ready(function (e) {
     $('.modal-lmht .modal-body').on('scroll',function () {
         $('html body').trigger('scroll');
     });
+
+    $(document).on('click','.js_copy_input',function (e) {
+        e.preventDefault();
+        let val = $(this).parent().find('input').val();
+        navigator.clipboard.writeText(val);
+    });
 })
