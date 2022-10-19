@@ -315,24 +315,6 @@
                 </div>
             </div>
 
-            <!-- Modal 04 -->
-            <div class="modal fade modal-small" id="notBuy">
-                <div class="modal-dialog modal-dialog-centered modal-custom">
-                    <div class="modal-content">
-                        <div class="modal-header justify-content-center p-0">
-                            <img class="c-pt-16 c-pb-16" src="/assets/frontend/{{theme('')->theme_key}}/image/son/thatbai.png" alt="">
-                        </div>
-                        <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
-                            <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua thẻ nick thất bại</p>
-                            <p class="fw-400 fz-13 c-mt-10 mb-0">Rất tiếc việc mua nick đã thất bại do tài khoản của bạn không đủ, vui lòng nạp tiền để tiếp tục giao dịch!</p>
-                        </div>
-                        <div class="modal-footer c-p-24">
-                            <button class="btn primary handle-recharge-modal" data-tab="1" data-dismiss="modal">Nạp tiền</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <input type="hidden" name="slug" class="slug" value="{{ $slug }}">
 
             <input type="hidden" name="slug" class="slug_category" value="{{ $slug_category }}">

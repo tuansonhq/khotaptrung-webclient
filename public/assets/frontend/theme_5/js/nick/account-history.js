@@ -12,7 +12,7 @@ let is_last_page = false;
 function loadDataApi(query) {
     $.ajax({
         type: 'GET',
-        url: '/lich-su-mua-nick',
+        url: '/lich-su-mua-account',
         data: query,
         beforeSend: function (xhr) {
             /*Thêm loading khi tải*/

@@ -49,7 +49,7 @@
                             @endif
                         </div>
                         <div>
-                            <i class="fas fa-newspaper"></i><a href=""> {{ $item->groups[0]->title }} </a>
+                            <i class="fas fa-newspaper"></i><a href=""> {{@$item->groups[0]->title }} </a>
                         </div>
                     </div>
 
