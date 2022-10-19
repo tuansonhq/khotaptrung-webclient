@@ -370,9 +370,6 @@
                                         <div class="col-md-12 left-right">
                                             <span>Để tránh các trường hợp xấu xảy ra, quý khách vui lòng thêm thông tin (Email và Số điện thoại) Để đảm bảo không có vấn đề sau khi giao dịch tại shop! Xin cảm ơn!</span>
                                         </div>
-                                        <div class="col-md-12 left-right padding-order-ct">
-                                            <span>Để tránh các trường hợp xấu xảy ra, quý khách vui lòng thêm thông tin (Email và Số điện thoại) Để đảm bảo không có vấn đề sau khi giao dịch tại shop! Xin cảm ơn!</span>
-                                        </div>
                                     </div>
                                 </div>
 

@@ -74,6 +74,7 @@ $(document).ready(function () {
 
         let formSubmit = $(this);
         let url = formSubmit.attr('action');
+        let accRanId = formSubmit.data('ranid');
         let btnSubmit = formSubmit.find(':submit');
         let btnText = $(btnSubmit).text();
         $(btnSubmit).text('Đang xử lý...');
@@ -92,8 +93,8 @@ $(document).ready(function () {
 
                 $('#openOrder').modal('hide');
                 if(response.status == 1){
+                    $('#nickIdInput').val(accRanId);
                     $('#successModal').modal('show');
-
                 }
                 else if (response.status == 2){
                     swal(
@@ -215,5 +216,11 @@ function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',st
                 scrollTop: $('#account_data').offset().top - 300
             }, 600 );
         }
+    });
+
+    $(document).on('click','.js_copy_input',function (e) {
+        e.preventDefault();
+        let val = $(this).parent().find('input').val();
+        navigator.clipboard.writeText(val);
     });
 }

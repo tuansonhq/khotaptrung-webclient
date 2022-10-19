@@ -1358,6 +1358,75 @@
             </form>
         </div>
 
+        <div class="modal fade login show order-modal" id="successModal" aria-modal="true">
+
+            <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
+                <!--        <div class="image-login"></div>-->
+                <div class="modal-content">
+                    <div class="modal-header p-0" style="border-bottom: 0">
+                        <div class="row marginauto modal-header-order-ct">
+                            <div class="col-12 span__donhang text-center" style="position: relative">
+                                <span>Mua tài khoản thành công</span>
+                                <img class="img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-body modal-body-order-ct">
+                        <div class="row marginauto">
+
+                            <div class="col-md-12 left-right image-success">
+                                <div class="row marginauto justify-content-center">
+                                    <div class="col-auto">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/group.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 left-right">
+                                <div class="row marginauto title-tra-gop-success-row">
+                                    <div class="col-md-12 left-right body-title-detail-span-ct">
+                                        <span>ID tài khoản</span>
+                                    </div>
+                                    <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">
+                                        <input value="{{ $data->randId }}" readonly autocomplete="off" class="input-defautf-ct" type="text">
+                                        <img class="js_copy_input" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="icon_copy" data-tippy-content="Đã copy tài khoản">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 left-right padding-order-16-ct">
+                                <div class="row marginauto">
+                                    <div class="col-md-12 left-right background-order-ct">
+                                        <div class="row marginauto title-success-thanh-cong">
+                                            <div class="col-md-12 left-right">
+                                                <span>Nick của bạn được sẽ gửi tới trang Lịch sử mua Nick, vui lòng kiểm tra và đăng nhập vào Game, thay đổi mật khẩu để bảo mật cho tài khoản đã mua</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 left-right">
+                                <div class="row marginauto justify-content-center gallery-right-footer">
+                                    <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
+                                        <button type="button" class="button-success-secondary">
+                                            <a href="/" style="display: block">Trang chủ</a>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
+                                        <button type="button" class="button-success-primary">
+                                            <a href="/lich-su-mua-account" style="display: block">Lịch sử</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <div class="modal fade login show order-modal" id="accDetail" aria-modal="true" data-backdrop="static" data-keyboard="false">

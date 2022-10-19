@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="formDonhangAccount{{ $item->randId }}" style="display: none">
                                         @if(App\Library\AuthCustom::check() && App\Library\AuthCustom::user()->balance >= $data->price)
-                                        <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
+                                        <form class="formDonhangAccount" data-ranid="{{ $item->randId }}" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
                                         @else
                                         <form class="formDonhangAccount">
                                         @endif
