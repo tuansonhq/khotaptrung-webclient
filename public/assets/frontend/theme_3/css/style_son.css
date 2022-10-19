@@ -3551,7 +3551,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 .button-success-secondary a {
     display: block;
     color: #F67600;
-    padding: 12px 0;
+    padding: 10px 0;
     font-size: 16px;
     font-weight: 600;
 }
@@ -3568,6 +3568,23 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     color: #FFFFFF;
 }
 
+.button-success-secondary:disabled {
+    border: 1px solid #7D7D7D;
+}
+
+.button-success-secondary:disabled a {
+    color: #7D7D7D;
+    font-weight: 400;
+}
+
+.button-success-secondary:disabled:hover {
+    background: transparent;
+}
+
+.button-success-secondary:disabled:hover a {
+    color: #7D7D7D;
+}
+
 .button-success-primary {
     width: 100%;
     border: 1px solid #F67600;
@@ -3578,7 +3595,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 .button-success-primary a {
     display: block;
     color: #FFFFFF;
-    padding: 12px 0;
+    padding: 10px 0;
     font-size: 16px;
     font-weight: 600;
 }
