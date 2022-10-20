@@ -2,6 +2,12 @@
 
 
 return [
+    'type' => [
+        '1' => 'Bán nick',
+        '2' => 'Dịch vụ',
+        '3' => 'Nạp game',
+        '4' => 'Bán thẻ',
+    ],
     'user'=>[
         'encrypt' => env('ENCRYPT_USER')
     ],

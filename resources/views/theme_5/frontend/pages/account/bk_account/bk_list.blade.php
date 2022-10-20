@@ -7,7 +7,6 @@
 @endsection
 
 @section('content')
-
     <div class="container c-container" id="account-list">
         @if($data == null)
             <div class="item_buy">
@@ -29,6 +28,7 @@
 
             </div>
         @else
+
         <ul class="breadcrumb-list">
             <li class="breadcrumb-item">
                 <a href="/" class="breadcrumb-link">Trang chủ</a>
@@ -37,7 +37,7 @@
                 <a href="/mua-acc" class="breadcrumb-link">Shop Account</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="" class="breadcrumb-link">{{@$data->category->title}}</a>
+                <a href="/mua-acc/{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}" class="breadcrumb-link">Danh sách Nick Liên Quân</a>
             </li>
         </ul>
         <div class="head-mobile">
@@ -55,7 +55,7 @@
 
             <section class="list-account">
                 <div class="section-header justify-content-between  d-none d-lg-flex c-py-16">
-{{--                    <h2 class="section-title">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }} </h2>--}}
+                    <h2 class="section-title">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }} </h2>
                     <form action="" class="form-search position-relative">
                         <input type="search" placeholder="Tìm kiếm" class="has-submit">
                         <button type="submit"></button>
@@ -103,95 +103,17 @@
                 </div>
                 <!-- End Mobile -->
 
-{{--                <div class="is-load">--}}
-{{--                    <div class="loading-wrap">--}}
-{{--                        <span class="modal-loader-spin"></span>--}}
-{{--                    </div>--}}
-{{--                    <div class="listing-account list-content">--}}
-
-{{--                        --}}{{--                        @include('frontend.pages.account.widget.__datalist')--}}
-
-{{--                    </div>--}}
-{{--                </div >--}}
-{{--                    dataa lisst--}}
-
-                <div class="listing-account list-content">
-
-                    @if(isset($data->product))
-                        @php
-                            $product = $data->product;
-                        @endphp
-                        @if(isset($product->data) && count($product->data) > 0)
-                            @foreach ($product->data as $item)
-
-                                <div class="item-account">
-                                    <div class="card card-hover h-100">
-                                        <a href="/acc/{{ $item->slug }}" class="card-body scale-thumb">
-                                            <div class="account-thumb c-mb-8">
-                                                <img onerror="imgError(this)"  src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->id??'' }}"
-                                                     class="account-thumb-image lazy">
-                                            </div>
-                                            <div class="account-title">
-                                                <div class="text-title fw-700 text-limit limit-1">{{ isset($item->title) ? $item->title :  $data->title }}</div>
-                                            </div>
-                                            <div class="account-info c-mb-8">
-                                                <div class="info-attr">
-                                                    Đã bán: 0
-                                                </div>
-                                                <div class="info-attr c-mb-8">
-                                                    ID: #{{ $item->id }}
-                                                </div>
-                                                @if(isset($item->product_attribute) && count($item->product_attribute))
-                                                    @php
-                                                        $product_attribute = $item->product_attribute;
-                                                    @endphp
-                                                    @foreach($product_attribute as $key => $attribute)
-                                                        @if($key < 4)
-                                                        <div class="info-attr">
-                                                            {{ $attribute->attribute->title??null }}: {{ $attribute->product_attribute_value_able->title??null }}
-                                                        </div>
-                                                        @endif
-                                                    @endforeach
-
-                                                @endif
-
-
-                                            </div>
-                                            @php
-                                                if (isset($item->price_old)) {
-                                                    $sale_percent = (($item->price_old - $item->price) / $item->price_old) * 100;
-                                                    $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
-                                                } else {
-                                                    $sale_percent = 0;
-                                                }
-                                            @endphp
-                                            <div class="price">
-                                                @if ($sale_percent > 0)
-                                                    <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
-                                                    <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($item->price_old)) }}đ</div>
-                                                    <div class="discount">{{$sale_percent}}%</div>
-                                                @else
-                                                    <div class="price-current w-100 c-pb-16">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
-                                                @endif
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            @endforeach
-
-                        @endif
-                    @endif
-
-                    <div class="c-pt-24 w-100">
-                        @if(isset($items) && count($items))
-                            {{ $items->appends(request()->query())->links('pagination::pagination_3_0') }}
-                        @endif
+                <div class="is-load">
+                    <div class="loading-wrap">
+                        <span class="modal-loader-spin"></span>
                     </div>
+                    <div class="listing-account list-content">
 
+                        {{--                        @include('frontend.pages.account.widget.__datalist')--}}
 
+                    </div>
+                </div >
 
-                </div>
             </section>
             <!-- Modal Filter -->
             <div class="modal fade" id="modal-filter">
@@ -237,42 +159,108 @@
                                         <option value="2">Đã bán</option>
                                     </select>
                                 </div>
-{{--                                @dd($data)--}}
-{{--                                @dd($data->attribute_set)--}}
-
-                                @if(isset($data->attribute_set))
-                                    @php
-                                        $attribute_set = $data->attribute_set;
-                                    @endphp
-                                    @if(isset($attribute_set->attribute_group) && count($attribute_set->attribute_group))
-                                        @php
-                                            $attribute_group = $attribute_set->attribute_group;
-                                        @endphp
-                                        @foreach($attribute_group as $att)
-                                            @if(isset($att->attribute) && count($att->attribute))
-                                                @php
-                                                    $attribute = $att->attribute;
-                                                @endphp
-                                                <div class="input-group">
-                                                    <label class="form-label">
-                                                        {{ $att->title }}
-                                                    </label>
-                                                    <select class="account-filter-field" name="select_data"  data-title="{{ $att->title }}">
-                                                        <option value="" selected>--Không chọn--</option>
-                                                        @foreach($attribute as $val)
-                                                            <option value="{{ $val->id }}">{{ $val->title }}</option>
+                                @if(isset($auto_properties))
+                                    @foreach($auto_properties as $auto_propertie)
+                                        @if($auto_propertie->key == 'champions')
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    {{ $auto_propertie->name }}
+                                                </label>
+                                                <select name="champions_data" class="select-2-custom w-100" id="">
+                                                    <option value="">--Không chọn--</option>
+                                                    @if(isset($auto_propertie->childs))
+                                                        @foreach($auto_propertie->childs as $child)
+                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
                                                         @endforeach
-                                                    </select>
-                                                </div>
-                                            @endif
-                                        @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
 
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    Trang phục
+                                                </label>
+                                                <select name="skill_data" class="select-2-custom w-100" id="">
+                                                    <option value="">--Không chọn--</option>
+                                                    @if(isset($auto_propertie->childs) && count($auto_propertie->childs))
+                                                        @foreach($auto_propertie->childs as $child)
 
+                                                            @if(isset($child->childs) && count($child->childs))
+                                                                @foreach($child->childs as $c_child)
+                                                                    <option value="{{ $c_child->id }}">{{ $c_child->name }}</option>
+                                                                @endforeach
+                                                            @endif
 
+                                                        @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
 
-                                    @endif
+                                        @elseif($auto_propertie->key == 'tftcompanions')
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    {{ $auto_propertie->name }}
+                                                </label>
+                                                <select name="tftcompanions_data" class="select-2-custom w-100" id="">
+                                                    <option value="">--Không chọn--</option>
+                                                    @if($auto_propertie->childs)
+                                                        @foreach($auto_propertie->childs as $child)
+                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        @elseif($auto_propertie->key == 'tftmapskins')
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    {{ $auto_propertie->name }}
+                                                </label>
+                                                <select name="tftmapskins_data" class="select-2-custom w-100" id="">
+                                                    <option value="">--Không chọn--</option>
+                                                    @if($auto_propertie->childs)
+                                                        @foreach($auto_propertie->childs as $child)
+                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
+
+                                        @elseif($auto_propertie->key == 'tftdamageskins')
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    {{ $auto_propertie->name }}
+                                                </label>
+                                                <select name="tftdamageskins_data" class="select-2-custom w-100" id="">
+                                                    <option value="">--Không chọn--</option>
+                                                    @if($auto_propertie->childs)
+                                                        @foreach($auto_propertie->childs as $child)
+                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
+
+                                        @endif
+                                    @endforeach
+                                @else
+                                @if(isset($dataAttribute) && count($dataAttribute) > 0)
+                                    @foreach($dataAttribute as $val)
+                                        @if($val->position == 'select')
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    {{ $val->title }}
+                                                </label>
+                                                <select class="account-filter-field" name="select_data"  data-title="{{ $val->title }}">
+                                                    <option value="" selected>--Không chọn--</option>
+                                                    @foreach($val->childs as $child)
+                                                        <option value="{{ $child->id }}">{{ $child->title }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
+                                    @endforeach
                                 @endif
-
+                                @endif
 {{--                                <div class="input-group">--}}
 {{--                                    <label class="form-label">--}}
 {{--                                        Giá tiền--}}
@@ -338,37 +326,22 @@
                                 </select>
                             </div>
 
-                            @if(isset($data->attribute_set))
-                                @php
-                                    $attribute_set = $data->attribute_set;
-                                @endphp
-                                @if(isset($attribute_set->attribute_group) && count($attribute_set->attribute_group))
-                                    @php
-                                        $attribute_group = $attribute_set->attribute_group;
-                                    @endphp
-                                    @foreach($attribute_group as $att)
-                                        @if(isset($att->attribute) && count($att->attribute))
-                                            @php
-                                                $attribute = $att->attribute;
-                                            @endphp
-                                            <div class="input-group">
-                                                <label class="form-label">
-                                                    {{ $att->title }}
-                                                </label>
-                                                <select class="account-filter-field" name="select_data"  data-title="{{ $att->title }}">
-                                                    <option value="" selected>--Không chọn--</option>
-                                                    @foreach($attribute as $val)
-                                                        <option value="{{ $val->id }}">{{ $val->title }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        @endif
-                                    @endforeach
-
-
-
-
-                                @endif
+                            @if(isset($dataAttribute) && count($dataAttribute) > 0)
+                                @foreach($dataAttribute as $val)
+                                    @if($val->position == 'select')
+                                        <div class="input-group">
+                                            <label class="form-label">
+                                                {{ $val->title }}
+                                            </label>
+                                            <select class="account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}" id="">
+                                                <option value="" selected disabled>--Không chọn--</option>
+                                                @foreach($val->childs as $child)
+                                                    <option value="{{ $child->id }}">{{ $child->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    @endif
+                                @endforeach
                             @endif
                         </div>
                         <div class="sheet-footer">
@@ -422,7 +395,7 @@
         {{--            Dịch vụ khác   --}}
         @include('frontend.widget.__services__other')
 
-{{--            <input type="hidden" value="{{ $slug }}" name="slug" class="slug">--}}
+            <input type="hidden" value="{{ $slug }}" name="slug" class="slug">
             {{--    <input type="hidden" value="{{ $slug_category }}" name="slug_category" class="slug_category">--}}
             <input type="hidden" name="id_data" class="id_data" value="">
             <input type="hidden" name="title_data" class="title_data" value="">
@@ -467,8 +440,8 @@
 @endsection
 
 @section('scripts')
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/buyaccrandom.js?v={{time()}}"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/account-list.js?v={{time()}}"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/buyaccrandom.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/account-list.js?v={{time()}}"></script>
 
     <script>
         // config select 2

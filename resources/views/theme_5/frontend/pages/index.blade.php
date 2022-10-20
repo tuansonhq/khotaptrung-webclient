@@ -18,16 +18,20 @@
         @endphp
 
         <div class="container c-container">
+            @include('frontend.widget.__content__game__v2')
             <input type="search" placeholder="Tìm kiếm" class="search c-mt-16 d-lg-none">
         @if(isset($data_widget))
         @foreach($data_widget as $key => $value)
                 @include('frontend.widget.'.$value.'',with(['title'=>$data_title[$key]]))
             @endforeach
+
         </div>
+
         @endif
     @else
         <div class="container c-container">
             <input type="search" placeholder="Tìm kiếm" class="search c-mt-16 d-lg-none">
+
 
             {{--        Slider banner  --}}
             @include('frontend.widget.__slider__banner__home')
@@ -41,6 +45,9 @@
 
             {{--        Dành cho bạn  --}}
             @include('frontend.widget.__danh__cho__ban')
+
+            {{--            v2--}}
+            @include('frontend.widget.__content__game__v2')
 
             {{--        Dịch vụ  --}}
             @include('frontend.widget.__content__home__dichvu')
