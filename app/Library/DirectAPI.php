@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Session;
 
 class DirectAPI{
-    public static function _makeRequest($url, array $data, $method,$log = false,$flag = 0){
+    public static function _makeRequest($url, array $data, $method,$log = false,$flag = 0,$type = null){
         $url_data = $url;
         $resultChange = new \stdClass();
         $http_url = \Request::server ("HTTP_HOST");
@@ -20,10 +20,10 @@ class DirectAPI{
             return $resultChange;
         }
 
-        $data ['domain'] = str_replace('www.','',$http_url);
-        $data ['client'] =  str_replace('www.','',$http_url);
-//        $data ['domain'] = config('api.client');
-//        $data ['client'] =config('api.client');
+//        $data ['domain'] = str_replace('www.','',$http_url);
+//        $data ['client'] =  str_replace('www.','',$http_url);
+        $data ['domain'] = config('api.client');
+        $data ['client'] =config('api.client');
 
         if(session()->has('jwt')){
             $data['token'] = session()->get('jwt');
@@ -84,7 +84,12 @@ class DirectAPI{
             fwrite($myfile, $txt ."\n");
             fclose($myfile);
         }
-        $url = config('api.host').$url;
+        if($type == 1){
+            $url = config('api.host_2').$url;
+        }
+        else{
+            $url = config('api.host').$url;
+        }
         if($method == "GET"){
             $url = $url.'?'.$dataPost;
         }
