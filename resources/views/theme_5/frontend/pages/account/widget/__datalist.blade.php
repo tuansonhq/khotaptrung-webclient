@@ -1,3 +1,4 @@
+
 @if(empty($data->data))
 
     @if(isset($items) && count($items) > 0)

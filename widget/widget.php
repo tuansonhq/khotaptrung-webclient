@@ -274,16 +274,12 @@ View::composer('frontend.widget.__content__home__game', function ($view) {
 
 //    Acc
 
+    $data = null;
     $data = \Cache::rememberForever('__content__home__game', function() {
-
-        $url = '/acc';
+        $url = '/get-category';
         $method = "GET";
-        $dataSend = array();
-        $dataSend['data'] = 'category_list';
-        $dataSend['module'] = 'acc_category';
-
-        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-
+        $val = array();
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
         return $data = $result_Api->response_data->data??null;
     });
 
@@ -1328,7 +1324,6 @@ View::composer('frontend.widget.__menu__category__article_theme_5', function ($v
 
         return $data = $result_Api->response_data->datacategory??null;
     });
-
     foreach ($data as $key => $value) {
         if ($key > 1) {
             break;
@@ -1350,3 +1345,4 @@ View::composer('frontend.widget.__menu__category__article_theme_5', function ($v
 
     return $view->with('data_category', $data)->with('data_detail', $dataDetail);
 });
+
