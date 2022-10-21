@@ -16,95 +16,93 @@
       <h2 style="font-size: 30px;font-weight: bold;text-transform: uppercase">MUA THẺ GAME GIÁ RẺ </h2>
    </div>
 
-   <form method="POST" action="{{route('postStoreCard')}}" id="form-storecard" >
-      @csrf
-      <div class="container detail-service">
-         <div class="row">
+   @if (isset($data_menh_gia) && isset($data_nha_mang))
+      <form method="POST" action="{{route('postStoreCard')}}" id="form-storecard" >
+         @csrf
+         <div class="container detail-service">
+            <div class="row">
 
-            <div class="col-md-8 "   style="margin-bottom:20px;">
-               <div class="service-info">
-                  <div class="row">
-                     <div class="col-md-5 d-none d-md-block d-lg-block">
-                        <div class="">
-                           <div class="news_image" style="margin-top: 8px;">
-                              <img src="/assets/frontend/{{theme('')->theme_key}}/images/store-card.jpg" alt="">
+               <div class="col-md-8 "   style="margin-bottom:20px;">
+                  <div class="service-info">
+                     <div class="row">
+                        <div class="col-md-5 d-none d-md-block d-lg-block">
+                           <div class="">
+                              <div class="news_image" style="margin-top: 8px;">
+                                 <img src="/assets/frontend/{{theme('')->theme_key}}/images/store-card.jpg" alt="">
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-md-7 " id="formStoreCard"  >
+                           <div class="mb-2 control-label bb"><strong>Chọn nhà mạng:</strong> </div>
+                           <div class="mb-3">
+                              <select name="telecom" id="telecom_storecard" class="server-filter form-control t14" style="">
+                                 @foreach($data_nha_mang as $key => $val)
+                                    <option data-id="{{ $key }}" value="{{ $val }}">{{ $val }}</option>
+                                 @endforeach
+                              </select>
+                           </div>
+                           <div class="mb-2 control-label bb"><strong>Mệnh giá:</strong> </div>
+                           <div class="mb-3">
+                              <select name="amount" id="amount_storecard" class="server-filter form-control t14" style="">
+                                 <option value="" selected disabled hidden>Vui lòng chọn mệnh giá</option>
+                                 @foreach($data_menh_gia as $key => $val)
+                                    @foreach ($val as $option)
+                                       <option data-telecom="{{ $key }}" value="{{ $option }}" hidden>{{ $option }}</option>
+                                    @endforeach
+                                 @endforeach
+                              </select>
+                           </div>
+                           <div class="mb-2 control-label bb"><strong>Số lượng:</strong></div>
+                           <div class="mb-3">
+                              <select name="quantity" id="quantity" class="server-filter form-control t14" style="">
+                                 <option value="1">1</option>
+                                 <option value="2">2</option>
+                                 <option value="3">3</option>
+                                 <option value="4">4</option>
+                                 <option value="5">5</option>
+                                 <option value="6">6</option>
+                                 <option value="7">7</option>
+                                 <option value="8">8</option>
+                                 <option value="9">9</option>
+                                 <option value="10">10</option>
+                              </select>
                            </div>
                         </div>
                      </div>
-{{--                      <div class="col-md-7 row justify-content-center" id="loading-data">--}}
-{{--                          <div class="loading"></div>--}}
-{{--                      </div>--}}
-                     <div class="col-md-7 " id="formStoreCard"  >
-                        <div class="mb-2 control-label bb"><strong>Chọn nhà mạng:</strong> </div>
-                        <div class="mb-3">
-
-                            <select name="telecom" id="telecom_storecard" class="server-filter form-control t14" style="">
-                              @foreach($data_nha_mang as $key => $val)
-                                 <option data-id="{{ $key }}" value="{{ $val }}">{{ $val }}</option>
-                              @endforeach
-                           </select>
-                        </div>
-                        <div class="mb-2 control-label bb"><strong>Mệnh giá:</strong> </div>
-                        <div class="mb-3">
-                           <select name="amount" id="amount_storecard" class="server-filter form-control t14" style="">
-                              <option value="" selected disabled hidden>Vui lòng chọn mệnh giá</option>
-                              @foreach($data_menh_gia as $key => $val)
-                                 @foreach ($val as $option)
-                                    <option data-telecom="{{ $key }}" value="{{ $option }}" hidden>{{ $option }}</option>
-                                 @endforeach
-                              @endforeach
-                           </select>
-                        </div>
-                        <div class="mb-2 control-label bb"><strong>Số lượng:</strong></div>
-                        <div class="mb-3">
-                           <select name="quantity" id="quantity" class="server-filter form-control t14" style="">
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
-                              <option value="6">6</option>
-                              <option value="7">7</option>
-                              <option value="8">8</option>
-                              <option value="9">9</option>
-                              <option value="10">10</option>
-                           </select>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class=" emply-btns text-center">
+                           <a id="txtPrice" style="font-size: 20px;font-weight: bold;color: white" class="" aria-invalid="">
+                              <div class="justify-content-center" id="loading-data-total">
+                                 <div class="loading"></div>
+                              </div>
+                              <span class="hide" id="StoreCardTotal"> Tổng: 0 VNĐ</span>
+                           </a>
+                           @if(\App\Library\AuthCustom::check())
+                           <button id="btnPurchase" type="submit" style="font-size: 20px;" class="followus">
+                              <div class="justify-content-center" id="loading-data-pay">
+                                 <div class="loading"></div>
+                              </div>
+                              <span class="hide" id="StoreCardPay">  <i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</span>
+                           </button>
+                           @else
+                              <a href="/login" style="font-size: 20px;" class="followus">
+                                    <span class="hide" id="StoreCardPay">  <i class="fa fa-key" aria-hidden="true"></i> Đăng nhập để thanh toán</span>
+                              </a>
+                           @endif
                         </div>
                      </div>
                   </div>
-               </div>
-            </div>
-            <div class="col-md-4">
-               <div class="row">
-                  <div class="col-md-12">
-                     <div class=" emply-btns text-center">
-                        <a id="txtPrice" style="font-size: 20px;font-weight: bold;color: white" class="" aria-invalid="">
-                            <div class="justify-content-center" id="loading-data-total">
-                                <div class="loading"></div>
-                            </div>
-                           <span class="hide" id="StoreCardTotal"> Tổng: 0 VNĐ</span>
-                        </a>
-                         @if(\App\Library\AuthCustom::check())
-                        <button id="btnPurchase" type="submit" style="font-size: 20px;" class="followus">
-                            <div class="justify-content-center" id="loading-data-pay">
-                                <div class="loading"></div>
-                            </div>
-                            <span class="hide" id="StoreCardPay">  <i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</span>
-                        </button>
-                         @else
-                             <a href="/login" style="font-size: 20px;" class="followus">
-                                 <span class="hide" id="StoreCardPay">  <i class="fa fa-key" aria-hidden="true"></i> Đăng nhập để thanh toán</span>
-                             </a>
-                         @endif
-                     </div>
+                  <div class="row box-body" style="color: #505050;padding:20px;line-height: 2;margin-top: 30px">
                   </div>
-               </div>
-               <div class="row box-body" style="color: #505050;padding:20px;line-height: 2;margin-top: 30px">
                </div>
             </div>
          </div>
-      </div>
-   </form>
+      </form>
+   @endif
     <div class="container">
 
         <div class="intro_store_card">
