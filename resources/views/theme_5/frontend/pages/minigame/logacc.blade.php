@@ -153,9 +153,9 @@
                             <div class="content-bottom-sheet bar-slide">
                                 <form action="{{route('getLog',[$group->id])}}" method="get" class=" account_content_transaction_history__v2">
                                     <div class="sheet-header">
-                                        <h2 class="text-title center">
+                                        <p class="text-title center">
                                             Bộ lọc
-                                        </h2>
+                                        </p>
                                         <label class="close"></label>
                                     </div>
                                     <div class="sheet-body overflow-visible">
@@ -203,7 +203,7 @@
                                 <form action="{{route('getLog',[$group->id])}}" method="get" class=" account_content_transaction_history__v2">
                                     <div class="modal-content">
                                         <div class="modal-header justify-content-center p-0">
-                                            <h2 class="modal-title center">Bộ lọc</h2>
+                                            <p class="modal-title center">Bộ lọc</p>
                                             <button type="button" class="close" data-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body c-p-0">
