@@ -544,6 +544,5 @@
     @endif
 @endsection
 @section('scripts')
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/validate-form/validate.js"></script>--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/detail.js?v={{ time() }}"></script>
 @endsection

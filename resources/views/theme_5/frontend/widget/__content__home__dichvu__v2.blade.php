@@ -1,20 +1,17 @@
 @if(isset($data))
-    @if(isset($data->data) && count($data->data) > 0)
+
     <section class="acc-game-v2 c-pt-12 c-pt-lg-6">
         <div class="section-header c-mb-24 c-mb-lg-20 justify-content-between">
             <h2 class="section-title fz-lg-20 lh-lg-24">
                 <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/acc-game.svg)"></i>
-{{--                {{ $title??'Dịch vụ' }}--}}
+                {{--                {{ $title??'Dịch vụ' }}--}}
                 {{ config('module.type.2')??'Dịch vụ game' }}
             </h2>
             <a href="/dich-vu" class="link arr-right">Xem tất cả</a>
         </div>
         <div class="list-category">
-            @foreach($data->data as $item)
-                @if(isset($item->category_identification) && $item->category_identification != '' )
-                    @if($item->category_identification->type == 2)
-
-                     <div class="item-category c-px-8 c-mb-12 c-px-lg-6">
+            @foreach($data as $item)
+                <div class="item-category c-px-8 c-mb-12 c-px-lg-6">
                     <div class="card">
                         <div class="card-body c-p-16 c-p-lg-12 scale-thumb">
                             <a href="/dich-vu/{{ $item->slug}}">
@@ -26,40 +23,15 @@
                                         {{ $item->title  }}
                                     </div>
                                     <div class="info-attr">
-                                        @if(isset($item->total_order))
-                                            @if($item->params_plus)
-                                                @foreach($item->params_plus as $key => $val)
-                                                    @if($key == 'fk_buy')
-                                                        Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}
-                                                    @endif
-                                                @endforeach
-
-                                            @else
-                                                Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}
-                                            @endif
-
-                                        @else
-                                            @if($item->params_plus)
-                                                @foreach($item->params_plus as $key => $val)
-                                                    @if($key == 'fk_buy')
-                                                        Giao dịch: {{ str_replace(',','.',number_format($val)) }}
-                                                    @endif
-                                                @endforeach
-                                            @else
-                                                Giao dịch: 0
-                                            @endif
-
-                                        @endif
+                                        Giao dịch: 0
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
                 </div>
-                    @endif
-                @endif
             @endforeach
         </div>
     </section>
-    @endif
+
 @endif

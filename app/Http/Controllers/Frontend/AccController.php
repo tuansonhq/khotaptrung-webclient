@@ -55,7 +55,6 @@ class AccController extends Controller
         $val = array();
         $data = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
         $response_data = $data->response_data;
-        dd($data);
         if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
             $data = $response_data->data;
 

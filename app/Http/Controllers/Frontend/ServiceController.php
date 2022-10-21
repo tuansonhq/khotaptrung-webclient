@@ -22,85 +22,50 @@ class ServiceController extends Controller
 {
 
     public function getList(Request $request){
-        $url = '/service';
+
+        $url = '/get-category';
         $method = "GET";
-
-        $dataSend = array();
-
-        if ($request->ajax()){
-
-            $page = $request->page;
-            $url = '/service';
-            $method = "GET";
-
-            $dataSend = array();
-            $dataSend['page'] = $page;
-
-            if (isset($request->title) || $request->title != '' || $request->title != null) {
-                $dataSend['search'] = $request->title;
-            }
-
-            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-            $response_data = $result_Api->response_data??null;
-
-            if(isset($response_data) && $response_data->status == 1){
-
-                $data = $response_data->data;
-
-                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
-                $data->setPath($request->url());
-                $html = view('frontend.pages.service.widget.__datalist')
-                    ->with('data', $data)->render();
-
-                if (count($data) == 0 && $page == 1){
-                    return response()->json([
-                        'status' => 0,
-                        'message' => 'Không có dữ liệu.',
-                    ]);
-                }
-
-                return response()->json([
-                    "success"=> "Load dữ liệu thành công",
-                    "status"=> 1,
-                    "data" => $html,
-                ], 200);
-
-            }
-            else{
-                return response()->json([
-                    'status' => 0,
-                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
-                ]);
-            }
-        }
-
-        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $val = array();
+        $val['type'] = 2;
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
         $response_data = $result_Api->response_data??null;
 
-        if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
+        if(isset($response_data) && $response_data->status == 1){
+            if (isset($response_data->data)){
+                $data_current_page = $response_data->data;
 
-            $data = $response_data->data;
+                if (isset($data_current_page->data) && count($data_current_page->data)){
+                    $data = $data_current_page->data;
 
-            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-            $data->setPath($request->url());
+                    return view('frontend.pages.service.list')->with('data', $data);
 
-
-            Session::put('path', $_SERVER['REQUEST_URI']);
-
-            return view('frontend.pages.service.list')->with('data', $data);
-
+                }else{
+                    $data =null;
+                    $message = "Không thể lấy dữ liệu";
+                    return view('frontend.pages.service.list')->with('data', $data)->with('message', $message);
+                }
+            }else{
+                $data =null;
+                $message = "Không thể lấy dữ liệu";
+                return view('frontend.pages.service.list')->with('data', $data)->with('message', $message);
+            }
         }else{
             $data =null;
             $message = "Không thể lấy dữ liệu";
             return view('frontend.pages.service.list')->with('data', $data)->with('message', $message);
-//            return response()->json([
-//                'status' => 0,
-//                'message'=>$response_data->message??"Không thể lấy dữ liệu"
-//            ]);
         }
     }
 
     public function getDetail(Request $request,$slug){
+
+        $url = '/get-category/'.$slug;
+        $method = "GET";
+        $val = array();
+        $val['type'] = 2;
+        $data = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
+        $response_data = $data->response_data;
+
+        return $response_data;
 
         $url = '/service/'.$slug;
         $method = "GET";
