@@ -57,7 +57,7 @@
                                                          @if(count($item_att) > 1)
                                                             @if($key_att_item < 1 )
                                                                 <div  class="attr_tooltip" data-tooltip="{{$item_att_val}} (+{{count($item_att)}} {{$key_att}})">
-                                                                    <div style="text-overflow: ellipsis;    white-space: nowrap;word-wrap: break-word;overflow-x: hidden;    width: 8.5em;">
+                                                                    <div style="text-overflow: ellipsis;    white-space: nowrap;word-wrap: break-word;overflow-x: hidden;    width: 7.5em;">
 
                                                                         {{$item_att_val}} (+{{count($item_att)}} <span class="text-lowercase" style="font-size: 16px;    color: #666">{{$key_att}}</span>)
 
