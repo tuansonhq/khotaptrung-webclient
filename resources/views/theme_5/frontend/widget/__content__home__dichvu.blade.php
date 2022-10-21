@@ -1,4 +1,5 @@
 @if(isset($data))
+
     @if(isset($data->data) && count($data->data) > 0)
     <section class="section-related-service c-pt-12 c-pt-lg-6 c-pb-12 c-pb-lg-6 media-web">
         <div class="section-header c-mb-8 c-mb-lg-16 justify-content-between">
