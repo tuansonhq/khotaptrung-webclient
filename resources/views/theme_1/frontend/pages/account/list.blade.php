@@ -148,7 +148,7 @@
         <input type="hidden" name="tftdamageskins_data" class="tftdamageskins_data" value="">
         <input type="hidden" name="tftmapskins_data" class="tftmapskins_data" value="">
 
-        <div class="modal fade modal__buyacount loadModal__acount" id="LoadModal" role="dialog" style="display: none;"
+        <div class="modal fade modal__account modal__buyacount loadModal__acount" id="LoadModal" role="dialog" style="display: none;"
              aria-hidden="true">
             <div class="modal-dialog modal-dialog__account" role="document">
                 <div class="loader" style="text-align: center"><img
