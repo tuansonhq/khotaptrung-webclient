@@ -62,6 +62,7 @@ class ServiceController extends Controller
         $method = "GET";
         $val = array();
         $val['type'] = 2;
+        $val['limit'] = 100;
         $result_Api = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
         $response_data = $result_Api->response_data??null;
 
@@ -71,6 +72,7 @@ class ServiceController extends Controller
             $attribute_set = $data->attribute_set;
             $product = null;
             $filter_type = null;
+            $server_mode = 0;
 
             if (isset($data->product)){
                 $product_current_page = $data->product;
@@ -84,6 +86,10 @@ class ServiceController extends Controller
                                     $filter_type = 7;
                                 }elseif ($attribute->attribute->idkey == 'loai_hien_thi' && $attribute->product_attribute_value_able->id == 432){
                                     $filter_type = 6;
+                                }elseif ($attribute->attribute->idkey == 'loai_hien_thi' && $attribute->product_attribute_value_able->id == 430){
+                                    $filter_type = 4;
+                                }elseif ($attribute->attribute->idkey == 'vu_tru_nro'){
+                                    $server_mode = 1;
                                 }
                             }
                         }
@@ -97,6 +103,7 @@ class ServiceController extends Controller
             return view('frontend.pages.service.detail')
                 ->with('data', $data)
                 ->with('filter_type', $filter_type)
+                ->with('server_mode', $server_mode)
                 ->with('attribute_set', $attribute_set)
                 ->with('product', $product);
 
