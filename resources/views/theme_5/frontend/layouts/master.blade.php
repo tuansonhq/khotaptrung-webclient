@@ -1,18 +1,22 @@
 <!doctype html>
 <html lang="vi">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="robots" content="index,follow"/>
+    @yield('seo_head')
+
+    @yield('meta_robots')
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <meta name="path" content=""/>
 
     <meta name="jwt" content="" />
 
-    @yield('meta_robots')
-    {{--    <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />--}}
+    @if(setting('sys_google_search_console') != '')
+        <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />
+    @endif
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
@@ -238,7 +242,7 @@
     <div class="head-mobile">
         <a href="javascript:void(0) " class="link-back close-step"></a>
 
-        <h1 class="head-title text-title">Xác nhận thanh toán</h1>
+        <p class="head-title text-title">Xác nhận thanh toán</p>
 
         <a href="/" class="home"></a>
     </div>
@@ -301,7 +305,7 @@
     <div class="modal-dialog modal-dialog-centered modal-custom">
         <div class="modal-content c-p-24">
             <div class="modal-header">
-                <h2 class="modal-title center">Xác nhận thanh toán</h2>
+                <p class="modal-title center">Xác nhận thanh toán</p>
                 <button type="button" class="close" data-dismiss="modal"></button>
             </div>
             <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">

@@ -295,7 +295,7 @@
             <div class="modal-dialog modal-dialog-centered modal-custom">
                 <div class="modal-content c-p-24">
                     <div class="modal-header">
-                        <h2 class="modal-title center">Xác nhận thanh toán</h2>
+                        <p class="modal-title center">Xác nhận thanh toán</p>
                         <button type="button" class="close" data-dismiss="modal"></button>
                     </div>
                     <div class="modal-body c-px-0 c-py-24">

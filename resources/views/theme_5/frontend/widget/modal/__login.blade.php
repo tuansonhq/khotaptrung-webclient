@@ -68,13 +68,15 @@
                 <div class="modal-login-overlay-container">
                     <div class="modal-login-overlay">
                         <div class="modal-login-overlay-panel modal-login-overlay-left" style="background-image: url('/assets/frontend/{{theme('')->theme_key}}/image/son/bglogin.png')">
-                            <p class="modal-login-suggestion fw-700 fz-24 fz-lg-20 fz-md-18 fz-sm-16 c-mt-24 c-mt-lg-20 c-mt-md-16 c-mt-sm-8 mb-0 lh-36">Nick.vn xin chào</p>
+                            <p class="modal-login-suggestion fw-700 fz-24 fz-lg-20 fz-md-18 fz-sm-16 c-mt-24 c-mt-lg-20 c-mt-md-16 c-mt-sm-8 mb-0 lh-36">
+                            <span id="get-url" class="fz-24 " style="color: var(--primary-color);">Nick.vn</span> xin chào</p>
                             <p class="fw-400 fz-13 fz-md-12 fz-sm-10 c-mb-24 c-mb-lg-20 c-mb-md-16 c-md-sm-8">Bạn đã có tài khoản, vui lòng đăng nhập tại đây</p>
                             <button class="btn primary btn-primary-default" id="signIn">Đăng nhập</button>
                         </div>
                         <div class="modal-login-overlay-panel modal-login-overlay-right" style="background-image: url('/assets/frontend/{{theme('')->theme_key}}/image/son/bglogin.png')">
                             <img class="close-login-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
-                            <p class="modal-login-suggestion fw-700 fz-24 fz-lg-20 fz-md-18 fz-sm-16 c-mt-24 c-mt-lg-20 c-mt-md-16 c-mt-sm-8 mb-0 lh-36">Nick.vn xin chào</p>
+                            <p class="modal-login-suggestion fw-700 fz-24 fz-lg-20 fz-md-18 fz-sm-16 c-mt-24 c-mt-lg-20 c-mt-md-16 c-mt-sm-8 mb-0 lh-36">
+                            <span id="get-url-1" class="fz-24" style="color: var(--primary-color);">Nick.vn</span> xin chào</p>
                             <p class="fw-400 fz-13 fz-md-12 fz-sm-10 c-mb-32 c-mb-lg-20 c-mb-md-16 c-md-sm-8">Vui lòng đăng ký ngay tại đây</p>
                             <button class="btn pink btn-pink-default" id="signUp">Đăng ký</button>
                         </div>
@@ -88,7 +90,7 @@
 <div class="mobile-auth step">
     <div class="head-mobile">
         <a href="javascript:void(0);" class="link-back close-step"></a>
-        <h1 class="head-title text-title">Đăng nhập</h1>
+        <p class="head-title text-title">Đăng nhập</p>
     </div>
     <small class="fz-13 fz-md-12 fz-sm-10 fw-400 c-mb-12">Vui lòng đăng ký để sử dụng dịch vụ của chúng tôi</small>
 
@@ -270,3 +272,10 @@
         });
     });
 </script>
+{{-- js get url --}}
+<script>
+    document.getElementById("get-url").innerHTML = window.location.hostname;
+</script>
+<script>
+    document.getElementById("get-url-1").innerHTML = window.location.hostname;
+</script

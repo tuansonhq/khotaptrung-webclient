@@ -96,7 +96,7 @@
                                     <form class="formDonhangAccountHome" action="/acc/{{ $item->randId }}/databuy" method="POST">
                                         {{ csrf_field() }}
                                         <div class="modal-header">
-                                            <h2 class="modal-title center">Xác nhận thanh toán</h2>
+                                            <p class="modal-title center">Xác nhận thanh toán</p>
                                             <button type="button" class="close" data-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
