@@ -56,8 +56,12 @@
                                     </a>
                                 @endif
                             @else
+
+                            @endif
+                        </div>
+                        <div class="game-list-title">
                             <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
-                            {{--                                                Anh khuyen mai--}}
+                                {{--                                                Anh khuyen mai--}}
                                 @if(isset($item->image_icon))
                                     @if(isset($item->custom->image_icon))
                                         <img class="game-list-image-sticky lazy" data-src="{{ \App\Library\MediaHelpers::media($item->custom->image_icon) }}" alt="">
@@ -75,58 +79,18 @@
                                 {{--                                                Anh chinh --}}
 
                             </a>
-                            @endif
-                        </div>
-                        <div class="game-list-title">
-                            @if(isset($item->lm_auto))
-                                @if($item->lm_auto == 1)
-                                <a class="account_category" href="/mua-acc/{{ config('module.acc.slug-auto') }}">
-                                    <h3><strong>{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</strong></h3>
-                                </a>
-                                @else
-                                    <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
-                                        <h3><strong>{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</strong></h3>
-                                    </a>
-                                @endif
-                            @else
-                                <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
-                                    <h3><strong>{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</strong></h3>
-                                </a>
-                            @endif
                         </div>
                         <div class="game-list-description">
                             <div class="countime"></div>
 
-                            @if(isset($item->items_count))
-                                @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
-                                    <p>Số tài khoản: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }} </p>
-                                @else
-                                    <p>Số tài khoản: {{ $item->items_count }} </p>
-                                @endif
-
-                            @else
-                                <p>Số tài khoản: 0 </p>
-                            @endif
+                            <p>Số tài khoản: 0 </p>
                         </div>
-                        @if($item->display_type == 2)
-
-                            @if(isset($item->params) && isset($item->params->price))
-                            <div class="row marginauto price-minigame">
-                                <div class="col-md-12 left-right">
-                                    <span class="oldPrice">{{ str_replace(',','.',number_format($item->price_old??$item->price)) }} đ</span>
-                                    <span class="newPrice">{{ str_replace(',','.',number_format($item->price)) }} đ</span>
-                                </div>
-
+                        <div class="row marginauto price-minigame">
+                            <div class="col-md-12 left-right">
+                                <span class="oldPrice" style="color: transparent"></span>
+                                <span class="newPrice" style="border: none"></span>
                             </div>
-                            @endif
-                        @else
-                            <div class="row marginauto price-minigame">
-                                <div class="col-md-12 left-right">
-                                    <span class="oldPrice" style="color: transparent"></span>
-                                    <span class="newPrice" style="border: none"></span>
-                                </div>
-                            </div>
-                        @endif
+                        </div>
                         <div class="game-list-more">
                             <div class="game-list-more-view" >
                                 <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">

@@ -279,9 +279,16 @@ View::composer('frontend.widget.__content__home__game', function ($view) {
         $url = '/get-category';
         $method = "GET";
         $val = array();
+        $val['type'] = 1;
         $result_Api = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
         return $data = $result_Api->response_data->data??null;
     });
+
+    if (isset($data->data) && count($data->data)){
+        $data = $data->data;
+    }else{
+        $data = null;
+    }
 
     return $view->with('data', $data);
 });
@@ -473,13 +480,20 @@ View::composer('frontend.widget.__content__home__dichvu', function ($view) {
 
 
     $data = null;
-    $data = \Cache::rememberForever('__content__home__dichvu', function() {
+    $data = \Cache::rememberForever('__content__home__dichvu__v2', function() {
         $url = '/get-category';
         $method = "GET";
         $val = array();
+        $val['type'] = 2;
         $result_Api = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
         return $data = $result_Api->response_data->data??null;
     });
+
+    if (isset($data->data) && count($data->data)){
+        $data = $data->data;
+    }else{
+        $data = null;
+    }
 
     return $view->with('data', $data);
 
