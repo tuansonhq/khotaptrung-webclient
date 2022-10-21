@@ -44,7 +44,7 @@
                                 <li>/</li>
                                 <li class="news_breadcrumbs_theme__li"><a href="javascript:void(0)"
                                                                           class="news_breadcrumbs_theme_title_a"><p
-                                            class="news_breadcrumbs_theme_title">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</p>
+                                            class="news_breadcrumbs_theme_title">{{@$data->category->title}}</p>
                                     </a></li>
                             </ul>
                         </div>
@@ -58,16 +58,12 @@
                         <div class="alert alert-info box-text hidetext fix-image-acount" role="alert">
 
                             <h1 class="alert-heading h1_category"
-                                style="color:#000">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</h1>
+                                style="color:#000">{{@$data->category->title}}</h1>
 
-                            @if($data->custom->content)
-                                {!!  $data->custom->content !!}
+                            @if(isset($data->description))
+                                {!!  $data->description !!}
                             @else
-                                @if(isset($data->content))
-                                    {!!  $data->content !!}
-                                @else
 
-                                @endif
                             @endif
 
                         </div>
@@ -115,11 +111,11 @@
                 </div>
 
                 <div id="account_data">
-                    <div class="body-box-loadding result-amount-loadding">
-                        <div class="d-flex justify-content-center">
-                            <span class="pulser"></span>
-                        </div>
-                    </div>
+{{--                    <div class="body-box-loadding result-amount-loadding">--}}
+{{--                        <div class="d-flex justify-content-center">--}}
+{{--                            <span class="pulser"></span>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
                     @include('frontend.pages.account.widget.__datalist')
                 </div>
@@ -131,7 +127,7 @@
         </div>
 
 
-        <input type="hidden" value="{{ $slug }}" name="slug" class="slug">
+{{--        <input type="hidden" value="{{ $slug }}" name="slug" class="slug">--}}
         {{--    <input type="hidden" value="{{ $slug_category }}" name="slug_category" class="slug_category">--}}
         <input type="hidden" name="id_data" class="id_data" value="">
         <input type="hidden" name="title_data" class="title_data" value="">
@@ -164,8 +160,8 @@
 {{--                    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>--}}
 {{--            <script src="/js/{{theme('')->theme_key}}/account/list_1.js"></script>--}}
 {{--        @endif--}}
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccrandom.js?v={{time()}}"></script>
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/account-list.js?v={{time()}}"></script>
+{{--        <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccrandom.js?v={{time()}}"></script>--}}
+{{--        <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/account-list.js?v={{time()}}"></script>--}}
 {{--        <script src="/js/{{theme('')->theme_key}}/account/list_2.js"></script>--}}
     @endif
 
