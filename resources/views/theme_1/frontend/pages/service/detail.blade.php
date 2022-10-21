@@ -79,13 +79,7 @@
             </div>
             <div class="text-center showcontent">
                 <h1 style="font-size: 30px;font-weight: bold;text-transform: uppercase">DỊCH VỤ {{ $data->title }}</h1>
-                @if(isset($data->groups[0]->slug))
-                <div class="row d-sm-none  d-md-none  d-lg-none text-center">
-                    <div class="col-md-12">
-                        <p style="margin-top: 15px;font-size: 23px;text-align: center" class="bb"><i class="fa fa-server" aria-hidden="true"></i> <a href="/dich-vu/{{ $data->groups[0]->slug }}" style="color:#32c5d2">{{ $data->groups[0]->title }}</a></p>
-                    </div>
-                </div>
-                @endif
+
             </div>
 
             {{--            Tính toán  --}}
@@ -114,76 +108,105 @@
                                     </div>
                                 </div>
                                 <div class="col-md-7">
+
                                     {{--                                    Kiểm tra máy chủ     --}}
-                                    @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->params) == "1")
-                                        @php
-                                            $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->params);
-                                            $server_id = \App\Library\HelpersDecode::DecodeJson('server_id',$data->params);
-                                        @endphp
-                                        <span class="mb-15 control-label bb">Chọn máy chủ:</span>
-                                        @if(!empty($server_data))
-                                            {{--                                        @dd($server_data)--}}
-                                            <div class="mb-15">
-                                                <select name="server[]" class="server-filter form-control t14" style="">
-                                                    @for($i = 0; $i < count($server_data); $i++)
-                                                        @if((strpos($server_data[$i], '[DELETE]') === false))
-                                                            <option value="{{$server_id[$i]}}">{{$server_data[$i]}}</option>
+                                    {{--                                                Loại nhập tiền    --}}
+                                    @if(isset($filter_type))
+                                        @if($filter_type == 7)
+                                            @if(isset($product) && count($product))
+                                                <span class="mb-15 control-label bb">Chọn máy chủ:</span>
+                                                <div class="mb-15">
+                                                    <select name="server" class="server-filter form-control t14" id="server" style="">
+                                                        @foreach($product as $key => $item)
+                                                            <option
+                                                                value="{{ $item->id }}"
+
+                                                                @foreach($item->product_attribute as $attribute)
+                                                                @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_nho_nhat')
+                                                                data-price-min="{{ $attribute->product_attribute_value_able->title }}"
+                                                                @endif
+                                                                @endforeach
+
+                                                                @foreach($item->product_attribute as $attribute)
+                                                                @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_lon_nhat')
+                                                                data-price-max="{{ $attribute->product_attribute_value_able->title }}"
+                                                                @endif
+                                                                @endforeach
+
+                                                                @foreach($item->product_attribute as $attribute)
+                                                                @if($attribute->attribute->idkey == 'he_so_nro')
+                                                                data-heso="{{ $attribute->product_attribute_value_able->title }}"
+                                                                @endif
+                                                                @endforeach
+
+                                                            >{{ $item->title }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endif
+                                            @foreach($product as $key => $item)
+                                                @if($key == 0)
+                                                    @foreach($item->product_attribute as $attribute)
+                                                        @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_nho_nhat')
+                                                            <input type="hidden" id="price-min" class="form-control t14" placeholder="" value="{{ $attribute->product_attribute_value_able->title }}" readonly="">
+
                                                         @endif
-                                                    @endfor
-                                                </select>
-                                            </div>
-                                        @endif
-                                    @endif
-                                    {{--                                dich vu may chu khac    --}}
-                                    @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "4"){{--//dạng chọn một--}}
-                                    @php
-                                        $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
-                                        $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
-                                    @endphp
-                                    @if(!empty($name))
-                                        <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
-                                        <div class="mb-15">
-                                            <select name="selected" class="s-filter form-control t14" style="">
-                                                @for ($i = 0; $i < count($name); $i++)
-                                                    @if($name[$i]!=null)
-                                                        <option value="{{$i}}">{{$name[$i]}}</option>
+                                                    @endforeach
+
+                                                    @foreach($item->product_attribute as $attribute)
+                                                        @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_lon_nhat')
+                                                            <input type="hidden" id="price-max" class="form-control t14" placeholder="" value="{{ $attribute->product_attribute_value_able->title }}" readonly="">
+
+                                                        @endif
+                                                    @endforeach
+                                                    <input type="hidden" id="txtDiscount" class="form-control t14" placeholder="" value="{{ $item->price }}" readonly="">
+                                                    @foreach($item->product_attribute as $attribute)
+                                                        @if($attribute->attribute->idkey == 'don_vi_tien_te')
+                                                            <input type="hidden" id="currency" class="form-control t14" placeholder="" value="{{ $attribute->product_attribute_value_able->title }}" readonly="">
+                                                        @endif
+                                                    @endforeach
+
+                                                    @if(isset($item->product_attribute) && count($item->product_attribute))
+
+                                                        <span class="mb-15 control-label bb">Nhập số tiền cần mua:</span>
+                                                        <div class="mb-15">
+                                                            @foreach($item->product_attribute as $attribute)
+                                                                @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_nho_nhat')
+                                                                    <input autofocus="" value="{{ $attribute->product_attribute_value_able->title }}" class="form-control t14 price " id="input_pack" type="hidden" placeholder="Số tiền">
+                                                                    <input autofocus="" value="{{ str_replace(',','.',number_format( $attribute->product_attribute_value_able->title )) }}" class="form-control t14 price " id="input_pack_face" type="text" placeholder="Số tiền">
+                                                                @endif
+                                                            @endforeach
+                                                            <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">
+                                                                    @foreach($item->product_attribute as $attribute)
+                                                                        @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_nho_nhat')
+                                                                            {{ str_replace(',','.',number_format( $attribute->product_attribute_value_able->title )) }}đ
+                                                                        @endif
+                                                                    @endforeach
+                                                                </b>  đến <b style="font-weight:bold;">
+                                                                    @foreach($item->product_attribute as $attribute)
+                                                                        @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_lon_nhat')
+                                                                            {{ str_replace(',','.',number_format( $attribute->product_attribute_value_able->title )) }}đ
+                                                                        @endif
+                                                                    @endforeach
+                                                                </b> </span>
+                                                        </div>
+                                                        <span class="mb-15 control-label bb">Hệ số:</span>
+                                                        <div class="mb-15">
+                                                            @foreach($item->product_attribute as $attribute)
+                                                                @if($attribute->attribute->idkey == 'he_so_nro')
+                                                                    <input type="text" id="txtDiscountface" class="form-control t14" placeholder="" value="{{ $attribute->product_attribute_value_able->title }}" readonly="">
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
+
                                                     @endif
-                                                @endfor
-                                            </select>
-                                        </div>
-                                    @endif
-
-                                    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "7"){{--////dạng nhập tiền thành toán--}}
-                                    <span class="mb-15 control-label bb">Nhập số tiền cần mua:</span>
-                                    <div class="mb-15">
-                                        <input autofocus="" value="{{old('input_pack',\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}" class="form-control t14 price " id="input_pack" type="text" placeholder="Số tiền">
-                                        <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))) }}đ</b>  đến <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))) }}đ</b> </span>
-                                    </div>
-                                    <span class="mb-15 control-label bb">Hệ số:</span>
-                                    <div class="mb-15">
-                                        <input type="text" id="txtDiscount" class="form-control t14" placeholder="" value="" readonly="">
-                                    </div>
-                                    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
-                                    <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
-                                    <div class="simple-checkbox s-filter">
-                                        @php
-                                            $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
-                                            $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
-                                        @endphp
-                                        @if(!empty($name))
-                                            @for ($i = 0; $i < count($name); $i++)
-                                                @if($name[$i]!=null)
-                                                    <p><input value="{{$i}}" type="checkbox" id="{{$i}}">
-                                                        <label for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</label>
-                                                    </p>
                                                 @endif
-
-                                            @endfor
+                                            @endforeach
                                         @endif
-                                    </div>
-                                    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6") {{--//dạng chọn a->b--}}
-
                                     @endif
+                                    {{--                                                Loại từ A đến B    --}}
+
+
 
                                 </div>
                             </div>
@@ -202,136 +225,119 @@
                                 </div>
                             </div>
 
-{{--                            <div class="row emply-btns box-body fixboxbody" style="">--}}
-{{--                                {!! $data->description !!}--}}
-{{--                            </div>--}}
-
                         </div>
                     </div>
-                    @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6") {{--//dạng chọn a->b--}}
-                    <div class="row">
-                        <div class="col-md-12 float_mb">
-                            <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/rslider.js"></script>
-                            <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/select-chosen.js" type="text/javascript"></script>
-                            <link href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css" rel="stylesheet" type="text/css"/>
-                            <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css">
-                            <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/responsive.css">
-                            <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/chosen.css">
-                            <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
+                    {{--                            Đổ dữ liệu loại bằng 6--}}
+                    @if(isset($filter_type))
+                        @if($filter_type == 6)
+                            <div class="row">
+                                <div class="col-md-12 float_mb">
+                                    <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/rslider.js"></script>
+                                    <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/select-chosen.js" type="text/javascript"></script>
+                                    <link href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css" rel="stylesheet" type="text/css"/>
+                                    <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css">
+                                    <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/responsive.css">
+                                    <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/chosen.css">
+                                    <span class="mb-15 control-label bb">Vui lòng lựa chọn:</span>
 
-                            <div class="range_slider" style="">
-                                <div class="nstSlider" data-range_min="0" data-cur_min="0">
-                                    <div class="bar" ></div>
-                                    <div class="leftGrip"></div>
-                                    <div class="rightGrip"></div>
-                                </div>
-                            </div>
-                            @php
-                                $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
-                                $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
-                            @endphp
-                            <div class="row service-choice">
-                                <div class="col-sm-6">
-                                    <h5>Từ</h5>
-                                    <div class="dropdown-field from-field">
-                                        <select class="from-chosen" name="rank_from">
-                                            @if(!empty($name))
-                                                @for ($i = 0; $i < count($name)-1; $i++)
-                                                    @if($name[$i]!=null)
-                                                        <option value="{{ $i }}">{{$name[$i]}}</option>
-                                                    @endif
-                                                @endfor
-                                            @endif
-                                        </select>
+                                    <div class="range_slider" style="">
+                                        <div class="nstSlider" data-range_min="0" data-cur_min="0">
+                                            <div class="bar" ></div>
+                                            <div class="leftGrip"></div>
+                                            <div class="rightGrip"></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="clear-fix"></div>
-                                    <h5>đến</h5>
-                                    <div class="dropdown-field to-field">
-                                        <select class="to-chosen" name="rank_to">
-                                            @if(!empty($name))
-                                                @for ($i = 1; $i < count($name); $i++)
-                                                    @if($name[$i]!=null)
-                                                        <option value="{{ $i }}">{{$name[$i]}}</option>
-                                                    @endif
-                                                @endfor
-                                            @endif
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h2>Bảng giá</h2>
-                            <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded">
-                                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
-                                    <thead class="m-datatable__head">
-                                    <tr class="m-datatable__row">
-                                        <th style="width:30px;" class="m-datatable__cell">
-                                            #
-                                        </th>
-                                        <th class="m-datatable__cell">
-                                            Tên
-                                        </th>
-                                        <th style="width:150px;" class="m-datatable__cell">
-                                            Tiền công
-                                        </th>
-                                        <th style="width:150px;" class="m-datatable__cell">
-                                            Thanh toán
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="m-datatable__body">
-                                    @if(!empty($name))
-                                        @for ($i = 0; $i < count($name)-1; $i++)
-                                            @if($name[$i]!=null)
-                                                <tr class="m-datatable__row m-datatable__row--even">
-                                                    <td style="width:30px;" class="m-datatable__cell">{{$i+1}}</td>
-                                                    <td class="m-datatable__cell">{{$name[$i]}} -> {{$name[$i+1]}}</td>
-                                                    <td style="width:150px;" class="m-datatable__cell">{{number_format(intval($price[$i+1])- intval($price[$i])). " VNĐ"}}</td>
-                                                    <td class="m-datatable__cell">
-                                                        @if(\App\Library\AuthCustom::check())
-                                                            <span class="pay">Thanh toán</span>
-                                                        @else
-                                                            <a style="font-size: 20px;" class="followus pay" href="/login" title=""><i aria-hidden="true"></i> Đăng nhập</a>
-                                                        @endif
-
-                                                    </td>
-                                                </tr>
-                                            @endif
-
-                                        @endfor
+                                    @if(isset($product) && count($product))
+                                        <div class="row service-choice">
+                                            <div class="col-sm-6">
+                                                <h5>Từ</h5>
+                                                <div class="dropdown-field from-field">
+                                                    <select class="from-chosen" name="rank_from">
+                                                        @foreach($product as $key => $item)
+                                                            <option value="{{ $key }}">{{ $item->title }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="clear-fix"></div>
+                                                <h5>đến</h5>
+                                                <div class="dropdown-field to-field">
+                                                    <select class="to-chosen" name="rank_to">
+                                                        @foreach($product as $key => $item)
+                                                            <option value="{{ $key }}">{{ $item->title }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endif
-                                    </tbody>
-                                </table>
-                                <style type="text/css">
-                                    @media only screen and (max-width: 640px) {
-                                        .float_mb {
-                                            float: left;
-                                        }
-                                    }
-                                    .pay{
-                                        display: block;
-                                        background: #fb236a;
-                                        border-radius: 17px;
-                                        text-align: center;
-                                        max-width: 118px;
-                                        height: 30px;
-                                        line-height: 30px;
-                                        color: #fff;
-                                        cursor: pointer;
-                                    }
-                                </style>
-                                <script type="text/javascript">
-                                    $(".pay").click(function(){
-                                        $("#btnPurchase").click();
-                                    })
-                                </script>
+                                    <h2>Bảng giá</h2>
+                                    <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded">
+                                        <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+                                            <thead class="m-datatable__head">
+                                            <tr class="m-datatable__row">
+                                                <th style="width:30px;" class="m-datatable__cell">
+                                                    #
+                                                </th>
+                                                <th class="m-datatable__cell">
+                                                    Tên
+                                                </th>
+                                                <th style="width:150px;" class="m-datatable__cell">
+                                                    Tiền công
+                                                </th>
+                                                <th style="width:150px;" class="m-datatable__cell">
+                                                    Thanh toán
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="m-datatable__body">
+                                            @for ($i = 0; $i < count($product)-1; $i++)
+                                                @if($product[$i]!=null)
+                                                    <tr class="m-datatable__row m-datatable__row--even">
+                                                        <td style="width:30px;" class="m-datatable__cell">{{$i+1}}</td>
+                                                        <td class="m-datatable__cell">{{$product[$i]->title}} -> {{$product[$i+1]->title}}</td>
+                                                        <td style="width:150px;" class="m-datatable__cell">{{number_format(intval($product[$i+1]->price) - intval($product[$i]->price)). " VNĐ"}}</td>
+                                                        <td class="m-datatable__cell">
+                                                            <span class="pay">Thanh toán</span>
+
+                                                        </td>
+                                                    </tr>
+                                                @endif
+
+                                            @endfor
+                                            </tbody>
+                                        </table>
+                                        <style type="text/css">
+                                            @media only screen and (max-width: 640px) {
+                                                .float_mb {
+                                                    float: left;
+                                                }
+                                            }
+                                            .pay{
+                                                display: block;
+                                                background: #fb236a;
+                                                border-radius: 17px;
+                                                text-align: center;
+                                                max-width: 118px;
+                                                height: 30px;
+                                                line-height: 30px;
+                                                color: #fff;
+                                                cursor: pointer;
+                                            }
+                                        </style>
+                                        <script type="text/javascript">
+                                            $(".pay").click(function(){
+                                                $("#btnPurchase").click();
+                                            })
+                                        </script>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="json_rank" name="custId" value="{{ json_encode($product) }}">
                             </div>
-                        </div>
-                        <input type="hidden" id="json_rank" name="custId" value="{{ json_encode($data) }}">
-                    </div>
+                        @endif
                     @endif
+
                 </div>
 
                 <div class="modal fade" id="homealert" role="dialog" style="display: none;" aria-hidden="true">
@@ -351,73 +357,12 @@
                                 </div>
                             </div>
                             <div class="modal-body">
-
-                                @php
-                                    $send_name=\App\Library\HelpersDecode::DecodeJson('send_name',$data->params);
-                                    $send_type=\App\Library\HelpersDecode::DecodeJson('send_type',$data->params);
-                                    $index = 0;
-                                @endphp
-                                @if(!empty($send_name)&& count($send_name)>0)
-
-                                    @for ($i = 0; $i < count($send_name); $i++)
-                                        @if($send_name[$i]!=null)
-                                            <span class="mb-15 control-label bb">{{$send_name[$i]}}:</span>
-                                            {{--check trường của sendname--}}
-                                            @if($send_type[$i]==1 || $send_type[$i]==2||$send_type[$i]==3)
-                                                @php
-                                                    $index = $index + 1;
-                                                @endphp
-                                                <div class="mb-15">
-                                                    <input type="text" required name="customer_data{{$i}}" class="form-control t14 " placeholder="{{$send_name[$i]}}" value="">
-                                                </div>
-
-                                            @elseif($send_type[$i]==4)
-                                                @php
-                                                    $index = $index + 1;
-                                                @endphp
-                                                <div class="mb-15">
-                                                    <input type="file" required accept="image/*" class="form-control" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
-                                                </div>
-                                            @elseif($send_type[$i]==5)
-                                                @php
-                                                    $index = $index + 1;
-                                                @endphp
-                                                <div class="mb-15">
-                                                    <input type="password" required class="form-control" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
-                                                </div>
-                                            @elseif($send_type[$i]==6)
-                                                @php
-                                                    $index = $index + 1;
-                                                @endphp
-                                                @php
-                                                    $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
-                                                @endphp
-                                                <div class="mb-15">
-                                                    <select name="customer_data{{$i}}" required class="mb-15 control-label bb">
-                                                        @if(!empty($send_data))
-                                                            @for ($sn = 0; $sn < count($send_data); $sn++)
-                                                                <option value="{{$sn}}">{{$send_data[$sn]}}</option>
-                                                            @endfor
-                                                        @endif
-                                                    </select>
-                                                </div>
-                                            @endif
-
-                                        @endif
-                                    @endfor
-                                @else
-                                    <p> Bạn thực sự muốn thanh toán?</p>
-                                @endif
+{{--                                đổ dữ liệu modal  --}}
                             </div>
 
-                            <input type="hidden" name="index" value="{{ $index }}">
                             <div class="modal-footer modal-footer__data">
                                 <div>
-                                    @if(\App\Library\AuthCustom::check())
-                                        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="" >Xác nhận thanh toán</button>
-                                    @else
-                                        <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/dich-vu/{{ $data->slug }}">Đăng nhập</a>
-                                    @endif
+                                    <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="" >Xác nhận thanh toán</button>
                                 </div>
 
                                 <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
@@ -448,7 +393,7 @@
                             <div class="job-details">
                                 <h2 style="margin-bottom: 23px;font-size: 20px;font-weight: bold;text-transform: uppercase;">Mô tả</h2>
                                 <div class="article-content hidetext">
-                                    {!! $data->content  !!}
+                                    {!! $data->content??''  !!}
                                 </div>
                                 <div style="text-align: center;margin: 15px 0">
                                     <span class="viewmore">Xem tất cả »</span>
@@ -472,342 +417,232 @@
     </div>
 
 
-    <input type="hidden" name="slug" id="slug" value="{{ $slug }}" />
+    <input type="hidden" name="slug" id="slug" value="{{ $data->slug }}" />
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/service.css">
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/showdetailservice.js?v={{time()}}"></script>
+    @if(isset($filter_type))
+        @if($filter_type == 7)
+        <script>
+            $(document).ready(function(){
+                var price_input_pack = parseInt($('#input_pack').val());
 
-    <script>
+                var txtDiscount = parseInt($('#txtDiscount').val());
 
-        function Confirm(index, serverid) {
-            $('[name="server"]').val(serverid);
-            $('[name="selected"]').val(index);
-            $('#btnPurchase').click();
-        }
+                // var total_price = Math.round(price_input_pack/txtDiscount);
+                var total_price = price_input_pack/txtDiscount;
+                total_price = total_price.toFixed(2);
+                var currency = $('#currency').val();
 
-        var data = jQuery.parseJSON('{!! $data->params !!}');
+                $('#txtPrice').html('');
+                $('#txtPrice').html('Tổng: ' + total_price + ' ' + currency + '');
 
-            @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7")
-        var purchase_name = '{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}';
-            @else
-        var purchase_name = 'VNĐ';
-            @endif
 
-        var server = -1;
 
-        $(".server-filter").change(function (elm, select) {
-            server = parseInt($(".server-filter").val());
-            $('[name="server"]').val(server);
-            UpdatePrice();
-        });
-        server = parseInt($(".server-filter").val());
-        $('[name="server"]').val(server);
+                $('body').on('change','#input_pack_face',function(e){
+                    var price = $(this).val();
 
-    </script>
+                    price = price.replace(/\./g,'');
+                    var price_min = $('#price-min').val();
+                    var price_max = $('#price-max').val();
 
-    @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="1")
+                    if( !isNaN( price ) ){
+                        $('#input_pack').val(price);
+                        var price_input_pack = parseInt($('#input_pack').val());
 
-    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="4"){{--//dạng chọn một--}}
-    <script>
-        var itemselect = -1;
-        $(document).ready(function () {
-            $(".s-filter").change(function (elm, select) {
-                itemselect = parseInt($(".s-filter").val());
-                UpdatePrice();
-            });
-            itemselect = parseInt($(".s-filter").val());
-            UpdatePrice();
-        });
+                        if (parseInt(price) < parseInt(price_min)){
 
-        function UpdatePrice() {
-            var price = 0;
-            if (itemselect == -1) {
-                return;
-            }
+                            $('#input_pack').val(price_min);
 
-            if (data.server_mode == 1 && data.server_price == 1) {
+                            price_min = price_min.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                            price_min = price_min.split('').reverse().join('').replace(/^[\.]/,'');
 
-                var s_price = data["price" + server];
-                price = parseInt(s_price[itemselect]);
-            }
-            else {
-                var s_price = data["price"];
-                price = parseInt(s_price[itemselect]);
-            }
-            $('[name="value"]').val('');
-            $('[name="value"]').val(price);
-            price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-            price = price.split('').reverse().join('').replace(/^[\.]/,'');
-            $('#txtPrice').html('Tổng: ' + price + ' VNĐ');
-            $('[name="selected"]').val($(".s-filter").val());
+                            $(this).val(price_min);
 
-            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                $(this).removeClass();
-            });
-            $('tbody tr.selected').removeClass('selected');
-            $('tbody tr').eq(itemselect).addClass('selected');
-        }
+                            $('#txtPrice').html('');
+                            $('#txtPrice').html('Nhập số tiền không đúng');
 
-        function ConfirmBuy(value) {
-            var index = $('.server-filter').val();
-            Confirm(value, index);
-        }
-    </script>
+                            return false;
+                        }
 
-    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="5"){{--//dạng chọn nhiều--}}
-    <script>
-        $('.s-filter input[type="checkbox"]').change(function () {
-            UpdatePrice();
-        });
+                        if (parseInt(price) > parseInt(price_max)){
+                            $('#input_pack').val(price_max);
 
-        function UpdatePrice() {
-            var price = 0;
-            var itemselect = '';
+                            price_max = price_max.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                            price_max = price_max.split('').reverse().join('').replace(/^[\.]/,'');
 
-            if (data.server_mode == 1 && data.server_price == 1) {
-                var s_price = data["price" + server];
-            }
-            else {
-                var s_price = data["price"];
-            }
+                            $(this).val(price_max);
 
-            if ($('.s-filter input[type="checkbox"]:checked').length > 0) {
-                $('.s-filter input[type="checkbox"]:checked').each(function (idx, elm) {
-                    price += parseInt(s_price[$(elm).val()]);
-                    if (itemselect != '') {
-                        itemselect += '|';
+                            $('#txtPrice').html('');
+                            $('#txtPrice').html('Nhập số tiền không đúng');
+
+                            return false;
+                        }
+
+                        var txtDiscount = parseInt($('#txtDiscount').val());
+                        var total_price = price_input_pack/txtDiscount;
+                        var currency = $('#currency').val();
+
+                        $('#txtPrice').html('');
+                        $('#txtPrice').html('Tổng: ' + total_price + ' ' + currency + '');
+
+                        price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                        price = price.split('').reverse().join('').replace(/^[\.]/,'');
+
+                        $(this).val(price);
+                    }else {
+
+                        $('#input_pack').val(price_min);
+
+                        price_min = price_min.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                        price_min = price_min.split('').reverse().join('').replace(/^[\.]/,'');
+
+                        $(this).val(price_min);
+
+                        $('#txtPrice').html('');
+                        $('#txtPrice').html('Nhập số tiền không đúng');
+
+                        return false;
                     }
 
-                    itemselect += $(elm).val();
+                })
 
+
+                $('body').on('click','#server',function(e){
+                    var price_min = parseInt($(this).find(':selected').data('price-min'));
+                    var price_max = parseInt($(this).find(':selected').data('price-max'));
+                    var heso = parseInt($(this).find(':selected').data('heso'));
+                    $('#price-min').val(price_min);
+                    $('#price-max').val(price_max);
+                    $('#txtDiscountface').val(heso);
+
+                    var price = $('#input_pack').val();
+
+                    if (parseInt(price) < parseInt(price_min)){
+
+                        $('#input_pack').val(price_min);
+
+                        price_min = price_min.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                        price_min = price_min.split('').reverse().join('').replace(/^[\.]/,'');
+
+                        $('#input_pack_face').val(price_min);
+
+                        $('#txtPrice').html('');
+                        $('#txtPrice').html('Nhập số tiền không đúng');
+
+                        return false;
+                    }
+
+                    if (parseInt(price) > parseInt(price_max)){
+                        $('#input_pack').val(price_max);
+
+                        price_max = price_max.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                        price_max = price_max.split('').reverse().join('').replace(/^[\.]/,'');
+
+                        $('#input_pack_face').val(price_max);
+
+                        $('#txtPrice').html('');
+                        $('#txtPrice').html('Nhập số tiền không đúng');
+
+                        return false;
+                    }
+
+                    var price_input_pack = parseInt($('#input_pack').val());
+                    var txtDiscount = parseInt($('#txtDiscount').val());
+                    var total_price = price_input_pack/txtDiscount;
+                    var currency = $('#currency').val();
+
+                    $('#txtPrice').html('');
+                    $('#txtPrice').html('Tổng: ' + total_price + ' ' + currency + '');
+
+                    price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                    price = price.split('').reverse().join('').replace(/^[\.]/,'');
+
+                    $('#input_pack_face').val(price);
+                })
+            })
+        </script>
+        @elseif($filter_type == 6)
+            <script>
+                var data = JSON.parse($("#json_rank").val());
+
+                // var data = json.price;
+
+                $('.nstSlider').attr('data-range_max', data.length - 1);
+                $('.nstSlider').attr('data-cur_max', data.length - 1);
+                $('.nstSlider').nstSlider({
+                    "crossable_handles": false,
+                    "left_grip_selector": ".leftGrip",
+                    "right_grip_selector": ".rightGrip",
+                    "value_bar_selector": ".bar",
+                    "value_changed_callback": function (cause, leftValue, rightValue) {
+                        from = leftValue;
+                        to = rightValue;
+                        $(".from-chosen").val(from);
+                        $(".to-chosen").val(to);
+                        $(".to-chosen").trigger("chosen:updated");
+                        $(".from-chosen").trigger("chosen:updated");
+                        UpdatePrice1();
+                    }
+                });
+
+                var from = 0, to = 1;
+                $(document).ready(() => {
+                    $(".from-chosen").chosen({disable_search_threshold: 10});
+                    $(".from-chosen").change((elm, select) => {
+                        from = parseInt($(".from-chosen").val());
+                        if (to <= from) {
+                            to = from + 1;
+                            $(".to-chosen").val(to);
+                            //$(".to-chosen").chosen('update');
+                            $(".to-chosen").trigger("chosen:updated");
+                        }
+                        $('.nstSlider').nstSlider('set_position', from, to);
+
+                        console.log('form = :' + from);
+                        console.log('to = :' + to);
+                        UpdatePrice1();
+                    });
+
+                    $(".to-chosen").chosen({disable_search_threshold: 10});
+                    $(".to-chosen").change((elm, select) => {
+                        to = parseInt($(".to-chosen").val());
+                        if (to <= from) {
+                            from = to - 1;
+                            $(".from-chosen").val(from);
+                            $(".from-chosen").trigger("chosen:updated");
+                        }
+                        $('.nstSlider').nstSlider('set_position', from, to);
+                        UpdatePrice1();
+                    });
+                    UpdatePrice1();
+                });
+
+                function UpdatePrice1() {
+                    var price = 0;
+                    var data = JSON.parse($("#json_rank").val());
+                    $('tbody tr.selected').removeClass('selected');
+                    for (var i = from + 1; i <= to; i++) {
+                        price += parseInt(data[i].price-data[i-1].price);
+                        $('tbody tr').eq(i - 1).addClass('selected');
+                    }
                     $('[name="value"]').val('');
                     $('[name="value"]').val(price);
-
-                    $('[name="selected"]').val(itemselect);
-
+                    price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                    price = price.split('').reverse().join('').replace(/^[\.]/,'');
+                    $('#txtPrice').html('Tổng: ' + (price) + ' VNĐ');
+                    $('[name="selected"]').val(from + '|' + to);
                     $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                         $(this).removeClass();
                     });
-                });
-                $('#btnPurchase').prop('disabled', false);
-            }
-            else {
-                $('#txtPrice').html('Tổng: 0 VNĐ');
-                $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                    $(this).removeClass();
-                });
-                $('#btnPurchase').prop('disabled', true);
-
-            }
-            price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-            price = price.split('').reverse().join('').replace(/^[\.]/,'');
-            $('#txtPrice').html('Tổng: ' + price + ' VNĐ');
-        }
-    </script>
-    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6"){{--//dạng chọn a->b--}}
-    <script>
-        var json = JSON.parse(JSON.parse($("#json_rank").val()).params);
-        var data = json.price;
-        $('.nstSlider').attr('data-range_max', data.length - 1);
-        $('.nstSlider').attr('data-cur_max', data.length - 1);
-        $('.nstSlider').nstSlider({
-            "crossable_handles": false,
-            "left_grip_selector": ".leftGrip",
-            "right_grip_selector": ".rightGrip",
-            "value_bar_selector": ".bar",
-            "value_changed_callback": function (cause, leftValue, rightValue) {
-                from = leftValue;
-                to = rightValue;
-                $(".from-chosen").val(from);
-                $(".to-chosen").val(to);
-                $(".to-chosen").trigger("chosen:updated");
-                $(".from-chosen").trigger("chosen:updated");
-                UpdatePrice1();
-            }
-        });
-
-        var from = 0, to = 1;
-        $(document).ready(() => {
-            $(".from-chosen").chosen({disable_search_threshold: 10});
-            $(".from-chosen").change((elm, select) => {
-                from = parseInt($(".from-chosen").val());
-                if (to <= from) {
-                    to = from + 1;
-                    $(".to-chosen").val(to);
-                    //$(".to-chosen").chosen('update');
-                    $(".to-chosen").trigger("chosen:updated");
-                }
-                $('.nstSlider').nstSlider('set_position', from, to);
-                UpdatePrice1();
-            });
-
-            $(".to-chosen").chosen({disable_search_threshold: 10});
-            $(".to-chosen").change((elm, select) => {
-                to = parseInt($(".to-chosen").val());
-                if (to <= from) {
-                    from = to - 1;
+                    $('.nstSlider').nstSlider('set_position', from, to);
                     $(".from-chosen").val(from);
+                    $(".to-chosen").val(to);
+                    $(".to-chosen").trigger("chosen:updated");
                     $(".from-chosen").trigger("chosen:updated");
                 }
-                $('.nstSlider').nstSlider('set_position', from, to);
-                UpdatePrice1();
-            });
-            UpdatePrice1();
-        });
-
-        function UpdatePrice1() {
-            var price = 0;
-            var data =json.price;
-            $('tbody tr.selected').removeClass('selected');
-            for (var i = from + 1; i <= to; i++) {
-                price += parseInt(data[i]-data[i-1]);
-                $('tbody tr').eq(i - 1).addClass('selected');
-            }
-            $('[name="value"]').val('');
-            $('[name="value"]').val(price);
-            price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-            price = price.split('').reverse().join('').replace(/^[\.]/,'');
-            $('#txtPrice').html('Tổng: ' + (price) + ' VNĐ');
-            $('[name="selected"]').val(from + '|' + to);
-            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                $(this).removeClass();
-            });
-            $('.nstSlider').nstSlider('set_position', from, to);
-            $(".from-chosen").val(from);
-            $(".to-chosen").val(to);
-            $(".to-chosen").trigger("chosen:updated");
-            $(".from-chosen").trigger("chosen:updated");
-        }
-    </script>
-
-    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7"){{--//dạng nhập tiền thành toán--}}
-    <script>
-        var min = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params)}}');
-        var max = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params)}}');
-        $('#txtPrice').html('');
-        $('#txtPrice').html('Tổng: 0 ' + purchase_name);
-
-        function UpdatePrice() {
-
-            var container = $('.m-datatable__body').html('');
-
-
-            if (data.server_mode == 1 && data.server_price == 1) {
-
-                var s_price = data["price" + server];
-                var s_discount = data["discount" + server];
-            }
-            else {
-                var s_price = data["price"];
-            }
-
-
-            for (var i = 0; i < data.name.length; i++) {
-
-                var price = s_price[i];
-                var discount = s_price[i];
-
-
-                if (s_price != null && s_discount != null) {
-                    var ptemp = '';
-
-                    if (data.length == 1) {
-                        ptemp = '<td style="width:180px;" class="m-datatable__cell"> <a class="btn-style border-color" href="/service/purchase/2.html?selected=' + price + '&server=' + server + '">Thanh toán</a> </td> </tr>';
-                    } else {
-                        ptemp = '<td style="width:180px;" class="m-datatable__cell"> <a onclick="Confirm(' + price + ',' + server + ')" class="btn-style border-color">Thanh toán</a> </td> </tr>';
-                    }
-                    var temp = '<tr class="m-datatable__row m-datatable__row--even">' +
-                        '<td style="width:30px;" class="m-datatable__cell">' + (i + 1) + '</td>' +
-                        '<td class="m-datatable__cell">' + data.name[i] + '</td>' +
-                        '<td style="width:150px;" class="m-datatable__cell">' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ</td>' +
-                        '<td style="width:250px;" class="m-datatable__cell">' + discount + '</td>' +
-                        '<td style="width:180px;" class="m-datatable__cell">' + (parseInt(price * discount / 1000 * data.input_pack_rate)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' ' + purchase_name + '</td>' + ptemp
-
-                    $(temp).appendTo(container);
-                }
-            }
-            UpdateTotal();
-        }
-
-        function UpdateTotal() {
-            var price = parseInt($('#input_pack').val().replace(/,/g, ''));
-
-            if (typeof price != 'number' || price < min || price > max) {
-                $('button[type="submit"]').addClass('not-allow');
-
-                $('#txtPrice').html('Tiền nhập không đúng');
-                return;
-            } else {
-                $('button[type="submit"]').removeClass('not-allow');
-            }
-            var total = 0;
-            var index = 0;
-            var current = 0;
-            var discount = 0;
-
-
-            if (data.server_mode == 1 && data.server_price == 1) {
-                var s_price = data["price" + server];
-                var s_discount = data["discount" + server];
-
-                for (var i = 0; i < s_price.length; i++) {
-
-                    if (price >= s_price[i] && s_price[i] != null) {
-                        current = s_price[i];
-                        index = i;
-                        discount = s_discount[i];
-                        total = price * s_discount[i];
-
-                    }
-                }
-            }
-            else {
-                var s_price = data["price"];
-                var s_discount = data["discount"];
-                discount = s_discount[0];
-                for (let i = 0; i< s_price.length; i++){
-
-                    if (i > 0){
-                        if (price >= s_price[i]){
-                            discount = s_discount[i];
-                        }
-                    }
-                }
-                // discount = s_discount;
-                total = price * discount;
-            }
-
-            $('[name="value"]').val('');
-            $('[name="value"]').val(price);
-            total = parseInt(total / 1000 * data.input_pack_rate);
-
-            $('#txtDiscount').val(discount);
-            total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-            total = total.split('').reverse().join('').replace(/^[\.]/,'');
-            $('#txtPrice').html('');
-            $('#txtPrice').html('Tổng: ' + total + " " + purchase_name);
-            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                $(this).removeClass();
-            });
-            $('[name="selected"]').val(price);
-            $('.m-datatable__body tbody tr.selected').removeClass('selected');
-            $('.m-datatable__body tbody tr').eq(index).addClass('selected');
-        }
-
-        $('#input_pack').bind('focus keyup', function () {
-            UpdateTotal();
-        });
-        $(document).ready(function () {
-            UpdatePrice();
-        });
-
-        function ConfirmBuy(value) {
-            var index = $('.server-filter').val();
-            Confirm(value, index);
-        }
-    </script>
+            </script>
+        @endif
     @endif
-
     @endif
-
 @endsection
 

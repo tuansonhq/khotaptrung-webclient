@@ -62,10 +62,46 @@ class ServiceController extends Controller
         $method = "GET";
         $val = array();
         $val['type'] = 2;
-        $data = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
-        $response_data = $data->response_data;
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
+        $response_data = $result_Api->response_data??null;
 
-        return $response_data;
+        if(isset($response_data) && ($response_data->status??"") == 1){
+            $data = $response_data->data;
+
+            $attribute_set = $data->attribute_set;
+            $product = null;
+            $filter_type = null;
+
+            if (isset($data->product)){
+                $product_current_page = $data->product;
+                if (isset($product_current_page->data) && count($product_current_page->data)){
+                    $product = $product_current_page->data;
+
+                    foreach($product as $key => $item){
+                        if($key == 0){
+                            foreach($item->product_attribute as $attribute){
+                                if($attribute->attribute->idkey == 'loai_hien_thi' && $attribute->product_attribute_value_able->id == 433){
+                                    $filter_type = 7;
+                                }elseif ($attribute->attribute->idkey == 'loai_hien_thi' && $attribute->product_attribute_value_able->id == 432){
+                                    $filter_type = 6;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+//            return $filter_type;
+            $data = $data->category;
+
+            return view('frontend.pages.service.detail')
+                ->with('data', $data)
+                ->with('filter_type', $filter_type)
+                ->with('attribute_set', $attribute_set)
+                ->with('product', $product);
+
+        }
+
 
         $url = '/service/'.$slug;
         $method = "GET";
