@@ -566,7 +566,10 @@
     border-radius: 4px;
     margin-left: 12px;
 }
-
+.article--content__text img{
+    max-width: 90%;
+    height: auto;
+}
 /* end */
 
 
