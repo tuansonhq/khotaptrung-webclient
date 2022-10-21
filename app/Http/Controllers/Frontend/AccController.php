@@ -83,8 +83,24 @@ class AccController extends Controller
         $response_data = $data->response_data;
         if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
             $data = $response_data->data;
+            $data_related = $response_data->product_relate;
 
-            return view('frontend.pages.account.detail')->with('data',$data);
+
+
+
+
+
+            $attribute = array();
+            if (isset($data->product_attribute) && count($data->product_attribute)>0){
+                foreach ($data->product_attribute as $item){
+                    $attribute[$item->attribute->id][$item->attribute->title][] = $item->product_attribute_value_able->title;
+                }
+            }
+
+
+
+
+            return view('frontend.pages.account.detail')->with('data',$data)->with('data_related',$data_related)->with('attribute',$attribute);
         }
         else{
 

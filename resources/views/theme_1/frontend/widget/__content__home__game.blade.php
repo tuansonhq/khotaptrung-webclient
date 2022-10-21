@@ -80,17 +80,18 @@
 
                             </a>
                         </div>
-                        <div class="game-list-description">
+                        <div class="game-list-description mt-3">
                             <div class="countime"></div>
 
                             <p>Số tài khoản: 0 </p>
                         </div>
-                        <div class="row marginauto price-minigame">
-                            <div class="col-md-12 left-right">
-                                <span class="oldPrice" style="color: transparent"></span>
-                                <span class="newPrice" style="border: none"></span>
-                            </div>
-                        </div>
+{{--                       --}}
+{{--                        <div class="row marginauto price-minigame">--}}
+{{--                            <div class="col-md-12 left-right">--}}
+{{--                                <span class="oldPrice" style="color: transparent"></span>--}}
+{{--                                <span class="newPrice" style="border: none"></span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="game-list-more">
                             <div class="game-list-more-view" >
                                 <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
