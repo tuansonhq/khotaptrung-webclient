@@ -1,4 +1,5 @@
-@if(isset($data) && count($data) > 0)
+@if(isset($data))
+    @if(isset($data->data) && count($data->data) > 0)
     <section class="section-related-service c-pt-12 c-pt-lg-6 c-pb-12 c-pb-lg-6 media-web">
         <div class="section-header c-mb-8 c-mb-lg-16 justify-content-between">
             <h2 class="section-title fz-lg-15 lh-lg-24">
@@ -10,10 +11,12 @@
         </div>
         <div class="swiper swiper-related-service card-list">
             <div class="swiper-wrapper">
-                @foreach($data as $item)
+                @foreach($data->data as $item)
+                    @if(isset($item->category_identification) && $item->category_identification != '' )
+                        @if($item->category_identification->type == 2)
 
-                    <div class="swiper-slide">
-                        <div class="card">
+                             <div class="swiper-slide">
+                                  <div class="card">
                             <div class="card-body c-p-16 c-p-lg-12 scale-thumb">
                                 <a href="/dich-vu/{{ $item->slug}}">
                                     <div class="card-thumb c-mb-8">
@@ -53,8 +56,9 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
-
+                            </div>
+                        @endif
+                    @endif
                 @endforeach
             </div>
             <div class="navigation slider-next"></div>
@@ -122,4 +126,5 @@
             <span class="see-more-nick" data-content="Xem thêm nội dung"></span>
         </div>
     </section>
+    @endif
 @endif

@@ -8,6 +8,7 @@
 
 
 @section('content')
+
     <div class="container c-container" id="account-detail">
 
         <div class="data__menuacc">
@@ -165,20 +166,31 @@
                                         </div>
 
                                         <table class="table-acc-info c-mb-24 d-none d-lg-table">
-                                            @foreach($data->product_attribute as $product_attribute)
-                                                <tr>
-                                                    <td>
-                                            <span class="link-color">
-                                               {{$product_attribute->attribute->title}}
-                                            </span>
-                                                    </td>
-                                                    <td>
-                                            <span>
-                                               {{$product_attribute->product_attribute_value_able->title}}
-                                            </span>
-                                                    </td>
-                                                </tr>
+                                            @dd($data)
+                                            @foreach($data->product_attribute as $key => $product_attribute)
+
+
+                                                    <tr>
+                                                        <td>
+                                                            <span class="link-color">
+                                                               {{$product_attribute->attribute->title}}
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                              3
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+
+
+
+
+
+
                                             @endforeach
+
+
                                         </table>
 
                                     @endif

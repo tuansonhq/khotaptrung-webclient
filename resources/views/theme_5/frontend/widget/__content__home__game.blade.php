@@ -14,29 +14,34 @@
             <div class="swiper swiper-related-service card-list">
                 <div class="swiper-wrapper">
                     @foreach($data->data as $item)
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <div class="card-body c-p-16 c-p-lg-12 scale-thumb">
+                        @if(isset($item->category_identification) && $item->category_identification != '' )
+                            @if($item->category_identification->type == 1)
+                            <div class="swiper-slide">
+                                <div class="card">
+                                    <div class="card-body c-p-16 c-p-lg-12 scale-thumb">
 
-                                    <a href="/mua-acc/{{ isset($item->slug) ? $item->slug :  '' }}">
-                                        <div class="card-thumb c-mb-8">
-                                            <img onerror="imgError(this)" src="{{ isset($item->image) ? \App\Library\MediaHelpers::media($item->image) :  'https://frontend.theme-5.tichhop.pro/assets/frontend/theme_5/image/son/nick04.png' }}" alt="" class="card-thumb-image">
-                                        </div>
-                                        <div class="card-attr">
-                                            <div class="text-title fw-700 text-limit limit-1">
-                                                {{ isset($item->title) ? $item->title :  '' }}
+                                        <a href="/mua-acc/{{ isset($item->slug) ? $item->slug :  '' }}">
+                                            <div class="card-thumb c-mb-8">
+                                                <img onerror="imgError(this)" src="{{ isset($item->image) ? \App\Library\MediaHelpers::media($item->image) :  'https://frontend.theme-5.tichhop.pro/assets/frontend/theme_5/image/son/nick04.png' }}" alt="" class="card-thumb-image">
                                             </div>
-                                            <div class="info-attr">
+                                            <div class="card-attr">
+                                                <div class="text-title fw-700 text-limit limit-1">
+                                                    {{ isset($item->title) ? $item->title :  '' }}
+                                                </div>
+                                                <div class="info-attr">
 
-                                                Số tài khoản: 0
+                                                    Số tài khoản: 0
+                                                </div>
+
                                             </div>
+                                        </a>
 
-                                        </div>
-                                    </a>
-
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            @endif
+                        @endif
+
                     @endforeach
 
                 </div>
@@ -54,6 +59,8 @@
             </div>
             <div class="list-category content-desc-nick hide">
                 @foreach($data->data as $item)
+                    @if(isset($item->category_identification) && $item->category_identification != '' )
+                        @if($item->category_identification->type == 1)
                     <div class="item-category c-px-8 c-mb-12 c-px-lg-6">
                         <div class="card">
                             <div class="card-body c-p-16 c-p-lg-12 scale-thumb">
@@ -82,6 +89,8 @@
                             </div>
                         </div>
                     </div>
+                        @endif
+                    @endif
                 @endforeach
             </div>
             <div class="card-footer-nick text-center">

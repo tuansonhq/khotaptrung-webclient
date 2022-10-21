@@ -54,8 +54,23 @@ class AccController extends Controller
         $method = "GET";
         $val = array();
         $data = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
-        $item = $data->response_data->data;
-        return view('frontend.pages.account.list')->with('data',$item);
+        $response_data = $data->response_data;
+        dd($data);
+        if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
+            $data = $response_data->data;
+
+            return view('frontend.pages.account.list')->with('data',$data);
+        }
+        else{
+
+            $data = null;
+            $message = $response_cate_data->message??"Không thể lấy dữ liệu hoặc tài khoản không tồn tại.";
+
+            return view('frontend.pages.account.detail')
+                ->with('message',$message)
+                ->with('data',$data);
+
+        }
 
     }
 
