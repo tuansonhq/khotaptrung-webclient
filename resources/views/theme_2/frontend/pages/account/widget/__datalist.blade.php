@@ -176,7 +176,7 @@
                                         <div class="card--attr__name fw-400 fz-13 text-center">
                                             Tổng thanh toán
                                         </div>
-                                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">9.900 đ</a></div>
+                                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">{{ str_replace(',','.',number_format($data->price)) }} đ</a></div>
                                     </div>
                                 </div>
                                 @if(App\Library\AuthCustom::check() && App\Library\AuthCustom::user()->balance < $data->price)
