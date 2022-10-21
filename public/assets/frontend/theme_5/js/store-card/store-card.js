@@ -1,13 +1,9 @@
-// tabActive sẽ là biến để xác định người dùng đang ở tab nào ( thẻ game or thẻ điện thoại )
-
 
 //select the first card radio
 if ($(document).width() >= 992 ){
     $('#cardGameList .card-type-form:first-child input').prop('checked',true);
-    $('#cardPhoneList .card-type-form:first-child input').prop('checked',true);
 } else {
     $('#slider-card-game .card-type-form:first-child input').prop('checked',true);
-    $('#slider-card-phone .card-type-form:first-child input').prop('checked',true);
 }
 
 $(document).ready(function () {
@@ -26,39 +22,22 @@ $(document).ready(function () {
         _token: $('meta[name="csrf-token"]').attr('content'),
     }
 
-    $('input[name="card-type-game"]').on('change',function (e) {
+    $('input[name="card-type"]').on('change',function (e) {
         e.preventDefault();
-        getCardAmount($(this).val(), 1);
+        let dataTab = $(this).data('tab');
+        getCardAmount($(this).val(), dataTab);
     });
 
-    $('input[name="card-type-mobile"]').on('change',function (e) {
-        e.preventDefault();
-        getCardAmount($(this).val(), 2);
-    });
-
-    $('input[name="card-type-game"]:checked').trigger('change');
-    $('input[name="card-type-mobile"]:checked').trigger('change');
+    $('input[name="card-type"]:checked').trigger('change');
 
     $('#btn-confirm, #btn-confirm-mobile').on('click', function (e) {
         e.preventDefault();
-
-        let tabActive = getTabActive();
-
         resetConfirmModal();
-        prepareConfirmModal(tabActive);
+        prepareConfirmModal();
         resetMobileConfirm();
-        prepareMobileConfirm(tabActive);
-        prepareDataSend(tabActive);
-    });
-
-    $('#gameCardNav').on('click', function(e) {
-        prepareAmountWidget(1);
-        checkCardAvailable(1);
-    });
-
-    $('#mobileCardNav').on('click', function(e) {
-        prepareAmountWidget(2);
-        checkCardAvailable(2);
+        prepareMobileConfirm();
+        resetDataSend();
+        prepareDataSend();
     });
 
     $(document).on('click', '#modalConfirmPayment #confirmSubmitButton', function(e) {
@@ -162,6 +141,7 @@ $(document).ready(function () {
             complete: function () {
                 $('#confirmSubmitButton').prop("disabled", false);
                 $('#confirmSubmitButton').text("Xác nhận");
+                resetDataSend();
             }
         });
 
@@ -258,42 +238,36 @@ $(document).ready(function () {
             complete: function () {
                 $('#confirmMobileButton').prop("disabled", false);
                 $('#confirmMobileButton').text("Xác nhận");
+                resetDataSend();
             }
         });
 
     });
 
-    function getTabActive() {
-        if ($('#gameCardNav').hasClass('active')) {
-            return 1;
-        }
-        if ($('#mobileCardNav').hasClass('active')) {
-            return 2;
-        }
-
-        return 1;
-    }
-
-    function checkCardAvailable(tabActive) {
-        if ( tabActive == 1 ) {
-            if ( $("#cardAmountListGame .card-price-form").length ) {
-                $('#btn-confirm').prop('disabled', false);
-                $('#btn-confirm-mobile').prop('disabled', false);
-            } else {
-                $('#btn-confirm').prop('disabled', true);
-                $('#btn-confirm-mobile').prop('disabled', true);
-            }
-        } else if ( tabActive == 2 ) {
-            if ( $("#cardAmountListMobile .card-price-form").length ) {
-                $('#btn-confirm').prop('disabled', false);
-                $('#btn-confirm-mobile').prop('disabled', false);
-            } else {
-                $('#btn-confirm').prop('disabled', true);
-                $('#btn-confirm-mobile').prop('disabled', true);
+    function checkCardAvailable(dataTab) {
+        if ( isNaN(calculatePrice()) || calculatePrice <= 0 ) {
+            $('#btn-confirm').prop('disabled', true);
+            $('#btn-confirm-mobile').prop('disabled', true);
+        } else {
+            if ( dataTab == 1 ) {
+                if ( $("#cardAmountListGame .card-price-form").length ) {
+                    $('#btn-confirm').prop('disabled', false);
+                    $('#btn-confirm-mobile').prop('disabled', false);
+                } else {
+                    $('#btn-confirm').prop('disabled', true);
+                    $('#btn-confirm-mobile').prop('disabled', true);
+                }
+            } else if ( dataTab == 2 ) {
+                if ( $("#cardAmountListMobile .card-price-form").length ) {
+                    $('#btn-confirm').prop('disabled', false);
+                    $('#btn-confirm-mobile').prop('disabled', false);
+                } else {
+                    $('#btn-confirm').prop('disabled', true);
+                    $('#btn-confirm-mobile').prop('disabled', true);
+                }
             }
         }
     }
-
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
@@ -358,7 +332,7 @@ $(document).ready(function () {
         });
     };
 
-    function getCardAmount (cardKey, tabActive) {
+    function getCardAmount (cardKey, dataTab) {
         $.ajax({
             url: '/ajax/store-card/get-amount',
             type: 'GET',
@@ -369,11 +343,11 @@ $(document).ready(function () {
                 resetAmountWidget();
                 $('#btn-confirm').prop('disabled', true);
                 $('#btn-confirm-mobile').prop('disabled', true);
-                if ( tabActive == 1) {
-                    $('#cardAmountListGame').empty();
+                $('#cardAmountListGame').empty();
+                $('#cardAmountListMobile').empty();
+                if ( dataTab == 1 ) {
                     $('#gameCard .amount-card-section .loader').removeClass('d-none');
-                } else if ( tabActive == 2 ) {
-                    $('#cardAmountListMobile').empty();
+                } else if ( dataTab == 2 ) {
                     $('#mobileCard .amount-card-section .loader').removeClass('d-none');
                 }
             },
@@ -382,12 +356,12 @@ $(document).ready(function () {
                     let data = res.data;
 
                     //Empty element
-                    if ( tabActive == 1 ) {
+                    if ( dataTab == 1 ) {
                         $('#cardAmountListGame').empty();
                         if (!data.length) {
                             $('#cardAmountListGame').append('<p class="text-center c-mb-0" style="padding-left: 4px;">Chưa có mệnh giá của thẻ</p>');
                         }
-                    } else if ( tabActive == 2 ) {
+                    } else if ( dataTab == 2 ) {
                         $('#cardAmountListMobile').empty();
                         if (!data.length) {
                             $('#cardAmountListMobile').append('<p class="text-center c-mb-0" style="padding-left: 4px;">Chưa có mệnh giá của thẻ</p>');
@@ -398,98 +372,70 @@ $(document).ready(function () {
                         let loop_index = 0;
 
                         data.forEach(function (card) {
-                            if ( tabActive == 1) {
-                                let html = '';
-                                html += `<div class="col-4 col-lg-2 c-px-4 card-price-form">`;
-                                //Check if it is the first loop
-                                if (loop_index === 0) {
-                                    html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value-game" checked hidden>`;
-                                    //Increase loop index
-                                    loop_index++;
-                                } else {
-                                    html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value-game" hidden>`;
-                                }
-                                html += `<label for="amount-${card.id}" class="c-py-21 c-px-8 c-mb-8 brs-8">`;
-                                html += `<p class="fw-500 fs-15 mb-0">${formatNumber(card.amount)} đ</p>`;
-                                html += `</label>`;
-                                html += `</div>`;
+                            
+                            let html = '';
+                            html += `<div class="col-4 col-lg-2 c-px-4 card-price-form">`;
+                            //Check if it is the first loop
+                            if (loop_index === 0) {
+                                html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value" checked hidden>`;
+                                //Increase loop index
+                                loop_index++;
+                            } else {
+                                html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value" hidden>`;
+                            }
+                            html += `<label for="amount-${card.id}" class="c-py-21 c-px-8 c-mb-8 brs-8">`;
+                            html += `<p class="fw-500 fs-15 mb-0">${formatNumber(card.amount)} đ</p>`;
+                            html += `</label>`;
+                            html += `</div>`;
 
+                            if ( dataTab == 1) {
                                 // Append new HTML amount
                                 $('#cardAmountListGame').append(html);
-                            } else if ( tabActive == 2 ) {
-                                let html = '';
-                                html += `<div class="col-4 col-lg-2 c-px-4 card-price-form">`;
-                                //Check if it is the first loop
-                                if (loop_index === 0) {
-                                    html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value-mobile" checked hidden>`;
-                                    //Increase loop index
-                                    loop_index++;
-                                } else {
-                                    html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value-mobile" hidden>`;
-                                }
-                                html += `<label for="amount-${card.id}" class="c-py-21 c-px-8 c-mb-8 brs-8">`;
-                                html += `<p class="fw-500 fs-15 mb-0">${formatNumber(card.amount)} đ</p>`;
-                                html += `</label>`;
-                                html += `</div>`;
-
+                            } else if ( dataTab == 2 ) {
                                 $('#cardAmountListMobile').append(html);
                             }
                         });
 
                         //prepare the input field and update price related value
                         $('input[name="card-amount"]').val(1);
-                        prepareAmountWidget(tabActive);
+                        prepareAmountWidget();
 
                         //Activate onchange, oninput function for input field inside
-                        $('input[name="card-value-game"]').change(function (e) {
+                        $('input[name="card-value"]').change(function (e) {
                             e.preventDefault();
-                            prepareAmountWidget(1);
+                            prepareAmountWidget();
                         });
-                        $('input[name="card-value-mobile"]').change(function (e) {
-                            e.preventDefault();
-                            prepareAmountWidget(2);
-                        });
+
                         $('input[name="card-amount"]').on('input change', function (e) {
                             e.preventDefault();
-                            if ( getTabActive() == 1 ) {
-                                prepareAmountWidget(1);
-                            } else if ( getTabActive() == 2 ) {
-                                prepareAmountWidget(2);
-                            }
+                            prepareAmountWidget();
                         });
 
                         //Make btn no longer disable when failed get data
-                        checkCardAvailable(tabActive);
-
+                        checkCardAvailable(dataTab);
                     }
                 }
             },
             complete: function () {
-                if ( tabActive == 1) {
-                    $('#gameCard .amount-card-section .loader').addClass('d-none');
-                } else if ( tabActive == 2 ) {
-                    $('#mobileCard .amount-card-section .loader').addClass('d-none');
-                }
+                $('#gameCard .amount-card-section .loader').addClass('d-none');
+                $('#mobileCard .amount-card-section .loader').addClass('d-none');
             }
         });
     };
 
-    function prepareAmountWidget (tabActive) {
+    function prepareAmountWidget () {
         let discountCardValue, price;
-        if (tabActive == 1) {
-            discountCardValue = $('input[name="card-value-game"]:checked').data('discount');
-        } else if ( tabActive == 2 ) {
-            discountCardValue = $('input[name="card-value-mobile"]:checked').data('discount');
-        }
-        $('input[name="card-discount"]').val(discountCardValue);
 
+        discountCardValue = $('input[name="card-value"]:checked').data('discount');
+        $('input[name="card-discount"]').val(discountCardValue);
+        
         if (isNaN(100 - discountCardValue)) {
             $('.buy-card-discount').text(`0%`);
         } else {
             $('.buy-card-discount').text(`${100 - discountCardValue}%`);
         }
 
-        price = calculatePrice(tabActive);
+        price = calculatePrice();
         
         if (isNaN(price)) {
             $('.buy-card-total').text(`0 đ`);
@@ -504,13 +450,11 @@ $(document).ready(function () {
     }
 
     //Calculate price
-    function calculatePrice (tabActive) {
+    function calculatePrice () {
         let amount;
-        if (tabActive == 1) {
-            amount = $('input[name="card-value-game"]:checked').val();
-        } else if (tabActive == 2) {
-            amount = $('input[name="card-value-mobile"]:checked').val();
-        }
+
+        amount = $('input[name="card-value"]:checked').val();
+
         let quantity = $('input[name="card-amount"]').val();
         let discount = $('input[name="card-discount"]').val();
 
@@ -560,18 +504,12 @@ $(document).ready(function () {
     }
 
     //append new data into confirm modal
-    function prepareConfirmModal(tabActive) {
+    function prepareConfirmModal() {
         let confirmTitle, confirmPrice, confirmQuantity, confirmDiscount;
 
-        if ( tabActive == 1 ) {
-            confirmTitle = $('input[name="card-type-game"]:checked').data('title');
-            confirmPrice = $('input[name="card-value-game"]:checked').val();
-            confirmDiscount = $('input[name="card-value-game"]:checked').data('discount');
-        } else if ( tabActive == 2 ) {
-            confirmTitle = $('input[name="card-type-mobile"]:checked').data('title');
-            confirmPrice = $('input[name="card-value-mobile"]:checked').val();
-            confirmDiscount = $('input[name="card-value-mobile"]:checked').data('discount');
-        }
+        confirmTitle = $('input[name="card-type"]:checked').data('title');
+        confirmPrice = $('input[name="card-value"]:checked').val();
+        confirmDiscount = $('input[name="card-value"]:checked').data('discount');
         
         confirmQuantity = $('input[name="card-amount"]').val();
 
@@ -579,21 +517,16 @@ $(document).ready(function () {
         $('#modalConfirmPayment #confirmPrice').text(`${formatNumber( confirmPrice )} đ`);
         $('#modalConfirmPayment #confirmQuantity').text(confirmQuantity);
         $('#modalConfirmPayment #confirmDiscount').text(`${100 - confirmDiscount}%`);
-        $('#modalConfirmPayment #confirmTotal').text(`${formatNumber( calculatePrice(tabActive) )} đ`);
-        $('#modalConfirmPayment #totalBill').text(`${formatNumber( calculatePrice(tabActive) )} đ`);
+        $('#modalConfirmPayment #confirmTotal').text(`${formatNumber( calculatePrice() )} đ`);
+        $('#modalConfirmPayment #totalBill').text(`${formatNumber( calculatePrice() )} đ`);
     }
 
-    function prepareMobileConfirm (tabActive) {
+    function prepareMobileConfirm () {
         let confirmTitle, confirmPrice, confirmQuantity, confirmDiscount;
-        if ( tabActive == 1 ) {
-            confirmTitle = $('input[name="card-type-game"]:checked').data('title');
-            confirmPrice = $('input[name="card-value-game"]:checked').val();
-            confirmDiscount = $('input[name="card-value-game"]:checked').data('discount');
-        } else if ( tabActive == 2 ) {
-            confirmTitle = $('input[name="card-type-mobile"]:checked').data('title');
-            confirmPrice = $('input[name="card-value-mobile"]:checked').val();
-            confirmDiscount = $('input[name="card-value-mobile"]:checked').data('discount');
-        }
+
+        confirmTitle = $('input[name="card-type"]:checked').data('title');
+        confirmPrice = $('input[name="card-value"]:checked').val();
+        confirmDiscount = $('input[name="card-value"]:checked').data('discount');
 
         confirmQuantity = $('input[name="card-amount"]').val();
 
@@ -601,26 +534,27 @@ $(document).ready(function () {
         $('#confirmMobilePrice').text(`${formatNumber( confirmPrice )} đ`);
         $('#confirmMobileQuantity').text(confirmQuantity);
         $('#confirmMobileDiscount').text(`${100 - confirmDiscount}%`);
-        $('#confirmMobileTotal').text(`${formatNumber( calculatePrice(tabActive) )} đ`);
-        $('#totalMobileBill').text(`${formatNumber( calculatePrice(tabActive) )} đ`);
+        $('#confirmMobileTotal').text(`${formatNumber( calculatePrice() )} đ`);
+        $('#totalMobileBill').text(`${formatNumber( calculatePrice() )} đ`);
     }
 
     //Append new data to submit to backend
-    function prepareDataSend(tabActive) {
+    function prepareDataSend() {
         let amount, telecom, quantity;
-        if ( tabActive == 1 ) {
-            amount = $('input[name="card-value-game"]:checked').val();
-            telecom = $('input[name="card-type-game"]:checked').val();
-        } else if ( tabActive == 2 ) {
-            amount = $('input[name="card-value-mobile"]:checked').val();
-            telecom = $('input[name="card-type-mobile"]:checked').val();
-        }
 
+        amount = $('input[name="card-value"]:checked').val();
+        telecom = $('input[name="card-type"]:checked').val();
         quantity = $('input[name="card-amount"]').val();
         
         storeDataSend.amount = amount;
         storeDataSend.telecom = telecom.toUpperCase();
         storeDataSend.quantity = quantity;
+    }
+
+    function resetDataSend() {
+        storeDataSend.amount = null;
+        storeDataSend.telecom = null;
+        storeDataSend.quantity = null;
     }
 
 });
