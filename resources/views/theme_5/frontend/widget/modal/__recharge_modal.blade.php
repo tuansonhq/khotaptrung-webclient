@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered modal-custom">
         <div class="modal-content p-0">
             <div class="modal-header c-pl-24 c-pr-24 c-pt-24 c-pb-16" style="border-bottom: 1px solid #E4E5F0">
-                <h2 class="modal-title center">Nạp tiền</h2>
+                <p class="modal-title center">Nạp tiền</p>
                 <button type="button" class="close" data-dismiss="modal" style="right: 24px;top: 36px"></button>
             </div>
             <div class="modal-body pl-0 pr-0 c-pt-0 c-pb-24">
