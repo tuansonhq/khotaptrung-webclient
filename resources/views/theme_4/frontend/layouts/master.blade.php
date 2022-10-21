@@ -293,20 +293,22 @@
 </script>
 
 @include('frontend.layouts.includes.footer')
-@if(Session::has('check_login'))
-    <script>
-        $(document).ready(function () {
-            $('#modal-login').modal('show');
-            setTimeout(() => {
-                $('#loginModal #modal-login-container').removeClass('right-panel-active');
-            }, 200);
+@if(Request::is('login'))
+    @if(!\App\Library\AuthCustom::check())
+        <script>
+            $(document).ready(function () {
+                $('#modal-login').modal('show');
+                setTimeout(() => {
+                    $('#loginModal #modal-login-container').removeClass('right-panel-active');
+                }, 200);
 
-        });
-    </script>
-    @php
-        Session::pull('check_login');
-    @endphp
+            });
+        </script>
+    @endif
+
 @endif
+
+
 @if (!\App\Library\AuthCustom::check())
     @include('frontend.widget.modal.__login')
 @endif

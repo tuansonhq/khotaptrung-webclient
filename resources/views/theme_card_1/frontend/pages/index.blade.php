@@ -18,11 +18,11 @@
 
 
         <div class="clr"></div>
-        @if(setting('sys_store_card_content'))
+        @if(setting('sys_intro_text'))
         <div class="wp_content_post_index">
             <div class="post_index">
                     <div class="content_bvct">
-                        {!! setting('sys_store_card_content') !!}
+                        {!! setting('sys_intro_text') !!}
                     </div>
                     <span class="xt more">Xem thêm</span>
                     <span class="xt tg" style="display: none;">Thu gọn</span>

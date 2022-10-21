@@ -19,8 +19,8 @@
                             <h3>Nạp ATM</h3>
                             <hr class="lines">
                             <div class="wapper profile">
-                                @if (setting('sys_charge_content') != "")
-                                    {!! setting('sys_charge_content') !!}
+                                @if (setting('sys_tranfer_content') != "")
+                                    {!! setting('sys_tranfer_content') !!}
                                 @endif
                                 <div class="transfer-code" style="justify-content: center;display: flex"></div>
                             </div>

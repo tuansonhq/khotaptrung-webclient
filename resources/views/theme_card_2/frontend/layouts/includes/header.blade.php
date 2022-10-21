@@ -98,7 +98,7 @@
                                             </div>
                                             <div class="m-dropdown__body">
                                                 <div class="m-dropdown__content">
-                                                    @include('frontend.widget.__menu_header')
+                                                    @include('frontend.widget.__menu_profile_header')
                                                 </div>
                                             </div>
                                         </div>
