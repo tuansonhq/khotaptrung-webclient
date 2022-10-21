@@ -90,7 +90,7 @@
 <div class="mobile-auth step">
     <div class="head-mobile">
         <a href="javascript:void(0);" class="link-back close-step"></a>
-        <h1 class="head-title text-title">Đăng nhập</h1>
+        <p class="head-title text-title">Đăng nhập</p>
     </div>
     <small class="fz-13 fz-md-12 fz-sm-10 fw-400 c-mb-12">Vui lòng đăng ký để sử dụng dịch vụ của chúng tôi</small>
 

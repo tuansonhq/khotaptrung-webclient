@@ -37,7 +37,7 @@
         <div class="head-mobile">
             <a href="/minigame" class="link-back "></a>
 
-            <h1 class="head-title text-title">Danh sách minigame</h1>
+            <p class="head-title text-title">Danh sách minigame</p>
 
             <a href="/" class="home"></a>
         </div>
@@ -49,7 +49,7 @@
                     <div class="c-px-lg-16 d-block d-lg-none  c-mb-12">
                         <div class="rotation-header-mobile d-flex justify-content-between">
                             <div class="rotation-header c-pb-8">
-                                <h3 class="fw-700 fz-18 lh-24">{{$result->group->title}}</h3>
+                                <h1 class="fw-700 fz-18 lh-24">{{$result->group->title}}</h1>
                                 <p class="fw-400 fz-13 mb-0"> <span class="userCount"></span> </p>
 
                             </div>
