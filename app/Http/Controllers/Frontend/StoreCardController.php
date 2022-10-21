@@ -20,6 +20,7 @@ class StoreCardController extends Controller
         $method = "GET";
         $val = array();
         $val['type'] = 4;
+        $val['limit'] = 50;
         $result_Api = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
 
         if(isset($result_Api)){
