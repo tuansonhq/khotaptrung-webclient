@@ -56,6 +56,7 @@
         })
     </script>
     <input type="hidden" name="slug_category" class="slug_category" value="{{ $data->slug }}">
+{{--    <input type="text" value="{{ $server_mode }}">--}}
     <div class="c-layout-page">
         <div class="news_breadcrumbs">
             <div class="container">
@@ -110,7 +111,6 @@
                                 <div class="col-md-7">
 
                                     {{--                                    Kiểm tra máy chủ     --}}
-                                    {{--                                                Loại nhập tiền    --}}
                                     @if(isset($filter_type))
                                         @if($filter_type == 7)
                                             @if(isset($product) && count($product))
@@ -139,73 +139,121 @@
                                                                 @endif
                                                                 @endforeach
 
-                                                            >{{ $item->title }}</option>
+                                                            >
+                                                                @foreach($item->product_attribute as $attribute)
+                                                                    @if($attribute->attribute->idkey == 'vu_tru_nro')
+                                                                        {{ $attribute->product_attribute_value_able->title }}
+                                                                    @endif
+                                                                @endforeach
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             @endif
-                                            @foreach($product as $key => $item)
-                                                @if($key == 0)
-                                                    @foreach($item->product_attribute as $attribute)
-                                                        @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_nho_nhat')
-                                                            <input type="hidden" id="price-min" class="form-control t14" placeholder="" value="{{ $attribute->product_attribute_value_able->title }}" readonly="">
-
-                                                        @endif
-                                                    @endforeach
-
-                                                    @foreach($item->product_attribute as $attribute)
-                                                        @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_lon_nhat')
-                                                            <input type="hidden" id="price-max" class="form-control t14" placeholder="" value="{{ $attribute->product_attribute_value_able->title }}" readonly="">
-
-                                                        @endif
-                                                    @endforeach
-                                                    <input type="hidden" id="txtDiscount" class="form-control t14" placeholder="" value="{{ $item->price }}" readonly="">
-                                                    @foreach($item->product_attribute as $attribute)
-                                                        @if($attribute->attribute->idkey == 'don_vi_tien_te')
-                                                            <input type="hidden" id="currency" class="form-control t14" placeholder="" value="{{ $attribute->product_attribute_value_able->title }}" readonly="">
-                                                        @endif
-                                                    @endforeach
-
-                                                    @if(isset($item->product_attribute) && count($item->product_attribute))
-
-                                                        <span class="mb-15 control-label bb">Nhập số tiền cần mua:</span>
-                                                        <div class="mb-15">
+                                        @elseif($filter_type == 4)
+                                            <span class="mb-15 control-label bb">Chọn máy chủ:</span>
+                                            <div class="mb-15">
+                                                <select name="server" class="server-filter form-control t14" id="server" style="">
+                                                    @foreach($product as $key => $item)
+                                                        <option
+                                                            value="{{ $item->price }}"
+                                                        >
                                                             @foreach($item->product_attribute as $attribute)
-                                                                @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_nho_nhat')
-                                                                    <input autofocus="" value="{{ $attribute->product_attribute_value_able->title }}" class="form-control t14 price " id="input_pack" type="hidden" placeholder="Số tiền">
-                                                                    <input autofocus="" value="{{ str_replace(',','.',number_format( $attribute->product_attribute_value_able->title )) }}" class="form-control t14 price " id="input_pack_face" type="text" placeholder="Số tiền">
+                                                                @if($attribute->attribute->idkey == 'vu_tru_nro')
+                                                                {{ $attribute->product_attribute_value_able->title }}
                                                                 @endif
                                                             @endforeach
-                                                            <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">
-                                                                    @foreach($item->product_attribute as $attribute)
-                                                                        @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_nho_nhat')
-                                                                            {{ str_replace(',','.',number_format( $attribute->product_attribute_value_able->title )) }}đ
-                                                                        @endif
-                                                                    @endforeach
-                                                                </b>  đến <b style="font-weight:bold;">
-                                                                    @foreach($item->product_attribute as $attribute)
-                                                                        @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_lon_nhat')
-                                                                            {{ str_replace(',','.',number_format( $attribute->product_attribute_value_able->title )) }}đ
-                                                                        @endif
-                                                                    @endforeach
-                                                                </b> </span>
-                                                        </div>
-                                                        <span class="mb-15 control-label bb">Hệ số:</span>
-                                                        <div class="mb-15">
-                                                            @foreach($item->product_attribute as $attribute)
-                                                                @if($attribute->attribute->idkey == 'he_so_nro')
-                                                                    <input type="text" id="txtDiscountface" class="form-control t14" placeholder="" value="{{ $attribute->product_attribute_value_able->title }}" readonly="">
-                                                                @endif
-                                                            @endforeach
-                                                        </div>
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
+                                    @endif
 
+                                    {{--                                                Loại nhập tiền    --}}
+                                    @if(isset($filter_type))
+                                        @if($filter_type == 7)
+
+                                            @if(isset($product) && count($product))
+                                                @foreach($product as $key => $item)
+                                                    @if($key == 0)
+                                                        @foreach($item->product_attribute as $attribute)
+                                                            @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_nho_nhat')
+                                                                <input type="hidden" id="price-min" class="form-control t14" placeholder="" value="{{ $attribute->product_attribute_value_able->title }}" readonly="">
+
+                                                            @endif
+                                                        @endforeach
+
+                                                        @foreach($item->product_attribute as $attribute)
+                                                            @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_lon_nhat')
+                                                                <input type="hidden" id="price-max" class="form-control t14" placeholder="" value="{{ $attribute->product_attribute_value_able->title }}" readonly="">
+
+                                                            @endif
+                                                        @endforeach
+                                                        <input type="hidden" id="txtDiscount" class="form-control t14" placeholder="" value="{{ $item->price }}" readonly="">
+                                                        @foreach($item->product_attribute as $attribute)
+                                                            @if($attribute->attribute->idkey == 'don_vi_tien_te')
+                                                                <input type="hidden" id="currency" class="form-control t14" placeholder="" value="{{ $attribute->product_attribute_value_able->title }}" readonly="">
+                                                            @endif
+                                                        @endforeach
+
+                                                        @if(isset($item->product_attribute) && count($item->product_attribute))
+
+                                                            <span class="mb-15 control-label bb">Nhập số tiền cần mua:</span>
+                                                            <div class="mb-15">
+                                                                @foreach($item->product_attribute as $attribute)
+                                                                    @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_nho_nhat')
+                                                                        <input autofocus="" value="{{ $attribute->product_attribute_value_able->title }}" class="form-control t14 price " id="input_pack" type="hidden" placeholder="Số tiền">
+                                                                        <input autofocus="" value="{{ str_replace(',','.',number_format( $attribute->product_attribute_value_able->title )) }}" class="form-control t14 price " id="input_pack_face" type="text" placeholder="Số tiền">
+                                                                    @endif
+                                                                @endforeach
+                                                                <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">
+                                                                @foreach($item->product_attribute as $attribute)
+                                                                    @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_nho_nhat')
+                                                                        {{ str_replace(',','.',number_format( $attribute->product_attribute_value_able->title )) }}đ
+                                                                    @endif
+                                                                @endforeach
+                                                            </b>  đến <b style="font-weight:bold;">
+                                                                @foreach($item->product_attribute as $attribute)
+                                                                    @if($attribute->attribute->idkey == 'so_tien_nro_dien_tien_lon_nhat')
+                                                                        {{ str_replace(',','.',number_format( $attribute->product_attribute_value_able->title )) }}đ
+                                                                    @endif
+                                                                @endforeach
+                                                            </b> </span>
+                                                            </div>
+                                                            <span class="mb-15 control-label bb">Hệ số:</span>
+                                                            <div class="mb-15">
+                                                                @foreach($item->product_attribute as $attribute)
+                                                                    @if($attribute->attribute->idkey == 'he_so_nro')
+                                                                        <input type="text" id="txtDiscountface" class="form-control t14" placeholder="" value="{{ $attribute->product_attribute_value_able->title }}" readonly="">
+                                                                    @endif
+                                                                @endforeach
+                                                            </div>
+
+                                                        @endif
                                                     @endif
-                                                @endif
-                                            @endforeach
+                                                @endforeach
+                                            @endif
+
+                                        @elseif($filter_type == 4)
+                                            @if(isset($product) && count($product))
+                                                <span class="mb-15 control-label bb">Bảng Giá:</span>
+                                                <div class="mb-15">
+                                                    <select name="selected" class="s-filter form-control t14 selected_filter" style="">
+                                                        @foreach($product as $key => $item)
+                                                            <option value="{{ $key }}">{{ $item->title }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                @foreach($product as $key => $item)
+                                                    @if($key == 0)
+                                                        <input type="hidden" id="txtDiscount" class="form-control t14" placeholder="" value="{{ $item->price }}" readonly="">
+                                                    @endif
+                                                @endforeach
+                                            @endif
                                         @endif
                                     @endif
                                     {{--                                                Loại từ A đến B    --}}
-
 
 
                                 </div>
@@ -430,7 +478,7 @@
 
                 // var total_price = Math.round(price_input_pack/txtDiscount);
                 var total_price = price_input_pack/txtDiscount;
-                total_price = total_price.toFixed(2);
+                total_price = total_price.toFixed(0);
                 var currency = $('#currency').val();
 
                 $('#txtPrice').html('');
@@ -480,6 +528,7 @@
 
                         var txtDiscount = parseInt($('#txtDiscount').val());
                         var total_price = price_input_pack/txtDiscount;
+                        total_price = total_price.toFixed(0);
                         var currency = $('#currency').val();
 
                         $('#txtPrice').html('');
@@ -549,6 +598,7 @@
                     var price_input_pack = parseInt($('#input_pack').val());
                     var txtDiscount = parseInt($('#txtDiscount').val());
                     var total_price = price_input_pack/txtDiscount;
+                    total_price = total_price.toFixed(0);
                     var currency = $('#currency').val();
 
                     $('#txtPrice').html('');
@@ -640,6 +690,68 @@
                     $(".to-chosen").trigger("chosen:updated");
                     $(".from-chosen").trigger("chosen:updated");
                 }
+            </script>
+        @elseif($filter_type == 4)
+            <script>
+                $(document).ready(function(){
+
+                    var txtDiscount = parseInt($('#txtDiscount').val());
+
+                    // var total_price = Math.round(price_input_pack/txtDiscount);
+                    var total_price = txtDiscount;
+                    total_price = total_price.toFixed(0);
+
+                    total_price = total_price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                    total_price = total_price.split('').reverse().join('').replace(/^[\.]/,'');
+
+                    $('#txtPrice').html('');
+                    $('#txtPrice').html('Tổng: ' + total_price + ' VNĐ');
+
+                    $('body').on('click','#selected_filter',function(e) {
+                        var price = parseInt($(this).find(':selected').val());
+                        $('#txtDiscount').val(price);
+
+                        var txtDiscount = parseInt($('#txtDiscount').val());
+
+                        var total_price = txtDiscount;
+                        total_price = total_price.toFixed(0);
+
+                        total_price = total_price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                        total_price = total_price.split('').reverse().join('').replace(/^[\.]/,'');
+
+                        $('#txtPrice').html('');
+                        $('#txtPrice').html('Tổng: ' + total_price + ' VNĐ');
+                    })
+                    //
+                    //     if (parseInt(price) > parseInt(price_max)){
+                    //         $('#input_pack').val(price_max);
+                    //
+                    //         price_max = price_max.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                    //         price_max = price_max.split('').reverse().join('').replace(/^[\.]/,'');
+                    //
+                    //         $('#input_pack_face').val(price_max);
+                    //
+                    //         $('#txtPrice').html('');
+                    //         $('#txtPrice').html('Nhập số tiền không đúng');
+                    //
+                    //         return false;
+                    //     }
+                    //
+                    //     var price_input_pack = parseInt($('#input_pack').val());
+                    //     var txtDiscount = parseInt($('#txtDiscount').val());
+                    //     var total_price = price_input_pack/txtDiscount;
+                    //     total_price = total_price.toFixed(0);
+                    //     var currency = $('#currency').val();
+                    //
+                    //     $('#txtPrice').html('');
+                    //     $('#txtPrice').html('Tổng: ' + total_price + ' ' + currency + '');
+                    //
+                    //     price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                    //     price = price.split('').reverse().join('').replace(/^[\.]/,'');
+                    //
+                    //     $('#input_pack_face').val(price);
+                    // })
+                })
             </script>
         @endif
     @endif
