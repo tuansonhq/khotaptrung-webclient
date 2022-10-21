@@ -56,11 +56,19 @@
                                                     @foreach($item_att as $key_att_item  => $item_att_val)
                                                          @if(count($item_att) > 1)
                                                             @if($key_att_item < 1 )
+                                                                <div  class="attr_tooltip" data-tooltip="{{$item_att_val}} (+{{count($item_att)}} {{$key_att}})">
+                                                                    <div style="text-overflow: ellipsis;    white-space: nowrap;word-wrap: break-word;overflow-x: hidden;    width: 8.5em;">
 
-                                                                {{$item_att_val}} (và {{count($item_att)}} <span class="text-lowercase" style="font-size: 16px;    color: #666">{{$key_att}}</span>  khác)
+                                                                        {{$item_att_val}} (+{{count($item_att)}} <span class="text-lowercase" style="font-size: 16px;    color: #666">{{$key_att}}</span>)
+
+                                                                    </div>
+                                                                </div>
+
                                                             @endif
                                                         @else
-                                                            {{$item_att_val}}
+                                                            <div style="text-overflow: ellipsis;    white-space: nowrap;word-wrap: break-word;overflow: hidden;    width: 6.5em;" >
+                                                                {{$item_att_val}}
+                                                            </div>
                                                         @endif
                                                     @endforeach
 
@@ -68,9 +76,6 @@
                                             </div>
                                         @endforeach
                                     @endforeach
-
-
-
 
                                 </div>
                             </div>

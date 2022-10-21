@@ -83,7 +83,7 @@
                         <div class="game-list-description mt-3">
                             <div class="countime"></div>
 
-                            <p>Số tài khoản: 0 </p>
+                            <p>Số tài khoản: 363 </p>
                         </div>
 {{--                       --}}
 {{--                        <div class="row marginauto price-minigame">--}}
