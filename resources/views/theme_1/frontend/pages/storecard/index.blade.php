@@ -9,8 +9,6 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js"></script>
 @endpush
 @section('content')
-
-
 <div class="c-content-box c-size-lg c-overflow-hide c-bg-white font-roboto">
    <div class="container">
    </div>
@@ -41,15 +39,20 @@
                         <div class="mb-3">
 
                             <select name="telecom" id="telecom_storecard" class="server-filter form-control t14" style="">
-                                @foreach($telecoms as $val)
-                                   <option value="{{$val->key}}">{{$val->title}}</option>
-                               @endforeach
+                              @foreach($data_nha_mang as $key => $val)
+                                 <option data-id="{{ $key }}" value="{{ $val }}">{{ $val }}</option>
+                              @endforeach
                            </select>
                         </div>
                         <div class="mb-2 control-label bb"><strong>Mệnh giá:</strong> </div>
                         <div class="mb-3">
                            <select name="amount" id="amount_storecard" class="server-filter form-control t14" style="">
-
+                              <option value="" selected disabled hidden>Vui lòng chọn mệnh giá</option>
+                              @foreach($data_menh_gia as $key => $val)
+                                 @foreach ($val as $option)
+                                    <option data-telecom="{{ $key }}" value="{{ $option }}" hidden>{{ $option }}</option>
+                                 @endforeach
+                              @endforeach
                            </select>
                         </div>
                         <div class="mb-2 control-label bb"><strong>Số lượng:</strong></div>
