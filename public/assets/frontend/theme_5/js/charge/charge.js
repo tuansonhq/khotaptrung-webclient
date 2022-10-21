@@ -440,21 +440,6 @@ $(document).ready(function () {
         });
     }
 
-    //Js for Auto ATM
-    $('input[name=bank]').on('change', function (e) {
-        if ( $(window).width() < 992 ) {
-            $('.atm-banks-note').addClass('d-none');
-        }
-        $('.atm-block-right .loader').removeClass('d-none');
-        $('.atm-recharge-detail').addClass('d-none');
-        $('.atm-recharge-detail').removeClass('d-flex');
-        setTimeout(() => {
-            $('.atm-block-right .loader').addClass('d-none');
-            $('.atm-recharge-detail').removeClass('d-none');
-            $('.atm-recharge-detail').addClass('d-flex');
-        }, 1000);
-    });
-
     // Active swiper atm bank list both in modal and in pages
     let swiper_bank_lists = new Swiper('.swiper-bank-list', {
         autoplay: false,
