@@ -22,6 +22,7 @@
     </div>
 </div>
 
+
 @if(isset($data->attribute_set))
     @php
         $attribute_set = $data->attribute_set;
@@ -35,18 +36,23 @@
                 @php
                     $attribute = $att->attribute;
                 @endphp
+
+                @foreach($attribute as $item_attribute)
+
                 <div class="col-3 item_buy_form_search">
                     <div class="input-group">
-                        <span class="input-group-addon">{{ $att->title }}</span>
-                        <select type="text" class="form-control select" name="attribute_id_{{ $att->id }}">
+                        <span class="input-group-addon">{{ $item_attribute->title }}</span>
+
+                        <select type="text" class="form-control select" name="attribute_id_{{ $item_attribute->id }}">
                             <option value="">--Không chọn--</option>
-                            @foreach($attribute as $val)
-                                <option value="{{ $val->id }}">{{ $val->title }}</option>
+                            @foreach($item_attribute->attribute_value as $val_filter)
+                                <option value="{{ $val_filter->id }}">{{ $val_filter->title }}</option>
                             @endforeach
                         </select>
                     </div>
 
                 </div>
+                @endforeach
             @endif
         @endforeach
 

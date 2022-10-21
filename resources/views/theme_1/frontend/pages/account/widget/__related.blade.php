@@ -1,4 +1,4 @@
-@if(isset($data) && count($data))
+@if(isset($data_related) && count($data_related))
     <div class="shop_product_another pt-3">
         <div class="c-content-title-1">
             <h3 class="c-center c-font-uppercase c-font-bold title__tklienquan">Tài khoản liên quan</h3>
@@ -7,167 +7,100 @@
 
         <div class="shop_product_another_content">
             <div class="item_buy_list row">
-                @foreach($data as $item)
+                @foreach($data_related as $item)
 
                     <div class="col-6 col-sm-6 col-lg-3 fixcssacount">
-                        <div class="item_buy_list_in">
+                        <div class="item_buy_list_in d-flex flex-column">
                             <div class="item_buy_list_img">
-                                <a href="/acc/{{ $item->randId }}">
+                                <a href="/acc/{{ $item->slug }}">
                                     @if(isset($item->image))
 
-                                        <img class="lazy item_buy_list_img-main" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
+                                        <img class="lazy item_buy_list_img-main" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->slug }}">
                                     @else
                                         <img class="item_buy_list_img-main" src="/assets/frontend/{{theme('')->theme_key}}/image/anhconten.jpg" alt="">
                                     @endif
 
                                     @if(isset($item->image_icon))
-                                        <img class="lazy item_buy_list_img-sale" src="{{\App\Library\MediaHelpers::media($item->image_icon)}}"  alt="{{ $item->randId }}">
+                                        <img class="lazy item_buy_list_img-sale" src="{{\App\Library\MediaHelpers::media($item->image_icon)}}"  alt="{{ $item->slug }}">
                                     @else
                                         <img class="item_buy_list_img-sale" src="/assets/frontend/{{theme('')->theme_key}}/image/mgg.png"  alt="">
                                     @endif
-                                    <span>MS: {{ $item->randId }} </span>
+                                    <span>MS: {{ $item->id }} </span>
                                 </a>
                             </div>
                             <div class="item_buy_list_description">
                                 bảo hành 100%,lỗi hoàn tiền
                             </div>
-                            <div class="item_buy_list_info">
+
+                            @php
+                                $attribute_related = array();
+
+
+                                if (isset($item->product_attribute) && count($item->product_attribute)>0){
+                                    foreach ($item->product_attribute as $item_related){
+                                        $attribute_related[$item_related->attribute->id][$item_related->attribute->title][] = $item_related->product_attribute_value_able->title;
+                                    }
+                                }
+
+                            @endphp
+                            <div class="item_buy_list_info " style="flex: 1">
                                 <div class="row">
-                                    <?php
-                                    $index = 0;
-                                    ?>
+                                    @foreach($attribute_related as $key => $item_related)
+                                        @foreach($item_related as $key_att => $item_att)
+                                            <div class="row" style="margin: 0 auto;width: 100%">
+                                                <div class="col-auto item_buy_list_info_inacc fixcssacount">
+                                                    {{$key_att}}
+                                                </div>
+                                                <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
+                                                    {{--                                                                {{ $att_valuev2->title??null }}--}}
+                                                    @foreach($item_att as $key_att_item  => $item_att_val)
+                                                         @if(count($item_att) > 1)
+                                                            @if($key_att_item < 1 )
 
-                                    @if(isset($item->groups))
-                                        <?php
-                                        $att_values = $item->groups;
-                                        ?>
-                                        {{--                                                @dd($att_valuesv2)--}}
-                                        @foreach($att_values as $att_value)
-
-                                            @if(isset($att_value->module) && $att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                <?php
-                                                $index++;
-                                                ?>
-                                                @if($index < 5)
-                                                    @if(isset($att_value->parent))
-                                                        <div class="row" style="margin: 0 auto;width: 100%">
-                                                            <div class="col-auto item_buy_list_info_inacc fixcssacount">
-                                                                {{ $att_value->parent->title??null }} :
-                                                            </div>
-                                                            <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
-{{--                                                                {{ $att_valuev2->title??null }}--}}
-                                                                {{ isset($att_value->title) ? \Str::limit($att_value->title,16) : null }}
-
-                                                            </div>
-                                                        </div>
-                                                    @endif
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                    @if(isset($item->params))
-                                            @if(isset($item->params->rank_info))
-
-                                                @foreach($item->params->rank_info as $rank_info)
-                                                    @if($rank_info->queueType == "RANKED_TFT")
-                                                    @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
-                                                        <?php
-                                                        $index = $index + 1;
-                                                        ?>
-                                                            <div class="row" style="margin: 0 auto;width: 100%">
-                                                                <div class="col-auto item_buy_list_info_inacc fixcssacount">
-                                                                    Rank :
-                                                                </div>
-                                                                <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                    {{--                                                                {{ $att_valuev2->title??null }}--}}
-                                                                    @if($rank_info->tier == "NONE")
-                                                                        {{ $rank_info->tier }}
-                                                                    @else
-                                                                        {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                                    @endif
-
-                                                                </div>
-                                                            </div>
-                                                    @endif
-                                                @endforeach
-                                            @endif
-                                            @if(isset($item->params->count))
-                                                @if(isset($item->params->count->champions))
-                                                    <?php
-                                                    $index = $index + 1;
-                                                    ?>
-                                                        <div class="row" style="margin: 0 auto;width: 100%">
-                                                            <div class="col-auto item_buy_list_info_inacc fixcssacount">
-                                                                Số tướng :
-                                                            </div>
-                                                            <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                {{--                                                                {{ $att_valuev2->title??null }}--}}
-                                                                {{ $item->params->count->champions }}
-
-                                                            </div>
-                                                        </div>
-
-                                                @endif
-                                                @if(isset($item->params->count->skins))
-                                                    <?php
-                                                    $index = $index + 1;
-                                                    ?>
-                                                        <div class="row" style="margin: 0 auto;width: 100%">
-                                                            <div class="col-auto item_buy_list_info_inacc fixcssacount">
-                                                                Trang phục :
-                                                            </div>
-                                                            <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                {{--                                                                {{ $att_valuev2->title??null }}--}}
-                                                                {{ $item->params->count->skins }}
-
-                                                            </div>
-                                                        </div>
-                                                @endif
-                                            @endif
-                                        @endif
-                                    @if(isset($item->params) && isset($item->params->ext_info))
-                                            <?php $params = json_decode(json_encode($item->params->ext_info),true) ?>
-                                            @if(isset($item->category->childs) && count($item->category->childs)>0)
-                                                @foreach($item->category->childs as $index=>$att)
-                                                    @if($att->position == 'text')
-                                                        @if(isset($att->childs))
-                                                            @foreach($att->childs as $child)
-                                                                @foreach($params as $key => $param)
-                                                                    @if($key == $child->id)
-                                                                        <div class="row" style="margin: 0 auto;width: 100%">
-                                                                            <div class="col-auto item_buy_list_info_inacc fixcssacount">
-                                                                                {{ $child->title }}:
-                                                                            </div>
-                                                                            <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                                {{--                                                                {{ $att_valuev2->title??null }}--}}
-                                                                                {{ $param }}
-
-                                                                            </div>
-                                                                        </div>
-                                                                    @endif
-                                                                @endforeach
-                                                            @endforeach
+                                                                {{$item_att_val}} (và {{count($item_att)}} <span class="text-lowercase" style="font-size: 16px;    color: #666">{{$key_att}}</span>  khác)
+                                                            @endif
+                                                        @else
+                                                            {{$item_att_val}}
                                                         @endif
+                                                    @endforeach
 
-                                                    @endif
-                                                @endforeach
-                                            @endif
-                                        @endif
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endforeach
+
 
 
 
                                 </div>
                             </div>
-                            <div class="item_buy_list_more">
+                            @php
+                                if (isset($item->price_old)) {
+                                    $sale_percent = (($item->price_old - $item->price) / $item->price_old) * 100;
+                                    $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
+                                } else {
+                                    $sale_percent = 0;
+                                }
+                            @endphp
+                            <div class="item_buy_list_more ">
                                 <div class="row">
                                     <div class="col-12 fixcssacount">
                                         <div class="item_buy_list_price">
-                                            <span>{{ str_replace(',','.',number_format($item->price_old)) }}đ </span>
-                                            {{ str_replace(',','.',number_format($item->price)) }}đ
-                                        </div>
+                                            @if ($sale_percent > 0)
+                                                <span>
+                                                    {{ str_replace(',','.',number_format($item->price_old)) }}đ
+                                                </span>
+                                                {{ str_replace(',','.',number_format($item->price)) }}đ
+                                            @else
 
+                                                {{ str_replace(',','.',number_format($item->price)) }}đ
+
+                                            @endif
+
+                                            {{--                                                {{ formatPrice($item->price) }}đ--}}
+                                        </div>
                                     </div>
-                                    <a href="/acc/{{ $item->randId }}" class="col-12 fixcssacount">
+                                    <a href="/acc/{{ $item->slug }}" class="col-12 fixcssacount">
                                         <div class="item_buy_list_view">
                                             Chi tiết
                                         </div>
