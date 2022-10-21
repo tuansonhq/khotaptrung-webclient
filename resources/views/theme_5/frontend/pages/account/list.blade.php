@@ -42,7 +42,7 @@
         <div class="head-mobile">
             <a href="/mua-acc" class="link-back"></a>
 
-            <h1 class="head-title text-title">Shop Account</h1>
+            <p class="head-title text-title">Shop Account</p>
 
             <a href="/" class="home"></a>
         </div>
@@ -54,7 +54,7 @@
 
             <section class="list-account">
                 <div class="section-header justify-content-between  d-none d-lg-flex c-py-16">
-                    <h2 class="section-title">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }} </h2>
+                    <h1 class="section-title">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }} </h1>
                     <form action="" class="form-search position-relative">
                         <input type="search" placeholder="Tìm kiếm" class="has-submit">
                         <button type="submit"></button>
@@ -121,7 +121,7 @@
                         <form action="" class="form-filter">
 
                             <div class="modal-header">
-                                <h2 class="modal-title center">Bộ lọc</h2>
+                                <p class="modal-title center">Bộ lọc</p>
                                 <button type="button" class="close" data-dismiss="modal"></button>
                             </div>
                             <div class="modal-body p-0">
@@ -284,9 +284,9 @@
                 <div class="content-bottom-sheet bar-slide">
                     <form action="" class="form-filter">
                         <div class="sheet-header">
-                            <h2 class="text-title center">
+                            <p class="text-title center">
                                 Bộ lọc
-                            </h2>
+                            </p>
                             <label class="close"></label>
                         </div>
                         <div class="sheet-body">
@@ -356,9 +356,9 @@
                 <div class="content-bottom-sheet bar-slide">
                     <form action="" id="form-sort">
                         <div class="sheet-header">
-                            <h2 class="text-title center">
+                            <p class="text-title center">
                                 Sắp xếp theo
-                            </h2>
+                            </p>
                             <label class="close"></label>
                         </div>
                         <div class="sheet-body">

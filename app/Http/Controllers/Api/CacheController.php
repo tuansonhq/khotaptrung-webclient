@@ -23,6 +23,7 @@ class CacheController extends Controller
         \Artisan::call('config:cache');
         \Artisan::call('view:clear');
         \Artisan::call('route:clear');
+        \Artisan::call('optimize:clear');
         Cache::flush();
         return response()->json([
             'status' => 1,

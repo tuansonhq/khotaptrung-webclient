@@ -41,7 +41,7 @@
                 <div class="special-text">
                     {!! setting('sys_intro_text') !!}
                 </div>
-                <button id="btn-expand-content" class="expand-button">
+                <button  class="expand-button">
                     Xem thêm nội dung
                 </button>
 
