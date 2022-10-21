@@ -65,11 +65,12 @@ $(document).ready(function(){
     // }
 
     ele = $('select#telecom_storecard option').first();
-    var telecom = ele.val();
-    getAmount(telecom);
+    var telecom_id = ele.data('id');
+    getAmount(telecom_id);
+    UpdatePrice();
+
     $("#buy_telecom_key").on('change', function () {
         getAmount(telecom);
-
     });
 
     $("#buy_amount").on('change', function () {
@@ -85,54 +86,29 @@ $(document).ready(function(){
     // $('#formStoreCard').removeClass('hide');
     $('#StoreCardTotal').removeClass('hide');
     $('#StoreCardPay').removeClass('hide');
-    function getAmount(telecom){
-        var url = '/ajax/store-card/get-amount';
-        $.ajax({
-            type: "GET",
-            url: url,
-            data: {
-                telecom:telecom
-            },
-            beforeSend: function (xhr) {
 
-            },
-            success: function (data) {
-
-                if(data.status == 1){
-
-                    let html = '';
-                    if(data.data.length > 0){
-                        $.each(data.data,function(key,value){
-                            // html+= '<p>'+value.amount +'</p>'
-                            html += '<option value="'+ value.amount +'" rel-ratio="'+ value.ratio_default+'">'+ formatNumber(value.amount)  +' VNĐ - ' + (100-value.ratio_default) +'% </option>';
-                        });
-                    }
-                    $('#amount_storecard').html(html);
-                    UpdatePrice();
-                }
-                else{
-                    // swal({
-                    //     title: "Có lỗi xảy ra !",
-                    //     text: data.message,
-                    //     icon: "error",
-                    //     buttons: {
-                    //         cancel: "Đóng",
-                    //     },
-                    // })
-                }
-            },
-            error: function (data) {
-                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(mua thẻ (getAmount))')
-
-            },
-            complete: function (data) {
-
+    function getAmount(telecom_id){
+        $('#amount_storecard option').each(function () {
+            $(this).attr('hidden', true);
+            $(this).attr('disabled', true);
+            if ( $(this).data('telecom') == telecom_id ) {
+                $(this).removeAttr('hidden');
+                $(this).removeAttr('disabled');
+            }
+        });
+        $('#amount_storecard option').each(function () {
+            if ($(this).css('display') != 'none') {
+                $(this).prop("selected", true);
+                return false;
             }
         });
     }
+
     $('body').on('change','#telecom_storecard',function(){
-        var telecom = $(this).val();
-        getAmount(telecom)
+        var telecom_id = $(this).find(":selected").data('id');
+        console.log(telecom_id);
+        getAmount(telecom_id);
+        UpdatePrice();
     });
     // getTelecom();
     // $("#telecom_storecard").on('change', function () {
@@ -150,10 +126,11 @@ $(document).ready(function(){
 
     function UpdatePrice(){
         var amount=$("#amount_storecard").val();
-        var ratio=$('#amount_storecard option:selected').attr('rel-ratio');
+        // var ratio=$('#amount_storecard option:selected').attr('rel-ratio');
+        ratio = null;
         var quantity=$("#quantity").val();
 
-        if(amount=='' ||amount==null || ratio=='' ||ratio==null   || quantity=='' ||quantity==null){
+        if(amount=='' ||amount==null || quantity=='' ||quantity==null){
 
             $('#txtPrice').html('Tổng: ' + 0 + ' VNĐ');
             $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
@@ -288,6 +265,7 @@ $(document).ready(function(){
                     formSubmit.trigger("reset");
                     // btnSubmit.text('Nạp thẻ');
                     btnSubmit.prop('disabled', false);
+                    UpdatePrice();
                 }
             });
         });

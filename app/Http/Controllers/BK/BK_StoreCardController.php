@@ -14,69 +14,58 @@ use function PHPUnit\Framework\isEmpty;
 
 class StoreCardController extends Controller
 {
-    public function getStoreCard(Request $request, $slug){
+    // public function getStoreCard(){
 
-        $url = '/get-category/'.$slug;
-        $method = "GET";
-        $val = array();
-        $val['type'] = 4;
-        $result_Api = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
+    //     $data_host =\Request::server ("HTTP_HOST");
 
-        if(isset($result_Api)){
-            
-            $data_api = $result_Api->response_data->data->product->data;
-            // dd($data_api);
-            $data_nha_mang = [];
-            $data_menh_gia = [];
+    //     if ($data_host =='shopngocrong.net'){
+    //         return redirect('/');
+    //     }else{
+    //         if (isset(theme('')->theme_config->sys_store_card_vers) && theme('')->theme_config->sys_store_card_vers == 'sys_store_card_vers_2'){
 
-            foreach($data_api as $item) {
-                foreach($item->product_attribute as $attribute) {
-                    if ($attribute->attribute->idkey == "nha_mang_thecao") {
-                        $data_nha_mang[$attribute->product_attribute_value_able->id] = $attribute->product_attribute_value_able->title;
-                    }
-                }
-            }
+    //             $url = '/store-card/get-telecom';
+    //             $method = "GET";
+    //             $dataSend = array();
+    //             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+    //             $response_data = $result_Api->response_data??null;
 
-            $data_nha_mang = json_decode(json_encode($data_nha_mang), FALSE);
+    //             if(isset($response_data) && $response_data->status == 1){
 
-            foreach ( $data_nha_mang as $key => $data ) {
+    //                 $telecoms = $response_data->data;
 
-                $array_menhgia = [];
+    //                 return view(''.theme('')->theme_key.'.frontend.pages.storecard-v2.index')->with('telecoms', $telecoms);
+    //             }
+    //             else{
+    //                 $telecoms =null;
+    //                 $message = "Không thể lấy dữ liệu";
+    //                 return view(''.theme('')->theme_key.'.frontend.pages.storecard-v2.index')->with('telecoms', $telecoms)->with('message', $message);
+    //             }
 
-                foreach( $data_api as $item ) {
-                    foreach($item->product_attribute as $attribute) {
-                        if ($attribute->product_attribute_value_able->id == $key) {
-                            foreach ($item->product_attribute as $attribute) {
-                                if ($attribute->attribute->idkey == "menh_gia_thecao") {
-                                    $array_menhgia[] = $attribute->product_attribute_value_able->title;
-                                }
-                            }
-                        }
-                    }
-                }
+    //         }else{
 
-                $data_menh_gia[$key] = $array_menhgia;
-            }
+    //             $url = '/store-card/get-telecom';
+    //             $method = "GET";
+    //             $dataSend = array();
+    //             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+    //             $response_data = $result_Api->response_data??null;
 
-            // dd($data_nha_mang, $data_menh_gia);
-            Session::get('auth_custom');
+    //             if(isset($response_data) && $response_data->status == 1){
 
-            return view('frontend.pages.storecard.index')
-                ->with('data_nha_mang',$data_nha_mang)->with('data_menh_gia', $data_menh_gia);
-        }
-        else{
+    //                 $telecoms = $response_data->data;
 
-            $data = null;
-            $message = $response_data->message??"Không thể lấy dữ liệu";
+    //                 return view(''.theme('')->theme_key.'.frontend.pages.storecard.index')->with('telecoms', $telecoms);
+    //             }
+    //             else{
+    //                 $telecoms =null;
+    //                 $message = "Không thể lấy dữ liệu";
+    //                 return view(''.theme('')->theme_key.'.frontend.pages.storecard.index')->with('telecoms', $telecoms)->with('message', $message);
+    //             }
 
-            Session::get('auth_custom');
+    //         }
 
-            return view('frontend.pages.storecard.index')
-                ->with('message',$message)
-                ->with('data',$data);
-        }
+    //     }
 
-    }
+    // }
 
     public function getTelecomStoreCard(Request $request){
         try{
