@@ -1,4 +1,5 @@
-@if(isset($data) && count($data) > 0)
+@if(isset($data))
+    @if(isset($data->data) && count($data->data) > 0)
     <section class="acc-game-v2 c-pt-12 c-pt-lg-6">
         <div class="section-header c-mb-24 c-mb-lg-20 justify-content-between">
             <h2 class="section-title fz-lg-20 lh-lg-24">
@@ -9,9 +10,11 @@
             <a href="/dich-vu" class="link arr-right">Xem tất cả</a>
         </div>
         <div class="list-category">
-            @foreach($data as $item)
+            @foreach($data->data as $item)
+                @if(isset($item->category_identification) && $item->category_identification != '' )
+                    @if($item->category_identification->type == 2)
 
-                <div class="item-category c-px-8 c-mb-12 c-px-lg-6">
+                     <div class="item-category c-px-8 c-mb-12 c-px-lg-6">
                     <div class="card">
                         <div class="card-body c-p-16 c-p-lg-12 scale-thumb">
                             <a href="/dich-vu/{{ $item->slug}}">
@@ -53,8 +56,10 @@
                         </div>
                     </div>
                 </div>
-
+                    @endif
+                @endif
             @endforeach
         </div>
     </section>
+    @endif
 @endif

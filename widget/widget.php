@@ -470,31 +470,40 @@ View::composer('frontend.widget.__content__category__minigame', function ($view)
 
 View::composer('frontend.widget.__content__home__dichvu', function ($view) {
 
+
+
+    $data = null;
     $data = \Cache::rememberForever('__content__home__dichvu', function() {
-        $url = '/service';
+        $url = '/get-category';
         $method = "GET";
-        $dataSend = array();
-        $dataSend['limit'] = 118;
-        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-        return $data = $result_Api->response_data->data->data??null;
+        $val = array();
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
+        return $data = $result_Api->response_data->data??null;
     });
 
     return $view->with('data', $data);
+
 
 });
 
 View::composer('frontend.widget.__content__home__dichvu__v2', function ($view) {
 
+
+
+
+    $data = null;
     $data = \Cache::rememberForever('__content__home__dichvu__v2', function() {
-        $url = '/service';
+        $url = '/get-category';
         $method = "GET";
-        $dataSend = array();
-        $dataSend['limit'] = 118;
-        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-        return $data = $result_Api->response_data->data->data??null;
+        $val = array();
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
+        return $data = $result_Api->response_data->data??null;
     });
 
     return $view->with('data', $data);
+
+
+
 
 });
 
