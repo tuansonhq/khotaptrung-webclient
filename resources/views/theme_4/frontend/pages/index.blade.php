@@ -49,7 +49,7 @@
 
             <style type="text/css">
 
-                @media        only screen and (max-width: 580px) {
+                @media       only screen and (max-width: 580px) {
                     .hidetext {
                         max-height: 220px;
                         overflow: hidden;
