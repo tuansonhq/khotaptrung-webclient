@@ -474,12 +474,16 @@ button:focus{
 }
 
 .c-content-tab-4.c-opt-3 > .nav > li > a {
-    color: #ffffff;
-    background-color: #d5e0ea;
+    color: #474747;
+    background-color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+    border-bottom: 1px solid #AAB2BB;
 }
 .c-content-tab-4.c-opt-3 > .nav > li > a.active {
-    color: #ffffff;
-    background-color: #5bc2ce!important;
+    color: #39C3D1;
+    border-bottom: 2px solid #39C3D1;
+    font-weight: 500;
 }
 .c-content-tab-4 ul{
     padding-left: 0!important;
@@ -497,16 +501,24 @@ button:focus{
 .justified__ul_li a{
     display: flex!important;
     justify-content: center;
-    padding: 20px;
+    padding: 12px 0;
 }
 .justified__ul_li a:hover{
     text-decoration: none!important;
 }
-.c-content-tab-4.c-opt-3 > .nav > li > a {
-    color: #ffffff;
-    background-color: #d5e0ea;
-}
 
 .result-amount-loadding__nick-lien-quan{
     display: none;
+}
+
+.modal__account .modal-body {
+    padding: 0 24px 24px 24px;
+}
+
+.c-tab-header-account {
+    font-weight: 500;
+    font-size: 16px;
+    color: #212529;
+    padding: 12px 0;
+    margin-bottom: 0 !important;
 }
