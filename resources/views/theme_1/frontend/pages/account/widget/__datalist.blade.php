@@ -8,7 +8,7 @@
         @if(isset($product->data) && count($product->data) > 0)
             @foreach ($product->data as $item)
                 <div class="col-6 fixcssacount col-sm-6 col-lg-3">
-                    <div class="item_buy_list_in">
+                    <div class="item_buy_list_in d-flex flex-column">
                         <div class="item_buy_list_img item_buy_list_img_custom">
                             <a href="/acc/{{ $item->slug }}">
                                 @if(isset($item->image))
@@ -24,30 +24,109 @@
                         <div class="item_buy_list_description">
                             bảo hành 100%,lỗi hoàn tiền
                         </div>
+                        @php
+                            $attribute_list = array();
 
-                        <div class="item_buy_list_info item_buy_list_info_custom">
+
+                            if (isset($item->product_attribute) && count($item->product_attribute)>0){
+                                foreach ($item->product_attribute as $item_list){
+                                    $attribute_list[$item_list->attribute->id][$item_list->attribute->title][] = $item_list->product_attribute_value_able->title;
+                                }
+                            }
+
+                        @endphp
+                        <div class="item_buy_list_info item_buy_list_info_custom" style="flex: 1">
                             <div class="row item_buy_list_info__row">
-
                                 @if(isset($item->product_attribute) && count($item->product_attribute))
-                                    @php
-                                        $product_attribute = $item->product_attribute;
-                                    @endphp
-                                    @foreach($product_attribute as $key => $attribute)
-                                        @if($key < 4)
-
+                                @foreach($attribute_list as $key => $item_list)
+                                    @foreach($item_list as $key_att => $item_att)
                                             <div class="row" style="margin: 0 auto;width: 100%">
                                                 <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                {{ $attribute->attribute->title??null }}
+                                                    {{$key_att}}:
                                                 </div>
-                                                <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto;">
                                                     {{--                                                                    {{ $att_value->title??null }}--}}
-                                                    {{ $attribute->product_attribute_value_able->title??null }}
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
+                                                    @foreach($item_att as $key_att_item  => $item_att_val)
+                                                        @if(count($item_att) > 1)
+                                                            @if($key_att_item < 1 )
+                                                                <div  class="attr_tooltip" data-tooltip="{{$item_att_val}} (+{{count($item_att)}} {{$key_att}})">
+                                                                    <div style="text-overflow: ellipsis;    white-space: nowrap;word-wrap: break-word;overflow-x: hidden;    width: 8.5em;">
 
+                                                                        {{$item_att_val}} (+{{count($item_att)}} <span class="text-lowercase" style="font-size: 16px;    color: #666">{{$key_att}}</span>)
+
+                                                                    </div>
+                                                                </div>
+
+                                                            @endif
+                                                        @else
+
+                                                            <div style="text-overflow: ellipsis;    white-space: nowrap;word-wrap: break-word;overflow: hidden;    width: 8.5em;" >
+                                                            {{$item_att_val}}
+                                                            </div>
+
+                                                        @endif
+
+                                                    @endforeach
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+
+
+{{--                                        <div class="row" style="margin: 0 auto;width: 100%">--}}
+{{--                                            <div class="col-auto item_buy_list_info_inacc fixcssacount">--}}
+{{--                                                {{$key_att}}--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">--}}
+{{--                                                --}}{{--                                                                {{ $att_valuev2->title??null }}--}}
+{{--                                                @foreach($item_att as $key_att_item  => $item_att_val)--}}
+{{--                                                    @if(count($item_att) > 1)--}}
+{{--                                                        @if($key_att_item < 1 )--}}
+
+{{--                                                            {{$item_att_val}} (và {{count($item_att)}} <span class="text-lowercase" style="font-size: 16px;    color: #666">{{$key_att}}</span>  khác)--}}
+{{--                                                        @endif--}}
+{{--                                                    @else--}}
+{{--                                                        {{$item_att_val}}--}}
+{{--                                                    @endif--}}
+{{--                                                @endforeach--}}
+
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+                                    @endforeach
+                                @endforeach
                                 @endif
+
+
+
+
+
+
+
+{{--                                @if(isset($item->product_attribute) && count($item->product_attribute))--}}
+{{--                                    @php--}}
+{{--                                        $product_attribute = $item->product_attribute;--}}
+{{--                                    @endphp--}}
+{{--                                    @foreach($product_attribute as $key => $attribute)--}}
+{{--                                        @if($key < 4)--}}
+
+{{--                                            <div class="row" style="margin: 0 auto;width: 100%">--}}
+{{--                                                <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">--}}
+{{--                                                {{ $attribute->attribute->title??null }}--}}
+{{--                                                </div>--}}
+{{--                                                <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">--}}
+{{--                                                    --}}{{--                                                                    {{ $att_value->title??null }}--}}
+{{--                                                    {{ $attribute->product_attribute_value_able->title??null }}--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        @endif--}}
+{{--                                    @endforeach--}}
+
+{{--                                @endif--}}
 
 
                             </div>

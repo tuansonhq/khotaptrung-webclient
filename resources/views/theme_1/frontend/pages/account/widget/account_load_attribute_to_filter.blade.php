@@ -46,7 +46,11 @@
                         <select type="text" class="form-control select" name="attribute_id_{{ $item_attribute->id }}">
                             <option value="">--Không chọn--</option>
                             @foreach($item_attribute->attribute_value as $val_filter)
-                                <option value="{{ $val_filter->id }}">{{ $val_filter->title }}</option>
+                                @if($val_filter->parent_id == 0)
+                                    <option value="{{ $val_filter->id }}">{{ $val_filter->title }}</option>
+
+                                @endif
+
                             @endforeach
                         </select>
                     </div>
