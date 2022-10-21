@@ -47,7 +47,7 @@
                                  <option value="" selected disabled hidden>Vui lòng chọn mệnh giá</option>
                                  @foreach($data_menh_gia as $key => $val)
                                     @foreach ($val as $option)
-                                       <option data-telecom="{{ $key }}" value="{{ $option }}" hidden>{{ str_replace(',','.',number_format($option)) }} đ</option>
+                                       <option data-telecom="{{ $key }}" value="{{ $option }}" hidden>{{ str_replace(',','.',number_format($option)) }} VNĐ</option>
                                     @endforeach
                                  @endforeach
                               </select>
