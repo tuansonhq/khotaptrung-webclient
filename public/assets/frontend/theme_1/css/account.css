@@ -512,13 +512,134 @@ button:focus{
 }
 
 .modal__account .modal-body {
-    padding: 0 24px 24px 24px;
+    padding: 0 24px;
 }
 
 .c-tab-header-account {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 16px;
     color: #212529;
     padding: 12px 0;
     margin-bottom: 0 !important;
 }
+
+.table-nick-properties {
+    background: #FFFFFF;
+    border: 1px solid #DEE2E6;
+    border-radius: 4px;
+}
+
+.table-nick-properties .table-nick-items:nth-child(odd) {
+    background: #F2F2F2;
+}
+
+.table-nick-properties .table-nick-items:nth-child(even) {
+    background: #FFFFFF;
+}
+
+.table-nick-items {
+    align-items: center;
+    padding: 8px 12px;
+}
+
+.table-properties-name {
+    font-weight: 500;
+    font-size: 16px;
+    color: #676A6C;
+}
+
+.table-properties-value {
+    font-weight: 600;
+    font-size: 16px;
+    color: #212529;
+}
+
+.c-account-price-block {
+    align-items: center;
+    padding: 24px 0;
+}
+
+.c-account-price-title {
+    font-weight: 600;
+    font-size: 16px;
+    color: #212529;
+}
+
+.c-account-price-value {
+    font-weight: 600;
+    font-size: 20px;
+    color: #23A0B7;
+}
+
+.modal__account .modal-footer {
+    margin: 0 24px;
+    padding: 24px 0;
+    border-top: 1px solid #DEE2E6;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn-nick {
+    display: block;
+    border: none;
+    text-align: center;
+    border-radius: 4px;
+    width: 35%;
+    padding: 10px 0;
+    margin-left: 6px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.btn-nick + .btn-nick {
+    margin-right: 6px;
+}
+
+.btn-nick:hover {
+    text-decoration: none;
+}
+
+.btn-nick.btn-primary {
+    background-color: #39C3D1;
+    color: #fff;
+}
+
+.btn-nick.btn-primary:disabled,
+.btn-nick.btn-primary:hover:disabled {
+    background-color: #DCDEE9;
+    color: #A7ABC3;
+}
+
+.btn-nick.btn-ghost {
+    border: 1px solid #BCBFD6;
+    color: #434657;
+}
+
+.btn-nick.btn-ghost:hover {
+    border: 1px solid #82869E;
+    color: #434657;
+}
+
+.btn-nick.btn-ghost:active {
+    border: 1px solid #82869E;
+    color: #434657;
+}
+
+.btn-nick.btn-ghost:disabled,
+.btn-nick.btn-ghost:hover:disabled {
+    border: 1px solid #C5C4C4;
+    color: #9F9F9F;
+    font-weight: 500;
+}
+
+.nick-footer-notify {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.nick-footer-notify p {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 0 !important;
+}
+
