@@ -88,6 +88,8 @@ class ServiceController extends Controller
                                     $filter_type = 6;
                                 }elseif ($attribute->attribute->idkey == 'loai_hien_thi' && $attribute->product_attribute_value_able->id == 430){
                                     $filter_type = 4;
+                                }elseif ($attribute->attribute->idkey == 'loai_hien_thi' && $attribute->product_attribute_value_able->id == 431){
+                                    $filter_type = 5;
                                 }elseif ($attribute->attribute->idkey == 'vu_tru_nro'){
                                     $server_mode = 1;
                                 }
@@ -97,26 +99,27 @@ class ServiceController extends Controller
                 }
             }
 
-            $server_data = array();
             $server_id = array();
+            $server_name = array();
+            $item_arrays = array();
 
-
-            foreach($product as $key => $item){
-                foreach ($item->product_attribute as $index => $attribute) {
-                    if (!in_array($attribute->product_attribute_value_able->id,$server_data) && $attribute->attribute->idkey == 'vu_tru_nro'){
-                        array_push($server_data,json_encode($attribute->product_attribute_value_able,JSON_UNESCAPED_UNICODE));
+            if (isset($product) && count($product)){
+                foreach($product as $key => $item){
+                    foreach ($item->product_attribute as $index => $attribute) {
+                        if (!in_array($attribute->product_attribute_value_able->id,$server_id) && $attribute->attribute->idkey == 'vu_tru_nro'){
+                            array_push($server_id,$attribute->product_attribute_value_able->id);
+                            array_push($server_name,$attribute->product_attribute_value_able->title);
+                        }
                     }
                 }
-            }
 
-            $item_array = array();
+                foreach($product as $key => $item){
+                    foreach ($item->product_attribute as $index => $attribute) {
+                        if ($attribute->attribute->idkey == 'vu_tru_nro'){
+                            $item_arrays[$attribute->product_attribute_value_able->id][] = $item;
+                        }
 
-            foreach($product as $key => $item){
-                foreach ($item->product_attribute as $index => $attribute) {
-                    if ($attribute->attribute->idkey == 'vu_tru_nro'){
-                        $item_array[$attribute->product_attribute_value_able->id][] = $item;
                     }
-
                 }
             }
 
