@@ -105,7 +105,6 @@
 
 
                 @foreach($attribute as $key => $item)
-
                     @foreach($item as $key_att => $item_att)
                     <div class="col-md-12">
                         <div class="row gallery__03">
@@ -118,7 +117,7 @@
                                         <span class="span__dangky">{{$key_att}} </span>
                                     </div>
 
-                                    <div class="col-md-6 col-4 pl-0">
+                                    <div class="col-md-6 col-4 pl-0 attr-info" >
                                         <span class="span__dangky">
                                             @if(count($item_att) > 1)
                                                 <div style="" class="span__dangky__attr">
@@ -136,8 +135,7 @@
                                                         @endif
                                                     @endforeach
                                                 </div>
-                                                <a href="#" class="attr_seemore" style="color: #c82333">Xem thêm</a>
-                                                <a href="#" class="attr_seeless " style="color: #c82333;display: none">Thu gọn</a>
+                                                <a href="javascript:void(0)" class="attr_seemore" style="color: #c82333">Xem thêm »</a>
                                             @else
                                                 @foreach($item_att as $key_att_item  => $item_att_val)
                                                     {{$item_att_val}}
