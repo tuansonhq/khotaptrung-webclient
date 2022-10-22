@@ -153,7 +153,7 @@
                                                     </select>
                                                 </div>
                                             @endif
-                                        @elseif($filter_type == 4)
+                                        @else
                                             <span class="mb-15 control-label bb">Chọn máy chủ:</span>
                                             <div class="mb-15">
                                                 @php
@@ -320,22 +320,50 @@
                                                     @endif
                                                 @endforeach
                                             @endif
-
-{{--                                            @if(isset($product) && count($product))--}}
-{{--                                                <span class="mb-15 control-label bb">Bảng Giá:</span>--}}
-{{--                                                <div class="mb-15">--}}
-{{--                                                    <select name="selected" class="s-filter form-control t14 selected_filter" style="">--}}
-{{--                                                        @foreach($product as $key => $item)--}}
-{{--                                                            <option value="{{ $key }}">{{ $item->title }}</option>--}}
-{{--                                                        @endforeach--}}
-{{--                                                    </select>--}}
-{{--                                                </div>--}}
-{{--                                                @foreach($product as $key => $item)--}}
-{{--                                                    @if($key == 0)--}}
-{{--                                                        <input type="hidden" id="txtDiscount" class="form-control t14" placeholder="" value="{{ $item->price }}" readonly="">--}}
-{{--                                                    @endif--}}
-{{--                                                @endforeach--}}
-{{--                                            @endif--}}
+                                        @elseif($filter_type == 5)
+                                            @if(isset($item_arrays) && count($item_arrays))
+                                                @foreach($item_arrays as $index => $item_array)
+                                                    @if($server_id[0] == $index)
+                                                        <div class="row marginauto bang__gia__{{ $index }}" data-id="{{ $index }}">
+                                                            <div class="col-md-12 p-0">
+                                                                <span class="mb-15 control-label bb">Sức mạnh:</span>
+                                                                <div class="simple-checkbox s-filter select__checkbox">
+                                                                    @foreach($item_array as $key => $item)
+                                                                        <p><input value="{{ $item->price }}" class="input__checkbox" type="checkbox" id="{{ $key }}">
+                                                                            <label for="{{ $key }}">
+                                                                                @foreach($item->product_attribute as $attribute)
+                                                                                    @if($attribute->attribute->idkey == 'suc_manh_nro')
+                                                                                        {{ $attribute->product_attribute_value_able->title }}
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            </label>
+                                                                        </p>
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @else
+                                                        <div class="row marginauto hidden_slect bang__gia__{{ $index }}" data-id="{{ $index }}">
+                                                            <div class="col-md-12 p-0">
+                                                                <span class="mb-15 control-label bb">Sức mạnh:</span>
+                                                                <div class="simple-checkbox s-filter">
+                                                                    @foreach($item_array as $key => $item)
+                                                                        <p><input value="{{ $key }}" class="input__checkbox" type="checkbox" id="{{ $key }}">
+                                                                            <label for="{{ $key }}" >
+                                                                                @foreach($item->product_attribute as $attribute)
+                                                                                    @if($attribute->attribute->idkey == 'suc_manh_nro')
+                                                                                        {{ $attribute->product_attribute_value_able->title }}
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            </label>
+                                                                        </p>
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            @endif
                                         @endif
                                     @endif
                                     {{--                                                Loại từ A đến B    --}}
@@ -821,35 +849,16 @@
                         $('#txtPrice').html('');
                         $('#txtPrice').html('Tổng: ' + total_price + ' VNĐ');
                     })
-                    //
-                    //     if (parseInt(price) > parseInt(price_max)){
-                    //         $('#input_pack').val(price_max);
-                    //
-                    //         price_max = price_max.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-                    //         price_max = price_max.split('').reverse().join('').replace(/^[\.]/,'');
-                    //
-                    //         $('#input_pack_face').val(price_max);
-                    //
-                    //         $('#txtPrice').html('');
-                    //         $('#txtPrice').html('Nhập số tiền không đúng');
-                    //
-                    //         return false;
-                    //     }
-                    //
-                    //     var price_input_pack = parseInt($('#input_pack').val());
-                    //     var txtDiscount = parseInt($('#txtDiscount').val());
-                    //     var total_price = price_input_pack/txtDiscount;
-                    //     total_price = total_price.toFixed(0);
-                    //     var currency = $('#currency').val();
-                    //
-                    //     $('#txtPrice').html('');
-                    //     $('#txtPrice').html('Tổng: ' + total_price + ' ' + currency + '');
-                    //
-                    //     price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-                    //     price = price.split('').reverse().join('').replace(/^[\.]/,'');
-                    //
-                    //     $('#input_pack_face').val(price);
-                    // })
+                })
+            </script>
+        @elseif($filter_type == 5)
+            <script>
+                $(document).ready(function(){
+                    input__checkbox
+
+                    $('body').on('change','.input__checkbox',function(e) {
+                        // select__checkbox
+                    })
                 })
             </script>
         @endif
