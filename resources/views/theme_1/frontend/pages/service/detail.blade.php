@@ -857,7 +857,7 @@
                     input__checkbox
 
                     $('body').on('change','.input__checkbox',function(e) {
-                        select__checkbox
+                        // select__checkbox
                     })
                 })
             </script>
