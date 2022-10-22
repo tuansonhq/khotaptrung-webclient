@@ -85,18 +85,7 @@ $( document ).ready(function() {
         $(".intro_store_card").removeClass( "-expanded");
     });
 
-    $('.attr_seemore').click(function(){
-        $('.span__dangky__attr').css("overflow","auto");
-        $('.span__dangky__attr').css("display","initial");
-        $(".attr_seemore").css("display","none");
-        $(".attr_seeless").css("display","block");
-    });
-    $('.attr_seeless').click(function(){
-        $('.span__dangky__attr').css("overflow","hidden");
-        $('.span__dangky__attr').css("display","-webkit-box");
-        $(".attr_seemore").css("display","block");
-        $(".attr_seeless").css("display","none");
-    });
+
     $('.item_play_spin_shake').click(function(){
         $("#lac_lixi").attr("src", "./assets/frontend/image/lixi.gif");
     });
@@ -112,6 +101,28 @@ $( document ).ready(function() {
         $(this).text('Xem tất cả »');
         $('.showtext').addClass('hidetext').removeClass('showtext');
     })
+
+    // $('.attr_seemore').click(function(){
+    //     $('.span__dangky__attr').css("overflow","auto");
+    //     $('.span__dangky__attr').css("display","initial");
+    //     $(".attr_seemore").css("display","none");
+    //     $(".attr_seeless").css("display","block");
+    // });
+    // $('.attr_seeless').click(function(){
+    //     $('.span__dangky__attr').css("overflow","hidden");
+    //     $('.span__dangky__attr').css("display","-webkit-box");
+    //     $(".attr_seemore").css("display","block");
+    //     $(".attr_seeless").css("display","none");
+    // });
+    $('body').delegate('.attr_seemore','click',function(){
+        var ele=$(this).closest('.attr-info .span__dangky').find(".span__dangky__attr").toggleClass('attr-expanded');
+        if ($(ele).hasClass('attr-expanded')) {
+            $(this).html('« Thu gọn');
+        } else {
+            $(this).html('Xem thêm »');
+
+        }
+    });
 
     $('body').delegate('.btn-viewmore','click',function(){
         var ele=$(this).closest('.panel-body').find(".special-text").toggleClass('-expanded');

@@ -2590,6 +2590,7 @@ footer{
     z-index: 5;
     border-radius: 5px;
     transition: 100ms opacity;
+    text-align: center;
 }
 
 .attr_tooltip::after {
@@ -2608,4 +2609,8 @@ footer{
 .attr_tooltip:hover::before,
 .attr_tooltip:hover::after {
     opacity: 1;
+}
+.attr-expanded{
+    overflow:auto;
+    display: block;
 }

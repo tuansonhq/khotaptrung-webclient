@@ -25,7 +25,7 @@
                                     @else
                                         <img class="item_buy_list_img-sale" src="/assets/frontend/{{theme('')->theme_key}}/image/mgg.png"  alt="">
                                     @endif
-                                    <span>MS: {{ $item->id }} </span>
+                                    <span>MS: #{{ $item->id }} </span>
                                 </a>
                             </div>
                             <div class="item_buy_list_description">
