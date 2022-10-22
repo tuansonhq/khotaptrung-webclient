@@ -33,6 +33,9 @@
     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css">
     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/chosen.css">
     <style type="text/css">
+        .hidden_slect{
+            display: none;
+        }
         @media only screen and (max-width: 640px) {
             .float_mb {
                 float: left;
@@ -153,16 +156,43 @@
                                         @elseif($filter_type == 4)
                                             <span class="mb-15 control-label bb">Chọn máy chủ:</span>
                                             <div class="mb-15">
-                                                <select name="server" class="server-filter form-control t14" id="server" style="">
-                                                    @foreach($product as $key => $item)
+                                                @php
+                                                    $server_id = array();
+                                                    $server_name = array();
+                                                    $item_arrays = array();
+
+                                                    if (isset($product) && count($product)){
+                                                        foreach($product as $key => $item){
+                                                            foreach ($item->product_attribute as $index => $attribute) {
+                                                                if (!in_array($attribute->product_attribute_value_able->id,$server_id) && $attribute->attribute->idkey == 'vu_tru_nro'){
+                                                                    array_push($server_id,$attribute->product_attribute_value_able->id);
+                                                                    array_push($server_name,$attribute->product_attribute_value_able->title);
+                                                                }
+                                                            }
+                                                        }
+
+                                                        foreach($product as $key => $item){
+                                                            foreach ($item->product_attribute as $index => $attribute) {
+                                                                if ($attribute->attribute->idkey == 'vu_tru_nro'){
+                                                                    $item_arrays[$attribute->product_attribute_value_able->id][] = $item;
+                                                                }
+
+                                                            }
+                                                        }
+                                                    }
+
+                                                @endphp
+
+                                                <input type="hidden" class="check_server" value="{{ $server_id[0] }}">
+
+                                                <select name="server" class="server-filter server_filter form-control t14" id="server" style="">
+                                                    @foreach($server_id as $key => $item)
+
                                                         <option
-                                                            value="{{ $item->price }}"
+                                                            value="{{ $item }}"
                                                         >
-                                                            @foreach($item->product_attribute as $attribute)
-                                                                @if($attribute->attribute->idkey == 'vu_tru_nro')
-                                                                {{ $attribute->product_attribute_value_able->title }}
-                                                                @endif
-                                                            @endforeach
+                                                            {{ $server_name[$key] }}
+
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -236,21 +266,76 @@
                                             @endif
 
                                         @elseif($filter_type == 4)
-                                            @if(isset($product) && count($product))
-                                                <span class="mb-15 control-label bb">Bảng Giá:</span>
-                                                <div class="mb-15">
-                                                    <select name="selected" class="s-filter form-control t14 selected_filter" style="">
-                                                        @foreach($product as $key => $item)
-                                                            <option value="{{ $key }}">{{ $item->title }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                @foreach($product as $key => $item)
-                                                    @if($key == 0)
-                                                        <input type="hidden" id="txtDiscount" class="form-control t14" placeholder="" value="{{ $item->price }}" readonly="">
+                                            @if(isset($item_arrays) && count($item_arrays))
+                                                @foreach($item_arrays as $index => $item_array)
+                                                    @if($server_id[0] == $index)
+                                                        <div class="row marginauto bang__gia__{{ $index }}" data-id="{{ $index }}">
+                                                            <div class="col-md-12 p-0">
+                                                                <span class="mb-15 control-label bb">Bảng Giá:</span>
+                                                                <div class="mb-15">
+                                                                    <select name="selected" class="s-filter form-control t14 selected_filter" style="">
+                                                                        @foreach($item_array as $key => $item)
+                                                                            <option value="{{ $key }}" data-price="{{ $item->id }}">
+                                                                                @foreach($item->product_attribute as $attribute)
+                                                                                    @if($attribute->attribute->idkey == 'nhiem_vu_nro')
+                                                                                        {{ $attribute->product_attribute_value_able->title }}
+                                                                                    @endif
+                                                                                @endforeach
+
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                                @foreach($item_array as $key => $item)
+                                                                    @if($key == 0)
+                                                                        <input type="hidden" id="txtDiscount" class="form-control t14" placeholder="" value="{{ $item->price }}" readonly="">
+                                                                    @endif
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+                                                    @else
+                                                        <div class="row marginauto hidden_slect bang__gia__{{ $index }}" data-id="{{ $index }}">
+                                                            <div class="col-md-12 p-0">
+                                                                <span class="mb-15 control-label bb">Bảng Giá:</span>
+                                                                <div class="mb-15">
+                                                                    <select name="selected" class="s-filter form-control t14 selected_filter" style="">
+                                                                        @foreach($item_array as $key => $item)
+                                                                            <option data-price="{{ $item->id }}" value="{{ $key }}">
+                                                                                @foreach($item->product_attribute as $attribute)
+                                                                                    @if($attribute->attribute->idkey == 'nhiem_vu_nro')
+                                                                                        {{ $attribute->product_attribute_value_able->title }}
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                                @foreach($item_array as $key => $item)
+                                                                    @if($key == 0)
+                                                                        <input type="hidden" id="txtDiscount" class="form-control t14" placeholder="" value="{{ $item->price }}" readonly="">
+                                                                    @endif
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
                                                     @endif
                                                 @endforeach
                                             @endif
+
+{{--                                            @if(isset($product) && count($product))--}}
+{{--                                                <span class="mb-15 control-label bb">Bảng Giá:</span>--}}
+{{--                                                <div class="mb-15">--}}
+{{--                                                    <select name="selected" class="s-filter form-control t14 selected_filter" style="">--}}
+{{--                                                        @foreach($product as $key => $item)--}}
+{{--                                                            <option value="{{ $key }}">{{ $item->title }}</option>--}}
+{{--                                                        @endforeach--}}
+{{--                                                    </select>--}}
+{{--                                                </div>--}}
+{{--                                                @foreach($product as $key => $item)--}}
+{{--                                                    @if($key == 0)--}}
+{{--                                                        <input type="hidden" id="txtDiscount" class="form-control t14" placeholder="" value="{{ $item->price }}" readonly="">--}}
+{{--                                                    @endif--}}
+{{--                                                @endforeach--}}
+{{--                                            @endif--}}
                                         @endif
                                     @endif
                                     {{--                                                Loại từ A đến B    --}}
@@ -357,6 +442,7 @@
                                             </tbody>
                                         </table>
                                         <style type="text/css">
+
                                             @media only screen and (max-width: 640px) {
                                                 .float_mb {
                                                     float: left;
@@ -707,8 +793,21 @@
                     $('#txtPrice').html('');
                     $('#txtPrice').html('Tổng: ' + total_price + ' VNĐ');
 
-                    $('body').on('click','#selected_filter',function(e) {
-                        var price = parseInt($(this).find(':selected').val());
+
+
+                    $('body').on('click','.server_filter',function(e) {
+                        var server_id = parseInt($(this).find(':selected').val());
+                        var check_server = parseInt($('.check_server').val());
+                        $('.bang__gia__' + check_server + '').addClass('hidden_slect');
+                        $('.bang__gia__' + server_id + '').removeClass('hidden_slect');
+
+                        $('.check_server').val(server_id);
+
+                    })
+
+
+                    $('body').on('click','.selected_filter',function(e) {
+                        var price = parseInt($(this).find(':selected').data('price'));
                         $('#txtDiscount').val(price);
 
                         var txtDiscount = parseInt($('#txtDiscount').val());

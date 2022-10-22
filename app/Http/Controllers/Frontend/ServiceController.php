@@ -62,7 +62,7 @@ class ServiceController extends Controller
         $method = "GET";
         $val = array();
         $val['type'] = 2;
-        $val['limit'] = 100;
+        $val['limit'] = 1000;
         $result_Api = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
         $response_data = $result_Api->response_data??null;
 
@@ -97,7 +97,29 @@ class ServiceController extends Controller
                 }
             }
 
-//            return $filter_type;
+            $server_data = array();
+            $server_id = array();
+
+
+            foreach($product as $key => $item){
+                foreach ($item->product_attribute as $index => $attribute) {
+                    if (!in_array($attribute->product_attribute_value_able->id,$server_data) && $attribute->attribute->idkey == 'vu_tru_nro'){
+                        array_push($server_data,json_encode($attribute->product_attribute_value_able,JSON_UNESCAPED_UNICODE));
+                    }
+                }
+            }
+
+            $item_array = array();
+
+            foreach($product as $key => $item){
+                foreach ($item->product_attribute as $index => $attribute) {
+                    if ($attribute->attribute->idkey == 'vu_tru_nro'){
+                        $item_array[$attribute->product_attribute_value_able->id][] = $item;
+                    }
+
+                }
+            }
+
             $data = $data->category;
 
             return view('frontend.pages.service.detail')
