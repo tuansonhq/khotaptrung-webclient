@@ -428,10 +428,8 @@
                         {{ csrf_field() }}
 
                         <div class="modal-header">
-                            <h4 class="modal-title">Xác nhận mua tài khoản</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
+                            <span class="nick-modal-header">Xác nhận mua tài khoản</span>
+                            <img class="nick-modal-header-close" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
                         </div>
 
                         <div class="modal-body">
