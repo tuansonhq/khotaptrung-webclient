@@ -62,7 +62,7 @@
 
         {{--        Cùng chủ đề--}}
         <div class="c-pb-24">
-            @include('frontend.widget.__bai__viet__lien__quan')
+            @include('frontend.widget.__bai__viet__lien__quan', ['data_article' => $data])
         </div>
     </div>
 @endsection

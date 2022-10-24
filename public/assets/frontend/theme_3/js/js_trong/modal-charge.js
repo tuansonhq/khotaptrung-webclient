@@ -123,16 +123,6 @@ $(document).ready(function () {
         postCharge();
     });
 
-    //Js block for auto ATM
-    $('input[name=bank]').on('change', function (e) {
-        $('.atm-card-block .loader').removeClass('d-none');
-        $('.recharge-bank-content').addClass('d-none');
-        setTimeout(() => {
-            $('.atm-card-block .loader').addClass('d-none');
-            $('.recharge-bank-content').removeClass('d-none');
-        }, 1000);
-    });
-
     // Active swiper atm bank list both in modal and in pages
     let swiper_bank_lists = new Swiper('.swiper-bank-list', {
         autoplay: false,
