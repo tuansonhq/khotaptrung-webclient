@@ -477,7 +477,7 @@ class AccController extends Controller
                 $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
 
                 $htmlslider = view('frontend.pages.account.widget.__related')
-                    ->with('data',$data)->render();
+                    ->with('data',$data)->with('slug',$slug)->render();
 
                 return response()->json([
                     'dataslider' => $htmlslider,

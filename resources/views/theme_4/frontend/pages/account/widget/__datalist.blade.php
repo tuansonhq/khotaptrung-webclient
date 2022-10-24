@@ -263,7 +263,7 @@
                                      alt="{{ $item->title }}" class="entries_item-img">
                                 <h2 class="text-title text-left  fw-bold" style="color: #434657;margin-bottom: 8px;font-weight: 700">#{{ $item->randId }}</h2>
 
-                                @if($data->slug != "nick-lien-minh")
+                                @if($data->slug != "nick-lien-minh" && $data->slug != "nick-ninja-school")
                                     <?php
                                     $total = 0;
                                     ?>
@@ -318,47 +318,72 @@
                                     @endif
                                 @else
                                     @if(isset($item->params))
-                                        @if(isset($item->params->rank_info))
+                                        @if($data->slug == "nick-lien-minh")
+                                            @if(isset($item->params->rank_info))
 
-                                            @foreach($item->params->rank_info as $rank_info)
-                                                @if($rank_info->queueType == "RANKED_TFT")
-{{--                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">RANKED TFT:--}}
-{{--                                                        @if($rank_info->tier == "NONE")--}}
-{{--                                                            {{ $rank_info->tier }}--}}
-{{--                                                        @else--}}
-{{--                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}--}}
-{{--                                                        @endif--}}
-{{--                                                    </p>--}}
+                                                @foreach($item->params->rank_info as $rank_info)
+                                                    @if($rank_info->queueType == "RANKED_TFT")
 
-                                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Rank:
-                                                        @if($rank_info->tier == "NONE")
-                                                            {{ $rank_info->tier }}
-                                                        @else
-                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                        @endif
+                                                    @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                        <p class="text-left" style="color: #82869E;margin-bottom: 4px">Rank:
+                                                            @if($rank_info->tier == "NONE")
+                                                                {{ $rank_info->tier }}
+                                                            @else
+                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                            @endif
+                                                        </p>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                            @if(isset($item->params->rank_level))
+                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Level:
+                                                    {{ $item->params->rank_level }}
+                                                </p>
+
+                                            @endif
+
+                                            @if(isset($item->params->count))
+                                                @if(isset($item->params->count->champions))
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Số tướng :
+                                                        {{ $item->params->count->champions }}
                                                     </p>
                                                 @endif
-                                            @endforeach
-                                        @endif
-                                        @if(isset($item->params->rank_level))
-                                            <p class="text-left" style="color: #82869E;margin-bottom: 4px">Level:
-                                                {{ $item->params->rank_level }}
-                                            </p>
+                                                @if(isset($item->params->count->skins))
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Trang phục :
+                                                        {{ $item->params->count->skins }}
+                                                    </p>
+                                                @endif
+                                            @endif
+                                        @elseif($data->slug == "nick-ninja-school")
 
-                                        @endif
+                                            @php
+                                                $server = null;
+                                                $info = array();
 
-                                        @if(isset($item->params->count))
-                                            @if(isset($item->params->count->champions))
-                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Số tướng :
-                                                    {{ $item->params->count->champions }}
+                                                $params = $item->params;
+                                                if (isset($params->server)){
+                                                    $server = $params->server;
+                                                }
+                                                if (isset($params->info) && count($params->info)){
+                                                    $info = $params->info;
+                                                }
+                                            @endphp
+                                            @if(isset($server))
+                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Server:
+                                                    {{ $server??'' }}
                                                 </p>
                                             @endif
-                                            @if(isset($item->params->count->skins))
-                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Trang phục :
-                                                    {{ $item->params->count->skins }}
-                                                </p>
+
+                                            @if(isset($info) && count($info))
+                                                @foreach($info as $ke => $in)
+                                                    @if(in_array($in->name,config('module.acc.auto_ninja_list_tt')))
+                                                        <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $in->name??'' }}:
+                                                            {{ $in->value??'' }}
+                                                        </p>
+                                                    @endif
+                                                @endforeach
                                             @endif
+
                                         @endif
                                     @endif
                                 @endif
