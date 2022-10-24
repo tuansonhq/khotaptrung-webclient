@@ -16,14 +16,14 @@
     </url>
 
 
-    {{--    @foreach ($menu??[] as $item)--}}
-    {{--        <url>--}}
-    {{--            <loc>{{Request::root()}}{{'/'. $item->slug }}</loc>--}}
-    {{--            <lastmod>{{ $item->created_at->tz('UTC')->toAtomString() }}</lastmod>--}}
-    {{--            <changefreq>weekly</changefreq>--}}
-    {{--            <priority>0.9</priority>--}}
-    {{--        </url>--}}
-    {{--    @endforeach--}}
+{{--    @foreach ($menu??[] as $item)--}}
+{{--        <url>--}}
+{{--            <loc>{{Request::root()}}{{'/'. $item->slug }}</loc>--}}
+{{--            <lastmod>{{ $item->created_at->tz('UTC')->toAtomString() }}</lastmod>--}}
+{{--            <changefreq>weekly</changefreq>--}}
+{{--            <priority>0.9</priority>--}}
+{{--        </url>--}}
+{{--    @endforeach--}}
     @foreach ($mini_game??[] as $item)
         <url>
             <loc>{{Request::root()}}{{'/'. $item->slug }}</loc>
@@ -52,13 +52,13 @@
     @foreach ($article_category??[] as $item)
 
 
-        <url>
-            <loc>{{Request::root()}}{{'/tin-tuc/'. $item->slug }}</loc>
-            <lastmod>{{ \Carbon\Carbon::now()->tz('UTC')->toAtomString() }}</lastmod>
-            {{--                <lastmod>{{ $item->created_at}}</lastmod>--}}
-            <changefreq>weekly</changefreq>
-            <priority>0.8</priority>
-        </url>
+            <url>
+                <loc>{{Request::root()}}{{'/tin-tuc/'. $item->slug }}</loc>
+                <lastmod>{{ \Carbon\Carbon::now()->tz('UTC')->toAtomString() }}</lastmod>
+                {{--                <lastmod>{{ $item->created_at}}</lastmod>--}}
+                <changefreq>weekly</changefreq>
+                <priority>0.8</priority>
+            </url>
 
     @endforeach
 

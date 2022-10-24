@@ -32,7 +32,7 @@
                     <li class="m1 after_login box-account">
                         <div  id="manageAcount">
                         </div>
-                        @include('frontend.widget.__menu_header')
+                        @include('frontend.widget.__menu_profile_header')
                     </li>
                     <form id="logout-form" action="{{ url('/ajax/logout') }}" method="POST" class="d-none">
                         @csrf

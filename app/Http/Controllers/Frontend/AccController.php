@@ -352,25 +352,38 @@ class AccController extends Controller
 
         }
 
-        if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
+        if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)) {
             $data = $response_data->data;
 
             if ($data->status == 0){
-
                 return view('frontend.pages.error.404');
             }
 
             $slug_category = $data->category->slug;
 
-            $game_auto_props =null;
+            $game_auto_props =  null;
 
-            if (isset($data->game_auto_props) && count($data->game_auto_props) > 0){
+            if (isset($data->game_auto_props) && count($data->game_auto_props) > 0) {
                 $game_auto_props = $data->game_auto_props;
+                $result = array();
+
+                foreach ($game_auto_props as $element) {
+                    $result[$element->key][] = $element;
+                    if ($element->key == 'champions' && isset($element->childs) && count($element->childs)) {
+                        foreach ($element->childs as $skin) {
+                            $result['skins_custom'][] = $skin;
+                        }
+                    }
+                }
+                $game_auto_props = $result;
+                foreach ($game_auto_props as $key => $item){
+                    $game_auto_props[$key] = array_chunk($item,24);
+                }
             }
 
             return view('frontend.pages.account.detail')->with('data',$data)->with('game_auto_props',$game_auto_props)->with('slug',$slug)->with('slug_category',$slug_category);
         }
-        else{
+        else  {
 
             $data = null;
             $message = $response_cate_data->message??"Không thể lấy dữ liệu hoặc tài khoản không tồn tại.";
@@ -380,8 +393,6 @@ class AccController extends Controller
                 ->with('data',$data);
 
         }
-
-
     }
 
     public function getShowDetail(Request $request,$slug){
