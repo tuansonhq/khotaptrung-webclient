@@ -148,7 +148,7 @@
         <input type="hidden" name="tftdamageskins_data" class="tftdamageskins_data" value="">
         <input type="hidden" name="tftmapskins_data" class="tftmapskins_data" value="">
 
-        <div class="modal fade modal__buyacount loadModal__acount" id="LoadModal" role="dialog" style="display: none;"
+        <div class="modal fade modal__account modal__buyacount loadModal__acount" id="LoadModal" role="dialog" style="display: none;"
              aria-hidden="true">
             <div class="modal-dialog modal-dialog__account" role="document">
                 <div class="loader" style="text-align: center"><img
@@ -159,6 +159,40 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade modal__account" role="dialog" id="successModal" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog__account" role="document">
+                <div class="modal-content modal-content_accountlist">
+
+                    <div class="modal-header">
+                        <span class="nick-modal-header">Thanh toán thành công</span>
+                        <img data-dismiss="modal" class="nick-modal-header-close" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="modal-account-success-image d-flex justify-content-center w-100">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/son/group.png" alt="">
+                        </div>
+                        <div class="input-group nick-success-input-group" style="width: 100%">
+                            <label>ID tài khoản</label>
+                            <input id="nickIdInput" type="text" class="form-control" style="width:100%" readonly>
+                        </div>
+                        <div class="nick-notify-success-block">
+                            <p>Nick của bạn được sẽ gửi tới trang Lịch sử mua Nick, vui lòng kiểm tra và đăng nhập vào Game, thay đổi mật khẩu để bảo mật cho tài khoản đã mua</p>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="d-flex justify-content-center w-100">
+                            <a class="btn-nick btn-secondary" href="/">Trang chủ</a>
+                            <a class="btn-nick btn-primary" href="/lich-su-mua-account">Lịch sử</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
 {{--        @if($data->display_type == 2)--}}
 {{--                    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>--}}
 {{--                    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>--}}

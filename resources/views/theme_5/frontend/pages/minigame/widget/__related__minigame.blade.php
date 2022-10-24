@@ -13,6 +13,11 @@
     <div class="swiper class-config-demo card-list">
         <div class="swiper-wrapper">
             @foreach($data as $key => $item)
+                @if (isset($data_minigame))
+                    @if ($item->id === $data_minigame)
+                        @continue
+                    @endif
+                @endif
             <div class="swiper-slide h-auto">
                 <div class="item-category h-100">
                     <div class="card h-100">

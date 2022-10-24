@@ -191,7 +191,7 @@
                                 @if(App\Library\AuthCustom::check())
                                     @if(App\Library\AuthCustom::user()->balance < $data->price)
                                         <button type="button" class="btn ghost" disabled>Thanh toán</button>
-                                        <button type="button" data-dismiss="modal" class="btn primary" data-toggle="modal" data-target="#rechargeModal">Nạp tiền</button>
+                                        <button type="button" data-bs-dismiss="modal" class="btn primary" data-toggle="modal" data-target="#rechargeModal">Nạp tiền</button>
                                     @else
                                         <button type="submit" class="btn primary">Thanh toán</button>
                                     @endif
