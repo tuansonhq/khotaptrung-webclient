@@ -426,23 +426,36 @@ class MinigameController extends Controller
                 if (isset($group_api) && $group_api->response_code == 200) {
                     $group_api = $group_api->response_data->data;
                 }
+
+
                 //     try{
                 //         Cache::put('minigame_list', $group_api, now()->addMinutes(5));
                 //     }catch(Exception $e){
                 //         logger($e);
                 //     }
                 // }
-                $groups = array_filter($group_api, function ($value) use ($request) {
-                    return $value->id == $request->id;
-                });
+
+                if ($request->filled('id')) {
+                    $groups = array_filter($group_api, function ($value) use ($request) {
+                    return $value->id == $request->get('id');
+                    });
+                }else{
+                    $groups = $group_api;
+                }
+
                 $group = null;
                 foreach ($groups as $dataar) {
                     $group = $dataar;
                 }
+
                 $url = '/minigame/get-log';
-                $data['id'] = $group->id;
+//                $data['id'] = $group->id;
                 $data['module'] = explode('-', $group->module)[0];
                 $data['page'] = $request->page == "" ? "1" : $request->page;
+
+                if ($request->filled('id')) {
+                    $data['id'] = $request->get('id');
+                }
 
                 if ($request->filled('gift_name')) {
                     $data['gift_name'] = $request->get('gift_name');
@@ -455,10 +468,11 @@ class MinigameController extends Controller
                 }
 
                 $result_Api = DirectAPI::_makeRequest($url, $data, $method);
+
                 if (isset($result_Api) && $result_Api->response_code == 200) {
                     $result = $result_Api->response_data;
                     if (isset($result->status) && $result->status == 0) {
-                        return redirect()->back()->withErrors($result_out->msg);
+                        return redirect()->back()->withErrors($result->msg);
                     } else {
                         $perPage = $result->per_page ?? 0;
                         $total = $result->total ?? 0;
@@ -502,17 +516,28 @@ class MinigameController extends Controller
                 //         logger($e);
                 //     }
                 // }
-                $groups = array_filter($group_api, function ($value) use ($request) {
-                    return $value->id == $request->id;
-                });
+
+                if ($request->filled('id')) {
+                    $groups = array_filter($group_api, function ($value) use ($request) {
+                        return $value->id == $request->get('id');
+                    });
+                }else{
+                    $groups = $group_api;
+                }
+
                 $group = null;
                 foreach ($groups as $dataar) {
                     $group = $dataar;
                 }
+
                 $url = '/minigame/get-logacc';
-                $data['id'] = $group->id;
+//                $data['id'] = $group->id;
                 $data['module'] = explode('-', $group->module)[0];
                 $data['page'] = $request->page == "" ? "1" : $request->page;
+
+                if ($request->filled('id')) {
+                    $data['id'] = $request->get('id');
+                }
 
                 if ($request->filled('gift_name')) {
                     $data['gift_name'] = $request->get('gift_name');

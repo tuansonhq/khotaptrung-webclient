@@ -27,7 +27,7 @@
                                 <div class="input-group">
                                     <select name="id" id="id" class="form-control">
                                         @foreach($group_api as $item)
-                                        <option value="{{route('getLog',[$item->id])}}" {{$group->id==$item->id?'selected':''}}>{{$item->title}}</option>
+                                        <option value="{{route('getLog',['id' => $item->id])}}" {{$group->id==$item->id?'selected':''}}>{{$item->title}}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -61,7 +61,7 @@
                                             <div class="col-12 c-pl-4 left-right background-nick-col-bottom-ct status-finter-nick">
                                                 <select class="wide" name="id" id="id">
                                                     @foreach($group_api as $item)
-                                                        <option value="{{route('getLog',[$item->id])}}" {{$group->id==$item->id?'selected':''}}>{{$item->title}}</option>
+                                                        <option value="{{route('getLog',['id' => $item->id])}}" {{$group->id==$item->id?'selected':''}}>{{$item->title}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
