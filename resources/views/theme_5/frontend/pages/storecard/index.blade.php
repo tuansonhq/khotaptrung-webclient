@@ -64,8 +64,10 @@
                                             @if(isset($telecom->params) and $telecom->params->teltecom_type == 2)
                                                 <div class="col-2 c-px-4 c-py-0 card-type-form">
                                                     <input type="radio" id="card-{{ $key }}" value="{{ $telecom->key }}"
-                                                            name="card-type-game" data-img="{{ $telecom->image }}"
-                                                            data-title="{{ $telecom->title }}" hidden>
+                                                            name="card-type" data-img="{{ $telecom->image }}"
+                                                            data-title="{{ $telecom->title }}"
+                                                            data-tab="1"
+                                                            hidden>
                                                     <label for="card-{{ $key }}" class="brs-8 c-mb-8">
                                                         <img src="{{ $telecom->image }}" alt="{{ $telecom->title }}">
                                                     </label>
@@ -83,8 +85,10 @@
                                                 <div class="swiper-slide card-type-form">
                                                     <input type="radio" id="card-{{ $key }}-slide"
                                                             value="{{ $telecom->key }}"
-                                                            name="card-type-game" data-img="{{ $telecom->image }}"
-                                                            data-title="{{ $telecom->title }}" hidden>
+                                                            name="card-type" data-img="{{ $telecom->image }}"
+                                                            data-title="{{ $telecom->title }}"
+                                                            data-tab="1"
+                                                            hidden>
                                                     <label for="card-{{ $key }}-slide" class="brs-8 c-mb-8">
                                                         <img src="{{ $telecom->image }}" alt="{{ $telecom->title }}">
                                                     </label>
@@ -141,8 +145,10 @@
                                             @if(!isset($telecom->params) || $telecom->params->teltecom_type != 2)
                                                 <div class="col-2 c-px-4 c-py-0 card-type-form">
                                                     <input type="radio" id="card-{{ $key }}" value="{{ $telecom->key }}"
-                                                           name="card-type-mobile" data-img="{{ $telecom->image }}"
-                                                           data-title="{{ $telecom->title }}" hidden>
+                                                           name="card-type" data-img="{{ $telecom->image }}"
+                                                           data-title="{{ $telecom->title }}"
+                                                           data-tab="2"
+                                                           hidden>
                                                     <label for="card-{{ $key }}" class="brs-8 c-mb-8">
                                                         <img src="{{ $telecom->image }}" alt="{{ $telecom->title }}">
                                                     </label>
@@ -160,8 +166,10 @@
                                                 <div class="swiper-slide card-type-form">
                                                     <input type="radio" id="card-{{ $key }}-slide"
                                                            value="{{ $telecom->key }}"
-                                                           name="card-type-mobile" data-img="{{ $telecom->image }}"
-                                                           data-title="{{ $telecom->title }}" hidden>
+                                                           name="card-type" data-img="{{ $telecom->image }}"
+                                                           data-title="{{ $telecom->title }}"
+                                                           data-tab="2"
+                                                           hidden>
                                                     <label for="card-{{ $key }}-slide" class="brs-8 c-mb-8">
                                                         <img src="{{ $telecom->image }}" alt="{{ $telecom->title }}">
                                                     </label>
@@ -319,7 +327,7 @@
         <div class="head-mobile">
             <a href="#" class="link-back close-step"></a>
 
-            <h1 class="head-title text-title">Xác nhận thanh toán</h1>
+            <p class="head-title text-title">Xác nhận thanh toán</p>
 
             <a href="#" class="notify" data-notify="2"></a>
         </div>
@@ -412,7 +420,7 @@
         <div class="modal-dialog modal-dialog-centered modal-custom">
             <div class="modal-content c-p-24">
                 <div class="modal-header">
-                    <h2 class="modal-title center">Xác nhận thanh toán</h2>
+                    <p class="modal-title center">Xác nhận thanh toán</p>
                     <button type="button" class="close" data-dismiss="modal"></button>
                 </div>
                 <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">

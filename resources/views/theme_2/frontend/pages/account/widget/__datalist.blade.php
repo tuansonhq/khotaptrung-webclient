@@ -57,22 +57,9 @@
                                     <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($data->price_old)) }}đ</div>
                                     <div class="discount">{{$sale_percent}}%</div>
                                 </div>
-                                @if(App\Library\AuthCustom::check())
-
-                                    @if(App\Library\AuthCustom::user()->balance < $data->price)
-                                        <div class="price c-p-12 c-p-lg-8">
-                                            <a href="javascript:void(0)" class="btn secondary w-100 the-cao-atm">Mua ngay</a>
-                                        </div>
-                                    @else
-                                        <div class="price c-p-12 c-p-lg-8">
-                                            <a href="javascript:void(0)" class="btn secondary w-100 buyacc" data-id="{{ $item->randId }}">Mua ngay</a>
-                                        </div>
-                                    @endif
-                                @else
-                                    <div class="price c-p-12 c-p-lg-8">
-                                        <a href="javascript:void(0)" class="btn secondary w-100" onclick="openLoginModal()">Mua ngay</a>
-                                    </div>
-                                @endif
+                                <div class="price c-pt-12 c-pt-lg-8">
+                                    <button type="button" class="w-100 btn secondary">Mua ngay</button>
+                                </div>
 
                             </a>
                         </div>
@@ -81,13 +68,17 @@
 {{--                    Form thanh toán nick random  formThanhToanNickRandom --}}
 
                     <div class="formDonhangAccount{{ $item->randId }} formThanhToanNickRandom">
-                        <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
+                        @if(App\Library\AuthCustom::check() && App\Library\AuthCustom::user()->balance >= $data->price)
+                        <form class="formDonhangAccount" data-ranid="{{ $item->randId }}" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
+                        @else
+                        <form class="formDonhangAccount">
+                        @endif
                             {{ csrf_field() }}
                             <div class="modal-header">
                                 <h2 class="modal-title center">Xác nhận thanh toán</h2>
                                 <button type="button" class="close" data-dismiss="modal"></button>
                             </div>
-                            <div class="modal-body c-px-0 c-pb-0 c-pt-24">
+                            <div class="modal-body c-px-0 c-pb-0 c-pt-24 c-pb-24">
                                 <div class="dialog--content__title fw-700 fz-13 c-mb-12 text-title-theme">
                                     Thông tin mua Acc
                                 </div>
@@ -161,6 +152,16 @@
                                             Tài khoản Shopbrand
                                         </div>
                                     </div>
+                                    @if(App\Library\AuthCustom::check())
+                                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                            <div class="card--attr__name fz-13 fw-400 text-center">
+                                                Số dư tài khoản
+                                            </div>
+                                            <div class="card--attr__value fz-13 fw-500">
+                                                {{ str_replace(',','.',number_format(round(\App\Library\AuthCustom::user()->balance))) }} đ
+                                            </div>
+                                        </div>
+                                    @endif
                                     <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
                                         <div class="card--attr__name fw-400 fz-13 text-center">
                                             Phí thanh toán
@@ -175,29 +176,27 @@
                                         <div class="card--attr__name fw-400 fz-13 text-center">
                                             Tổng thanh toán
                                         </div>
-                                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">9.900 đ</a></div>
+                                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">{{ str_replace(',','.',number_format($data->price)) }} đ</a></div>
                                     </div>
                                 </div>
-                                <div class="text-invalid">
-                                    @if(App\Library\AuthCustom::check())
-                                        @if(App\Library\AuthCustom::user()->balance < $data->price)
-                                            Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.
-                                        @endif
-                                    @else
-                                        <small>Bạn phải đăng nhập mới có thể mua tài khoản tự động.</small>
-                                    @endif
-                                </div>
+                                @if(App\Library\AuthCustom::check() && App\Library\AuthCustom::user()->balance < $data->price)
+                                    <div class="card--gray c-mb-0 c-mt-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                                        <p class="card--attr__payment_failed c-mb-0 fw-400 fz-13 lh-20">
+                                            Tài khoản của bạn không đủ để thanh toán, vui lòng nạp tiền để tiếp tục giao dịch
+                                        </p>
+                                    </div>
+                                @endif
                             </div>
                             <div class="modal-footer">
                                 @if(App\Library\AuthCustom::check())
-
-                                    @if(App\Library\AuthCustom::user()->balance >= $data->price)
-                                        <button class="btn primary" type="submit">Xác nhận</button>
+                                    @if(App\Library\AuthCustom::user()->balance < $data->price)
+                                        <button type="button" class="btn ghost" disabled>Thanh toán</button>
+                                        <button type="button" data-dismiss="modal" class="btn primary" data-toggle="modal" data-target="#rechargeModal">Nạp tiền</button>
                                     @else
-                                        <button class="btn primary" type="button" data-toggle="modal" data-target="#rechargeModal" data-bs-dismiss="modal">Nạp tiền</button>
+                                        <button type="submit" class="btn primary">Thanh toán</button>
                                     @endif
                                 @else
-                                    <a class="btn primary" href="/login">Đăng nhập</a>
+                                    <a href="/login" data-dismiss="modal" class="btn primary">Đăng nhập</a>
                                 @endif
                             </div>
                         </form>

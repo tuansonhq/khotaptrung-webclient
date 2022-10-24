@@ -40,25 +40,7 @@ $(document).ready(function () {
 
                 if(response.status == 1){
                     $('.loadModal__acount').modal('hide');
-                    swal({
-                        title: "Mua tài khoản thành công",
-                        text: "Thông tin chi tiết tài khoản vui lòng về lịch sử đơn hàng.",
-                        type: "success",
-                        confirmButtonText: "Lịch sử đơn hàng",
-                        showCancelButton: true,
-                        cancelButtonText: "Đóng",
-                    })
-                        .then((result) => {
-                            var slug_category = $('.slug_category').val();
-                            console.log(slug_category)
-                            if (result.value) {
-                                window.location = '/lich-su-mua-nick';
-                            } else if (result.dismiss === "Đóng") {
-                                window.location = '/mua-acc/'+ slug_category;
-                            }else {
-                                window.location = '/mua-acc/'+ slug_category;
-                            }
-                        })
+                    $('#successNickPurchase').modal('show');
                 }
                 else if (response.status == 2){
                     $('.loadModal__acount').modal('hide');
@@ -107,10 +89,6 @@ $(document).ready(function () {
 
     $(document).on('click', '.tinhnang',function(e){
         $('#notInbox').modal('show');
-    });
-
-    $(document).on('click', '.the-cao-atm',function(e){
-        $('#notBuy').modal('show');
     });
 
 

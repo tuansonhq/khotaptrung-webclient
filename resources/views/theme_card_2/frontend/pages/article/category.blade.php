@@ -24,6 +24,9 @@
                         @include('theme_card_2.frontend.pages.article.widget.__datalist')
 
                     </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                        @include('frontend.pages.article.widget.__danh__muc')
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 left-right justify-content-end paginate__v1_index paginate__v1_mobie frontend__panigate">

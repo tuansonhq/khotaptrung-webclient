@@ -11,7 +11,7 @@
                     <a href="/" class="breadcrumb-link">Trang chủ</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="/lich-su-mua-nick" class="breadcrumb-link">Tài khoản đã mua</a>
+                    <a href="/lich-su-mua-account" class="breadcrumb-link">Tài khoản đã mua</a>
                 </li>
             </ul>
 
@@ -70,9 +70,9 @@
                             <div class="content-bottom-sheet bar-slide">
                                 <form action="" class="form-filter">
                                     <div class="sheet-header">
-                                        <h2 class="text-title center">
+                                        <p class="text-title center">
                                             Bộ lọc
-                                        </h2>
+                                        </p>
                                         <label class="close"></label>
                                     </div>
                                     <div class="sheet-body overflow-visible">
@@ -142,7 +142,7 @@
                                 <form action="" class="form-filter">
                                     <div class="modal-content">
                                         <div class="modal-header justify-content-center p-0">
-                                            <h2 class="modal-title center">Bộ lọc</h2>
+                                            <p class="modal-title center">Bộ lọc</p>
                                             <button type="button" class="close" data-dismiss="modal"></button>
                                         </div>
 

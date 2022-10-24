@@ -42,7 +42,7 @@
         <div class="head-mobile">
             <a href="/mua-acc" class="link-back"></a>
 
-            <h1 class="head-title text-title">Shop Account</h1>
+            <p class="head-title text-title">Shop Account</p>
 
             <a href="/" class="home"></a>
         </div>
@@ -54,7 +54,7 @@
 
             <section class="list-account">
                 <div class="section-header justify-content-between  d-none d-lg-flex c-py-16">
-                    <h2 class="section-title">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }} </h2>
+                    <h1 class="section-title">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }} </h1>
                     <form action="" class="form-search position-relative">
                         <input type="search" placeholder="Tìm kiếm" class="has-submit">
                         <button type="submit"></button>
@@ -121,7 +121,7 @@
                         <form action="" class="form-filter">
 
                             <div class="modal-header">
-                                <h2 class="modal-title center">Bộ lọc</h2>
+                                <p class="modal-title center">Bộ lọc</p>
                                 <button type="button" class="close" data-dismiss="modal"></button>
                             </div>
                             <div class="modal-body p-0">
@@ -284,9 +284,9 @@
                 <div class="content-bottom-sheet bar-slide">
                     <form action="" class="form-filter">
                         <div class="sheet-header">
-                            <h2 class="text-title center">
+                            <p class="text-title center">
                                 Bộ lọc
-                            </h2>
+                            </p>
                             <label class="close"></label>
                         </div>
                         <div class="sheet-body">
@@ -356,9 +356,9 @@
                 <div class="content-bottom-sheet bar-slide">
                     <form action="" id="form-sort">
                         <div class="sheet-header">
-                            <h2 class="text-title center">
+                            <p class="text-title center">
                                 Sắp xếp theo
-                            </h2>
+                            </p>
                             <label class="close"></label>
                         </div>
                         <div class="sheet-body">
@@ -412,25 +412,31 @@
                 </div>
             </div>
 
-            <!-- Modal 04 -->
-            <div class="modal fade modal-small" id="notBuy">
+            <div class="modal fade modal-small" id="successNickRandomPurchase">
                 <div class="modal-dialog modal-dialog-centered modal-custom">
                     <div class="modal-content">
                         <div class="modal-header justify-content-center p-0">
-                            <img class="c-pt-16 c-pb-16" src="/assets/frontend/{{theme('')->theme_key}}/image/son/thatbai.png" alt="">
+                            <img class="c-pt-20 c-pb-20" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png" alt="">
                         </div>
                         <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
-                            <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua thẻ nick thất bại</p>
-                            <p class="fw-400 fz-13 c-mt-10 mb-0">Rất tiếc việc mua nick đã thất bại do tài khoản của bạn không đủ, vui lòng nạp tiền để tiếp tục giao dịch!</p>
+                            <p class="fw-700 fz-15 fz-lg-15 fz-md-14 fz-sm-12 c-mt-12 mb-0 text-title-theme">Mua Nick thành công</p>
+                            <div class="input-group c-mt-16">
+                                <div class="form-label">ID tài khoản</div>
+                                <div class="toggle-password">
+                                    <input id="nickIdInput" type="password" placeholder="ID tài khoản" class="password" value="">
+                                </div>
+                            </div>
+                            <p class="fw-400 fz-13 fz-lg-13 fz-md-12 fz-sm-11 c-mt-16 mb-0">
+                                Nick của bạn được sẽ gửi tới trang Lịch sử mua Nick, vui lòng kiểm tra và đăng nhập vào Game để thay đổi mật khẩu để bảo mật cho tài khoản đã mua
+                            </p>
                         </div>
                         <div class="modal-footer c-p-24">
-                            <button class="btn primary handle-recharge-modal" data-tab="1" data-dismiss="modal">Nạp tiền</button>
+                            <a class="btn secondary" href="/" style="width: calc(40% - 6px);">Trang chủ</a>
+                            <a class="btn primary" href="/lich-su-mua-account" style="width: calc(60% - 6px);">Lịch sử mua hàng</a>
                         </div>
                     </div>
                 </div>
             </div>
-
-
 
         @endif
     </div>

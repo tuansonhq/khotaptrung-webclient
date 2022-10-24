@@ -55,6 +55,9 @@
 .modal-big .rs-container{
     height: 24px;
 }
+.card--attr__payment_failed {
+    color: var(--invalid-color);
+}
 /*Hết bog modal*/
 
 

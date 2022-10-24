@@ -400,7 +400,7 @@
             <input type="hidden" name="sort_by_data" class="sort_by_data" value="">
 
             {{--    Modal xác nhận thanh toán--}}
-            <div class="modal fade modal__buyacount loadModal__acount" id="LoadModal">
+            <div class="modal fade modal__buyacount loadModal__acount modal-big" id="LoadModal">
                 <div class="modal-dialog modal-dialog-centered modal-custom">
                     <div class="modal-content c-p-24 data__form__random">
 
@@ -408,26 +408,31 @@
                 </div>
             </div>
 
-            <!-- Modal 04 -->
-            <div class="modal fade modal-small" id="notBuy">
+            <div class="modal fade modal-small" id="successNickRandomPurchase">
                 <div class="modal-dialog modal-dialog-centered modal-custom">
                     <div class="modal-content">
                         <div class="modal-header justify-content-center p-0">
-                            <img class="c-pt-16 c-pb-16" src="/assets/frontend/{{theme('')->theme_key}}/image/son/thatbai.png" alt="">
+                            <img class="c-pt-20 c-pb-20" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png" alt="">
                         </div>
                         <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
-                            <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua thẻ nick thất bại</p>
-                            <p class="fw-400 fz-13 c-mt-10 mb-0">Rất tiếc việc mua nick đã thất bại do tài khoản của bạn không đủ, vui lòng nạp tiền để tiếp tục giao dịch!</p>
+                            <p class="fw-700 fz-15 fz-lg-15 fz-md-14 fz-sm-12 c-mt-12 mb-0 text-title-theme">Mua Nick thành công</p>
+                            <div class="input-group c-mt-16">
+                                <div class="form-label">ID tài khoản</div>
+                                <div class="toggle-password">
+                                    <input id="nickIdInput" type="password" placeholder="ID tài khoản" class="password" value="">
+                                </div>
+                            </div>
+                            <p class="fw-400 fz-13 fz-lg-13 fz-md-12 fz-sm-11 c-mt-16 mb-0">
+                                Nick của bạn được sẽ gửi tới trang Lịch sử mua Nick, vui lòng kiểm tra và đăng nhập vào Game để thay đổi mật khẩu để bảo mật cho tài khoản đã mua
+                            </p>
                         </div>
                         <div class="modal-footer c-p-24">
-                            <a href="/recharge-atm" class="btn secondary" data-dismiss="modal">Nạp ATM</a>
-                            <a href="/nap-the" class="btn primary">Nạp tiền</a>
+                            <a class="btn secondary" href="/" style="width: calc(40% - 6px);">Trang chủ</a>
+                            <a class="btn primary" href="/lich-su-mua-account" style="width: calc(60% - 6px);">Lịch sử mua hàng</a>
                         </div>
                     </div>
                 </div>
             </div>
-
-
 
         @endif
     </div>

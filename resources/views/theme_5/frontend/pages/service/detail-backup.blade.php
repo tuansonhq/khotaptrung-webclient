@@ -39,7 +39,7 @@
         <div class="head-mobile">
             <a href="/dich-vu" class="link-back"></a>
 
-            <h1 class="head-title text-title">Dịch vụ game</h1>
+            <p class="head-title text-title">Dịch vụ game</p>
 
             <a href="/" class="home"></a>
         </div>
@@ -431,7 +431,7 @@
         <div class="modal-dialog modal-dialog-centered modal-custom">
             <div class="modal-content c-p-24">
                 <div class="modal-header">
-                    <h2 class="modal-title center">Xác nhận thanh toán</h2>
+                    <p class="modal-title center">Xác nhận thanh toán</p>
                     <button type="button" class="close" data-dismiss="modal"></button>
                 </div>
                 <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
@@ -589,7 +589,7 @@
         <div class="head-mobile">
             <a href="javascript:void(0) " class="link-back close-step"></a>
 
-            <h1 class="head-title text-title">Xác nhận thanh toán</h1>
+            <p class="head-title text-title">Xác nhận thanh toán</p>
 
             <a href="/" class="home"></a>
         </div>

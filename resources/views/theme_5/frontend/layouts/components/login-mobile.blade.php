@@ -21,7 +21,7 @@
         <div class="mobile-auth hidden">
             <div class="head-mobile">
                 <a href="javascript:void(0);" class="handleLoginPopup link-back close-step"></a>
-                <h1 class="head-title text-title">Đăng nhập</h1>
+                <p class="head-title text-title">Đăng nhập</p>
             </div>
             <div class="mobile-auth-form c-px-16 c-pt-50">
                 <form action="" id="formRegisterMobile" class="flex-column justify-content-center aligin-items-center text-center">

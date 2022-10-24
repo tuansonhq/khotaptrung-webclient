@@ -9,6 +9,8 @@
         <title>{{ $data->seo_title??'' }}</title>
     @elseif(Request::is('tin-tuc/'. $data->slug .''))
         <title>{{ $data->seo_title??'' }}</title>
+    @elseif(Request::is('blog/'. $data->slug .''))
+        <title>{{ $data->seo_title??'' }}</title>
     @endif
 @elseif(Request::is('dich-vu'))
     <title>Shop dịch vụ all game giá rẻ, uy tín, tự động.</title>
@@ -51,6 +53,9 @@
         <meta name="description" content="{{ $data->seo_description??'' }}">
         <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
     @elseif(Request::is('tin-tuc/'. $data->slug .''))
+        <meta name="description" content="{{ $data->seo_description??'' }}">
+        <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
+    @elseif(Request::is('blog/'. $data->slug .''))
         <meta name="description" content="{{ $data->seo_description??'' }}">
         <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
     @endif
@@ -99,6 +104,8 @@
     @elseif(Request::is('dich-vu/'. $data->slug .''))
         <meta property="og:title" content="{{ $data->title??'' }}">
     @elseif(Request::is('tin-tuc/'. $data->slug .''))
+        <meta property="og:title" content="{{ $data->seo_title??'' }}">
+    @elseif(Request::is('blog/'. $data->slug .''))
         <meta property="og:title" content="{{ $data->seo_title??'' }}">
     @endif
 @elseif(Request::is('dich-vu'))
@@ -185,7 +192,6 @@
                         "reviewCount": "793986"
                     },
                     "sku": "{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}",
-                    "gtin8": "{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}",
                     "mpn": "{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}",
                     "offers": {
                             "@type": "Offer",
@@ -261,7 +267,6 @@
                         "reviewCount": "793986"
                     },
                     "sku": "{{ $data->slug??'' }}",
-                    "gtin8": "{{ $data->slug??'' }}",
                     "mpn": "{{ $data->slug??'' }}",
                     "offers": {
                             "@type": "Offer",
@@ -295,6 +300,7 @@
       ]
     }
     </script>
+
     @elseif(Request::is('tin-tuc/'. $data->slug .''))
 
         <script type="application/ld+json">
@@ -510,8 +516,11 @@
                     }
                 }
             @endphp
-
-            <script type="application/ld+json">
+            @if((isset($first_question) && isset($first_answer))
+                || (isset($second_question) && isset($second_answer))
+                || (isset($three_question) && isset($three_answer))
+                || (isset($foor_question) && isset($foor_answer)))
+                <script type="application/ld+json">
                 {
                     "@context": "https://schema.org",
                     "@type": "FAQPage",
@@ -523,29 +532,39 @@
                         "text": "{{ $first_answer??'' }}"
                     }
                 },
-                {
-                    "@type": "Question",
-                    "name": "{{ $second_question??'' }}",
+                @if(isset($second_question) && isset($second_answer))
+                        {
+                            "@type": "Question",
+                            "name": "{{ $second_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $second_answer??'' }}"
                     }
-                },{
-                    "@type": "Question",
-                    "name": "{{ $three_question??'' }}",
+                },
+                @endif
+                    @if(isset($three_question) && isset($three_answer))
+                        {
+                            "@type": "Question",
+                            "name": "{{ $three_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $three_answer??'' }}"
                     }
-                },{
-                    "@type": "Question",
-                    "name": "{{ $foor_question??'' }}",
+                },
+                @endif
+                    @if(isset($foor_question) && isset($foor_question))
+                        {
+                            "@type": "Question",
+                            "name": "{{ $foor_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $foor_answer??'' }}"
                     }
-                }]}
-            </script>
+                }
+                @endif
+                    ]}
+</script>
+            @endif
         @endif
     @endif
 
