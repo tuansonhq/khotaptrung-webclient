@@ -343,7 +343,7 @@ class AccController extends Controller
             $method = "GET";
             $dataSend = array();
             $dataSend['data'] = 'acc_detail';
-            $dataSend['id'] = \App\Library\Helpers::decodeItemID($slug);
+                $dataSend['id'] = \App\Library\Helpers::decodeItemID($slug);
 
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $response_data = $result_Api->response_data??null;
@@ -412,7 +412,9 @@ class AccController extends Controller
                 $data = $response_data->data;
 
                 $data_category = $data->category;
+
                 $dataAttribute = $data_category->childs;
+
                 $card_percent = (int)setting('sys_card_setting');
 
                 $game_auto_props =null;

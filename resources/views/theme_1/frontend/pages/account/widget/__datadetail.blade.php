@@ -4,7 +4,7 @@
     <div class="row marginauto">
         <div class="col-lg-6 col-md-12 shop_product_detailS__col">
             <div class="gallery" style="overflow: hidden">
-                @if(isset($game_auto_props) && count($game_auto_props))
+                @if(isset($game_auto_props) && count($game_auto_props) && $data_category->slug == 'nick-lien-minh')
                     <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" >
                 @else
                     <div class="swiper gallery-slider">
@@ -162,37 +162,37 @@
                 </div>
 
                 @if(isset($game_auto_props) && count($game_auto_props))
+                    @if($data_category->slug == 'nick-lien-minh')
+                        @php
+                            $total_tuong = 0;
+                            $total_bieucam = 0;
+                            $total_chuongluc = 0;
+                            $total_sandau = 0;
+                            $total_linhthu = 0;
+                            $total_trangphuc = 0;
+                            $total_thongtinchung = 0;
 
-                    @php
-                        $total_tuong = 0;
-                        $total_bieucam = 0;
-                        $total_chuongluc = 0;
-                        $total_sandau = 0;
-                        $total_linhthu = 0;
-                        $total_trangphuc = 0;
-                        $total_thongtinchung = 0;
-
-                        if(isset($game_auto_props) && count($game_auto_props)){
-                            foreach($game_auto_props as $game_auto_prop){
-                                if($game_auto_prop->key == 'champions'){
-                                    $total_tuong = $total_tuong + 1;
-                                    if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
-                                        foreach($game_auto_prop->childs as $c_child){
-                                            $total_trangphuc = $total_trangphuc + 1;
+                            if(isset($game_auto_props) && count($game_auto_props)){
+                                foreach($game_auto_props as $game_auto_prop){
+                                    if($game_auto_prop->key == 'champions'){
+                                        $total_tuong = $total_tuong + 1;
+                                        if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
+                                            foreach($game_auto_prop->childs as $c_child){
+                                                $total_trangphuc = $total_trangphuc + 1;
+                                            }
                                         }
+                                    }elseif ($game_auto_prop->key == 'emotes'){
+                                        $total_bieucam = $total_bieucam + 1;
+                                    }elseif ($game_auto_prop->key == 'tftdamageskins'){
+                                        $total_chuongluc = $total_chuongluc + 1;
+                                    }elseif ($game_auto_prop->key == 'tftmapskins'){
+                                        $total_sandau = $total_sandau + 1;
+                                    }elseif ($game_auto_prop->key == 'tftcompanions'){
+                                        $total_linhthu = $total_linhthu + 1;
                                     }
-                                }elseif ($game_auto_prop->key == 'emotes'){
-                                    $total_bieucam = $total_bieucam + 1;
-                                }elseif ($game_auto_prop->key == 'tftdamageskins'){
-                                    $total_chuongluc = $total_chuongluc + 1;
-                                }elseif ($game_auto_prop->key == 'tftmapskins'){
-                                    $total_sandau = $total_sandau + 1;
-                                }elseif ($game_auto_prop->key == 'tftcompanions'){
-                                    $total_linhthu = $total_linhthu + 1;
                                 }
                             }
-                        }
-                    @endphp
+                        @endphp
                         <div class="col-md-12">
                             <div class="row gallery__03">
                                 <div class="col-md-12 gallery__01__row">
@@ -258,65 +258,120 @@
                             </div>
                         </div>
 
-                    @if(isset($data->params))
-                        @if(isset($data->params->rank_info) && count($data->params->rank_info))
+                        @if(isset($data->params))
+                            @if(isset($data->params->rank_info) && count($data->params->rank_info))
 
-                            @foreach($data->params->rank_info as $key_rank => $rank_info)
-                                @if($rank_info->queueType == "RANKED_TFT")
-                                    <div class="col-md-12">
-                                        <div class="row gallery__03">
-                                            <div class="col-md-12 gallery__01__row">
-                                                <div class="row">
-                                                    <div class="col-auto span__dangky__auto">
-                                                        <i class="fas fa-angle-right"></i>
-                                                    </div>
-                                                    <div class="col-md-4 col-4 pl-0">
-                                                        <span class="span__dangky">RANKED TFT</span>
-                                                    </div>
-                                                    <div class="col-md-6 col-6 pl-0">
-                                                        @if($rank_info->tier == "NONE")
-                                                            <span class="span__dangky">{{ $rank_info->tier }}</span>
-                                                        @else
+                                @foreach($data->params->rank_info as $key_rank => $rank_info)
+                                    @if($rank_info->queueType == "RANKED_TFT")
+                                        <div class="col-md-12">
+                                            <div class="row gallery__03">
+                                                <div class="col-md-12 gallery__01__row">
+                                                    <div class="row">
+                                                        <div class="col-auto span__dangky__auto">
+                                                            <i class="fas fa-angle-right"></i>
+                                                        </div>
+                                                        <div class="col-md-4 col-4 pl-0">
+                                                            <span class="span__dangky">RANKED TFT</span>
+                                                        </div>
+                                                        <div class="col-md-6 col-6 pl-0">
+                                                            @if($rank_info->tier == "NONE")
+                                                                <span class="span__dangky">{{ $rank_info->tier }}</span>
+                                                            @else
 
-                                                            <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
+                                                                <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
 
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
-
-                                    <div class="col-md-12">
-                                        <div class="row gallery__03">
-                                            <div class="col-md-12 gallery__01__row">
-                                                <div class="row">
-                                                    <div class="col-auto span__dangky__auto">
-                                                        <i class="fas fa-angle-right"></i>
-                                                    </div>
-                                                    <div class="col-md-4 col-4 pl-0">
-                                                        <span class="span__dangky">RANKED SOLO</span>
-                                                    </div>
-                                                    <div class="col-md-6 col-6 pl-0">
-
-                                                        @if($rank_info->tier == "NONE")
-                                                            <span class="span__dangky">{{ $rank_info->tier }}</span>
-                                                        @else
-                                                            <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
-                                                        @endif
-
+                                                            @endif
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+
+                                        <div class="col-md-12">
+                                            <div class="row gallery__03">
+                                                <div class="col-md-12 gallery__01__row">
+                                                    <div class="row">
+                                                        <div class="col-auto span__dangky__auto">
+                                                            <i class="fas fa-angle-right"></i>
+                                                        </div>
+                                                        <div class="col-md-4 col-4 pl-0">
+                                                            <span class="span__dangky">RANKED SOLO</span>
+                                                        </div>
+                                                        <div class="col-md-6 col-6 pl-0">
+
+                                                            @if($rank_info->tier == "NONE")
+                                                                <span class="span__dangky">{{ $rank_info->tier }}</span>
+                                                            @else
+                                                                <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
+                                                            @endif
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+
+                            @endif
+                        @endif
+                    @elseif($data_category->slug == 'nick-ninja-school')
+                        @php
+                            $server = null;
+                            $params = null;
+                            $info = array();
+                            if (isset($data->params)){
+                                $params = $data->params;
+                                if (isset($params->server)){
+                                    $server = $params->server;
+                                }
+                                if (isset($params->info) && count($params->info)){
+                                    $info = $params->info;
+                                }
+                            }
+                        @endphp
+                        @if(isset($server))
+                        <div class="col-md-12">
+                            <div class="row gallery__03">
+                                <div class="col-md-12 gallery__01__row">
+                                    <div class="row">
+                                        <div class="col-auto span__dangky__auto">
+                                            <i class="fas fa-angle-right"></i>
+                                        </div>
+                                        <div class="col-md-4 col-4 pl-0">
+                                            <span class="span__dangky">Server </span>
+                                        </div>
+                                        <div class="col-md-6 col-6 pl-0">
+                                            <span class="span__dangky">{{ $server??null }}</span>
+                                        </div>
                                     </div>
-                                @endif
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @if(isset($info) && count($info))
+                            @foreach($info as $ke => $in)
+                                <div class="col-md-12">
+                                    <div class="row gallery__03">
+                                        <div class="col-md-12 gallery__01__row">
+                                            <div class="row">
+                                                <div class="col-auto span__dangky__auto">
+                                                    <i class="fas fa-angle-right"></i>
+                                                </div>
+                                                <div class="col-md-4 col-4 pl-0">
+                                                    <span class="span__dangky">{{ $game_auto_props[$ke]->name??'' }} </span>
+                                                </div>
+                                                <div class="col-md-6 col-6 pl-0">
+                                                    <span class="span__dangky">{{ $in->name??'' }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @endforeach
-
                         @endif
                     @endif
-
                 @else
 
                 @endif
