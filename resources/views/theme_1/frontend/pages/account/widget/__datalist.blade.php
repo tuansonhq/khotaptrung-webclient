@@ -224,14 +224,16 @@
                         </div>
 
                         <div class="formDonhangAccount{{ $item->randId }} hide">
-                            <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
+                            @if(App\Library\AuthCustom::check() && App\Library\AuthCustom::user()->balance >= $data->price)
+                            <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" data-ranid="{{ $item->randId }}" method="POST">
+                            @else
+                            <form class="formDonhangAccount">
+                            @endif
                                 {{ csrf_field() }}
 
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Xác nhận mua tài khoản</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
+                                    <span class="nick-modal-header">Xác nhận mua tài khoản</span>
+                                    <img data-dismiss="modal" class="nick-modal-header-close" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
                                 </div>
 
                                 <div class="modal-body">
@@ -278,6 +280,16 @@
                                                             @endif
                                                         </div>
                                                     </div>          
+                                                </div>
+                                                <div class="c-account-price-block justify-content-between d-flex">
+                                                    <div class="c-account-price-title">Số tiền cần thanh toán</div>
+                                                        <div class="c-account-price-value">
+                                                            @if(isset($data->category->params->price) && isset($data->category->params))
+                                                                {{ str_replace(',','.',number_format($data->category->params->price)) }} đ
+                                                            @else
+                                                                {{ str_replace(',','.',number_format($data->price)) }} đ
+                                                            @endif
+                                                        </div>
                                                 </div>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade tabinfov2{{ $item->randId }}" id="infov2{{ $item->randId }}">

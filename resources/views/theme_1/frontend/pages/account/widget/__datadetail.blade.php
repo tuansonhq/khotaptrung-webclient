@@ -424,14 +424,16 @@
                 <div class="loader" style="text-align: center"><img src="/assets/frontend/{{theme('')->theme_key}}/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
                 <div class="modal-content modal-content_accountlist">
 
+                    @if(App\Library\AuthCustom::check() && App\Library\AuthCustom::user()->balance >= $data->price)
                     <form class="formDonhangAccount" action="/ajax/acc/{{ $data->randId }}/databuy" method="POST">
+                    @else
+                    <form class="formDonhangAccount">
+                    @endif
                         {{ csrf_field() }}
 
                         <div class="modal-header">
-                            <h4 class="modal-title">Xác nhận mua tài khoản</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
+                            <span class="nick-modal-header">Xác nhận mua tài khoản</span>
+                            <img data-dismiss="modal" class="nick-modal-header-close" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
                         </div>
 
                         <div class="modal-body">
@@ -643,7 +645,7 @@
                                 </div>
                                 <div class="d-flex justify-content-center w-100">
                                     <button class="btn-nick btn-ghost" disabled>Thanh toán</button>
-                                    <button class="btn-nick btn-primary" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp tiền</button>
+                                    <button class="btn-nick btn-primary" data-toggle="modal" data-target="#successModal" data-dismiss="modal">Nạp tiền</button>
                                 </div>
                                 @else
                                     <div class="nick-footer-notify">
@@ -656,6 +658,39 @@
                             @endif
                         </div>
                     </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade modal__account" role="dialog" id="successModal" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog__account" role="document">
+                <div class="modal-content modal-content_accountlist">
+
+                    <div class="modal-header">
+                        <span class="nick-modal-header">Thanh toán thành công</span>
+                        <img data-dismiss="modal" class="nick-modal-header-close" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="modal-account-success-image d-flex justify-content-center w-100">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/son/group.png" alt="">
+                        </div>
+                        <div class="input-group nick-success-input-group" style="width: 100%">
+                            <label>ID tài khoản</label>
+                            <input type="text" class="form-control" style="width:100%" value="{{ $data->randId }}" readonly>
+                        </div>
+                        <div class="nick-notify-success-block">
+                            <p>Nick của bạn được sẽ gửi tới trang Lịch sử mua Nick, vui lòng kiểm tra và đăng nhập vào Game, thay đổi mật khẩu để bảo mật cho tài khoản đã mua</p>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="d-flex justify-content-center w-100">
+                            <a class="btn-nick btn-secondary" href="/">Trang chủ</a>
+                            <a class="btn-nick btn-primary" href="/lich-su-mua-account">Lịch sử</a>
+                        </div>
+                    </div>
 
                 </div>
             </div>
