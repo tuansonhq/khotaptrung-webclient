@@ -360,10 +360,10 @@
                                                     <i class="fas fa-angle-right"></i>
                                                 </div>
                                                 <div class="col-md-4 col-4 pl-0">
-                                                    <span class="span__dangky">{{ $game_auto_props[$ke]->name??'' }} </span>
+                                                    <span class="span__dangky">{{ $in->name??'' }} </span>
                                                 </div>
                                                 <div class="col-md-6 col-6 pl-0">
-                                                    <span class="span__dangky">{{ $in->name??'' }}</span>
+                                                    <span class="span__dangky">{{ $in->value??'' }}</span>
                                                 </div>
                                             </div>
                                         </div>
