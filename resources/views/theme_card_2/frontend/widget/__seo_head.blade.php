@@ -300,65 +300,272 @@
       ]
     }
     </script>
-        {{--    @elseif(Request::is('acc/'. $data->randId .''))--}}
-        {{--        <script type="application/ld+json">--}}
-        {{--    {--}}
-        {{--          "@graph":--}}
-        {{--      [--}}
-        {{--          {--}}
-        {{--                "@context": "http://schema.org/",--}}
-        {{--                "@type": "Product",--}}
-        {{--                "name": "{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}",--}}
-        {{--                    "description": "{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}",--}}
-        {{--                     "image": "{{ isset($data->custom->image) ? $data->custom->image :  $data->image }}",--}}
-        {{--                    "brand": {--}}
-        {{--                        "@type": "Brand",--}}
-        {{--                        "name": "{{\Request::server ("HTTP_HOST")}}"--}}
-        {{--                      },--}}
-        {{--                    "aggregateRating": {--}}
-        {{--                        "@type": "AggregateRating",--}}
-        {{--                        "ratingValue": "5",--}}
-        {{--                        "bestRating": "5",--}}
-        {{--                        "worstRating": "4",--}}
-        {{--                        "ratingCount": "79396",--}}
-        {{--                        "reviewCount": "793986"--}}
-        {{--                    },--}}
-        {{--                    "sku": "{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug??'' }}",--}}
-        {{--                    "gtin8": "{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug??'' }}",--}}
-        {{--                    "mpn": "{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug??'' }}",--}}
-        {{--                    "offers": {--}}
-        {{--                            "@type": "Offer",--}}
-        {{--                             "url": "https://{{\Request::server ("HTTP_HOST")}}/acc/{{ $data->randId??'' }}",--}}
-        {{--                            "priceCurrency": "VND",--}}
-        {{--                            "price": "7700",--}}
-        {{--                            "priceValidUntil": "2099-12-31",--}}
-        {{--                            "availability": "https://schema.org/InStock",--}}
-        {{--                            "itemCondition": "https://schema.org/NewCondition"--}}
-        {{--                          },--}}
-        {{--                    "review": {--}}
-        {{--                    "@type": "Review",--}}
-        {{--                    "name": "{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}",--}}
-        {{--                    "reviewBody": "{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}",--}}
-        {{--                    "reviewRating": {--}}
-        {{--                      "@type": "Rating",--}}
-        {{--                      "ratingValue": "5",--}}
-        {{--                      "bestRating": "5",--}}
-        {{--                      "worstRating": "4"--}}
-        {{--                    },--}}
-        {{--                    "author": {"@type": "Person", "name": "An"},--}}
-        {{--                    "publisher": {"@type": "Organization", "name": "An"}--}}
-        {{--                  }--}}
-        {{--          },--}}
-        {{--        {--}}
-        {{--          "@context": "http://schema.org",--}}
-        {{--          "@type": "WebSite",--}}
-        {{--          "name": "https://{{\Request::server ("HTTP_HOST")}}",--}}
-        {{--              "url": "https://{{\Request::server ("HTTP_HOST")}}"--}}
-        {{--        }--}}
-        {{--      ]--}}
-        {{--    }--}}
 
-        {{--    </script>--}}
+    @elseif(Request::is('tin-tuc/'. $data->slug .''))
+
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org/",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Tin tức",
+            "item": "https://{{\Request::server ("HTTP_HOST")}}/tin-tuc/"
+          },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{ $data->title??'' }}",
+            "item": "https://{{\Request::server ("HTTP_HOST")}}/tin-tuc/{{ $data->slug }}"
+          }]
+        }
+        </script>
+        <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "Article",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://{{\Request::server ("HTTP_HOST")}}/tin-tuc/{{ $data->slug }}"
+              },
+              "headline": "{{ $data->title??'' }}",
+              "image": "{{\App\Library\MediaHelpers::media($data->image)}}",
+              "author": {
+                "@type": "",
+                "name": "{{ $data->author->username }}"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "{{\Request::server ("HTTP_HOST")}}",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}"
+                }
+              },
+              @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                "datePublished": "{{ formatDateTime($data->published_at) }}"
+              @else
+                "datePublished": "{{ formatDateTime($data->created_at) }}"
+              @endif
+            }
+        </script>
+
+        @if(isset($data) && isset($data->params_plus))
+            @php
+                $question = json_decode($data->params_plus);
+                $first_question = null;
+                $first_answer = null;
+                $second_question = null;
+                $second_answer = null;
+                $three_question = null;
+                $three_answer = null;
+                $foor_question = null;
+                $foor_answer = null;
+
+                if (isset($question)){
+                    if (isset($question->first)){
+                        $first = json_decode($question->first);
+                        $first_question = $first->first_question;
+                        $first_answer = $first->first_answer;
+
+                    }
+                    if (isset($question->second)){
+                        $second = json_decode($question->second);
+                        $second_question = $second->second_question;
+                        $second_answer = $second->second_answer;
+
+                    }
+                    if (isset($question->three)){
+                        $three = json_decode($question->three);
+                        $three_question = $three->three_question;
+                        $three_answer = $three->three_answer;
+
+                    }
+
+                    if (isset($question->foor)){
+                        $foor = json_decode($question->foor);
+                        $foor_question = $foor->foor_question;
+                        $foor_answer = $foor->foor_answer;
+
+                    }
+                }
+            @endphp
+
+            <script type="application/ld+json">
+                {
+                    "@context": "https://schema.org",
+                    "@type": "FAQPage",
+                    "mainEntity": [{
+                    "@type": "Question",
+                    "name": "{{ $first_question??'' }}",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "{{ $first_answer??'' }}"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "{{ $second_question??'' }}",
+                    "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "{{ $second_answer??'' }}"
+                    }
+                },{
+                    "@type": "Question",
+                    "name": "{{ $three_question??'' }}",
+                    "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "{{ $three_answer??'' }}"
+                    }
+                },{
+                    "@type": "Question",
+                    "name": "{{ $foor_question??'' }}",
+                    "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "{{ $foor_answer??'' }}"
+                    }
+                }]}
+            </script>
+        @endif
+    @elseif(Request::is('blog/'. $data->slug .''))
+
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org/",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Blog",
+            "item": "https://{{\Request::server ("HTTP_HOST")}}/blog/"
+          },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{ $data->title??'' }}",
+            "item": "https://{{\Request::server ("HTTP_HOST")}}/blog/{{ $data->slug }}"
+          }]
+        }
+        </script>
+        <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "Article",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://{{\Request::server ("HTTP_HOST")}}/blog/{{ $data->slug }}"
+              },
+              "headline": "{{ $data->title??'' }}",
+              "image": "{{\App\Library\MediaHelpers::media($data->image)}}",
+              "author": {
+                "@type": "",
+                "name": "{{ $data->author->username??'' }}"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "{{\Request::server ("HTTP_HOST")}}",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}"
+                }
+              },
+              @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
+                "datePublished": "{{ formatDateTime($data->published_at) }}"
+              @else
+                "datePublished": "{{ formatDateTime($data->created_at) }}"
+              @endif
+            }
+        </script>
+
+        @if(isset($data) && isset($data->params_plus))
+            @php
+                $question = json_decode($data->params_plus);
+                $first_question = null;
+                $first_answer = null;
+                $second_question = null;
+                $second_answer = null;
+                $three_question = null;
+                $three_answer = null;
+                $foor_question = null;
+                $foor_answer = null;
+
+                if (isset($question)){
+                    if (isset($question->first)){
+                        $first = json_decode($question->first);
+                        $first_question = $first->first_question;
+                        $first_answer = $first->first_answer;
+
+                    }
+                    if (isset($question->second)){
+                        $second = json_decode($question->second);
+                        $second_question = $second->second_question;
+                        $second_answer = $second->second_answer;
+
+                    }
+                    if (isset($question->three)){
+                        $three = json_decode($question->three);
+                        $three_question = $three->three_question;
+                        $three_answer = $three->three_answer;
+
+                    }
+
+                    if (isset($question->foor)){
+                        $foor = json_decode($question->foor);
+                        $foor_question = $foor->foor_question;
+                        $foor_answer = $foor->foor_answer;
+
+                    }
+                }
+            @endphp
+            @if((isset($first_question) && isset($first_answer))
+                || (isset($second_question) && isset($second_answer))
+                || (isset($three_question) && isset($three_answer))
+                || (isset($foor_question) && isset($foor_answer)))
+                <script type="application/ld+json">
+                {
+                    "@context": "https://schema.org",
+                    "@type": "FAQPage",
+                    "mainEntity": [{
+                    "@type": "Question",
+                    "name": "{{ $first_question??'' }}",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "{{ $first_answer??'' }}"
+                    }
+                },
+                @if(isset($second_question) && isset($second_answer))
+                        {
+                            "@type": "Question",
+                            "name": "{{ $second_question??'' }}",
+                    "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "{{ $second_answer??'' }}"
+                    }
+                },
+                @endif
+                    @if(isset($three_question) && isset($three_answer))
+                        {
+                            "@type": "Question",
+                            "name": "{{ $three_question??'' }}",
+                    "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "{{ $three_answer??'' }}"
+                    }
+                },
+                @endif
+                    @if(isset($foor_question) && isset($foor_question))
+                        {
+                            "@type": "Question",
+                            "name": "{{ $foor_question??'' }}",
+                    "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "{{ $foor_answer??'' }}"
+                    }
+                }
+                @endif
+                    ]}
+</script>
+            @endif
+        @endif
     @endif
 
 @elseif(setting('sys_schema') != '')
