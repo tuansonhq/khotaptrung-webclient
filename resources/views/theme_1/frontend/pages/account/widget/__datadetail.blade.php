@@ -570,7 +570,7 @@
                                                                 $total_linhthu = 0;
                                                                 $total_trangphuc = 0;
                                                                 $total_thongtinchung = 0;
-
+    
                                                                 if(isset($game_auto_props) && count($game_auto_props)){
                                                                     foreach($game_auto_props as $game_auto_prop){
                                                                         if($game_auto_prop->key == 'champions'){
@@ -598,24 +598,24 @@
                                                                     {{ $total_tuong }}
                                                                 </td>
                                                             </tr>
-
+    
                                                             <tr>
                                                                 <td style="width:50%">Trang phục:</td>
                                                                 <td class="text-danger" style="font-weight: 700">
                                                                     {{ $total_trangphuc }}
                                                                 </td>
                                                             </tr>
-
+    
                                                             <tr>
                                                                 <td style="width:50%">Linh thú TFT:</td>
                                                                 <td class="text-danger" style="font-weight: 700">
                                                                     {{ $total_linhthu }}
                                                                 </td>
                                                             </tr>
-
+    
                                                             @if(isset($data->params))
                                                                 @if(isset($data->params->rank_info) && count($data->params->rank_info))
-
+    
                                                                     @foreach($data->params->rank_info as $key_rank => $rank_info)
                                                                         @if($rank_info->queueType == "RANKED_TFT")
                                                                             <tr>
@@ -624,9 +624,9 @@
                                                                                     @if($rank_info->tier == "NONE")
                                                                                         {{ $rank_info->tier }}
                                                                                     @else
-
+    
                                                                                         {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-
+    
                                                                                     @endif
                                                                                 </td>
                                                                             </tr>
@@ -636,14 +636,14 @@
                                                                                 @if($rank_info->tier == "NONE")
                                                                                     {{ $rank_info->tier }}
                                                                                 @else
-
+    
                                                                                     {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-
+    
                                                                                 @endif
                                                                             </td>
                                                                         @endif
                                                                     @endforeach
-
+    
                                                                 @endif
                                                             @endif
                                                         @elseif($data_category->slug == 'nick-ninja-school')
@@ -672,14 +672,13 @@
                                                             @if(isset($info) && count($info))
                                                                 @foreach($info as $ke => $in)
                                                                     @if(in_array($in->name,config('module.acc.auto_ninja_tt')))
-
                                                                         <tr>
                                                                             <td style="width:50%">{{ $in->name??'' }}:</td>
                                                                             <td class="text-danger" style="font-weight: 700">
                                                                                 {{ $in->value??'' }}
                                                                             </td>
                                                                         </tr>
-
+                                                                        
                                                                     @endif
                                                                 @endforeach
                                                             @endif

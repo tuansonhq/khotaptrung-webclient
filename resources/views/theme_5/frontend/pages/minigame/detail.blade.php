@@ -383,42 +383,29 @@
                         </div>
                     </div>
 
-
-                    <div class="c-mb-16 c-pl-lg-16 c-pr-lg-16">
-                        {{--                        @include('frontend.pages.components.description')--}}
-                    </div>
-                    {{-- button mobile--}}
-                    <div class="d-block d-lg-none c-mb-16">
-                        @if (\App\Library\AuthCustom::check())
-                            <div class="c-px-16">
-                                <div class="leaderboard-items brs-8 c-mb-4 c-px-12 c-py-8 d-flex align-items-center">
-                                    <span class="fw-400 fz-13 c-mr-8 lh-16">Bạn đang có:</span>
-                                    <p class="c-mb-0 fw-700 fz-15 lh-24">{{ str_replace(',','.',number_format($result->number_item)) }} {{ $result->name_item->image }}</p>
+                    @if(isset($result->group->description))
+                        <div class="service-detail-block c-mb-16 c-px-lg-16 detailViewBlock">
+                            <h6 class="d-block d-lg-none fz-15 fw-700 lh-24 c-mb-8">Chi tiết dịch vụ</h6>
+                            <div class="card overflow-hidden detailViewBlock">
+                                <div class="card-body c-p-16">
+                                    <h2 class="text-title-bold d-none d-lg-block c-mb-24 detailViewBlockTitle">Chi tiết dịch vụ</h2>
+                                    @if(substr($result->group->description, 1200))
+                                    <div class="content-desc hide detailViewBlockContent">
+                                    @else
+                                    <div class="content-desc detailViewBlockContent">
+                                    @endif
+                                        {!! $result->group->description !!}
+                                    </div>
                                 </div>
+                                @if(substr($result->group->description, 1200))
+                                <div class="card-footer text-center">
+                                    <span class="see-more" data-content="Xem thêm nội dung"></span>
+                                </div>
+                                @endif
                             </div>
-                        @endif
-                        <div class="leaderboard-buttons c-px-16 c-py-8 row no-gutters" style="border-bottom: none;">
-                            @if (!\App\Library\AuthCustom::check())
-                                <div class="col-6 c-pr-5">
-                                    <a href="javascript:void(0)" class="btn secondary w-100" onclick="openLoginModal();">
-                                        Lịch sử quay
-                                    </a>
-                                </div>
-                                <div class="col-6 c-pl-5">
-                                    <a href="javascript:void(0)" class="btn primary w-100" onclick="openLoginModal();">Rút quà</a>
-                                </div>
-                            @else
-                                <div class="col-6 c-pr-5">
-                                    <a href="javascript:void(0)" class="btn secondary w-100 logsHisMinigameMobile open-sheet" data-target="#sheet-filter-02" >
-                                        Lịch sử quay
-                                    </a>
-                                </div>
-                                <div class="col-6 c-pl-5">
-                                    <a class="btn primary w-100" href="/withdrawitem-{{$result->group->params->game_type}}">Rút quà</a>
-                                </div>
-                            @endif
                         </div>
-                    </div>
+                    @endif
+
                     {{--                    top quay thưởng--}}
                     <div class="d-block d-lg-none c-mb-16">
                         <div class="rotation-leaderboard c-p-lg-0">
@@ -506,6 +493,38 @@
                             <div class="leaderboard-seemore">
                                 <p>Xem thêm</p>
                             </div>
+                        </div>
+                    </div>
+                    {{-- button mobile--}}
+                    <div class="d-block d-lg-none c-mb-16">
+                        @if (\App\Library\AuthCustom::check())
+                            <div class="c-px-16">
+                                <div class="leaderboard-items brs-8 c-mb-4 c-px-12 c-py-8 d-flex align-items-center">
+                                    <span class="fw-400 fz-13 c-mr-8 lh-16">Bạn đang có:</span>
+                                    <p class="c-mb-0 fw-700 fz-15 lh-24">{{ str_replace(',','.',number_format($result->number_item)) }} {{ $result->name_item->image }}</p>
+                                </div>
+                            </div>
+                        @endif
+                        <div class="leaderboard-buttons c-px-16 c-py-8 row no-gutters" style="border-bottom: none;">
+                            @if (!\App\Library\AuthCustom::check())
+                                <div class="col-6 c-pr-5">
+                                    <a href="javascript:void(0)" class="btn secondary w-100" onclick="openLoginModal();">
+                                        Lịch sử quay
+                                    </a>
+                                </div>
+                                <div class="col-6 c-pl-5">
+                                    <a href="javascript:void(0)" class="btn primary w-100" onclick="openLoginModal();">Rút quà</a>
+                                </div>
+                            @else
+                                <div class="col-6 c-pr-5">
+                                    <a href="javascript:void(0)" class="btn secondary w-100 logsHisMinigameMobile open-sheet" data-target="#sheet-filter-02" >
+                                        Lịch sử quay
+                                    </a>
+                                </div>
+                                <div class="col-6 c-pl-5">
+                                    <a class="btn primary w-100" href="/withdrawitem-{{$result->group->params->game_type}}">Rút quà</a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     {{--                    top quay thưởng--}}
@@ -662,7 +681,7 @@
 
         {{--        @include('frontend.pages.minigame.widget.__play__recently')--}}
         {{--            Vòng quay liên quân   --}}
-        @include('frontend.pages.minigame.widget.__related__minigame')
+        @include('frontend.pages.minigame.widget.__related__minigame', ['data_minigame' => $result->group->id])
 
         {{--        Modal thể lệ    --}}
 
