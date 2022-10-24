@@ -161,197 +161,40 @@
                     </div>
                 </div>
 
-                @if(isset($game_auto_props) && count($game_auto_props))
-                    @if($data_category->slug == 'nick-lien-minh')
-                        @php
-                            $total_tuong = 0;
-                            $total_bieucam = 0;
-                            $total_chuongluc = 0;
-                            $total_sandau = 0;
-                            $total_linhthu = 0;
-                            $total_trangphuc = 0;
-                            $total_thongtinchung = 0;
+                <div class="col-md-12 pl-0 pr-0">
+                    <div class="row marginauto scroll-default">
+                        @if(isset($game_auto_props) && count($game_auto_props))
+                            @if($data_category->slug == 'nick-lien-minh')
+                                @php
+                                    $total_tuong = 0;
+                                    $total_bieucam = 0;
+                                    $total_chuongluc = 0;
+                                    $total_sandau = 0;
+                                    $total_linhthu = 0;
+                                    $total_trangphuc = 0;
+                                    $total_thongtinchung = 0;
 
-                            if(isset($game_auto_props) && count($game_auto_props)){
-                                foreach($game_auto_props as $game_auto_prop){
-                                    if($game_auto_prop->key == 'champions'){
-                                        $total_tuong = $total_tuong + 1;
-                                        if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
-                                            foreach($game_auto_prop->childs as $c_child){
-                                                $total_trangphuc = $total_trangphuc + 1;
+                                    if(isset($game_auto_props) && count($game_auto_props)){
+                                        foreach($game_auto_props as $game_auto_prop){
+                                            if($game_auto_prop->key == 'champions'){
+                                                $total_tuong = $total_tuong + 1;
+                                                if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
+                                                    foreach($game_auto_prop->childs as $c_child){
+                                                        $total_trangphuc = $total_trangphuc + 1;
+                                                    }
+                                                }
+                                            }elseif ($game_auto_prop->key == 'emotes'){
+                                                $total_bieucam = $total_bieucam + 1;
+                                            }elseif ($game_auto_prop->key == 'tftdamageskins'){
+                                                $total_chuongluc = $total_chuongluc + 1;
+                                            }elseif ($game_auto_prop->key == 'tftmapskins'){
+                                                $total_sandau = $total_sandau + 1;
+                                            }elseif ($game_auto_prop->key == 'tftcompanions'){
+                                                $total_linhthu = $total_linhthu + 1;
                                             }
                                         }
-                                    }elseif ($game_auto_prop->key == 'emotes'){
-                                        $total_bieucam = $total_bieucam + 1;
-                                    }elseif ($game_auto_prop->key == 'tftdamageskins'){
-                                        $total_chuongluc = $total_chuongluc + 1;
-                                    }elseif ($game_auto_prop->key == 'tftmapskins'){
-                                        $total_sandau = $total_sandau + 1;
-                                    }elseif ($game_auto_prop->key == 'tftcompanions'){
-                                        $total_linhthu = $total_linhthu + 1;
                                     }
-                                }
-                            }
-                        @endphp
-                        <div class="col-md-12">
-                            <div class="row gallery__03">
-                                <div class="col-md-12 gallery__01__row">
-                                    <div class="row">
-                                        <div class="col-auto span__dangky__auto">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-4 pl-0">
-                                            <span class="span__dangky">Tướng</span>
-                                        </div>
-                                        <div class="col-md-1 col-2 pl-0 pr-0">
-                                            <span class="span__dangky">{{ $total_tuong }}</span>
-                                        </div>
-                                        <div class="col-md-6 col-4 pl-0 pr-0">
-                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_tuong">Xem</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="row gallery__03">
-                                <div class="col-md-12 gallery__01__row">
-                                    <div class="row">
-                                        <div class="col-auto span__dangky__auto">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-4 pl-0">
-                                            <span class="span__dangky">Trang phục</span>
-                                        </div>
-                                        <div class="col-md-1 col-2 pl-0">
-                                            <span class="span__dangky">{{ $total_trangphuc }}</span>
-
-                                        </div>
-                                        <div class="col-md-6 col-4 pl-0 pr-0">
-                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_trangphuc">Xem</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="row gallery__03">
-                                <div class="col-md-12 gallery__01__row">
-                                    <div class="row">
-                                        <div class="col-auto span__dangky__auto">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-4 pl-0">
-                                            <span class="span__dangky">Linh thú TFT</span>
-                                        </div>
-                                        <div class="col-md-1 col-2 pl-0">
-                                            <span class="span__dangky">{{ $total_linhthu }}</span>
-
-                                        </div>
-                                        <div class="col-md-6 col-4 pl-0 pr-0">
-                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_linhthu">Xem</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        @if(isset($data->params))
-                            @if(isset($data->params->rank_info) && count($data->params->rank_info))
-
-                                @foreach($data->params->rank_info as $key_rank => $rank_info)
-                                    @if($rank_info->queueType == "RANKED_TFT")
-                                        <div class="col-md-12">
-                                            <div class="row gallery__03">
-                                                <div class="col-md-12 gallery__01__row">
-                                                    <div class="row">
-                                                        <div class="col-auto span__dangky__auto">
-                                                            <i class="fas fa-angle-right"></i>
-                                                        </div>
-                                                        <div class="col-md-4 col-4 pl-0">
-                                                            <span class="span__dangky">RANKED TFT</span>
-                                                        </div>
-                                                        <div class="col-md-6 col-6 pl-0">
-                                                            @if($rank_info->tier == "NONE")
-                                                                <span class="span__dangky">{{ $rank_info->tier }}</span>
-                                                            @else
-
-                                                                <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
-
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
-
-                                        <div class="col-md-12">
-                                            <div class="row gallery__03">
-                                                <div class="col-md-12 gallery__01__row">
-                                                    <div class="row">
-                                                        <div class="col-auto span__dangky__auto">
-                                                            <i class="fas fa-angle-right"></i>
-                                                        </div>
-                                                        <div class="col-md-4 col-4 pl-0">
-                                                            <span class="span__dangky">RANKED SOLO</span>
-                                                        </div>
-                                                        <div class="col-md-6 col-6 pl-0">
-
-                                                            @if($rank_info->tier == "NONE")
-                                                                <span class="span__dangky">{{ $rank_info->tier }}</span>
-                                                            @else
-                                                                <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
-                                                            @endif
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endforeach
-
-                            @endif
-                        @endif
-                    @elseif($data_category->slug == 'nick-ninja-school')
-                        @php
-                            $server = null;
-                            $params = null;
-                            $info = array();
-                            if (isset($data->params)){
-                                $params = $data->params;
-                                if (isset($params->server)){
-                                    $server = $params->server;
-                                }
-                                if (isset($params->info) && count($params->info)){
-                                    $info = $params->info;
-                                }
-                            }
-                        @endphp
-                        @if(isset($server))
-                        <div class="col-md-12">
-                            <div class="row gallery__03">
-                                <div class="col-md-12 gallery__01__row">
-                                    <div class="row">
-                                        <div class="col-auto span__dangky__auto">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-4 pl-0">
-                                            <span class="span__dangky">Server </span>
-                                        </div>
-                                        <div class="col-md-6 col-6 pl-0">
-                                            <span class="span__dangky">{{ $server??null }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                        @if(isset($info) && count($info))
-                            @foreach($info as $ke => $in)
+                                @endphp
                                 <div class="col-md-12">
                                     <div class="row gallery__03">
                                         <div class="col-md-12 gallery__01__row">
@@ -360,27 +203,19 @@
                                                     <i class="fas fa-angle-right"></i>
                                                 </div>
                                                 <div class="col-md-4 col-4 pl-0">
-                                                    <span class="span__dangky">{{ $in->name??'' }} </span>
+                                                    <span class="span__dangky">Tướng</span>
                                                 </div>
-                                                <div class="col-md-6 col-6 pl-0">
-                                                    <span class="span__dangky">{{ $in->value??'' }}</span>
+                                                <div class="col-md-1 col-2 pl-0 pr-0">
+                                                    <span class="span__dangky">{{ $total_tuong }}</span>
+                                                </div>
+                                                <div class="col-md-6 col-4 pl-0 pr-0">
+                                                    <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_tuong">Xem</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-                        @endif
-                    @endif
-                @else
 
-                @endif
-
-                @if(isset($data->groups))
-                    <?php $att_values = $data->groups ?>
-                    @foreach($att_values as $att_value)
-                        @if(isset($att_value->module) && $att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                            @if(isset($att_value->parent))
                                 <div class="col-md-12">
                                     <div class="row gallery__03">
                                         <div class="col-md-12 gallery__01__row">
@@ -389,29 +224,47 @@
                                                     <i class="fas fa-angle-right"></i>
                                                 </div>
                                                 <div class="col-md-4 col-4 pl-0">
-                                                    <span class="span__dangky">{{ $att_value->parent->title??null }}</span>
+                                                    <span class="span__dangky">Trang phục</span>
                                                 </div>
-                                                <div class="col-md-6 col-6 pl-0">
-                                                    <span class="span__dangky">{{ $att_value->title??null }}</span>
+                                                <div class="col-md-1 col-2 pl-0">
+                                                    <span class="span__dangky">{{ $total_trangphuc }}</span>
+
+                                                </div>
+                                                <div class="col-md-6 col-4 pl-0 pr-0">
+                                                    <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_trangphuc">Xem</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            @endif
-                        @endif
-                    @endforeach
-                @endif
 
-                @if(isset($data->params) && isset($data->params->ext_info))
-                    <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
-                    @if(isset($dataAttribute))
-                        @foreach($dataAttribute as $index=>$att)
-                            @if($att->position == 'text')
-                                @if(isset($att->childs))
-                                    @foreach($att->childs as $child)
-                                        @foreach($params as $key => $param)
-                                            @if($key == $child->id && $child->is_slug_override == null)
+                                <div class="col-md-12">
+                                    <div class="row gallery__03">
+                                        <div class="col-md-12 gallery__01__row">
+                                            <div class="row">
+                                                <div class="col-auto span__dangky__auto">
+                                                    <i class="fas fa-angle-right"></i>
+                                                </div>
+                                                <div class="col-md-4 col-4 pl-0">
+                                                    <span class="span__dangky">Linh thú TFT</span>
+                                                </div>
+                                                <div class="col-md-1 col-2 pl-0">
+                                                    <span class="span__dangky">{{ $total_linhthu }}</span>
+
+                                                </div>
+                                                <div class="col-md-6 col-4 pl-0 pr-0">
+                                                    <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_linhthu">Xem</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @if(isset($data->params))
+                                    @if(isset($data->params->rank_info) && count($data->params->rank_info))
+
+                                        @foreach($data->params->rank_info as $key_rank => $rank_info)
+                                            @if($rank_info->queueType == "RANKED_TFT")
                                                 <div class="col-md-12">
                                                     <div class="row gallery__03">
                                                         <div class="col-md-12 gallery__01__row">
@@ -420,10 +273,41 @@
                                                                     <i class="fas fa-angle-right"></i>
                                                                 </div>
                                                                 <div class="col-md-4 col-4 pl-0">
-                                                                    <span class="span__dangky">{{ $child->title??'' }}</span>
+                                                                    <span class="span__dangky">RANKED TFT</span>
                                                                 </div>
                                                                 <div class="col-md-6 col-6 pl-0">
-                                                                    <span class="span__dangky">{{ $param }}</span>
+                                                                    @if($rank_info->tier == "NONE")
+                                                                        <span class="span__dangky">{{ $rank_info->tier }}</span>
+                                                                    @else
+
+                                                                        <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
+
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+
+                                                <div class="col-md-12">
+                                                    <div class="row gallery__03">
+                                                        <div class="col-md-12 gallery__01__row">
+                                                            <div class="row">
+                                                                <div class="col-auto span__dangky__auto">
+                                                                    <i class="fas fa-angle-right"></i>
+                                                                </div>
+                                                                <div class="col-md-4 col-4 pl-0">
+                                                                    <span class="span__dangky">RANKED SOLO</span>
+                                                                </div>
+                                                                <div class="col-md-6 col-6 pl-0">
+
+                                                                    @if($rank_info->tier == "NONE")
+                                                                        <span class="span__dangky">{{ $rank_info->tier }}</span>
+                                                                    @else
+                                                                        <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
+                                                                    @endif
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -431,39 +315,162 @@
                                                 </div>
                                             @endif
                                         @endforeach
+
+                                    @endif
+                                @endif
+                            @elseif($data_category->slug == 'nick-ninja-school')
+                                @php
+                                    $server = null;
+                                    $params = null;
+                                    $info = array();
+                                    if (isset($data->params)){
+                                        $params = $data->params;
+                                        if (isset($params->server)){
+                                            $server = $params->server;
+                                        }
+                                        if (isset($params->info) && count($params->info)){
+                                            $info = $params->info;
+                                        }
+                                    }
+                                @endphp
+                                @if(isset($server))
+                                    <div class="col-md-12">
+                                        <div class="row gallery__03">
+                                            <div class="col-md-12 gallery__01__row">
+                                                <div class="row">
+                                                    <div class="col-auto span__dangky__auto">
+                                                        <i class="fas fa-angle-right"></i>
+                                                    </div>
+                                                    <div class="col-md-4 col-4 pl-0">
+                                                        <span class="span__dangky">Server </span>
+                                                    </div>
+                                                    <div class="col-md-6 col-6 pl-0">
+                                                        <span class="span__dangky">{{ $server??null }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                                @if(isset($info) && count($info))
+                                    @foreach($info as $ke => $in)
+                                        @if(in_array($in->name,config('module.acc.auto_ninja_tt')))
+                                        <div class="col-md-12">
+                                            <div class="row gallery__03">
+                                                <div class="col-md-12 gallery__01__row">
+                                                    <div class="row">
+                                                        <div class="col-auto span__dangky__auto">
+                                                            <i class="fas fa-angle-right"></i>
+                                                        </div>
+                                                        <div class="col-md-4 col-4 pl-0">
+                                                            <span class="span__dangky">{{ $in->name??'' }} </span>
+                                                        </div>
+                                                        <div class="col-md-6 col-6 pl-0">
+                                                            <span class="span__dangky">{{ $in->value??'' }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
                                     @endforeach
                                 @endif
                             @endif
-                        @endforeach
-                    @endif
-                @endif
+                        @else
 
-                <div class="col-md-12 gallery__bottom">
-                    <div class="row text-center">
-                        <div class="col-md-12 gallery__01__row">
-                            <div class="row gallery__01__row2">
-                                <div class="col-md-12 pl-0 pr-0">
-                                    <button class="btn btn-danger gallery__bottom__span gallery__bottom__span_bg buyacc" style="position: relative;" data-id="{{ encodeItemID($data->id) }}"><i class="fas fa-cart-arrow-down"></i>&ensp;Mua ngay
-                                        <div class="row justify-content-center loading-data__buyacc">
-                                        </div>
-                                    </button>
-                                </div>
-                                <div class="col-md-12 pl-0 pr-0 gallery__bottom">
-                                    <div class="row atmvdtntc">
-                                        <div class="col-md-6 col-sm-6 col-6 atmvdt">
-                                            @if(App\Library\AuthCustom::check())
-                                                <a data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">ATM - VÍ ĐIỆN TỬ</a>
-                                            @else
-                                                <a href="/login?return_url=/recharge-atm" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">ATM - VÍ ĐIỆN TỬ</a>
-                                            @endif
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-6 ntc">
-                                            @if(App\Library\AuthCustom::check())
-                                                <a data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">NẠP THẺ CÀO</a>
-                                            @else
-                                                <a href="/login?return_url=/nap-the" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">NẠP THẺ CÀO</a>
-                                            @endif
+                        @endif
 
+                        @if(isset($data->groups))
+                            <?php $att_values = $data->groups ?>
+                            @foreach($att_values as $att_value)
+                                @if(isset($att_value->module) && $att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                    @if(isset($att_value->parent))
+                                        <div class="col-md-12">
+                                            <div class="row gallery__03">
+                                                <div class="col-md-12 gallery__01__row">
+                                                    <div class="row">
+                                                        <div class="col-auto span__dangky__auto">
+                                                            <i class="fas fa-angle-right"></i>
+                                                        </div>
+                                                        <div class="col-md-4 col-4 pl-0">
+                                                            <span class="span__dangky">{{ $att_value->parent->title??null }}</span>
+                                                        </div>
+                                                        <div class="col-md-6 col-6 pl-0">
+                                                            <span class="span__dangky">{{ $att_value->title??null }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
+                            @endforeach
+                        @endif
+
+                        @if(isset($data->params) && isset($data->params->ext_info))
+                            <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
+                            @if(isset($dataAttribute))
+                                @foreach($dataAttribute as $index=>$att)
+                                    @if($att->position == 'text')
+                                        @if(isset($att->childs))
+                                            @foreach($att->childs as $child)
+                                                @foreach($params as $key => $param)
+                                                    @if($key == $child->id && $child->is_slug_override == null)
+                                                        <div class="col-md-12">
+                                                            <div class="row gallery__03">
+                                                                <div class="col-md-12 gallery__01__row">
+                                                                    <div class="row">
+                                                                        <div class="col-auto span__dangky__auto">
+                                                                            <i class="fas fa-angle-right"></i>
+                                                                        </div>
+                                                                        <div class="col-md-4 col-4 pl-0">
+                                                                            <span class="span__dangky">{{ $child->title??'' }}</span>
+                                                                        </div>
+                                                                        <div class="col-md-6 col-6 pl-0">
+                                                                            <span class="span__dangky">{{ $param }}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            @endforeach
+                                        @endif
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endif
+
+                    </div>
+
+                    <div class="col-md-12 gallery__bottom">
+                        <div class="row text-center">
+                            <div class="col-md-12 gallery__01__row">
+                                <div class="row gallery__01__row2">
+                                    <div class="col-md-12 pl-0 pr-0">
+                                        <button class="btn btn-danger gallery__bottom__span gallery__bottom__span_bg buyacc" style="position: relative;" data-id="{{ encodeItemID($data->id) }}"><i class="fas fa-cart-arrow-down"></i>&ensp;Mua ngay
+                                            <div class="row justify-content-center loading-data__buyacc">
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-12 pl-0 pr-0 gallery__bottom">
+                                        <div class="row atmvdtntc">
+                                            <div class="col-md-6 col-sm-6 col-6 atmvdt">
+                                                @if(App\Library\AuthCustom::check())
+                                                    <a data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">ATM - VÍ ĐIỆN TỬ</a>
+                                                @else
+                                                    <a href="/login?return_url=/recharge-atm" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">ATM - VÍ ĐIỆN TỬ</a>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-6 ntc">
+                                                @if(App\Library\AuthCustom::check())
+                                                    <a data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">NẠP THẺ CÀO</a>
+                                                @else
+                                                    <a href="/login?return_url=/nap-the" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">NẠP THẺ CÀO</a>
+                                                @endif
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -471,6 +478,8 @@
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
 
@@ -552,65 +561,77 @@
                                                     </tr>
 
                                                     @if(isset($game_auto_props) && count($game_auto_props))
+                                                        @if($data_category->slug == 'nick-lien-minh')
+                                                            @php
+                                                                $total_tuong = 0;
+                                                                $total_bieucam = 0;
+                                                                $total_chuongluc = 0;
+                                                                $total_sandau = 0;
+                                                                $total_linhthu = 0;
+                                                                $total_trangphuc = 0;
+                                                                $total_thongtinchung = 0;
 
-                                                        @php
-                                                            $total_tuong = 0;
-                                                            $total_bieucam = 0;
-                                                            $total_chuongluc = 0;
-                                                            $total_sandau = 0;
-                                                            $total_linhthu = 0;
-                                                            $total_trangphuc = 0;
-                                                            $total_thongtinchung = 0;
-
-                                                            if(isset($game_auto_props) && count($game_auto_props)){
-                                                                foreach($game_auto_props as $game_auto_prop){
-                                                                    if($game_auto_prop->key == 'champions'){
-                                                                        $total_tuong = $total_tuong + 1;
-                                                                        if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
-                                                                            foreach($game_auto_prop->childs as $c_child){
-                                                                                $total_trangphuc = $total_trangphuc + 1;
+                                                                if(isset($game_auto_props) && count($game_auto_props)){
+                                                                    foreach($game_auto_props as $game_auto_prop){
+                                                                        if($game_auto_prop->key == 'champions'){
+                                                                            $total_tuong = $total_tuong + 1;
+                                                                            if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
+                                                                                foreach($game_auto_prop->childs as $c_child){
+                                                                                    $total_trangphuc = $total_trangphuc + 1;
+                                                                                }
                                                                             }
+                                                                        }elseif ($game_auto_prop->key == 'emotes'){
+                                                                            $total_bieucam = $total_bieucam + 1;
+                                                                        }elseif ($game_auto_prop->key == 'tftdamageskins'){
+                                                                            $total_chuongluc = $total_chuongluc + 1;
+                                                                        }elseif ($game_auto_prop->key == 'tftmapskins'){
+                                                                            $total_sandau = $total_sandau + 1;
+                                                                        }elseif ($game_auto_prop->key == 'tftcompanions'){
+                                                                            $total_linhthu = $total_linhthu + 1;
                                                                         }
-                                                                    }elseif ($game_auto_prop->key == 'emotes'){
-                                                                        $total_bieucam = $total_bieucam + 1;
-                                                                    }elseif ($game_auto_prop->key == 'tftdamageskins'){
-                                                                        $total_chuongluc = $total_chuongluc + 1;
-                                                                    }elseif ($game_auto_prop->key == 'tftmapskins'){
-                                                                        $total_sandau = $total_sandau + 1;
-                                                                    }elseif ($game_auto_prop->key == 'tftcompanions'){
-                                                                        $total_linhthu = $total_linhthu + 1;
                                                                     }
                                                                 }
-                                                            }
-                                                        @endphp
-                                                        <tr>
-                                                            <td style="width:50%">Tướng:</td>
-                                                            <td class="text-danger" style="font-weight: 700">
-                                                                {{ $total_tuong }}
-                                                            </td>
-                                                        </tr>
+                                                            @endphp
+                                                            <tr>
+                                                                <td style="width:50%">Tướng:</td>
+                                                                <td class="text-danger" style="font-weight: 700">
+                                                                    {{ $total_tuong }}
+                                                                </td>
+                                                            </tr>
 
-                                                        <tr>
-                                                            <td style="width:50%">Trang phục:</td>
-                                                            <td class="text-danger" style="font-weight: 700">
-                                                                {{ $total_trangphuc }}
-                                                            </td>
-                                                        </tr>
+                                                            <tr>
+                                                                <td style="width:50%">Trang phục:</td>
+                                                                <td class="text-danger" style="font-weight: 700">
+                                                                    {{ $total_trangphuc }}
+                                                                </td>
+                                                            </tr>
 
-                                                        <tr>
-                                                            <td style="width:50%">Linh thú TFT:</td>
-                                                            <td class="text-danger" style="font-weight: 700">
-                                                                {{ $total_linhthu }}
-                                                            </td>
-                                                        </tr>
+                                                            <tr>
+                                                                <td style="width:50%">Linh thú TFT:</td>
+                                                                <td class="text-danger" style="font-weight: 700">
+                                                                    {{ $total_linhthu }}
+                                                                </td>
+                                                            </tr>
 
-                                                        @if(isset($data->params))
-                                                            @if(isset($data->params->rank_info) && count($data->params->rank_info))
+                                                            @if(isset($data->params))
+                                                                @if(isset($data->params->rank_info) && count($data->params->rank_info))
 
-                                                                @foreach($data->params->rank_info as $key_rank => $rank_info)
-                                                                    @if($rank_info->queueType == "RANKED_TFT")
-                                                                        <tr>
-                                                                            <td style="width:50%">RANKED TFT:</td>
+                                                                    @foreach($data->params->rank_info as $key_rank => $rank_info)
+                                                                        @if($rank_info->queueType == "RANKED_TFT")
+                                                                            <tr>
+                                                                                <td style="width:50%">RANKED TFT:</td>
+                                                                                <td class="text-danger" style="font-weight: 700">
+                                                                                    @if($rank_info->tier == "NONE")
+                                                                                        {{ $rank_info->tier }}
+                                                                                    @else
+
+                                                                                        {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+
+                                                                                    @endif
+                                                                                </td>
+                                                                            </tr>
+                                                                        @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                                            <td style="width:50%">RANKED SOLO:</td>
                                                                             <td class="text-danger" style="font-weight: 700">
                                                                                 @if($rank_info->tier == "NONE")
                                                                                     {{ $rank_info->tier }}
@@ -620,21 +641,47 @@
 
                                                                                 @endif
                                                                             </td>
+                                                                        @endif
+                                                                    @endforeach
+
+                                                                @endif
+                                                            @endif
+                                                        @elseif($data_category->slug == 'nick-ninja-school')
+                                                            @php
+                                                                $server = null;
+                                                                $params = null;
+                                                                $info = array();
+                                                                if (isset($data->params)){
+                                                                    $params = $data->params;
+                                                                    if (isset($params->server)){
+                                                                        $server = $params->server;
+                                                                    }
+                                                                    if (isset($params->info) && count($params->info)){
+                                                                        $info = $params->info;
+                                                                    }
+                                                                }
+                                                            @endphp
+                                                            @if(isset($server))
+                                                                <tr>
+                                                                    <td style="width:50%">Server:</td>
+                                                                    <td class="text-danger" style="font-weight: 700">
+                                                                        {{ $server??null }}
+                                                                    </td>
+                                                                </tr>
+                                                            @endif
+                                                            @if(isset($info) && count($info))
+                                                                @foreach($info as $ke => $in)
+                                                                    @if(in_array($in->name,config('module.acc.auto_ninja_tt')))
+
+                                                                        <tr>
+                                                                            <td style="width:50%">{{ $in->name??'' }}:</td>
+                                                                            <td class="text-danger" style="font-weight: 700">
+                                                                                {{ $in->value??'' }}
+                                                                            </td>
                                                                         </tr>
-                                                                    @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
-                                                                        <td style="width:50%">RANKED SOLO:</td>
-                                                                        <td class="text-danger" style="font-weight: 700">
-                                                                            @if($rank_info->tier == "NONE")
-                                                                                {{ $rank_info->tier }}
-                                                                            @else
 
-                                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-
-                                                                            @endif
-                                                                        </td>
                                                                     @endif
                                                                 @endforeach
-
                                                             @endif
                                                         @endif
                                                     @endif
@@ -743,6 +790,43 @@
     @endif
 @endif
 
+<style>
+    .scroll-default{
+        padding-right: 4px;
+        max-height: 176px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 
+    .scroll-default:hover::-webkit-scrollbar-thumb{
+        background-color: #DCDEE9;
+    }
+
+    .scroll-default::-webkit-scrollbar-track
+    {
+        position: absolute;
+        top: 100px;
+        left: -60px;
+        background-color:  #ffffff;
+        border: none;
+    }
+
+    .scroll-default::-webkit-scrollbar
+    {
+        width: 8px;
+        border: none;
+    }
+
+    .scroll-default::-webkit-scrollbar-thumb
+    {
+        /*Màu thanh sroll*/
+        background: #BCBFD6;
+        border-radius: 100px;
+        border: none;
+        margin-left: 20px;
+        height: 20px;
+    }
+
+</style>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/slider.js"></script>
 

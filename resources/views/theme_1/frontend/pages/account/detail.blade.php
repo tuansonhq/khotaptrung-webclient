@@ -76,55 +76,59 @@
 
         </div>
     @else
+        @if(isset($game_auto_props) && count($game_auto_props))
+            @if($slug_category == 'nick-lien-minh')
+                @php
+                    if (isset($game_auto_props) && count($game_auto_props)){
+                        $total_tuong = 0;
+                        $total_bieucam = 0;
+                        $total_chuongluc = 0;
+                        $total_sandau = 0;
+                        $total_linhthu = 0;
+                        $total_trangphuc = 0;
+                        $total_thongtinchung = 0;
 
-        @php
-            if (isset($game_auto_props) && count($game_auto_props)){
-                $total_tuong = 0;
-                $total_bieucam = 0;
-                $total_chuongluc = 0;
-                $total_sandau = 0;
-                $total_linhthu = 0;
-                $total_trangphuc = 0;
-                $total_thongtinchung = 0;
 
+                        foreach ($game_auto_props as $key => $item) {
+                            if ($key == 'champions') {
+                                foreach ($game_auto_props['champions'] as $arr_champ) {
+                                    $total_tuong += count($arr_champ);
+                                }
+                            }
+                            if($key == 'skins_custom') {
+                                foreach ($game_auto_props['skins_custom'] as $arr_skins) {
+                                    $total_trangphuc += count($arr_skins);
+                                }
+                            }
+                            if ($key == 'tftmapskins'){
+                                foreach ($game_auto_props['tftmapskins'] as $arr_mapskins) {
+                                    $total_sandau += count($arr_mapskins);
+                                }
+                            }
 
-                foreach ($game_auto_props as $key => $item) {
-                    if ($key == 'champions') {
-                        foreach ($game_auto_props['champions'] as $arr_champ) {
-                            $total_tuong += count($arr_champ);
+                            if ($key == 'tftcompanions'){
+                                foreach ($game_auto_props['tftcompanions'] as $arr_dameskins) {
+                                    $total_chuongluc += count($arr_dameskins);
+                                }
+                            }
+
+                            if ($key == 'tftdamageskins'){
+                                foreach ($game_auto_props['tftdamageskins'] as $arr_linh_thu) {
+                                    $total_linhthu += count($arr_linh_thu);
+                                }
+                            }
+
+                            if ($key == 'emotes'){
+                                foreach ($game_auto_props['emotes'] as $arr_emotes) {
+                                    $total_bieucam += count($arr_emotes);
+                                }
+                            }
                         }
                     }
-                    if($key == 'skins_custom') {
-                        foreach ($game_auto_props['skins_custom'] as $arr_skins) {
-                            $total_trangphuc += count($arr_skins);
-                        }
-                    }
-                    if ($key == 'tftmapskins'){
-                        foreach ($game_auto_props['tftmapskins'] as $arr_mapskins) {
-                            $total_sandau += count($arr_mapskins);
-                        }
-                    }
+                @endphp
 
-                    if ($key == 'tftcompanions'){
-                        foreach ($game_auto_props['tftcompanions'] as $arr_dameskins) {
-                            $total_chuongluc += count($arr_dameskins);
-                        }
-                    }
-
-                    if ($key == 'tftdamageskins'){
-                        foreach ($game_auto_props['tftdamageskins'] as $arr_linh_thu) {
-                            $total_linhthu += count($arr_linh_thu);
-                        }
-                    }
-
-                    if ($key == 'emotes'){
-                        foreach ($game_auto_props['emotes'] as $arr_emotes) {
-                            $total_bieucam += count($arr_emotes);
-                        }
-                    }
-                }
-    }
-        @endphp
+            @endif
+        @endif
         <div class="not__data shop_product_detailS">
             <div class="news_breadcrumbs">
                 <div class="container">
@@ -194,57 +198,156 @@
 
         <input type="hidden" name="slug" class="slug_category" value="{{ $slug_category }}">
         @if(isset($game_auto_props) && count($game_auto_props))
+            @if($slug_category == 'nick-lien-minh')
+                {{--    Modal Linh thú tft   --}}
 
-            {{--    Modal Linh thú tft   --}}
+                <div class="c-modal__nick-lmht c-modal__nick-lmht-linh-thu-tft d-none" id="nick-lmht-linhthu" style="z-index: 1005; background: rgba(67, 70, 87, 0.5);">
+                    <div
+                        class="header-modal__nick-lmht c-px-24 c-pt-24 pb-0 position-relative text-uppercase text-center ml-auto mr-auto fw-700">
+                        <div class="row marginauto c-pb-24 header-modal__nick-lmht-row">
+                            <div class="col-auto pl-0 pr-0 mb-0 c-mr-24">
+                                <h2 class="fw-700 fz-24 lh-32 mb-0">Linh thú TFT</h2>
 
-            <div class="c-modal__nick-lmht c-modal__nick-lmht-linh-thu-tft d-none" id="nick-lmht-linhthu" style="z-index: 1005; background: rgba(67, 70, 87, 0.5);">
-                <div
-                    class="header-modal__nick-lmht c-px-24 c-pt-24 pb-0 position-relative text-uppercase text-center ml-auto mr-auto fw-700">
-                    <div class="row marginauto c-pb-24 header-modal__nick-lmht-row">
-                        <div class="col-auto pl-0 pr-0 mb-0 c-mr-24">
-                            <h2 class="fw-700 fz-24 lh-32 mb-0">Linh thú TFT</h2>
+                                <p class="fw-400 fz-13 lh-20 mb-0">({{ $total_linhthu }} linh thú)</p>
+                            </div>
+                            <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
+                                <input id="input-search-conpanion" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
+                                <ul class="sugges_list d-none">
 
-                            <p class="fw-400 fz-13 lh-20 mb-0">({{ $total_linhthu }} linh thú)</p>
+                                </ul>
+                                <button class="submit-search-companion submit--search" type="button"></button>
+                            </div>
+                            <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
                         </div>
-                        <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
-                            <input id="input-search-conpanion" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
-                            <ul class="sugges_list d-none">
+                    </div>
+                    <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">
+                        <div class="row marginauto modal-container-body" id="tab-panel-companion">
 
-                            </ul>
-                            <button class="submit-search-companion submit--search" type="button"></button>
+                                <div class="col-md-12 left-right justify-content-end paginate__v1_index paginate__v1_mobie frontend__panigate">
+
+                                    <div class="tab-content" id="content_page_companion">
+
+                                        @foreach($game_auto_props as $key => $game_auto_prop)
+                                            @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']))
+
+                                                @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
+                                                    <div class="tab-pane fade {{ !$key ? 'show active' : '' }}" id="tab-companion-{{$key}}" role="tabpanel">
+                                                        <div class="row">
+                                                            @foreach($arr_companions as $companion)
+                                                                <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
+                                                        <span>
+                                                            <div class="row marginauto item-nick-lmht__border">
+                                                                <div
+                                                                    class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
+                                                                    <img
+                                                                        class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy"
+                                                                        data-original="https://cdn.upanh.info/{{$companion->thumb}}"
+                                                                        alt="{{ $companion->name }}">
+                                                                </div>
+                                                                <div class="col-md-12 pl-0 pr-0 text-center">
+                                                                    <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme text-limit limit-1">{{ $companion->name }}</p>
+                                                                </div>
+                                                            </div>
+                                                        </span>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+
+
+                                            @endif
+                                        @endforeach
+                                    </div>
+
+                                    <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
+                                        <div class="col-auto paginate__category__col">
+                                            <div class="data_paginate paging_bootstrap paginations_custom">
+                                                <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle" role="tablist">
+                                                    @foreach($game_auto_props as $key => $game_auto_prop)
+                                                        @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']) > 1)
+                                                            @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
+                                                                @if($key == count($game_auto_props['skins_custom']) - 1)
+                                                                    <li class="page-item disabled hidden-xs dot-last-paginate">
+                                                                        <span class="page-link">...</span>
+                                                                    </li>
+                                                                @endif
+                                                                <li class="nav-item page-item {{ !$key ? 'active' : '' }}">
+                                                                    <a class="page-link {{ !$key ? 'active' : '' }}"
+                                                                       data-toggle="tab" href="#tab-companion-{{ $key }}"
+                                                                       role="tab">{{ $key + 1 }}</a>
+                                                                </li>
+                                                                @if(!$key)
+                                                                    <li class="page-item disabled hidden-xs dot-first-paginate">
+                                                                        <span class="page-link">...</span>
+                                                                    </li>
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
-                        <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
+                        <div class="row marginauto modal-container-body d-none" id="result-search-companion">
+
+                        </div>
                     </div>
                 </div>
-                <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">
-                    <div class="row marginauto modal-container-body" id="tab-panel-companion">
+
+                {{--    Modal Trang phuc   --}}
+
+                <div class="c-modal__nick-lmht c-modal__nick-lmht-trang-phuc d-none" id="nick-lmht-trangphuc"
+                     style="z-index: 1005; background: rgba(67, 70, 87, 0.5);">
+                    <div
+                        class="header-modal__nick-lmht c-px-24 c-pt-24 pb-0 position-relative text-uppercase text-center ml-auto mr-auto fw-700">
+                        <div class="row marginauto c-pb-24 header-modal__nick-lmht-row">
+                            <div class="col-auto pl-0 pr-0 mb-0 c-mr-24">
+                                <h2 class="fw-700 fz-24 lh-32 mb-0">Trang phục</h2>
+                                <p class="fw-400 fz-13 lh-20 mb-0">({{ $total_trangphuc }} Trang phục)</p>
+                            </div>
+                            <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
+                                <input id="input-search-skins" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
+                                <ul class="sugges_list d-none">
+
+                                </ul>
+                                <button class="submit-search-skins submit--search" type="button"></button>
+                            </div>
+                            <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">
+                        <div class="row marginauto modal-container-body" id="tab-panel-skins">
 
                             <div class="col-md-12 left-right justify-content-end paginate__v1_index paginate__v1_mobie frontend__panigate">
 
-                                <div class="tab-content" id="content_page_companion">
+                                <div class="tab-content" id="content_page_skin">
 
                                     @foreach($game_auto_props as $key => $game_auto_prop)
-                                        @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']))
+                                        @if($key == 'skins_custom' && count($game_auto_props['skins_custom']))
 
-                                            @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
-                                                <div class="tab-pane fade {{ !$key ? 'show active' : '' }}" id="tab-companion-{{$key}}" role="tabpanel">
+                                            @foreach($game_auto_props['skins_custom'] as $key => $arr_skins)
+                                                <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
+                                                     id="tab-skin-{{$key}}" role="tabpanel">
                                                     <div class="row">
-                                                        @foreach($arr_companions as $companion)
+                                                        @foreach($arr_skins as $skin)
                                                             <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
-                                                    <span>
-                                                        <div class="row marginauto item-nick-lmht__border">
-                                                            <div
-                                                                class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                                                <img
-                                                                    class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy"
-                                                                    data-original="https://cdn.upanh.info/{{$companion->thumb}}"
-                                                                    alt="{{ $companion->name }}">
+                                                        <span>
+                                                            <div class="row marginauto item-nick-lmht__border">
+                                                                <div
+                                                                    class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
+                                                                    <img
+                                                                        class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy"
+                                                                        data-original="https://cdn.upanh.info/{{$skin->thumb}}"
+                                                                        alt="{{ $skin->name }}">
+                                                                </div>
+                                                                <div class="col-md-12 pl-0 pr-0 text-center">
+                                                                    <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme text-limit limit-1">{{ $skin->name }}</p>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-md-12 pl-0 pr-0 text-center">
-                                                                <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme text-limit limit-1">{{ $companion->name }}</p>
-                                                            </div>
-                                                        </div>
-                                                    </span>
+                                                        </span>
                                                             </div>
                                                         @endforeach
                                                     </div>
@@ -259,10 +362,13 @@
                                 <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
                                     <div class="col-auto paginate__category__col">
                                         <div class="data_paginate paging_bootstrap paginations_custom">
-                                            <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle" role="tablist">
+
+                                            <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle"
+                                                role="tablist">
                                                 @foreach($game_auto_props as $key => $game_auto_prop)
-                                                    @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']) > 1)
-                                                        @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
+                                                    @if($key == 'skins_custom' && count($game_auto_props['skins_custom']) > 1)
+
+                                                        @foreach($game_auto_props['skins_custom'] as $key => $arr_skins)
                                                             @if($key == count($game_auto_props['skins_custom']) - 1)
                                                                 <li class="page-item disabled hidden-xs dot-last-paginate">
                                                                     <span class="page-link">...</span>
@@ -270,7 +376,7 @@
                                                             @endif
                                                             <li class="nav-item page-item {{ !$key ? 'active' : '' }}">
                                                                 <a class="page-link {{ !$key ? 'active' : '' }}"
-                                                                   data-toggle="tab" href="#tab-companion-{{ $key }}"
+                                                                   data-toggle="tab" href="#tab-skin-{{ $key }}"
                                                                    role="tab">{{ $key + 1 }}</a>
                                                             </li>
                                                             @if(!$key)
@@ -279,6 +385,8 @@
                                                                 </li>
                                                             @endif
                                                         @endforeach
+
+
                                                     @endif
                                                 @endforeach
                                             </ul>
@@ -286,299 +394,196 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>
-                    <div class="row marginauto modal-container-body d-none" id="result-search-companion">
-
-                    </div>
-                </div>
-            </div>
-
-            {{--    Modal Trang phuc   --}}
-
-            <div class="c-modal__nick-lmht c-modal__nick-lmht-trang-phuc d-none" id="nick-lmht-trangphuc"
-                 style="z-index: 1005; background: rgba(67, 70, 87, 0.5);">
-                <div
-                    class="header-modal__nick-lmht c-px-24 c-pt-24 pb-0 position-relative text-uppercase text-center ml-auto mr-auto fw-700">
-                    <div class="row marginauto c-pb-24 header-modal__nick-lmht-row">
-                        <div class="col-auto pl-0 pr-0 mb-0 c-mr-24">
-                            <h2 class="fw-700 fz-24 lh-32 mb-0">Trang phục</h2>
-                            <p class="fw-400 fz-13 lh-20 mb-0">({{ $total_trangphuc }} Trang phục)</p>
                         </div>
-                        <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
-                            <input id="input-search-skins" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
-                            <ul class="sugges_list d-none">
+                        <div class="row marginauto modal-container-body d-none" id="result-search-skin">
 
-                            </ul>
-                            <button class="submit-search-skins submit--search" type="button"></button>
                         </div>
-                        <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
                     </div>
+
                 </div>
-                <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">
-                    <div class="row marginauto modal-container-body" id="tab-panel-skins">
-
-                        <div class="col-md-12 left-right justify-content-end paginate__v1_index paginate__v1_mobie frontend__panigate">
-
-                            <div class="tab-content" id="content_page_skin">
-
-                                @foreach($game_auto_props as $key => $game_auto_prop)
-                                    @if($key == 'skins_custom' && count($game_auto_props['skins_custom']))
-
-                                        @foreach($game_auto_props['skins_custom'] as $key => $arr_skins)
-                                            <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
-                                                 id="tab-skin-{{$key}}" role="tabpanel">
-                                                <div class="row">
-                                                    @foreach($arr_skins as $skin)
-                                                        <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
-                                                    <span>
-                                                        <div class="row marginauto item-nick-lmht__border">
-                                                            <div
-                                                                class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                                                <img
-                                                                    class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy"
-                                                                    data-original="https://cdn.upanh.info/{{$skin->thumb}}"
-                                                                    alt="{{ $skin->name }}">
-                                                            </div>
-                                                            <div class="col-md-12 pl-0 pr-0 text-center">
-                                                                <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme text-limit limit-1">{{ $skin->name }}</p>
-                                                            </div>
-                                                        </div>
-                                                    </span>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        @endforeach
 
 
-                                    @endif
-                                @endforeach
+                {{--    Modal Tuong   --}}
+
+                <div class="c-modal__nick-lmht c-modal__nick-lmht-tuong d-none d-none" id="nick-lmht-tuong"
+                     style="z-index: 1005; background: rgba(67, 70, 87, 0.5);">
+                    <div
+                        class="header-modal__nick-lmht c-px-24 c-pt-24 pb-0 position-relative text-uppercase text-center ml-auto mr-auto fw-700">
+                        <div class="row marginauto c-pb-24 header-modal__nick-lmht-row">
+                            <div class="col-auto pl-0 pr-0 mb-0 c-mr-24">
+                                <h2 class="fw-700 fz-24 lh-32 mb-0">Tướng</h2>
+                                <p class="fw-400 fz-13 lh-20 mb-0 total_tuong_data">({{ $total_tuong??0 }} tướng)</p>
                             </div>
+                            <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
+                                <input id="input-search-champ" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
+                                 <ul class="sugges_list d-none">
 
-                            <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
-                                <div class="col-auto paginate__category__col">
-                                    <div class="data_paginate paging_bootstrap paginations_custom">
+                                </ul>
+                                <button class="submit-search-champ submit--search" type="button"></button>
+                            </div>
+                            <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg"
+                                 alt="">
+                        </div>
+                    </div>
+                    <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">
+                        <div class="row marginauto modal-container-body" id="tab-panel-champ">
+                            <div class="col-md-12 left-right justify-content-end paginate__v1_index paginate__v1_mobie frontend__panigate">
+                                <div class="tab-content" id="content_page_champ">
 
-                                        <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle"
-                                            role="tablist">
-                                            @foreach($game_auto_props as $key => $game_auto_prop)
-                                                @if($key == 'skins_custom' && count($game_auto_props['skins_custom']) > 1)
+                                    @foreach($game_auto_props as $key => $game_auto_prop)
+                                        @if($key == 'champions' && count($game_auto_props['champions']))
 
-                                                    @foreach($game_auto_props['skins_custom'] as $key => $arr_skins)
-                                                        @if($key == count($game_auto_props['skins_custom']) - 1)
-                                                            <li class="page-item disabled hidden-xs dot-last-paginate">
-                                                                <span class="page-link">...</span>
-                                                            </li>
-                                                        @endif
-                                                        <li class="nav-item page-item {{ !$key ? 'active' : '' }}">
-                                                            <a class="page-link {{ !$key ? 'active' : '' }}"
-                                                               data-toggle="tab" href="#tab-skin-{{ $key }}"
-                                                               role="tab">{{ $key + 1 }}</a>
-                                                        </li>
-                                                        @if(!$key)
-                                                            <li class="page-item disabled hidden-xs dot-first-paginate">
-                                                                <span class="page-link">...</span>
-                                                            </li>
-                                                        @endif
-                                                    @endforeach
-
-
-                                                @endif
+                                            @foreach($game_auto_props['champions'] as $key => $arr_champ)
+                                                <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
+                                                     id="tab-champ-{{$key}}" role="tabpanel">
+                                                    <div class="row">
+                                                        @foreach($arr_champ as $champ)
+                                                            <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
+                                                        <span>
+                                                            <div class="row marginauto item-nick-lmht__border">
+                                                                <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
+                                                                    <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy" data-original="https://cdn.upanh.info/{{$champ->thumb}}" alt="{{ $champ->name }}">
+                                                                </div>
+                                                                <div class="col-md-12 pl-0 pr-0 text-center">
+                                                                    <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme text-limit limit-1">{{ $champ->name }}</p>
+                                                                </div>
+                                                            </div>
+                                                        </span>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
                                             @endforeach
-                                        </ul>
+                                        @endif
+                                    @endforeach
+                                </div>
+
+                                <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
+                                    <div class="col-auto paginate__category__col">
+                                        <div class="data_paginate paging_bootstrap paginations_custom">
+
+                                            <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle" role="tablist">
+                                                @foreach($game_auto_props as $key => $game_auto_prop)
+                                                    @if($key == 'champions' && count($game_auto_props['champions']) > 1)
+
+                                                        @foreach($game_auto_props['champions'] as $key => $arr_champ)
+                                                            @if($key == count($game_auto_props['champions']) - 1)
+                                                                <li class="page-item disabled hidden-xs dot-last-paginate">
+                                                                    <span class="page-link">...</span>
+                                                                </li>
+                                                            @endif
+                                                            <li class="nav-item page-item {{ !$key ? 'active' : '' }}">
+                                                                <a class="page-link {{ !$key ? 'active' : '' }}"
+                                                                   data-toggle="tab" href="#tab-champ-{{ $key }}"
+                                                                   role="tab">{{ $key + 1 }}</a>
+                                                            </li>
+                                                            @if(!$key)
+                                                                <li class="page-item disabled hidden-xs dot-first-paginate">
+                                                                    <span class="page-link">...</span>
+                                                                </li>
+                                                            @endif
+                                                        @endforeach
+
+
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row marginauto modal-container-body d-none" id="result-search-skin">
+                        <div class="row marginauto modal-container-body" id="result-search-champ">
 
-                    </div>
-                </div>
-
-            </div>
-
-
-            {{--    Modal Tuong   --}}
-
-            <div class="c-modal__nick-lmht c-modal__nick-lmht-tuong d-none d-none" id="nick-lmht-tuong"
-                 style="z-index: 1005; background: rgba(67, 70, 87, 0.5);">
-                <div
-                    class="header-modal__nick-lmht c-px-24 c-pt-24 pb-0 position-relative text-uppercase text-center ml-auto mr-auto fw-700">
-                    <div class="row marginauto c-pb-24 header-modal__nick-lmht-row">
-                        <div class="col-auto pl-0 pr-0 mb-0 c-mr-24">
-                            <h2 class="fw-700 fz-24 lh-32 mb-0">Tướng</h2>
-                            <p class="fw-400 fz-13 lh-20 mb-0 total_tuong_data">({{ $total_tuong??0 }} tướng)</p>
-                        </div>
-                        <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
-                            <input id="input-search-champ" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
-                             <ul class="sugges_list d-none">
-
-                            </ul>
-                            <button class="submit-search-champ submit--search" type="button"></button>
-                        </div>
-                        <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg"
-                             alt="">
-                    </div>
-                </div>
-                <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">
-                    <div class="row marginauto modal-container-body" id="tab-panel-champ">
-                        <div class="col-md-12 left-right justify-content-end paginate__v1_index paginate__v1_mobie frontend__panigate">
-                            <div class="tab-content" id="content_page_champ">
-
-                                @foreach($game_auto_props as $key => $game_auto_prop)
-                                    @if($key == 'champions' && count($game_auto_props['champions']))
-
-                                        @foreach($game_auto_props['champions'] as $key => $arr_champ)
-                                            <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
-                                                 id="tab-champ-{{$key}}" role="tabpanel">
-                                                <div class="row">
-                                                    @foreach($arr_champ as $champ)
-                                                        <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
-                                                    <span>
-                                                        <div class="row marginauto item-nick-lmht__border">
-                                                            <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                                                <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy" data-original="https://cdn.upanh.info/{{$champ->thumb}}" alt="{{ $champ->name }}">
-                                                            </div>
-                                                            <div class="col-md-12 pl-0 pr-0 text-center">
-                                                                <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme text-limit limit-1">{{ $champ->name }}</p>
-                                                            </div>
-                                                        </div>
-                                                    </span>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    @endif
-                                @endforeach
-                            </div>
-
-                            <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
-                                <div class="col-auto paginate__category__col">
-                                    <div class="data_paginate paging_bootstrap paginations_custom">
-
-                                        <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle" role="tablist">
-                                            @foreach($game_auto_props as $key => $game_auto_prop)
-                                                @if($key == 'champions' && count($game_auto_props['champions']) > 1)
-
-                                                    @foreach($game_auto_props['champions'] as $key => $arr_champ)
-                                                        @if($key == count($game_auto_props['champions']) - 1)
-                                                            <li class="page-item disabled hidden-xs dot-last-paginate">
-                                                                <span class="page-link">...</span>
-                                                            </li>
-                                                        @endif
-                                                        <li class="nav-item page-item {{ !$key ? 'active' : '' }}">
-                                                            <a class="page-link {{ !$key ? 'active' : '' }}"
-                                                               data-toggle="tab" href="#tab-champ-{{ $key }}"
-                                                               role="tab">{{ $key + 1 }}</a>
-                                                        </li>
-                                                        @if(!$key)
-                                                            <li class="page-item disabled hidden-xs dot-first-paginate">
-                                                                <span class="page-link">...</span>
-                                                            </li>
-                                                        @endif
-                                                    @endforeach
-
-
-                                                @endif
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                    <div class="row marginauto modal-container-body" id="result-search-champ">
 
-                    </div>
                 </div>
 
-            </div>
+                {{--    Modal thông tin khác--}}
 
-            {{--    Modal thông tin khác--}}
+                <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.css">
+                <input type="hidden" name="total_tuong" class="total_tuong" value="{{ $total_tuong }}">
 
-            <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.css">
-            <input type="hidden" name="total_tuong" class="total_tuong" value="{{ $total_tuong }}">
+                <script>
+                    $('body').on('click', '.c-close-modal', function (e) {
+                        e.preventDefault();
+                        $('.c-modal__nick-lmht-tuong').addClass('d-none');
+                        $('.c-modal__nick-lmht-ttk').addClass('d-none');
+                        $('.c-modal__nick-lmht-trang-phuc').addClass('d-none');
+                        $('.c-modal__nick-lmht-linh-thu-tft').addClass('d-none');
+                        $('.c-modal__nick-lmht-san-dau-tft').addClass('d-none');
+                        $('.c-modal__nick-lmht-chuong-luc-tft').addClass('d-none');
 
-            <script>
-                $('body').on('click', '.c-close-modal', function (e) {
-                    e.preventDefault();
-                    $('.c-modal__nick-lmht-tuong').addClass('d-none');
-                    $('.c-modal__nick-lmht-ttk').addClass('d-none');
-                    $('.c-modal__nick-lmht-trang-phuc').addClass('d-none');
-                    $('.c-modal__nick-lmht-linh-thu-tft').addClass('d-none');
-                    $('.c-modal__nick-lmht-san-dau-tft').addClass('d-none');
-                    $('.c-modal__nick-lmht-chuong-luc-tft').addClass('d-none');
-
-                    $('.c-modal__nick-lmht-bieu-cam').addClass('d-none');
-                });
+                        $('.c-modal__nick-lmht-bieu-cam').addClass('d-none');
+                    });
 
 
-                $('body').on('click', '.lm_xemthem_tuong', function (e) {
-                    e.preventDefault();
-                    $('.c-modal__nick-lmht-tuong').removeClass('d-none');
-                });
+                    $('body').on('click', '.lm_xemthem_tuong', function (e) {
+                        e.preventDefault();
+                        $('.c-modal__nick-lmht-tuong').removeClass('d-none');
+                    });
 
-                $('body').on('click', '.lm_xemthem_thongtinchung', function (e) {
-                    e.preventDefault();
-                    $('.c-modal__nick-lmht-ttk').removeClass('d-none');
-                });
+                    $('body').on('click', '.lm_xemthem_thongtinchung', function (e) {
+                        e.preventDefault();
+                        $('.c-modal__nick-lmht-ttk').removeClass('d-none');
+                    });
 
-                $('body').on('click', '.lm_xemthem_trangphuc', function (e) {
-                    e.preventDefault();
-                    $('.c-modal__nick-lmht-trang-phuc').removeClass('d-none');
-                });
+                    $('body').on('click', '.lm_xemthem_trangphuc', function (e) {
+                        e.preventDefault();
+                        $('.c-modal__nick-lmht-trang-phuc').removeClass('d-none');
+                    });
 
-                $('body').on('click', '.lm_xemthem_linhthu', function (e) {
-                    e.preventDefault();
-                    $('.c-modal__nick-lmht-linh-thu-tft').removeClass('d-none');
-                });
+                    $('body').on('click', '.lm_xemthem_linhthu', function (e) {
+                        e.preventDefault();
+                        $('.c-modal__nick-lmht-linh-thu-tft').removeClass('d-none');
+                    });
 
-                $('body').on('click', '.lm_xemthem_sandau', function (e) {
-                    e.preventDefault();
-                    $('.c-modal__nick-lmht-san-dau-tft').removeClass('d-none');
-                });
+                    $('body').on('click', '.lm_xemthem_sandau', function (e) {
+                        e.preventDefault();
+                        $('.c-modal__nick-lmht-san-dau-tft').removeClass('d-none');
+                    });
 
-                $('body').on('click', '.lm_xemthem_damedondanh', function (e) {
-                    e.preventDefault();
-                    $('.c-modal__nick-lmht-chuong-luc-tft').removeClass('d-none');
-                });
+                    $('body').on('click', '.lm_xemthem_damedondanh', function (e) {
+                        e.preventDefault();
+                        $('.c-modal__nick-lmht-chuong-luc-tft').removeClass('d-none');
+                    });
 
-                $('body').on('click', '.lm_xemthem_bieucam', function (e) {
-                    e.preventDefault();
-                    $('.c-modal__nick-lmht-bieu-cam').removeClass('d-none');
-                });
+                    $('body').on('click', '.lm_xemthem_bieucam', function (e) {
+                        e.preventDefault();
+                        $('.c-modal__nick-lmht-bieu-cam').removeClass('d-none');
+                    });
 
-                function convertToSlug(title) {
-                    //Đổi chữ hoa thành chữ thường
-                    let slug = title.toLowerCase();
-                    //Đổi ký tự có dấu thành không dấu
-                    slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
-                    slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
-                    slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
-                    slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
-                    slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
-                    slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
-                    slug = slug.replace(/đ/gi, 'd');
-                    //Xóa các ký tự đặt biệt
-                    slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\<|\'|\"|\:|\;|_/gi, '');
-                    //Đổi khoảng trắng thành ký tự gạch ngang
-                    slug = slug.replace(/ /gi, "-");
-                    //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
-                    //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
-                    slug = slug.replace(/\-\-\-\-\-/gi, '-');
-                    slug = slug.replace(/\-\-\-\-/gi, '-');
-                    slug = slug.replace(/\-\-\-/gi, '-');
-                    slug = slug.replace(/\-\-/gi, '-');
-                    //Xóa các ký tự gạch ngang ở đầu và cuối
-                    slug = '@' + slug + '@';
-                    slug = slug.replace(/\@\-|\-\@|\@/gi, '');
-                    // trả về kết quả
-                    return slug;
-                }
+                    function convertToSlug(title) {
+                        //Đổi chữ hoa thành chữ thường
+                        let slug = title.toLowerCase();
+                        //Đổi ký tự có dấu thành không dấu
+                        slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
+                        slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
+                        slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
+                        slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
+                        slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
+                        slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
+                        slug = slug.replace(/đ/gi, 'd');
+                        //Xóa các ký tự đặt biệt
+                        slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\<|\'|\"|\:|\;|_/gi, '');
+                        //Đổi khoảng trắng thành ký tự gạch ngang
+                        slug = slug.replace(/ /gi, "-");
+                        //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
+                        //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
+                        slug = slug.replace(/\-\-\-\-\-/gi, '-');
+                        slug = slug.replace(/\-\-\-\-/gi, '-');
+                        slug = slug.replace(/\-\-\-/gi, '-');
+                        slug = slug.replace(/\-\-/gi, '-');
+                        //Xóa các ký tự gạch ngang ở đầu và cuối
+                        slug = '@' + slug + '@';
+                        slug = slug.replace(/\@\-|\-\@|\@/gi, '');
+                        // trả về kết quả
+                        return slug;
+                    }
 
-            </script>
+                </script>
+            @endif
         @endif
 
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>

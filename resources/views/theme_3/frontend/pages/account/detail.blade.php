@@ -237,6 +237,7 @@
     <fieldset id="fieldset-two"></fieldset>
 
     @if(isset($game_auto_props) && count($game_auto_props))
+        @if($slug_category == 'nick-lien-minh')
         @php
             $total_tuong = 0;
             $total_bieucam = 0;
@@ -379,6 +380,7 @@
                 </div>
             </div>
         </div>
+        @endif
     @endif
     <input type="hidden" name="slug" class="slug" value="{{ $slug }}">
     <input type="hidden" name="slug" class="slug_category" value="{{ $slug_category }}">

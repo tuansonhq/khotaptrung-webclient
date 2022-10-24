@@ -364,21 +364,26 @@ class AccController extends Controller
             $game_auto_props =  null;
 
             if (isset($data->game_auto_props) && count($data->game_auto_props) > 0) {
-                $game_auto_props = $data->game_auto_props;
-                $result = array();
+                if ($slug_category == "nick-ninja-school"){
+                    $game_auto_props = $data->game_auto_props;
+                    $result = array();
 
-                foreach ($game_auto_props as $element) {
-                    $result[$element->key][] = $element;
-                    if ($element->key == 'champions' && isset($element->childs) && count($element->childs)) {
-                        foreach ($element->childs as $skin) {
-                            $result['skins_custom'][] = $skin;
+                    foreach ($game_auto_props as $element) {
+                        $result[$element->key][] = $element;
+                        if ($element->key == 'champions' && isset($element->childs) && count($element->childs)) {
+                            foreach ($element->childs as $skin) {
+                                $result['skins_custom'][] = $skin;
+                            }
                         }
                     }
+                    $game_auto_props = $result;
+                    foreach ($game_auto_props as $key => $item){
+                        $game_auto_props[$key] = array_chunk($item,24);
+                    }
+                }else{
+                    $game_auto_props = $data->game_auto_props;
                 }
-                $game_auto_props = $result;
-                foreach ($game_auto_props as $key => $item){
-                    $game_auto_props[$key] = array_chunk($item,24);
-                }
+
             }
 
             return view('frontend.pages.account.detail')->with('data',$data)->with('game_auto_props',$game_auto_props)->with('slug',$slug)->with('slug_category',$slug_category);
