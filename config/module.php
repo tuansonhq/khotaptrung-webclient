@@ -50,6 +50,16 @@ return [
             '5000000-10000000' => 'Trên 5 Triệu',
             '10000000' => 'Trên 10 Triệu',
         ],
+        'auto_ninja_tt' => [
+            'Cấp độ',
+            'Lớp',
+            'Sách kỹ năng sơ',
+            'Sách tiềm năng sơ',
+            'Bánh phong lôi',
+            'Bánh đăng hỏa',
+            'Lượng',
+            'Yên',
+        ],
         'auto_lm_rank' => [
             'IRON' => 'Sắt',
             'BRONZE' => 'Đồng',
