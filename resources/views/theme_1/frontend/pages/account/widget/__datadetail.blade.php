@@ -645,7 +645,7 @@
                                 </div>
                                 <div class="d-flex justify-content-center w-100">
                                     <button class="btn-nick btn-ghost" disabled>Thanh toán</button>
-                                    <button class="btn-nick btn-primary" data-toggle="modal" data-target="#successModal" data-dismiss="modal">Nạp tiền</button>
+                                    <button class="btn-nick btn-primary" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp tiền</button>
                                 </div>
                                 @else
                                     <div class="nick-footer-notify">
