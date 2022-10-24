@@ -524,12 +524,17 @@ button:focus{
 }
 
 .modal__account .modal-header .nick-modal-header-close {
+    cursor: pointer;
     position: absolute;
     right: 16px;
 }
 
 .modal__account .modal-body {
     padding: 0 24px;
+}
+
+#successModal.modal__account .modal-body {
+    padding: 24px;
 }
 
 .c-tab-header-account {
@@ -637,6 +642,12 @@ button:focus{
     color: #A7ABC3;
 }
 
+.btn-nick.btn-secondary {
+    border: 1px solid #39C3D1;
+    color: #39C3D1;
+    background-color: transparent;
+}
+
 .btn-nick.btn-ghost {
     border: 1px solid #BCBFD6;
     color: #434657;
@@ -668,5 +679,34 @@ button:focus{
     font-weight: 500;
     font-size: 16px;
     margin-bottom: 0 !important;
+}
+
+.modal-account-success-image {
+    padding-bottom: 16px;
+}
+
+.nick-success-input-group label {
+    display: block;
+    font-weight: 600;
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+.nick-notify-success-block {
+    width: 100%;
+    padding: 12px;
+    margin-top: 16px;
+}
+
+.nick-notify-success-block p {
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: 14px;
+    color: #434657;
+}
+
+#successModal.modal__account .modal-footer {
+    border-top: 1px solid #DEE2E6;
 }
 

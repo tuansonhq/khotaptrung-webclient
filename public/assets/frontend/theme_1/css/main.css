@@ -2162,6 +2162,10 @@ footer{
     .modal-dialog__account {
         max-width: 722px!important;
     }
+
+    #successModal .modal-dialog__account {
+        max-width: 580px !important;
+    }
 }
 
 /*.item_play_dif_slide_img{*/

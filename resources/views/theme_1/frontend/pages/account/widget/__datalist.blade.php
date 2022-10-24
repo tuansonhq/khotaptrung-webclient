@@ -224,12 +224,16 @@
                         </div>
 
                         <div class="formDonhangAccount{{ $item->randId }} hide">
-                            <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
+                            @if(App\Library\AuthCustom::check() && App\Library\AuthCustom::user()->balance >= $data->price)
+                            <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" data-ranid="{{ $item->randId }}" method="POST">
+                            @else
+                            <form class="formDonhangAccount">
+                            @endif
                                 {{ csrf_field() }}
 
                                 <div class="modal-header">
                                     <span class="nick-modal-header">Xác nhận mua tài khoản</span>
-                                    <img class="nick-modal-header-close" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
+                                    <img data-dismiss="modal" class="nick-modal-header-close" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
                                 </div>
 
                                 <div class="modal-body">
