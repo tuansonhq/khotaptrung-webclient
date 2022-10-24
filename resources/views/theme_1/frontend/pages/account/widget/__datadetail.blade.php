@@ -672,7 +672,6 @@
                                                             @if(isset($info) && count($info))
                                                                 @foreach($info as $ke => $in)
                                                                     @if(in_array($in->name,config('module.acc.auto_ninja_tt')))
-
                                                                         <tr>
                                                                             <td style="width:50%">{{ $in->name??'' }}:</td>
                                                                             <td class="text-danger" style="font-weight: 700">

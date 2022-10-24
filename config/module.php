@@ -60,6 +60,11 @@ return [
             'Lượng',
             'Yên',
         ],
+        'auto_ninja_list_tt' => [
+            'Cấp độ',
+            'Lớp',
+            'Yên',
+        ],
         'auto_lm_rank' => [
             'IRON' => 'Sắt',
             'BRONZE' => 'Đồng',
