@@ -183,7 +183,7 @@
 
                                                 @endphp
 
-                                                <input type="hidden" class="check_server" value="{{ $server_id[0] }}">
+                                                <input type="text" class="check_server" value="{{ $server_id[0] }}">
 
                                                 <select name="server" class="server-filter server_filter form-control t14" id="server" style="">
                                                     @foreach($server_id as $key => $item)
@@ -329,8 +329,8 @@
                                                                 <span class="mb-15 control-label bb">Sức mạnh:</span>
                                                                 <div class="simple-checkbox s-filter select__checkbox">
                                                                     @foreach($item_array as $key => $item)
-                                                                        <p><input value="{{ $item->price }}" class="input__checkbox" type="checkbox" id="{{ $key }}">
-                                                                            <label for="{{ $key }}">
+                                                                        <p><input value="{{ $item->price }}" data-id="{{ $index }}" class="input__checkbox" type="checkbox" id="c_{{ $index }}_{{ $key }}">
+                                                                            <label for="c_{{ $index }}_{{ $key }}">
                                                                                 @foreach($item->product_attribute as $attribute)
                                                                                     @if($attribute->attribute->idkey == 'suc_manh_nro')
                                                                                         {{ $attribute->product_attribute_value_able->title }}
@@ -348,8 +348,8 @@
                                                                 <span class="mb-15 control-label bb">Sức mạnh:</span>
                                                                 <div class="simple-checkbox s-filter">
                                                                     @foreach($item_array as $key => $item)
-                                                                        <p><input value="{{ $key }}" class="input__checkbox" type="checkbox" id="{{ $key }}">
-                                                                            <label for="{{ $key }}" >
+                                                                        <p><input value="{{ $key }}" class="input__checkbox" data-id="{{ $index }}" type="checkbox" id="c_{{ $index }}_{{ $key }}">
+                                                                            <label for="c_{{ $index }}_{{ $key }}" >
                                                                                 @foreach($item->product_attribute as $attribute)
                                                                                     @if($attribute->attribute->idkey == 'suc_manh_nro')
                                                                                         {{ $attribute->product_attribute_value_able->title }}
@@ -583,7 +583,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/service.css">
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/showdetailservice.js?v={{time()}}"></script>
     @if(isset($filter_type))
-        @if($filter_type == 7)
+        @if($filter_type == 7){{--//dạng nhập tiền thành toán--}}
         <script>
             $(document).ready(function(){
                 var price_input_pack = parseInt($('#input_pack').val());
@@ -725,7 +725,7 @@
                 })
             })
         </script>
-        @elseif($filter_type == 6)
+        @elseif($filter_type == 6){{--//dạng chọn a->b--}}
             <script>
                 var data = JSON.parse($("#json_rank").val());
 
@@ -805,7 +805,7 @@
                     $(".from-chosen").trigger("chosen:updated");
                 }
             </script>
-        @elseif($filter_type == 4)
+        @elseif($filter_type == 4){{--//dạng chọn một--}}
             <script>
                 $(document).ready(function(){
 
@@ -851,13 +851,63 @@
                     })
                 })
             </script>
-        @elseif($filter_type == 5)
+        @elseif($filter_type == 5){{--//dạng chọn nhiều--}}
             <script>
                 $(document).ready(function(){
-                    input__checkbox
 
                     $('body').on('change','.input__checkbox',function(e) {
+
+                        var id = $(this).data('id');
+
+                        var total_price = 0;
+
                         // select__checkbox
+                        $('.bang__gia__' + id + ' .input__checkbox').each(function(){
+                            if (this.checked){
+                                total_price = total_price + parseInt($(this).val());
+                            }
+                        });
+
+                        total_price = total_price.toFixed(0);
+
+                        total_price = total_price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                        total_price = total_price.split('').reverse().join('').replace(/^[\.]/,'');
+
+                        $('#txtPrice').html('');
+                        $('#txtPrice').html('Tổng: ' + total_price + ' VNĐ');
+                    });
+
+                    $('body').on('change','#server',function(e) {
+                        var server_id = parseInt($(this).find(':selected').val());
+                        var check_server = $('.check_server').val();
+
+                        $('.bang__gia__' + check_server + '').addClass('hidden_slect');
+                        $('.bang__gia__' + server_id + '').removeClass('hidden_slect');
+
+                        $('.bang__gia__' + check_server + ' .input__checkbox').each(function(){
+                            $(this).prop('checked',false);
+                        });
+
+                        $('.check_server').val(server_id);
+
+                        var total_price = 0;
+
+                        // select__checkbox
+                        $('.bang__gia__' + server_id + ' .input__checkbox').each(function(){
+                            if (this.checked){
+                                total_price = total_price + parseInt($(this).val());
+                            }
+                        });
+
+                        total_price = total_price.toFixed(0);
+
+                        total_price = total_price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                        total_price = total_price.split('').reverse().join('').replace(/^[\.]/,'');
+
+                        $('#txtPrice').html('');
+                        $('#txtPrice').html('Tổng: ' + total_price + ' VNĐ');
+                        //
+                        // $('.check_server').val(id);
                     })
                 })
             </script>
