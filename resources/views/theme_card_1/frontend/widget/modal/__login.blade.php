@@ -35,7 +35,7 @@
                         <!-- <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#forgotyourpassword">Quên mật khẩu?</a> -->
                     </div>
                     <div class="panel-footer card-footer">
-                        <a class="float-right" href="/register"><i class="fa fa-share-square-o"></i> Bạn chưa có tài khoản? Đăng ký ngay</a>
+                        <a class="float-right" href="#" data-toggle="modal" data-target="#signup" data-dismiss="modal"><i class="fa fa-share-square-o"></i> Bạn chưa có tài khoản? Đăng ký ngay</a>
                         <div class="clearfix"></div>
                     </div>
                 </form>
