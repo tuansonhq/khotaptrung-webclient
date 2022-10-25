@@ -208,7 +208,7 @@
 {{--                <div class="tab-pane fade" id="data" role="tabpanel" aria-labelledby="data-tab">Data</div>--}}
             </div>
             <!-- BEGIN -->
-            <div class="p-3 bg-light rounded mb-4">
+            <div class="p-3 bg-light rounded mb-4" id="intro_text">
                 <div class="text-rounded custom-text">
                     {!! setting('sys_intro_text') !!}
                 </div>
