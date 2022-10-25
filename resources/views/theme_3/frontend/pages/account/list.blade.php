@@ -286,23 +286,9 @@
                                     </div>
                                 </div>
 
-                                {{--                            <div class="col-md-12 left-right modal-nick-padding">--}}
-                                {{--                                <div class="row marginauto">--}}
-                                {{--                                    <div class="col-12 left-right background-nick-col-top-ct">--}}
-                                {{--                                        <small>Trạng thái</small>--}}
-                                {{--                                    </div>--}}
-                                {{--                                    <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">--}}
-                                {{--                                        <select class="wide status" name="status_data">--}}
-                                {{--                                            <option value="" selected disabled>Chọn trạng thái</option>--}}
-                                {{--                                            <option value="1">Chưa bán</option>--}}
-                                {{--                                            <option value="2">Đã bán</option>--}}
-                                {{--                                        </select>--}}
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
-                                {{--                            </div>--}}
-
                                 @if(isset($auto_properties))
-                                    @foreach($auto_properties as $auto_propertie)
+                                    @if($slug == 'nick-lien-minh')
+                                        @foreach($auto_properties as $auto_propertie)
                                         @if($auto_propertie->key == 'champions')
                                             <div class="col-md-12 left-right modal-nick-padding">
                                                 <div class="row marginauto">
@@ -346,6 +332,7 @@
                                                 </div>
                                             </div>
                                         @elseif($auto_propertie->key == 'tftcompanions')
+
                                             <div class="col-md-12 left-right modal-nick-padding">
                                                 <div class="row marginauto">
                                                     <div class="col-12 left-right background-nick-col-top-ct">
@@ -402,6 +389,51 @@
                                             </div>
                                         @endif
                                     @endforeach
+                                    @elseif($slug == 'nick-ninja-school')
+                                        @foreach($auto_properties as $auto_propertie)
+                                            @if($auto_propertie->key == 'CAPTURES')
+
+                                                <div class="col-md-12 left-right modal-nick-padding">
+                                                    <div class="row marginauto">
+                                                        <div class="col-12 left-right background-nick-col-top-ct">
+                                                            <small>{{ $auto_propertie->key }}</small>
+                                                        </div>
+                                                        <div class="col-12 left-right background-nick-col-bottom-ct">
+                                                            <select class="select-2-custom account-filter-field" data-query="champions_data"  data-title="">
+                                                                <option value="">--Không chọn--</option>
+                                                                @if(isset($auto_propertie->childs))
+                                                                    @foreach($auto_propertie->childs as $child)
+                                                                        <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                                    @endforeach
+                                                                @endif
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            @else
+
+                                                <div class="col-md-12 left-right modal-nick-padding">
+                                                    <div class="row marginauto">
+                                                        <div class="col-12 left-right background-nick-col-top-ct">
+                                                            <small>{{ $auto_propertie->key }}</small>
+                                                        </div>
+                                                        <div class="col-12 left-right background-nick-col-bottom-ct">
+                                                            <select class="select-2-custom account-filter-field" data-query="tftcompanions_data"  data-title="">
+                                                                <option value="">--Không chọn--</option>
+                                                                @if(isset($auto_propertie->childs))
+                                                                    @foreach($auto_propertie->childs as $child)
+                                                                        <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                                    @endforeach
+                                                                @endif
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 @else
                                     @if(isset($dataAttribute) && count($dataAttribute) > 0)
                                         @foreach($dataAttribute as $key_val => $val)

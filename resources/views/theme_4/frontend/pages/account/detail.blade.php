@@ -35,38 +35,40 @@
 
                 </div>
             @else
+                @if(isset($game_auto_props) && count($game_auto_props))
+                    @if($slug_category == 'nick-lien-minh')
+                        @php
+                            $total_tuong = 0;
+                            $total_bieucam = 0;
+                            $total_chuongluc = 0;
+                            $total_sandau = 0;
+                            $total_linhthu = 0;
+                            $total_trangphuc = 0;
+                            $total_thongtinchung = 0;
 
-                @php
-                    $total_tuong = 0;
-                    $total_bieucam = 0;
-                    $total_chuongluc = 0;
-                    $total_sandau = 0;
-                    $total_linhthu = 0;
-                    $total_trangphuc = 0;
-                    $total_thongtinchung = 0;
-
-                    if(isset($game_auto_props) && count($game_auto_props)){
-                        foreach($game_auto_props as $game_auto_prop){
-                            if($game_auto_prop->key == 'champions'){
-                                $total_tuong = $total_tuong + 1;
-                                if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
-                                    foreach($game_auto_prop->childs as $c_child){
-                                        $total_trangphuc = $total_trangphuc + 1;
+                            if(isset($game_auto_props) && count($game_auto_props)){
+                                foreach($game_auto_props as $game_auto_prop){
+                                    if($game_auto_prop->key == 'champions'){
+                                        $total_tuong = $total_tuong + 1;
+                                        if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
+                                            foreach($game_auto_prop->childs as $c_child){
+                                                $total_trangphuc = $total_trangphuc + 1;
+                                            }
+                                        }
+                                    }elseif ($game_auto_prop->key == 'emotes'){
+                                        $total_bieucam = $total_bieucam + 1;
+                                    }elseif ($game_auto_prop->key == 'tftdamageskins'){
+                                        $total_chuongluc = $total_chuongluc + 1;
+                                    }elseif ($game_auto_prop->key == 'tftmapskins'){
+                                        $total_sandau = $total_sandau + 1;
+                                    }elseif ($game_auto_prop->key == 'tftcompanions'){
+                                        $total_linhthu = $total_linhthu + 1;
                                     }
                                 }
-                            }elseif ($game_auto_prop->key == 'emotes'){
-                                $total_bieucam = $total_bieucam + 1;
-                            }elseif ($game_auto_prop->key == 'tftdamageskins'){
-                                $total_chuongluc = $total_chuongluc + 1;
-                            }elseif ($game_auto_prop->key == 'tftmapskins'){
-                                $total_sandau = $total_sandau + 1;
-                            }elseif ($game_auto_prop->key == 'tftcompanions'){
-                                $total_linhthu = $total_linhthu + 1;
                             }
-                        }
-                    }
-                @endphp
-
+                        @endphp
+                    @endif
+                @endif
                 <nav aria-label="breadcrumb" class="data__menuacc" style="margin-top: 10px;">
 
                 </nav>
@@ -120,6 +122,7 @@
                 <!-- END: PAGE CONTENT -->
 
                 @if(isset($game_auto_props) && count($game_auto_props))
+                    @if($slug_category == 'nick-lien-minh')
                     {{-- Modal hiển thị danh sách tướng --}}
                     <div class="modal fade modal-nick-auto-lol" id="modal-champion-list" role="dialog" style="display: none;" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -140,7 +143,7 @@
                                     </div>
                                     <img class="c-close-modal" data-dismiss="modal" src="/assets/frontend/theme_1/image/son/close.svg" alt="">
                                 </div>
-    
+
                                 <div class="modal-body">
                                     <div class="row marginauto">
                                         <div class="col-12 body-modal__nick__text-error">
@@ -187,7 +190,7 @@
                                     </div>
                                     <img class="c-close-modal" data-dismiss="modal" src="/assets/frontend/theme_1/image/son/close.svg" alt="">
                                 </div>
-    
+
                                 <div class="modal-body">
                                     <div class="row marginauto">
                                         <div class="col-12 body-modal__nick__text-error">
@@ -234,7 +237,7 @@
                                     </div>
                                     <img class="c-close-modal" data-dismiss="modal" src="/assets/frontend/theme_1/image/son/close.svg" alt="">
                                 </div>
-    
+
                                 <div class="modal-body">
                                     <div class="row marginauto">
                                         <div class="col-12 body-modal__nick__text-error">
@@ -265,7 +268,7 @@
                             </div>
                         </div>
                     </div>
-
+                    @endif
                 @endif
 
             @endif
@@ -300,9 +303,9 @@
     <input type="hidden" name="slug" class="slug_category" value="{{ $slug_category }}">
 
     @if(isset($game_auto_props) && count($game_auto_props))
-
+        @if($slug_category == 'nick-lien-minh')
         <input type="hidden" name="total_tuong" class="total_tuong" value="{{ $total_tuong }}">
-        
+        @endif
     @endif
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>

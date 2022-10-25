@@ -105,148 +105,150 @@
 
 
             @if(isset($game_auto_props) && count($game_auto_props))
-                @php
-                    $total_tuong = 0;
-                    $total_bieucam = 0;
-                    $total_chuongluc = 0;
-                    $total_sandau = 0;
-                    $total_linhthu = 0;
-                    $total_trangphuc = 0;
-                    $total_thongtinchung = 0;
+                @if($slug_category == 'nick-lien-minh')
+                    @php
+                        $total_tuong = 0;
+                        $total_bieucam = 0;
+                        $total_chuongluc = 0;
+                        $total_sandau = 0;
+                        $total_linhthu = 0;
+                        $total_trangphuc = 0;
+                        $total_thongtinchung = 0;
 
-                    if(isset($game_auto_props) && count($game_auto_props)){
-                        foreach($game_auto_props as $game_auto_prop){
-                            if($game_auto_prop->key == 'champions'){
-                                $total_tuong = $total_tuong + 1;
-                                if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
-                                    foreach($game_auto_prop->childs as $c_child){
-                                        $total_trangphuc = $total_trangphuc + 1;
+                        if(isset($game_auto_props) && count($game_auto_props)){
+                            foreach($game_auto_props as $game_auto_prop){
+                                if($game_auto_prop->key == 'champions'){
+                                    $total_tuong = $total_tuong + 1;
+                                    if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
+                                        foreach($game_auto_prop->childs as $c_child){
+                                            $total_trangphuc = $total_trangphuc + 1;
+                                        }
                                     }
+                                }elseif ($game_auto_prop->key == 'emotes'){
+                                    $total_bieucam = $total_bieucam + 1;
+                                }elseif ($game_auto_prop->key == 'tftdamageskins'){
+                                    $total_chuongluc = $total_chuongluc + 1;
+                                }elseif ($game_auto_prop->key == 'tftmapskins'){
+                                    $total_sandau = $total_sandau + 1;
+                                }elseif ($game_auto_prop->key == 'tftcompanions'){
+                                    $total_linhthu = $total_linhthu + 1;
                                 }
-                            }elseif ($game_auto_prop->key == 'emotes'){
-                                $total_bieucam = $total_bieucam + 1;
-                            }elseif ($game_auto_prop->key == 'tftdamageskins'){
-                                $total_chuongluc = $total_chuongluc + 1;
-                            }elseif ($game_auto_prop->key == 'tftmapskins'){
-                                $total_sandau = $total_sandau + 1;
-                            }elseif ($game_auto_prop->key == 'tftcompanions'){
-                                $total_linhthu = $total_linhthu + 1;
                             }
                         }
-                    }
-                @endphp
-            <!-- Modal Tướng -->
-                <div class="modal fade show modal-lmht" id="modal-champ" aria-modal="true">
-                    <div class="modal-dialog modal-dialog-centered animated">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <div class="d-block d-lg-flex w-100">
-                                    <div class="modal-title w-auto">Tướng ({{ $total_tuong??0 }} tướng)</div>
-                                    <form action="" class="form-search-modal c-ml-16 c-ml-lg-0">
-                                        <input type="text" class="input-primary" placeholder="Tìm kiếm...">
-                                        <button class="btn primary d-none d-lg-inline-block" type="submit"></button>
-                                    </form>
+                    @endphp
+                <!-- Modal Tướng -->
+                    <div class="modal fade show modal-lmht" id="modal-champ" aria-modal="true">
+                        <div class="modal-dialog modal-dialog-centered animated">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="d-block d-lg-flex w-100">
+                                        <div class="modal-title w-auto">Tướng ({{ $total_tuong??0 }} tướng)</div>
+                                        <form action="" class="form-search-modal c-ml-16 c-ml-lg-0">
+                                            <input type="text" class="input-primary" placeholder="Tìm kiếm...">
+                                            <button class="btn primary d-none d-lg-inline-block" type="submit"></button>
+                                        </form>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal"></button>
                                 </div>
-                                <button type="button" class="close" data-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body px-0">
-                                <div class="text-invalid text-center">Không tìm thấy kết quả nào !</div>
-                                <div class="row">
-                                    @foreach($game_auto_props as $game_auto_prop)
-                                        @if($game_auto_prop->key == 'champions')
-                                            <div class="col-lg-2 col-6">
-                                                <div class="card card-lmht">
-                                                    <div class="card-thumb">
-                                                        <img data-src="https://backend.dev.tichhop.pro/{{ $game_auto_prop->thumb }}" alt="" class="card-thumb-image lazy">
-                                                    </div>
-                                                    <div class="card-name">
-                                                        {{ $game_auto_prop->name }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Modal Skin -->
-                <div class="modal fade show modal-lmht" id="modal-skin" aria-modal="true">
-                    <div class="modal-dialog modal-dialog-centered animated">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <div class="d-block d-lg-flex w-100">
-                                    <div class="modal-title w-auto">Trang phục ({{ $total_trangphuc }} Trang phục)</div>
-                                    <form action="" class="form-search-modal c-ml-16 c-ml-lg-0">
-                                        <input type="text" class="input-primary" placeholder="Tìm kiếm...">
-                                        <button class="btn primary d-none d-lg-inline-block" type="submit"></button>
-                                    </form>
-                                </div>
-                                <button type="button" class="close" data-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body px-0">
-                                <div class="text-invalid text-center">Không tìm thấy kết quả nào !</div>
-                                <div class="row">
-                                    @foreach($game_auto_props as $game_auto_prop)
-                                        @if($game_auto_prop->key == 'champions')
-                                            @if(isset($game_auto_prop->childs) && count($game_auto_prop->childs))
-                                                @foreach($game_auto_prop->childs as $c_child)
-                                                    <div class="col-lg-2 col-6">
-                                                        <div class="card card-lmht">
-                                                            <div class="card-thumb">
-                                                                <img data-src="{{\App\Library\MediaHelpers::media($c_child->thumb)}}" alt="Icon Skin" class="card-thumb-image lazy">
-                                                            </div>
-                                                            <div class="card-name">
-                                                                {{ $c_child->name }}
-                                                            </div>
+                                <div class="modal-body px-0">
+                                    <div class="text-invalid text-center">Không tìm thấy kết quả nào !</div>
+                                    <div class="row">
+                                        @foreach($game_auto_props as $game_auto_prop)
+                                            @if($game_auto_prop->key == 'champions')
+                                                <div class="col-lg-2 col-6">
+                                                    <div class="card card-lmht">
+                                                        <div class="card-thumb">
+                                                            <img data-src="https://backend.dev.tichhop.pro/{{ $game_auto_prop->thumb }}" alt="" class="card-thumb-image lazy">
+                                                        </div>
+                                                        <div class="card-name">
+                                                            {{ $game_auto_prop->name }}
                                                         </div>
                                                     </div>
-                                                @endforeach
+                                                </div>
                                             @endif
-                                        @endif
-                                    @endforeach
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Modal Animal -->
-                <div class="modal fade show modal-lmht" id="modal-animal" aria-modal="true">
-                    <div class="modal-dialog modal-dialog-centered animated">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <div class="d-block d-lg-flex w-100">
-                                    <div class="modal-title w-auto">Linh thú TFT ({{ $total_linhthu }} linh thú)</div>
-                                    <form action="" class="form-search-modal c-ml-16 c-ml-lg-0">
-                                        <input type="text" class="input-primary" placeholder="Tìm kiếm...">
-                                        <button class="btn primary d-none d-lg-inline-block" type="submit"></button>
-                                    </form>
+                    <!-- Modal Skin -->
+                    <div class="modal fade show modal-lmht" id="modal-skin" aria-modal="true">
+                        <div class="modal-dialog modal-dialog-centered animated">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="d-block d-lg-flex w-100">
+                                        <div class="modal-title w-auto">Trang phục ({{ $total_trangphuc }} Trang phục)</div>
+                                        <form action="" class="form-search-modal c-ml-16 c-ml-lg-0">
+                                            <input type="text" class="input-primary" placeholder="Tìm kiếm...">
+                                            <button class="btn primary d-none d-lg-inline-block" type="submit"></button>
+                                        </form>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal"></button>
                                 </div>
-                                <button type="button" class="close" data-dismiss="modal"></button>
+                                <div class="modal-body px-0">
+                                    <div class="text-invalid text-center">Không tìm thấy kết quả nào !</div>
+                                    <div class="row">
+                                        @foreach($game_auto_props as $game_auto_prop)
+                                            @if($game_auto_prop->key == 'champions')
+                                                @if(isset($game_auto_prop->childs) && count($game_auto_prop->childs))
+                                                    @foreach($game_auto_prop->childs as $c_child)
+                                                        <div class="col-lg-2 col-6">
+                                                            <div class="card card-lmht">
+                                                                <div class="card-thumb">
+                                                                    <img data-src="{{\App\Library\MediaHelpers::media($c_child->thumb)}}" alt="Icon Skin" class="card-thumb-image lazy">
+                                                                </div>
+                                                                <div class="card-name">
+                                                                    {{ $c_child->name }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
-                            <div class="modal-body px-0">
-                                <div class="text-invalid text-center">Không tìm thấy kết quả nào !</div>
-                                <div class="row">
-                                    @foreach($game_auto_props as $game_auto_prop)
-                                        @if($game_auto_prop->key == 'tftcompanions')
-                                            <div class="col-lg-2 col-6">
-                                                <div class="card card-lmht">
-                                                    <div class="card-thumb">
-                                                        <img data-src="{{\App\Library\MediaHelpers::media($game_auto_prop->thumb)}}" alt="Icon Animal" class="card-thumb-image lazy">
-                                                    </div>
-                                                    <div class="card-name">
-                                                        {{ $game_auto_prop->name }}
+                        </div>
+                    </div>
+                    <!-- Modal Animal -->
+                    <div class="modal fade show modal-lmht" id="modal-animal" aria-modal="true">
+                        <div class="modal-dialog modal-dialog-centered animated">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="d-block d-lg-flex w-100">
+                                        <div class="modal-title w-auto">Linh thú TFT ({{ $total_linhthu }} linh thú)</div>
+                                        <form action="" class="form-search-modal c-ml-16 c-ml-lg-0">
+                                            <input type="text" class="input-primary" placeholder="Tìm kiếm...">
+                                            <button class="btn primary d-none d-lg-inline-block" type="submit"></button>
+                                        </form>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body px-0">
+                                    <div class="text-invalid text-center">Không tìm thấy kết quả nào !</div>
+                                    <div class="row">
+                                        @foreach($game_auto_props as $game_auto_prop)
+                                            @if($game_auto_prop->key == 'tftcompanions')
+                                                <div class="col-lg-2 col-6">
+                                                    <div class="card card-lmht">
+                                                        <div class="card-thumb">
+                                                            <img data-src="{{\App\Library\MediaHelpers::media($game_auto_prop->thumb)}}" alt="Icon Animal" class="card-thumb-image lazy">
+                                                        </div>
+                                                        <div class="card-name">
+                                                            {{ $game_auto_prop->name }}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
+                                            @endif
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
             @endif
             {{--    Modal trả góp   --}}
 
