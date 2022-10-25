@@ -143,7 +143,7 @@
                                                                 {{ str_replace(',','.',number_format($data->price)) }}đ
                                                             @endif
                                                         </div>
-                                                    </div>          
+                                                    </div>
                                                 </div>
                                                 <div class="c-account-price-block justify-content-between d-flex">
                                                     <div class="c-account-price-title">Số tiền cần thanh toán</div>
@@ -199,7 +199,7 @@
                                                             @endforeach
                                                         @endif
                                                     @endif
-                                                                
+
                                                 </div>
                                             </div>
                                         </div>
@@ -378,7 +378,11 @@
                                                 @foreach($info as $ke => $in)
                                                     @if(in_array($in->name,config('module.acc.auto_ninja_list_tt')))
                                                         <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $in->name??'' }}:
-                                                            {{ $in->value??'' }}
+                                                            @if($in->name == 'Yên')
+                                                                {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                            @else
+                                                                {{ $in->value??'' }}
+                                                            @endif
                                                         </p>
                                                     @endif
                                                 @endforeach

@@ -139,7 +139,11 @@
                                                                                 <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                                                     <small>
                                                                                         {{ $in->name??'' }} :
-                                                                                        {{ $in->value??'' }}
+                                                                                        @if($in->name == 'Yên')
+                                                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                                        @else
+                                                                                            {{ $in->value??'' }}
+                                                                                        @endif
                                                                                     </small>
                                                                                 </div>
 

@@ -314,12 +314,17 @@
                                             @if(isset($info) && count($info))
                                                 @foreach($info as $ke => $in)
                                                     @if(in_array($in->name,config('module.acc.auto_ninja_list_tt')))
-
+                                                        @if($in->name == 'Yên')
                                                         <div class="info-attr">
                                                             {{ $in->name??'' }} :
-                                                            {{ $in->value??'' }}
+                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
                                                         </div>
-
+                                                        @else
+                                                            <div class="info-attr">
+                                                                {{ $in->name??'' }} :
+                                                                {{ $in->value??'' }}
+                                                            </div>
+                                                        @endif
                                                     @endif
                                                 @endforeach
                                             @endif

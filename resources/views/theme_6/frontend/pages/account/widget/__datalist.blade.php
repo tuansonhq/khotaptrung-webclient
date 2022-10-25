@@ -720,7 +720,11 @@
                                                             </div>
                                                             <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
                                                                 {{--                                                                                        {{ $param??null }}--}}
-                                                                {{ $in->value??'' }}
+                                                                @if($in->name == 'Yên')
+                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                @else
+                                                                    {{ $in->value??'' }}
+                                                                @endif
                                                             </div>
                                                         </div>
 

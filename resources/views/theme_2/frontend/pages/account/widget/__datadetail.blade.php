@@ -218,13 +218,23 @@
                                 @if(isset($info) && count($info))
                                     @foreach($info as $ke => $in)
                                         @if(in_array($in->name,config('module.acc.auto_ninja_tt')))
-                                        <tr>
-                                            <td><span class="link-color">{{ $in->name??'' }}</span></td>
-                                            <td>
-                                                <span>{{ $in->value??'' }}</span>
-                                            </td>
-                                            <td></td>
-                                        </tr>
+                                            @if($in->name == 'Yên')
+                                                <tr>
+                                                    <td><span class="link-color">{{ $in->name??'' }}</span></td>
+                                                    <td>
+                                                        <span>{{ str_replace(',','.',number_format($in->value??'')) }}</span>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            @else
+                                                <tr>
+                                                    <td><span class="link-color">{{ $in->name??'' }}</span></td>
+                                                    <td>
+                                                        <span>{{ $in->value??'' }}</span>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
                                         @endif
                                     @endforeach
                                 @endif
@@ -677,12 +687,22 @@
                                         @if(isset($info) && count($info))
                                             @foreach($info as $ke => $in)
                                                 @if(in_array($in->name,config('module.acc.auto_ninja_tt')))
-                                                <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
-                                                    <div class="card--attr__name fw-400 fz-13 text-center text-order">
-                                                        {{ $in->name??'' }}
-                                                    </div>
-                                                    <div class="card--attr__value fz-13 fw-500">{{ $in->value??'' }}</div>
-                                                </div>
+                                                    @if($in->name == 'Yên')
+                                                        <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                            <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                                {{ $in->name??'' }}
+                                                            </div>
+                                                            <div class="card--attr__value fz-13 fw-500">{{ str_replace(',','.',number_format($in->value??'')) }}</div>
+                                                        </div>
+                                                    @else
+                                                        <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                            <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                                {{ $in->name??'' }}
+                                                            </div>
+                                                            <div class="card--attr__value fz-13 fw-500">{{ $in->value??'' }}</div>
+                                                        </div>
+                                                    @endif
+
                                                 @endif
                                             @endforeach
                                         @endif
@@ -1066,12 +1086,22 @@
                             @if(isset($info) && count($info))
                                 @foreach($info as $ke => $in)
                                     @if(in_array($in->name,config('module.acc.auto_ninja_tt')))
-                                    <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
-                                        <div class="card--attr__name fw-400 fz-13 text-center">
-                                            {{ $server??null }}
-                                        </div>
-                                        <div class="card--attr__value fz-13 fw-500">{{ $in->value??'' }}</div>
-                                    </div>
+                                        @if($in->name == 'Yên')
+                                            <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                                <div class="card--attr__name fw-400 fz-13 text-center">
+                                                    {{ $server??null }}
+                                                </div>
+                                                <div class="card--attr__value fz-13 fw-500">{{ str_replace(',','.',number_format($in->value??'')) }}</div>
+                                            </div>
+                                        @else
+                                            <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                                <div class="card--attr__name fw-400 fz-13 text-center">
+                                                    {{ $server??null }}
+                                                </div>
+                                                <div class="card--attr__value fz-13 fw-500">{{ $in->value??'' }}</div>
+                                            </div>
+                                        @endif
+
                                     @endif
                                 @endforeach
                             @endif
