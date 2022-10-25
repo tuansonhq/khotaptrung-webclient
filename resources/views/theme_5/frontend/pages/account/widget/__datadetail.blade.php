@@ -9,7 +9,7 @@
                             <div class="tab-pane fade show active" id="tab-thumb" role="tabpanel">
                                 <div class="card-body c-p-16 c-p-lg-0 mx-n3 mx-lg-0 d-flex">
                                     @if(isset($game_auto_props) && count($game_auto_props) && $data_category->slug == 'nick-lien-minh')
-                                        <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" >
+                                        <img style="width: 100%" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" >
                                     @else
                                     <div class="swiper gallery-top d-none d-lg-block">
                                         <div class="swiper-wrapper">
