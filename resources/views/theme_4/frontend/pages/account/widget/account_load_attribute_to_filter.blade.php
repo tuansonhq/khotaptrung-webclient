@@ -45,27 +45,168 @@
 
 </div>
 
-@if(isset($dataAttribute) && count($dataAttribute) > 0)
-    @foreach($dataAttribute as $val)
-        {{--        @dd($val)--}}
-        @if($val->position == 'select')
-            <div class="col-md-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
-                <div class="input-group date date-picker">
+@if(isset($auto_properties))
+    @if(isset($slug))
+        @if($slug == 'nick-lien-minh')
+            @foreach($auto_properties as $auto_propertie)
+                @if($auto_propertie->key == 'champions')
+
+                    <div class="col-md-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
+                        <div class="input-group date date-picker">
+                            <span class="input-group-btn">
+                            <p class="input-group-btn-p">{{ $auto_propertie->name }}</p>
+                            </span>
+                            <select class="form-control c-square c-theme champions" name="champions" style="height: 40px">
+                                <option value="">--Không chọn--</option>
+                                @if(isset($auto_propertie->childs))
+                                    @foreach($auto_propertie->childs as $child)
+                                        <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
+                        <div class="input-group date date-picker">
+                            <span class="input-group-btn">
+                            <p class="input-group-btn-p">Trang phục</p>
+                            </span>
+                            <select class="form-control c-square c-theme skill" name="skill" style="height: 40px">
+                                <option value="">--Không chọn--</option>
+                                @if(isset($auto_propertie->childs))
+                                    @foreach($auto_propertie->childs as $child)
+                                        <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                @elseif($auto_propertie->key == 'tftcompanions')
+                    <div class="col-md-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
+                        <div class="input-group date date-picker">
+                            <span class="input-group-btn">
+                            <p class="input-group-btn-p">{{ $auto_propertie->name }}</p>
+                            </span>
+                            <select class="form-control c-square c-theme tftcompanions" name="tftcompanions" style="height: 40px">
+                                <option value="">--Không chọn--</option>
+                                @if(isset($auto_propertie->childs))
+                                    @foreach($auto_propertie->childs as $child)
+                                        <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+                    </div>
+
+                @elseif($auto_propertie->key == 'tftmapskins')
+
+                    <div class="col-md-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
+                        <div class="input-group date date-picker">
+                            <span class="input-group-btn">
+                            <p class="input-group-btn-p">{{ $auto_propertie->name }}</p>
+                            </span>
+                            <select class="form-control c-square c-theme tftmapskins" name="tftmapskins" style="height: 40px">
+                                <option value="">--Không chọn--</option>
+                                @if(isset($auto_propertie->childs))
+                                    @foreach($auto_propertie->childs as $child)
+                                        <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+                    </div>
+
+                @elseif($auto_propertie->key == 'tftdamageskins')
+
+                    <div class="col-md-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
+                        <div class="input-group date date-picker">
+                            <span class="input-group-btn">
+                            <p class="input-group-btn-p">{{ $auto_propertie->name }}</p>
+                            </span>
+                            <select class="form-control c-square c-theme tftdamageskins" name="tftdamageskins" style="height: 40px">
+                                <option value="">--Không chọn--</option>
+                                @if(isset($auto_propertie->childs))
+                                    @foreach($auto_propertie->childs as $child)
+                                        <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                    </div>
+
+                @endif
+            @endforeach
+        @elseif($slug == 'nick-ninja-school')
+            @foreach($auto_properties as $auto_propertie)
+                @if($auto_propertie->key == 'CAPTURES')
+
+                    <div class="col-md-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
+                        <div class="input-group date date-picker">
+                            <span class="input-group-btn">
+                            <p class="input-group-btn-p">{{ $auto_propertie->key }}</p>
+                            </span>
+                            <select class="form-control c-square c-theme tftmapskins" name="tftmapskins" style="height: 40px">
+                                <option value="">--Không chọn--</option>
+                                @if(isset($auto_propertie->childs))
+                                    @foreach($auto_propertie->childs as $child)
+                                        <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                    </div>
+
+                @else
+                    <div class="col-md-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
+                        <div class="input-group date date-picker">
+                            <span class="input-group-btn">
+                            <p class="input-group-btn-p">{{ $auto_propertie->key }}</p>
+                            </span>
+                            <select class="form-control c-square c-theme champions" name="champions" style="height: 40px">
+                                <option value="">--Không chọn--</option>
+                                @if(isset($auto_propertie->childs))
+                                    @foreach($auto_propertie->childs as $child)
+                                        <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                    </div>
+
+                @endif
+            @endforeach
+        @endif
+    @endif
+@else
+    @if(isset($dataAttribute) && count($dataAttribute) > 0)
+        @foreach($dataAttribute as $val)
+            {{--        @dd($val)--}}
+            @if($val->position == 'select')
+                <div class="col-md-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
+                    <div class="input-group date date-picker">
                     <span class="input-group-btn">
                     <p class="input-group-btn-p">{{ $val->title }}</p>
                     </span>
-                    <select class="form-control c-square c-theme select" name="attribute_id_{{ $val->id }}" style="height: 40px">
-                        <option value="">--Không chọn--</option>
-                        @foreach($val->childs as $child)
-                            <option value="{{ $child->id }}">{{ $child->title }}</option>
-                        @endforeach
-                    </select>
+                        <select class="form-control c-square c-theme select" name="attribute_id_{{ $val->id }}" style="height: 40px">
+                            <option value="">--Không chọn--</option>
+                            @foreach($val->childs as $child)
+                                <option value="{{ $child->id }}">{{ $child->title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                 </div>
 
-            </div>
-
-        @endif
-    @endforeach
+            @endif
+        @endforeach
+    @endif
 @endif
 
 

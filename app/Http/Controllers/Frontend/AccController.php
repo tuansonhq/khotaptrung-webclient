@@ -65,7 +65,14 @@ class AccController extends Controller
                 $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
                 $response_cate_data = $result_Api_cate->response_data??null;
 
-            } else {
+            }elseif ($slug == 'nick-ninja-school'){
+                $dataSendCate = array();
+                $dataSendCate['data'] = 'property_auto';
+                $dataSendCate['provider'] = 'ninjaschool';
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
+            }
+            else {
                 $dataSendCate = array();
                 $dataSendCate['data'] = 'category_detail';
                 $dataSendCate['slug'] = $slug;
