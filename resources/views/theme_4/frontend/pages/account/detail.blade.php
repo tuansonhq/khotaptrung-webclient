@@ -140,7 +140,7 @@
                                     </div>
                                     <img class="c-close-modal" data-dismiss="modal" src="/assets/frontend/theme_1/image/son/close.svg" alt="">
                                 </div>
-    
+
                                 <div class="modal-body">
                                     <div class="row marginauto">
                                         <div class="col-12 body-modal__nick__text-error">
@@ -187,7 +187,7 @@
                                     </div>
                                     <img class="c-close-modal" data-dismiss="modal" src="/assets/frontend/theme_1/image/son/close.svg" alt="">
                                 </div>
-    
+
                                 <div class="modal-body">
                                     <div class="row marginauto">
                                         <div class="col-12 body-modal__nick__text-error">
@@ -234,7 +234,7 @@
                                     </div>
                                     <img class="c-close-modal" data-dismiss="modal" src="/assets/frontend/theme_1/image/son/close.svg" alt="">
                                 </div>
-    
+
                                 <div class="modal-body">
                                     <div class="row marginauto">
                                         <div class="col-12 body-modal__nick__text-error">
@@ -302,7 +302,7 @@
     @if(isset($game_auto_props) && count($game_auto_props))
 
         <input type="hidden" name="total_tuong" class="total_tuong" value="{{ $total_tuong }}">
-        
+
     @endif
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>
