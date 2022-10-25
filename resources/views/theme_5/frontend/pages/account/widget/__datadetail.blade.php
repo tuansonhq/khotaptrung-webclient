@@ -8,22 +8,23 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="tab-thumb" role="tabpanel">
                                 <div class="card-body c-p-16 c-p-lg-0 mx-n3 mx-lg-0 d-flex">
+
                                     <div class="swiper gallery-top d-none d-lg-block">
                                         <div class="swiper-wrapper">
                                             @foreach(explode('|',$data->image_extension) as $val)
-    
+
                                                 <div class="swiper-slide">
                                                     <div class="gallery-photo" >
                                                         <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                                     </div>
                                                 </div>
-    
+
                                             @endforeach
-    
-    
+
+
                                         </div>
                                     </div>
-    
+
                                     <div class="swiper gallery-thumbs c-ml-16 c-ml-lg-0">
                                         <div class="swiper-wrapper">
                                             @foreach(explode('|',$data->image_extension) as $val)
@@ -31,7 +32,7 @@
                                                 <div class="gallery-photo d-none d-lg-block" data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false">
                                                     <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                                 </div>
-    
+
                                                 <div class="gallery-photo d-lg-none" data-fancybox="galleryNickDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
                                                     <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                                 </div>
@@ -62,7 +63,7 @@
                                 </li>
                             </ul>
                         </div>
-    
+
                         @if(isset($card_percent))
                             @if($card_percent == 0)
                                 <div class="group-btn d-flex d-lg-none" style="--data-between: 12px">
@@ -112,88 +113,127 @@
 
                         <table class="table-acc-info c-mb-24 d-table d-lg-none">
                             @if(isset($game_auto_props) && count($game_auto_props))
-                                @php
-                                    $total_tuong = 0;
-                                    $total_bieucam = 0;
-                                    $total_chuongluc = 0;
-                                    $total_sandau = 0;
-                                    $total_linhthu = 0;
-                                    $total_trangphuc = 0;
-                                    $total_thongtinchung = 0;
+                                @if($data_category->slug == 'nick-lien-minh')
+                                    @php
+                                        $total_tuong = 0;
+                                        $total_bieucam = 0;
+                                        $total_chuongluc = 0;
+                                        $total_sandau = 0;
+                                        $total_linhthu = 0;
+                                        $total_trangphuc = 0;
+                                        $total_thongtinchung = 0;
 
-                                    if(isset($game_auto_props) && count($game_auto_props)){
-                                        foreach($game_auto_props as $game_auto_prop){
-                                            if($game_auto_prop->key == 'champions'){
-                                                $total_tuong = $total_tuong + 1;
-                                                if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
-                                                    foreach($game_auto_prop->childs as $c_child){
-                                                        $total_trangphuc = $total_trangphuc + 1;
+                                        if(isset($game_auto_props) && count($game_auto_props)){
+                                            foreach($game_auto_props as $game_auto_prop){
+                                                if($game_auto_prop->key == 'champions'){
+                                                    $total_tuong = $total_tuong + 1;
+                                                    if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
+                                                        foreach($game_auto_prop->childs as $c_child){
+                                                            $total_trangphuc = $total_trangphuc + 1;
+                                                        }
                                                     }
+                                                }elseif ($game_auto_prop->key == 'emotes'){
+                                                    $total_bieucam = $total_bieucam + 1;
+                                                }elseif ($game_auto_prop->key == 'tftdamageskins'){
+                                                    $total_chuongluc = $total_chuongluc + 1;
+                                                }elseif ($game_auto_prop->key == 'tftmapskins'){
+                                                    $total_sandau = $total_sandau + 1;
+                                                }elseif ($game_auto_prop->key == 'tftcompanions'){
+                                                    $total_linhthu = $total_linhthu + 1;
                                                 }
-                                            }elseif ($game_auto_prop->key == 'emotes'){
-                                                $total_bieucam = $total_bieucam + 1;
-                                            }elseif ($game_auto_prop->key == 'tftdamageskins'){
-                                                $total_chuongluc = $total_chuongluc + 1;
-                                            }elseif ($game_auto_prop->key == 'tftmapskins'){
-                                                $total_sandau = $total_sandau + 1;
-                                            }elseif ($game_auto_prop->key == 'tftcompanions'){
-                                                $total_linhthu = $total_linhthu + 1;
                                             }
                                         }
-                                    }
-                                @endphp
-                                <tr>
-                                    <td><span class="link-color">Tướng</span></td>
-                                    <td><span>{{ $total_tuong }}</span></td>
-                                    <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-champ">Xem</a></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="link-color">Trang phục</span></td>
-                                    <td><span>{{ $total_trangphuc }}</span></td>
-                                    <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-skin">Xem</a></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="link-color">Linh thú TFT</span></td>
-                                    <td><span>{{ $total_linhthu }}</span></td>
-                                    <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-animal">Xem</a></td>
-                                </tr>
+                                    @endphp
+                                    <tr>
+                                        <td><span class="link-color">Tướng</span></td>
+                                        <td><span>{{ $total_tuong }}</span></td>
+                                        <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-champ">Xem</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="link-color">Trang phục</span></td>
+                                        <td><span>{{ $total_trangphuc }}</span></td>
+                                        <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-skin">Xem</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="link-color">Linh thú TFT</span></td>
+                                        <td><span>{{ $total_linhthu }}</span></td>
+                                        <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-animal">Xem</a></td>
+                                    </tr>
 
-                                @if(isset($data->params))
-                                    @if(isset($data->params->rank_info) && count($data->params->rank_info))
+                                    @if(isset($data->params))
+                                        @if(isset($data->params->rank_info) && count($data->params->rank_info))
 
-                                        @foreach($data->params->rank_info as $key_rank => $rank_info)
-                                            @if($rank_info->queueType == "RANKED_TFT")
+                                            @foreach($data->params->rank_info as $key_rank => $rank_info)
+                                                @if($rank_info->queueType == "RANKED_TFT")
+                                                    <tr>
+                                                        <td><span class="link-color">RANKED TFT</span></td>
+                                                        <td><span>@if($rank_info->tier == "NONE")
+                                                                    {{ $rank_info->tier }}
+                                                                @else
+                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                @endif</span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+
+                                                    <tr>
+                                                        <td><span class="link-color">RANKED SOLO</span></td>
+                                                        <td><span>
+                                                            @if($rank_info->tier == "NONE")
+                                                                    {{ $rank_info->tier }}
+                                                                @else
+                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                @endif
+                                                            </span>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
+
+                                        @endif
+                                    @endif
+                                @elseif($data_category->slug == 'nick-ninja-school')
+                                    @php
+                                        $server = null;
+                                        $params = null;
+                                        $info = array();
+                                        if (isset($data->params)){
+                                            $params = $data->params;
+                                            if (isset($params->server)){
+                                                $server = $params->server;
+                                            }
+                                            if (isset($params->info) && count($params->info)){
+                                                $info = $params->info;
+                                            }
+                                        }
+                                    @endphp
+                                    @if(isset($server))
+                                        <tr>
+                                            <td><span class="link-color">Server</span></td>
+                                            <td><span>{{ $server??null }}</span></td>
+                                        </tr>
+                                    @endif
+                                    @if(isset($info) && count($info))
+                                        @foreach($info as $ke => $in)
+                                            @if(in_array($in->name,config('module.acc.auto_ninja_tt')))
+
                                                 <tr>
-                                                    <td><span class="link-color">RANKED TFT</span></td>
-                                                    <td><span>@if($rank_info->tier == "NONE")
-                                                                {{ $rank_info->tier }}
+                                                    <td><span class="link-color">{{ $in->name??'' }}</span></td>
+                                                    <td><span>@if($in->name == 'Yên')
+                                                                {{ str_replace(',','.',number_format($in->value??'')) }}
                                                             @else
-                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                {{ $in->value??'' }}
                                                             @endif</span></td>
-                                                    <td></td>
                                                 </tr>
-                                            @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
 
-                                                <tr>
-                                                    <td><span class="link-color">RANKED SOLO</span></td>
-                                                    <td><span>
-                                                        @if($rank_info->tier == "NONE")
-                                                                {{ $rank_info->tier }}
-                                                            @else
-                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                            @endif
-                                                        </span>
-                                                    </td>
-                                                    <td></td>
-                                                </tr>
                                             @endif
                                         @endforeach
-
                                     @endif
                                 @endif
                             @else
                             @endif
-                            
+
                             @if(isset($data->groups))
                                 <?php $att_values = $data->groups ?>
                                 @foreach($att_values as $att_value)
@@ -287,122 +327,166 @@
                             </span>
                             <hr>
                             <div class="d-block d-lg-none c-pb-12"></div>
-    
+
                             <div class="text-title c-py-8 d-none d-lg-block">
                                 Thông tin acc
                             </div>
-    
-                            <table class="table-acc-info c-mb-24 d-none d-lg-table">
-                                @if(isset($game_auto_props) && count($game_auto_props))
-                                    <tr>
-                                        <td><span class="link-color">Tướng</span></td>
-                                        <td><span>{{ $total_tuong }}</span></td>
-                                        <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-champ">Xem</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="link-color">Trang phục</span></td>
-                                        <td><span>{{ $total_trangphuc }}</span></td>
-                                        <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-skin">Xem</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="link-color">Linh thú TFT</span></td>
-                                        <td><span>{{ $total_linhthu }}</span></td>
-                                        <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-animal">Xem</a></td>
-                                    </tr>
-    
-                                    @if(isset($data->params))
-                                        @if(isset($data->params->rank_info) && count($data->params->rank_info))
-    
-                                            @foreach($data->params->rank_info as $key_rank => $rank_info)
-                                                @if($rank_info->queueType == "RANKED_TFT")
-                                                    <tr>
-                                                        <td><span class="link-color">RANKED TFT</span></td>
-                                                        <td><span>@if($rank_info->tier == "NONE")
-                                                                    {{ $rank_info->tier }}
-                                                                @else
-                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                                @endif</span></td>
-                                                        <td></td>
-                                                    </tr>
-                                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
-    
-                                                    <tr>
-                                                        <td><span class="link-color">RANKED SOLO</span></td>
-                                                        <td><span>
-                                                        @if($rank_info->tier == "NONE")
-                                                                    {{ $rank_info->tier }}
-                                                                @else
-                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                                @endif
-                                                        </span>
-                                                        </td>
-                                                        <td></td>
-                                                    </tr>
-                                                @endif
-                                            @endforeach
-    
-                                        @endif
-                                    @endif
-                                @else
-                                @endif
+                            <div class="row marginauto">
+                                <div class="col-md-12 pr-0 scroll-default" style="padding-left: 0">
+                                    <table class="table-acc-info c-mb-24 d-none d-lg-table">
+                                        @if(isset($game_auto_props) && count($game_auto_props))
+                                            @if($data_category->slug == 'nick-lien-minh')
+                                                <tr>
+                                                    <td><span class="link-color">Tướng</span></td>
+                                                    <td><span>{{ $total_tuong }}</span></td>
+                                                    <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-champ">Xem</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="link-color">Trang phục</span></td>
+                                                    <td><span>{{ $total_trangphuc }}</span></td>
+                                                    <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-skin">Xem</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="link-color">Linh thú TFT</span></td>
+                                                    <td><span>{{ $total_linhthu }}</span></td>
+                                                    <td><a href="javascript:void(0)" class="link blue eye btn-show-tuong show-modal-animal">Xem</a></td>
+                                                </tr>
 
-                                @if(isset($data->groups))
-                                    <?php $att_values = $data->groups ?>
-                                    @foreach($att_values as $att_value)
-                                        @if(isset($att_value->module) && $att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                            @if(isset($att_value->parent))
-                                                    <tr>
-                                                        <td>
-                                                            <span class="link-color">
-                                                                {{ $att_value->parent->title??null }}
-                                                            </span>
-                                                        </td>
-                                                        <td>
-                                                            <span>
-                                                                {{ $att_value->title??null }}
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-                                            @endif
-                                        @endif
-                                    @endforeach
-                                @endif
-    
-                                @if(isset($data->params) && isset($data->params->ext_info))
-                                    <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
-                                    @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                        @foreach($dataAttribute as $index=>$att)
-                                            @if($att->position == 'text')
-                                                @if(isset($att->childs))
-                                                    @foreach($att->childs as $child)
-                                                        @foreach($params as $key => $param)
-                                                            @if($key == $child->id && $child->is_slug_override == null)
+                                                @if(isset($data->params))
+                                                    @if(isset($data->params->rank_info) && count($data->params->rank_info))
+
+                                                        @foreach($data->params->rank_info as $key_rank => $rank_info)
+                                                            @if($rank_info->queueType == "RANKED_TFT")
                                                                 <tr>
-                                                                    <td>
-                                                                <span class="link-color">
-                                                                    {{ $child->title??'' }}
-                                                                </span>
-                                                                    </td>
-                                                                    <td>
-                                                                <span>
-                                                                    {{ $param }}
-                                                                </span>
-                                                                    </td>
-                                                                    {{--                                                    <td>--}}
-                                                                    {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
-                                                                    {{--                                                    </td>--}}
+                                                                    <td><span class="link-color">RANKED TFT</span></td>
+                                                                    <td><span>@if($rank_info->tier == "NONE")
+                                                                                {{ $rank_info->tier }}
+                                                                            @else
+                                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                            @endif</span></td>
+                                                                    <td></td>
                                                                 </tr>
-    
+                                                            @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+
+                                                                <tr>
+                                                                    <td><span class="link-color">RANKED SOLO</span></td>
+                                                                    <td><span>
+                                                            @if($rank_info->tier == "NONE")
+                                                                                {{ $rank_info->tier }}
+                                                                            @else
+                                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                            @endif
+                                                            </span>
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
                                                             @endif
                                                         @endforeach
+
+                                                    @endif
+                                                @endif
+                                            @elseif($data_category->slug == 'nick-ninja-school')
+                                                @php
+                                                    $server = null;
+                                                    $params = null;
+                                                    $info = array();
+                                                    if (isset($data->params)){
+                                                        $params = $data->params;
+                                                        if (isset($params->server)){
+                                                            $server = $params->server;
+                                                        }
+                                                        if (isset($params->info) && count($params->info)){
+                                                            $info = $params->info;
+                                                        }
+                                                    }
+                                                @endphp
+                                                @if(isset($server))
+                                                    <tr>
+                                                        <td><span class="link-color">Server</span></td>
+                                                        <td><span>{{ $server??null }}</span></td>
+                                                    </tr>
+
+                                                @endif
+                                                @if(isset($info) && count($info))
+                                                    @foreach($info as $ke => $in)
+                                                        @if(in_array($in->name,config('module.acc.auto_ninja_tt')))
+
+                                                            <tr>
+                                                                <td><span class="link-color">{{ $in->name??'' }}</span></td>
+                                                                <td><span>@if($in->name == 'Yên')
+                                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                        @else
+                                                                            {{ $in->value??'' }}
+                                                                        @endif</span></td>
+                                                            </tr>
+
+                                                        @endif
                                                     @endforeach
                                                 @endif
                                             @endif
-                                        @endforeach
-                                    @endif
-                                @endif
-    
-                            </table>
+                                        @else
+                                        @endif
+
+                                        @if(isset($data->groups))
+                                            <?php $att_values = $data->groups ?>
+                                            @foreach($att_values as $att_value)
+                                                @if(isset($att_value->module) && $att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                    @if(isset($att_value->parent))
+                                                        <tr>
+                                                            <td>
+                                                            <span class="link-color">
+                                                                {{ $att_value->parent->title??null }}
+                                                            </span>
+                                                            </td>
+                                                            <td>
+                                                            <span>
+                                                                {{ $att_value->title??null }}
+                                                            </span>
+                                                            </td>
+                                                        </tr>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                        @endif
+
+                                        @if(isset($data->params) && isset($data->params->ext_info))
+                                            <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
+                                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                                @foreach($dataAttribute as $index=>$att)
+                                                    @if($att->position == 'text')
+                                                        @if(isset($att->childs))
+                                                            @foreach($att->childs as $child)
+                                                                @foreach($params as $key => $param)
+                                                                    @if($key == $child->id && $child->is_slug_override == null)
+                                                                        <tr>
+                                                                            <td>
+                                                                <span class="link-color">
+                                                                    {{ $child->title??'' }}
+                                                                </span>
+                                                                            </td>
+                                                                            <td>
+                                                                <span>
+                                                                    {{ $param }}
+                                                                </span>
+                                                                            </td>
+                                                                            {{--                                                    <td>--}}
+                                                                            {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
+                                                                            {{--                                                    </td>--}}
+                                                                        </tr>
+
+                                                                    @endif
+                                                                @endforeach
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @endif
+
+                                    </table>
+                                </div>
+                            </div>
+
                             @php
                                 if (isset($data->price_old)) {
                                     $sale_percent = (($data->price_old - $data->price) / $data->price_old) * 100;
@@ -478,7 +562,7 @@
                                     @endif
                                 </div>
                             @endif
-    
+
                         </div>
                     </div>
                 </div>
@@ -532,58 +616,101 @@
                             <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12 brs-8 g_mobile-content">
 
                                 @if(isset($game_auto_props) && count($game_auto_props))
-                                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
-                                        <div class="card--attr__name fw-400 fz-13 text-center text-order">
-                                            Tướng
+                                    @if($data_category->slug == 'nick-lien-minh')
+                                        <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                            <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                Tướng
+                                            </div>
+                                            <div class="card--attr__value fz-13 fw-500">{{ $total_tuong }}</div>
                                         </div>
-                                        <div class="card--attr__value fz-13 fw-500">{{ $total_tuong }}</div>
-                                    </div>
-                                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
-                                        <div class="card--attr__name fw-400 fz-13 text-center text-order">
-                                            Trang phục
+                                        <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                            <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                Trang phục
+                                            </div>
+                                            <div class="card--attr__value fz-13 fw-500">{{ $total_trangphuc }}</div>
                                         </div>
-                                        <div class="card--attr__value fz-13 fw-500">{{ $total_trangphuc }}</div>
-                                    </div>
-                                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
-                                        <div class="card--attr__name fw-400 fz-13 text-center text-order">
-                                            Linh thú TFT
+                                        <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                            <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                Linh thú TFT
+                                            </div>
+                                            <div class="card--attr__value fz-13 fw-500">{{ $total_linhthu }}</div>
                                         </div>
-                                        <div class="card--attr__value fz-13 fw-500">{{ $total_linhthu }}</div>
-                                    </div>
 
-                                    @if(isset($data->params))
-                                        @if(isset($data->params->rank_info) && count($data->params->rank_info))
+                                        @if(isset($data->params))
+                                            @if(isset($data->params->rank_info) && count($data->params->rank_info))
 
-                                            @foreach($data->params->rank_info as $key_rank => $rank_info)
-                                                @if($rank_info->queueType == "RANKED_TFT")
+                                                @foreach($data->params->rank_info as $key_rank => $rank_info)
+                                                    @if($rank_info->queueType == "RANKED_TFT")
+                                                        <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                            <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                                RANKED TFT
+                                                            </div>
+                                                            <div class="card--attr__value fz-13 fw-500">
+                                                                @if($rank_info->tier == "NONE")
+                                                                    {{ $rank_info->tier }}
+                                                                @else
+                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                        <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                            <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                                RANKED SOLO
+                                                            </div>
+                                                            <div class="card--attr__value fz-13 fw-500">
+                                                                @if($rank_info->tier == "NONE")
+                                                                    {{ $rank_info->tier }}
+                                                                @else
+                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+
+                                            @endif
+                                        @endif
+                                    @elseif($data_category->slug == 'nick-ninja-school')
+                                        @php
+                                            $server = null;
+                                            $params = null;
+                                            $info = array();
+                                            if (isset($data->params)){
+                                                $params = $data->params;
+                                                if (isset($params->server)){
+                                                    $server = $params->server;
+                                                }
+                                                if (isset($params->info) && count($params->info)){
+                                                    $info = $params->info;
+                                                }
+                                            }
+                                        @endphp
+                                        @if(isset($server))
+
+                                            <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                    Server
+                                                </div>
+                                                <div class="card--attr__value fz-13 fw-500">{{ $server??null }}</div>
+                                            </div>
+
+                                        @endif
+                                        @if(isset($info) && count($info))
+                                            @foreach($info as $ke => $in)
+                                                @if(in_array($in->name,config('module.acc.auto_ninja_tt')))
                                                     <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
                                                         <div class="card--attr__name fw-400 fz-13 text-center text-order">
-                                                            RANKED TFT
+                                                            {{ $in->name??'' }}
                                                         </div>
-                                                        <div class="card--attr__value fz-13 fw-500">
-                                                            @if($rank_info->tier == "NONE")
-                                                                {{ $rank_info->tier }}
+                                                        <div class="card--attr__value fz-13 fw-500">@if($in->name == 'Yên')
+                                                                {{ str_replace(',','.',number_format($in->value??'')) }}
                                                             @else
-                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
-                                                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
-                                                        <div class="card--attr__name fw-400 fz-13 text-center text-order">
-                                                            RANKED SOLO
-                                                        </div>
-                                                        <div class="card--attr__value fz-13 fw-500">
-                                                            @if($rank_info->tier == "NONE")
-                                                                {{ $rank_info->tier }}
-                                                            @else
-                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                            @endif
-                                                        </div>
+                                                                {{ $in->value??'' }}
+                                                            @endif</div>
                                                     </div>
                                                 @endif
                                             @endforeach
-
                                         @endif
                                     @endif
                                 @else
@@ -690,7 +817,7 @@
                                 @endif
 
                             @else
-                                <button type="button" class="btn primary" onclick="openLoginModal();">Đăng nhập</button>                
+                                <button type="button" class="btn primary" onclick="openLoginModal();">Đăng nhập</button>
                             @endif
                         </div>
                     </div>
@@ -882,60 +1009,106 @@
                     <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
 
                         @if(isset($game_auto_props) && count($game_auto_props))
-                            <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
-                                <div class="card--attr__name fw-400 fz-13 text-center">
-                                    Tướng
+                            @if($data_category->slug == 'nick-lien-minh')
+                                <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                    <div class="card--attr__name fw-400 fz-13 text-center">
+                                        Tướng
+                                    </div>
+                                    <div class="card--attr__value fz-13 fw-500">{{ $total_tuong }}</div>
                                 </div>
-                                <div class="card--attr__value fz-13 fw-500">{{ $total_tuong }}</div>
-                            </div>
-                            <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
-                                <div class="card--attr__name fw-400 fz-13 text-center">
-                                    Trang phục
+                                <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                    <div class="card--attr__name fw-400 fz-13 text-center">
+                                        Trang phục
+                                    </div>
+                                    <div class="card--attr__value fz-13 fw-500">{{ $total_trangphuc }}</div>
                                 </div>
-                                <div class="card--attr__value fz-13 fw-500">{{ $total_trangphuc }}</div>
-                            </div>
-                            <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
-                                <div class="card--attr__name fw-400 fz-13 text-center">
-                                    Linh thú TFT
+                                <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                    <div class="card--attr__name fw-400 fz-13 text-center">
+                                        Linh thú TFT
+                                    </div>
+                                    <div class="card--attr__value fz-13 fw-500">{{ $total_linhthu }}</div>
                                 </div>
-                                <div class="card--attr__value fz-13 fw-500">{{ $total_linhthu }}</div>
-                            </div>
 
-                            @if(isset($data->params))
-                                @if(isset($data->params->rank_info) && count($data->params->rank_info))
+                                @if(isset($data->params))
+                                    @if(isset($data->params->rank_info) && count($data->params->rank_info))
 
-                                    @foreach($data->params->rank_info as $key_rank => $rank_info)
-                                        @if($rank_info->queueType == "RANKED_TFT")
-                                            <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
-                                                <div class="card--attr__name fw-400 fz-13 text-center">
-                                                    RANKED TFT
+                                        @foreach($data->params->rank_info as $key_rank => $rank_info)
+                                            @if($rank_info->queueType == "RANKED_TFT")
+                                                <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                                    <div class="card--attr__name fw-400 fz-13 text-center">
+                                                        RANKED TFT
+                                                    </div>
+                                                    <div class="card--attr__value fz-13 fw-500">
+                                                        @if($rank_info->tier == "NONE")
+                                                            {{ $rank_info->tier }}
+                                                        @else
+                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                        @endif
+                                                    </div>
                                                 </div>
-                                                <div class="card--attr__value fz-13 fw-500">
-                                                    @if($rank_info->tier == "NONE")
-                                                        {{ $rank_info->tier }}
-                                                    @else
-                                                        {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                    @endif
+                                            @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                                    <div class="card--attr__name fw-400 fz-13 text-center">
+                                                        RANKED SOLO
+                                                    </div>
+                                                    <div class="card--attr__value fz-13 fw-500">
+                                                        @if($rank_info->tier == "NONE")
+                                                            {{ $rank_info->tier }}
+                                                        @else
+                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                        @endif
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
-                                            <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
-                                                <div class="card--attr__name fw-400 fz-13 text-center">
-                                                    RANKED SOLO
-                                                </div>
-                                                <div class="card--attr__value fz-13 fw-500">
-                                                    @if($rank_info->tier == "NONE")
-                                                        {{ $rank_info->tier }}
-                                                    @else
-                                                        {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
+                                            @endif
+                                        @endforeach
+
+                                    @endif
+                                @endif
+                            @elseif($data_category->slug == 'nick-ninja-school')
+                                @php
+                                    $server = null;
+                                    $params = null;
+                                    $info = array();
+                                    if (isset($data->params)){
+                                        $params = $data->params;
+                                        if (isset($params->server)){
+                                            $server = $params->server;
+                                        }
+                                        if (isset($params->info) && count($params->info)){
+                                            $info = $params->info;
+                                        }
+                                    }
+                                @endphp
+                                @if(isset($server))
+
+                                    <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                        <div class="card--attr__name fw-400 fz-13 text-center">
+                                            Server
+                                        </div>
+                                        <div class="card--attr__value fz-13 fw-500">{{ $server??null }}</div>
+                                    </div>
 
                                 @endif
+                                @if(isset($info) && count($info))
+                                    @foreach($info as $ke => $in)
+                                        @if(in_array($in->name,config('module.acc.auto_ninja_tt')))
+
+                                            <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                                <div class="card--attr__name fw-400 fz-13 text-center">
+                                                    {{ $in->name??'' }}
+                                                </div>
+                                                <div class="card--attr__value fz-13 fw-500">@if($in->name == 'Yên')
+                                                        {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                    @else
+                                                        {{ $in->value??'' }}
+                                                    @endif</div>
+                                            </div>
+
+                                        @endif
+                                    @endforeach
+                                @endif
                             @endif
+
                         @else
                         @endif
 
@@ -1036,10 +1209,10 @@
                         @endif
 
                     @else
-                        <button type="button" class="btn primary" data-dismiss="modal" onclick="openLoginModal();">Đăng nhập</button>                
+                        <button type="button" class="btn primary" data-dismiss="modal" onclick="openLoginModal();">Đăng nhập</button>
                     @endif
                 </div>
-            </form>            
+            </form>
         </div>
     </div>
 </div>
@@ -1244,6 +1417,45 @@
     </div>
 
 </div>
+
+<style>
+    .scroll-default{
+        padding-right: 4px;
+        max-height: 132px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .scroll-default:hover::-webkit-scrollbar-thumb{
+        background-color: #DCDEE9;
+    }
+
+    .scroll-default::-webkit-scrollbar-track
+    {
+        position: absolute;
+        top: 100px;
+        left: -60px;
+        background-color:  #ffffff;
+        border: none;
+    }
+
+    .scroll-default::-webkit-scrollbar
+    {
+        width: 8px;
+        border: none;
+    }
+
+    .scroll-default::-webkit-scrollbar-thumb
+    {
+        /*Màu thanh sroll*/
+        background: #BCBFD6;
+        border-radius: 100px;
+        border: none;
+        margin-left: 20px;
+        height: 20px;
+    }
+
+</style>
 
 <script>
 
