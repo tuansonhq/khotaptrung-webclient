@@ -1229,15 +1229,18 @@ class AccController extends Controller
             $dataSend = array();
             $dataSend['data'] = 'category_list_random';
             $dataSend['module'] = 'acc_category';
-            if (theme('')->theme_key == "theme_3"){
-                $dataSend['limit_item'] =  4;
-            }
+//            if (theme('')->theme_key == "theme_3"){
+//                $dataSend['limit_item'] =  4;
+//            }
 
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $response_data = $result_Api->response_data??null;
 
             if(isset($response_data) && $response_data->status == 1){
                 $data = $response_data->data;
+
+
+//                dd($data);
 
                 $html = view(''.theme('')->theme_key.'.frontend.widget.__data__nick__random')
                     ->with('data',$data)->render();
