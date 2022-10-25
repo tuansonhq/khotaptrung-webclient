@@ -89,7 +89,7 @@ li {
 .menu {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 .menu > li {
     position: relative;
@@ -97,6 +97,7 @@ li {
     display: flex;
     align-items: center;
     height: 40px;
+    margin: 0 12px;
 }
 .menu li.m1.active > a,
 .menu li.m1 > a:hover {

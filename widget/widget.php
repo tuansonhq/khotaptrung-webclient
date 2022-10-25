@@ -1363,3 +1363,18 @@ View::composer('frontend.widget.__menu__category__article_theme_5', function ($v
     return $view->with('data_category', $data)->with('data_detail', $dataDetail);
 });
 
+View::composer('frontend.widget.__list__service__mobile', function ($view) {
+
+    $data = \Cache::rememberForever('__list__service__mobile', function() {
+        $url = '/menu-category';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
