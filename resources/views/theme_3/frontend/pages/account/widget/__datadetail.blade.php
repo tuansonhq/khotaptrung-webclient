@@ -299,7 +299,11 @@
                                                                                                 </div>
                                                                                                 <div class="col-auto gallery-col-auto-right left-right">
                                                                                     <span>
-                                                                                        {{ $in->value??'' }}
+                                                                                        @if($in->name == 'Yên')
+                                                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                                        @else
+                                                                                            {{ $in->value??'' }}
+                                                                                        @endif
                                                                                     </span>
                                                                                                 </div>
                                                                                             </div>
@@ -681,7 +685,11 @@
                                                                                             <small>{{ $in->name??'' }}</small>
                                                                                         </div>
                                                                                         <div class="col-auto gallery-col-auto-right left-right d-flex justify-content-between">
-                                                                                            <span>{{ $in->value??'' }}</span>
+                                                                                            <span>@if($in->name == 'Yên')
+                                                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                                                @else
+                                                                                                    {{ $in->value??'' }}
+                                                                                                @endif</span>
                                                                                         </div>
                                                                                     </div>
 
@@ -1049,7 +1057,11 @@
                                                                             <span>{{ $in->name??'' }}</span>
                                                                         </div>
                                                                         <div class="col-auto left-right background-order-col-right-ct">
-                                                                            <small>{{ $in->value??'' }}</small>
+                                                                            <small>@if($in->name == 'Yên')
+                                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                                @else
+                                                                                    {{ $in->value??'' }}
+                                                                                @endif</small>
                                                                         </div>
                                                                     </div>
                                                                 @endif
@@ -1376,7 +1388,11 @@
                                                                     <span>{{ $in->name??'' }}</span>
                                                                 </div>
                                                                 <div class="col-auto left-right background-order-col-right-ct">
-                                                                    <small>{{ $in->value??'' }}</small>
+                                                                    <small>@if($in->name == 'Yên')
+                                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                        @else
+                                                                            {{ $in->value??'' }}
+                                                                        @endif</small>
                                                                 </div>
                                                             </div>
                                                         @endif

@@ -328,7 +328,11 @@
                                                         ?>
                                                         <div class="info-attr">
                                                             {{ $in->name??'' }} :
-                                                            {{ $in->value??'' }}
+                                                            @if($in->name == 'Yên')
+                                                                {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                            @else
+                                                                {{ $in->value??'' }}
+                                                            @endif
                                                         </div>
 
                                                     @endif
