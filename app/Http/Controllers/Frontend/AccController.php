@@ -377,7 +377,6 @@ class AccController extends Controller
                 }
             }
 
-
             if (isset($data->game_auto_props) && count($data->game_auto_props) > 0) {
                 if ($slug_category == "nick-lien-minh"){
                     $game_auto_props = $data->game_auto_props;
@@ -391,11 +390,14 @@ class AccController extends Controller
                             }
                         }
                     }
-                    $game_auto_props = $result;
+
+                }elseif ($slug_category == "nick-ninja-school"){
+
                     foreach ($game_auto_props as $key => $item){
                         $game_auto_props[$key] = array_chunk($item,$perPage);
                     }
-                }else{
+                }
+                else{
                     $game_auto_props = $data->game_auto_props;
                 }
 
