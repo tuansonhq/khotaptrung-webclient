@@ -4157,7 +4157,7 @@ td{
     width: 40px;
     background:#545454;
     left: 15px;
-    top: 40%;
+    top: 52%;
     border-radius: 100%;
     z-index: 200;
 }
@@ -4171,7 +4171,7 @@ td{
     right: 15px;
     background:  #545454;
     /*url("/assets/frontend/images/next_arrow.svg") no-repeat center center*/
-    top: 40%;
+    top: 52%;
     border-radius: 100%;
 }
 

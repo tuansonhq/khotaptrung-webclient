@@ -140,7 +140,7 @@
                 </div>
             </div>
 
-            <div class="container pt-3 fixcssacount">
+            <div class="container pt-3 fixcssacount" style="padding-left: 0; padding-right: 0">
                 <div class="row container__show">
 
                     <div class="col-md-12 left-right" id="showdetailacc">
