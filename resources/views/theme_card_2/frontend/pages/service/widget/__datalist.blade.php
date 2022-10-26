@@ -14,7 +14,7 @@
                     <div class="item_buy_list_info">
                         <div class="row">
                             <div class="col-12 item_buy_list_info_in">
-                                <span style="font-weight: bold;color: #f7b03c;font-size: 16px;">
+                                <span class="limit-1 text-limit" style="font-weight: bold;color: #2F6A7C;font-size: 16px;">
                                     {{ $item->title }}
                                 </span>
                             </div>
