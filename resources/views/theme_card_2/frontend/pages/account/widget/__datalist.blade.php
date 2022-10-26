@@ -204,7 +204,7 @@
                                             {{--                                                {{ str_replace(',','.',number_format($item->price)) }}đ--}}
                                             {{--                                            </div>--}}
 
-                                            <div class="item_buy_list_price">
+                                            <div class="item_buy_list_price text-limit limit-1">
                                                 @if(isset($data->price))
                                                     <span>{{ str_replace(',','.',number_format($data->price_old??$data->price)) }}đ </span>
                                                     {{ str_replace(',','.',number_format($data->price)) }}đ
@@ -787,7 +787,7 @@
                             <div class="item_buy_list_more">
                                 <div class="row">
                                     <div class="col-12 fixcssacount">
-                                        <div class="item_buy_list_price">
+                                        <div class="item_buy_list_price text-limit limit-1">
                                             <span>{{ str_replace(',','.',number_format($item->price_old)) }}đ </span>
                                             {{ str_replace(',','.',number_format($item->price)) }}đ
                                             {{--                                                {{ formatPrice($item->price) }}đ--}}
