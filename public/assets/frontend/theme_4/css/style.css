@@ -1323,6 +1323,8 @@ ul.atm-control  li a.active {
 
 }
 
+
+
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
     .user-manager .menu-content .wapper {
@@ -1337,6 +1339,7 @@ ul.atm-control  li a.active {
         padding-right: .8rem;
         padding-left: .8rem;
     }
+
 }
 
 /* Large Devices, Wide Screens */
