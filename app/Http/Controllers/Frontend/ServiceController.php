@@ -730,25 +730,31 @@ class ServiceController extends Controller
 
     public function getListMobile(Request $request)
     {
-        $url = '/service';
-        $method = "GET";
-
-        $dataSend = array();
-
         $url = '/menu-category';
         $method = "POST";
         $dataSend = array();
 
+        $urlTrans = '/menu-transaction';
+        $dataSendTran = array();
+
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $result_Api_Trans = DirectAPI::_makeRequest($urlTrans,$dataSendTran,$method);
         $response_data = $result_Api->response_data->data??null;
-        if($response_data){
-            return view('frontend.pages.service.list-mobile')->with('data', $response_data);
+        $response_data_Trans = $result_Api_Trans->response_data->data??null;
+
+
+
+        if(isset($response_data) && isset($response_data_Trans) ){
+            return view('frontend.pages.service.list-mobile')->with('data', $response_data)->with('data_trans', $response_data_Trans);
+
 
         }
         else{
-            $data =null;
+            $telecoms =null;
             $message = "Không thể lấy dữ liệu";
-            return view('frontend.pages.service.list-mobile')->with('data', $data)->with('message', $message);
+            return view(''.theme('')->theme_key.'.frontend.pages.storecard-v2.index')->with('telecoms', $telecoms)->with('message', $message);
         }
+
+
     }
 }
