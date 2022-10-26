@@ -7,7 +7,7 @@
 @endsection
 @section('content')
 
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/buyacc.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/buyacc.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/news.css?v={{time()}}">
 
 
