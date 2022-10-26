@@ -37,7 +37,7 @@ $(document).ready(function(){
     $('body').on('click','#btnPurchase',function(e){
         e.preventDefault();
         if (!auth_check) {
-            window.location.href =  '/login';
+            $('#modalLogin').modal('show')
             return
         }
         var selected = $('[name="selected"]').val();
@@ -58,9 +58,8 @@ $(document).ready(function(){
         $('.loading-data__thanhtoan').html('');
         $('.loading-data__thanhtoan').html(htmlloading);
 
-        const jwt =  $('meta[name="jwt').attr('content');
         var slug = $('.slug_category').val();
-        if (jwt == null || jwt == '' || jwt == undefined || jwt == 'jwt'){
+        if (!auth_check){
             var html = '';
             html += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/dich-vu/' + slug + '">Đăng nhập</a>';
             html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
@@ -69,7 +68,7 @@ $(document).ready(function(){
         }else {
 
             var html = '';
-            html += '<button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" id="d3" style="" >Xác nhận thanh toán<div class="row justify-content-center loading-data__buydichvu"></div></button>';
+            html += '<button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" id="d3" style="background: #2F6A7C;color: #ffffff" >Xác nhận thanh toán<div class="row justify-content-center loading-data__buydichvu"></div></button>';
             html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
             $('.modal-footer__data').html('');
             $('.modal-footer__data').html(html);

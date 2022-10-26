@@ -8,6 +8,7 @@
             </div>
             @if(isset($datacate) && count($datacate) > 0)
                 @foreach ($datacate as $item)
+                    @if($item->id != $id)
                     <div class="col-6 col-sm-6 col-lg-3 fixcssacount fixslidercsssev">
                         <div class="item_buy_list_in">
                             <div class="item_buy_list_img">
@@ -70,6 +71,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 @endforeach
             @else
                 <div class="col-md-12 text-left">

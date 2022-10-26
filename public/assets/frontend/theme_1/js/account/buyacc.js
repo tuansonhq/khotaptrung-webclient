@@ -41,6 +41,25 @@ $(document).ready(function () {
                 if(response.status == 1){
                     $('.loadModal__acount').modal('hide');
                     $('#successModal').modal('show');
+                    swal({
+                        title: "Mua tài khoản thành công",
+                        text: "Thông tin chi tiết tài khoản vui lòng về lịch sử đơn hàng.",
+                        type: "success",
+                        confirmButtonText: "Về lịch sử đơn hàng",
+                        showCancelButton: true,
+                        cancelButtonText: "Đóng",
+                    })
+                        .then((result) => {
+                            var slug_category = $('.slug_category').val();
+
+                            if (result.value) {
+                                window.location = '/lich-su-mua-account';
+                            } else if (result.dismiss === "Đóng") {
+                                window.location = '/mua-acc/'+ slug_category;
+                            }else {
+                                window.location = '/mua-acc/'+ slug_category;
+                            }
+                        })
                 }
                 else if (response.status == 2){
                     $('.loadModal__acount').modal('hide');
