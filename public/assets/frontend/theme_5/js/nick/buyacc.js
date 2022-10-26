@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    setDisplayLink(0, 'skin-paginate');
+    setDisplayLink(0, 'tft-paginate');
+    setDisplayLink(0, 'champion-paginate');
+
     $(document).on('click', '.buyacc',function(e){
         e.preventDefault();
         var htmlloading = '';
@@ -89,6 +93,55 @@ $(document).ready(function () {
 
     $(document).on('click', '.tinhnang',function(e){
         $('#notInbox').modal('show');
+    });
+
+    // Paginate Handle
+    function setDisplayLink (page, paginateTab) {
+        let firstPage = $(`.js-pagination-handle.${paginateTab} .page-item:first-child .page-link`).data('page');
+        let lastPage = $(`.js-pagination-handle.${paginateTab} .page-item:last-child .page-link`).data('page');
+
+        //Display none all page item
+        $(`.js-pagination-handle.${paginateTab} .page-item`).addClass('d-none');
+
+        if ( page > 2 ) {
+            $(`.js-pagination-handle.${paginateTab} .page-item-0`).removeClass('d-none');
+        }
+
+        if ( page > 3 ) {
+            $(`.js-pagination-handle.${paginateTab} .page-item.dot-first-paginate`).removeClass('d-none');
+        }
+
+        for ( let i = firstPage; i <= lastPage; i++ ) {
+            if ( i >= page - 2 && i <= page + 2 ) {
+                if ( i == page ) {
+                    $(`.js-pagination-handle.${paginateTab} .page-item`).removeClass('active');
+                    $(`.js-pagination-handle.${paginateTab} .page-item-${i}`).removeClass('d-none');
+                    $(`.js-pagination-handle.${paginateTab} .page-item-${i}`).addClass('active');
+                } else {
+                    $(`.js-pagination-handle.${paginateTab} .page-item-${i}`).removeClass('d-none');
+                }
+            }
+        }
+
+        if ( page < lastPage - 3 ) {
+            $(`.js-pagination-handle.${paginateTab} .page-item.dot-last-paginate`).removeClass('d-none');
+        }
+
+        if ( page < lastPage - 2 ) {
+            $(`.js-pagination-handle.${paginateTab} .page-item-${lastPage}`).removeClass('d-none');
+        }
+
+    }
+
+    $('.js-pagination-handle .page-item .page-link').on('click', function (e) {
+        e.preventDefault();
+        let pageSelected = $(this).data('page');
+        let paginateTab = $(this).closest('.js-pagination-handle').data('tab');
+        if ( pageSelected === undefined || pageSelected === null || pageSelected === "" ) {
+            return false;
+        }
+
+        setDisplayLink(pageSelected, paginateTab);
     });
 
 });

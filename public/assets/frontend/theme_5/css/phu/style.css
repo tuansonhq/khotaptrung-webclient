@@ -1680,3 +1680,38 @@ input[type=text].buy-card-amount-input {
 
 
 /* End Viewmore Modal */
+
+/* Auto LOL modal */
+.modal-lmht .nav-tabs .nav-item {
+    width: inherit !important;
+}
+
+.modal-lmht .modal-body:hover::-webkit-scrollbar-thumb{
+    background-color: #DCDEE9;
+}
+
+.modal-lmht .modal-body::-webkit-scrollbar-track
+{
+    position: absolute;
+    top: 100px;
+    left: -60px;
+    background-color:  #ffffff;
+    border: none;
+}
+
+.modal-lmht .modal-body::-webkit-scrollbar
+{
+    width: 8px;
+    border: none;
+}
+
+.modal-lmht .modal-body::-webkit-scrollbar-thumb
+{
+    /*Màu thanh sroll*/
+    background: #BCBFD6;
+    border-radius: 100px;
+    border: none;
+    margin-left: 20px;
+    height: 20px;
+}
+/* End Auto LOL modal */
