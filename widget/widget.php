@@ -1378,3 +1378,18 @@ View::composer('frontend.widget.__list__service__mobile', function ($view) {
     return $view->with('data',$data);
 
 });
+View::composer('frontend.widget.__menu__bottom', function ($view) {
+
+    $data = \Cache::rememberForever('__menu__bottom', function() {
+        $url = '/menu-transaction';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
