@@ -8,7 +8,7 @@
                 }
             });
         </script>
-        @if(Request::is('nap-the') || Request::is('recharge-atm'))
+        @if($item->url == '/nap-the' || $item->url == '/recharge-atm')
             @if(\App\Library\AuthCustom::check())
                 <li class="menu-bottom-item menu-bottom-item-{{$key}} px-0  {{ '/'.request()->path() == $item->url ? 'is-active' : ''}}">
                     <a href="{{$item->url}}" class="d-flex justify-content-center c-p-5 fz-13 fw-400 flex-column align-items-center">
@@ -28,7 +28,7 @@
                     </a>
                 </li>
             @endif
-        @elseif(Request::is('/'))
+        @elseif($item->url == '/')
             <li class="menu-bottom-item menu-bottom-item-{{$key}} px-0 {{ request()->path() == $item->url ? 'is-active' : ''}}" >
                 <a href="{{$item->url}}" class="d-flex justify-content-center c-p-5 fz-13 fw-400 flex-column align-items-center">
                     <span class="menu-bottom_icon menu-bottom_icon c-pt-6 c-pb-2 text-center  c-mb-4 brs-24">
