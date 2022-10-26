@@ -150,7 +150,7 @@
                                 </div>
 
                                 <div class="entries">
-                                    <div class="row fix-border fix-border-nick justify-content-center" id="showslideracc">
+                                    <div class="row fix-border fix-border-nick" id="showslideracc">
                                         <div class="body-box-loadding result-amount-loadding">
                                             <div class="d-flex justify-content-center" style="padding-top: 112px;">
                                                 <span class="pulser"></span>
