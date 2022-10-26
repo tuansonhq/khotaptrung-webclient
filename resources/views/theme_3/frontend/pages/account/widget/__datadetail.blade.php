@@ -23,31 +23,38 @@
                             <div class="col-md-12 left-right">
                                 <div class="row marginauto">
                                     <div class="col-lg-6 col-md-12 left-right">
+
                                         <div class="row marginauto">
                                             <div class="col-lg-12 col-md-12 left-right">
                                                 <div class="gallery" style="overflow: hidden">
-                                                    <div class="swiper gallery-slider swiper-container-horizontal">
-                                                        <div class="swiper-wrapper">
-                                                            @foreach(explode('|',$data->image_extension) as $val)
-                                                                <div class="swiper-slide">
-                                                                    <a  data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false" class="d-none d-lg-block ">
+                                                    @if(isset($game_auto_props) && count($game_auto_props) && $data_category->slug == 'nick-lien-minh')
+                                                        <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" style="width: 100%">
+                                                    @else
+                                                        <div class="swiper gallery-slider swiper-container-horizontal">
+                                                            <div class="swiper-wrapper">
+                                                                @foreach(explode('|',$data->image_extension) as $val)
+                                                                    <div class="swiper-slide">
+                                                                        <a  data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false" class="d-none d-lg-block ">
 
-                                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
-                                                                    </a>
-                                                                </div>
-                                                            @endforeach
-                                                        </div>
+                                                                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
+                                                                        </a>
+                                                                    </div>
+                                                                @endforeach
+                                                            </div>
 
-                                                        <div class="swiper-button-prev">
-                                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/back-detail.png" alt="">
+                                                            <div class="swiper-button-prev">
+                                                                <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/back-detail.png" alt="">
+                                                            </div>
+                                                            <div class="swiper-button-next">
+                                                                <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/pew-detail.png" alt="">
+                                                            </div>
                                                         </div>
-                                                        <div class="swiper-button-next">
-                                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/pew-detail.png" alt="">
-                                                        </div>
-                                                    </div>
+                                                    @endif
                                                 </div>
                                             </div>
+                                            @if(isset($game_auto_props) && count($game_auto_props) && $data_category->slug == 'nick-lien-minh')
 
+                                            @else
                                             <div class="col-lg-12 col-md-12 left-right gallery-thumb-nick">
                                                 <div class="gallery-thumb" style="overflow: hidden">
                                                     <div class="swiper gallery-thumbs gallery-thumbsmaxheadth swiper-container-horizontal">
@@ -64,7 +71,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            @endif
                                             <div class="col-md-12 left-right footer-detail-account-col">
                                                 <div class="row marginauto footer-detail-account">
                                                     <div class="col-lg-12 gallery-footer">
@@ -482,17 +489,21 @@
 
                     <div class="col-lg-12 col-md-12 left-right">
                         <div class="gallery" style="overflow: hidden">
+                            @if(isset($game_auto_props) && count($game_auto_props) && $data_category->slug == 'nick-lien-minh')
+                                <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" style="width: 100%">
+                            @else
                                 <div class="swiper gallery-slider-mobile swiper-container-horizontal">
-                                <div class="swiper-wrapper">
-                                    @foreach(explode('|',$data->image_extension) as $key => $val)
-                                        <div class="swiper-slide">
-                                            <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}" class="d-lg-none">
-                                                <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
-                                            </a>
-                                        </div>
-                                    @endforeach
+                                    <div class="swiper-wrapper">
+                                        @foreach(explode('|',$data->image_extension) as $key => $val)
+                                            <div class="swiper-slide">
+                                                <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}" class="d-lg-none">
+                                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
 
@@ -502,6 +513,9 @@
                                 <div class="row marginauto">
                                     <div class="col-12 left-right">
                                         <div class="row marginauto">
+                                            @if(isset($game_auto_props) && count($game_auto_props) && $data_category->slug == 'nick-lien-minh')
+
+                                            @else
                                             <div class="col-lg-12 col-md-12 left-right gallery-thumb-nick">
                                                 <div class="gallery-thumb" style="overflow: hidden">
                                                     <div class="swiper gallery-thumbs-mobile gallery-thumbsmaxheadth swiper-container-horizontal">
@@ -521,7 +535,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            @endif
                                             <div class="col-md-12 left-right footer-detail-account-col">
                                                 <div class="row marginauto footer-detail-account">
                                                     <div class="col-lg-12 gallery-footer">

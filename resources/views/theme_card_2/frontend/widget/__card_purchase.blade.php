@@ -123,7 +123,7 @@
                                     <h6 style="font-size: 18px;">Tổng tiền:</h6>
                                 </div>
                                 <div class="col-6">
-                                    <span class="total_price">0</span>
+                                    <span class="total_price">0</span> <span>VNĐ</span>
                                 </div>
                             </div>
                         </div>

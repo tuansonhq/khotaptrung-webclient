@@ -1,24 +1,23 @@
-@extends('frontend.layouts.master')
-
-@section('content')
-<div class="row">
-    <div class="left main-tintuc-left">
-        <h1 class="page_title">Đăng kí tài khoản thành viên</h1>
-        <div class="card card-default">
-            <div class="card-body">
-
+<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="panel panel-primary card">
+                <div class="modal-header panel-heading">
+                    <div class="modal-title card-title" id="myModalLabel" style="color:white;"><i class="fa fa-sign-in"></i> Đăng ký tài khoản</div>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                </div>
                 <form action="{{ url('/ajax/register') }}" method="POST" id="form-regist">
                     @csrf
-                    <div class="regist_error text-center mt-2 mb-3"></div>
+                    <div class="regist_error text-center mt-3"></div>
                     <div class="panel-body card-body">
                         <div class="form-group input-group">
+
                             <span class="input-group-addon">
                                <i class="fas fa-user"></i>
                             </span>
                             <input type="text" class="form-control" name="username" value="" placeholder="Tài khoản"  placeholder="Tên tài khoản ít nhât 4 kí tự..">
+
                         </div>
-
-
                         <div class="form-group input-group">
                             <span class="input-group-addon"><i class="fas fa-lock"></i></span>
                             <input type="password" class="form-control" name="password" placeholder="Mật khẩu" placeholder="Mật khẩu ít nhất 6 kí tự..">
@@ -27,6 +26,14 @@
                             <span class="input-group-addon"><i class="fas fa-lock"></i></span>
                             <input type="password" class="form-control" name="password_confirmation" placeholder="Xác nhận mật khẩu">
                         </div>
+
+
+                        <!-- /.col -->
+                        <div class="col-xs-12  mb-3">
+                            <button type="submit" class="btn btn-primary" id="ctrregisterbtn">
+                                <i class="fa fa-sign-in"></i> Đăng ký tài khoản
+                            </button>
+                        </div>
                         <div class="text-form text-center">
                             <p>----  Hoặc  ----</p>
                         </div>
@@ -34,25 +41,16 @@
                             <a style="" href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class=""><i class="fab fa-facebook-square" style="font-size: 33px"></i></a>
                         </div>
                     </div>
-
-
-                    <!-- /.col -->
-                    <div class="col-xs-12 text-center mb-3">
-                        <button type="submit" class="btn btn-primary" id="ctrregisterbtn">
-                            <i class="fa fa-sign-in"></i> Đăng ký tài khoản
-                        </button>
+                    <div class="panel-footer card-footer">
+                        <a class="float-right" href="#" data-toggle="modal" data-target="#signin" data-dismiss="modal"><i class="fa fa-share-square-o"></i> Bạn đã có tài khoản? Đăng nhập ngay</a>
+                        <div class="clearfix"></div>
                     </div>
                     <!-- /.col -->
                 </form>
             </div>
-
-            <div class="panel-footer">
-
-                <div class="clearfix"></div>
-            </div>
         </div>
-    </div>
 
+    </div>
 </div>
 <script>
 
@@ -96,4 +94,3 @@
         });
     });
 </script>
-@endsection

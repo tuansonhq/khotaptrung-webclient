@@ -310,8 +310,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])->name('getIndex');
 
                 });
-                Route::get('/service-mobile', [\App\Http\Controllers\Frontend\ServiceController::class , 'getListMobile'])->name('getListMobile');
-
+                Route::get('/service-mobile', function ()
+                {
+                    return view('frontend.layouts.includes.list-mobile');
+                })->name('getListMobile');
 
             });
         });

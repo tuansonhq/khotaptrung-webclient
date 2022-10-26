@@ -53,7 +53,7 @@
                             </li>
                         </ul>
                     </div>
-        
+
                     <div class="tab-content">
                         <div class="tab-pane fade active show c-p-16 c-pb-lg-0" id="gameCard" role="tabpanel">
                             <div class="buy-card-section c-mb-8 c-mb-sm-0">
@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="col-md-12 p-0">
                                     <div class="row m-0 c-mx-n4" id="cardAmountListGame">
-                
+
                                     </div>
                                 </div>
                             </div>
@@ -212,7 +212,7 @@
                                 </div>
                                 <div class="col-md-12 p-0">
                                     <div class="row m-0 c-mx-n4" id="cardAmountListMobile">
-                
+
                                     </div>
                                 </div>
                             </div>
@@ -225,7 +225,7 @@
                     <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-py-sm-8">Chọn mệnh giá</label>
                     <div class="col-md-12 p-0">
                         <div class="row m-0 c-mx-n4" id="cardAmountList">
-    
+
                         </div>
                     </div>
                 </div> --}}
@@ -268,7 +268,7 @@
                         </div>
                     @endif
                 </div>
-    
+
             </div>
         </div>
 
@@ -277,40 +277,8 @@
             <p class="d-none detailViewBlockTitle">Mô tả dịch vụ</p>
             <div class="card-body c-px-16">
                 <div class="content-desc hide detailViewBlockContent">
-                    Garena Liên Quân Mobile có nguồn gốc từ trò chơi Vương Giả Vinh Diệu (Honor of Kings) của Tencent
-                    Games phát triển và phát hành tại Trung Quốc. Vì trò chơi Vương Giả Vinh Diệu có những nhân vật
-                    trong lịch sử Trung Quốc nên không phát hành ở nước ngoài. Vì vậy Tencent Games đã thay đổi, cải
-                    thiện hình ảnh các nhân vật lên quốc tế hóa và phân phối cho Garena phát hành tại thị trường Đài
-                    Loan với tên Truyền Thuyết Đối Quyết (tiếng Trung: 傳說對決) vào ngày 14/10/2016. Về sau trò chơi được
-                    Garena phát hành ở các nước Đông Nam Á còn lại và do chính Tencent Games phát hành ở Châu Âu, Châu
-                    Mỹ và Ấn Độ.
-                    <br>
-                    <br>
-                    Vào tháng 4 năm 2017, nhà phát triển Tencent Games mua lại bản quyền hình ảnh các nhân vật siêu anh
-                    hùng đến từ công ty DC Comics, cho ra mắt ở máy chủ thử nghiệm với các vị tướng độc quyền DC như
-                    Batman, Superman, Joker, Wonder Woman, The Flash rồi phát hành rộng rãi lên các máy chủ chính thức.
-                    <br>
-                    <br>
-                    Ngày 29 tháng 7 năm 2018 được đánh dấu như là ngày kỷ niệm sinh nhật Liên Quân đầu tiên trên toàn
-                    thế giới, đồng thời đây cũng là ngày trận chung kết AWC 2018 diễn ra tại Los Angeles, Hoa Kỳ.
-                    <br>
-                    Garena Liên Quân Mobile có nguồn gốc từ trò chơi Vương Giả Vinh Diệu (Honor of Kings) của Tencent
-                    Games phát triển và phát hành tại Trung Quốc. Vì trò chơi Vương Giả Vinh Diệu có những nhân vật
-                    trong lịch sử Trung Quốc nên không phát hành ở nước ngoài. Vì vậy Tencent Games đã thay đổi, cải
-                    thiện hình ảnh các nhân vật lên quốc tế hóa và phân phối cho Garena phát hành tại thị trường Đài
-                    Loan với tên Truyền Thuyết Đối Quyết (tiếng Trung: 傳說對決) vào ngày 14/10/2016. Về sau trò chơi được
-                    Garena phát hành ở các nước Đông Nam Á còn lại và do chính Tencent Games phát hành ở Châu Âu, Châu
-                    Mỹ và Ấn Độ.
-                    <br>
-                    <br>
-                    Vào tháng 4 năm 2017, nhà phát triển Tencent Games mua lại bản quyền hình ảnh các nhân vật siêu anh
-                    hùng đến từ công ty DC Comics, cho ra mắt ở máy chủ thử nghiệm với các vị tướng độc quyền DC như
-                    Batman, Superman, Joker, Wonder Woman, The Flash rồi phát hành rộng rãi lên các máy chủ chính thức.
-                    <br>
-                    <br>
-                    Ngày 29 tháng 7 năm 2018 được đánh dấu như là ngày kỷ niệm sinh nhật Liên Quân đầu tiên trên toàn
-                    thế giới, đồng thời đây cũng là ngày trận chung kết AWC 2018 diễn ra tại Los Angeles, Hoa Kỳ.
-                    <br>
+
+                    {!! setting('sys_store_card_content') !!}
                 </div>
             </div>
             <div class="card-footer text-center">
@@ -318,7 +286,7 @@
             </div>
         </div>
         <div class="c-my-32 d-none d-lg-block">
-            @include('frontend/widget/__services__other')
+            @include('frontend.widget.__services__other')
         </div>
 
     </div>

@@ -30,6 +30,7 @@ $('#store_card').on('click', '.copySerial', function () {
     toastr.success('Sao chép thành công!');
 });
 function reply_click(clicked_id) {
+
     let html = '';
     let button = '';
     button += '<div class="form-group m-form__group row ml-1">';
@@ -127,17 +128,33 @@ function reply_click(clicked_id) {
             }
         });
     }
+
+
+
     function UpdatePrice(){
         var amount = $('input[name=amount]:checked').val(),
             quantity = $('.quantity').val();
-        sale = $("#price_" + amount).val(),
+        sale = $("#price_"+amount).val(),
             $(".render_quantity").html(quantity);
-        $(".price_supplier").html(formatNumber(amount) + " VNĐ");
-        $(".ratio").html(formatNumber(100-sale) +"%" );
-        $(".total_price").html(formatNumber(quantity * (sale * amount / 100))+" VNĐ");
+        $(".price_supplier").html(formatNumber(amount)+" VNĐ");
+        $(".price_sale").html(formatNumber((amount - (sale * amount /100 )) * quantity));
+        $(".total_price").html(formatNumber(quantity *  (sale * amount /100 )));
 
+
+        // var amount = $('input[name=amount]:checked').val(),
+        //     quantity = $('.quantity').val();
+        // sale = $("#price_" + amount).val(),
+        //     $(".render_quantity").html(quantity);
+        // $(".price_supplier").html(formatNumber(amount) + " VNĐ");
+        // $(".ratio").html(formatNumber(100-sale) +"%" );
+        // $(".price_sale").html(formatNumber(sale) +" VNĐ" );
+        // $(".total_price").html(formatNumber(quantity * (sale * amount / 100))+" VNĐ");
+        // console.log(sale)
+        // console.log(sale * amount / 100)
+        // console.log(quantity * (sale * amount / 100))
 
     }
+
 }
 
 function formatNumber(num) {
@@ -160,14 +177,26 @@ $(document).ready(function(){
             return this.defaultSelected;
         });
     });
+    // $("#render-supplier").on("click", function(){
+    //     var amount = $('input[name=amount]:checked').val(),
+    //         quantity = $('.quantity').val();
+    //     sale = $("#price_"+amount).val(),
+    //         $(".render_quantity").html(quantity);
+    //     $(".price_supplier").html(formatNumber(amount)+" VNĐ");
+    //     $(".price_sale").html(formatNumber((amount - (sale * amount /100 )) * quantity));
+    //     $(".total_price").html(formatNumber(quantity *  (sale * amount /100 )));
+    //
+    // });
     $("#render-supplier").on("click", function () {
         var amount = $('input[name=amount]:checked').val(),
             quantity = $('.quantity').val();
         sale = $("#price_" + amount).val(),
             $(".render_quantity").html(quantity);
         $(".price_supplier").html(formatNumber(amount) + " VNĐ");
+        $(".price_sale").html(formatNumber((amount - (sale * amount /100 )) * quantity));
+
         $(".ratio").html(formatNumber(100-sale) +"%" );
-        $(".total_price").html(formatNumber(quantity * (sale * amount / 100))+" VNĐ");
+        $(".total_price").html(formatNumber(quantity * (sale * amount / 100)));
 
     });
     $('#store_card').on('click','.copyPin',function(){
@@ -196,7 +225,7 @@ $(document).ready(function(){
 
         $(".price_supplier").html(formatNumber(amount) + " VNĐ");
         $(".ratio").html(formatNumber(formatNumber(100-sale) +"%" ));
-        //
+        $(".price_sale").html(formatNumber((amount - (sale * amount /100 )) * quantity));
         $(".total_price").html(formatNumber(quantity * (sale * amount / 100))+" VNĐ");
     });
 
