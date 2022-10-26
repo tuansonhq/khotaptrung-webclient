@@ -91,6 +91,13 @@ $(document).ready(function () {
 
     })
 
+    $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+        window.scrollTo(window.scrollX, window.scrollY + 1);
+    })
+    $('body').on('click', '.lm_xemthem', function () {
+        window.scrollTo(window.scrollX, window.scrollY + 1);
+    })
+
     // Paginate Handle
     function setDisplayLink (page, paginateTab) {
         let firstPage = $(`.js-pagination-handle.${paginateTab} .page-item:first-child .page-link`).data('page');

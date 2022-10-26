@@ -593,9 +593,11 @@
 
         <script>
             $('#nick-lmht-trangphuc #input-search-skins').on('input', function () {
+
                 let result_ul = $('#nick-lmht-trangphuc .sugges_list');
                 result_ul.empty();
                 result_ul.toggleClass('d-none', !$(this).val().trim());
+
                 let keyword = convertToSlug($(this).val());
                 Array.from($('#content_page_skin .item-nick-lmht__border')).forEach(function (elm) {
                     let text = convertToSlug($(elm).find('.text-theme').text().trim())
@@ -605,10 +607,13 @@
                     }
                 })
             });
+
             $('#nick-lmht-tuong #input-search-champ').on('input', function () {
+
                 let result_ul = $('#nick-lmht-tuong .sugges_list');
                 result_ul.empty();
                 result_ul.toggleClass('d-none', !$(this).val().trim());
+
                 let keyword = convertToSlug($(this).val());
                 Array.from($('#content_page_champ .item-nick-lmht__border')).forEach(function (elm) {
                     let text = convertToSlug($(elm).find('.text-theme').text().trim())
@@ -618,10 +623,13 @@
                     }
                 })
             });
+
             $('#nick-lmht-linhthu #input-search-conpanion').on('input', function () {
+
                 let result_ul = $('#nick-lmht-linhthu .sugges_list');
                 result_ul.empty();
                 result_ul.toggleClass('d-none', !$(this).val().trim());
+
                 let keyword = convertToSlug($(this).val());
                 Array.from($('#content_page_companion .item-nick-lmht__border')).forEach(function (elm) {
                     let text = convertToSlug($(elm).find('.text-theme').text().trim())
@@ -631,6 +639,7 @@
                     }
                 })
             });
+
             $('.submit-search-skins').on('click', function () {
                 let keyword = convertToSlug($('#input-search-skins').val());
                 let elm_result = $('#result-search-skin');
@@ -644,9 +653,11 @@
                         elm_result.append(new_elm);
                     }
                 });
+
                 elm_result.toggleClass('d-none', !keyword);
                 $('#tab-panel-skins').toggleClass('d-none', !!keyword);
             });
+            
             $('.submit-search-champ').on('click', function () {
                 let keyword = convertToSlug($('#input-search-champ').val());
                 let elm_result = $('#result-search-champ');
