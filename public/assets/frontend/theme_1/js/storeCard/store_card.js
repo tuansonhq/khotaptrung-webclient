@@ -4,65 +4,11 @@ $(document).ready(function(){
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
 
-    // function getTelecom (){
-    //     const url = '/store-card/get-telecom';
-    //     $.ajax({
-    //         type: "GET",
-    //         url: url,
-    //         beforeSend: function (xhr) {
-    //         },
-    //         success: function (data) {
-    //             if(data.status == 1){
-    //                 let html = '';
-    //                 if(data.data.length > 0){
-    //                     $.each(data.data,function(key,value){
-    //                         html += '<option value="'+value.key+'">'+value.key+'</option>';
-    //                     });
-    //                 }
-    //                 $('select#telecom_storecard').html(html)
-    //                 ele = $('select#telecom_storecard option').first();
-    //
-    //                 var telecom = ele.val();
-    //                 getAmount(telecom);
-    //                 $("#buy_telecom_key").on('change', function () {
-    //                     getAmount(telecom);
-    //
-    //                 });
-    //
-    //                 $("#buy_amount").on('change', function () {
-    //                     UpdatePrice();
-    //                 });
-    //
-    //                 $("#quantity").on('change', function () {
-    //                     UpdatePrice();
-    //                 });
-    //                 $('#loading-data').remove();
-    //                 $('#loading-data-total').remove();
-    //                 $('#loading-data-pay').remove();
-    //                 $('#formStoreCard').removeClass('hide');
-    //                 $('#StoreCardTotal').removeClass('hide');
-    //                 $('#StoreCardPay').removeClass('hide');
-    //             }
-    //             else{
-    //                 swal({
-    //                     title: "Có lỗi xảy ra !",
-    //                     text: data.message,
-    //                     icon: "error",
-    //                     buttons: {
-    //                         cancel: "Đóng",
-    //                     },
-    //                 })
-    //             }
-    //         },
-    //         error: function (data) {
-    //             alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!')
-    //             return;
-    //         },
-    //         complete: function (data) {
-    //
-    //         }
-    //     });
-    // }
+    $("#amount_storecard").on('change', function () {
+        let product_id = $(this).find(":selected").data('product');
+        $('.cardProductId').val(product_id);
+        UpdatePrice();
+    });
 
     ele = $('select#telecom_storecard option').first();
     var telecom_id = ele.data('id');
@@ -102,21 +48,14 @@ $(document).ready(function(){
                 return false;
             }
         });
+        $('#amount_storecard').trigger('change');
+        console.log($('#amount_storecard').val());
     }
 
     $('body').on('change','#telecom_storecard',function(){
         var telecom_id = $(this).find(":selected").data('id');
         console.log(telecom_id);
         getAmount(telecom_id);
-        UpdatePrice();
-    });
-    // getTelecom();
-    // $("#telecom_storecard").on('change', function () {
-    //     getAmount();
-    //
-    // });
-
-    $("#amount_storecard").on('change', function () {
         UpdatePrice();
     });
 
@@ -177,9 +116,12 @@ $(document).ready(function(){
     $('#form-storecard').submit(function (e) {
         e.preventDefault();
         $('#homealert').modal("show");
-        var formSubmit = $(this);
-        var url = formSubmit.attr('action');
-        var btnSubmit = formSubmit.find(':submit');
+        let formSubmit = $(this);
+        let product_id = $(this).find('.cardProductId').val();
+        let quantity = $(this).find('.quantity').val();
+        let csrf_token = $(this).find('[name=_token]').val();
+        let url = formSubmit.attr('action');
+        let btnSubmit = formSubmit.find(':submit');
         // btnSubmit.text('Đang xử lý...');
 
         $('#ok').off().on('click', function (m) {
@@ -187,7 +129,11 @@ $(document).ready(function(){
                 type: "POST",
                 url: url,
                 cache:false,
-                data: formSubmit.serialize(), // serializes the form's elements.
+                data: {
+                    id: product_id,
+                    quantity: quantity,
+                    _token: csrf_token,
+                },
                 beforeSend: function (xhr) {
 
                 },
@@ -263,7 +209,7 @@ $(document).ready(function(){
                 complete: function (data) {
                     $('span#reload').trigger('click');
                     formSubmit.trigger("reset");
-                    // btnSubmit.text('Nạp thẻ');
+                    $('#amount_storecard').trigger('change');
                     btnSubmit.prop('disabled', false);
                     UpdatePrice();
                 }
