@@ -10,25 +10,25 @@
                 <?php
                 $total = 0;
                 ?>
-                @if(isset($item->groups))
-                    <?php
-                    $att_values = $item->groups;
-                    ?>
-                    @foreach($att_values as $att_value)
-                        {{--            @dd($att_value)--}}
-                        @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                            {{--                                                        @dd($att_value->parent)--}}
-                            @if(isset($att_value->parent))
-                                @if($total < 4)
-                                    <?php
-                                    $total = $total + 1;
-                                    ?>
-                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $att_value->parent->title??null }}: {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}</p>
-                                @endif
-                            @endif
-                        @endif
-                    @endforeach
-                @endif
+{{--                @if(isset($item->groups))--}}
+{{--                    <?php--}}
+{{--                    $att_values = $item->groups;--}}
+{{--                    ?>--}}
+{{--                    @foreach($att_values as $att_value)--}}
+{{--                        --}}{{--            @dd($att_value)--}}
+{{--                        @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)--}}
+{{--                            --}}{{--                                                        @dd($att_value->parent)--}}
+{{--                            @if(isset($att_value->parent))--}}
+{{--                                @if($total < 4)--}}
+{{--                                    <?php--}}
+{{--                                    $total = $total + 1;--}}
+{{--                                    ?>--}}
+{{--                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $att_value->parent->title??null }}: {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}</p>--}}
+{{--                                @endif--}}
+{{--                            @endif--}}
+{{--                        @endif--}}
+{{--                    @endforeach--}}
+{{--                @endif--}}
                 @if(isset($slug))
                     @if($slug != "nick-lien-minh" && $slug != "nick-ninja-school")
                         <?php
@@ -54,35 +54,35 @@
                             @endforeach
                         @endif
 
-                        @if(isset($item->params) && isset($item->params->ext_info))
-                            <?php
-                            $params = json_decode(json_encode($item->params->ext_info),true);
-                            ?>
+{{--                        @if(isset($item->params) && isset($item->params->ext_info))--}}
+{{--                            <?php--}}
+{{--                            $params = json_decode(json_encode($item->params->ext_info),true);--}}
+{{--                            ?>--}}
 
-                            @if($total < 4)
-                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                    @foreach($dataAttribute as $index=>$att)
-                                        @if($att->position == 'text')
-                                            @if(isset($att->childs))
-                                                @foreach($att->childs as $child)
-                                                    @foreach($params as $key => $param)
-                                                        @if($key == $child->id && $child->is_slug_override == null)
+{{--                            @if($total < 4)--}}
+{{--                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)--}}
+{{--                                    @foreach($dataAttribute as $index=>$att)--}}
+{{--                                        @if($att->position == 'text')--}}
+{{--                                            @if(isset($att->childs))--}}
+{{--                                                @foreach($att->childs as $child)--}}
+{{--                                                    @foreach($params as $key => $param)--}}
+{{--                                                        @if($key == $child->id && $child->is_slug_override == null)--}}
 
-                                                            @if($total < 4)
-                                                                <?php
-                                                                $total = $total + 1;
-                                                                ?>
-                                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $child->title??null }}: {{ isset($param) ? \Str::limit($param,16) : null }}</p>
-                                                            @endif
-                                                        @endif
-                                                    @endforeach
-                                                @endforeach
-                                            @endif
-                                        @endif
-                                    @endforeach
-                                @endif
-                            @endif
-                        @endif
+{{--                                                            @if($total < 4)--}}
+{{--                                                                <?php--}}
+{{--                                                                $total = $total + 1;--}}
+{{--                                                                ?>--}}
+{{--                                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $child->title??null }}: {{ isset($param) ? \Str::limit($param,16) : null }}</p>--}}
+{{--                                                            @endif--}}
+{{--                                                        @endif--}}
+{{--                                                    @endforeach--}}
+{{--                                                @endforeach--}}
+{{--                                            @endif--}}
+{{--                                        @endif--}}
+{{--                                    @endforeach--}}
+{{--                                @endif--}}
+{{--                            @endif--}}
+{{--                        @endif--}}
                     @else
                         @if(isset($item->params))
                             @if($slug == "nick-lien-minh")

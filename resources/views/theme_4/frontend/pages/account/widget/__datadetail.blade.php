@@ -60,7 +60,7 @@
                                     <div class="col-auto">
                                         <span class="gallery__02__span">Danh mục:</span>
                                     </div>
-                                    <div class="col-md-8 col-8  pl-0">
+                                    <div class="col-md-8 col-6  pl-0">
                                         <a class="theashow"  href="/mua-acc/{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug }}"><span class="gallery__02__span">{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}</span></a>
                                     </div>
                                 </div>
