@@ -19,10 +19,10 @@
                         </div>
 
                         <div class="swiper-button-prev">
-                            <i class="fas fa-chevron-left"></i>
+                            <i style="color: #ffffff;position: absolute;top: 13px;left: 13px" class="fas fa-chevron-left"></i>
                         </div>
                         <div class="swiper-button-next">
-                            <i class="fas fa-chevron-right"></i>
+                            <i style="color: #ffffff;position: absolute;top: 13px;left: 13px" class="fas fa-chevron-right"></i>
                         </div>
                     </div>
 
@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="col-lg-6 col-md-12 gallery__right">
-            <div class="row gallery__row fixcssacount">
+            <div class="row gallery__row" style="padding-left: 0;padding-right: 0">
                 <div class="col-md-12">
                     <div class="row gallery__01">
                         <div class="col-md-12 gallery__01__row">

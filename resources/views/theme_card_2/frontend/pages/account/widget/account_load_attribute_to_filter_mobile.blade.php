@@ -14,8 +14,6 @@
     <div class="input-group">
         <span class="input-group-addon" >Giá tiền</span>
 
-        {{--                                        {{Form::select('price',array(''=>'-- Chọn giá tiền --')+config('module.acc.price'),old('price', isset($data['price']) ? $data['price'] : null),array('class'=>'form-control price'))}}--}}
-
         <select type="text" name="price-mobile price-mobile" class="form-control">
             <option value="">Chọn giá tiền</option>
             <option value="0-50000">Dưới 50K</option>
@@ -177,7 +175,7 @@
         </div>
         <div class="col-md-6" style="margin-top: 8px">
             <div class="row justify-content-end">
-                <div class="col-auto">
+                <div class="col-auto w-100">
                     <div class="input-group">
                         <span class="input-group-addon">Sắp xếp theo</span>
                         <select type="text" name="sort_by_mobile" class="form-control sort_by_mobile">

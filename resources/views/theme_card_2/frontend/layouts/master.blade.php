@@ -88,7 +88,7 @@
     @include('frontend.layouts.includes.header')
     <div class="ajax-loader"></div>
     <div id="main">
-        <div class="container">
+        <div class="container pl-0 pr-0">
             @yield('content')
         </div>
     </div>
