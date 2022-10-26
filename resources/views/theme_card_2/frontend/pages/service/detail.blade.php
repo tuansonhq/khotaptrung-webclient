@@ -6,7 +6,7 @@
     <meta name="robots" content="index,follow" />
 @endsection
 @section('content')
-
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/theme_main.css">
     @if($data == null)
         <div class="item_buy">
             <div class="container pt-3" style="padding-bottom: 600px">

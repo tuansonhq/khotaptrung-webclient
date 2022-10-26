@@ -90,7 +90,9 @@
 
 
                         foreach ($game_auto_props as $key => $item) {
+
                             if ($key == 'champions') {
+
                                 foreach ($game_auto_props['champions'] as $arr_champ) {
                                     $total_tuong += count($arr_champ);
                                 }
