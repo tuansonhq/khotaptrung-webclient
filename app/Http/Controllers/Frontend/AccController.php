@@ -369,9 +369,17 @@ class AccController extends Controller
             $slug_category = $data->category->slug;
 
             $game_auto_props =  null;
+            $perPage = 24;
+
+            if (isset(theme('')->theme_key)){
+                if (theme('')->theme_key == "theme_1"){
+                    $perPage = 60;
+                }
+            }
+
 
             if (isset($data->game_auto_props) && count($data->game_auto_props) > 0) {
-                if ($slug_category == "nick-ninja-school"){
+                if ($slug_category == "nick-lien-minh"){
                     $game_auto_props = $data->game_auto_props;
                     $result = array();
 
@@ -385,7 +393,7 @@ class AccController extends Controller
                     }
                     $game_auto_props = $result;
                     foreach ($game_auto_props as $key => $item){
-                        $game_auto_props[$key] = array_chunk($item,24);
+                        $game_auto_props[$key] = array_chunk($item,$perPage);
                     }
                 }else{
                     $game_auto_props = $data->game_auto_props;
