@@ -91,7 +91,7 @@ $(document).ready(function () {
 
     })
 
-    // Xử lý paginate
+    // Paginate Handle
     function setDisplayLink (page, paginateTab) {
         let firstPage = $(`.js-pagination-handle.${paginateTab} .page-item:first-child .page-link`).data('page');
         let lastPage = $(`.js-pagination-handle.${paginateTab} .page-item:last-child .page-link`).data('page');
