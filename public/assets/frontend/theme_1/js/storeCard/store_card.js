@@ -118,7 +118,7 @@ $(document).ready(function(){
         $('#homealert').modal("show");
         let formSubmit = $(this);
         let product_id = $(this).find('.cardProductId').val();
-        let quantity = $(this).find('.quantity').val();
+        let quantity = $(this).find('#quantity').val();
         let csrf_token = $(this).find('[name=_token]').val();
         let url = formSubmit.attr('action');
         let btnSubmit = formSubmit.find(':submit');
@@ -178,6 +178,15 @@ $(document).ready(function(){
                     else if(data.status == 0){
                         swal({
                             title: "Mua thẻ thất bại !",
+                            text: data.message,
+                            icon: "error",
+                            buttons: {
+                                cancel: "Đóng",
+                            },
+                        })
+                    } else if(data.status == 2){
+                        swal({
+                            title: "Giao dịch đang chờ xử lý !",
                             text: data.message,
                             icon: "error",
                             buttons: {
