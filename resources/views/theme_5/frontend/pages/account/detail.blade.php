@@ -117,7 +117,9 @@
 
                         if(isset($game_auto_props) && count($game_auto_props)){
                             foreach($game_auto_props as $game_auto_prop){
+
                                 if($game_auto_prop->key == 'champions'){
+
                                     $total_tuong = $total_tuong + 1;
                                     if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
                                         foreach($game_auto_prop->childs as $c_child){
