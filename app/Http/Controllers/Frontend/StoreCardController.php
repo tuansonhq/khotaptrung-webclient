@@ -146,12 +146,11 @@ class StoreCardController extends Controller
         try{
             $url = '/store-card';
             $method = "POST";
-            $dataSend = array();
-            $dataSend['token'] = session()->get('jwt');
-            $dataSend['telecom_key'] = $request->telecom;
-            $dataSend['amount'] = $request->amount;
-            $dataSend['quantity'] = $request->quantity;
-            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $val = array();
+            $val['id'] = (int)$request->id;
+            $val['quantity'] = $request->quantity;
+            $val['token'] = session()->get('jwt');
+            $result_Api = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
             $data = $result_Api->response_data??null;
             if(isset($data) && $data->status == 1){
                 return response()->json([
@@ -165,10 +164,15 @@ class StoreCardController extends Controller
                     'message'=>"unauthencation"
                 ]);
             }
-            else{
+            elseif ( isset($data) && $data->status == 0 ) {
                 return response()->json([
                     'status' => 0,
                     'message'=>$data->message??"Không thể lấy dữ liệu"
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 2,
+                    'message'=>$data->message??"Giao dịch đang chờ xử lý, vui lòng liên hệ QTV để xác thực giao dịch."
                 ]);
             }
         }
