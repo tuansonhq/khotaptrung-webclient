@@ -2,32 +2,35 @@
 @section('meta_robots')
     <meta name="robots" content="noindex,nofollow" />
 @endsection
+
 @section('content')
-
-    <div class="account">
-        <div class="account_content">
-            <div class="container">
-                @include('frontend.layouts.includes.menu_profile')
-                <div class="account_sidebar_content">
-                    <div class="account_sidebar_content_title">
-                        <p>DỊCH VỤ ĐÃ MUA</p>
-                        <div class="account_sidebar_content_line"></div>
-                    </div>
-                    <div class="booking_detail"></div>
-                    <div class="account_content_transaction_history">
+    <div id="profile" style="margin-top: 15px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-md-12 col-sm-12 col-12">
+                    @include('frontend.layouts.includes.menu_profile')
+                </div>
+                <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                    <div class="content-profile" style="min-height: 468px;">
+                        <h3>Dịch vụ đã mua</h3>
+                        <hr class="lines">
+                        <div class="booking_detail"></div>
                         <form class="form-charge account_content_transaction_history__v2 account_service_history__v2">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <span >Mã ID</span>
-                                        <input type="text" name="id" class="form-control id" placeholder="Mã ID">
+                            <div class="row mb-3">
 
+
+                                <div class="col-lg-4 col-md-6 col-sm-12 col-12" style="margin-bottom: 8px">
+                                    <div class="input-group m-input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text">Mã ID</span>
+                                        </div>
+                                        <input type="text" name="id" class="form-control id" placeholder="Mã ID">
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <span >-- Trạng thái --</span>
+                                <div class="col-lg-4 col-md-6 col-sm-12 col-12" style="margin-bottom: 8px">
+                                    <div class="input-group m-input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text">Trạng thái</span>
+                                        </div>
                                         <select type="text" name="status" class="form-control status">
                                             <option value="">Chọn trạng thái</option>
                                             <option value="0">Đã hủy</option>
@@ -37,101 +40,73 @@
                                             <option value="4">Hoàn tất</option>
                                             <option value="5">Thất bại</option>
                                         </select>
-
                                     </div>
                                 </div>
 
-                                <div class="col-md-4 data__service__cate">
-                                    @if(isset($datacate) && count($datacate) > 0)
-                                        <div class="input-group">
-                                            <span >Loại dịch vụ</span>
-                                            <select name="key" class="form-control key">
-                                                <option value="">-- Tất cả các dịch vụ --</option>
-                                                @foreach($datacate as $val)
-                                                    <option value="{{ $val->slug }}">{{ $val->title }}</option>
-                                                @endforeach
-                                            </select>
+                                <div class="col-lg-4 col-md-6 col-sm-12 col-12" style="margin-bottom: 8px">
+                                    <div class="input-group m-input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text">Trạng thái</span>
                                         </div>
-                                    @endif
+                                        <select name="key" class="form-control key">
+                                            <option value="">-- Tất cả các dịch vụ --</option>
+                                            @foreach($datacate as $val)
+                                                <option value="{{ $val->slug }}">{{ $val->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
 
 
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <div class="input-group date" id="transaction_history_start">
-                                        <span class="input-group-btn input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </span>
-                                            <input type="text" class="form-control input-group-addon started_at" name="started_at" autocomplete="off" placeholder="Từ ngày">
+
+
+                                <div class="col-lg-4 col-md-6 col-sm-12 col-12" style="margin-bottom: 8px">
+                                    <div class="form-group m-form__group">
+                                        <div class="input-group m-input-group date date-picker" data-rtl="false">
+                                            <div class="input-group-prepend"><span class="input-group-text">Từ ngày</span></div>
+                                            <input type="text" class="form-control c-square c-theme started_at" id="m_datepicker_1" name="started_at" autocomplete="off" data-date-format="dd/mm/yyyy" placeholder="Từ ngày" value="">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <div class="input-group date" id="transaction_history_end">
-                                        <span class="input-group-btn input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                        </span>
-                                            <input type="text" class="form-control input-group-addon ended_at" name="ended_at" autocomplete="off" placeholder="Đến ngày">
+                                <div class="col-lg-4 col-md-6 col-sm-12 col-12" style="margin-bottom: 8px">
+                                    <div class="form-group m-form__group">
+                                        <div class="input-group m-input-group date date-picker"
+                                             data-date-format="dd/mm/yyyy" data-rtl="false">
+                                            <div class="input-group-prepend"><span
+                                                    class="input-group-text">Đến ngày</span></div>
+                                            <input type="text" class="form-control c-square c-theme ended_at" id="m_datepicker_1" name="ended_at" autocomplete="off" data-date-format="dd/mm/yyyy" placeholder="Đến ngày" value="">
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
-                            <div class="row">
+
+                            <div class="row mb-4">
                                 <div class="col-md-4">
-                                    <button class="btn c-theme-btn c-btn-square m-b-10 btn-timkiem" type="submit" style="position: relative"><i class="fas fa-search"></i>
+
+                                    <button type="submit" class="btn btn-timkiem btn btn-success btn-sm m-btn m-btn--custom" style="position: relative">
                                         Tìm kiếm
-                                        <div class="row justify-content-center loading-data__timkiem">
 
-                                        </div>
                                     </button>
+                                    <a style="font-family: 'Nunito', sans-serif" class="btn btn-danger btn-sm m-btn m-btn--custom btn-all" href="javascript:void(0)">Tất cả</a>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-hom-nay mb-2 mr-2" style="position: relative">
-                                        <i class="fas fa-calendar-alt"></i> Hôm nay
-                                        <div class="row justify-content-center loading-data__timkiem">
 
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-hom-qua mb-2 mr-2" style="position: relative">
-                                        <i class="fas fa-calendar-alt"></i> Hôm qua
-                                        <div class="row justify-content-center loading-data__timkiem">
 
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-thang-nay mb-2 mr-2" style="position: relative">
-                                        <i class="fas fa-calendar-alt"></i> Tháng này
-                                        <div class="row justify-content-center loading-data__timkiem">
-
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0)" class="loaddingtatca btn c-btn-square m-b-10 c-theme-btn btn-all mb-2 mr-2" style="position: relative">
-                                        <i class="fas fa-calendar-alt"></i> Tất cả
-                                        <div class="row justify-content-center loading-data__timkiem">
-
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
                         </form>
-
-                        <div id="data_service_history" style="position: relative">
-                            <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">
-                                <div class="d-flex justify-content-center">
-                                    <span class="pulser"></span>
+                        <div id="data_service_history" class="card-table" style="position: relative">
+                            <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">
+                                <div class="loading-wrap mb-3">
+                                    <span class="modal-loader-spin mb-3"></span>
                                 </div>
                             </div>
                             @include('frontend.pages.service.widget.__datalogs')
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     @if ($content = Session::get('content'))
         <div class="modal fade" id="noticeAfterModal" style="display: none;" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -173,5 +148,8 @@
     <input type="hidden" name="ended_at_data" class="ended_at_data">
     <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/service-history.js"></script>
+
 @endsection
+
+
 

@@ -1,33 +1,10 @@
+let auth_check = false;
 $(document).ready(function(){
     const csrf_token = $('meta[name="csrf-token"]').attr('content');
     const token =  $('meta[name="jwt"]').attr('content');
     function getInfo(){
         const url = '/ajax/user/account_info';
-        // if(token == 'undefined' || token == null || token =='' || token == undefined){
-        //     if($(window).width() > 992){
-        //
-        //         $('.box-loading').hide();
-        //         $('.box-logined').show();
-        //         $('.box-account').hide();
-        //         // đăng nhập, đăng ký
-        //         let html = "";
-        //         html += '<a href="#" data-toggle="modal" data-target="#modal-login" style="text-transform: uppercase;font-weight: bold">';
-        //         html += '<i class="fa fa-user mr-1" aria-hidden="true"></i> Đăng nhập';
-        //         html += '</a>';
-        //         html += ' <span class="mr-2 ml-2">/</span>';
-        //         html += '<a href="#" data-toggle="modal" data-target="#modal-register" style="text-transform: uppercase;font-weight: bold">';
-        //         html += '<i class="fa fa-lock mr-1" aria-hidden="true"></i> Đăng ký';
-        //         html += '</a>';
-        //         $('.box-logined').html(html);
-        //
-        //     }else {
-        //         $('.box-loading').hide();
-        //         $('.box-account-mobile').show();
-        //         $('.box-account-mobile').html('<a href="#" data-toggle="modal" data-target="#modal-login"><i class="fas fa-user"></i></a>')
-        //     }
-        //     $('meta[name="jwt"]').attr('content','');
-        //     return;
-        // }
+
         $.ajax({
             type: "POST",
             url: url,
@@ -72,7 +49,7 @@ $(document).ready(function(){
                     alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
                 }
                 if(data.status == true){
-
+                    auth_check = true;
                     $('.box-loading').hide();
                     $('.box-logined').hide();
                     $('.box-account').show();

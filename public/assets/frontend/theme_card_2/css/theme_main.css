@@ -2270,7 +2270,7 @@ footer{
 .item_play_category a{
     float: left;
     width: 100%;
-    background: #fb236a;
+    background: #2F6A7C;
     color: #ffffff;
     text-align: center;
     -webkit-border-radius: 8px;
@@ -2278,7 +2278,7 @@ footer{
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
     border-radius: 8px;
-    border: 2px solid #fb236a;
+    border: 2px solid #2F6A7C;
     padding: 11px 0;
     margin-top: 10px;
     font-size: 20px;
@@ -4854,7 +4854,7 @@ td{
 .emply-btns > a, .emply-btns > button {
     float: left;
     width: 100%;
-    background: #fb236a;
+    background: #2F6A7C;
     font-size: 13px;
     color: #ffffff;
     text-align: center;
@@ -4863,7 +4863,7 @@ td{
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
     border-radius: 8px;
-    border: 2px solid #fb236a;
+    border: 2px solid #2F6A7C;
     padding: 11px 0;
     margin-top: 10px;
 }
