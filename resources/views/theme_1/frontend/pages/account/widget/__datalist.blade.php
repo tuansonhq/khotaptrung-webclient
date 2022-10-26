@@ -279,7 +279,7 @@
                                                                 {{ str_replace(',','.',number_format($data->price)) }}đ
                                                             @endif
                                                         </div>
-                                                    </div>          
+                                                    </div>
                                                 </div>
                                                 <div class="c-account-price-block justify-content-between d-flex">
                                                     <div class="c-account-price-title">Số tiền cần thanh toán</div>
@@ -295,7 +295,7 @@
                                             <div role="tabpanel" class="tab-pane fade tabinfov2{{ $item->randId }}" id="infov2{{ $item->randId }}">
                                                 <p class="c-tab-header-account">Chi tiết tài khoản #{{ $item->randId }}</p>
                                                 <div class="table-nick-properties">
-                                                    
+
                                                     @if(isset($item->groups))
                                                         <?php $att_values = $item->groups ?>
                                                         @foreach($att_values as $att_value)
@@ -335,7 +335,7 @@
                                                             @endforeach
                                                         @endif
                                                     @endif
-                                                                
+
                                                 </div>
                                             </div>
                                         </div>
@@ -717,15 +717,27 @@
                                             @if(isset($info) && count($info))
                                                 @foreach($info as $ke => $in)
                                                     @if(in_array($in->name,config('module.acc.auto_ninja_list_tt')))
-                                                        <div class="row" style="margin: 0 auto;width: 100%">
-                                                            <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                                {{ $in->name??'' }} :
+                                                        @if($in->name == 'Yên')
+                                                            <div class="row" style="margin: 0 auto;width: 100%">
+                                                                <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                                    {{ $in->name??'' }} :
+                                                                </div>
+                                                                <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                    {{--                                                                                        {{ $param??null }}--}}
+                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                </div>
                                                             </div>
-                                                            <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                {{--                                                                                        {{ $param??null }}--}}
-                                                                {{ $in->value??'' }}
+                                                        @else
+                                                            <div class="row" style="margin: 0 auto;width: 100%">
+                                                                <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                                    {{ $in->name??'' }} :
+                                                                </div>
+                                                                <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                    {{--                                                                                        {{ $param??null }}--}}
+                                                                    {{ $in->value??'' }}
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        @endif
 
                                                     @endif
                                                 @endforeach

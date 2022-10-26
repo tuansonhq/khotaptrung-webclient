@@ -366,7 +366,11 @@
                                                                 <span class="span__dangky">{{ $in->name??'' }}</span>
                                                             </div>
                                                             <div class="col-md-1 col-2 pl-0 pr-0">
-                                                                <span class="span__dangky">{{ $in->value??'' }}</span>
+                                                                <span class="span__dangky">@if($in->name == 'Yên')
+                                                                        {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                    @else
+                                                                        {{ $in->value??'' }}
+                                                                    @endif</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -671,7 +675,11 @@
 
                                                                     <tr>
                                                                         <td style="width:50%">{{ $in->name??'' }}:</td>
-                                                                        <td class="text-danger" style="font-weight: 700">{{ $in->value??'' }}</td>
+                                                                        <td class="text-danger" style="font-weight: 700">@if($in->name == 'Yên')
+                                                                                {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                            @else
+                                                                                {{ $in->value??'' }}
+                                                                            @endif</td>
                                                                     </tr>
 
                                                                 @endif

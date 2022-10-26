@@ -220,7 +220,11 @@
 
                                                 <tr>
                                                     <td><span class="link-color">{{ $in->name??'' }}</span></td>
-                                                    <td><span>{{ $in->value??'' }}</span></td>
+                                                    <td><span>@if($in->name == 'Yên')
+                                                                {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                            @else
+                                                                {{ $in->value??'' }}
+                                                            @endif</span></td>
                                                 </tr>
 
                                             @endif
@@ -409,7 +413,11 @@
 
                                                             <tr>
                                                                 <td><span class="link-color">{{ $in->name??'' }}</span></td>
-                                                                <td><span>{{ $in->value??'' }}</span></td>
+                                                                <td><span>@if($in->name == 'Yên')
+                                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                        @else
+                                                                            {{ $in->value??'' }}
+                                                                        @endif</span></td>
                                                             </tr>
 
                                                         @endif
@@ -695,7 +703,11 @@
                                                         <div class="card--attr__name fw-400 fz-13 text-center text-order">
                                                             {{ $in->name??'' }}
                                                         </div>
-                                                        <div class="card--attr__value fz-13 fw-500">{{ $in->value??'' }}</div>
+                                                        <div class="card--attr__value fz-13 fw-500">@if($in->name == 'Yên')
+                                                                {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                            @else
+                                                                {{ $in->value??'' }}
+                                                            @endif</div>
                                                     </div>
                                                 @endif
                                             @endforeach
@@ -1085,7 +1097,11 @@
                                                 <div class="card--attr__name fw-400 fz-13 text-center">
                                                     {{ $in->name??'' }}
                                                 </div>
-                                                <div class="card--attr__value fz-13 fw-500">{{ $in->value??'' }}</div>
+                                                <div class="card--attr__value fz-13 fw-500">@if($in->name == 'Yên')
+                                                        {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                    @else
+                                                        {{ $in->value??'' }}
+                                                    @endif</div>
                                             </div>
 
                                         @endif
