@@ -65,7 +65,14 @@ class AccController extends Controller
                 $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
                 $response_cate_data = $result_Api_cate->response_data??null;
 
-            } else {
+            }elseif ($slug == 'nick-ninja-school'){
+                $dataSendCate = array();
+                $dataSendCate['data'] = 'property_auto';
+                $dataSendCate['provider'] = 'ninjaschool';
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
+            }
+            else {
                 $dataSendCate = array();
                 $dataSendCate['data'] = 'category_detail';
                 $dataSendCate['slug'] = $slug;
@@ -343,7 +350,7 @@ class AccController extends Controller
             $method = "GET";
             $dataSend = array();
             $dataSend['data'] = 'acc_detail';
-            $dataSend['id'] = \App\Library\Helpers::decodeItemID($slug);
+                $dataSend['id'] = \App\Library\Helpers::decodeItemID($slug);
 
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $response_data = $result_Api->response_data??null;
@@ -352,25 +359,43 @@ class AccController extends Controller
 
         }
 
-        if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
+        if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)) {
             $data = $response_data->data;
 
             if ($data->status == 0){
-
                 return view('frontend.pages.error.404');
             }
 
             $slug_category = $data->category->slug;
 
-            $game_auto_props =null;
+            $game_auto_props =  null;
 
-            if (isset($data->game_auto_props) && count($data->game_auto_props) > 0){
-                $game_auto_props = $data->game_auto_props;
+            if (isset($data->game_auto_props) && count($data->game_auto_props) > 0) {
+                if ($slug_category == "nick-ninja-school"){
+                    $game_auto_props = $data->game_auto_props;
+                    $result = array();
+
+                    foreach ($game_auto_props as $element) {
+                        $result[$element->key][] = $element;
+                        if ($element->key == 'champions' && isset($element->childs) && count($element->childs)) {
+                            foreach ($element->childs as $skin) {
+                                $result['skins_custom'][] = $skin;
+                            }
+                        }
+                    }
+                    $game_auto_props = $result;
+                    foreach ($game_auto_props as $key => $item){
+                        $game_auto_props[$key] = array_chunk($item,24);
+                    }
+                }else{
+                    $game_auto_props = $data->game_auto_props;
+                }
+
             }
 
             return view('frontend.pages.account.detail')->with('data',$data)->with('game_auto_props',$game_auto_props)->with('slug',$slug)->with('slug_category',$slug_category);
         }
-        else{
+        else  {
 
             $data = null;
             $message = $response_cate_data->message??"Không thể lấy dữ liệu hoặc tài khoản không tồn tại.";
@@ -380,8 +405,6 @@ class AccController extends Controller
                 ->with('data',$data);
 
         }
-
-
     }
 
     public function getShowDetail(Request $request,$slug){
@@ -401,7 +424,9 @@ class AccController extends Controller
                 $data = $response_data->data;
 
                 $data_category = $data->category;
+
                 $dataAttribute = $data_category->childs;
+
                 $card_percent = (int)setting('sys_card_setting');
 
                 $game_auto_props =null;
@@ -459,7 +484,7 @@ class AccController extends Controller
                 $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
 
                 $htmlslider = view('frontend.pages.account.widget.__related')
-                    ->with('data',$data)->render();
+                    ->with('data',$data)->with('slug',$slug)->render();
 
                 return response()->json([
                     'dataslider' => $htmlslider,

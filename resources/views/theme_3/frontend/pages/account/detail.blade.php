@@ -128,106 +128,6 @@
 
         </section>
 
-        <div class="modal fade login show order-modal" id="successModal" aria-modal="true">
-
-            <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
-                <!--        <div class="image-login"></div>-->
-                <div class="modal-content">
-                    <div class="modal-header p-0" style="border-bottom: 0">
-                        <div class="row marginauto modal-header-order-ct">
-                            <div class="col-12 span__donhang text-center" style="position: relative">
-                                <span>Mua tài khoản thành công</span>
-                                <img class="img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="modal-body modal-body-order-ct">
-                        <div class="row marginauto">
-
-                            <div class="col-md-12 left-right image-success">
-                                <div class="row marginauto justify-content-center">
-                                    <div class="col-auto">
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/group.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-
-                            {{-- <div class="col-md-12 left-right title-tra-gop-success">
-                                <div class="row body-title-detail-ct">
-                                    <div class="col-md-12 text-left body-title-detail-col-ct">
-                                        <div class="row marginauto">
-                                            <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                <span>Tài khoản</span>
-                                            </div>
-                                            <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick  data-tai-khoan">
-                                               <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="">
-                                               <img class="lazy " src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="" id="getCopyemail">
-                                            </div>
-                                            <div class="col-md-12 left-right">
-                                                <div class="row marginauto title-tra-gop-success-row">
-                                                    <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                        <span>Mật khẩu</span>
-                                                    </div>
-                                                    <div class="col-md-12 left-right body-title-detail-select-ct taikhoan-success-nick data-password">
-                                                        <input id="password" readonly autocomplete="off" class="input-defautf-ct" type="password" value="" placeholder="******">
-                                                        <img class="lazy img-copy" src="/assets/frontend/theme_3/image/nick/copy.png" id="getpass" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 left-right data-child">
-
-                                            </div>
-
-                                            <div class="col-md-12 left-right data-ttbxung">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
-
-                            <div class="col-md-12 left-right title-tra-gop text-center data-time">
-                            </div>
-
-                            {{-- <div class="col-md-12 left-right padding-order-16-ct">
-                                <div class="row marginauto">
-                                    <div class="col-md-12 left-right background-order-ct">
-                                        <div class="row marginauto title-success-thanh-cong">
-                                            <div class="col-md-12 left-right">
-                                                <span>Để tránh các trường hợp xấu xảy ra, quý khách vui lòng thêm thông tin (Email và Số điện thoại) Để đảm bảo không có vấn đề sau khi giao dịch tại shop! Xin cảm ơn!</span>
-                                            </div>
-                                            <div class="col-md-12 left-right padding-order-ct">
-                                                <span>Để tránh các trường hợp xấu xảy ra, quý khách vui lòng thêm thông tin (Email và Số điện thoại) Để đảm bảo không có vấn đề sau khi giao dịch tại shop! Xin cảm ơn!</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div> --}}
-
-                            <div class="col-md-12 left-right">
-                                <div class="row marginauto justify-content-center gallery-right-footer">
-                                    <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                        <button type="button" class="button-success-secondary">
-                                            <a href="/" style="display: block">Về trang chủ</a>
-                                        </button>
-                                    </div>
-                                    <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                        <button type="button" class="button-success-primary">
-                                            <a href="/lich-su-mua-account" style="display: block">Lịch sử mua Acc</a>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <input type="hidden" name="previous" class="input-back-step-two" value="Trang trước"/>
 
 
@@ -237,6 +137,7 @@
     <fieldset id="fieldset-two"></fieldset>
 
     @if(isset($game_auto_props) && count($game_auto_props))
+        @if($slug_category == 'nick-lien-minh')
         @php
             $total_tuong = 0;
             $total_bieucam = 0;
@@ -379,6 +280,7 @@
                 </div>
             </div>
         </div>
+        @endif
     @endif
     <input type="hidden" name="slug" class="slug" value="{{ $slug }}">
     <input type="hidden" name="slug" class="slug_category" value="{{ $slug_category }}">

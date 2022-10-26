@@ -5,7 +5,8 @@
     </div>
     <div class="section-content">
         <div class="article-list mx-n2">
-            @forelse($data as $val)
+            @foreach($data as $val)
+
                 @if ($val->id === $data_article->id)
                     @continue
                 @endif
@@ -34,7 +35,7 @@
                     </div>
                 </a>
                 @else
-                    <a href="/tin-tuc/{{ @$val->slug }}" class="scale-thumb">
+                <a href="/tin-tuc/{{ @$val->slug }}" class="scale-thumb">
                         <div class="card">
                             <div class="card-body c-p-16 c-p-lg-8">
                                 <div class="article-thumb c-mb-16 c-mb-lg-0">
@@ -56,10 +57,9 @@
                             </div>
                         </div>
                     </a>
-                    @endif
+                @endif
             </div>
-            @empty
-            @endforelse
+            @endforeach
         </div>
     </div>
 </section>

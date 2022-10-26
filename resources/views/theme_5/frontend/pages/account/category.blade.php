@@ -19,7 +19,7 @@
         <div class="head-mobile">
             <a href="/service-mobile" class="link-back"></a>
 
-            <h1 class="head-title text-title">Shop Account</h1>
+            <p class="head-title text-title">Shop Account</p>
 
             <a href="/" class="home"></a>
         </div>

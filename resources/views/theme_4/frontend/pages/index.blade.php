@@ -41,7 +41,7 @@
                 <div class="special-text">
                     {!! setting('sys_intro_text') !!}
                 </div>
-                <button id="btn-expand-content" class="expand-button">
+                <button  class="expand-button">
                     Xem thêm nội dung
                 </button>
 
@@ -49,7 +49,7 @@
 
             <style type="text/css">
 
-                @media        only screen and (max-width: 580px) {
+                @media       only screen and (max-width: 580px) {
                     .hidetext {
                         max-height: 220px;
                         overflow: hidden;

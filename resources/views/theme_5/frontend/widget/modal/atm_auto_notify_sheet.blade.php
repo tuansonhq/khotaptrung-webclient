@@ -3,9 +3,9 @@
     <div class="layer"></div>
     <div class="content-bottom-sheet bar-slide" >
         <div class="sheet-header">
-            <h2 class="text-title center">
+            <p class="text-title center">
                 Tạo lệnh nạp thành công
-            </h2>
+            </p>
             <label for="check-bottom-sheet" class="close"></label>
         </div>
         <div class="sheet-body c-p-0">

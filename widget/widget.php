@@ -645,6 +645,20 @@ View::composer('frontend.widget.__menu_profile', function ($view) {
     return $view->with('data',$data);
 
 });
+View::composer('frontend.widget.__menu_profile_header', function ($view) {
+    $data = \Cache::rememberForever('__menu_profile_header', function() {
+        $url = '/menu-profile';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
 
 View::composer('frontend.widget.__menu_profile_desktop', function ($view) {
     $data = \Cache::rememberForever('__menu_profile_desktop', function() {

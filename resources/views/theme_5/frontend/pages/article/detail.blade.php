@@ -26,7 +26,7 @@
         <div class="head-mobile">
             <a href="/tin-tuc" class="link-back"></a>
 
-            <h1 class="head-title text-title">Chi tiết tin tức</h1>
+            <p class="head-title text-title">Chi tiết tin tức</p>
 
             <a href="/" class="home"></a>
         </div>
@@ -35,9 +35,9 @@
             <div class="col-12 col-lg-8">
                 <div class=" --custom p-3 mb-3 content-detail">
                     <article id="article--detail">
-                        <h3 class="article--title">
+                        <h1 class="article--title">
                             {{ @$data->title }}
-                        </h3>
+                        </h1>
                         <div class="article--info">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/time.svg"
                                  class="c-mr-6"><span>{{ formatDateTime($data->created_at) }}</span>

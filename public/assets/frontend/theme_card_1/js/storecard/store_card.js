@@ -250,16 +250,16 @@ $(document).ready(function(){
                         icon: "error",
                         buttons: {
 
-                            // charge: {
-                            //     text: "Nạp tiền",
-                            //     value: "charge",
-                            // },
+                            charge: {
+                                text: "Nạp tiền",
+                                value: "/nap-the",
+
+                            },
                             cancel: "Đóng",
                         },
+
                     })
-                    //     .then((value) => {
-                    //     window.location.href = "https://thegarenagiare.com/nap-the";
-                    // });
+
                 }
                 else{
                     $('#modal_pay').modal('hide');

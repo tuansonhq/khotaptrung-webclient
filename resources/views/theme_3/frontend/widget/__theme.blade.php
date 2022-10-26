@@ -47,8 +47,8 @@
     </script>
 @endif
 
-@if(Session::has('check_login'))
-
+@if(Request::is('login'))
+    @if(!\App\Library\AuthCustom::check())
     <script>
         $(document).ready(function () {
             let width = $(window).width();
@@ -64,9 +64,8 @@
             }, 0);
         });
     </script>
-    @php
-        Session::pull('check_login');
-    @endphp
+
+@endif
 @endif
 
 

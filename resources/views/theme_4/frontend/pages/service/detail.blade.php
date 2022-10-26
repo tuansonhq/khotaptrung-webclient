@@ -176,7 +176,7 @@
                                                     @php
                                                         $index = $index + 1;
                                                     @endphp
-                                                    <input type="text" required name="customer_data{{$i}}" class="form-control t14 invalid" placeholder="{{$send_name[$i]}}" value="">
+                                                    <input type="text" required name="customer_data{{$i}}" class="form-control t14 " placeholder="{{$send_name[$i]}}" value="">
                                                     <div class="error-message-text"></div>
                                                 @elseif($send_type[$i]==4)
                                                     @php
@@ -187,7 +187,7 @@
                                                     @php
                                                         $index = $index + 1;
                                                     @endphp
-                                                    <input type="password" required class="form-control invalid" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
+                                                    <input type="password" required class="form-control " name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
                                                     <div class="error-message-text"></div>
                                                 @elseif($send_type[$i]==6)
                                                     @php
@@ -1049,8 +1049,16 @@
         else {
             var s_price = data["price"];
             var s_discount = data["discount"];
+            discount = s_discount[0];
+            for (let i = 0; i< s_price.length; i++){
 
-            discount = s_discount[server];
+                if (i > 0){
+                    if (price >= s_price[i]){
+                        discount = s_discount[i];
+                    }
+                }
+            }
+            // discount = s_discount;
             total = price * discount;
         }
 

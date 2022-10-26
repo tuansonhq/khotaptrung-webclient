@@ -22,11 +22,11 @@
                         <div class="item-blog-img">
                             @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
                                 <a href="{{ setting('sys_zip_shop') }}/{{ $item->slug }}">
-                                    <img src="{{ $item->image }}" class="img-fluid" alt="">
+                                    <img src="{{\App\Library\MediaHelpers::media($item->image)}}" class="img-fluid" alt="">
                                 </a>
                             @else
                                 <a href="/tin-tuc/{{ $item->slug }}">
-                                    <img src="{{ $item->image }}" class="img-fluid" alt="">
+                                    <img src="{{\App\Library\MediaHelpers::media($item->image)}}" class="img-fluid" alt="">
                                 </a>
                             @endif
                         </div>

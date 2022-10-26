@@ -69,7 +69,7 @@
                         @endif
                             {{ csrf_field() }}
                             <div class="modal-header">
-                                <h2 class="modal-title center">Xác nhận thanh toán</h2>
+                                <p class="modal-title center">Xác nhận thanh toán</p>
                                 <button type="button" class="close" data-dismiss="modal"></button>
                             </div>
                             <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
@@ -190,7 +190,7 @@
                                         <button type="submit" class="btn primary">Thanh toán</button>
                                     @endif
                                 @else
-                                    <button type="button" class="btn primary" data-dismiss="modal" onclick="openLoginModal();">Đăng nhập</button>                
+                                    <button type="button" class="btn primary" data-dismiss="modal" onclick="openLoginModal();">Đăng nhập</button>
                                 @endif
                             </div>
                         </form>
@@ -250,57 +250,93 @@
                                         @endforeach
                                     @endif
                                     @if(isset($item->params))
-                                        @if(isset($item->params->rank_info))
+                                        @if($data->slug == "nick-lien-minh")
+                                            @if(isset($item->params->rank_info))
 
-                                            @foreach($item->params->rank_info as $rank_info)
+                                                @foreach($item->params->rank_info as $rank_info)
 
-                                                @if($rank_info->queueType == "RANKED_TFT")
-                                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                    @if($rank_info->queueType == "RANKED_TFT")
+                                                    @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                        <?php
+                                                        $total = $total + 1;
+                                                        ?>
+                                                        <div class="info-attr">
+                                                            Rank :
+                                                            @if($rank_info->tier == "NONE")
+                                                                {{ $rank_info->tier }}
+                                                            @else
+                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                            @endif
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+
+                                            @if(isset($item->params->count))
+                                                @if(isset($item->params->count->champions))
                                                     <?php
                                                     $total = $total + 1;
                                                     ?>
                                                     <div class="info-attr">
-                                                        Rank :
-                                                        @if($rank_info->tier == "NONE")
-                                                            {{ $rank_info->tier }}
-                                                        @else
-                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                        @endif
+                                                        Số tướng :
+                                                        {{ $item->params->count->champions }}
                                                     </div>
+
                                                 @endif
-                                            @endforeach
-                                        @endif
-{{--                                        @if(isset($item->params->rank_level))--}}
-{{--                                            <?php--}}
-{{--                                            $total = $total + 1;--}}
-{{--                                            ?>--}}
-{{--                                            <div class="info-attr">--}}
-{{--                                                Level :--}}
-{{--                                                {{ $item->params->rank_level }}--}}
-{{--                                            </div>--}}
-{{--                                        @endif--}}
-                                        @if(isset($item->params->count))
-                                            @if(isset($item->params->count->champions))
+                                                @if(isset($item->params->count->skins))
+                                                    <?php
+                                                    $total = $total + 1;
+                                                    ?>
+                                                    <div class="info-attr">
+                                                        Trang phục :
+                                                        {{ $item->params->count->skins }}
+                                                    </div>
+
+                                                @endif
+                                            @endif
+                                        @elseif($data->slug == "nick-ninja-school")
+
+                                            @php
+                                                $server = null;
+                                                $info = array();
+
+                                                $params = $item->params;
+                                                if (isset($params->server)){
+                                                    $server = $params->server;
+                                                }
+                                                if (isset($params->info) && count($params->info)){
+                                                    $info = $params->info;
+                                                }
+                                            @endphp
+                                            @if(isset($server))
                                                 <?php
                                                 $total = $total + 1;
                                                 ?>
-                                                <div class="info-attr">
-                                                    Số tướng :
-                                                    {{ $item->params->count->champions }}
-                                                </div>
+                                                    <div class="info-attr">
+                                                        Server :
+                                                        {{ $server??'' }}
+                                                    </div>
+
 
                                             @endif
-                                            @if(isset($item->params->count->skins))
-                                                <?php
-                                                $total = $total + 1;
-                                                ?>
-                                                <div class="info-attr">
-                                                    Trang phục :
-                                                    {{ $item->params->count->skins }}
-                                                </div>
 
+                                            @if(isset($info) && count($info))
+                                                @foreach($info as $ke => $in)
+                                                    @if(in_array($in->name,config('module.acc.auto_ninja_list_tt')))
+                                                        <?php
+                                                        $total = $total + 1;
+                                                        ?>
+                                                        <div class="info-attr">
+                                                            {{ $in->name??'' }} :
+                                                            {{ $in->value??'' }}
+                                                        </div>
+
+                                                    @endif
+                                                @endforeach
                                             @endif
+
                                         @endif
+
                                     @endif
                                     @if(isset($item->params) && isset($item->params->ext_info))
                                         <?php
