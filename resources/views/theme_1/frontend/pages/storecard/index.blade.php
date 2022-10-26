@@ -45,12 +45,13 @@
                            <div class="mb-3">
                               <select name="amount" id="amount_storecard" class="server-filter form-control t14" style="">
                                  <option value="" selected disabled hidden>Vui lòng chọn mệnh giá</option>
-                                 @foreach($data_menh_gia as $key => $val)
-                                    @foreach ($val as $option)
-                                       <option data-telecom="{{ $key }}" value="{{ $option }}" hidden>{{ str_replace(',','.',number_format($option)) }} VNĐ</option>
+                                 @foreach($data_menh_gia as $key_telecome => $val)
+                                    @foreach ($val as $key_product => $option)
+                                       <option data-product="{{ $key_product }}" data-telecom="{{ $key_telecome }}" value="{{ $option }}" hidden>{{ str_replace(',','.',number_format($option)) }} VNĐ</option>
                                     @endforeach
                                  @endforeach
                               </select>
+                              <input type="hidden" name="id" class="cardProductId">
                            </div>
                            <div class="mb-2 control-label bb"><strong>Số lượng:</strong></div>
                            <div class="mb-3">

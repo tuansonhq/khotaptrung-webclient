@@ -26,7 +26,6 @@ class StoreCardController extends Controller
         if(isset($result_Api)){
             
             $data_api = $result_Api->response_data->data->product->data;
-            // dd($data_api);
             $data_nha_mang = [];
             $data_menh_gia = [];
 
@@ -49,7 +48,7 @@ class StoreCardController extends Controller
                         if ($attribute->product_attribute_value_able->id == $key) {
                             foreach ($item->product_attribute as $attribute) {
                                 if ($attribute->attribute->idkey == "menh_gia_thecao") {
-                                    $array_menhgia[] = $attribute->product_attribute_value_able->title;
+                                    $array_menhgia[$item->id] = $attribute->product_attribute_value_able->title;
                                 }
                             }
                         }
