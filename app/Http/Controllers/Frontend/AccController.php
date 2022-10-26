@@ -52,13 +52,112 @@ class AccController extends Controller
     public function getList(Request $request,$slug){
         $url = '/get-category/'.$slug;
         $method = "GET";
+
         $val = array();
+        $val['page'] = $request->page;
         $data = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
         $response_data = $data->response_data;
-        if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
-            $data = $response_data->data;
 
-            return view('frontend.pages.account.list')->with('data',$data);
+//        if ($request->ajax()){
+//
+//            $page = $request->page;
+//            if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
+//
+//                $data = $response_cate_data->data;
+//
+//                $dataAttribute = $data->childs;
+//                $val = array();
+//                $val['page'] = $page;
+//
+//                $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+//                $response_data = $result_Api->response_data??null;
+//
+//                if(isset($response_data) && $response_data->status == 1){
+//
+////                    if ($request->filled('champions_data') || $request->filled('skill_data') || $request->filled('tftcompanions_data') || $request->filled('tftdamageskins_data') || $request->filled('tftmapskins_data'))  {
+////                        $items = $response_data->data;
+////                        $items = $items->items;
+////                    }else{
+////
+////                    }
+//                    $items = $response_data->data;
+//                    if (isset($items->status) && $items->status == 0){
+//                        return response()->json([
+//                            'status' => 0,
+//                            'message' => 'Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !',
+//                        ]);
+//                    }
+//
+//                    $nick_total = 0;
+//                    if (isset($items->total)){
+//                        $nick_total = $items->total;
+//                    }
+//
+//                    $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
+//
+//                    $items->setPath($request->url());
+//
+//                    $balance = 0;
+//
+//                    if (AuthCustom::check()){
+//                        $balance = AuthCustom::user()->balance;
+//                    }
+//
+//                    $html = view('frontend.pages.account.widget.__datalist')
+//                        ->with('data',$data)
+//                        ->with('nick_total',$nick_total)
+//                        ->with('balance',$balance)
+//                        ->with('dataAttribute',$dataAttribute)
+//                        ->with('items',$items)->render();
+//
+//                    if (count($items) == 0 && $page == 1){
+//                        return response()->json([
+//                            'status' => 0,
+//                            'message' => 'Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !',
+//                        ]);
+//                    }
+//                    return response()->json([
+//                        'status' => 1,
+//                        'data' => $html,
+//                        'nick_total' => $nick_total,
+//                        'message' => 'Load du lieu thanh cong.',
+//                        'last_page'=>$items->lastPage()
+//                    ]);
+//                }
+//                else{
+//                    return response()->json([
+//                        'status' => 0,
+//                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
+//                    ]);
+//                }
+//            }
+//            else{
+//                return response()->json([
+//                    'status' => 0,
+//                    'message'=>$response_cate_data->message??"Không thể lấy dữ liệu"
+//                ]);
+//            }
+//        }
+
+
+
+
+        if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
+            $data = $response_data->data->product;
+            $data_filter = $response_data->data;
+            $per_page = 0;
+            $total = 0;
+            if (isset($data->product->total)){
+                $total = $data->product->total;
+            }
+
+            if (isset($data->product->to)){
+                $per_page = $data->product->to;
+            }
+
+            $data = new LengthAwarePaginator($data->data, $data->total , $data->per_page, $data->current_page,$data->data);
+            $data->setPath($request->url());
+            return view('frontend.pages.account.list')->with('data',$data)->with('total',$total)->with('per_page',$per_page)->with('data_filter',$data_filter);
         }
         else{
 
