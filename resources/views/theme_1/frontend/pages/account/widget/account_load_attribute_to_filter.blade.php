@@ -23,9 +23,9 @@
 </div>
 
 
-@if(isset($data_filter->attribute_set))
+@if(isset($dataAttribute))
     @php
-        $attribute_set = $data_filter->attribute_set;
+        $attribute_set = $dataAttribute;
     @endphp
     @if(isset($attribute_set->attribute_group) && count($attribute_set->attribute_group))
         @php

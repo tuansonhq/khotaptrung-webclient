@@ -11,29 +11,20 @@ $(document).ready(function(){
 
         $('li').removeClass('active');
         $(this).parent().addClass('active');
-
-        var id_data = $('.id_data').val();
-        var title_data = $('.title_data').val();
-        var price_data = $('.price_data').val();
-        var status_data = $('.status_data').val();
-        var select_data = $('.select_data').val();
-        var sort_by_data = $('.sort_by_data').val();
-
-        //LM
-
-        var champions_data = $('.champions_data').val();
-        var skill_data = $('.skill_data').val();
-        var tftcompanions_data = $('.tftcompanions_data').val();
-        var tftdamageskins_data = $('.tftdamageskins_data').val();
-        var tftmapskins_data = $('.tftmapskins_data').val();
-
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data)
+        var html = '';
+        html += '<div class="body-box-loadding result-amount-loadding">';
+        html += '<div class="d-flex justify-content-center">';
+        html += '<span class="pulser"></span>';
+        html += '</div>';
+        html += '</div>';
+        $('#account_data').empty().html(html);
+        loadDataAccountList(page)
         // loadDataAccountList(page);
     });
 
     loadDataAccountList()
 
-    function loadDataAccountList(page,id_data = '',title_data = '',price_data = '',status_data = '',select_data = '',sort_by_data = '',champions_data = '',skill_data = '',tftcompanions_data = '',tftdamageskins_data = '',tftmapskins_data = '') {
+    function loadDataAccountList(page) {
 
         let slug = $('.slug').val();
 
@@ -48,17 +39,7 @@ $(document).ready(function(){
             url: url,
             data: {
                 page:page,
-                id_data:id_data,
-                title_data:title_data,
-                price_data:price_data,
-                status_data:status_data,
-                select_data:select_data,
-                sort_by_data:sort_by_data,
-                champions_data:champions_data,
-                skill_data:skill_data,
-                tftcompanions_data:tftcompanions_data,
-                tftdamageskins_data:tftdamageskins_data,
-                tftmapskins_data:tftmapskins_data
+
             },
             beforeSend: function (xhr) {
 
