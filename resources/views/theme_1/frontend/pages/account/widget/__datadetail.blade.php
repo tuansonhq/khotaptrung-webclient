@@ -393,6 +393,85 @@
                                         @endif
                                     @endforeach
                                 @endif
+                            @elseif($data_category->slug == 'nick-ngoc-rong-online')
+
+                                @php
+                                    $server = null;
+                                    $params = null;
+                                    $info = array();
+                                    if (isset($data->params)){
+                                        $params = $data->params;
+                                        if (isset($params->server)){
+                                            $server = $params->server;
+                                        }
+                                        if (isset($params->info) && count($params->info)){
+                                            $info = $params->info;
+                                        }
+                                    }
+                                @endphp
+                                @if(isset($server))
+                                    <div class="col-md-12">
+                                        <div class="row gallery__03">
+                                            <div class="col-md-12 gallery__01__row">
+                                                <div class="row">
+                                                    <div class="col-auto span__dangky__auto">
+                                                        <i class="fas fa-angle-right"></i>
+                                                    </div>
+                                                    <div class="col-md-4 col-4 pl-0">
+                                                        <span class="span__dangky">Server </span>
+                                                    </div>
+                                                    <div class="col-md-6 col-6 pl-0">
+                                                        <span class="span__dangky">{{ $server??null }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                                @if(isset($info) && count($info))
+                                    @foreach($info as $ke => $in)
+                                        @if(in_array($in->name,config('module.acc.auto_nro_tt')))
+                                            @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                <div class="col-md-12">
+                                                    <div class="row gallery__03">
+                                                        <div class="col-md-12 gallery__01__row">
+                                                            <div class="row">
+                                                                <div class="col-auto span__dangky__auto">
+                                                                    <i class="fas fa-angle-right"></i>
+                                                                </div>
+                                                                <div class="col-md-4 col-4 pl-0">
+                                                                    <span class="span__dangky">{{ $in->name??'' }} </span>
+                                                                </div>
+                                                                <div class="col-md-6 col-6 pl-0">
+                                                                    <span class="span__dangky">{{ $in->value??'' }} </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @else
+                                                <div class="col-md-12">
+                                                    <div class="row gallery__03">
+                                                        <div class="col-md-12 gallery__01__row">
+                                                            <div class="row">
+                                                                <div class="col-auto span__dangky__auto">
+                                                                    <i class="fas fa-angle-right"></i>
+                                                                </div>
+                                                                <div class="col-md-4 col-4 pl-0">
+                                                                    <span class="span__dangky">{{ $in->name??'' }} </span>
+                                                                </div>
+                                                                <div class="col-md-6 col-6 pl-0">
+                                                                    <span class="span__dangky">{{ str_replace(',','.',number_format($in->value??'')) }}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+
+                                        @endif
+                                    @endforeach
+                                @endif
                             @endif
                         @else
 

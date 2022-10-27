@@ -262,11 +262,11 @@
                                 <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                      alt="{{ $item->title }}" class="entries_item-img">
                                 <h2 class="text-title text-left  fw-bold" style="color: #434657;margin-bottom: 8px;font-weight: 700">#{{ $item->randId }}</h2>
+                                <?php
+                                $total = 0;
+                                ?>
+                                @if($data->slug != "nick-lien-minh" && $data->slug != "nick-ninja-school" && $data->slug != "nick-ngoc-rong-online")
 
-                                @if($data->slug != "nick-lien-minh" && $data->slug != "nick-ninja-school")
-                                    <?php
-                                    $total = 0;
-                                    ?>
                                     @if(isset($item->groups))
                                         <?php
                                         $att_values = $item->groups;
@@ -387,7 +387,47 @@
                                                     @endif
                                                 @endforeach
                                             @endif
+                                        @elseif($data->slug == "nick-ngoc-rong-online")
 
+                                            @php
+                                                $server = null;
+                                                $info = array();
+
+                                                $params = $item->params;
+                                                if (isset($params->server)){
+                                                    $server = $params->server;
+                                                }
+                                                if (isset($params->info) && count($params->info)){
+                                                    $info = $params->info;
+                                                }
+                                            @endphp
+                                            @if(isset($server))
+                                                <?php
+                                                $total = $total + 1;
+                                                ?>
+                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Server:
+                                                    {{ $server??'' }}
+                                                </p>
+                                            @endif
+
+                                            @if(isset($info) && count($info))
+                                                @foreach($info as $ke => $in)
+                                                    @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
+                                                        @if($total < 4)
+                                                            <?php
+                                                            $total = $total + 1;
+                                                            ?>
+                                                            <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $in->name??'' }}:
+                                                                @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                    {{ $in->value??'' }}
+                                                                @else
+                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                @endif
+                                                            </p>
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                            @endif
                                         @endif
                                     @endif
                                 @endif
