@@ -35,18 +35,18 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/nouislider/nouislider.css">
 
 
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/login_modal.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/main.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/duong/style.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/login_modal.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/main.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/duong/style.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/normalize.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/main.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style-custom.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/style.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/phu/style.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/header.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/style.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/phu/style.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/header.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/menu-category.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/menu-bottom.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/menu-bottom.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/nick-detail.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/slide-banner.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/change-password.css">
