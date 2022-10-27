@@ -125,6 +125,210 @@
 <div class="layout" >
     <div class="content" style="">
         @yield('content')
+
+
+        {{--    Modal xác nhận thanh toán--}}
+        <div class="modal fade modal-big modal__buyacount loadModal__acount_home" id="LoadModalHome">
+            <div class="modal-dialog modal-dialog-centered modal-custom">
+                <div class="modal-content c-p-24 data__form__random_home">
+
+                </div>
+            </div>
+        </div>
+        <div class="modal fade modal-small" id="notBuyHome">
+            <div class="modal-dialog modal-dialog-centered modal-custom">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center p-0">
+                        <img class="c-pt-16 c-pb-16" src="/assets/frontend/{{theme('')->theme_key}}/image/son/thatbai.png" alt="">
+                    </div>
+                    <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
+                        <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua thẻ nick thất bại</p>
+                        <p class="fw-400 fz-13 c-mt-10 mb-0">Rất tiếc việc mua nick đã thất bại do tài khoản của bạn không đủ, vui lòng nạp tiền để tiếp tục giao dịch!</p>
+                    </div>
+                    <div class="modal-footer c-p-24">
+                        <button class="btn primary handle-recharge-modal" data-tab="1" data-dismiss="modal">Nạp tiền</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Modal mua thẻ cho người dùng --}}
+        @include('frontend.widget.modal.__recharge_modal')
+
+        {{-- Modal thông báo ATM tự động --}}
+        @include('frontend.widget.modal.atm_auto_notify')
+
+        {{-- Sheet thông báo ATM tự động --}}
+        @include('frontend.widget.modal.atm_auto_notify_sheet')
+
+        {{--  sử lý step thanh toán --}}
+        <div class="step" id="chargeConfirmStep">
+            <div class="head-mobile">
+                <a href="javascript:void(0) " class="link-back close-step"></a>
+
+                <p class="head-title text-title">Xác nhận thanh toán</p>
+
+                <a href="/" class="home"></a>
+            </div>
+            <div class="body-mobile">
+                <div class="body-mobile-content c-p-16">
+                    <div class="dialog--content__title fw-700 fz-15 c-mb-12 text-title-theme">
+                        Thông tin nạp thẻ
+                    </div>
+                    <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12 brs-8 g_mobile-content">
+                        <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                Nhà mạng
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500" id="confirmTitleMobile"></div>
+                        </div>
+                        <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                Mệnh giá
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500" id="confirmPriceMobile"></div>
+                        </div>
+                        <div class="card--attr justify-content-between d-flex text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                Chiết khấu
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500" id="confirmDiscountMobile"></div>
+                        </div>
+                    </div>
+                    <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12 brs-8 g_mobile-content">
+                        <div class="card--attr justify-content-between d-flex text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                Phí thanh toán
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500">
+                                Miễn phí
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card--gray c-mb-0 c-pt-8 c-pb-8 c-pl-12 brs-8 c-pr-12 g_mobile-content">
+                        <div class="card--attr__total justify-content-between d-flex text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                Số tiền thực nhận
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary" id="totalBillMobile"></a></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-mobile v2">
+                <div class="group-btn" >
+                    <button class="btn primary" id="confirmSubmitButtonMobile">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+
+        {{--    Modal xác nhận thanh toán--}}
+        <div class="modal fade modal-big" id="orderCharge">
+            <div class="modal-dialog modal-dialog-centered modal-custom">
+                <div class="modal-content c-p-24">
+                    <div class="modal-header">
+                        <p class="modal-title center">Xác nhận thanh toán</p>
+                        <button type="button" class="close" data-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
+                        <div class="dialog--content__title fw-700 fz-13 c-mb-12 text-title-theme">
+                            Thông tin nạp thẻ
+                        </div>
+                        <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                            <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                <div class="card--attr__name fw-400 fz-13 text-center">
+                                    Nhà mạng
+                                </div>
+                                <div class="card--attr__value fz-13 fw-500" id="confirmTitle"></div>
+                            </div>
+                            <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                <div class="card--attr__name fw-400 fz-13 text-center">
+                                    Mệnh giá
+                                </div>
+                                <div class="card--attr__value fz-13 fw-500" id="confirmPrice"></div>
+                            </div>
+                            <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                <div class="card--attr__name fw-400 fz-13 text-center">
+                                    Chiết khấu
+                                </div>
+                                <div class="card--attr__value fz-13 fw-500" id="confirmDiscount"></div>
+                            </div>
+                        </div>
+                        <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                            <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                <div class="card--attr__name fz-13 fw-400 text-center">
+                                    Phí thanh toán
+                                </div>
+                                <div class="card--attr__value fz-13 fw-500">
+                                    Miễn phí
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card--gray  c-mb-0 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                            <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                <div class="card--attr__name fw-400 fz-13 text-center">
+                                    Số tiền thực nhận
+                                </div>
+                                <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary" id="totalBill"></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn primary" type="button" id="confirmSubmitButton">Xác nhận</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Modal thành công --}}
+        <div class="modal fade modal-small" id="modalSuccessPayment">
+            <div class="modal-dialog modal-dialog-centered modal-custom">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center p-0">
+                        <img class="c-pt-20 c-pb-20" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png" alt="">
+                    </div>
+                    <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
+                        <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Nạp thẻ thành công</p>
+                        <p class="fw-400 fz-13 c-mt-10 mb-0" id="successMessage"></p>
+                    </div>
+                    <div class="modal-footer c-p-24">
+                        <a href="/" class="btn secondary" data-dismiss="modal">Trang chủ</a>
+                        <button class="btn primary handle-recharge-modal" data-tab="1" data-dismiss="modal">Nạp thêm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Modal thất bại --}}
+        <div class="modal fade modal-small" id="modalFailPayment">
+            <div class="modal-dialog modal-dialog-centered modal-custom">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center p-0">
+                        <img class="c-pt-16 c-pb-16" src="/assets/frontend/{{theme('')->theme_key}}/image/son/thatbai.png" alt="">
+                    </div>
+                    <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
+                        <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Nạp thẻ thất bại</p>
+                        <p class="fw-400 fz-13 c-mt-10 mb-0" id="failMessage"></p>
+                    </div>
+                    <div class="modal-footer c-p-24">
+                        <button class="btn ghost" data-dismiss="modal">Thoát</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Modal xem thêm --}}
+        @include('frontend.widget.modal.viewmore_modal')
+        {{-- Bottom Sheet xem thêm --}}
+        @include('frontend.widget.modal.viewmore_sheet')
+
+        {{--        login--}}
+        @if (!\App\Library\AuthCustom::check())
+            @include('frontend.widget.modal.__login')
+        @endif
+
     </div>
 </div>
 
@@ -168,7 +372,8 @@
     </div>
 </div>
 <!-- Messenger Plugin chat Code -->
-@if(Session::has('check_login'))
+{{--@if(Session::has('check_login'))--}}
+@if(Request::is('login'))
     <script>
         $(document).ready(function () {
             let width = $(window).width();
@@ -187,14 +392,12 @@
             }, 0);
         });
     </script>
-    @php
-        Session::pull('check_login');
-    @endphp
+{{--    @php--}}
+{{--        Session::pull('check_login');--}}
+{{--    @endphp--}}
 @endif
 
-@if (!\App\Library\AuthCustom::check())
-    @include('frontend.widget.modal.__login')
-@endif
+
 @if(!Request::is('/'))
     @if(Session::has('url_return.id_return'))
         @php
@@ -203,202 +406,7 @@
     @endif
 @endif
 
-{{--    Modal xác nhận thanh toán--}}
-<div class="modal fade modal-big modal__buyacount loadModal__acount_home" id="LoadModalHome">
-    <div class="modal-dialog modal-dialog-centered modal-custom">
-        <div class="modal-content c-p-24 data__form__random_home">
 
-        </div>
-    </div>
-</div>
-<div class="modal fade modal-small" id="notBuyHome">
-    <div class="modal-dialog modal-dialog-centered modal-custom">
-        <div class="modal-content">
-            <div class="modal-header justify-content-center p-0">
-                <img class="c-pt-16 c-pb-16" src="/assets/frontend/{{theme('')->theme_key}}/image/son/thatbai.png" alt="">
-            </div>
-            <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
-                <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua thẻ nick thất bại</p>
-                <p class="fw-400 fz-13 c-mt-10 mb-0">Rất tiếc việc mua nick đã thất bại do tài khoản của bạn không đủ, vui lòng nạp tiền để tiếp tục giao dịch!</p>
-            </div>
-            <div class="modal-footer c-p-24">
-                <button class="btn primary handle-recharge-modal" data-tab="1" data-dismiss="modal">Nạp tiền</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-{{-- Modal mua thẻ cho người dùng --}}
-@include('frontend.widget.modal.__recharge_modal')
-
-{{-- Modal thông báo ATM tự động --}}
-@include('frontend.widget.modal.atm_auto_notify')
-
-{{-- Sheet thông báo ATM tự động --}}
-@include('frontend.widget.modal.atm_auto_notify_sheet')
-
-{{--  sử lý step thanh toán --}}
-<div class="step" id="chargeConfirmStep">
-    <div class="head-mobile">
-        <a href="javascript:void(0) " class="link-back close-step"></a>
-
-        <p class="head-title text-title">Xác nhận thanh toán</p>
-
-        <a href="/" class="home"></a>
-    </div>
-    <div class="body-mobile">
-        <div class="body-mobile-content c-p-16">
-            <div class="dialog--content__title fw-700 fz-15 c-mb-12 text-title-theme">
-                Thông tin nạp thẻ
-            </div>
-            <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12 brs-8 g_mobile-content">
-                <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
-                    <div class="card--attr__name fw-400 fz-13 text-center text-order">
-                        Nhà mạng
-                    </div>
-                    <div class="card--attr__value fz-13 fw-500" id="confirmTitleMobile"></div>
-                </div>
-                <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
-                    <div class="card--attr__name fw-400 fz-13 text-center text-order">
-                        Mệnh giá
-                    </div>
-                    <div class="card--attr__value fz-13 fw-500" id="confirmPriceMobile"></div>
-                </div>
-                <div class="card--attr justify-content-between d-flex text-center">
-                    <div class="card--attr__name fw-400 fz-13 text-center text-order">
-                        Chiết khấu
-                    </div>
-                    <div class="card--attr__value fz-13 fw-500" id="confirmDiscountMobile"></div>
-                </div>
-            </div>
-            <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12 brs-8 g_mobile-content">
-                <div class="card--attr justify-content-between d-flex text-center">
-                    <div class="card--attr__name fw-400 fz-13 text-center text-order">
-                        Phí thanh toán
-                    </div>
-                    <div class="card--attr__value fz-13 fw-500">
-                        Miễn phí
-                    </div>
-                </div>
-            </div>
-            <div class="card--gray c-mb-0 c-pt-8 c-pb-8 c-pl-12 brs-8 c-pr-12 g_mobile-content">
-                <div class="card--attr__total justify-content-between d-flex text-center">
-                    <div class="card--attr__name fw-400 fz-13 text-center text-order">
-                        Số tiền thực nhận
-                    </div>
-                    <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary" id="totalBillMobile"></a></div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="footer-mobile v2">
-        <div class="group-btn" >
-            <button class="btn primary" id="confirmSubmitButtonMobile">Xác nhận</button>
-        </div>
-    </div>
-</div>
-
-{{--    Modal xác nhận thanh toán--}}
-<div class="modal fade modal-big" id="orderCharge">
-    <div class="modal-dialog modal-dialog-centered modal-custom">
-        <div class="modal-content c-p-24">
-            <div class="modal-header">
-                <p class="modal-title center">Xác nhận thanh toán</p>
-                <button type="button" class="close" data-dismiss="modal"></button>
-            </div>
-            <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
-                <div class="dialog--content__title fw-700 fz-13 c-mb-12 text-title-theme">
-                    Thông tin nạp thẻ
-                </div>
-                <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
-                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
-                        <div class="card--attr__name fw-400 fz-13 text-center">
-                            Nhà mạng
-                        </div>
-                        <div class="card--attr__value fz-13 fw-500" id="confirmTitle"></div>
-                    </div>
-                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
-                        <div class="card--attr__name fw-400 fz-13 text-center">
-                            Mệnh giá
-                        </div>
-                        <div class="card--attr__value fz-13 fw-500" id="confirmPrice"></div>
-                    </div>
-                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
-                        <div class="card--attr__name fw-400 fz-13 text-center">
-                            Chiết khấu
-                        </div>
-                        <div class="card--attr__value fz-13 fw-500" id="confirmDiscount"></div>
-                    </div>
-                </div>
-                <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
-                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
-                        <div class="card--attr__name fz-13 fw-400 text-center">
-                            Phí thanh toán
-                        </div>
-                        <div class="card--attr__value fz-13 fw-500">
-                            Miễn phí
-                        </div>
-                    </div>
-                </div>
-                <div class="card--gray  c-mb-0 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
-                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
-                        <div class="card--attr__name fw-400 fz-13 text-center">
-                            Số tiền thực nhận
-                        </div>
-                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary" id="totalBill"></a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn primary" type="button" id="confirmSubmitButton">Xác nhận</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-{{-- Modal thành công --}}
-<div class="modal fade modal-small" id="modalSuccessPayment">
-    <div class="modal-dialog modal-dialog-centered modal-custom">
-        <div class="modal-content">
-            <div class="modal-header justify-content-center p-0">
-                <img class="c-pt-20 c-pb-20" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png" alt="">
-            </div>
-            <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
-                    <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Nạp thẻ thành công</p>
-                    <p class="fw-400 fz-13 c-mt-10 mb-0" id="successMessage"></p>
-            </div>
-            <div class="modal-footer c-p-24">
-                <a href="/" class="btn secondary" data-dismiss="modal">Trang chủ</a>
-                <button class="btn primary handle-recharge-modal" data-tab="1" data-dismiss="modal">Nạp thêm</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-{{-- Modal thất bại --}}
-<div class="modal fade modal-small" id="modalFailPayment">
-    <div class="modal-dialog modal-dialog-centered modal-custom">
-        <div class="modal-content">
-            <div class="modal-header justify-content-center p-0">
-                <img class="c-pt-16 c-pb-16" src="/assets/frontend/{{theme('')->theme_key}}/image/son/thatbai.png" alt="">
-            </div>
-            <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
-                <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Nạp thẻ thất bại</p>
-                <p class="fw-400 fz-13 c-mt-10 mb-0" id="failMessage"></p>
-            </div>
-            <div class="modal-footer c-p-24">
-                <button class="btn ghost" data-dismiss="modal">Thoát</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-{{-- Modal xem thêm --}}
-@include('frontend.widget.modal.viewmore_modal')
-{{-- Bottom Sheet xem thêm --}}
-@include('frontend.widget.modal.viewmore_sheet')
 @include('frontend.widget.__theme')
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
