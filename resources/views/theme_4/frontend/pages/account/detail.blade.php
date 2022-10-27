@@ -141,7 +141,6 @@
                     <div class="container pl-0 pr-0" style="padding-bottom: 24px">
 
                         <div class="row" style="width: 100%;margin: 0 auto">
-                            @include('frontend.pages.account.widget.__viewed__account')
                             <div class="art-list" style="width: 100%">
                                 <div class="d-flex justify-content-between" style="padding-top: 8px;padding-bottom: 16px">
                                     <div class="main-title" style="margin-bottom: 0">
@@ -162,6 +161,8 @@
                                 </div>
 
                             </div>
+                            @include('frontend.pages.account.widget.__viewed__account')
+
                         </div>
                     </div>
                 </div>

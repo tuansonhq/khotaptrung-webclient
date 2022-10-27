@@ -315,6 +315,61 @@
                                                                                         @endif
                                                                                     @endforeach
                                                                                 @endif
+                                                                            @elseif($data_category->slug == 'nick-ngoc-rong-online')
+                                                                                @php
+                                                                                    $server = null;
+                                                                                    $params = null;
+                                                                                    $info = array();
+                                                                                    if (isset($data->params)){
+                                                                                        $params = $data->params;
+                                                                                        if (isset($params->server)){
+                                                                                            $server = $params->server;
+                                                                                        }
+                                                                                        if (isset($params->info) && count($params->info)){
+                                                                                            $info = $params->info;
+                                                                                        }
+                                                                                    }
+                                                                                @endphp
+                                                                                @if(isset($server))
+                                                                                    <?php
+                                                                                    $total = $total + 1;
+                                                                                    ?>
+                                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                        <div class="col-auto gallery-col-auto-left left-right">
+                                                                                            <small>Server</small>
+                                                                                        </div>
+                                                                                        <div class="col-auto gallery-col-auto-right left-right">
+                                                                                <span>
+                                                                                    {{ $server??null }}
+                                                                                </span>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                @endif
+                                                                                @if(isset($info) && count($info))
+                                                                                    @foreach($info as $ke => $in)
+                                                                                        @if(in_array($in->name,config('module.acc.auto_nro_tt')))
+                                                                                            <?php
+                                                                                            $total = $total + 1;
+                                                                                            ?>
+                                                                                            <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                                <div class="col-auto gallery-col-auto-left left-right">
+                                                                                                    <small>{{ $in->name??'' }}</small>
+                                                                                                </div>
+                                                                                                <div class="col-auto gallery-col-auto-right left-right">
+                                                                                                    <span>
+                                                                                                        @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                                                            {{ $in->value??'' }}
+                                                                                                        @else
+                                                                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                                                        @endif
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                        @endif
+                                                                                    @endforeach
+                                                                                @endif
                                                                             @endif
                                                                         @else
                                                                         @endif
@@ -707,6 +762,53 @@
                                                                                 @endif
                                                                             @endforeach
                                                                         @endif
+                                                                    @elseif($data_category->slug == 'nick-ngoc-rong-online')
+                                                                        @php
+                                                                            $server = null;
+                                                                            $params = null;
+                                                                            $info = array();
+                                                                            if (isset($data->params)){
+                                                                                $params = $data->params;
+                                                                                if (isset($params->server)){
+                                                                                    $server = $params->server;
+                                                                                }
+                                                                                if (isset($params->info) && count($params->info)){
+                                                                                    $info = $params->info;
+                                                                                }
+                                                                            }
+                                                                        @endphp
+                                                                        @if(isset($server))
+                                                                            <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                <div class="col-auto gallery-col-auto-left left-right">
+                                                                                    <small>Server</small>
+                                                                                </div>
+                                                                                <div class="col-auto gallery-col-auto-right left-right d-flex justify-content-between">
+                                                                                    <span>{{ $server??null }}</span>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        @endif
+                                                                        @if(isset($info) && count($info))
+                                                                            @foreach($info as $ke => $in)
+                                                                                @if(in_array($in->name,config('module.acc.auto_nro_tt')))
+
+                                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                        <div class="col-auto gallery-col-auto-left left-right">
+                                                                                            <small>{{ $in->name??'' }}</small>
+                                                                                        </div>
+                                                                                        <div class="col-auto gallery-col-auto-right left-right d-flex justify-content-between">
+                                                                                            <span>
+                                                                                                @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                                                    {{ $in->value??'' }}
+                                                                                                @else
+                                                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                                                @endif</span>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                @endif
+                                                                            @endforeach
+                                                                        @endif
                                                                     @endif
                                                                 @else
 
@@ -1078,6 +1180,52 @@
                                                                 @endif
                                                             @endforeach
                                                         @endif
+                                                    @elseif($data_category->slug == 'nick-ngoc-rong-online')
+                                                        @php
+                                                            $server = null;
+                                                            $params = null;
+                                                            $info = array();
+                                                            if (isset($data->params)){
+                                                                $params = $data->params;
+                                                                if (isset($params->server)){
+                                                                    $server = $params->server;
+                                                                }
+                                                                if (isset($params->info) && count($params->info)){
+                                                                    $info = $params->info;
+                                                                }
+                                                            }
+                                                        @endphp
+                                                        @if(isset($server))
+
+                                                            <div class="row marginauto background-order-body-row-ct">
+                                                                <div class="col-auto left-right background-order-col-left-ct">
+                                                                    <span>Server</span>
+                                                                </div>
+                                                                <div class="col-auto left-right background-order-col-right-ct">
+                                                                    <small>{{ $server??null }}</small>
+                                                                </div>
+                                                            </div>
+
+                                                        @endif
+                                                        @if(isset($info) && count($info))
+                                                            @foreach($info as $ke => $in)
+                                                                @if(in_array($in->name,config('module.acc.auto_nro_tt')))
+                                                                    <div class="row marginauto background-order-body-row-ct">
+                                                                        <div class="col-auto left-right background-order-col-left-ct">
+                                                                            <span>{{ $in->name??'' }}</span>
+                                                                        </div>
+                                                                        <div class="col-auto left-right background-order-col-right-ct">
+                                                                            <small>
+                                                                                @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                                    {{ $in->value??'' }}
+                                                                                @else
+                                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                                @endif</small>
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
                                                     @endif
                                                 @else
                                                 @endif
@@ -1403,6 +1551,52 @@
                                                                             {{ str_replace(',','.',number_format($in->value??'')) }}
                                                                         @else
                                                                             {{ $in->value??'' }}
+                                                                        @endif</small>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @elseif($data_category->slug == 'nick-ninja-school')
+                                                @php
+                                                    $server = null;
+                                                    $params = null;
+                                                    $info = array();
+                                                    if (isset($data->params)){
+                                                        $params = $data->params;
+                                                        if (isset($params->server)){
+                                                            $server = $params->server;
+                                                        }
+                                                        if (isset($params->info) && count($params->info)){
+                                                            $info = $params->info;
+                                                        }
+                                                    }
+                                                @endphp
+                                                @if(isset($server))
+
+                                                    <div class="row marginauto background-order-body-row-ct">
+                                                        <div class="col-auto left-right background-order-col-left-ct">
+                                                            <span>Server</span>
+                                                        </div>
+                                                        <div class="col-auto left-right background-order-col-right-ct">
+                                                            <small>{{ $server??null }}</small>
+                                                        </div>
+                                                    </div>
+
+                                                @endif
+                                                @if(isset($info) && count($info))
+                                                    @foreach($info as $ke => $in)
+                                                        @if(in_array($in->name,config('module.acc.auto_nro_tt')))
+                                                            <div class="row marginauto background-order-body-row-ct">
+                                                                <div class="col-auto left-right background-order-col-left-ct">
+                                                                    <span>{{ $in->name??'' }}</span>
+                                                                </div>
+                                                                <div class="col-auto left-right background-order-col-right-ct">
+                                                                    <small>
+                                                                        @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                            {{ $in->value??'' }}
+                                                                        @else
+                                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
                                                                         @endif</small>
                                                                 </div>
                                                             </div>

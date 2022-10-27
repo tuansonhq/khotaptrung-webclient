@@ -189,7 +189,7 @@
 
                                     @endif
                                 @endif
-                            @else
+                            @elseif($data_category->slug == 'nick-ninja-school')
                                 @php
                                     $server = null;
                                     $params = null;
@@ -240,6 +240,49 @@
                                         @endif
                                     @endforeach
                                 @endif
+                            @elseif($data_category->slug == 'nick-ngoc-rong-online')
+                                @php
+                                    $server = null;
+                                    $params = null;
+                                    $info = array();
+                                    if (isset($data->params)){
+                                        $params = $data->params;
+                                        if (isset($params->server)){
+                                            $server = $params->server;
+                                        }
+                                        if (isset($params->info) && count($params->info)){
+                                            $info = $params->info;
+                                        }
+                                    }
+                                @endphp
+                                @if(isset($server))
+                                    <tr>
+                                        <td><span class="link-color">Server</span></td>
+                                        <td>
+                                            <span>{{ $server??null }}</span>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                @endif
+                                @if(isset($info) && count($info))
+                                    @foreach($info as $ke => $in)
+                                        @if(in_array($in->name,config('module.acc.auto_nro_tt')))
+                                            <tr>
+                                                <td><span class="link-color">{{ $in->name??'' }}</span></td>
+                                                <td>
+                                                        <span>
+                                                            @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                {{ $in->value??'' }}
+                                                            @else
+
+                                                                {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                            @endif</span>
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                @endif
                             @endif
                         @else
                         @endif
@@ -285,9 +328,6 @@
                                                                     {{ $param }}
                                                                 </span>
                                                             </td>
-                                                            {{--                                                    <td>--}}
-                                                            {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
-                                                            {{--                                                    </td>--}}
                                                         </tr>
 
                                                     @endif
@@ -370,7 +410,7 @@
 
                                                 @endif
                                             @endif
-                                        @else
+                                        @elseif($data_category->slug == "nick-ninja-school")
                                             @php
                                                 $server = null;
                                                 $params = null;
@@ -405,6 +445,49 @@
                                                                     @else
                                                                         {{ $in->value??'' }}
                                                                     @endif</span>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @elseif($data_category->slug == 'nick-ngoc-rong-online')
+                                            @php
+                                                $server = null;
+                                                $params = null;
+                                                $info = array();
+                                                if (isset($data->params)){
+                                                    $params = $data->params;
+                                                    if (isset($params->server)){
+                                                        $server = $params->server;
+                                                    }
+                                                    if (isset($params->info) && count($params->info)){
+                                                        $info = $params->info;
+                                                    }
+                                                }
+                                            @endphp
+                                            @if(isset($server))
+                                                <tr>
+                                                    <td><span class="link-color">Server</span></td>
+                                                    <td>
+                                                        <span>{{ $server??null }}</span>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
+                                            @if(isset($info) && count($info))
+                                                @foreach($info as $ke => $in)
+                                                    @if(in_array($in->name,config('module.acc.auto_nro_tt')))
+                                                        <tr>
+                                                            <td><span class="link-color">{{ $in->name??'' }}</span></td>
+                                                            <td>
+                                                                <span>
+                                                                    @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                        {{ $in->value??'' }}
+                                                                    @else
+                                                                        {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                    @endif
+                                                                </span>
                                                             </td>
                                                             <td></td>
                                                         </tr>
@@ -666,7 +749,7 @@
 
                                         @endif
                                     @endif
-                                    @else
+                                    @elseif($data_category->slug == 'nick-ninja-school')
                                         @php
                                             $server = null;
                                             $params = null;
@@ -712,6 +795,48 @@
                                                                 @endif</div>
                                                         </div>
                                                     @endif
+
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @elseif($data_category->slug == 'nick-ngoc-rong-online')
+                                        @php
+                                            $server = null;
+                                            $params = null;
+                                            $info = array();
+                                            if (isset($data->params)){
+                                                $params = $data->params;
+                                                if (isset($params->server)){
+                                                    $server = $params->server;
+                                                }
+                                                if (isset($params->info) && count($params->info)){
+                                                    $info = $params->info;
+                                                }
+                                            }
+                                        @endphp
+                                        @if(isset($server))
+                                            <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                    Server
+                                                </div>
+                                                <div class="card--attr__value fz-13 fw-500">{{ $server??null }}</div>
+                                            </div>
+
+                                        @endif
+                                        @if(isset($info) && count($info))
+                                            @foreach($info as $ke => $in)
+                                                @if(in_array($in->name,config('module.acc.auto_nro_tt')))
+                                                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                        <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                            {{ $in->name??'' }}
+                                                        </div>
+                                                        <div class="card--attr__value fz-13 fw-500">
+                                                            @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                {{ $in->value??'' }}
+                                                            @else
+                                                                {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                            @endif</div>
+                                                    </div>
 
                                                 @endif
                                             @endforeach
@@ -1068,7 +1193,7 @@
 
                                 @endif
                             @endif
-                        @else
+                        @elseif($data_category->slug == 'nick-ninja-school')
                             @php
                                 $server = null;
                                 $params = null;
@@ -1119,6 +1244,50 @@
                                     @endif
                                 @endforeach
                             @endif
+                        @elseif($data_category->slug == 'nick-ngoc-rong-online')
+                            @php
+                                $server = null;
+                                $params = null;
+                                $info = array();
+                                if (isset($data->params)){
+                                    $params = $data->params;
+                                    if (isset($params->server)){
+                                        $server = $params->server;
+                                    }
+                                    if (isset($params->info) && count($params->info)){
+                                        $info = $params->info;
+                                    }
+                                }
+                            @endphp
+                            @if(isset($server))
+
+                                <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                    <div class="card--attr__name fw-400 fz-13 text-center">
+                                        Server
+                                    </div>
+                                    <div class="card--attr__value fz-13 fw-500">{{ $server??null }}</div>
+                                </div>
+
+                            @endif
+                            @if(isset($info) && count($info))
+                                @foreach($info as $ke => $in)
+                                    @if(in_array($in->name,config('module.acc.auto_nro_tt')))
+                                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                                {{ $server??null }}
+                                            </div>
+                                            <div class="card--attr__value fz-13 fw-500">
+                                                @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                    {{ $in->value??'' }}
+                                                @else
+                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                @endif</div>
+                                        </div>
+
+                                    @endif
+                                @endforeach
+                            @endif
+
                         @endif
                     @else
                     @endif

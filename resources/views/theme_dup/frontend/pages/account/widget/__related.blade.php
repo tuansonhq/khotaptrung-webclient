@@ -173,6 +173,59 @@
                                                             @endif
                                                         @endforeach
                                                     @endif
+                                                @elseif($slug == "nick-ngoc-rong-online")
+                                                    @php
+                                                        $server = null;
+                                                        $info = array();
+
+                                                        $params = $item->params;
+                                                        if (isset($params->server)){
+                                                            $server = $params->server;
+                                                        }
+                                                        if (isset($params->info) && count($params->info)){
+                                                            $info = $params->info;
+                                                        }
+                                                    @endphp
+                                                    @if(isset($server))
+                                                        <?php
+                                                        $index = $index + 1;
+                                                        ?>
+                                                        <div class="row" style="margin: 0 auto;width: 100%">
+                                                            <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                                Server :
+                                                            </div>
+                                                            <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                {{--                                                                                        {{ $param??null }}--}}
+                                                                {{ $server??'' }}
+                                                            </div>
+                                                        </div>
+
+                                                    @endif
+
+                                                    @if(isset($info) && count($info))
+                                                        @foreach($info as $ke => $in)
+                                                            @if(in_array($in->name,config('module.acc.auto_ninja_list_tt')))
+                                                                @if($index < 4)
+                                                                <?php
+                                                                $index = $index + 1;
+                                                                ?>
+                                                                <div class="row" style="margin: 0 auto;width: 100%">
+                                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                                        {{ $in->name??'' }} :
+                                                                    </div>
+                                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                        {{--                                                                                        {{ $param??null }}--}}
+                                                                        @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                            {{ $in->value??'' }}
+                                                                        @else
+                                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
                                                 @endif
                                             @endif
                                         @endif
