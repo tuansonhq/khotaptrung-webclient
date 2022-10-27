@@ -161,11 +161,9 @@ class AccController extends Controller
                 if (theme('')->theme_key == "theme_5"){
                     $dataSend['limit'] =  15;
                 }
-                $dataSend['randId'] = 'P9359';
+//                $dataSend['randId'] = 'P9359';
                 if ($request->filled('id_data'))  {
-//                    $dataSend['randId'] = \App\Library\Helpers::decodeItemID($request->id_data);
-
-
+                    $dataSend['randId'] = \App\Library\Helpers::decodeItemID($request->id_data);
                 }
 
                 if ($request->filled('title_data'))  {
