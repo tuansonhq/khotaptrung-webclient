@@ -341,7 +341,7 @@
                                                                 <div
                                                                     class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
                                                                     <img
-                                                                        src="https://cdn.upanh.info/{{$companion->thumb}}"
+                                                                        src="https://cdn.upanh.info/{{$skin->thumb}}"
                                                                         class="w-100 brs-4 position-absolute item-nick-lmht__border__img "
                                                                         alt="{{ $skin->name }}">
                                                                 </div>
@@ -444,7 +444,10 @@
                                                         <span>
                                                             <div class="row marginauto item-nick-lmht__border">
                                                                 <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                                                    <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy" data-original="https://cdn.upanh.info/{{$champ->thumb}}" alt="{{ $champ->name }}">
+                                                                    <img
+                                                                        src="https://cdn.upanh.info/{{$champ->thumb}}"
+                                                                        class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
+                                                                        d alt="{{ $champ->name }}">
                                                                 </div>
                                                                 <div class="col-md-12 pl-0 pr-0 text-center">
                                                                     <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme text-limit limit-1">{{ $champ->name }}</p>
