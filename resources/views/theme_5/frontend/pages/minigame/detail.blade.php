@@ -700,9 +700,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <div class="modal-footer">
-                            <button class="btn primary"  data-dismiss="modal">Chơi thử</button>
-                        </div>
+                        <button class="btn primary"  data-dismiss="modal">Chơi thử</button>
                     </div>
                 </div>
             </div>
@@ -727,8 +725,8 @@
                         {!! $result->group->params->thele !!}
                     </div>
                     <div class="sheet-footer">
-                        <button class="btn secondary js-reset-form">Thiết lập lại</button>
-                        <button class="btn primary js-submit-form">Xem kết quả</button>
+                        <button class="btn primary close" style="opacity: 1;">Chơi thử</button>
+
                     </div>
                 </form>
             </div>
