@@ -33,29 +33,6 @@ $(document).ready(function () {
         return slug;
     }
 
-    $('body').on('click','.submit--search',function(e){
-        e.preventDefault();
-        let recentModal = $(this).closest('.modal-nick-auto-lol');
-        let keyword = convertToSlug($(recentModal).find('.keyword--search').val());
-
-        let index = 0;
-        let listItem = recentModal.find('.item-nick-lmht');
-        $(listItem).each(function (i,elm) {
-            $(recentModal).find('.body-modal__nick__text-error').css('display','none');
-            let slug_item = $(elm).find('img').attr('alt');
-            slug_item = convertToSlug(slug_item);
-            $(this).toggle(slug_item.indexOf(keyword) > -1);
-            if (slug_item.indexOf(keyword) > -1){
-                index = index + 1
-            }else {}
-
-            if (index == 0){
-                $(recentModal).find('.body-modal__nick__text-error').css('display','block');
-            }
-
-        })
-    })
-
     $(document).on('click', '.lm_xemthem_tuong', function (e) {
         e.preventDefault();
         $('#modal-champion-list').modal('show');
@@ -225,5 +202,111 @@ $(document).ready(function () {
 
         setDisplayLink(pageSelected, paginateTab);
     });
+
+    // Suggestion handle
+
+    $('#modal-lol-custom #input-search-skins').on('input', function () {
+
+        let result_ul = $('#modal-lol-custom .sugges_list');
+        result_ul.empty();
+        result_ul.toggleClass('d-none', !$(this).val().trim());
+
+        let keyword = convertToSlug($(this).val());
+        Array.from($('#content_page_skin .item-nick-lmht__border')).forEach(function (elm) {
+            let text = convertToSlug($(elm).find('.properties-lol-title').text().trim())
+            if (text.indexOf(keyword) > -1) {
+                let html = `<li class="sugges_item">${$(elm).find('.properties-lol-title').text()}</li>`;
+                result_ul.append(html);
+            }
+        })
+    });
+
+    $('#modal-champion-list #input-search-champ').on('input', function () {
+
+        let result_ul = $('#modal-champion-list .sugges_list');
+        result_ul.empty();
+        result_ul.toggleClass('d-none', !$(this).val().trim());
+
+        let keyword = convertToSlug($(this).val());
+        Array.from($('#content_page_champ .item-nick-lmht__border')).forEach(function (elm) {
+            let text = convertToSlug($(elm).find('.properties-lol-title').text().trim())
+            if (text.indexOf(keyword) > -1) {
+                let html = `<li class="sugges_item">${$(elm).find('.properties-lol-title').text()}</li>`;
+                result_ul.append(html);
+            }
+        })
+    });
+
+    $('#modal-champion-tft #input-search-conpanion').on('input', function () {
+
+        let result_ul = $('#modal-champion-tft .sugges_list');
+        result_ul.empty();
+        result_ul.toggleClass('d-none', !$(this).val().trim());
+
+        let keyword = convertToSlug($(this).val());
+        Array.from($('#content_page_companion .item-nick-lmht__border')).forEach(function (elm) {
+            let text = convertToSlug($(elm).find('.properties-lol-title').text().trim())
+            if (text.indexOf(keyword) > -1) {
+                let html = `<li class="sugges_item">${$(elm).find('.properties-lol-title').text()}</li>`;
+                result_ul.append(html);
+            }
+        })
+    });
+
+    $('.submit-search-skins').on('click', function () {
+        let keyword = convertToSlug($('#input-search-skins').val());
+        let elm_result = $('#result-search-skin');
+        elm_result.empty();
+        $('.sugges_list').addClass('d-none')
+        Array.from($('#content_page_skin .item-nick-lmht')).forEach(function (elm) {
+            let text = convertToSlug($(elm).find('.properties-lol-title').text().trim())
+            if (text && text.indexOf(keyword) > -1) {
+                let new_elm = $(elm).clone();
+                new_elm.find('img').attr('src', new_elm.find('img').attr('data-original'))
+                elm_result.append(new_elm);
+            }
+        });
+
+        elm_result.toggleClass('d-none', !keyword);
+        $('#tab-panel-skins').toggleClass('d-none', !!keyword);
+    });
+    
+    $('.submit-search-champ').on('click', function () {
+        let keyword = convertToSlug($('#input-search-champ').val());
+        let elm_result = $('#result-search-champ');
+        elm_result.empty();
+        $('.sugges_list').addClass('d-none')
+        Array.from($('#content_page_champ .item-nick-lmht')).forEach(function (elm) {
+            let text = convertToSlug($(elm).find('.properties-lol-title').text().trim())
+            if (text && text.indexOf(keyword) > -1) {
+                let new_elm = $(elm).clone();
+                new_elm.find('img').attr('src', new_elm.find('img').attr('data-original'))
+                elm_result.append(new_elm);
+            }
+        });
+        elm_result.toggleClass('d-none', !keyword);
+        $('#tab-panel-champ').toggleClass('d-none', !!keyword);
+    });
+    $('.submit-search-companion').on('click', function () {
+        let keyword = convertToSlug($('#input-search-conpanion').val());
+        let elm_result = $('#result-search-companion');
+        elm_result.empty();
+        $('.sugges_list').addClass('d-none')
+        Array.from($('#content_page_companion .item-nick-lmht')).forEach(function (elm) {
+            let text = convertToSlug($(elm).find('.properties-lol-title').text().trim())
+            if (text && text.indexOf(keyword) > -1) {
+                let new_elm = $(elm).clone();
+                new_elm.find('img').attr('src', new_elm.find('img').attr('data-original'))
+                elm_result.append(new_elm);
+            }
+        });
+        elm_result.toggleClass('d-none', !keyword);
+        $('#tab-panel-companion').toggleClass('d-none', !!keyword);
+    });
+    $('.sugges_list').on('click', '.sugges_item', function () {
+        let text = $(this).text();
+        $(this).parent().prev().val(text);
+        $(this).parent().next().trigger('click');
+    })
 
 });

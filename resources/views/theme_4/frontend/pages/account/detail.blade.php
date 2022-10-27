@@ -156,10 +156,12 @@
                                             ({{ $total_tuong??0 }} tướng)
                                         </div>
                                     </div>
-                                    <div class="form-search">
-                                        <input class="keyword--search has-submit input-search-lmht form-control" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control">
-
-                                        <button class="submit--search" type="submit"></button>
+                                    <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
+                                        <input id="input-search-champ" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
+                                         <ul class="sugges_list d-none">
+        
+                                        </ul>
+                                        <button class="submit-search-champ submit--search" type="button"></button>
                                     </div>
                                     <img class="c-close-modal" data-dismiss="modal" src="/assets/frontend/theme_1/image/son/close.svg" alt="">
                                 </div>
@@ -233,6 +235,9 @@
 
                                         </div>
                                     </div>
+                                    <div class="row marginauto modal-container-body" id="result-search-champ">
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -251,9 +256,12 @@
                                             ({{ $total_linhthu }} linh thú)
                                         </div>
                                     </div>
-                                    <div class="form-search">
-                                        <input class="keyword--search has-submit input-search-lmht form-control" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control">
-                                        <button class="submit--search" type="submit"></button>
+                                    <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
+                                        <input id="input-search-conpanion" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
+                                        <ul class="sugges_list d-none">
+        
+                                        </ul>
+                                        <button class="submit-search-companion submit--search" type="button"></button>
                                     </div>
                                     <img class="c-close-modal" data-dismiss="modal" src="/assets/frontend/theme_1/image/son/close.svg" alt="">
                                 </div>
@@ -322,6 +330,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row marginauto modal-container-body d-none" id="result-search-companion">
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -340,9 +351,12 @@
                                             ({{ $total_trangphuc }} trang phục)
                                         </div>
                                     </div>
-                                    <div class="form-search">
-                                        <input class="keyword--search has-submit input-search-lmht form-control" type="search" placeholder="Tìm kiếm">
-                                        <button class="submit--search" type="submit"></button>
+                                    <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
+                                        <input id="input-search-skins" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
+                                        <ul class="sugges_list d-none">
+        
+                                        </ul>
+                                        <button class="submit-search-skins submit--search" type="button"></button>
                                     </div>
                                     <img class="c-close-modal" data-dismiss="modal" src="/assets/frontend/theme_1/image/son/close.svg" alt="">
                                 </div>
@@ -416,6 +430,9 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row marginauto modal-container-body d-none" id="result-search-skin">
+
                                     </div>
                                 </div>
                             </div>
