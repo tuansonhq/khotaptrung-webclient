@@ -102,10 +102,12 @@ $(document).ready(function () {
 
     });
     $(window).scroll(function() {
-        if ($(this).scrollTop() > 10) {
-            $('.box-search_mobile').fadeIn();
-        } else {
-            $('.box-search_mobile').fadeOut();
+        if($(window).width() < 992) {
+            if ($(this).scrollTop() > 10) {
+                $('.box-search_mobile').fadeIn();
+            } else {
+                $('.box-search_mobile').fadeOut();
+            }
         }
     });
 
