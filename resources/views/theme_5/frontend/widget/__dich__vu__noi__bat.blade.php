@@ -1,4 +1,3 @@
-
 @if(isset($data) && count($data) > 0)
 <section class="outstanding-service c-pb-12 c-pb-lg-6 c-pb-12 c-pb-lg-6">
     <h2 class="section-title c-mb-24 c-mb-lg-8 fz-lg-20 lh-lg-24">{{ $title??'' }}</h2>
@@ -9,7 +8,7 @@
                 <div class="service-item scale-thumb">
                     <div class="service-thumb">
                         <a target="_blank" href="{{ $item->url }}">
-                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="service-thumb-image">
+                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image_banner)}}" alt="" class="service-thumb-image">
                         </a>
                     </div>
                     <div class="service-name">
@@ -24,7 +23,7 @@
                 <div class="service-item scale-thumb">
                     <div class="service-thumb">
                         <a href="{{ $item->url }}">
-                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="service-thumb-image">
+                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image_banner)}}" alt="" class="service-thumb-image">
                         </a>
                     </div>
                     <div class="service-name">
