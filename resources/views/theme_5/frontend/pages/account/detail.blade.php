@@ -116,41 +116,26 @@
                         $total_trangphuc = 0;
                         $total_thongtinchung = 0;
 
+                        if(isset($game_auto_props) && count($game_auto_props)){
+                            foreach($game_auto_props as $game_auto_prop){
 
-                        foreach ($game_auto_props as $key => $item) {
+                                if($game_auto_prop->key == 'champions'){
 
-                            if ($key == 'champions') {
+                                    $total_tuong = $total_tuong + 1;
+                                    if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
+                                        foreach($game_auto_prop->childs as $c_child){
+                                            $total_trangphuc = $total_trangphuc + 1;
+                                        }
+                                    }
+                                }elseif ($game_auto_prop->key == 'emotes'){
+                                    $total_bieucam = $total_bieucam + 1;
+                                }elseif ($game_auto_prop->key == 'tftdamageskins'){
+                                    $total_chuongluc = $total_chuongluc + 1;
+                                }elseif ($game_auto_prop->key == 'tftmapskins'){
+                                    $total_sandau = $total_sandau + 1;
+                                }elseif ($game_auto_prop->key == 'tftcompanions'){
+                                    $total_linhthu = $total_linhthu + 1;
 
-                                foreach ($game_auto_props['champions'] as $arr_champ) {
-                                    $total_tuong += count($arr_champ);
-                                }
-                            }
-                            if($key == 'skins') {
-                                foreach ($game_auto_props['skins'] as $arr_skins) {
-                                    $total_trangphuc += count($arr_skins);
-                                }
-                            }
-                            if ($key == 'tftmapskins'){
-                                foreach ($game_auto_props['tftmapskins'] as $arr_mapskins) {
-                                    $total_sandau += count($arr_mapskins);
-                                }
-                            }
-
-                            if ($key == 'tftdamageskins'){
-                                foreach ($game_auto_props['tftdamageskins'] as $arr_dameskins) {
-                                    $total_chuongluc += count($arr_dameskins);
-                                }
-                            }
-
-                            if ($key == 'tftcompanions'){
-                                foreach ($game_auto_props['tftcompanions'] as $arr_linh_thu) {
-                                    $total_linhthu += count($arr_linh_thu);
-                                }
-                            }
-
-                            if ($key == 'emotes'){
-                                foreach ($game_auto_props['emotes'] as $arr_emotes) {
-                                    $total_bieucam += count($arr_emotes);
                                 }
                             }
                         }
