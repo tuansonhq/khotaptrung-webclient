@@ -1,4 +1,4 @@
-@if(isset($data) && count($data) > 0)
+@if(isset($data) )
     @foreach($data as $items)
         @php
             $dataAttribute = null;

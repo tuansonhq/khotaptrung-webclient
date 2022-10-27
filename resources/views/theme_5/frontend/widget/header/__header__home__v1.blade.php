@@ -38,16 +38,20 @@
     </div>
     <div  class="d-flex">
         <a class="btn primary handle-recharge-modal c-px-xl-20 c-px-34 c-mr-16 d-none d-lg-block" href="javascript:void(0)" data-tab="1">Nạp tiền</a>
+        <div class="box-search_mobile">
+            <div class="box-notify ">
+                <div class="box-icon brs-8 ">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/search.svg" alt="" >
+                </div>
+            </div>
+        </div>
+
         <div class="box-notify  d-flex ">
             <div class="box-icon brs-8 " data-notity="5">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/ring.svg" alt="" >
             </div>
         </div>
-        {{--                <div class="box-notify c-ml-24 d-none d-md-block ">--}}
-        {{--                    <div class="box-icon brs-8 ">--}}
-        {{--                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/profile.svg" alt="" >--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
+
         <div class="box-account c-ml-16 d-none d-md-block position-relative">
             <div class="box-loading btn-loading">
                 <div class="loading">

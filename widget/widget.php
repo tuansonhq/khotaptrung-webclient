@@ -984,8 +984,8 @@ View::composer('frontend.widget.__slider__banner__napthe', function ($view) {
 View::composer('frontend.widget.__services__other', function ($view) {
 
     $data = \Cache::rememberForever('__services__other', function() {
-        $url = '/menu-transaction';
-        $method = "POST";
+        $url = '/get-dich-vu-noibat';
+        $method = "GET";
         $dataSend = array();
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
