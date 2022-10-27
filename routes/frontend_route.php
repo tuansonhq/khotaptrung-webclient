@@ -151,7 +151,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/lich-su-nap-the-{id}', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistoryDetail'])->name('getChargeDepositHistoryDetail');
 
                     if (isset(theme('')->theme_key)){
-                        if (theme('')->theme_key == "theme_1"||theme('')->theme_key == "theme_4" ||theme('')->theme_key == "theme_dup" ||theme('')->theme_key == "theme_6"){
+                        if (theme('')->theme_key == "theme_1"||theme('')->theme_key == "theme_4" ||theme('')->theme_key == "theme_card_2" ||theme('')->theme_key == "theme_dup" ||theme('')->theme_key == "theme_6"){
                             /*Theme_1*/
                             Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getLogs'])->name('getBuyAccountHistory');
                         }else {

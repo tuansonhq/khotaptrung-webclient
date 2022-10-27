@@ -369,25 +369,36 @@ class AccController extends Controller
             $slug_category = $data->category->slug;
 
             $game_auto_props =  null;
+            $perPage = 24;
+
+            if (isset(theme('')->theme_key)){
+                if (theme('')->theme_key == "theme_1"){
+                    $perPage = 60;
+                }
+            }
 
             if (isset($data->game_auto_props) && count($data->game_auto_props) > 0) {
-                if ($slug_category == "nick-ninja-school"){
-                    $game_auto_props = $data->game_auto_props;
-                    $result = array();
+                if ($slug_category == "nick-lien-minh"){
+                    if (isset($data->game_auto_props) && count($data->game_auto_props) > 0) {
+                        $game_auto_props = $data->game_auto_props;
+                        $result = array();
 
-                    foreach ($game_auto_props as $element) {
-                        $result[$element->key][] = $element;
-                        if ($element->key == 'champions' && isset($element->childs) && count($element->childs)) {
-                            foreach ($element->childs as $skin) {
-                                $result['skins_custom'][] = $skin;
+                        foreach ($game_auto_props as $element) {
+                            $result[$element->key][] = $element;
+                            if ($element->key == 'champions' && isset($element->childs) && count($element->childs)) {
+                                foreach ($element->childs as $skin) {
+                                    $result['skins_custom'][] = $skin;
+                                }
                             }
                         }
+                        $game_auto_props = $result;
+                        foreach ($game_auto_props as $key => $item){
+                            $game_auto_props[$key] = array_chunk($item,$perPage);
+                        }
                     }
-                    $game_auto_props = $result;
-                    foreach ($game_auto_props as $key => $item){
-                        $game_auto_props[$key] = array_chunk($item,24);
-                    }
-                }else{
+
+                }
+                else{
                     $game_auto_props = $data->game_auto_props;
                 }
 

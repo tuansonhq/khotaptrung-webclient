@@ -60,7 +60,7 @@
                                     <div class="col-auto">
                                         <span class="gallery__02__span">Danh mục:</span>
                                     </div>
-                                    <div class="col-md-8 col-8  pl-0">
+                                    <div class="col-md-8 col-6  pl-0">
                                         <a class="theashow"  href="/mua-acc/{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug }}"><span class="gallery__02__span">{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}</span></a>
                                     </div>
                                 </div>
@@ -184,11 +184,8 @@
                                             foreach($game_auto_props as $game_auto_prop){
                                                 if($game_auto_prop->key == 'champions'){
                                                     $total_tuong = $total_tuong + 1;
-                                                    if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
-                                                        foreach($game_auto_prop->childs as $c_child){
-                                                            $total_trangphuc = $total_trangphuc + 1;
-                                                        }
-                                                    }
+                                                }elseif ($game_auto_prop->key == 'skins'){
+                                                    $total_trangphuc = $total_trangphuc + 1;
                                                 }elseif ($game_auto_prop->key == 'emotes'){
                                                     $total_bieucam = $total_bieucam + 1;
                                                 }elseif ($game_auto_prop->key == 'tftdamageskins'){

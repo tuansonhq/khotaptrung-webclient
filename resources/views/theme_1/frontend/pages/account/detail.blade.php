@@ -90,7 +90,9 @@
 
 
                         foreach ($game_auto_props as $key => $item) {
+
                             if ($key == 'champions') {
+
                                 foreach ($game_auto_props['champions'] as $arr_champ) {
                                     $total_tuong += count($arr_champ);
                                 }
@@ -263,7 +265,7 @@
                                     <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
                                         <div class="col-auto paginate__category__col">
                                             <div class="data_paginate paging_bootstrap paginations_custom">
-                                                <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle" role="tablist">
+                                                <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle tft-paginate" data-tab="tft-paginate" role="tablist">
                                                     @foreach($game_auto_props as $key => $game_auto_prop)
                                                         @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']) > 1)
                                                             @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
@@ -272,10 +274,10 @@
                                                                         <span class="page-link">...</span>
                                                                     </li>
                                                                 @endif
-                                                                <li class="nav-item page-item {{ !$key ? 'active' : '' }}">
-                                                                    <a class="page-link {{ !$key ? 'active' : '' }}"
+                                                                <li class="nav-item page-item {{ !$key ? 'active' : '' }} page-item-{{ $key }}">
+                                                                    <a class="page-link {{ !$key ? 'active' : '' }} page-link-{{ $key }}"
                                                                        data-toggle="tab" href="#tab-companion-{{ $key }}"
-                                                                       role="tab">{{ $key + 1 }}</a>
+                                                                       role="tab"  data-page="{{ $key }}">{{ $key + 1 }}</a>
                                                                 </li>
                                                                 @if(!$key)
                                                                     <li class="page-item disabled hidden-xs dot-first-paginate">
@@ -363,8 +365,7 @@
                                     <div class="col-auto paginate__category__col">
                                         <div class="data_paginate paging_bootstrap paginations_custom">
 
-                                            <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle"
-                                                role="tablist">
+                                            <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle skin-paginate" data-tab="skin-paginate" role="tablist">
                                                 @foreach($game_auto_props as $key => $game_auto_prop)
                                                     @if($key == 'skins_custom' && count($game_auto_props['skins_custom']) > 1)
 
@@ -374,10 +375,10 @@
                                                                     <span class="page-link">...</span>
                                                                 </li>
                                                             @endif
-                                                            <li class="nav-item page-item {{ !$key ? 'active' : '' }}">
-                                                                <a class="page-link {{ !$key ? 'active' : '' }}"
+                                                            <li class="nav-item page-item {{ !$key ? 'active' : '' }} page-item-{{ $key }}">
+                                                                <a class="page-link {{ !$key ? 'active' : '' }} page-link-{{ $key }}"
                                                                    data-toggle="tab" href="#tab-skin-{{ $key }}"
-                                                                   role="tab">{{ $key + 1 }}</a>
+                                                                   role="tab"  data-page="{{ $key }}">{{ $key + 1 }}</a>
                                                             </li>
                                                             @if(!$key)
                                                                 <li class="page-item disabled hidden-xs dot-first-paginate">
@@ -462,7 +463,7 @@
                                     <div class="col-auto paginate__category__col">
                                         <div class="data_paginate paging_bootstrap paginations_custom">
 
-                                            <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle" role="tablist">
+                                            <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle champion-paginate" data-tab="champion-paginate" role="tablist">
                                                 @foreach($game_auto_props as $key => $game_auto_prop)
                                                     @if($key == 'champions' && count($game_auto_props['champions']) > 1)
 
@@ -472,10 +473,10 @@
                                                                     <span class="page-link">...</span>
                                                                 </li>
                                                             @endif
-                                                            <li class="nav-item page-item {{ !$key ? 'active' : '' }}">
-                                                                <a class="page-link {{ !$key ? 'active' : '' }}"
+                                                            <li class="nav-item page-item {{ !$key ? 'active' : '' }} page-item-{{ $key }}">
+                                                                <a class="page-link {{ !$key ? 'active' : '' }} page-link-{{ $key }}"
                                                                    data-toggle="tab" href="#tab-champ-{{ $key }}"
-                                                                   role="tab">{{ $key + 1 }}</a>
+                                                                   role="tab"  data-page="{{ $key }}">{{ $key + 1 }}</a>
                                                             </li>
                                                             @if(!$key)
                                                                 <li class="page-item disabled hidden-xs dot-first-paginate">
@@ -592,49 +593,7 @@
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccslider.js"></script>
         <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
 
-
         <script>
-
-            // xử lý pagination
-            $(document).ready(function () {
-
-                Array.from($('.js-pagination-handle')).forEach(function (elm) {
-                    setStatusLink($(elm).parent())
-                })
-                $('.js-pagination-handle').on('click', '.nav-item .page-link', function (e) {
-                    e.preventDefault();
-                    $(this).closest('.js-pagination-handle').find('.nav-item.active').removeClass('active');
-                    $(this).parent().addClass('active');
-                    let parent_elm = $(this).closest('.data_paginate');
-                    setStatusLink(parent_elm);
-                });
-                $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
-                    window.scrollTo(window.scrollX, window.scrollY + 1);
-                })
-
-                $('body').on('click', '.lm_xemthem', function () {
-                    window.scrollTo(window.scrollX, window.scrollY + 1);
-                })
-
-                function setStatusLink(parent_elm) {
-                    let elm_active = parent_elm.find('.js-pagination-handle .nav-item.active');
-                    let elm_nav = parent_elm.find('.js-pagination-handle .nav-item');
-                    let page = elm_active.text() * 1;
-                    let last_page = elm_nav.last().text() * 1;
-
-                    elm_nav.hide();
-                    elm_active.show();
-                    elm_active.prevAll(':lt(2)').show();
-                    elm_active.nextAll(':lt(2)').show();
-                    elm_nav.first().show();
-                    elm_nav.last().show();
-
-                    parent_elm.find('.dot-first-paginate').toggle(page > 3);
-                    parent_elm.find('.dot-last-paginate').toggle(last_page - 3 > page);
-                }
-            });
-
-
             $('#nick-lmht-trangphuc #input-search-skins').on('input', function () {
 
                 let result_ul = $('#nick-lmht-trangphuc .sugges_list');
@@ -700,7 +659,7 @@
                 elm_result.toggleClass('d-none', !keyword);
                 $('#tab-panel-skins').toggleClass('d-none', !!keyword);
             });
-
+            
             $('.submit-search-champ').on('click', function () {
                 let keyword = convertToSlug($('#input-search-champ').val());
                 let elm_result = $('#result-search-champ');
@@ -714,11 +673,9 @@
                         elm_result.append(new_elm);
                     }
                 });
-
                 elm_result.toggleClass('d-none', !keyword);
                 $('#tab-panel-champ').toggleClass('d-none', !!keyword);
             });
-
             $('.submit-search-companion').on('click', function () {
                 let keyword = convertToSlug($('#input-search-conpanion').val());
                 let elm_result = $('#result-search-companion');
@@ -732,11 +689,9 @@
                         elm_result.append(new_elm);
                     }
                 });
-
                 elm_result.toggleClass('d-none', !keyword);
                 $('#tab-panel-companion').toggleClass('d-none', !!keyword);
             });
-
             $('.sugges_list').on('click', '.sugges_item', function () {
                 let text = $(this).text();
                 $(this).parent().prev().val(text);

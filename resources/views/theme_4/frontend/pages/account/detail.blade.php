@@ -52,7 +52,7 @@
 @endphp
 @section('content')
 
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/buyacc.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/buyacc.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/news.css?v={{time()}}">
 
 
@@ -150,8 +150,8 @@
                                 </div>
 
                                 <div class="entries">
-                                    <div class="row fix-border fix-border-nick" id="showslideracc">
-                                        <div class="body-box-loadding result-amount-loadding">
+                                    <div class="row fix-border fix-border-nick " id="showslideracc">
+                                        <div class="body-box-loadding result-amount-loadding" style="transform: translateX(-50%);left: 50%">
                                             <div class="d-flex justify-content-center" style="padding-top: 112px;">
                                                 <span class="pulser"></span>
                                             </div>
