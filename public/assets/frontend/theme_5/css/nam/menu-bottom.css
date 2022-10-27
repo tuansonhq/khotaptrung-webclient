@@ -60,4 +60,7 @@
     .menu-bottom-item:hover .menu-bottom_text{
         font-weight: 600;
     }
+    .fb_dialog_content>iframe{
+        bottom: 90px !important;
+    }
 }

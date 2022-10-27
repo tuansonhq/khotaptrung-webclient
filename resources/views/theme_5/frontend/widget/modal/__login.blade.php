@@ -99,7 +99,8 @@
         <form action="{{ url('/ajax/register') }}" method="POST" id="formRegisterMobile" class="flex-column justify-content-center aligin-items-center text-center formRegister">
             @csrf
             <div class="c-mt-40">
-                <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/logo.png" alt="">
+                <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="" class="d-lg-block d-none"  style="width: 100px">
+                <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo_mobile'))}}" alt="" class="d-lg-none"  style="width: 100px">
             </div>
             <p class="fw-500 fz-15 lh-24 c-mt-24 c-mb-20">Đăng ký để trải nghiệm tốt nhất<br> dịch vụ của chúng tôi!</p>
 
@@ -130,7 +131,8 @@
         <form action="{{ url('/ajax/login') }}" id="formLoginMobile" class="flex-column justify-content-center aligin-items-center text-center formLogin">
             @csrf
             <div class="c-mt-40">
-                <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/logo.png" alt="">
+                <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="" class="d-lg-block d-none"  style="width: 100px">
+                <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo_mobile'))}}" alt="" class="d-lg-none" style="width: 100px">
             </div>
             <p class="fw-500 fz-15 lh-24 c-mt-24 c-mb-20">Đăng nhập để tiến hành giao dịch! </p>
 
