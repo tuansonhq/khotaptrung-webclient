@@ -2270,7 +2270,7 @@ footer{
 .item_play_category a{
     float: left;
     width: 100%;
-    background: #fb236a;
+    background: #2F6A7C;
     color: #ffffff;
     text-align: center;
     -webkit-border-radius: 8px;
@@ -2278,7 +2278,7 @@ footer{
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
     border-radius: 8px;
-    border: 2px solid #fb236a;
+    border: 2px solid #2F6A7C;
     padding: 11px 0;
     margin-top: 10px;
     font-size: 20px;
@@ -4157,7 +4157,7 @@ td{
     width: 40px;
     background:#545454;
     left: 15px;
-    top: 40%;
+    top: 52%;
     border-radius: 100%;
     z-index: 200;
 }
@@ -4171,7 +4171,7 @@ td{
     right: 15px;
     background:  #545454;
     /*url("/assets/frontend/images/next_arrow.svg") no-repeat center center*/
-    top: 40%;
+    top: 52%;
     border-radius: 100%;
 }
 
@@ -4854,7 +4854,7 @@ td{
 .emply-btns > a, .emply-btns > button {
     float: left;
     width: 100%;
-    background: #fb236a;
+    background: #2F6A7C;
     font-size: 13px;
     color: #ffffff;
     text-align: center;
@@ -4863,7 +4863,7 @@ td{
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
     border-radius: 8px;
-    border: 2px solid #fb236a;
+    border: 2px solid #2F6A7C;
     padding: 11px 0;
     margin-top: 10px;
 }

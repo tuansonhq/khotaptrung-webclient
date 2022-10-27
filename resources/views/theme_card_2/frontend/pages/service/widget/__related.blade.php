@@ -3,11 +3,12 @@
     <div class="container item_play_dif__img">
         <div class="row">
             <div class="col-md-12">
-                <div class="h3" style="font-size: 24px;font-weight: 700">DỊCH VỤ KHÁC</div>
+                <div class="h3" style="font-size: 18px;font-weight: 700">DỊCH VỤ KHÁC</div>
                 <div class="news_content_line"></div>
             </div>
             @if(isset($datacate) && count($datacate) > 0)
                 @foreach ($datacate as $item)
+                    @if($item->id != $id)
                     <div class="col-6 col-sm-6 col-lg-3 fixcssacount fixslidercsssev">
                         <div class="item_buy_list_in">
                             <div class="item_buy_list_img">
@@ -19,7 +20,7 @@
                             <div class="item_buy_list_info">
                                 <div class="row">
                                     <div class="col-12 item_buy_list_info_in">
-                                <span style="font-weight: bold;color: #f7b03c;font-size: 16px;">
+                                <span class="text-limit limit-1" style="font-weight: bold;color: #2F6A7C;font-size: 16px;">
                                     {{ $item->title }}
                                 </span>
                                     </div>
@@ -70,6 +71,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 @endforeach
             @else
                 <div class="col-md-12 text-left">

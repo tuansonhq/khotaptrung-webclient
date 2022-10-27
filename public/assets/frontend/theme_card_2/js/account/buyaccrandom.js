@@ -49,6 +49,23 @@ $(document).ready(function () {
                     $('.loadModal__acount').modal('hide');
                     $('#nickIdInput').val(accRanId);
                     $('#successModal').modal('show');
+                    swal({
+                        title: "Mua tài khoản thành công",
+                        text: "Thông tin chi tiết tài khoản vui lòng về lịch sử đơn hàng.",
+                        type: "success",
+                        confirmButtonText: "Về lịch sử đơn hàng",
+                        showCancelButton: true,
+                        cancelButtonText: "Đóng",
+                    })
+                        .then((result) => {
+                            if (result.value) {
+                                window.location = '/lich-su-mua-account';
+                            } else if (result.dismiss === "Đóng") {
+                                location.reload();
+                            }else {
+                                location.reload();
+                            }
+                        })
                 }
                 else if (response.status == 2){
                     $('.loadModal__acount').modal('hide');

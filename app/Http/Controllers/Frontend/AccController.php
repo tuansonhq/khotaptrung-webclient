@@ -385,11 +385,11 @@ class AccController extends Controller
 
                         foreach ($game_auto_props as $element) {
                             $result[$element->key][] = $element;
-                            if ($element->key == 'champions' && isset($element->childs) && count($element->childs)) {
-                                foreach ($element->childs as $skin) {
-                                    $result['skins_custom'][] = $skin;
-                                }
-                            }
+//                            if ($element->key == 'champions' && isset($element->childs) && count($element->childs)) {
+//                                foreach ($element->childs as $skin) {
+//                                    $result['skins_custom'][] = $skin;
+//                                }
+//                            }
                         }
                         $game_auto_props = $result;
                         foreach ($game_auto_props as $key => $item){

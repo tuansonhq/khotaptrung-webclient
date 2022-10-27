@@ -19,10 +19,10 @@
                         </div>
 
                         <div class="swiper-button-prev">
-                            <i class="fas fa-chevron-left"></i>
+                            <i style="color: #ffffff;position: absolute;top: 13px;left: 13px" class="fas fa-chevron-left"></i>
                         </div>
                         <div class="swiper-button-next">
-                            <i class="fas fa-chevron-right"></i>
+                            <i style="color: #ffffff;position: absolute;top: 13px;left: 13px" class="fas fa-chevron-right"></i>
                         </div>
                     </div>
 
@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="col-lg-6 col-md-12 gallery__right">
-            <div class="row gallery__row fixcssacount">
+            <div class="row gallery__row" style="padding-left: 0;padding-right: 0">
                 <div class="col-md-12">
                     <div class="row gallery__01">
                         <div class="col-md-12 gallery__01__row">
@@ -178,11 +178,8 @@
                                         foreach($game_auto_props as $game_auto_prop){
                                             if($game_auto_prop->key == 'champions'){
                                                 $total_tuong = $total_tuong + 1;
-                                                if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
-                                                    foreach($game_auto_prop->childs as $c_child){
-                                                        $total_trangphuc = $total_trangphuc + 1;
-                                                    }
-                                                }
+                                            }elseif ($game_auto_prop->key == 'skins'){
+                                                $total_trangphuc = $total_trangphuc + 1;
                                             }elseif ($game_auto_prop->key == 'emotes'){
                                                 $total_bieucam = $total_bieucam + 1;
                                             }elseif ($game_auto_prop->key == 'tftdamageskins'){
@@ -785,7 +782,7 @@
                                     <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal" id="d3" style="color: #ffffff">Nạp thẻ cào</a>
                                     <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2" style="color: #FFFFFF" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>
                                 @else
-                                    <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs"  id="d3" style="position: relative">Xác nhận mua<div class="row justify-content-center loading-data__muangay"></div></button>
+                                    <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs"  id="d3" style="position: relative;background: #2F6A7C;color: #ffffff">Xác nhận mua<div class="row justify-content-center loading-data__muangay"></div></button>
                                 @endif
                             @else
                                 <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/acc/{{ $data->randId }}">Đăng nhập</a>

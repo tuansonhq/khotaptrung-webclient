@@ -5,6 +5,11 @@
 @section('meta_robots')
     <meta name="robots" content="index,follow" />
 @endsection
+
+
+
+
+
 @section('content')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/theme_main.css">
     @if($data == null)
@@ -78,7 +83,7 @@
 
             </div>
             <div class="text-center showcontent">
-                <h1 style="font-size: 30px;font-weight: bold;text-transform: uppercase">DỊCH VỤ {{ $data->title }}</h1>
+                <h1 style="font-size: 24px;font-weight: bold;text-transform: uppercase">DỊCH VỤ {{ $data->title }}</h1>
                 @if(isset($data->groups[0]->slug))
                 <div class="row d-sm-none  d-md-none  d-lg-none text-center">
                     <div class="col-md-12">
@@ -110,7 +115,7 @@
                                         </div>
                                     </div>
                                     <div class="row__face">
-                                        <p style="margin-top: 15px" class="bb"><i class="fas fa-calendar-check" aria-hidden="true"></i> {{ $data->title }}</p>
+                                        <p style="margin-top: 15px;font-weight: 600" class="bb"><i class="fas fa-calendar-check" aria-hidden="true" style="margin-right: 4px"></i> {{ $data->title }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-7">
@@ -120,10 +125,10 @@
                                             $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->params);
                                             $server_id = \App\Library\HelpersDecode::DecodeJson('server_id',$data->params);
                                         @endphp
-                                        <span class="mb-15 control-label bb">Chọn máy chủ:</span>
+                                        <span class="mb-15 control-label bb" style="font-weight: 600">Chọn máy chủ:</span>
                                         @if(!empty($server_data))
                                             {{--                                        @dd($server_data)--}}
-                                            <div class="mb-15">
+                                            <div class="mb-15" style="margin-bottom: 8px;margin-top: 8px">
                                                 <select name="server[]" class="server-filter form-control t14" style="">
                                                     @for($i = 0; $i < count($server_data); $i++)
                                                         @if((strpos($server_data[$i], '[DELETE]') === false))
@@ -141,9 +146,9 @@
                                         $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
                                     @endphp
                                     @if(!empty($name))
-                                        <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
+                                        <span class="mb-15 control-label bb" style="font-weight: 600">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
                                         <div class="mb-15">
-                                            <select name="selected" class="s-filter form-control t14" style="">
+                                            <select name="selected" class="s-filter form-control t14" style="margin-bottom: 8px;margin-top: 8px">
                                                 @for ($i = 0; $i < count($name); $i++)
                                                     @if($name[$i]!=null)
                                                         <option value="{{$i}}">{{$name[$i]}}</option>
@@ -154,18 +159,18 @@
                                     @endif
 
                                     @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "7"){{--////dạng nhập tiền thành toán--}}
-                                    <span class="mb-15 control-label bb">Nhập số tiền cần mua:</span>
-                                    <div class="mb-15">
-                                        <input autofocus="" value="{{old('input_pack',\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}" class="form-control t14 price " id="input_pack" type="text" placeholder="Số tiền">
+                                    <span class="mb-15 control-label bb" style="font-weight: 600">Nhập số tiền cần mua:</span>
+                                    <div class="mb-15" style="margin-bottom: 8px;margin-top: 8px">
+                                        <input style="margin-bottom: 4px" autofocus="" value="{{old('input_pack',\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}" class="form-control t14 price " id="input_pack" type="text" placeholder="Số tiền">
                                         <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))) }}đ</b>  đến <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))) }}đ</b> </span>
                                     </div>
-                                    <span class="mb-15 control-label bb">Hệ số:</span>
+                                    <span class="mb-15 control-label bb" style="font-weight: 600">Hệ số:</span>
                                     <div class="mb-15">
                                         <input type="text" id="txtDiscount" class="form-control t14" placeholder="" value="" readonly="">
                                     </div>
                                     @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
-                                    <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
-                                    <div class="simple-checkbox s-filter">
+                                    <span class="mb-15 control-label bb" style="margin-top: 8px;font-weight: 600">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
+                                    <div class="simple-checkbox s-filter scroll-default">
                                         @php
                                             $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
                                             $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
@@ -173,9 +178,9 @@
                                         @if(!empty($name))
                                             @for ($i = 0; $i < count($name); $i++)
                                                 @if($name[$i]!=null)
-                                                    <p><input value="{{$i}}" type="checkbox" id="{{$i}}">
-                                                        <label for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</label>
-                                                    </p>
+                                                    <span style="position: relative"><input style="position: absolute;top: 8px" value="{{$i}}" type="checkbox" id="{{$i}}">
+                                                        <label class="limit-2 text-limit" style="cursor: pointer;font-size: 14px;padding-left: 24px" for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</label>
+                                                    </span>
                                                 @endif
 
                                             @endfor
@@ -197,7 +202,7 @@
                                         <input type="hidden" name="selected" value="">
                                         <input type="hidden" name="server">
                                         <a id="txtPrice" style="font-size: 20px;font-weight: bold;text-decoration: none;color: #FFFFFF" class="">Tổng: 0 VNĐ</a>
-                                        <button id="btnPurchase" type="button" style="font-size: 20px;" class="followus"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</button>
+                                        <button id="btnPurchase" type="button" style="font-size: 20px;cursor: pointer" class="followus"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</button>
                                     </div>
                                 </div>
                             </div>
@@ -286,14 +291,14 @@
                                         @for ($i = 0; $i < count($name)-1; $i++)
                                             @if($name[$i]!=null)
                                                 <tr class="m-datatable__row m-datatable__row--even">
-                                                    <td style="width:30px;" class="m-datatable__cell">{{$i+1}}</td>
-                                                    <td class="m-datatable__cell">{{$name[$i]}} -> {{$name[$i+1]}}</td>
-                                                    <td style="width:150px;" class="m-datatable__cell">{{number_format(intval($price[$i+1])- intval($price[$i])). " VNĐ"}}</td>
+                                                    <td style="width:30px;font-size: 14px;color: #2F6A7C;" class="m-datatable__cell">{{$i+1}}</td>
+                                                    <td style="font-size: 14px;color: #2F6A7C;" class="m-datatable__cell">{{$name[$i]}} -> {{$name[$i+1]}}</td>
+                                                    <td style="width:150px;font-size: 14px;color: #2F6A7C;" class="m-datatable__cell">{{number_format(intval($price[$i+1])- intval($price[$i])). " VNĐ"}}</td>
                                                     <td class="m-datatable__cell">
                                                         @if(\App\Library\AuthCustom::check())
                                                             <span class="pay">Thanh toán</span>
                                                         @else
-                                                            <a style="font-size: 20px;" class="followus pay" href="/login" title=""><i aria-hidden="true"></i> Đăng nhập</a>
+                                                            <a style="font-size: 16px;" class="followus pay" href="/login" title=""><i aria-hidden="true"></i> Đăng nhập</a>
                                                         @endif
 
                                                     </td>
@@ -312,7 +317,7 @@
                                     }
                                     .pay{
                                         display: block;
-                                        background: #fb236a;
+                                        background: #2F6A7C;
                                         border-radius: 17px;
                                         text-align: center;
                                         max-width: 118px;
@@ -340,7 +345,7 @@
                         <div class="modal-content">
 
                             <div class="modal-header">
-                                <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Xác nhận thông tin thanh toán</h4>
+                                <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #2F6A7C;text-align: center">Xác nhận thông tin thanh toán</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
@@ -414,7 +419,8 @@
                             <div class="modal-footer modal-footer__data">
                                 <div>
                                     @if(\App\Library\AuthCustom::check())
-                                        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="" >Xác nhận thanh toán</button>
+
+                                        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="background: #2F6A7C" >Xác nhận thanh toán</button>
                                     @else
                                         <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/dich-vu/{{ $data->slug }}">Đăng nhập</a>
                                     @endif
@@ -443,10 +449,11 @@
 
                     {{--MO tả --}}
 
-                    <div class="row">
+                    <div class="row" style="margin-top: 12px">
                         <div class="col-lg-12 column">
                             <div class="job-details">
-                                <h2 style="margin-bottom: 23px;font-size: 20px;font-weight: bold;text-transform: uppercase;">Mô tả</h2>
+                                <h2 style="margin-bottom: 4px;font-size: 20px;font-weight: bold;text-transform: uppercase;">Mô tả</h2>
+                                <div class="news_content_line"></div>
                                 <div class="article-content hidetext">
                                     {!! $data->content  !!}
                                 </div>
@@ -462,7 +469,7 @@
 
             {{--            DỊCH VỤ KHÁC     --}}
             {{--        {!! widget('frontend.pages.service.widget.list_service_category',60) !!}--}}
-            @include('frontend.pages.service.widget.__related')
+            @include('frontend.pages.service.widget.__related',with(['id'=>$data->id]))
 
         </div>
 
@@ -476,6 +483,44 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/service.css">
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/showdetailservice.js?v={{time()}}"></script>
 
+    <style>
+        .scroll-default{
+            padding-right: 8px;
+            max-height: 250px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .scroll-default:hover::-webkit-scrollbar-thumb{
+            background-color: #DCDEE9;
+        }
+
+        .scroll-default::-webkit-scrollbar-track
+        {
+            position: absolute;
+            top: 100px;
+            left: -60px;
+            /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+            background-color:  #ffffff;
+            border: none;
+        }
+
+        .scroll-default::-webkit-scrollbar
+        {
+            width: 8px;
+            border: none;
+        }
+
+        .scroll-default::-webkit-scrollbar-thumb
+        {
+            /*Màu thanh sroll*/
+            background: #BCBFD6;
+            border-radius: 100px;
+            border: none;
+            margin-left: 20px;
+            height: 20px;
+        }
+    </style>
     <script>
 
         function Confirm(index, serverid) {

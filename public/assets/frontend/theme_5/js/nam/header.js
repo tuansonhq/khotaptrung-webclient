@@ -90,14 +90,23 @@ $(document).ready(function () {
             $('.box-menu').removeClass("menu-fix");
             $('.box-menu-bar').fadeIn(200);
             $('.rotation-leaderboard').css('top', '80px');
+
         }
         function showNav() {
             $('.box-menu').addClass("menu-fix");
             $('.box-menu-bar').fadeOut(200);
             $('.rotation-leaderboard').css('top', '140px');
 
+
         }
 
+    });
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 10) {
+            $('.box-search_mobile').fadeIn();
+        } else {
+            $('.box-search_mobile').fadeOut();
+        }
     });
 
     $(function() {
