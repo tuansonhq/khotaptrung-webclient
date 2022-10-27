@@ -290,3 +290,6 @@ header nav.heading .header-container {
     }
 }
 /* End Header responsive */
+.box-search_mobile{
+    display: none;
+}
