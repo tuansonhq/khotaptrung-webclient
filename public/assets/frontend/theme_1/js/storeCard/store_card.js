@@ -65,8 +65,8 @@ $(document).ready(function(){
 
     function UpdatePrice(){
         var amount=$("#amount_storecard").val();
-        // var ratio=$('#amount_storecard option:selected').attr('rel-ratio');
-        ratio = null;
+        var ratio=$('#amount_storecard option:selected').data('ratio');
+        ratio = 100 - ratio;
         var quantity=$("#quantity").val();
 
         if(amount=='' ||amount==null || quantity=='' ||quantity==null){

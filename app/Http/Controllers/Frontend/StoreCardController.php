@@ -44,11 +44,21 @@ class StoreCardController extends Controller
                 $array_menhgia = [];
 
                 foreach( $data_api as $item ) {
+                    $productPrice = $item->price;
                     foreach($item->product_attribute as $attribute) {
                         if ($attribute->product_attribute_value_able->id == $key) {
                             foreach ($item->product_attribute as $attribute) {
                                 if ($attribute->attribute->idkey == "menh_gia_thecao") {
-                                    $array_menhgia[$item->id] = $attribute->product_attribute_value_able->title;
+
+                                    $productValue = new \stdClass();
+                                    $amount = $attribute->product_attribute_value_able->title;
+                                    //Calculate ratio
+                                    $ratio = 100 - ( ($productPrice / $amount) * 100 );
+                                    $ratio = round($ratio, 2);
+
+                                    $productValue->ratio = $ratio;
+                                    $productValue->amount = (int)$amount;
+                                    $array_menhgia[$item->id] = $productValue;
                                 }
                             }
                         }
