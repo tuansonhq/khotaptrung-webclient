@@ -97,8 +97,8 @@
                                     $total_tuong += count($arr_champ);
                                 }
                             }
-                            if($key == 'skins_custom') {
-                                foreach ($game_auto_props['skins_custom'] as $arr_skins) {
+                            if($key == 'skins') {
+                                foreach ($game_auto_props['skins'] as $arr_skins) {
                                     $total_trangphuc += count($arr_skins);
                                 }
                             }
@@ -241,9 +241,9 @@
                                                             <div class="row marginauto item-nick-lmht__border">
                                                                 <div
                                                                     class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                                                    <img
-                                                                        class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy"
-                                                                        data-original="https://cdn.upanh.info/{{$companion->thumb}}"
+                                                                    <img src="https://cdn.upanh.info/{{$companion->thumb}}"
+                                                                        class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
+
                                                                         alt="{{ $companion->name }}">
                                                                 </div>
                                                                 <div class="col-md-12 pl-0 pr-0 text-center">
@@ -269,7 +269,7 @@
                                                     @foreach($game_auto_props as $key => $game_auto_prop)
                                                         @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']) > 1)
                                                             @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
-                                                                @if($key == count($game_auto_props['skins_custom']) - 1)
+                                                                @if($key == count($game_auto_props['skins']) - 1)
                                                                     <li class="page-item disabled hidden-xs dot-last-paginate">
                                                                         <span class="page-link">...</span>
                                                                     </li>
@@ -328,9 +328,9 @@
                                 <div class="tab-content" id="content_page_skin">
 
                                     @foreach($game_auto_props as $key => $game_auto_prop)
-                                        @if($key == 'skins_custom' && count($game_auto_props['skins_custom']))
+                                        @if($key == 'skins' && count($game_auto_props['skins']))
 
-                                            @foreach($game_auto_props['skins_custom'] as $key => $arr_skins)
+                                            @foreach($game_auto_props['skins'] as $key => $arr_skins)
                                                 <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
                                                      id="tab-skin-{{$key}}" role="tabpanel">
                                                     <div class="row">
@@ -341,8 +341,8 @@
                                                                 <div
                                                                     class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
                                                                     <img
-                                                                        class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy"
-                                                                        data-original="https://cdn.upanh.info/{{$skin->thumb}}"
+                                                                        src="https://cdn.upanh.info/{{$companion->thumb}}"
+                                                                        class="w-100 brs-4 position-absolute item-nick-lmht__border__img "
                                                                         alt="{{ $skin->name }}">
                                                                 </div>
                                                                 <div class="col-md-12 pl-0 pr-0 text-center">
@@ -367,10 +367,10 @@
 
                                             <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle skin-paginate" data-tab="skin-paginate" role="tablist">
                                                 @foreach($game_auto_props as $key => $game_auto_prop)
-                                                    @if($key == 'skins_custom' && count($game_auto_props['skins_custom']) > 1)
+                                                    @if($key == 'skins' && count($game_auto_props['skins']) > 1)
 
-                                                        @foreach($game_auto_props['skins_custom'] as $key => $arr_skins)
-                                                            @if($key == count($game_auto_props['skins_custom']) - 1)
+                                                        @foreach($game_auto_props['skins'] as $key => $arr_skins)
+                                                            @if($key == count($game_auto_props['skins']) - 1)
                                                                 <li class="page-item disabled hidden-xs dot-last-paginate">
                                                                     <span class="page-link">...</span>
                                                                 </li>
