@@ -33,7 +33,11 @@
         </div>
 
         <div class="box-notify  d-flex c-ml-8">
-
+            <div class="box-notify">
+                <div class="box-icon brs-8 box-search_mobile">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/search.svg" alt="" >
+                </div>
+            </div>
             <div class="box-icon brs-8 " data-notity="5">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/ring.svg" alt="" >
             </div>
