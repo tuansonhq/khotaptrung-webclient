@@ -1,4 +1,4 @@
-@if(isset($data))
+@if(isset($data) && $data != null)
 <ul class="d-flex justify-content-between px-0 c-mb-8 flex-grow-1 flex-shrink-0 ">
     @foreach($data as $key => $item)
         <script>
