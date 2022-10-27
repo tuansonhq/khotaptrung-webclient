@@ -144,4 +144,52 @@ $(document).ready(function () {
         setDisplayLink(pageSelected, paginateTab);
     });
 
+    // Handle suggestion
+    $('.form-search-modal-input').on('input', function () {
+
+        let formBlock = $(this).closest('.form-search-modal');
+        let dataBlock = formBlock.data('tab');
+        let result_ul = $(formBlock).find('.suggest-list');
+
+        result_ul.empty();
+        result_ul.toggleClass('d-none', !$(this).val().trim());
+
+        let keyword = convertToSlug($(this).val());
+        Array.from($(`${dataBlock} .card-lmht`)).forEach(function (elm) {
+            let text = convertToSlug($(elm).find('.card-name').text().trim())
+            if (text.indexOf(keyword) > -1) {
+                let html = `<li class="suggest-item">${$(elm).find('.card-name').text().trim()}</li>`;
+                result_ul.append(html);
+            }
+        })
+    });
+
+    $('.suggest-list').on('click', '.suggest-item', function () {
+        let text = $(this).text();
+        $(this).parent().prev().val(text);
+        $(this).parent().next().trigger('click');
+    });
+
+    $('.form-search-modal').on('submit', function (e) {
+        e.preventDefault();
+        let modalBlock = $(this).closest('.modal-lmht');
+        let dataBlock = $(this).data('tab');
+        let keyword = convertToSlug($(this).find('.form-search-modal-input').val().trim());
+        let elm_result = $(modalBlock).find('.modal-lmht-search-results');
+        elm_result.empty();
+        $('.suggest-list').addClass('d-none')
+        Array.from($(`${dataBlock} .card-lmht`)).forEach(function (elm) {
+            let text = convertToSlug($(elm).find('.card-name').text().trim())
+            if (text && text.indexOf(keyword) > -1) {
+                let new_elm = $(elm).clone();
+                new_elm.find('img').attr('src', new_elm.find('img').attr('data-original'));
+                let elmBlock = jQuery("<div></div>", {class: "col-lg-2 col-6"});
+                elmBlock.append(new_elm);
+                elm_result.append(elmBlock);
+            }
+        });
+        elm_result.toggleClass('d-none', !keyword);
+        $(modalBlock).find('.modal-lmht-tabs-block').toggleClass('d-none', !!keyword);
+    });
+
 });

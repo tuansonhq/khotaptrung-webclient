@@ -52,7 +52,7 @@
                         <ul class="nav nav-tabs size-auto" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a class="tab-show-acc active count-thumb" data-toggle="tab" href="#tab-thumb" role="tab"
-                                   aria-selected="true"></a>
+                                   aria-selected="true">Ảnh</a>
                             </li>
                             <li class="c-mx-4"></li>
                             <li class="nav-item" role="presentation">
