@@ -155,7 +155,51 @@
                                                         @endif
                                                     @endforeach
                                                 @endif
+                                            @elseif($slug == "nick-ngoc-rong-online")
 
+                                                @php
+                                                    $server = null;
+                                                    $info = array();
+
+                                                    $params = $item->params;
+                                                    if (isset($params->server)){
+                                                        $server = $params->server;
+                                                    }
+                                                    if (isset($params->info) && count($params->info)){
+                                                        $info = $params->info;
+                                                    }
+                                                @endphp
+                                                @if(isset($server))
+                                                    <?php
+                                                    $total = $total + 1;
+                                                    ?>
+                                                    <div class="info-attr">
+                                                        Server :
+                                                        {{ $server??'' }}
+                                                    </div>
+
+
+                                                @endif
+
+                                                @if(isset($info) && count($info))
+                                                    @foreach($info as $ke => $in)
+                                                        @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
+                                                            @if($total < 4)
+                                                                <?php
+                                                                $total = $total + 1;
+                                                                ?>
+                                                                <div class="info-attr">
+                                                                    {{ $in->name??'' }} :
+                                                                    @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                        {{ $in->value??'' }}
+                                                                    @else
+                                                                        {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                    @endif
+                                                                </div>
+                                                            @endif
+                                                        @endif
+                                                    @endforeach
+                                                @endif
                                             @endif
                                         @endif
 

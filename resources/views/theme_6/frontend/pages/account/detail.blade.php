@@ -134,9 +134,7 @@
                 </div>
 
                 <div class="row marginauto">
-                    <div class="col-md-12 left-right">
-                        @include('frontend.pages.account.widget.__viewed__account')
-                    </div>
+
                     <div class="col-md-12 left-right" id="showslideracc">
                         <div class="body-box-loadding result-amount-loadding result-amount-loadding__nick-lien-quan">
                             <div class="d-flex justify-content-center" style="padding-top: 112px;">
@@ -144,6 +142,10 @@
                             </div>
                         </div>
 
+                    </div>
+
+                    <div class="col-md-12 left-right">
+                        @include('frontend.pages.account.widget.__viewed__account')
                     </div>
                 </div>
 
