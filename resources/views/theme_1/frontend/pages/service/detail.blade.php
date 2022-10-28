@@ -275,7 +275,7 @@
                                                                 <div class="mb-15">
                                                                     <select name="selected" class="s-filter form-control t14 selected_filter" style="">
                                                                         @foreach($item_array as $key => $item)
-                                                                            <option value="{{ $key }}" data-price="{{ $item->price }}">
+                                                                            <option value="{{ $item->price }}" data-price="{{ $item->price }}">
                                                                                 @foreach($item->product_attribute as $attribute)
                                                                                     @if($attribute->attribute->idkey == 'nhiem_vu_nro')
                                                                                         {{ $attribute->product_attribute_value_able->title }}
@@ -300,7 +300,7 @@
                                                                 <div class="mb-15">
                                                                     <select name="selected" class="s-filter form-control t14 selected_filter" style="">
                                                                         @foreach($item_array as $key => $item)
-                                                                            <option data-price="{{ $item->id }}" value="{{ $key }}">
+                                                                            <option data-price="{{ $item->price }}" value="{{ $item->price }}">
                                                                                 @foreach($item->product_attribute as $attribute)
                                                                                     @if($attribute->attribute->idkey == 'nhiem_vu_nro')
                                                                                         {{ $attribute->product_attribute_value_able->title }}
