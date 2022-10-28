@@ -60,6 +60,7 @@
     </script>
     <input type="hidden" name="slug_category" class="slug_category" value="{{ $data->slug }}">
 {{--    <input type="text" value="{{ $server_mode }}">--}}
+
     <div class="c-layout-page">
         <div class="news_breadcrumbs">
             <div class="container">
@@ -381,7 +382,7 @@
                                         <input type="hidden" name="selected" value="">
                                         <input type="hidden" name="server">
                                         <a id="txtPrice" style="font-size: 20px;font-weight: bold;text-decoration: none;color: #FFFFFF" class="">Tổng: 0 VNĐ</a>
-                                        <button id="btnPurchase" type="button" style="font-size: 20px;" class="followus"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</button>
+                                        <button id="btnPurchase" type="button" style="font-size: 20px;" class="followus" ><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</button>
                                     </div>
                                 </div>
                             </div>
@@ -501,9 +502,8 @@
                     @endif
 
                 </div>
-
-                <div class="modal fade" id="homealert" role="dialog" style="display: none;" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                <div class="modal fade" id="homealert" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
                         <div class="modal-content">
 
@@ -513,18 +513,52 @@
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <div >
-                                <div class="row error__service">
+{{--                            <div >--}}
+{{--                                <div class="row error__service">--}}
 
-                                </div>
-                            </div>
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="modal-body">
 {{--                                đổ dữ liệu modal  --}}
+                                @foreach($data->supplier->field_api as $item)
+
+                                    <span class="mb-15 control-label bb">{{$item->title_api}}:</span>
+                                    @if($item->type == 1)
+                                        <div class="mb-15">
+                                            <input type="text" required name="{{$item->key_api}}" class="form-control t14 " placeholder="{{$item->title_api}}" value="">
+                                        </div>
+                                    @elseif($item->type==4)
+                                            <div class="mb-15">
+                                            <input type="file" required accept="image/*" class="form-control" name="{{$item->key_api}}" placeholder="{{$item->title_api}}">
+                                        </div>
+                                    @elseif($item->type==5)
+
+                                        <div class="mb-15">
+                                            <input type="password" required class="form-control" name="{{$item->key_api}}" placeholder="{{$item->title_api}}">
+                                        </div>
+                                    @elseif($item->type==6)
+
+                                        @php
+                                            $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
+                                        @endphp
+                                        <div class="mb-15">
+                                            <select name="customer_data{{$i}}" required class="mb-15 control-label bb">
+                                                @if(!empty($send_data))
+                                                    @for ($sn = 0; $sn < count($send_data); $sn++)
+                                                        <option value="{{$sn}}">{{$send_data[$sn]}}</option>
+                                                    @endfor
+                                                @endif
+                                            </select>
+                                        </div>
+
+                                    @endif
+                                @endforeach
+
                             </div>
 
                             <div class="modal-footer modal-footer__data">
                                 <div>
-                                    <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="" >Xác nhận thanh toán</button>
+                                    <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold " id="d3" style="" >Xác nhận thanh toán</button>
                                 </div>
 
                                 <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
