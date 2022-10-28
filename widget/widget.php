@@ -1365,7 +1365,6 @@ View::composer('frontend.widget.__tin__tuc__noi__bat', function ($view) {
 
         return $data = $result_Api->response_data->data->data??null;
     });
-
     return $view->with('data', $data);
 
 });

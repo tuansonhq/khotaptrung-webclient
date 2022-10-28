@@ -1,4 +1,3 @@
-@dd($data)
 @if(isset($data) && count($data) > 0)
     <div class="relate-content">
         <h2>Bài viết nổi bật</h2>
