@@ -183,7 +183,7 @@
 
                                                 @endphp
 
-                                                <input type="text" class="check_server" value="{{ $server_id[0] }}">
+                                                <input type="hidden" class="check_server" value="{{ $server_id[0] }}">
 
                                                 <select name="server" class="server-filter server_filter form-control t14" id="server" style="">
                                                     @foreach($server_id as $key => $item)
@@ -200,9 +200,9 @@
                                         @endif
                                     @endif
 
-                                    {{--                                                Loại nhập tiền    --}}
+
                                     @if(isset($filter_type))
-                                        @if($filter_type == 7)
+                                        @if($filter_type == 7){{--                                                Loại nhập tiền    --}}
 
                                             @if(isset($product) && count($product))
                                                 @foreach($product as $key => $item)
@@ -265,7 +265,7 @@
                                                 @endforeach
                                             @endif
 
-                                        @elseif($filter_type == 4)
+                                        @elseif($filter_type == 4){{--//dạng chọn 1 --}}
                                             @if(isset($item_arrays) && count($item_arrays))
                                                 @foreach($item_arrays as $index => $item_array)
                                                     @if($server_id[0] == $index)
@@ -275,7 +275,7 @@
                                                                 <div class="mb-15">
                                                                     <select name="selected" class="s-filter form-control t14 selected_filter" style="">
                                                                         @foreach($item_array as $key => $item)
-                                                                            <option value="{{ $key }}" data-price="{{ $item->id }}">
+                                                                            <option value="{{ $key }}" data-price="{{ $item->price }}">
                                                                                 @foreach($item->product_attribute as $attribute)
                                                                                     @if($attribute->attribute->idkey == 'nhiem_vu_nro')
                                                                                         {{ $attribute->product_attribute_value_able->title }}
@@ -320,7 +320,7 @@
                                                     @endif
                                                 @endforeach
                                             @endif
-                                        @elseif($filter_type == 5)
+                                        @elseif($filter_type == 5){{--//dạng chọn nhiều--}}
                                             @if(isset($item_arrays) && count($item_arrays))
                                                 @foreach($item_arrays as $index => $item_array)
                                                     @if($server_id[0] == $index)
