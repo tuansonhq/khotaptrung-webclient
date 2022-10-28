@@ -83,31 +83,51 @@
                 @if(isset($game_auto_props) && count($game_auto_props))
                     @if($slug_category == 'nick-lien-minh')
                         @php
-                            $total_tuong = 0;
-                            $total_bieucam = 0;
-                            $total_chuongluc = 0;
-                            $total_sandau = 0;
-                            $total_linhthu = 0;
-                            $total_trangphuc = 0;
-                            $total_thongtinchung = 0;
+                            if (isset($game_auto_props) && count($game_auto_props)){
+                                $total_tuong = 0;
+                                $total_bieucam = 0;
+                                $total_chuongluc = 0;
+                                $total_sandau = 0;
+                                $total_linhthu = 0;
+                                $total_trangphuc = 0;
+                                $total_thongtinchung = 0;
 
-                            if(isset($game_auto_props) && count($game_auto_props)){
-                                foreach($game_auto_props as $game_auto_prop){
-                                    if($game_auto_prop->key == 'champions'){
-                                        $total_tuong = $total_tuong + 1;
-                                        if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
-                                            foreach($game_auto_prop->childs as $c_child){
-                                                $total_trangphuc = $total_trangphuc + 1;
-                                            }
+
+                                foreach ($game_auto_props as $key => $item) {
+
+                                    if ($key == 'champions') {
+
+                                        foreach ($game_auto_props['champions'] as $arr_champ) {
+                                            $total_tuong += count($arr_champ);
                                         }
-                                    }elseif ($game_auto_prop->key == 'emotes'){
-                                        $total_bieucam = $total_bieucam + 1;
-                                    }elseif ($game_auto_prop->key == 'tftdamageskins'){
-                                        $total_chuongluc = $total_chuongluc + 1;
-                                    }elseif ($game_auto_prop->key == 'tftmapskins'){
-                                        $total_sandau = $total_sandau + 1;
-                                    }elseif ($game_auto_prop->key == 'tftcompanions'){
-                                        $total_linhthu = $total_linhthu + 1;
+                                    }
+                                    if($key == 'skins') {
+                                        foreach ($game_auto_props['skins'] as $arr_skins) {
+                                            $total_trangphuc += count($arr_skins);
+                                        }
+                                    }
+                                    if ($key == 'tftmapskins'){
+                                        foreach ($game_auto_props['tftmapskins'] as $arr_mapskins) {
+                                            $total_sandau += count($arr_mapskins);
+                                        }
+                                    }
+
+                                    if ($key == 'tftdamageskins'){
+                                        foreach ($game_auto_props['tftdamageskins'] as $arr_dameskins) {
+                                            $total_chuongluc += count($arr_dameskins);
+                                        }
+                                    }
+
+                                    if ($key == 'tftcompanions'){
+                                        foreach ($game_auto_props['tftcompanions'] as $arr_linh_thu) {
+                                            $total_linhthu += count($arr_linh_thu);
+                                        }
+                                    }
+
+                                    if ($key == 'emotes'){
+                                        foreach ($game_auto_props['emotes'] as $arr_emotes) {
+                                            $total_bieucam += count($arr_emotes);
+                                        }
                                     }
                                 }
                             }
@@ -185,35 +205,87 @@
                                             ({{ $total_tuong??0 }} tướng)
                                         </div>
                                     </div>
-                                    <div class="form-search">
-                                        <input class="keyword--search has-submit input-search-lmht form-control" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control">
-
-                                        <button class="submit--search" type="submit"></button>
+                                    <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
+                                        <input id="input-search-champ" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
+                                         <ul class="sugges_list d-none">
+        
+                                        </ul>
+                                        <button class="submit-search-champ submit--search" type="button"></button>
                                     </div>
                                     <img class="c-close-modal" data-dismiss="modal" src="/assets/frontend/theme_1/image/son/close.svg" alt="">
                                 </div>
 
                                 <div class="modal-body">
-                                    <div class="row marginauto">
-                                        <div class="col-12 body-modal__nick__text-error">
-                                            <div class="text-error c-mt-4">Không có kết quả phù hợp.</div>
-                                        </div>
-                                        @foreach($game_auto_props as $game_auto_prop)
-                                            @if($game_auto_prop->key == 'champions')
-                                                <div class="col-3 col-lg-1 item-nick-lmht">
-                                                    <a href="javascript:void(0)">
-                                                        <div class="row marginauto item-nick-lmht__border">
-                                                            <div class="col-md-12 item-nick-lmht__border__col">
-                                                                <img class="w-100 item-nick-lmht__border__img lazy" src="https://cdn.upanh.info/{{ $game_auto_prop->thumb }}" alt="{{ $game_auto_prop->name }}">
+                                    <div class="row marginauto" id="tab-panel-champ">
+                                        <div class="col-md-12 left-right justify-content-end">
+                                            <div class="tab-content" id="content_page_champ">
+
+                                                @foreach($game_auto_props as $key => $game_auto_prop)
+                                                    @if($key == 'champions' && count($game_auto_props['champions']))
+
+                                                        @foreach($game_auto_props['champions'] as $key => $arr_champ)
+                                                            <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
+                                                                id="tab-champ-{{$key}}" role="tabpanel">
+                                                                <div class="row">
+                                                                    @foreach($arr_champ as $champ)
+                                                                        <div class="col-3 col-lg-1 item-nick-lmht">
+                                                                            <a href="javascript:void(0)">
+                                                                                <div class="row marginauto item-nick-lmht__border">
+                                                                                    <div class="col-md-12 item-nick-lmht__border__col">
+                                                                                        <img class="w-100 item-nick-lmht__border__img lazy" src="https://cdn.upanh.info/{{ $champ->thumb }}" alt="{{ $champ->name }}">
+                                                                                    </div>
+                                                                                    <div class="col-md-12 text-center" style="padding-right: 0; padding-left: 0;">
+                                                                                        <p class="properties-lol-title" style="padding-top: 8px;margin-bottom: 0">{{ $champ->name }}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
                                                             </div>
-                                                            <div class="col-md-12 text-center" style="padding-right: 0; padding-left: 0;">
-                                                                <p class="properties-lol-title" style="padding-top: 8px;margin-bottom: 0">{{ $game_auto_prop->name }}</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
+                                                        @endforeach
+                                                    @endif
+                                                @endforeach
+                                            </div>
+
+                                            <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
+                                                <div class="col-auto paginate__category__col">
+                                                    <div class="data_paginate paging_bootstrap paginations_custom">
+            
+                                                        <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle champion-paginate" data-tab="champion-paginate" role="tablist">
+                                                            @foreach($game_auto_props as $key => $game_auto_prop)
+                                                                @if($key == 'champions' && count($game_auto_props['champions']) > 1)
+            
+                                                                    @foreach($game_auto_props['champions'] as $key => $arr_champ)
+                                                                        @if($key == count($game_auto_props['champions']) - 1)
+                                                                            <li class="page-item disabled hidden-xs dot-last-paginate">
+                                                                                <span class="page-link">...</span>
+                                                                            </li>
+                                                                        @endif
+                                                                        <li class="nav-item page-item {{ !$key ? 'active' : '' }} page-item-{{ $key }}">
+                                                                            <a class="page-link {{ !$key ? 'active' : '' }} page-link-{{ $key }}"
+                                                                               data-toggle="tab" href="#tab-champ-{{ $key }}"
+                                                                               role="tab"  data-page="{{ $key }}">{{ $key + 1 }}</a>
+                                                                        </li>
+                                                                        @if(!$key)
+                                                                            <li class="page-item disabled hidden-xs dot-first-paginate">
+                                                                                <span class="page-link">...</span>
+                                                                            </li>
+                                                                        @endif
+                                                                    @endforeach
+            
+            
+                                                                @endif
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                            @endif
-                                        @endforeach
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row marginauto modal-container-body" id="result-search-champ">
+
                                     </div>
                                 </div>
                             </div>
@@ -233,34 +305,82 @@
                                             ({{ $total_linhthu }} linh thú)
                                         </div>
                                     </div>
-                                    <div class="form-search">
-                                        <input class="keyword--search has-submit input-search-lmht form-control" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control">
-                                        <button class="submit--search" type="submit"></button>
+                                    <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
+                                        <input id="input-search-conpanion" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
+                                        <ul class="sugges_list d-none">
+        
+                                        </ul>
+                                        <button class="submit-search-companion submit--search" type="button"></button>
                                     </div>
                                     <img class="c-close-modal" data-dismiss="modal" src="/assets/frontend/theme_1/image/son/close.svg" alt="">
                                 </div>
 
                                 <div class="modal-body">
-                                    <div class="row marginauto">
-                                        <div class="col-12 body-modal__nick__text-error">
-                                            <div class="text-error c-mt-4">Không có kết quả phù hợp.</div>
-                                        </div>
-                                        @foreach($game_auto_props as $game_auto_prop)
-                                            @if($game_auto_prop->key == 'tftcompanions')
-                                                <div class="col-3 col-lg-1 item-nick-lmht">
-                                                    <a href="javascript:void(0)">
-                                                        <div class="row marginauto item-nick-lmht__border">
-                                                            <div class="col-md-12 item-nick-lmht__border__col">
-                                                                <img class="w-100 item-nick-lmht__border__img lazy" src="https://cdn.upanh.info/{{ $game_auto_prop->thumb }}" alt="{{ $game_auto_prop->name }}">
+                                    <div class="row marginauto" id="tab-panel-companion">
+                                        <div class="col-md-12 left-right justify-content-end">
+                                            <div class="tab-content" id="content_page_companion">
+                                                @foreach($game_auto_props as $key => $game_auto_prop)
+                                                    @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']))
+        
+                                                        @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
+                                                            <div class="tab-pane fade {{ !$key ? 'show active' : '' }}" id="tab-companion-{{$key}}" role="tabpanel">
+                                                                <div class="row">
+                                                                    @foreach($arr_companions as $companion)
+                                                                        <div class="col-3 col-lg-1 item-nick-lmht">
+                                                                            <a href="javascript:void(0)">
+                                                                                <div class="row marginauto item-nick-lmht__border">
+                                                                                    <div class="col-md-12 item-nick-lmht__border__col">
+                                                                                        <img class="w-100 item-nick-lmht__border__img lazy" src="https://cdn.upanh.info/{{ $companion->thumb }}" alt="{{ $companion->name }}">
+                                                                                    </div>
+                                                                                    <div class="col-md-12 text-center" style="padding-right: 0; padding-left: 0;">
+                                                                                        <p class="properties-lol-title" style="padding-top: 8px;margin-bottom: 0">{{ $companion->name }}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
                                                             </div>
-                                                            <div class="col-md-12 text-center" style="padding-right: 0; padding-left: 0;">
-                                                                <p class="properties-lol-title" style="padding-top: 8px;margin-bottom: 0">{{ $game_auto_prop->name }}</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
+                                                        @endforeach
+        
+        
+                                                    @endif
+                                                @endforeach
+                                            </div>
+
+                                            <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
+                                                <div class="col-auto paginate__category__col">
+                                                    <div class="data_paginate paging_bootstrap paginations_custom">
+                                                        <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle tft-paginate" data-tab="tft-paginate" role="tablist">
+                                                            @foreach($game_auto_props as $key => $game_auto_prop)
+                                                                @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']) > 1)
+                                                                    @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
+                                                                        @if($key == count($game_auto_props['skins']) - 1)
+                                                                            <li class="page-item disabled hidden-xs dot-last-paginate">
+                                                                                <span class="page-link">...</span>
+                                                                            </li>
+                                                                        @endif
+                                                                        <li class="nav-item page-item {{ !$key ? 'active' : '' }} page-item-{{ $key }}">
+                                                                            <a class="page-link {{ !$key ? 'active' : '' }} page-link-{{ $key }}"
+                                                                               data-toggle="tab" href="#tab-companion-{{ $key }}"
+                                                                               role="tab"  data-page="{{ $key }}">{{ $key + 1 }}</a>
+                                                                        </li>
+                                                                        @if(!$key)
+                                                                            <li class="page-item disabled hidden-xs dot-first-paginate">
+                                                                                <span class="page-link">...</span>
+                                                                            </li>
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                            @endif
-                                        @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row marginauto modal-container-body d-none" id="result-search-companion">
+
                                     </div>
                                 </div>
                             </div>
@@ -280,38 +400,88 @@
                                             ({{ $total_trangphuc }} trang phục)
                                         </div>
                                     </div>
-                                    <div class="form-search">
-                                        <input class="keyword--search has-submit input-search-lmht form-control" type="search" placeholder="Tìm kiếm">
-                                        <button class="submit--search" type="submit"></button>
+                                    <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
+                                        <input id="input-search-skins" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
+                                        <ul class="sugges_list d-none">
+        
+                                        </ul>
+                                        <button class="submit-search-skins submit--search" type="button"></button>
                                     </div>
                                     <img class="c-close-modal" data-dismiss="modal" src="/assets/frontend/theme_1/image/son/close.svg" alt="">
                                 </div>
 
                                 <div class="modal-body">
-                                    <div class="row marginauto">
-                                        <div class="col-12 body-modal__nick__text-error">
-                                            <div class="text-error c-mt-4">Không có kết quả phù hợp.</div>
-                                        </div>
-                                        @foreach($game_auto_props as $game_auto_prop)
-                                            @if($game_auto_prop->key == 'champions')
-                                                @if(isset($game_auto_prop->childs) && count($game_auto_prop->childs))
-                                                    @foreach($game_auto_prop->childs as $c_child)
-                                                        <div class="col-3 col-lg-1 item-nick-lmht">
-                                                            <a href="javascript:void(0)">
-                                                                <div class="row marginauto item-nick-lmht__border">
-                                                                    <div class="col-md-12 item-nick-lmht__border__col">
-                                                                        <img class="w-100 item-nick-lmht__border__img lazy" src="https://cdn.upanh.info/{{$c_child->thumb}}" alt="{{ $c_child->name }}">
-                                                                    </div>
-                                                                    <div class="col-md-12 text-center" style="padding-right: 0; padding-left: 0;">
-                                                                        <p class="properties-lol-title" style="padding-top: 8px;margin-bottom: 0">{{ $c_child->name }}</p>
-                                                                    </div>
+                                    <div class="row marginauto" id="tab-panel-skins">
+                                        <div class="col-md-12 left-right justify-content-end">
+                                            <div class="tab-content" id="content_page_skin">
+
+                                                @foreach($game_auto_props as $key => $game_auto_prop)
+                                                    @if($key == 'skins' && count($game_auto_props['skins']))
+            
+                                                        @foreach($game_auto_props['skins'] as $key => $arr_skins)
+                                                            <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
+                                                                 id="tab-skin-{{$key}}" role="tabpanel">
+                                                                <div class="row">
+                                                                    @foreach($arr_skins as $skin)
+                                                                        <div class="col-3 col-lg-1 item-nick-lmht">
+                                                                            <a href="javascript:void(0)">
+                                                                                <div class="row marginauto item-nick-lmht__border">
+                                                                                    <div class="col-md-12 item-nick-lmht__border__col">
+                                                                                        <img class="w-100 item-nick-lmht__border__img lazy" src="https://cdn.upanh.info/{{$skin->thumb}}" alt="{{ $skin->name }}">
+                                                                                    </div>
+                                                                                    <div class="col-md-12 text-center" style="padding-right: 0; padding-left: 0;">
+                                                                                        <p class="properties-lol-title" style="padding-top: 8px;margin-bottom: 0">{{ $skin->name }}</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                    @endforeach
                                                                 </div>
-                                                            </a>
-                                                        </div>
-                                                    @endforeach
-                                                @endif
-                                            @endif
-                                        @endforeach
+                                                            </div>
+                                                        @endforeach
+            
+            
+                                                    @endif
+                                                @endforeach
+                                            </div>
+
+                                            <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
+                                                <div class="col-auto paginate__category__col">
+                                                    <div class="data_paginate paging_bootstrap paginations_custom">
+            
+                                                        <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle skin-paginate" data-tab="skin-paginate" role="tablist">
+                                                            @foreach($game_auto_props as $key => $game_auto_prop)
+                                                                @if($key == 'skins' && count($game_auto_props['skins']) > 1)
+            
+                                                                    @foreach($game_auto_props['skins'] as $key => $arr_skins)
+                                                                        @if($key == count($game_auto_props['skins']) - 1)
+                                                                            <li class="page-item disabled hidden-xs dot-last-paginate">
+                                                                                <span class="page-link">...</span>
+                                                                            </li>
+                                                                        @endif
+                                                                        <li class="nav-item page-item {{ !$key ? 'active' : '' }} page-item-{{ $key }}">
+                                                                            <a class="page-link {{ !$key ? 'active' : '' }} page-link-{{ $key }}"
+                                                                               data-toggle="tab" href="#tab-skin-{{ $key }}"
+                                                                               role="tab"  data-page="{{ $key }}">{{ $key + 1 }}</a>
+                                                                        </li>
+                                                                        @if(!$key)
+                                                                            <li class="page-item disabled hidden-xs dot-first-paginate">
+                                                                                <span class="page-link">...</span>
+                                                                            </li>
+                                                                        @endif
+                                                                    @endforeach
+            
+            
+                                                                @endif
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row marginauto modal-container-body d-none" id="result-search-skin">
+
                                     </div>
                                 </div>
                             </div>
