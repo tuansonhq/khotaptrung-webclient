@@ -17,21 +17,17 @@ class AccController extends Controller
 {
     public function getCategory(Request $request){
 
-        $url = '/acc';
+        $url = '/get-category';
         $method = "GET";
         $dataSend = array();
-        $dataSend['data'] = 'category_list';
-        $dataSend['module'] = 'acc_category';
-        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $dataSend['type'] = 1;
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method,false,0,1);
         $response_data = $result_Api->response_data??null;
 
 
         if(isset($response_data) && $response_data->status == 1){
 
-            $data = $response_data->data;
-
-
-            Session::get('auth_custom');
+            $data = $response_data->data->data;
 
             return view('frontend.pages.account.category')
                 ->with('data',$data);
