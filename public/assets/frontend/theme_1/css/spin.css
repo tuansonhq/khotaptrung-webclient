@@ -553,12 +553,28 @@
 }
 .item_buy_list_img-sale{
     position: absolute;
-    max-width: 50%;
-    top: -4px;
-    right: -2px;
+
+    top: 0;
+    right: 2px;
     /*z-index: 100;*/
-    width: 79px;
-    height: 75px;
+    width: 40px;
+
+}
+.buy_list_img-sale-title{
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-40%);
+    font-weight: 600;
+    color: white;
+    font-size: 10px;
+}
+.buy_list_img-sale-title>div{
+
+    font-weight: 600;
+    color: #ffc400;
+    font-size: 14px;
+    text-align: center;
+    margin-top: -4px;
 }
 .item_buy_list_img-main{
     position: absolute;

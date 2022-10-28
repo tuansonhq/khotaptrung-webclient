@@ -13,7 +13,26 @@
                             @else
                                 {{--                                            <img class="item_buy_list_img-main" src="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">--}}
                             @endif
+                            @php
+                                if (isset($item->price_old)) {
+                                    $sale_percent = (($item->price_old - $item->price) / $item->price_old) * 100;
+                                    $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
+                                } else {
+                                    $sale_percent = 0;
+                                }
+                            @endphp
+                            @if ($sale_percent > 0)
+                                <div class="item_buy_list_img-sale">
+                                    <div class="position-relative">
+                                        <img class="w-100" src="/assets/frontend/{{theme('')->theme_key}}/image/mgg.png"  alt="" >
+                                        <div class="position-absolute buy_list_img-sale-title">
+                                            Giảm
+                                            <div>{{$sale_percent}}%</div>
+                                        </div>
+                                    </div>
 
+                                </div>
+                            @endif
                             <span>MS: #{{ $item->id }}</span>
                         </a>
                     </div>
@@ -127,14 +146,7 @@
 
                         </div>
                     </div>
-                    @php
-                        if (isset($item->price_old)) {
-                            $sale_percent = (($item->price_old - $item->price) / $item->price_old) * 100;
-                            $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
-                        } else {
-                            $sale_percent = 0;
-                        }
-                    @endphp
+
                     <div class="item_buy_list_more">
                         <div class="row">
                             <div class="col-12 fixcssacount">

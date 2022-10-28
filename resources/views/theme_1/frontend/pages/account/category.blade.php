@@ -44,21 +44,17 @@
                 </div>
             </div>
 
-            <div class="item_buy_list row pt-5">
+            <div class="item_buy_list row pt-3">
                 @if(isset($data) && count($data))
                     @foreach($data as $item)
                         <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 ppk">
                             <div class="game-list-content">
                                 <div class="game-list-image">
-                                    <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
+                                    <a class="account_category" href="/mua-acc/{{ isset($item->slug) && $item->slug != '' ? $item->slug :  $item->slug }}">
                                         {{--                                                Anh khuyen mai--}}
-                                        @if(isset($item->image_icon))
-                                            <img class="game-list-image-sticky lazy" src="{{ isset($item->custom->image_icon) ?  \App\Library\MediaHelpers::media($item->custom->image_icon) :  \App\Library\MediaHelpers::media($item->image_icon) }}" alt="">
-                                        @else
-                                            <img class="game-list-image-sticky" src="/assets/frontend/{{theme('')->theme_key}}/images/giamgia.png" alt="">
-                                        @endif
+
                                         @if(isset($item->image))
-                                            <img class="game-list-image-in lazy" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="">
+                                            <img class="game-list-image-in lazy" src="{{ isset($item->image) ? \App\Library\MediaHelpers::media($item->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="">
                                         @else
                                             <img class="game-list-image-in" src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
                                         @endif
@@ -67,32 +63,24 @@
                                     </a>
                                 </div>
                                 <div class="game-list-title">
-                                    <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
-                                        <h3><strong>{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</strong></h3>
+                                    <a class="account_category" href="/mua-acc/{{ isset($item->slug) && $item->slug != '' ? $item->slug :  $item->slug }}">
+                                        <h3><strong>{{ isset($item->title) ? $item->title :  $item->title }}</strong></h3>
                                     </a>
                                 </div>
                                 <div class="game-list-description">
                                     <div class="countime"></div>
 
-                                    @if(isset($item->items_count))
-                                        @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
-                                            <p style="color: #212529;">Số tài khoản: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }} </p>
-                                        @else
-                                            <p style="color: #212529;">Số tài khoản: {{ $item->items_count }} </p>
-                                        @endif
 
-                                    @else
-                                        <p style="color: #FFFFFF">Số tài khoản: 9999 </p>
-                                    @endif
+                                        <p style="color:#000000;">Số tài khoản: 3636 </p>
                                     {{--                            <span class="game-list-description-old-price"></span>--}}
                                     {{--                            <span class="game-list-description-new-price"></span>--}}
                                 </div>
                                 <div class="game-list-more">
                                     <div class="game-list-more-view" >
-                                        <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
+                                        <a class="account_category" href="/mua-acc/{{ isset($item->slug) && $item->slug != '' ? $item->slug :  $item->slug }}">
 
-                                            @if(isset($item->custom) && isset($item->custom->meta) && isset($item->custom->meta->image_btn))
-                                                @foreach($item->custom->meta as $key =>$val)
+                                            @if(isset($item) && isset($item->meta) && isset($item->meta->image_btn))
+                                                @foreach($item->meta as $key =>$val)
                                                     @if($key == "image_btn")
                                                         <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" >
                                                     @endif
