@@ -40,6 +40,8 @@ $(document).ready(function(){
             window.location.href =  '/login';
             return
         }
+        console.log($('[name="selected"]').val())
+        // $('#homealert').modal('show');
         var selected = $('[name="selected"]').val();
 
         if (selected == null || selected == '' || selected == undefined){
@@ -75,10 +77,10 @@ $(document).ready(function(){
             $('.modal-footer__data').html(html);
         }
 
-        var htmlloading = '';
-        htmlloading += '<div class="loading"></div>';
+        var loading = '';
+        loading += '<div class="loading"></div>';
         $('.loading-data__pay').html('');
-        $('.loading-data__pay').html(htmlloading);
+        $('.loading-data__pay').html(loading);
 
 
 
