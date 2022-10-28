@@ -27,7 +27,7 @@
                                     </div>
                                     <div class="item_play_dif_slide_description__size">
                                         <div class="game-list-more-view">
-                                            <a href="" class="account_category">
+                                            <a href="/dich-vu/{{ isset($item->custom->slug) ? $item->custom->slug :  $item->slug }}" class="account_category">
                                                 <img src="http://127.0.0.1:8000/assets/frontend/theme_1/images/muangay.jpg" alt="">
                                             </a>
                                         </div>

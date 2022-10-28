@@ -303,6 +303,8 @@ class StoreCardController extends Controller
             } else {
                 return view(''.theme('')->theme_key.'.frontend.pages.storecard.logs');
             }
+        } else {
+            return redirect('/login');
         }
     }
 }

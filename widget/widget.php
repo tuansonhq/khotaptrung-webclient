@@ -544,12 +544,12 @@ View::composer('frontend.widget.__bai__viet__lien__quan', function ($view) {
 View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
 
     $data = \Cache::rememberForever('__dichvu__lienquan', function() {
-        $url = '/service';
+        $url = '/get-category';
         $method = "GET";
-        $dataSend = array();
-        $dataSend['limit'] = 8;
-        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-        return $data = $result_Api->response_data->data->data??null;
+        $val = array();
+        $val['type'] = 2;
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
+        return $data = $result_Api->response_data->data->data;
     });
     return $view->with('data', $data);
 });
