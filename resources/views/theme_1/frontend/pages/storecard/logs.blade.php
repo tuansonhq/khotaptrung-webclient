@@ -14,11 +14,11 @@
                 @include('frontend.layouts.includes.menu_profile')
                 <div class="account_sidebar_content">
                     <div class="account_sidebar_content_title">
-                        <p>THẺ CÀO ĐÃ MUA</p>
+                        <p>LỊCH SỬ MUA THẺ</p>
                         <div class="account_sidebar_content_line"></div>
                     </div>
                     <div class="account_content_transaction_history">
-                        <form class="form-store-card account_content_transaction_history__v2">
+                        {{-- <form class="form-store-card account_content_transaction_history__v2">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="input-group">
@@ -55,15 +55,8 @@
                                     </button>
                                 </div>
                             </div>
-{{--                            <div class="row">--}}
-{{--                                <div class="col-md-12">--}}
-{{--                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-hom-nay mb-2 mr-2"><i class="fas fa-calendar-alt"></i> Hôm nay</a>--}}
-{{--                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-hom-qua mb-2 mr-2"><i class="fas fa-calendar-alt"></i> Hôm qua </a>--}}
-{{--                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-thang-nay mb-2 mr-2"><i class="fas fa-calendar-alt"></i> Tháng này</a>--}}
-{{--                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 c-theme-btn btn-all mb-2 mr-2"><i class="fas fa-calendar-alt"></i> Tất cả</a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-                        </form>
+
+                        </form> --}}
 
                         <div id="data_store_card" style="position: relative">
                             <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">
@@ -71,7 +64,6 @@
                                     <span class="pulser"></span>
                                 </div>
                             </div>
-                            @include('frontend.pages.storecard.widget.__store__card__history')
                         </div>
                     </div>
 

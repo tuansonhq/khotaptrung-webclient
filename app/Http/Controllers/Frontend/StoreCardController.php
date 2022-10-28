@@ -258,53 +258,25 @@ class StoreCardController extends Controller
     {
         if (AuthCustom::check()) {
 
-            $method = "GET";
-
             if ($request->ajax()) {
                 $page = $request->page;
 
                 $url = '/store-card/history';
-
+                $method = "GET";
                 $val = array();
-                $jwt = Session::get('jwt');
-                if (empty($jwt)) {
-                    return response()->json([
-                        'status' => "LOGIN"
-                    ]);
-                }
-
-                $val['token'] = $jwt;
+                $val['type'] = 4;
+                $val['limit'] = 5;
                 $val['page'] = $page;
-
-                if ($request->filled('id')) {
-                    $val['id'] = $request->id;
-                }
-
-                if ($request->filled('telecom')) {
-                    $val['telecom'] = $request->telecom;
-                }
-
-                if ($request->filled('started_at')) {
-                    $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
-                    $val['started_at'] = $started_at;
-                }
-
-                if ($request->filled('ended_at')) {
-                    $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
-                    $val['ended_at'] = $ended_at;
-                }
-                $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+                $result_Api = DirectAPI::_makeRequest($url,$val,$method,false,0,1);
                 $response_data = $result_Api->response_data??null;
-
-                if(isset($response_data) && $response_data->status == 1){
-
+                // dd($result_Api);
+                
+                if ( isset($result_Api) && $result_Api->response_code == 200 ) {
                     $data = $response_data->data;
-
-                    $arrpin = array();
-                    $arrserial = array();
 
                     $per_page = 0;
                     $total = 0;
+
                     if (isset($data->total)){
                         $total = $data->total;
                     }
@@ -317,8 +289,9 @@ class StoreCardController extends Controller
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                         $data->setPath($request->url());
                     }
+
                     $html =  view(''.theme('')->theme_key.'.frontend.pages.storecard.widget.__store__card__history')->with('total',$total)->with('per_page',$per_page)
-                        ->with('data',$data)->with('arrpin',$arrpin)->with('arrserial',$arrserial)->render();
+                        ->with('data',$data)->render();
 
                     return response()->json([
                         'status' => 1,
@@ -326,34 +299,9 @@ class StoreCardController extends Controller
                         'message' => 'Load du lieu thanh cong.',
                     ]);
                 }
-                else{
-                    return response()->json([
-                        'status' => 0,
-                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
-                    ]);
-                }
-            }
 
-            $url_telecome = '/store-card/history';
-
-            $sendDatatele = array();
-
-            $result_telecome_Api = DirectAPI::_makeRequest($url_telecome, $sendDatatele, $method);
-
-            $response_tele_data = $result_telecome_Api->response_data??null;
-
-            if(isset($response_tele_data) && $response_tele_data->status == 1){
-
-                $data_telecome = $response_tele_data->data;
-
-                return view(''.theme('')->theme_key.'.frontend.pages.storecard.logs')->with('data_telecome', $data_telecome);
-
-            }
-            else{
-                return response()->json([
-                    'status' => 0,
-                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
-                ]);
+            } else {
+                return view(''.theme('')->theme_key.'.frontend.pages.storecard.logs');
             }
         }
     }
