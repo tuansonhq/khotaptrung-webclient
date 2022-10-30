@@ -227,7 +227,7 @@
                                                                                                         <div class="col-auto gallery-col-auto-right left-right">
                                                                                                     <span>
                                                                                                         @if($rank_info->tier == "NONE")
-                                                                                                            {{ $rank_info->tier }}
+                                                                                                            CHƯA CÓ RANK
                                                                                                         @else
                                                                                                             {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                                                         @endif
@@ -247,7 +247,7 @@
                                                                                                         <div class="col-auto gallery-col-auto-right left-right">
                                                                                                     <span>
                                                                                                         @if($rank_info->tier == "NONE")
-                                                                                                            {{ $rank_info->tier }}
+                                                                                                            CHƯA CÓ RANK
                                                                                                         @else
                                                                                                             {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                                                         @endif
@@ -689,7 +689,7 @@
                                                                                             <div class="col-auto gallery-col-auto-right left-right">
                                                                                                 <span>
                                                                                                     @if($rank_info->tier == "NONE")
-                                                                                                        {{ $rank_info->tier }}
+                                                                                                        CHƯA CÓ RANK
                                                                                                     @else
                                                                                                         {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                                                     @endif
@@ -704,7 +704,7 @@
                                                                                             <div class="col-auto gallery-col-auto-right left-right">
                                                                                                 <span>
                                                                                                     @if($rank_info->tier == "NONE")
-                                                                                                        {{ $rank_info->tier }}
+                                                                                                        CHƯA CÓ RANK
                                                                                                     @else
                                                                                                         {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                                                     @endif
@@ -1109,7 +1109,7 @@
                                                                             <div class="col-auto left-right background-order-col-right-ct">
                                                                                 <small>
                                                                                     @if($rank_info->tier == "NONE")
-                                                                                        {{ $rank_info->tier }}
+                                                                                        CHƯA CÓ RANK
                                                                                     @else
                                                                                         {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                                     @endif
@@ -1124,7 +1124,7 @@
                                                                             <div class="col-auto left-right background-order-col-right-ct">
                                                                                 <small>
                                                                                     @if($rank_info->tier == "NONE")
-                                                                                        {{ $rank_info->tier }}
+                                                                                        CHƯA CÓ RANK
                                                                                     @else
                                                                                         {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                                     @endif
@@ -1486,7 +1486,7 @@
                                                                     <div class="col-auto left-right background-order-col-right-ct">
                                                                         <small>
                                                                             @if($rank_info->tier == "NONE")
-                                                                                {{ $rank_info->tier }}
+                                                                                CHƯA CÓ RANK
                                                                             @else
                                                                                 {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                             @endif
@@ -1501,7 +1501,7 @@
                                                                     <div class="col-auto left-right background-order-col-right-ct">
                                                                         <small>
                                                                             @if($rank_info->tier == "NONE")
-                                                                                {{ $rank_info->tier }}
+                                                                                CHƯA CÓ RANK
                                                                             @else
                                                                                 {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                             @endif

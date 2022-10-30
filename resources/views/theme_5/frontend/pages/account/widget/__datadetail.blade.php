@@ -168,7 +168,7 @@
                                                     <tr>
                                                         <td><span class="link-color">RANKED TFT</span></td>
                                                         <td><span>@if($rank_info->tier == "NONE")
-                                                                    {{ $rank_info->tier }}
+                                                                    CHƯA CÓ RANK
                                                                 @else
                                                                     {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                 @endif</span></td>
@@ -180,7 +180,7 @@
                                                         <td><span class="link-color">RANKED SOLO</span></td>
                                                         <td><span>
                                                             @if($rank_info->tier == "NONE")
-                                                                    {{ $rank_info->tier }}
+                                                                    CHƯA CÓ RANK
                                                                 @else
                                                                     {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                 @endif
@@ -397,7 +397,7 @@
                                                                 <tr>
                                                                     <td><span class="link-color">RANKED TFT</span></td>
                                                                     <td><span>@if($rank_info->tier == "NONE")
-                                                                                {{ $rank_info->tier }}
+                                                                                CHƯA CÓ RANK
                                                                             @else
                                                                                 {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                             @endif</span></td>
@@ -409,7 +409,7 @@
                                                                     <td><span class="link-color">RANKED SOLO</span></td>
                                                                     <td><span>
                                                             @if($rank_info->tier == "NONE")
-                                                                                {{ $rank_info->tier }}
+                                                                                CHƯA CÓ RANK
                                                                             @else
                                                                                 {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                             @endif
@@ -685,7 +685,7 @@
                                                             </div>
                                                             <div class="card--attr__value fz-13 fw-500">
                                                                 @if($rank_info->tier == "NONE")
-                                                                    {{ $rank_info->tier }}
+                                                                    CHƯA CÓ RANK
                                                                 @else
                                                                     {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                 @endif
@@ -698,7 +698,7 @@
                                                             </div>
                                                             <div class="card--attr__value fz-13 fw-500">
                                                                 @if($rank_info->tier == "NONE")
-                                                                    {{ $rank_info->tier }}
+                                                                    CHƯA CÓ RANK
                                                                 @else
                                                                     {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                 @endif
@@ -1120,7 +1120,7 @@
                                                     </div>
                                                     <div class="card--attr__value fz-13 fw-500">
                                                         @if($rank_info->tier == "NONE")
-                                                            {{ $rank_info->tier }}
+                                                            CHƯA CÓ RANK
                                                         @else
                                                             {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                         @endif
@@ -1133,7 +1133,7 @@
                                                     </div>
                                                     <div class="card--attr__value fz-13 fw-500">
                                                         @if($rank_info->tier == "NONE")
-                                                            {{ $rank_info->tier }}
+                                                            CHƯA CÓ RANK
                                                         @else
                                                             {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                         @endif

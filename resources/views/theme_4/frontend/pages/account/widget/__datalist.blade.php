@@ -327,7 +327,7 @@
                                                     @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
                                                         <p class="text-left" style="color: #82869E;margin-bottom: 4px">Rank:
                                                             @if($rank_info->tier == "NONE")
-                                                                {{ $rank_info->tier }}
+                                                                CHƯA CÓ RANK
                                                             @else
                                                                 {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                             @endif
