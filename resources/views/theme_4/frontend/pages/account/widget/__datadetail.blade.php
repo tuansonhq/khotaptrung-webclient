@@ -280,7 +280,7 @@
                                                                     </div>
                                                                     <div class="col-md-6 col-6 pl-0">
                                                                         @if($rank_info->tier == "NONE")
-                                                                            <span class="span__dangky">{{ $rank_info->tier }}</span>
+                                                                            <span class="span__dangky">CHƯA CÓ RANK</span>
                                                                         @else
 
                                                                             <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
@@ -305,7 +305,7 @@
                                                                     <div class="col-md-6 col-6 pl-0">
 
                                                                         @if($rank_info->tier == "NONE")
-                                                                            <span class="span__dangky">{{ $rank_info->tier }}</span>
+                                                                            <span class="span__dangky">CHƯA CÓ RANK</span>
                                                                         @else
                                                                             <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
                                                                         @endif
@@ -702,7 +702,7 @@
                                                                                     <td style="width:50%">RANKED TFT:</td>
                                                                                     <td class="text-danger" style="font-weight: 700">
                                                                                         @if($rank_info->tier == "NONE")
-                                                                                            {{ $rank_info->tier }}
+                                                                                            CHƯA CÓ RANK
                                                                                         @else
 
                                                                                             {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
@@ -714,7 +714,7 @@
                                                                                 <td style="width:50%">RANKED SOLO:</td>
                                                                                 <td class="text-danger" style="font-weight: 700">
                                                                                     @if($rank_info->tier == "NONE")
-                                                                                        {{ $rank_info->tier }}
+                                                                                        CHƯA CÓ RANK
                                                                                     @else
 
                                                                                         {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}

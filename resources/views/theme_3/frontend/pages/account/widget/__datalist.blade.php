@@ -325,7 +325,7 @@
                                                                                         <small>
                                                                                             Rank :
                                                                                             @if($rank_info->tier == "NONE")
-                                                                                                {{ $rank_info->tier }}
+                                                                                                CHƯA CÓ RANK
                                                                                             @else
                                                                                                 {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                                             @endif
