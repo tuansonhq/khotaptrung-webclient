@@ -176,11 +176,8 @@
                                         foreach($game_auto_props as $game_auto_prop){
                                             if($game_auto_prop->key == 'champions'){
                                                 $total_tuong = $total_tuong + 1;
-                                                if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
-                                                    foreach($game_auto_prop->childs as $c_child){
-                                                        $total_trangphuc = $total_trangphuc + 1;
-                                                    }
-                                                }
+                                            }elseif ($game_auto_prop->key == 'skins'){
+                                                $total_trangphuc = $total_trangphuc + 1;
                                             }elseif ($game_auto_prop->key == 'emotes'){
                                                 $total_bieucam = $total_bieucam + 1;
                                             }elseif ($game_auto_prop->key == 'tftdamageskins'){
@@ -275,7 +272,7 @@
                                                                 </div>
                                                                 <div class="col-md-6 col-6 pl-0">
                                                                     @if($rank_info->tier == "NONE")
-                                                                        <span class="span__dangky">{{ $rank_info->tier }}</span>
+                                                                        <span class="span__dangky">CHƯA CÓ RANK</span>
                                                                     @else
 
                                                                         <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
@@ -301,7 +298,7 @@
                                                                 <div class="col-md-6 col-6 pl-0">
 
                                                                     @if($rank_info->tier == "NONE")
-                                                                        <span class="span__dangky">{{ $rank_info->tier }}</span>
+                                                                        <span class="span__dangky">CHƯA CÓ RANK</span>
                                                                     @else
                                                                         <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
                                                                     @endif
@@ -316,7 +313,7 @@
 
                                     @endif
                                 @endif
-                            @else
+                            @elseif($data_category->slug == 'nick-ninja-school')
                                 @php
                                     $server = null;
                                     $params = null;
@@ -372,6 +369,74 @@
                                                                         {{ str_replace(',','.',number_format($in->value??'')) }}
                                                                     @else
                                                                         {{ $in->value??'' }}
+                                                                    @endif</span>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        @endif
+                                    @endforeach
+                                @endif
+                            @elseif($data_category->slug == 'nick-ngoc-rong-online')
+                                @php
+                                    $server = null;
+                                    $params = null;
+                                    $info = array();
+                                    if (isset($data->params)){
+                                        $params = $data->params;
+                                        if (isset($params->server)){
+                                            $server = $params->server;
+                                        }
+                                        if (isset($params->info) && count($params->info)){
+                                            $info = $params->info;
+                                        }
+                                    }
+                                @endphp
+                                @if(isset($server))
+
+                                    <div class="col-md-12">
+                                        <div class="row gallery__03">
+                                            <div class="col-md-12 gallery__01__row">
+                                                <div class="row">
+                                                    <div class="col-auto span__dangky__auto">
+                                                        <i class="fas fa-angle-right"></i>
+                                                    </div>
+                                                    <div class="col-md-4 col-4 pl-0">
+                                                        <span class="span__dangky">Server</span>
+                                                    </div>
+                                                    <div class="col-md-1 col-2 pl-0 pr-0">
+                                                        <span class="span__dangky">{{ $server??null }}</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                @endif
+                                @if(isset($info) && count($info))
+                                    @foreach($info as $ke => $in)
+                                        @if(in_array($in->name,config('module.acc.auto_nro_tt')))
+
+                                            <div class="col-md-12">
+                                                <div class="row gallery__03">
+                                                    <div class="col-md-12 gallery__01__row">
+                                                        <div class="row">
+                                                            <div class="col-auto span__dangky__auto">
+                                                                <i class="fas fa-angle-right"></i>
+                                                            </div>
+                                                            <div class="col-md-4 col-4 pl-0">
+                                                                <span class="span__dangky">{{ $in->name??'' }}</span>
+                                                            </div>
+                                                            <div class="col-md-1 col-2 pl-0 pr-0">
+                                                                <span class="span__dangky">
+                                                                    @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                        {{ $in->value??'' }}
+                                                                    @else
+                                                                        {{ str_replace(',','.',number_format($in->value??'')) }}
                                                                     @endif</span>
                                                             </div>
 
@@ -626,7 +691,7 @@
                                                                                 <td style="width:50%">RANKED TFT:</td>
                                                                                 <td class="text-danger" style="font-weight: 700">
                                                                                     @if($rank_info->tier == "NONE")
-                                                                                        {{ $rank_info->tier }}
+                                                                                        CHƯA CÓ RANK
                                                                                     @else
 
                                                                                         {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
@@ -638,7 +703,7 @@
                                                                             <td style="width:50%">RANKED SOLO:</td>
                                                                             <td class="text-danger" style="font-weight: 700">
                                                                                 @if($rank_info->tier == "NONE")
-                                                                                    {{ $rank_info->tier }}
+                                                                                    CHƯA CÓ RANK
                                                                                 @else
 
                                                                                     {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
@@ -684,6 +749,47 @@
                                                                                     {{ str_replace(',','.',number_format($in->value??'')) }}
                                                                                 @else
                                                                                     {{ $in->value??'' }}
+                                                                                @endif
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                        @elseif($data_category->slug == 'nick-ngoc-rong-online')
+                                                            @php
+                                                                $server = null;
+                                                                $params = null;
+                                                                $info = array();
+                                                                if (isset($data->params)){
+                                                                    $params = $data->params;
+                                                                    if (isset($params->server)){
+                                                                        $server = $params->server;
+                                                                    }
+                                                                    if (isset($params->info) && count($params->info)){
+                                                                        $info = $params->info;
+                                                                    }
+                                                                }
+                                                            @endphp
+                                                            @if(isset($server))
+                                                                <tr>
+                                                                    <td style="width:50%">Server:</td>
+                                                                    <td class="text-danger" style="font-weight: 700">
+                                                                        {{ $server??null }}
+                                                                    </td>
+                                                                </tr>
+                                                            @endif
+                                                            @if(isset($info) && count($info))
+                                                                @foreach($info as $ke => $in)
+                                                                    @if(in_array($in->name,config('module.acc.auto_nro_tt')))
+
+                                                                        <tr>
+                                                                            <td style="width:50%">{{ $in->name??'' }}:</td>
+                                                                            <td class="text-danger" style="font-weight: 700">
+                                                                                @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                                    {{ $in->value??'' }}
+                                                                                @else
+                                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
                                                                                 @endif
                                                                             </td>
                                                                         </tr>

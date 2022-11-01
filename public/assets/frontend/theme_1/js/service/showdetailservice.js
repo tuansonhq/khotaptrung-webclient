@@ -58,9 +58,9 @@ $(document).ready(function(){
         $('.loading-data__thanhtoan').html('');
         $('.loading-data__thanhtoan').html(htmlloading);
 
-        const jwt =  $('meta[name="jwt').attr('content');
+
         var slug = $('.slug_category').val();
-        if (jwt == null || jwt == '' || jwt == undefined || jwt == 'jwt'){
+        if (!auth_check){
             var html = '';
             html += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/dich-vu/' + slug + '">Đăng nhập</a>';
             html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';

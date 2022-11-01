@@ -65,13 +65,14 @@ class AccController extends Controller
                 $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
                 $response_cate_data = $result_Api_cate->response_data??null;
 
-            }elseif ($slug == 'nick-ninja-school'){
-                $dataSendCate = array();
-                $dataSendCate['data'] = 'property_auto';
-                $dataSendCate['provider'] = 'ninjaschool';
-                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-                $response_cate_data = $result_Api_cate->response_data??null;
             }
+//            elseif ($slug == 'nick-ninja-school'){
+//                $dataSendCate = array();
+//                $dataSendCate['data'] = 'property_auto';
+//                $dataSendCate['provider'] = 'ninjaschool';
+//                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+//                $response_cate_data = $result_Api_cate->response_data??null;
+//            }
             else {
                 $dataSendCate = array();
                 $dataSendCate['data'] = 'category_detail';
@@ -160,9 +161,8 @@ class AccController extends Controller
                 if (theme('')->theme_key == "theme_5"){
                     $dataSend['limit'] =  15;
                 }
-
+//                $dataSend['randId'] = 'P9359';
                 if ($request->filled('id_data'))  {
-
                     $dataSend['randId'] = \App\Library\Helpers::decodeItemID($request->id_data);
                 }
 
@@ -372,30 +372,34 @@ class AccController extends Controller
             $perPage = 24;
 
             if (isset(theme('')->theme_key)){
-                if (theme('')->theme_key == "theme_1"){
+                if (theme('')->theme_key == "theme_1" || theme('')->theme_key == "theme_4"){
                     $perPage = 60;
                 }
             }
 
-
             if (isset($data->game_auto_props) && count($data->game_auto_props) > 0) {
                 if ($slug_category == "nick-lien-minh"){
-                    $game_auto_props = $data->game_auto_props;
-                    $result = array();
+                    if (isset($data->game_auto_props) && count($data->game_auto_props) > 0) {
+                        $game_auto_props = $data->game_auto_props;
+                        $result = array();
 
-                    foreach ($game_auto_props as $element) {
-                        $result[$element->key][] = $element;
-                        if ($element->key == 'champions' && isset($element->childs) && count($element->childs)) {
-                            foreach ($element->childs as $skin) {
-                                $result['skins_custom'][] = $skin;
-                            }
+                        foreach ($game_auto_props as $element) {
+                            $result[$element->key][] = $element;
+                        }
+                        $game_auto_props = $result;
+
+                        foreach ($game_auto_props as $key => $item){
+                            $game_auto_props[$key] = array_chunk($item,$perPage);
+                        }
+
+                        $game_auto_props = $result;
+                        foreach ($game_auto_props as $key => $item){
+                            $game_auto_props[$key] = array_chunk($item,$perPage);
                         }
                     }
-                    $game_auto_props = $result;
-                    foreach ($game_auto_props as $key => $item){
-                        $game_auto_props[$key] = array_chunk($item,$perPage);
-                    }
-                }else{
+
+                }
+                else{
                     $game_auto_props = $data->game_auto_props;
                 }
 

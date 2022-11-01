@@ -325,7 +325,7 @@
                                                                                         <small>
                                                                                             Rank :
                                                                                             @if($rank_info->tier == "NONE")
-                                                                                                {{ $rank_info->tier }}
+                                                                                                CHƯA CÓ RANK
                                                                                             @else
                                                                                                 {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                                             @endif
@@ -405,6 +405,55 @@
                                                                                 </small>
                                                                             </div>
 
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                            @elseif($data->slug == "nick-ngoc-rong-online")
+
+                                                                @php
+                                                                    $server = null;
+                                                                    $info = array();
+
+                                                                    $params = $item->params;
+                                                                    if (isset($params->server)){
+                                                                        $server = $params->server;
+                                                                    }
+                                                                    if (isset($params->info) && count($params->info)){
+                                                                        $info = $params->info;
+                                                                    }
+                                                                @endphp
+                                                                @if(isset($server))
+                                                                    <?php
+                                                                    $total = $total + 1;
+                                                                    ?>
+                                                                    <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                        <small>
+                                                                            Server :
+                                                                            {{ $server??'' }}
+                                                                        </small>
+                                                                    </div>
+
+                                                                @endif
+
+                                                                @if(isset($info) && count($info))
+                                                                    @foreach($info as $ke => $in)
+                                                                        @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
+                                                                            @if($total < 4)
+                                                                                <?php
+                                                                                $total = $total + 1;
+                                                                                ?>
+                                                                                <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                                    <small>
+                                                                                        {{ $in->name??'' }} :
+                                                                                        @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                                            {{ $in->value??'' }}
+                                                                                        @else
+
+                                                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                                        @endif
+                                                                                    </small>
+                                                                                </div>
+                                                                            @endif
                                                                         @endif
                                                                     @endforeach
                                                                 @endif
