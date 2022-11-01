@@ -1107,7 +1107,7 @@ class AccController extends Controller
                 $method = "GET";
                 $dataSend = array();
                 $dataSend['id'] = $id;
-                $dataSend['data'] = 'show_password';
+                    $dataSend['data'] = 'show_password';
                 $dataSend['user_id'] = AuthCustom::user()->id;
 
                 $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
