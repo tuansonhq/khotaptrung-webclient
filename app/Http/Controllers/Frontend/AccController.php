@@ -741,7 +741,7 @@ class AccController extends Controller
                         if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null) {
                             $dataSendShow =array();
                             $dataSendShow['data'] = 'acc_detail';
-                            $dataSendShow['id'] = $id_data;
+                            $dataSendShow['randId'] = $id_data;
 
                             $result_show_api = DirectAPI::_makeRequest($url,$dataSendShow,$method);
                             $response_show_data = $result_show_api->response_data??null;
@@ -1015,7 +1015,7 @@ class AccController extends Controller
             $dataSend = array();
             $dataSend['data'] = 'list_acc';
             $dataSend['user_id'] = AuthCustom::user()->id;
-            $dataSend['id'] = \App\Library\Helpers::decodeItemID($id);
+            $dataSend['randId'] = $id;
 
             $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
             $response_data = $result_Api->response_data??null;
