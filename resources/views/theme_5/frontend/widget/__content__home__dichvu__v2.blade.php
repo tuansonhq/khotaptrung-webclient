@@ -8,50 +8,54 @@
             <a href="/dich-vu" class="link arr-right">Xem tất cả</a>
         </div>
         <div class="list-category">
-            @foreach($data as $item)
+            @foreach($data as $key => $item)
+                @if($key<5)
 
-                <div class="item-category c-px-8 c-mb-12 c-px-lg-6">
-                    <div class="card">
-                        <div class="card-body c-p-16 c-p-lg-12 scale-thumb">
-                            <a href="/dich-vu/{{ $item->slug}}">
-                                <div class="card-thumb c-mb-8">
-                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="card-thumb-image">
-                                </div>
-                                <div class="card-attr">
-                                    <div class="text-title text-limit limit-1 fw-700">
-                                        {{ $item->title  }}
+                    <div class="item-category c-px-8 c-mb-12 c-px-lg-6">
+                        <div class="card">
+                            <div class="card-body c-p-16 c-p-lg-12 scale-thumb">
+                                <a href="/dich-vu/{{ $item->slug}}">
+                                    <div class="card-thumb c-mb-8">
+                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="card-thumb-image">
                                     </div>
-                                    <div class="info-attr">
-                                        @if(isset($item->total_order))
-                                            @if($item->params_plus)
-                                                @foreach($item->params_plus as $key => $val)
-                                                    @if($key == 'fk_buy')
-                                                        Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}
-                                                    @endif
-                                                @endforeach
+                                    <div class="card-attr">
+                                        <div class="text-title text-limit limit-1 fw-700">
+                                            {{ $item->title  }}
+                                        </div>
+                                        <div class="info-attr">
+                                            @if(isset($item->total_order))
+                                                @if($item->params_plus)
+                                                    @foreach($item->params_plus as $key => $val)
+                                                        @if($key == 'fk_buy')
+                                                            Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}
+                                                        @endif
+                                                    @endforeach
+
+                                                @else
+                                                    Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}
+                                                @endif
 
                                             @else
-                                                Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}
-                                            @endif
+                                                @if($item->params_plus)
+                                                    @foreach($item->params_plus as $key => $val)
+                                                        @if($key == 'fk_buy')
+                                                            Giao dịch: {{ str_replace(',','.',number_format($val)) }}
+                                                        @endif
+                                                    @endforeach
+                                                @else
+                                                    Giao dịch: 0
+                                                @endif
 
-                                        @else
-                                            @if($item->params_plus)
-                                                @foreach($item->params_plus as $key => $val)
-                                                    @if($key == 'fk_buy')
-                                                        Giao dịch: {{ str_replace(',','.',number_format($val)) }}
-                                                    @endif
-                                                @endforeach
-                                            @else
-                                                Giao dịch: 0
                                             @endif
-
-                                        @endif
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                @endif
+
 
             @endforeach
         </div>

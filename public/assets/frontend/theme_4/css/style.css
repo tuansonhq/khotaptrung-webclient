@@ -1845,3 +1845,7 @@ select:focus{
 #rss-detail .rss-detail-list a:hover {
     color: rgb(238, 70, 35) !important;
 }
+.navbar-light .navbar-nav .menu-item:hover{
+    background: lightgray;
+    transition: .2s;
+}
