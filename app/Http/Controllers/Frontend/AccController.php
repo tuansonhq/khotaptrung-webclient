@@ -1015,11 +1015,10 @@ class AccController extends Controller
             $dataSend = array();
             $dataSend['data'] = 'list_acc';
             $dataSend['user_id'] = AuthCustom::user()->id;
-            $dataSend['id'] = $id;
+            $dataSend['id'] = \App\Library\Helpers::decodeItemID($id);
 
             $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
             $response_data = $result_Api->response_data??null;
-
 
             if(isset($response_data) && $response_data->status == 1){
                 if (isset($response_data->data)){
