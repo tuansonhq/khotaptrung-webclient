@@ -225,7 +225,7 @@ if ($input_params.length) {
                 let html_pack = `<div class="t-sub-3 text-right">${total}</div>`;
                 $('.show-pack').html(html_pack);
 
-                $('.total__price__modal').text(number_format.to(price).replace(purchase_name,'VNĐ'));
+                $('.total__price__modal').html(number_format.to(price).replace(purchase_name,'VNĐ'));
             } else {
                 $text_total.text('Tiền nhập không đúng');
             }
