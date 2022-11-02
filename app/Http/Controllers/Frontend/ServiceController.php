@@ -130,6 +130,10 @@ class ServiceController extends Controller
 
                 Session::put('path', $_SERVER['REQUEST_URI']);
 
+                if (!$data) {
+                    abort('404');
+                }
+
                 return view('frontend.pages.service.detail')
                     ->with('data', $data)
                     ->with('datacate', $datacate)
