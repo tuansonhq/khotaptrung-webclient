@@ -741,7 +741,7 @@ class AccController extends Controller
                         if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null) {
                             $dataSendShow =array();
                             $dataSendShow['data'] = 'acc_detail';
-                            $dataSendShow['randId'] = $id_data;
+                            $dataSendShow['id'] = $id_data;
 
                             $result_show_api = DirectAPI::_makeRequest($url,$dataSendShow,$method);
                             $response_show_data = $result_show_api->response_data??null;
