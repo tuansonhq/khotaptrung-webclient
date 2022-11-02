@@ -77,7 +77,6 @@ if ($input_params.length) {
 
             price = number_format.to(price)
             $text_total.text(price);
-            $('.total__price__modal').html(number_format.to(price).replace(purchase_name,'VNĐ'));
         }
 
             break;
@@ -114,7 +113,6 @@ if ($input_params.length) {
             }
             total = number_format.to(total);
             $text_total.text(total);
-            $('.total__price__modal').html(number_format.to(price).replace(purchase_name,'VNĐ'));
         }
 
             break
@@ -170,7 +168,6 @@ if ($input_params.length) {
 
             total = number_format.to(total);
             $text_total.text(total);
-            $('.total__price__modal').html(number_format.to(price).replace(purchase_name,'VNĐ'));
         }
 
             break;
