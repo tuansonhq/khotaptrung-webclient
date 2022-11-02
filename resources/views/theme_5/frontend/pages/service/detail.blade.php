@@ -203,7 +203,7 @@
                                             @case('1')
                                             @case('2')
                                             @case('3')
-                                            <div class="input-group c-px-8 align-content-start">
+                                            <div class="input-group c-px-8 align-content-end">
                                                 <div class="form-label">
                                                     {{ @$send_name_text }}
                                                 </div>
@@ -212,7 +212,7 @@
                                             </div>
                                             @break
                                             @case('5')
-                                            <div class="input-group c-px-8 align-content-start">
+                                            <div class="input-group c-px-8 align-content-end">
                                                 <div class="form-label">
                                                     {{ @$send_name_text }}
                                                 </div>
@@ -252,15 +252,15 @@
                             <div class="card overflow-hidden detailViewBlock">
                                 <div class="card-body c-px-16">
                                     <h2 class="text-title-bold d-none d-lg-block c-mb-24 detailViewBlockTitle">Chi tiết dịch vụ</h2>
-                                    @if(substr($data->description, 1200))
+                                    @if(substr($data->content, 1200))
                                     <div class="content-desc hide detailViewBlockContent">
                                     @else
                                     <div class="content-desc detailViewBlockContent">
                                     @endif
-                                        {!! $data->description !!}
+                                        {!! $data->content !!}
                                     </div>
                                 </div>
-                                @if(substr($data->description, 1200))
+                                @if(substr($data->content, 1200))
                                 <div class="card-footer text-center">
                                     <span class="see-more" data-content="Xem thêm nội dung"></span>
                                 </div>
