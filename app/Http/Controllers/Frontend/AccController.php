@@ -7,6 +7,7 @@ use App\Library\AuthCustom;
 use App\Library\DirectAPI;
 use App\Library\Helpers;
 use Carbon\Carbon;
+use Cookie;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Session;
@@ -343,6 +344,14 @@ class AccController extends Controller
 
     public function getDetail(Request $request,$slug){
 
+//        $http_url = \Request::server ("HTTP_HOST");
+//        $name_url =  str_replace('www.','',$http_url);
+//        $name_jwt = 'watched_account_'.$name_url;
+//        $watcheds = Cookie::get($name_jwt) ?? '[]';
+//        $watcheds = json_decode($watcheds,true);
+//
+//        return $watcheds;
+
         $response_data = cache("game_props_detail_{$slug}");
 
         if (empty($response_data)) {
@@ -451,6 +460,36 @@ class AccController extends Controller
                 $htmlmenu = view('frontend.pages.account.widget.__datamenu')
                     ->with('data',$data)->render();
 
+//                Lưu cookie.
+
+//                $http_url = \Request::server ("HTTP_HOST");
+//                $name_url =  str_replace('www.','',$http_url);
+//                $name_jwt = 'watched_account_'.$name_url;
+                $data_cookie = Cookie::get('watched_account') ?? '[]';
+
+                $flag_viewed = true;
+                $data_cookie = json_decode($data_cookie,true);
+
+                if (isset($data_cookie) && count($data_cookie)){
+                    foreach ($data_cookie as $key => $acc_viewed){
+                        if($acc_viewed == $data->id){
+                            $flag_viewed = false;
+                        }
+                    }
+                }
+
+                if ($flag_viewed){
+                    if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {
+                        array_pop($data_cookie);
+                    }
+                    $data_save = $data->id;
+                    array_unshift($data_cookie,$data_save);
+                    $data_cookie = json_encode($data_cookie);
+
+                    Cookie::queue('watched_account',$data_cookie,43200);
+
+                }
+
                 $html = view('frontend.pages.account.widget.__datadetail')
                     ->with('data_category',$data_category)
                     ->with('game_auto_props',$game_auto_props)
@@ -476,6 +515,7 @@ class AccController extends Controller
     }
 
     public function getRelated(Request $request){
+
         if ($request->ajax()){
             $slug = $request->slug;
             $url = '/acc';
@@ -510,6 +550,67 @@ class AccController extends Controller
                     'message'=>$response_data->message??"Không thể lấy dữ liệu"
                 ]);
             }
+        }
+    }
+
+    public function getWatched(Request $request){
+
+        if ($request->ajax()){
+
+            $http_url = \Request::server ("HTTP_HOST");
+            $name_url =  str_replace('www.','',$http_url);
+            $name_jwt = 'watched_account_'.$name_url;
+            $watcheds = Cookie::get('watched_account') ?? '[]';
+            $watcheds = json_decode($watcheds,true);
+
+            if (isset($watcheds) && count($watcheds)){
+                $url = '/acc';
+                $method = "GET";
+                $arr_id = null;
+                foreach ($watcheds as $watched){
+                    if (isset($arr_id)){
+                        $arr_id = $arr_id.','.$watched;
+                    }else{
+                        $arr_id = $watched;
+                    }
+                }
+
+                $dataSend = array();
+                $dataSend['data'] = 'list_acc';
+                $dataSend['arr_id'] = $arr_id;
+                $dataSend['status'] = 1;
+                $dataSend['limit'] = 12;
+
+                $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+                $response_data = $result_Api->response_data??null;
+
+                if(isset($response_data) && $response_data->status == 1){
+                    $data = $response_data->data;
+
+                    $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
+
+                    $htmlslider = view('frontend.pages.account.widget.__watched')
+                        ->with('data',$data)->render();
+
+                    return response()->json([
+                        'datawatched' => $htmlslider,
+                        'status' => 1,
+                        'message' => 'Load dữ liệu thành công',
+                    ]);
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                    ]);
+                }
+            }else{
+                return response()->json([
+                    'status' => 2,
+                    'message'=>$response_data->message??"Không có dữ liệu"
+                ]);
+            }
+
         }
     }
 
