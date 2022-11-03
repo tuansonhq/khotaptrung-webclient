@@ -40,54 +40,54 @@ $(document).ready(function(){
             window.location.href =  '/login';
             return
         }
-        console.log($('[name="selected"]').val())
-        // $('#homealert').modal('show');
-        var selected = $('[name="selected"]').val();
-
-        if (selected == null || selected == '' || selected == undefined){
-            return false;
-        }
-
-        var value = $('[name="value"]').val();
-
-        if (value == null || value == '' || value == undefined){
-            return false;
-        }
-
-        // var price = $('[name="value"]').val();
-        var htmlloading = '';
-        htmlloading += '<div class="loading"></div>';
-        $('.loading-data__thanhtoan').html('');
-        $('.loading-data__thanhtoan').html(htmlloading);
-
-        const jwt =  $('meta[name="jwt').attr('content');
-        var slug = $('.slug_category').val();
-        if (jwt == null || jwt == '' || jwt == undefined || jwt == 'jwt'){
-            var html = '';
-            html += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/dich-vu/' + slug + '">Đăng nhập</a>';
-            html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
-            $('.modal-footer__data').html('');
-            $('.modal-footer__data').html(html);
-        }else {
-
-            var html = '';
-            html += '<button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" id="d3" style="" >Xác nhận thanh toán<div class="row justify-content-center loading-data__buydichvu"></div></button>';
-            html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
-            $('.modal-footer__data').html('');
-            $('.modal-footer__data').html(html);
-        }
-
-        var loading = '';
-        loading += '<div class="loading"></div>';
-        $('.loading-data__pay').html('');
-        $('.loading-data__pay').html(loading);
-
-
 
         $('#homealert').modal('show');
+        // var selected = $('[name="selected"]').val();
         //
-        $('.loading-data__pay').html('');
-        $('.loading-data__thanhtoan').html('');
+        // if (selected == null || selected == '' || selected == undefined){
+        //     return false;
+        // }
+        //
+        // var value = $('[name="value"]').val();
+        //
+        // if (value == null || value == '' || value == undefined){
+        //     return false;
+        // }
+        //
+        // // var price = $('[name="value"]').val();
+        // var htmlloading = '';
+        // htmlloading += '<div class="loading"></div>';
+        // $('.loading-data__thanhtoan').html('');
+        // $('.loading-data__thanhtoan').html(htmlloading);
+        //
+        // const jwt =  $('meta[name="jwt').attr('content');
+        // var slug = $('.slug_category').val();
+        // if (jwt == null || jwt == '' || jwt == undefined || jwt == 'jwt'){
+        //     var html = '';
+        //     html += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/dich-vu/' + slug + '">Đăng nhập</a>';
+        //     html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
+        //     $('.modal-footer__data').html('');
+        //     $('.modal-footer__data').html(html);
+        // }else {
+        //
+        //     var html = '';
+        //     html += '<button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" id="d3" style="" >Xác nhận thanh toán<div class="row justify-content-center loading-data__buydichvu"></div></button>';
+        //     html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
+        //     $('.modal-footer__data').html('');
+        //     $('.modal-footer__data').html(html);
+        // }
+        //
+        // var loading = '';
+        // loading += '<div class="loading"></div>';
+        // $('.loading-data__pay').html('');
+        // $('.loading-data__pay').html(loading);
+        //
+        //
+        //
+        // $('#homealert').modal('show');
+        // //
+        // $('.loading-data__pay').html('');
+        // $('.loading-data__thanhtoan').html('');
         // // getModalService(price)
     })
 
