@@ -1,7 +1,4 @@
-let $input_params = $('#data_params_service');
 
-if ($input_params.length) {
-    let $params = JSON.parse($input_params.val());
     let $item_selected, $server;
     let input_pack = $('#input_pack');
     let $text_total = $('.total__price');
@@ -246,7 +243,6 @@ if ($input_params.length) {
         let new_numb = number.replace(/\./g, "").toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
         return new_numb.split('').reverse().join('').replace(/^[\.]/, '');
     }
-}
 
 //Validator
 $(document).ready(function () {
