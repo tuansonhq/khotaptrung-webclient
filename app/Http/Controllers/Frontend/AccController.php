@@ -65,7 +65,15 @@ class AccController extends Controller
                 $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
                 $response_cate_data = $result_Api_cate->response_data??null;
 
-            } else {
+            }
+//            elseif ($slug == 'nick-ninja-school'){
+//                $dataSendCate = array();
+//                $dataSendCate['data'] = 'property_auto';
+//                $dataSendCate['provider'] = 'ninjaschool';
+//                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+//                $response_cate_data = $result_Api_cate->response_data??null;
+//            }
+            else {
                 $dataSendCate = array();
                 $dataSendCate['data'] = 'category_detail';
                 $dataSendCate['slug'] = $slug;
@@ -153,9 +161,8 @@ class AccController extends Controller
                 if (theme('')->theme_key == "theme_5"){
                     $dataSend['limit'] =  15;
                 }
-
+//                $dataSend['randId'] = 'P9359';
                 if ($request->filled('id_data'))  {
-
                     $dataSend['randId'] = \App\Library\Helpers::decodeItemID($request->id_data);
                 }
 
@@ -343,7 +350,7 @@ class AccController extends Controller
             $method = "GET";
             $dataSend = array();
             $dataSend['data'] = 'acc_detail';
-            $dataSend['id'] = \App\Library\Helpers::decodeItemID($slug);
+                $dataSend['id'] = \App\Library\Helpers::decodeItemID($slug);
 
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $response_data = $result_Api->response_data??null;
@@ -362,23 +369,40 @@ class AccController extends Controller
             $slug_category = $data->category->slug;
 
             $game_auto_props =  null;
+            $perPage = 24;
+
+            if (isset(theme('')->theme_key)){
+                if (theme('')->theme_key == "theme_1" || theme('')->theme_key == "theme_4"){
+                    $perPage = 60;
+                }
+            }
 
             if (isset($data->game_auto_props) && count($data->game_auto_props) > 0) {
-                $game_auto_props = $data->game_auto_props;
-                $result = array();
+                if ($slug_category == "nick-lien-minh"){
+                    if (isset($data->game_auto_props) && count($data->game_auto_props) > 0) {
+                        $game_auto_props = $data->game_auto_props;
+                        $result = array();
 
-                foreach ($game_auto_props as $element) {
-                    $result[$element->key][] = $element;
-                    if ($element->key == 'champions' && isset($element->childs) && count($element->childs)) {
-                        foreach ($element->childs as $skin) {
-                            $result['skins_custom'][] = $skin;
+                        foreach ($game_auto_props as $element) {
+                            $result[$element->key][] = $element;
+                        }
+                        $game_auto_props = $result;
+
+                        foreach ($game_auto_props as $key => $item){
+                            $game_auto_props[$key] = array_chunk($item,$perPage);
+                        }
+
+                        $game_auto_props = $result;
+                        foreach ($game_auto_props as $key => $item){
+                            $game_auto_props[$key] = array_chunk($item,$perPage);
                         }
                     }
+
                 }
-                $game_auto_props = $result;
-                foreach ($game_auto_props as $key => $item){
-                    $game_auto_props[$key] = array_chunk($item,24);
+                else{
+                    $game_auto_props = $data->game_auto_props;
                 }
+
             }
 
             return view('frontend.pages.account.detail')->with('data',$data)->with('game_auto_props',$game_auto_props)->with('slug',$slug)->with('slug_category',$slug_category);
@@ -412,7 +436,9 @@ class AccController extends Controller
                 $data = $response_data->data;
 
                 $data_category = $data->category;
+
                 $dataAttribute = $data_category->childs;
+
                 $card_percent = (int)setting('sys_card_setting');
 
                 $game_auto_props =null;
@@ -470,7 +496,7 @@ class AccController extends Controller
                 $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
 
                 $htmlslider = view('frontend.pages.account.widget.__related')
-                    ->with('data',$data)->render();
+                    ->with('data',$data)->with('slug',$slug)->render();
 
                 return response()->json([
                     'dataslider' => $htmlslider,
@@ -989,11 +1015,10 @@ class AccController extends Controller
             $dataSend = array();
             $dataSend['data'] = 'list_acc';
             $dataSend['user_id'] = AuthCustom::user()->id;
-            $dataSend['id'] = $id;
+            $dataSend['randId'] = $id;
 
             $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
             $response_data = $result_Api->response_data??null;
-
 
             if(isset($response_data) && $response_data->status == 1){
                 if (isset($response_data->data)){
@@ -1082,7 +1107,7 @@ class AccController extends Controller
                 $method = "GET";
                 $dataSend = array();
                 $dataSend['id'] = $id;
-                $dataSend['data'] = 'show_password';
+                    $dataSend['data'] = 'show_password';
                 $dataSend['user_id'] = AuthCustom::user()->id;
 
                 $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
@@ -1215,15 +1240,18 @@ class AccController extends Controller
             $dataSend = array();
             $dataSend['data'] = 'category_list_random';
             $dataSend['module'] = 'acc_category';
-            if (theme('')->theme_key == "theme_3"){
-                $dataSend['limit_item'] =  4;
-            }
+//            if (theme('')->theme_key == "theme_3"){
+//                $dataSend['limit_item'] =  4;
+//            }
 
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $response_data = $result_Api->response_data??null;
 
             if(isset($response_data) && $response_data->status == 1){
                 $data = $response_data->data;
+
+
+//                dd($data);
 
                 $html = view(''.theme('')->theme_key.'.frontend.widget.__data__nick__random')
                     ->with('data',$data)->render();

@@ -1,5 +1,14 @@
 $(document).ready(function () {
-    getListCard();
+    // getListCard();
+
+    //Get amount of the card just been choosen when render
+    getCardAmount($('input[name="card-type"]').val());
+
+    //Listen to onchange event in input card-type
+    $('input[name="card-type"]').change(function (e) {
+        e.preventDefault();
+        getCardAmount($(this).val());
+    });
 
     var swiper_card = new Swiper(".slider--card", {
         slidesPerView: 1,
@@ -313,7 +322,7 @@ $(document).ready(function () {
                                 }
 
                             } else {
-                                $('#cardPhoneListMobile').append(html);
+                                $('#cardPhoneListMobile').append(html_mobile);
                             }
                         }
                     });

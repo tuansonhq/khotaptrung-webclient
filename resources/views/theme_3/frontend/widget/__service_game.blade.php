@@ -11,7 +11,7 @@
     </div>
     <div class="gaming-recharge-search">
         <div class="gaming-recharge-search-header">
-            <p>Chọn game muốn nạp</p>
+{{--            <p>Chọn game muốn nạp</p>--}}
         </div>
         <div class="gaming-recharge-search-form">
             <h6>Tìm kiếm</h6>

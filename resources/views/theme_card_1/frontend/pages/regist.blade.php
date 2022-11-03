@@ -10,22 +10,29 @@
                 <form action="{{ url('/ajax/register') }}" method="POST" id="form-regist">
                     @csrf
                     <div class="regist_error text-center mt-2 mb-3"></div>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon">
-                           <i class="fas fa-user"></i>
-                        </span>
-                        <input type="text" class="form-control" name="username" value="" placeholder="Tài khoản"  placeholder="Tên tài khoản ít nhât 4 kí tự..">
+                    <div class="panel-body card-body">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">
+                               <i class="fas fa-user"></i>
+                            </span>
+                            <input type="text" class="form-control" name="username" value="" placeholder="Tài khoản"  placeholder="Tên tài khoản ít nhât 4 kí tự..">
+                        </div>
 
-                    </div>
 
-
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="fas fa-lock"></i></span>
-                        <input type="password" class="form-control" name="password" placeholder="Mật khẩu" placeholder="Mật khẩu ít nhất 6 kí tự..">
-                    </div>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="fas fa-lock"></i></span>
-                        <input type="password" class="form-control" name="password_confirmation" placeholder="Xác nhận mật khẩu">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fas fa-lock"></i></span>
+                            <input type="password" class="form-control" name="password" placeholder="Mật khẩu" placeholder="Mật khẩu ít nhất 6 kí tự..">
+                        </div>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fas fa-lock"></i></span>
+                            <input type="password" class="form-control" name="password_confirmation" placeholder="Xác nhận mật khẩu">
+                        </div>
+                        <div class="text-form text-center">
+                            <p>----  Hoặc  ----</p>
+                        </div>
+                        <div class="form-group m-form__group text-center">
+                            <a style="" href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class=""><i class="fab fa-facebook-square" style="font-size: 33px"></i></a>
+                        </div>
                     </div>
 
 

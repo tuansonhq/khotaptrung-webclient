@@ -468,3 +468,11 @@
     max-height: 320px;
     overflow-y: auto;
 }
+/* Medium Devices, Desktops */
+@media only screen and (max-width: 992px) {
+
+    .gallery-slider .swiper-slide {
+        width: 100%;
+        height: auto!important;
+    }
+}

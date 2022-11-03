@@ -28,8 +28,9 @@
     </div>
 </div>
 @endif
+    @include('frontend.widget.__list_serve_remark_image')
 {{--bài viết liên quan--}}
     @include('frontend.widget.__baiviet__trangchu')
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard/store_card.js?v={{time()}}"></script>
-
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/config/swiper-slider-conf.js"></script>
 @endsection

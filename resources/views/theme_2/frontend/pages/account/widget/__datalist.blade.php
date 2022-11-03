@@ -191,7 +191,7 @@
                                 @if(App\Library\AuthCustom::check())
                                     @if(App\Library\AuthCustom::user()->balance < $data->price)
                                         <button type="button" class="btn ghost" disabled>Thanh toán</button>
-                                        <button type="button" data-dismiss="modal" class="btn primary" data-toggle="modal" data-target="#rechargeModal">Nạp tiền</button>
+                                        <button type="button" data-bs-dismiss="modal" class="btn primary" data-toggle="modal" data-target="#rechargeModal">Nạp tiền</button>
                                     @else
                                         <button type="submit" class="btn primary">Thanh toán</button>
                                     @endif
@@ -255,42 +255,129 @@
                                             @endforeach
                                         @endif
                                     @if(isset($item->params))
-                                        @if(isset($item->params->rank_info))
+                                        @if($data->slug == "nick-lien-minh")
+                                            @if(isset($item->params->rank_info))
 
-                                            @foreach($item->params->rank_info as $rank_info)
-                                                @if($rank_info->queueType == "RANKED_TFT")
-                                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                @foreach($item->params->rank_info as $rank_info)
+                                                    @if($rank_info->queueType == "RANKED_TFT")
+                                                    @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                        <div class="info-attr">
+                                                            Rank:
+                                                            @if($rank_info->tier == "NONE")
+                                                                CHƯA CÓ RANK
+                                                            @else
+                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                            @endif
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+
+                                            @if(isset($item->params->count))
+                                                @if(isset($item->params->count->champions))
                                                     <div class="info-attr">
-                                                        Rank:
-                                                        @if($rank_info->tier == "NONE")
-                                                            {{ $rank_info->tier }}
-                                                        @else
-                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                        @endif
+                                                        Số tướng :
+                                                        {{ $item->params->count->champions }}
+                                                    </div>
+
+                                                @endif
+                                                @if(isset($item->params->count->skins))
+                                                    <div class="info-attr">
+                                                        Trang phục :
+                                                        {{ $item->params->count->skins }}
                                                     </div>
                                                 @endif
-                                            @endforeach
-                                        @endif
-{{--                                        @if(isset($item->params->rank_level))--}}
-{{--                                            <div class="info-attr">--}}
-{{--                                                Level:--}}
-{{--                                                {{ $item->params->rank_level }}--}}
-{{--                                            </div>--}}
-{{--                                        @endif--}}
-                                        @if(isset($item->params->count))
-                                            @if(isset($item->params->count->champions))
+                                            @endif
+                                        @elseif($data->slug == "nick-ninja-school")
+
+                                            @php
+                                                $server = null;
+                                                $info = array();
+
+                                                $params = $item->params;
+                                                if (isset($params->server)){
+                                                    $server = $params->server;
+                                                }
+                                                if (isset($params->info) && count($params->info)){
+                                                    $info = $params->info;
+                                                }
+                                            @endphp
+                                            @if(isset($server))
                                                 <div class="info-attr">
-                                                    Số tướng :
-                                                    {{ $item->params->count->champions }}
+                                                    Server:
+                                                    {{ $server??'' }}
                                                 </div>
 
+
                                             @endif
-                                            @if(isset($item->params->count->skins))
+
+                                            @if(isset($info) && count($info))
+                                                @foreach($info as $ke => $in)
+                                                    @if(in_array($in->name,config('module.acc.auto_ninja_list_tt')))
+                                                        @if($in->name == 'Yên')
+                                                            <div class="info-attr">
+                                                                {{ $in->name??'' }} :
+                                                                {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                            </div>
+                                                        @else
+                                                            <div class="info-attr">
+                                                                {{ $in->name??'' }} :
+                                                                {{ $in->value??'' }}
+                                                            </div>
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @elseif($data->slug == "nick-ngoc-rong-online")
+
+                                            @php
+                                                $server = null;
+                                                $info = array();
+
+                                                $params = $item->params;
+                                                if (isset($params->server)){
+                                                    $server = $params->server;
+                                                }
+                                                if (isset($params->info) && count($params->info)){
+                                                    $info = $params->info;
+                                                }
+                                            @endphp
+                                            @if(isset($server))
+                                                <?php
+                                                $total = $total + 1;
+                                                ?>
                                                 <div class="info-attr">
-                                                    Trang phục :
-                                                    {{ $item->params->count->skins }}
+                                                    Server:
+                                                    {{ $server??'' }}
                                                 </div>
+
+
                                             @endif
+
+                                            @if(isset($info) && count($info))
+                                                @foreach($info as $ke => $in)
+                                                    @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
+
+                                                        @if($total < 4)
+                                                            <?php
+                                                            $total = $total + 1;
+                                                            ?>
+                                                            @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                <div class="info-attr">
+                                                                    {{ $in->name??'' }} :
+                                                                    {{ $in->value??'' }}
+                                                                </div>
+                                                            @else
+                                                                <div class="info-attr">
+                                                                    {{ $in->name??'' }} :
+                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                </div>
+                                                            @endif
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                            @endif
+
                                         @endif
                                     @endif
                                         @if(isset($item->params) && isset($item->params->ext_info))

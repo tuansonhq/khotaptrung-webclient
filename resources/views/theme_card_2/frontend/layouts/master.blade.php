@@ -20,23 +20,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/style.bundle.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/frontend/{{theme('')->theme_key}}/lib/vendors/vendors.bundle.css" rel="stylesheet" type="text/css"/>
+
     <link href="/assets/frontend/{{theme('')->theme_key}}/lib/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/index.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/profile.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/blog.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/style.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/style_nam.css" rel="stylesheet" type="text/css"/>
+
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/storecard.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/owl.theme.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/owl.transitions.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.css">
+
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.css">
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/vendors/vendors.bundle.js" type="text/javascript"></script>
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload2/jquery.lazy.min.js"></script>
+    {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/owl.carousel.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/slider.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
-    @if(setting('sys_google_tag_manager_head') != '')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
+
+@if(setting('sys_google_tag_manager_head') != '')
 
         @foreach(explode('|',setting('sys_google_tag_manager_head')) as $tag => $sys)
             @if($tag == 0)
@@ -78,7 +88,7 @@
     @include('frontend.layouts.includes.header')
     <div class="ajax-loader"></div>
     <div id="main">
-        <div class="container">
+        <div class="container pl-0 pr-0">
             @yield('content')
         </div>
     </div>
@@ -147,10 +157,13 @@
 </script>
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/scripts.bundle.js" type="text/javascript"></script>
+
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2.js" type="text/javascript"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/dashboard.js" type="text/javascript"></script>
 {{--<script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert/sweetalert.min.js"></script>--}}
 {{--<script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>--}}
+
+
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap-datepicker/bootstrap-datetimepicker.js" type="text/javascript"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap-datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/index.js" type="text/javascript"></script>

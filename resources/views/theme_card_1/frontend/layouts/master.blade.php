@@ -78,6 +78,7 @@
 <!-- đăng kí -->
 <!-- đăng nhập -->
 @include('frontend.widget.modal.__login')
+@include('frontend.widget.modal.__regist')
 <div id="modalinfo" tabindex="-1" role="dialog" class="modal fade" data-backdrop="static">
     <div class="modal-dialog modal-md">
         <div class="panel panel-primary">

@@ -25,9 +25,9 @@
         {{--            Slider baner    --}}
         @include('frontend.widget.__slider__banner__service')
         {{--            Top hôm nay    --}}
-        @include('frontend.pages.service.widget.__top__today')
+{{--        @include('frontend.pages.service.widget.__top__today')--}}
 
-        <section class="listing-service">
+        <section class="listing-service c-mt-16">
             <div class="section-header justify-content-between c-pb-20 c-pb-lg-16">
                 <h2 class="section-title fw-700 fz-20 lh-28 ">Danh sách dịch vụ</h2>
                 <form action="" method="POST" id="service-form" class="form-search">
