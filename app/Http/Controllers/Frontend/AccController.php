@@ -462,10 +462,10 @@ class AccController extends Controller
 
 //                Lưu cookie.
 
-                $http_url = \Request::server ("HTTP_HOST");
-                $name_url =  str_replace('www.','',$http_url);
+//                $http_url = \Request::server ("HTTP_HOST");
+//                $name_url =  str_replace('www.','',$http_url);
 //                $name_jwt = 'watched_account_'.$name_url;
-                $data_cookie = Cookie::get('watched_account_'.$name_url.'') ?? '[]';
+                $data_cookie = Cookie::get('watched_account') ?? '[]';
 
                 $flag_viewed = true;
                 $data_cookie = json_decode($data_cookie,true);
@@ -486,7 +486,7 @@ class AccController extends Controller
                     array_unshift($data_cookie,$data_save);
                     $data_cookie = json_encode($data_cookie);
 
-                    Cookie::queue('watched_account_'.$name_url.'',$data_cookie,43200);
+                    Cookie::queue('watched_account',$data_cookie,43200);
 
                 }
 
@@ -559,8 +559,8 @@ class AccController extends Controller
 
             $http_url = \Request::server ("HTTP_HOST");
             $name_url =  str_replace('www.','',$http_url);
-//            $name_jwt = 'watched_account_'.$name_url;
-            $watcheds = Cookie::get('watched_account_'.$name_url.'') ?? '[]';
+            $name_jwt = 'watched_account_'.$name_url;
+            $watcheds = Cookie::get('watched_account') ?? '[]';
             $watcheds = json_decode($watcheds,true);
 
             if (isset($watcheds) && count($watcheds)){
