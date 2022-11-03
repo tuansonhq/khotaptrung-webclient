@@ -454,30 +454,30 @@ class AccController extends Controller
 
 //                Lưu cookie.
 
-//                $data_cookie = Cookie::get('watched_account') ?? '[]';
-//
-//                $flag_viewed = true;
-//                $data_cookie = json_decode($data_cookie,true);
-//
-//                if (isset($data_cookie) && count($data_cookie)){
-//                    foreach ($data_cookie as $key => $acc_viewed){
-//                        if($acc_viewed == $data->id){
-//                            $flag_viewed = false;
-//                        }
-//                    }
-//                }
-//
-//                if ($flag_viewed){
-//                    if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {
-//                        array_pop($data_cookie);
-//                    }
-//                    $data_save = $data->id;
-//                    array_unshift($data_cookie,$data_save);
-//                    $data_cookie = json_encode($data_cookie);
-//
-//                    Cookie::queue('watched_account',$data_cookie,43200);
-//
-//                }
+                $data_cookie = Cookie::get('watched_account') ?? '[]';
+
+                $flag_viewed = true;
+                $data_cookie = json_decode($data_cookie,true);
+
+                if (isset($data_cookie) && count($data_cookie)){
+                    foreach ($data_cookie as $key => $acc_viewed){
+                        if($acc_viewed == $data->id){
+                            $flag_viewed = false;
+                        }
+                    }
+                }
+
+                if ($flag_viewed){
+                    if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {
+                        array_pop($data_cookie);
+                    }
+                    $data_save = $data->id;
+                    array_unshift($data_cookie,$data_save);
+                    $data_cookie = json_encode($data_cookie);
+
+                    Cookie::queue('watched_account',$data_cookie,43200);
+
+                }
 
                 $html = view('frontend.pages.account.widget.__datadetail')
                     ->with('data_category',$data_category)

@@ -239,7 +239,6 @@
     </div>
 </div>
 @endif
-{{--            Đã xem   --}}
-@include('frontend.pages.account.widget.__watched')
+
 
 
