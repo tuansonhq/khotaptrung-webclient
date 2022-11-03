@@ -135,6 +135,7 @@
 
 .game-list-description{
     text-align: center;
+    margin-top: 8px;
 }
 .game-list-description p{
     font-size: 14px;
