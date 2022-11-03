@@ -170,7 +170,6 @@
         </div>
 
 
-        @include('frontend.widget.__menu__taget')
 
     </div>
     @if(setting('sys_noti_popup') != '')
