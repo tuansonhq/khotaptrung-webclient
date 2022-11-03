@@ -120,14 +120,14 @@ $(document).ready(function () {
                     $('#showswatched').html(data.datawatched);
 
                 }else if (data.status == 0){
-                    $('#showdetailacc').html('');
+                    $('#showswatched').html('');
                     // var html = '';
                     // html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + data.message + '</span></div></div>';
                     //
                     // $('#showdetailacc').html('');
                     // $('#showdetailacc').html(html);
                 }else if (data.status == 2){
-                    $('#showdetailacc').html('');
+                    $('#showswatched').html('');
                     console.log("chưa có dữ liệu")
                 }
 
