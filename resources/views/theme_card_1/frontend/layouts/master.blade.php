@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/blog.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_nam.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/storecard.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/theme_card_1/lib/swiper/swiper.min.css">
 {{--    js--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
@@ -159,11 +160,12 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert/sweetalert.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/main.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
-
+<script type="text/javascript" src="/assets/frontend/{{theme('')->theme_key}}/js/slick.min.js"></script>
+<script src="/assets/frontend/theme_card_1/lib/swiper/swiper.min.js"></script>
 <button type="button" class="btn btn-danger btn-floating btn-lg ripple-surface" id="btn-back-to-top" style="display: none; min-width: 45px;z-index: 999">
     <i class="fas fa-arrow-up"></i>
 </button>
-
+@yield('scripts')
 
 </body>
 </html>
