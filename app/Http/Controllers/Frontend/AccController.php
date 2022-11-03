@@ -344,14 +344,6 @@ class AccController extends Controller
 
     public function getDetail(Request $request,$slug){
 
-//        $http_url = \Request::server ("HTTP_HOST");
-//        $name_url =  str_replace('www.','',$http_url);
-//        $name_jwt = 'watched_account_'.$name_url;
-//        $watcheds = Cookie::get($name_jwt) ?? '[]';
-//        $watcheds = json_decode($watcheds,true);
-//
-//        return $watcheds;
-
         $response_data = cache("game_props_detail_{$slug}");
 
         if (empty($response_data)) {
@@ -462,33 +454,30 @@ class AccController extends Controller
 
 //                Lưu cookie.
 
-//                $http_url = \Request::server ("HTTP_HOST");
-//                $name_url =  str_replace('www.','',$http_url);
-//                $name_jwt = 'watched_account_'.$name_url;
-                $data_cookie = Cookie::get('watched_account') ?? '[]';
-
-                $flag_viewed = true;
-                $data_cookie = json_decode($data_cookie,true);
-
-                if (isset($data_cookie) && count($data_cookie)){
-                    foreach ($data_cookie as $key => $acc_viewed){
-                        if($acc_viewed == $data->id){
-                            $flag_viewed = false;
-                        }
-                    }
-                }
-
-                if ($flag_viewed){
-                    if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {
-                        array_pop($data_cookie);
-                    }
-                    $data_save = $data->id;
-                    array_unshift($data_cookie,$data_save);
-                    $data_cookie = json_encode($data_cookie);
-
-                    Cookie::queue('watched_account',$data_cookie,43200);
-
-                }
+//                $data_cookie = Cookie::get('watched_account') ?? '[]';
+//
+//                $flag_viewed = true;
+//                $data_cookie = json_decode($data_cookie,true);
+//
+//                if (isset($data_cookie) && count($data_cookie)){
+//                    foreach ($data_cookie as $key => $acc_viewed){
+//                        if($acc_viewed == $data->id){
+//                            $flag_viewed = false;
+//                        }
+//                    }
+//                }
+//
+//                if ($flag_viewed){
+//                    if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {
+//                        array_pop($data_cookie);
+//                    }
+//                    $data_save = $data->id;
+//                    array_unshift($data_cookie,$data_save);
+//                    $data_cookie = json_encode($data_cookie);
+//
+//                    Cookie::queue('watched_account',$data_cookie,43200);
+//
+//                }
 
                 $html = view('frontend.pages.account.widget.__datadetail')
                     ->with('data_category',$data_category)
@@ -557,11 +546,9 @@ class AccController extends Controller
 
         if ($request->ajax()){
 
-            $http_url = \Request::server ("HTTP_HOST");
-            $name_url =  str_replace('www.','',$http_url);
-            $name_jwt = 'watched_account_'.$name_url;
             $watcheds = Cookie::get('watched_account') ?? '[]';
             $watcheds = json_decode($watcheds,true);
+
 
             if (isset($watcheds) && count($watcheds)){
                 $url = '/acc';
