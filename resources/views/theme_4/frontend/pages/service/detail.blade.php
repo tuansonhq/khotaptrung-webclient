@@ -245,15 +245,6 @@
                                 @endif
                             </div>
 
-{{--                            <div class="row"--}}
-{{--                                 style="color: #505050;padding:20px;line-height: 2;margin-top: 30px">--}}
-{{--                                <p><span style="font-size:16px"><strong>Hệ thống b&aacute;n RP Li&ecirc;n Minh Huyền Thoại&nbsp;gi&aacute; rẻ, uy t&iacute;n, chiết khấu cao</strong>.</span></p>--}}
-
-{{--                                <p><span style="font-size:16px"><strong>Đảm bảo RP sạch 100%.</strong>&nbsp;</span><span style="font-size:16px"><strong>Mọi giao dịch đều c&oacute; ảnh&nbsp;h&oacute;a đơn của GARENA&nbsp;gửi cho qu&yacute; kh&aacute;ch</strong>.</span></p>--}}
-
-{{--                                <p><span style="font-size:16px">Ngo&agrave;i c&aacute;ch nạp RP - LOL ( Li&ecirc;n Minh )&nbsp;trực tiếp, c&aacute;c bạn c&oacute; thể <strong><a href="https://napgamegiare.net/mua-the">mua thẻ Garena</a></strong>&nbsp;gi&aacute; rẻ với chiết khấu l&ecirc;n đến 5% <strong><a href="https://napgamegiare.net/mua-the">tại đ&acirc;y</a></strong></span></p>--}}
-{{--                            </div>--}}
-
                         </div>
                     </div>
                 </div>

@@ -89,7 +89,7 @@
 
             {{--            Tính toán  --}}
 
-            <form method="POST" action="/dich-vu/{{ $data->id }}/purchase" accept-charset="UTF-8" class="purchaseForm" enctype="multipart/form-data">
+            <form method="POST" action="/dich-vu/{{ $filter_type }}/purchase" accept-charset="UTF-8" class="purchaseForm" enctype="multipart/form-data">
                 @csrf
                 <div class="container detail-service fixcssacount">
                     <div class="row">
@@ -120,7 +120,7 @@
                                             @if(isset($product) && count($product))
                                                 <span class="mb-15 control-label bb">Chọn máy chủ:</span>
                                                 <div class="mb-15">
-                                                    <select name="server" class="server-filter form-control t14" id="server" style="">
+                                                    <select class="server-filter form-control t14" name="id" id="id" style="">
                                                         @foreach($product as $key => $item)
                                                             <option
                                                                 value="{{ $item->id }}"
@@ -155,49 +155,50 @@
                                                 </div>
                                             @endif
                                         @else
-                                            <span class="mb-15 control-label bb">Chọn máy chủ:</span>
-                                            <div class="mb-15">
-                                                @php
-                                                    $server_id = array();
-                                                    $server_name = array();
-                                                    $item_arrays = array();
+                                            @php
+                                                $server_id = array();
+                                                $server_name = array();
+                                                $item_arrays = array();
 
-                                                    if (isset($product) && count($product)){
-                                                        foreach($product as $key => $item){
-                                                            foreach ($item->product_attribute as $index => $attribute) {
-                                                                if (!in_array($attribute->product_attribute_value_able->id,$server_id) && $attribute->attribute->idkey == 'vu_tru_nro'){
-                                                                    array_push($server_id,$attribute->product_attribute_value_able->id);
-                                                                    array_push($server_name,$attribute->product_attribute_value_able->title);
-                                                                }
-                                                            }
-                                                        }
-
-                                                        foreach($product as $key => $item){
-                                                            foreach ($item->product_attribute as $index => $attribute) {
-                                                                if ($attribute->attribute->idkey == 'vu_tru_nro'){
-                                                                    $item_arrays[$attribute->product_attribute_value_able->id][] = $item;
-                                                                }
-
+                                                if (isset($product) && count($product)){
+                                                    foreach($product as $key => $item){
+                                                        foreach ($item->product_attribute as $index => $attribute) {
+                                                            if (!in_array($attribute->product_attribute_value_able->id,$server_id) && $attribute->attribute->idkey == 'vu_tru_nro'){
+                                                                array_push($server_id,$attribute->product_attribute_value_able->id);
+                                                                array_push($server_name,$attribute->product_attribute_value_able->title);
                                                             }
                                                         }
                                                     }
 
-                                                @endphp
+                                                    foreach($product as $key => $item){
+                                                        foreach ($item->product_attribute as $index => $attribute) {
+                                                            if ($attribute->attribute->idkey == 'vu_tru_nro'){
+                                                                $item_arrays[$attribute->product_attribute_value_able->id][] = $item;
+                                                            }
 
-                                                <input type="hidden" class="check_server" value="{{ $server_id[0] }}">
+                                                        }
+                                                    }
+                                                }
 
-                                                <select name="server" class="server-filter server_filter form-control t14" id="server" style="">
-                                                    @foreach($server_id as $key => $item)
+                                            @endphp
+                                            @if(isset($server_id) && count($server_id))
+                                                <span class="mb-15 control-label bb">Chọn máy chủ:</span>
+                                                <div class="mb-15">
+                                                    <input type="hidden" class="check_server" value="{{ $server_id[0] }}">
 
-                                                        <option
-                                                            value="{{ $item }}"
-                                                        >
-                                                            {{ $server_name[$key] }}
+                                                    <select class="server-filter server_filter form-control t14" id="server" style="">
+                                                        @foreach($server_id as $key => $item)
 
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                                            <option
+                                                                value="{{ $item }}"
+                                                            >
+                                                                {{ $server_name[$key] }}
+
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endif
                                         @endif
                                     @endif
 
@@ -206,6 +207,8 @@
                                         @if($filter_type == 7){{--                                                Loại nhập tiền    --}}
 
                                             @if(isset($product) && count($product))
+                                            <input type="hidden" name="selected" class="selected" value="">
+
                                                 @foreach($product as $key => $item)
                                                     @if($key == 0)
                                                         @foreach($item->product_attribute as $attribute)
@@ -274,9 +277,9 @@
                                                             <div class="col-md-12 p-0">
                                                                 <span class="mb-15 control-label bb">Bảng Giá:</span>
                                                                 <div class="mb-15">
-                                                                    <select name="selected" class="s-filter form-control t14 selected_filter" style="">
+                                                                    <select name="id" class="s-filter form-control t14 selected_filter" style="">
                                                                         @foreach($item_array as $key => $item)
-                                                                            <option value="{{ $item->price }}" data-price="{{ $item->price }}">
+                                                                            <option value="{{ $item->id }}" data-price="{{ $item->price }}">
                                                                                 @foreach($item->product_attribute as $attribute)
                                                                                     @if($attribute->attribute->idkey == 'nhiem_vu_nro')
                                                                                         {{ $attribute->product_attribute_value_able->title }}
@@ -301,7 +304,7 @@
                                                                 <div class="mb-15">
                                                                     <select name="selected" class="s-filter form-control t14 selected_filter" style="">
                                                                         @foreach($item_array as $key => $item)
-                                                                            <option data-price="{{ $item->price }}" value="{{ $item->price }}">
+                                                                            <option data-price="{{ $item->price }}" value="{{ $item->id }}">
                                                                                 @foreach($item->product_attribute as $attribute)
                                                                                     @if($attribute->attribute->idkey == 'nhiem_vu_nro')
                                                                                         {{ $attribute->product_attribute_value_able->title }}
@@ -330,7 +333,7 @@
                                                                 <span class="mb-15 control-label bb">Sức mạnh:</span>
                                                                 <div class="simple-checkbox s-filter select__checkbox">
                                                                     @foreach($item_array as $key => $item)
-                                                                        <p><input value="{{ $item->price }}" data-id="{{ $index }}" class="input__checkbox" type="checkbox" id="c_{{ $index }}_{{ $key }}">
+                                                                        <p><input data-item-id="{{ $item->id }}" value="{{ $item->id }}" data-price="{{ $item->price }}" name="id[]" data-id="{{ $index }}" class="input__checkbox" type="checkbox" id="c_{{ $index }}_{{ $key }}">
                                                                             <label for="c_{{ $index }}_{{ $key }}">
                                                                                 @foreach($item->product_attribute as $attribute)
                                                                                     @if($attribute->attribute->idkey == 'suc_manh_nro')
@@ -344,12 +347,14 @@
                                                             </div>
                                                         </div>
                                                     @else
+
                                                         <div class="row marginauto hidden_slect bang__gia__{{ $index }}" data-id="{{ $index }}">
                                                             <div class="col-md-12 p-0">
                                                                 <span class="mb-15 control-label bb">Sức mạnh:</span>
                                                                 <div class="simple-checkbox s-filter">
                                                                     @foreach($item_array as $key => $item)
-                                                                        <p><input value="{{ $key }}" class="input__checkbox" data-id="{{ $index }}" type="checkbox" id="c_{{ $index }}_{{ $key }}">
+
+                                                                        <p><input data-item-id="{{ $item->id }}" value="{{ $item->id }}" name="id[]" data-price="{{ $item->price }}" class="input__checkbox" data-id="{{ $index }}" type="checkbox" id="c_{{ $index }}_{{ $key }}">
                                                                             <label for="c_{{ $index }}_{{ $key }}" >
                                                                                 @foreach($item->product_attribute as $attribute)
                                                                                     @if($attribute->attribute->idkey == 'suc_manh_nro')
@@ -378,9 +383,6 @@
                             <div class="row emply-btns">
                                 <div class="col-md-12 col-md-offset-2">
                                     <div class=" emply-btns text-center">
-                                        <input type="hidden" name="value" value="">
-                                        <input type="hidden" name="selected" value="">
-                                        <input type="hidden" name="server">
                                         <a id="txtPrice" style="font-size: 20px;font-weight: bold;text-decoration: none;color: #FFFFFF" class="">Tổng: 0 VNĐ</a>
                                         <button id="btnPurchase" type="button" style="font-size: 20px;" class="followus" ><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</button>
                                     </div>
@@ -392,6 +394,7 @@
                     {{--                            Đổ dữ liệu loại bằng 6--}}
                     @if(isset($filter_type))
                         @if($filter_type == 6)
+                            <input type="hidden" name="id">
                             <div class="row">
                                 <div class="col-md-12 float_mb">
                                     <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/rslider.js"></script>
@@ -416,7 +419,7 @@
                                                 <div class="dropdown-field from-field">
                                                     <select class="from-chosen" name="rank_from">
                                                         @foreach($product as $key => $item)
-                                                            <option value="{{ $key }}">{{ $item->title }}</option>
+                                                            <option data-id="{{ $item->id }}" value="{{ $key }}">{{ $item->title }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -427,7 +430,7 @@
                                                 <div class="dropdown-field to-field">
                                                     <select class="to-chosen" name="rank_to">
                                                         @foreach($product as $key => $item)
-                                                            <option value="{{ $key }}">{{ $item->title }}</option>
+                                                            <option data-id="{{ $item->id }}" value="{{ $key }}">{{ $item->title }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -520,40 +523,43 @@
 {{--                            </div>--}}
                             <div class="modal-body">
 {{--                                đổ dữ liệu modal  --}}
-                                @foreach($data->supplier->field_api as $item)
+                                @if(isset($data->supplier))
+                                    @if(isset($data->supplier->field_api) && count($data->supplier->field_api))
+                                        @foreach($data->supplier->field_api as $field_api)
 
-                                    <span class="mb-15 control-label bb">{{$item->title_api}}:</span>
-                                    @if($item->type == 1)
-                                        <div class="mb-15">
-                                            <input type="text" required name="{{$item->key_api}}" class="form-control t14 " placeholder="{{$item->title_api}}" value="">
-                                        </div>
-                                    @elseif($item->type==4)
+                                        <span class="mb-15 control-label bb">{{$field_api->title_api}}:</span>
+                                        @if($field_api->type == 1)
                                             <div class="mb-15">
-                                            <input type="file" required accept="image/*" class="form-control" name="{{$item->key_api}}" placeholder="{{$item->title_api}}">
-                                        </div>
-                                    @elseif($item->type==5)
+                                                <input type="text" required name="{{$field_api->key_api}}" class="form-control t14 " placeholder="{{$field_api->title_api}}" value="">
+                                            </div>
+                                        @elseif($field_api->type==4)
+                                                <div class="mb-15">
+                                                <input type="file" required accept="image/*" class="form-control" name="{{$field_api->key_api}}" placeholder="{{$field_api->title_api}}">
+                                            </div>
+                                        @elseif($field_api->type==5)
 
-                                        <div class="mb-15">
-                                            <input type="password" required class="form-control" name="{{$item->key_api}}" placeholder="{{$item->title_api}}">
-                                        </div>
-                                    @elseif($item->type==6)
+                                            <div class="mb-15">
+                                                <input type="password" required class="form-control" name="{{$field_api->key_api}}" placeholder="{{$field_api->title_api}}">
+                                            </div>
+                                        @elseif($field_api->type==6)
 
-                                        @php
-                                            $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
-                                        @endphp
-                                        <div class="mb-15">
-                                            <select name="customer_data{{$i}}" required class="mb-15 control-label bb">
-                                                @if(!empty($send_data))
-                                                    @for ($sn = 0; $sn < count($send_data); $sn++)
-                                                        <option value="{{$sn}}">{{$send_data[$sn]}}</option>
-                                                    @endfor
-                                                @endif
-                                            </select>
-                                        </div>
+    {{--                                        @php--}}
+    {{--                                            $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);--}}
+    {{--                                        @endphp--}}
+    {{--                                        <div class="mb-15">--}}
+    {{--                                            <select name="customer_data{{$i}}" required class="mb-15 control-label bb">--}}
+    {{--                                                @if(!empty($send_data))--}}
+    {{--                                                    @for ($sn = 0; $sn < count($send_data); $sn++)--}}
+    {{--                                                        <option value="{{$sn}}">{{$send_data[$sn]}}</option>--}}
+    {{--                                                    @endfor--}}
+    {{--                                                @endif--}}
+    {{--                                            </select>--}}
+    {{--                                        </div>--}}
 
+                                        @endif
+                                    @endforeach
                                     @endif
-                                @endforeach
-
+                                @endif
                             </div>
 
                             <div class="modal-footer modal-footer__data">
@@ -616,6 +622,71 @@
     <input type="hidden" name="slug" id="slug" value="{{ $data->slug }}" />
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/service.css">
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/showdetailservice.js?v={{time()}}"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('body').on('click','#btnPurchase',function(){
+                let is_ok = true;
+                let html = '';
+
+                let required = $('input[required]');
+                if (required.length){
+                    required.each(function () {
+                        $(this).toggleClass('invalid',!$(this).val().trim());
+                        if (!$(this).val().trim()){
+                            is_ok = false;
+                            let text = $(this).parent().prev().text().trim().toLowerCase();
+                            html = `<div class="row marginauto order-errors" style="padding-top:8px;width: 100%;margin: 0 auto"><div class="col-md-12 left-right default-span"><small style="color: rgb(238, 70, 35)">Vong lòng nhập thông tin.</small></div></div>`
+                            $(this).next().html(html)
+                        }else {
+                            $(this).next().text('')
+                        }
+                    });
+                }
+
+                if ($('.allgame[type=checkbox]').length){
+                    if (checkboxRequired('input.allgame[type=checkbox]')){
+                        html = `<div class="row marginauto order-errors" style="padding-bottom: 8px;width: 100%;margin: 0 auto"><div class="col-md-12 left-right default-span"><small style="color: rgb(238, 70, 35)">Phải chọn ít nhất một gói dịch vụ</small></div></div>`;
+                        is_ok = false;
+                        $('#error-mes-checkbox').html(html)
+                    }else {
+                        $('#error-mes-checkbox').html('');
+                    }
+                }
+                let html2 = '';
+                let confirm_rules = $('.confirm-rules');
+
+                // nếu không có nút confirm nào checked
+                if (confirm_rules.length){
+                    if (!confirm_rules.is(':checked')){
+
+                        html2 = `<div class="row marginauto order-errors" style="width: 100%;margin: 0 auto"><div class="col-md-12 left-right default-span"><small style="color: rgb(238, 70, 35)">Vui lòng xác nhận thông tin trên</small></div></div>`;
+                        is_ok = false;
+                        $('.error-message-checkbox').html(html2)
+                    }else {
+                        $('.error-message-checkbox').html('')
+                    }
+                }
+
+                if (is_ok){
+                    $('#homealert').modal('show');
+                }
+
+            });
+
+            function checkboxRequired(selector) {
+                let checkboxs = $(`${selector}:checked`);
+                return !checkboxs.length;
+            }
+        });
+
+
+        function Confirm(index, serverid) {
+            // $('[name="server"]').val(serverid);
+            // $('[name="selected"]').val(index);
+            $('#btnPurchase').click();
+        }
+    </script>
     @if(isset($filter_type))
         @if($filter_type == 7){{--//dạng nhập tiền thành toán--}}
         <script>
@@ -623,6 +694,8 @@
                 var price_input_pack = parseInt($('#input_pack').val());
 
                 var txtDiscount = parseInt($('#txtDiscount').val());
+
+                $('.selected').val($('#input_pack').val());
 
                 // var total_price = Math.round(price_input_pack/txtDiscount);
                 var total_price = price_input_pack/txtDiscount;
@@ -648,7 +721,7 @@
                         if (parseInt(price) < parseInt(price_min)){
 
                             $('#input_pack').val(price_min);
-
+                            $('.selected').val(price_min);
                             price_min = price_min.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
                             price_min = price_min.split('').reverse().join('').replace(/^[\.]/,'');
 
@@ -656,7 +729,7 @@
 
                             $('#txtPrice').html('');
                             $('#txtPrice').html('Nhập số tiền không đúng');
-
+                            $('#btnPurchase').prop('disabled', true);
                             return false;
                         }
 
@@ -667,14 +740,17 @@
                             price_max = price_max.split('').reverse().join('').replace(/^[\.]/,'');
 
                             $(this).val(price_max);
-
+                            $('.selected').val(price_max);
                             $('#txtPrice').html('');
                             $('#txtPrice').html('Nhập số tiền không đúng');
-
+                            $('#btnPurchase').prop('disabled', true);
                             return false;
                         }
 
+
+                        $('#btnPurchase').prop('disabled', false);
                         var txtDiscount = parseInt($('#txtDiscount').val());
+                        $('.selected').val($('#input_pack').val());
                         var total_price = price_input_pack/txtDiscount;
                         total_price = total_price.toFixed(0);
                         var currency = $('#currency').val();
@@ -704,7 +780,10 @@
                 })
 
 
-                $('body').on('click','#server',function(e){
+                $('body').on('change','#server',function(e){
+
+
+
                     var price_min = parseInt($(this).find(':selected').data('price-min'));
                     var price_max = parseInt($(this).find(':selected').data('price-max'));
                     var heso = parseInt($(this).find(':selected').data('heso'));
@@ -722,7 +801,7 @@
                         price_min = price_min.split('').reverse().join('').replace(/^[\.]/,'');
 
                         $('#input_pack_face').val(price_min);
-
+                        $('.selected').val(price_min);
                         $('#txtPrice').html('');
                         $('#txtPrice').html('Nhập số tiền không đúng');
 
@@ -736,7 +815,7 @@
                         price_max = price_max.split('').reverse().join('').replace(/^[\.]/,'');
 
                         $('#input_pack_face').val(price_max);
-
+                        $('.selected').val(price_max);
                         $('#txtPrice').html('');
                         $('#txtPrice').html('Nhập số tiền không đúng');
 
@@ -745,6 +824,7 @@
 
                     var price_input_pack = parseInt($('#input_pack').val());
                     var txtDiscount = parseInt($('#txtDiscount').val());
+                    $('.selected').val($('#input_pack').val());
                     var total_price = price_input_pack/txtDiscount;
                     total_price = total_price.toFixed(0);
                     var currency = $('#currency').val();
@@ -788,6 +868,7 @@
                     $(".from-chosen").chosen({disable_search_threshold: 10});
                     $(".from-chosen").change((elm, select) => {
                         from = parseInt($(".from-chosen").val());
+
                         if (to <= from) {
                             to = from + 1;
                             $(".to-chosen").val(to);
@@ -796,8 +877,6 @@
                         }
                         $('.nstSlider').nstSlider('set_position', from, to);
 
-                        console.log('form = :' + from);
-                        console.log('to = :' + to);
                         UpdatePrice1();
                     });
 
@@ -823,12 +902,21 @@
                         price += parseInt(data[i].price-data[i-1].price);
                         $('tbody tr').eq(i - 1).addClass('selected');
                     }
-                    $('[name="value"]').val('');
-                    $('[name="value"]').val(price);
+
                     price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
                     price = price.split('').reverse().join('').replace(/^[\.]/,'');
                     $('#txtPrice').html('Tổng: ' + (price) + ' VNĐ');
-                    $('[name="selected"]').val(from + '|' + to);
+
+                    // var price_from = $(".price_from[name='rank_from']")
+                    //     .map(function(){return $(this).data('id');}).get();
+                    var price_from = data[from].id;
+                    var price_to = data[to].id;
+                    // var price_to = $(".to-chosen").data('id');
+                    console.log(price_from)
+                    console.log(price_to)
+
+                    $('[name="id"]').val(from + '|' + to);
+
                     $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                         $(this).removeClass();
                     });
@@ -857,7 +945,7 @@
 
 
 
-                    $('body').on('click','.server_filter',function(e) {
+                    $('body').on('change','.server_filter',function(e) {
                         var server_id = parseInt($(this).find(':selected').val());
                         var check_server = parseInt($('.check_server').val());
                         $('.bang__gia__' + check_server + '').addClass('hidden_slect');
@@ -868,7 +956,7 @@
                     })
 
 
-                    $('body').on('click','.selected_filter',function(e) {
+                    $('body').on('change','.selected_filter',function(e) {
                         var price = parseInt($(this).find(':selected').data('price'));
                         $('#txtDiscount').val(price);
 
@@ -891,14 +979,16 @@
 
                     $('body').on('change','.input__checkbox',function(e) {
 
-                        var id = $(this).data('id');
+                        var id = $(this).val();
 
                         var total_price = 0;
 
                         // select__checkbox
+
+                        var selectd = '';
                         $('.bang__gia__' + id + ' .input__checkbox').each(function(){
                             if (this.checked){
-                                total_price = total_price + parseInt($(this).val());
+                                total_price = total_price + parseInt($(this).data('price'));
                             }
                         });
 
@@ -929,7 +1019,7 @@
                         // select__checkbox
                         $('.bang__gia__' + server_id + ' .input__checkbox').each(function(){
                             if (this.checked){
-                                total_price = total_price + parseInt($(this).val());
+                                total_price = total_price + parseInt($(this).data('price'));
                             }
                         });
 

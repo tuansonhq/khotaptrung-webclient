@@ -527,7 +527,7 @@ class ServiceController extends Controller
 
     public function postPurchase(Request $request,$id){
         if (AuthCustom::check()) {
-
+            return $request->all();
             $index = $request->index;
 
             $url = '/service/purchase';
