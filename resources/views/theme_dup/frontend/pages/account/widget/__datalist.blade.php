@@ -1,10 +1,9 @@
 @if(empty($data->data))
 
     @if(isset($items) && count($items) > 0)
-
         <div class="item_buy_list row">
+            <input type="text" name="acc_ranId" class="acc_ranId" value="{{preg_replace('/\d+/u', '', $items[0]->randId)}}" hidden>
             @foreach ($items as $item)
-
                 {{--                Nick random--}}
                 @if($item->status == 1)
                     @if($data->display_type == 2)
@@ -118,7 +117,8 @@
                                             @endif
                                         @endif
 
-                                        <span>MS: {{ $item->randId }}</span>
+{{--                                        <span>MS: {{ $item->randId }}</span>--}}
+                                        <span>MS: {{ preg_replace('/[a-zA-Z]+/', '', $item->randId) }}</span>
                                     </a>
                                 </div>
                                 <div class="item_buy_list_description">
@@ -544,7 +544,7 @@
                                             {{--                                            <img class="item_buy_list_img-main" data-original="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">--}}
                                         @endif
 
-                                        <span>MS: {{ $item->randId }}</span>
+                                        <span>MS: {{ preg_replace('/[a-zA-Z]+/', '', $item->randId) }}</span>
                                     </a>
                                 </div>
                                 @php
