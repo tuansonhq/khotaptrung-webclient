@@ -23,33 +23,33 @@
         $totalaccount = 0;
     }
 @endphp
-@php
-    $data_cookie = Cookie::get('viewed_account') ?? '[]';
-    $flag_viewed = true;
-    $data_cookie = json_decode($data_cookie,true);
-        foreach ($data_cookie as $key => $acc_viewed){
-            if($acc_viewed['randId'] == $data->randId){
-             $flag_viewed = false;
-            }
-        }
-        if ($flag_viewed){
-                if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {
-                     array_pop($data_cookie);
-                 }
-                $data_save = [
-                    'image'=>$data->image??'',
-                    'category'=>isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title,
-                    'randId'=>$data->randId,
-                    'price'=>$data->price,
-                    'price_old'=>$data->price_old,
-                    'promotion'=>$sale_percent,
-                    'buy_account'=>$totalaccount,
-                 ];
-                array_unshift($data_cookie,$data_save);
-                $data_cookie = json_encode($data_cookie);
-                Cookie::queue('viewed_account',$data_cookie,43200);
-        }
-@endphp
+{{--@php--}}
+{{--    $data_cookie = Cookie::get('viewed_account') ?? '[]';--}}
+{{--    $flag_viewed = true;--}}
+{{--    $data_cookie = json_decode($data_cookie,true);--}}
+{{--        foreach ($data_cookie as $key => $acc_viewed){--}}
+{{--            if($acc_viewed['randId'] == $data->randId){--}}
+{{--             $flag_viewed = false;--}}
+{{--            }--}}
+{{--        }--}}
+{{--        if ($flag_viewed){--}}
+{{--                if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {--}}
+{{--                     array_pop($data_cookie);--}}
+{{--                 }--}}
+{{--                $data_save = [--}}
+{{--                    'image'=>$data->image??'',--}}
+{{--                    'category'=>isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title,--}}
+{{--                    'randId'=>$data->randId,--}}
+{{--                    'price'=>$data->price,--}}
+{{--                    'price_old'=>$data->price_old,--}}
+{{--                    'promotion'=>$sale_percent,--}}
+{{--                    'buy_account'=>$totalaccount,--}}
+{{--                 ];--}}
+{{--                array_unshift($data_cookie,$data_save);--}}
+{{--                $data_cookie = json_encode($data_cookie);--}}
+{{--                Cookie::queue('viewed_account',$data_cookie,43200);--}}
+{{--        }--}}
+{{--@endphp--}}
 @section('content')
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/buyacc.css?v={{time()}}">
@@ -169,7 +169,9 @@
                                 </div>
 
                                 <div class="entries">
+
                                     <div class="row fix-border fix-border-nick " id="showslideracc">
+
                                         <div class="body-box-loadding result-amount-loadding" style="transform: translateX(-50%);left: 50%">
                                             <div class="d-flex justify-content-center" style="padding-top: 112px;">
                                                 <span class="pulser"></span>
@@ -181,9 +183,11 @@
                                 </div>
 
                             </div>
-                            @include('frontend.pages.account.widget.__viewed__account')
 
-                        </div>
+                            <div class="row" style="width: 100%;margin: 0 auto" id="showswatched">
+
+
+                            </div>
                     </div>
                 </div>
                 <!-- END: BLOG LISTING  -->
@@ -208,7 +212,7 @@
                                     <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
                                         <input id="input-search-champ" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
                                          <ul class="sugges_list d-none">
-        
+
                                         </ul>
                                         <button class="submit-search-champ submit--search" type="button"></button>
                                     </div>
@@ -251,11 +255,11 @@
                                             <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
                                                 <div class="col-auto paginate__category__col">
                                                     <div class="data_paginate paging_bootstrap paginations_custom">
-            
+
                                                         <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle champion-paginate" data-tab="champion-paginate" role="tablist">
                                                             @foreach($game_auto_props as $key => $game_auto_prop)
                                                                 @if($key == 'champions' && count($game_auto_props['champions']) > 1)
-            
+
                                                                     @foreach($game_auto_props['champions'] as $key => $arr_champ)
                                                                         @if($key == count($game_auto_props['champions']) - 1)
                                                                             <li class="page-item disabled hidden-xs dot-last-paginate">
@@ -273,8 +277,8 @@
                                                                             </li>
                                                                         @endif
                                                                     @endforeach
-            
-            
+
+
                                                                 @endif
                                                             @endforeach
                                                         </ul>
@@ -308,7 +312,7 @@
                                     <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
                                         <input id="input-search-conpanion" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
                                         <ul class="sugges_list d-none">
-        
+
                                         </ul>
                                         <button class="submit-search-companion submit--search" type="button"></button>
                                     </div>
@@ -321,7 +325,7 @@
                                             <div class="tab-content" id="content_page_companion">
                                                 @foreach($game_auto_props as $key => $game_auto_prop)
                                                     @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']))
-        
+
                                                         @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
                                                             <div class="tab-pane fade {{ !$key ? 'show active' : '' }}" id="tab-companion-{{$key}}" role="tabpanel">
                                                                 <div class="row">
@@ -342,8 +346,8 @@
                                                                 </div>
                                                             </div>
                                                         @endforeach
-        
-        
+
+
                                                     @endif
                                                 @endforeach
                                             </div>
@@ -403,7 +407,7 @@
                                     <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
                                         <input id="input-search-skins" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
                                         <ul class="sugges_list d-none">
-        
+
                                         </ul>
                                         <button class="submit-search-skins submit--search" type="button"></button>
                                     </div>
@@ -417,7 +421,7 @@
 
                                                 @foreach($game_auto_props as $key => $game_auto_prop)
                                                     @if($key == 'skins' && count($game_auto_props['skins']))
-            
+
                                                         @foreach($game_auto_props['skins'] as $key => $arr_skins)
                                                             <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
                                                                  id="tab-skin-{{$key}}" role="tabpanel">
@@ -439,8 +443,8 @@
                                                                 </div>
                                                             </div>
                                                         @endforeach
-            
-            
+
+
                                                     @endif
                                                 @endforeach
                                             </div>
@@ -448,11 +452,11 @@
                                             <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
                                                 <div class="col-auto paginate__category__col">
                                                     <div class="data_paginate paging_bootstrap paginations_custom">
-            
+
                                                         <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle skin-paginate" data-tab="skin-paginate" role="tablist">
                                                             @foreach($game_auto_props as $key => $game_auto_prop)
                                                                 @if($key == 'skins' && count($game_auto_props['skins']) > 1)
-            
+
                                                                     @foreach($game_auto_props['skins'] as $key => $arr_skins)
                                                                         @if($key == count($game_auto_props['skins']) - 1)
                                                                             <li class="page-item disabled hidden-xs dot-last-paginate">
@@ -470,8 +474,8 @@
                                                                             </li>
                                                                         @endif
                                                                     @endforeach
-            
-            
+
+
                                                                 @endif
                                                             @endforeach
                                                         </ul>

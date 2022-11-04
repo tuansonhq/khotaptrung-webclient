@@ -176,11 +176,7 @@
                     </div>
                 </div>
 
-                <div class="row marginauto d-none">
-                    <div class="col-md-12 left-right" id="section-viewed-account">
-{{--                        @include('frontend.pages.account.widget.__viewed__account')--}}
-                    </div>
-                </div>
+
 
                 <div class="row marginauto">
                     <div class="col-md-12 left-right" id="showslideracc">
@@ -192,6 +188,12 @@
 
                     </div>
                 </div>
+
+{{--                <div class="row marginauto d-none">--}}
+{{--                    <div class="col-md-12 left-right" id="section-viewed-account">--}}
+{{--                        @include('frontend.pages.account.widget.__viewed__account')--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
                 <div class="row marginauto">
                     <div class="col-md-12 left-right" id="showswatched">

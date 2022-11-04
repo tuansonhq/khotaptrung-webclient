@@ -344,14 +344,6 @@ class AccController extends Controller
 
     public function getDetail(Request $request,$slug){
 
-//        $http_url = \Request::server ("HTTP_HOST");
-//        $name_url =  str_replace('www.','',$http_url);
-//        $name_jwt = 'watched_account_'.$name_url;
-//        $watcheds = Cookie::get($name_jwt) ?? '[]';
-//        $watcheds = json_decode($watcheds,true);
-//
-//        return $watcheds;
-
         $response_data = cache("game_props_detail_{$slug}");
 
         if (empty($response_data)) {
@@ -462,9 +454,6 @@ class AccController extends Controller
 
 //                Lưu cookie.
 
-//                $http_url = \Request::server ("HTTP_HOST");
-//                $name_url =  str_replace('www.','',$http_url);
-//                $name_jwt = 'watched_account_'.$name_url;
                 $data_cookie = Cookie::get('watched_account') ?? '[]';
 
                 $flag_viewed = true;
@@ -557,11 +546,9 @@ class AccController extends Controller
 
         if ($request->ajax()){
 
-            $http_url = \Request::server ("HTTP_HOST");
-            $name_url =  str_replace('www.','',$http_url);
-            $name_jwt = 'watched_account_'.$name_url;
             $watcheds = Cookie::get('watched_account') ?? '[]';
             $watcheds = json_decode($watcheds,true);
+
 
             if (isset($watcheds) && count($watcheds)){
                 $url = '/acc';
