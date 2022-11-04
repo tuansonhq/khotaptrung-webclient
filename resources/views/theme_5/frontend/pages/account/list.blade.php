@@ -548,10 +548,8 @@
 
             @if($data->custom->content)
                 <div class="c-mb-16">
-                    <h2 class="text-title-bold d-block d-lg-none c-mb-8">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</h2>
                     <div class="card overflow-hidden detailViewBlock">
                         <div class="card-body c-px-16">
-                            <h2 class="text-title-bold d-none d-lg-block c-mb-24 detailViewBlockTitle">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</h2>
                             @if(substr($data->custom->content, 1200))
                                 <div class="content-desc hide detailViewBlockContent">
                                     {!! $data->custom->content !!}
@@ -570,10 +568,8 @@
                 </div>
             @else
                 <div class="c-mb-16 c-mt-16">
-                    <h2 class="text-title-bold d-block d-lg-none c-mb-8">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</h2>
                     <div class="card overflow-hidden detailViewBlock">
                         <div class="card-body c-px-16">
-                            <h2 class="text-title-bold d-none d-lg-block c-mb-24 detailViewBlockTitle">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</h2>
                             @if(substr($data->content, 1200))
                                 <div class="content-desc hide detailViewBlockContent">
                                     {!! $data->content !!}
