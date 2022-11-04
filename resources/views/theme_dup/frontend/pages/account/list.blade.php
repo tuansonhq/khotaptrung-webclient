@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="booking_detail"></div>
-            <div class="container pt-3">
+            <div class="container pt-3 item_buy-form">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="alert alert-info box-text hidetext fix-image-acount" role="alert">
