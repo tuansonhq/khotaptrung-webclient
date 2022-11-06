@@ -1,61 +1,21 @@
 $(document).ready(function(){
 
-    $('#txtSearchNick').donetyping(function() {
+    $('#txtSearchNick').on('input',function() {
 
         let keyword = convertToSlug($(this).val());
 
-        let index = 0;
-        let value = 0;
-        $('.entries_item_nick').each(function (i,elm) {
-            $(this).removeClass('dis-block');
-        })
-
-        $('.entries_item_nick').each(function (i,elm) {
-            // $('.body-modal__nick__text-error').css('display','none');
+        $('.list-item-nick').each(function (i,elm) {
             let slug_item = $(elm).find('img').attr('alt');
             slug_item = convertToSlug(slug_item);
             $(this).toggle(slug_item.indexOf(keyword) > -1);
             if (slug_item.indexOf(keyword) > -1){
-                ++index;
-                $(this).addClass('dis-block');
+                $(this).removeClass('d-none');
             }else {
-
-            }
-            $('#btn-expand-serivce-nick').remove();
-            $('#btn-expand-serivce-nick-search').remove();
-        })
-
-
-        $('.dis-block').each(function (i,elm) {
-            if (i>=8){
-                $(this).css('display','none');
+                $(this).addClass('d-none');
             }
         })
-        if (index <= 8){
-            value = 1;
-        }else if (index <= 16){
-            value = 2;
-        }else if (index <= 24){
-            value = 3;
-        }else if (index <= 32){
-            value = 4;
-        }else if (index <= 40){
-            value = 5;
-        }
 
-        if (value > 1){
-
-            let htmlnick = '<button id="btn-expand-serivce-nick-search" class="expand-button" data-page-current="1" data-page-max="' + value + '">Xem thêm danh mục</button>';
-            $('.fix-border-nick').append(htmlnick);
-        }
-
-        if (index == 0){
-            $('.data-nick-search').css('display','block');
-        }else {
-            $('.data-nick-search').css('display','none');
-        }
-        //$(this).val() // get the current value of the input field.
-    }, 400);
+    });
 
     function convertToSlug(title) {
         var slug;

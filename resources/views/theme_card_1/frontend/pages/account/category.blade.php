@@ -51,4 +51,5 @@
             </div>
         </div>
     </section>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/category.js?v={{time()}}"></script>
 @endsection
