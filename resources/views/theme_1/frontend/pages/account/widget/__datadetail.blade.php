@@ -1,6 +1,5 @@
 @if(isset($data))
     @if($data->status == 1)
-
     <div class="row marginauto">
         <div class="col-lg-6 col-md-12 shop_product_detailS__col">
             <div class="gallery" style="overflow: hidden">
@@ -35,11 +34,17 @@
                         <div class="swiper gallery-thumbs gallery-thumbsmaxheadth">
                             <div class="swiper-wrapper">
                                 @foreach(explode('|',$data->image_extension) as $val)
+
+                                    @if($val != '')
+
                                     <div class="swiper-slide">
                                         <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
                                             <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
                                         </a>
                                     </div>
+
+                                    @endif
+
                                 @endforeach
                             </div>
                         </div>
