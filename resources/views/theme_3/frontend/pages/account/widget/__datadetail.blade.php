@@ -29,16 +29,19 @@
                                                 <div class="gallery" style="overflow: hidden">
                                                     @if(isset($game_auto_props) && count($game_auto_props) && $data_category->slug == 'nick-lien-minh')
                                                         @if(isset($data->image_extension))
+                                                            @php
+                                                                $image_extension = explode('|',$data->image_extension);
+                                                                array_push($image_extension,$data->image);
+                                                                $count = 0;
+                                                                foreach($image_extension as $key => $val){
+                                                                    if($val != ''){
+                                                                        $count = $count + 1;
+                                                                    }
+                                                                }
+                                                            @endphp
                                                             <div class="swiper gallery-slider swiper-container-horizontal">
                                                                 <div class="swiper-wrapper">
-                                                                    <div class="swiper-slide">
-                                                                        <a  data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false" class="d-none d-lg-block ">
-
-                                                                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="">
-                                                                        </a>
-                                                                    </div>
-
-                                                                    @foreach(explode('|',$data->image_extension) as $val)
+                                                                    @foreach($image_extension as $val)
                                                                         @if($val != '')
                                                                         <div class="swiper-slide">
                                                                             <a  data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false" class="d-none d-lg-block ">
