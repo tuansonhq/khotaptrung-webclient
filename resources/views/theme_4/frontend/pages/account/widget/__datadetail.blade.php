@@ -41,13 +41,17 @@
                                         </a>
                                     </div>
                                     @foreach(explode('|',$data->image_extension) as $val)
+
                                         @if($val != '')
+
                                         <div class="swiper-slide">
                                             <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
                                                 <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
                                             </a>
                                         </div>
+
                                         @endif
+
                                     @endforeach
                                 </div>
                             </div>
