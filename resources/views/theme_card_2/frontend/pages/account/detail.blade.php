@@ -54,7 +54,9 @@
 {{--        }--}}
 {{--@endphp--}}
 @section('content')
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/theme_main.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/theme_main.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css?v={{time()}}">
     @if($data == null)
         <div class="item_buy">
 
@@ -90,13 +92,15 @@
 
 
                         foreach ($game_auto_props as $key => $item) {
+
                             if ($key == 'champions') {
+
                                 foreach ($game_auto_props['champions'] as $arr_champ) {
                                     $total_tuong += count($arr_champ);
                                 }
                             }
-                            if($key == 'skins_custom') {
-                                foreach ($game_auto_props['skins_custom'] as $arr_skins) {
+                            if($key == 'skins') {
+                                foreach ($game_auto_props['skins'] as $arr_skins) {
                                     $total_trangphuc += count($arr_skins);
                                 }
                             }
@@ -140,7 +144,7 @@
                 </div>
             </div>
 
-            <div class="container pt-3 fixcssacount" style="padding-left: 0; padding-right: 0">
+            <div class="container pt-3 fixcssacount">
                 <div class="row container__show">
 
                     <div class="col-md-12 left-right" id="showdetailacc">
@@ -174,6 +178,8 @@
                     </div>
                 </div>
 
+
+
                 <div class="row marginauto">
                     <div class="col-md-12 left-right" id="showslideracc">
                         <div class="body-box-loadding result-amount-loadding result-amount-loadding__nick-lien-quan">
@@ -185,9 +191,20 @@
                     </div>
                 </div>
 
+                {{--                <div class="row marginauto d-none">--}}
+                {{--                    <div class="col-md-12 left-right" id="section-viewed-account">--}}
+                {{--                        @include('frontend.pages.account.widget.__viewed__account')--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
+
                 <div class="row marginauto">
                     <div class="col-md-12 left-right" id="showswatched">
-{{--                        @include('frontend.pages.account.widget.__viewed__account')--}}
+                        <div class="body-box-loadding result-amount-loadding result-amount-loadding__nick-lien-quan">
+                            <div class="d-flex justify-content-center" style="padding-top: 112px;">
+                                <span class="pulser"></span>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -217,79 +234,79 @@
                                 </ul>
                                 <button class="submit-search-companion submit--search" type="button"></button>
                             </div>
-                            <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
+                            <img class="c-close-modal" src="/assets/frontend/theme_1/image/son/close.svg" alt="">
                         </div>
                     </div>
                     <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">
                         <div class="row marginauto modal-container-body" id="tab-panel-companion">
 
-                                <div class="col-md-12 left-right justify-content-end paginate__v1_index paginate__v1_mobie frontend__panigate">
+                            <div class="col-md-12 left-right justify-content-end paginate__v1_index paginate__v1_mobie frontend__panigate">
 
-                                    <div class="tab-content" id="content_page_companion">
+                                <div class="tab-content" id="content_page_companion">
 
-                                        @foreach($game_auto_props as $key => $game_auto_prop)
-                                            @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']))
+                                    @foreach($game_auto_props as $key => $game_auto_prop)
+                                        @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']))
 
-                                                @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
-                                                    <div class="tab-pane fade {{ !$key ? 'show active' : '' }}" id="tab-companion-{{$key}}" role="tabpanel">
-                                                        <div class="row">
-                                                            @foreach($arr_companions as $companion)
-                                                                <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
+                                            @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
+                                                <div class="tab-pane fade {{ !$key ? 'show active' : '' }}" id="tab-companion-{{$key}}" role="tabpanel">
+                                                    <div class="row">
+                                                        @foreach($arr_companions as $companion)
+                                                            <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
                                                         <span>
                                                             <div class="row marginauto item-nick-lmht__border">
                                                                 <div
                                                                     class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                                                    <img
-                                                                        class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy"
-                                                                        data-original="https://cdn.upanh.info/{{$companion->thumb}}"
-                                                                        alt="{{ $companion->name }}">
+                                                                    <img src="https://cdn.upanh.info/{{$companion->thumb}}"
+                                                                         class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
+
+                                                                         alt="{{ $companion->name }}">
                                                                 </div>
                                                                 <div class="col-md-12 pl-0 pr-0 text-center">
                                                                     <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme text-limit limit-1">{{ $companion->name }}</p>
                                                                 </div>
                                                             </div>
                                                         </span>
-                                                                </div>
-                                                            @endforeach
-                                                        </div>
+                                                            </div>
+                                                        @endforeach
                                                     </div>
-                                                @endforeach
+                                                </div>
+                                            @endforeach
 
 
-                                            @endif
-                                        @endforeach
-                                    </div>
+                                        @endif
+                                    @endforeach
+                                </div>
 
-                                    <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
-                                        <div class="col-auto paginate__category__col">
-                                            <div class="data_paginate paging_bootstrap paginations_custom">
-                                                <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle" role="tablist">
-                                                    @foreach($game_auto_props as $key => $game_auto_prop)
-                                                        @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']) > 1)
-                                                            @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
-                                                                @if($key == count($game_auto_props['skins_custom']) - 1)
-                                                                    <li class="page-item disabled hidden-xs dot-last-paginate">
-                                                                        <span class="page-link">...</span>
-                                                                    </li>
-                                                                @endif
-                                                                <li class="nav-item page-item {{ !$key ? 'active' : '' }}">
-                                                                    <a class="page-link {{ !$key ? 'active' : '' }}"
-                                                                       data-toggle="tab" href="#tab-companion-{{ $key }}"
-                                                                       role="tab">{{ $key + 1 }}</a>
+                                <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
+                                    <div class="col-auto paginate__category__col">
+                                        <div class="data_paginate paging_bootstrap paginations_custom">
+                                            <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle tft-paginate" data-tab="tft-paginate" role="tablist">
+                                                @foreach($game_auto_props as $key => $game_auto_prop)
+                                                    @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']) > 1)
+                                                        @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
+                                                            @if($key == count($game_auto_props['skins']) - 1)
+                                                                <li class="page-item disabled hidden-xs dot-last-paginate">
+                                                                    <span class="page-link">...</span>
                                                                 </li>
-                                                                @if(!$key)
-                                                                    <li class="page-item disabled hidden-xs dot-first-paginate">
-                                                                        <span class="page-link">...</span>
-                                                                    </li>
-                                                                @endif
-                                                            @endforeach
-                                                        @endif
-                                                    @endforeach
-                                                </ul>
-                                            </div>
+                                                            @endif
+                                                            <li class="nav-item page-item {{ !$key ? 'active' : '' }} page-item-{{ $key }}">
+                                                                <a class="page-link {{ !$key ? 'active' : '' }} page-link-{{ $key }}"
+                                                                   data-toggle="tab" href="#tab-companion-{{ $key }}"
+                                                                   role="tab"  data-page="{{ $key }}">{{ $key + 1 }}</a>
+                                                            </li>
+                                                            @if(!$key)
+                                                                <li class="page-item disabled hidden-xs dot-first-paginate">
+                                                                    <span class="page-link">...</span>
+                                                                </li>
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                @endforeach
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                         <div class="row marginauto modal-container-body d-none" id="result-search-companion">
 
@@ -315,7 +332,7 @@
                                 </ul>
                                 <button class="submit-search-skins submit--search" type="button"></button>
                             </div>
-                            <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
+                            <img class="c-close-modal" src="/assets/frontend/theme_1/image/son/close.svg" alt="">
                         </div>
                     </div>
                     <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">
@@ -326,9 +343,9 @@
                                 <div class="tab-content" id="content_page_skin">
 
                                     @foreach($game_auto_props as $key => $game_auto_prop)
-                                        @if($key == 'skins_custom' && count($game_auto_props['skins_custom']))
+                                        @if($key == 'skins' && count($game_auto_props['skins']))
 
-                                            @foreach($game_auto_props['skins_custom'] as $key => $arr_skins)
+                                            @foreach($game_auto_props['skins'] as $key => $arr_skins)
                                                 <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
                                                      id="tab-skin-{{$key}}" role="tabpanel">
                                                     <div class="row">
@@ -339,8 +356,8 @@
                                                                 <div
                                                                     class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
                                                                     <img
-                                                                        class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy"
-                                                                        data-original="https://cdn.upanh.info/{{$skin->thumb}}"
+                                                                        src="https://cdn.upanh.info/{{$skin->thumb}}"
+                                                                        class="w-100 brs-4 position-absolute item-nick-lmht__border__img "
                                                                         alt="{{ $skin->name }}">
                                                                 </div>
                                                                 <div class="col-md-12 pl-0 pr-0 text-center">
@@ -363,21 +380,20 @@
                                     <div class="col-auto paginate__category__col">
                                         <div class="data_paginate paging_bootstrap paginations_custom">
 
-                                            <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle"
-                                                role="tablist">
+                                            <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle skin-paginate" data-tab="skin-paginate" role="tablist">
                                                 @foreach($game_auto_props as $key => $game_auto_prop)
-                                                    @if($key == 'skins_custom' && count($game_auto_props['skins_custom']) > 1)
+                                                    @if($key == 'skins' && count($game_auto_props['skins']) > 1)
 
-                                                        @foreach($game_auto_props['skins_custom'] as $key => $arr_skins)
-                                                            @if($key == count($game_auto_props['skins_custom']) - 1)
+                                                        @foreach($game_auto_props['skins'] as $key => $arr_skins)
+                                                            @if($key == count($game_auto_props['skins']) - 1)
                                                                 <li class="page-item disabled hidden-xs dot-last-paginate">
                                                                     <span class="page-link">...</span>
                                                                 </li>
                                                             @endif
-                                                            <li class="nav-item page-item {{ !$key ? 'active' : '' }}">
-                                                                <a class="page-link {{ !$key ? 'active' : '' }}"
+                                                            <li class="nav-item page-item {{ !$key ? 'active' : '' }} page-item-{{ $key }}">
+                                                                <a class="page-link {{ !$key ? 'active' : '' }} page-link-{{ $key }}"
                                                                    data-toggle="tab" href="#tab-skin-{{ $key }}"
-                                                                   role="tab">{{ $key + 1 }}</a>
+                                                                   role="tab"  data-page="{{ $key }}">{{ $key + 1 }}</a>
                                                             </li>
                                                             @if(!$key)
                                                                 <li class="page-item disabled hidden-xs dot-first-paginate">
@@ -416,12 +432,12 @@
                             </div>
                             <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
                                 <input id="input-search-champ" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
-                                 <ul class="sugges_list d-none">
+                                <ul class="sugges_list d-none">
 
                                 </ul>
                                 <button class="submit-search-champ submit--search" type="button"></button>
                             </div>
-                            <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg"
+                            <img class="c-close-modal" src="/assets/frontend/theme_1/image/son/close.svg"
                                  alt="">
                         </div>
                     </div>
@@ -442,7 +458,10 @@
                                                         <span>
                                                             <div class="row marginauto item-nick-lmht__border">
                                                                 <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                                                    <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy" data-original="https://cdn.upanh.info/{{$champ->thumb}}" alt="{{ $champ->name }}">
+                                                                    <img
+                                                                        src="https://cdn.upanh.info/{{$champ->thumb}}"
+                                                                        class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
+                                                                        d alt="{{ $champ->name }}">
                                                                 </div>
                                                                 <div class="col-md-12 pl-0 pr-0 text-center">
                                                                     <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme text-limit limit-1">{{ $champ->name }}</p>
@@ -462,7 +481,7 @@
                                     <div class="col-auto paginate__category__col">
                                         <div class="data_paginate paging_bootstrap paginations_custom">
 
-                                            <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle" role="tablist">
+                                            <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle champion-paginate" data-tab="champion-paginate" role="tablist">
                                                 @foreach($game_auto_props as $key => $game_auto_prop)
                                                     @if($key == 'champions' && count($game_auto_props['champions']) > 1)
 
@@ -472,10 +491,10 @@
                                                                     <span class="page-link">...</span>
                                                                 </li>
                                                             @endif
-                                                            <li class="nav-item page-item {{ !$key ? 'active' : '' }}">
-                                                                <a class="page-link {{ !$key ? 'active' : '' }}"
+                                                            <li class="nav-item page-item {{ !$key ? 'active' : '' }} page-item-{{ $key }}">
+                                                                <a class="page-link {{ !$key ? 'active' : '' }} page-link-{{ $key }}"
                                                                    data-toggle="tab" href="#tab-champ-{{ $key }}"
-                                                                   role="tab">{{ $key + 1 }}</a>
+                                                                   role="tab"  data-page="{{ $key }}">{{ $key + 1 }}</a>
                                                             </li>
                                                             @if(!$key)
                                                                 <li class="page-item disabled hidden-xs dot-first-paginate">
@@ -586,12 +605,12 @@
             @endif
         @endif
 
+
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccslider.js"></script>
         <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
-
 
         <script>
 
