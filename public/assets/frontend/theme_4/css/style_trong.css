@@ -28,7 +28,7 @@
 }
 
 .breadcrum--item .breadcrum--link {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -43,7 +43,7 @@
 }
 
 #content-store-card {
-    --primary-color: rgb(238, 70, 35);
+    --primary-color: #32c5d2;
 }
 
 #content-store-card .card {
@@ -53,10 +53,10 @@
 }
 
 .card.--custom {
-    --primary-color: rgb(238, 70, 35);
+    --primary-color: #32c5d2;
     border-radius: 12px;
     border: none;
-    font-family: 'Open Sans';
+
     min-height: 1rem;
 
 }
@@ -119,7 +119,7 @@
 }
 
 #content-store-card .card--header__title h4 {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 24px;
@@ -154,7 +154,7 @@
 }
 
 #content-store-card .tab--title {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -219,7 +219,7 @@
 }
 
 #content-store-card .nav-tabs .nav-item .nav-link {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -235,12 +235,12 @@
     border-bottom: 2px solid var(--primary-color);
 }
 
-/* Chọn mệnh giá */
+/* Chá»n má»‡nh giÃ¡ */
 #content-store-card .denos--title,
 #content-store-card .card--amount .card--amount__title,
 #content-store-card .discount .discount--title,
 #content-store-card .price--total .price--total__title {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -272,7 +272,7 @@
 
 #content-store-card .deno__item .deno__value span {
     margin: auto;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -323,7 +323,7 @@
 }
 
 #content-store-card .card--amount__group .input--amount {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -338,7 +338,7 @@
 }
 
 #content-store-card .discount .discount--value {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
@@ -347,7 +347,7 @@
 }
 
 #content-store-card .price--total .price--total__value {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
@@ -355,9 +355,9 @@
     color: var(--primary-color);
 }
 
-/*Mô tả thẻ*/
+/*MÃ´ táº£ tháº»*/
 #content-store-card .card--desc__title {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -369,7 +369,7 @@
 #content-store-card .card--desc__content {
     position: relative;
     padding: 12px 4px;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -386,7 +386,7 @@
 
 .js-toggle-content .view-more,
 .js-toggle-content .view-less {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -428,7 +428,7 @@
 
 .dialog .dialog--header .dialog--header__title {
 
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -444,7 +444,7 @@
 }
 
 .dialog .dialog--content .dialog--content__title {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -505,7 +505,7 @@
 }
 
 .modal .card__detail .card--info .card--info__name {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -515,7 +515,7 @@
 }
 
 .modal .card__detail .card--info .card--info__value {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -552,7 +552,7 @@
 }
 
 .modal .card--gray .card__message {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     margin-bottom: 12px;
@@ -572,7 +572,7 @@
 }
 
 .card--gray .card--attr .card--attr__name {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -586,7 +586,7 @@
 }
 
 .card--gray .card--attr .card--attr__value {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -596,7 +596,7 @@
 }
 
 .card__detail .card--gray .card--attr__name {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -607,7 +607,7 @@
 
 .card__detail .card--gray .card--attr__value {
     display: flex;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -618,7 +618,7 @@
 }
 
 .card--gray .card--attr__total .card--attr__name {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -628,7 +628,7 @@
 }
 
 .card--gray .card--attr__total .card--attr__value {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -739,7 +739,6 @@
 .btn.-secondary:hover {
     color: #FFFFFF;
 }
-
 .btn.btn-big {
     width: 100%;
     padding: 12.5px 0;
@@ -767,7 +766,7 @@
 
 /*style for order detail*/
 .order--detail {
-    --primary-color: rgb(238, 70, 35);
+    --primary-color: #32c5d2;
     padding: 0 0 0 10px;
 }
 
@@ -831,7 +830,7 @@
 }
 
 .card--rise .card__attr .card--value__attr {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -929,7 +928,7 @@
 }
 
 .text--sm__title {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -952,7 +951,7 @@
     line-height: 24px;
 }
 .textarea--content {
-    font-family: 'Open Sans';
+
     color: #A7ABC3;
     width: 100%;
     height: 100px;
@@ -994,7 +993,7 @@
 }
 
 .input--file::-webkit-file-upload-button {
-    border: 1px solid rgb(238, 70, 35);
+    border: 1px solid #32c5d2;
     border-radius: 4px;
     background-color: #FFFFFF;
     color: var(--primary-color);
@@ -1053,7 +1052,7 @@
 }
 
 .label--checkbox__input {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -1197,7 +1196,7 @@
 
 /*article detail*/
 #article--detail {
-    font-family: 'Open Sans';
+
     font-style: normal;
     color: #434657;
 }
@@ -1355,7 +1354,7 @@ a:hover .__icon.--path__custom:after {
     color: #1B1D29;
 }
 
-/*Dịch vụ */
+/*Dá»‹ch vá»¥ */
 .service--thumbnail {
     position: relative;
     padding-bottom: 60%;
@@ -1453,7 +1452,7 @@ a:hover .__icon.--path__custom:after {
 .table-custom table th,
 .table-custom table td {
     text-align: center;
-    font-family: 'Open Sans';
+
     font-style: normal;
     color: #1B1D29;
     font-size: 14px;
@@ -1664,9 +1663,9 @@ a:hover .__icon.--path__custom:after {
     border-left: none;
     border-right: none;
     padding-bottom: 11.5px;
-    border-bottom: 2px solid rgb(238, 70, 35);
+    border-bottom: 2px solid #32c5d2;
     font-weight: 700;
-    color: rgb(238, 70, 35);
+    color: #32c5d2;
 }
 
 #rechargeModal .nav-tabs .nav-link:not(.active):hover {
@@ -1716,7 +1715,7 @@ a:hover .__icon.--path__custom:after {
     margin-bottom: 0;
 }
 #rechargeModal .list-card-deno input:checked + .card-label {
-    border-color: rgb(238, 70, 35);
+    border-color: #32c5d2;
 }
 #rechargeModal .list-card-deno .card-label span {
     position: absolute;
@@ -1733,7 +1732,7 @@ a:hover .__icon.--path__custom:after {
     color: #434657;
 }
 #rechargeModal .list-card-deno input:checked + .card-label span {
-    color: rgb(238, 70, 35);
+    color: #32c5d2;
 }
 /*text*/
 .t-sub-2 {
@@ -1810,7 +1809,7 @@ a:hover .__icon.--path__custom:after {
 
     .card--mobile__title p,
     .step .step--header .step--header__title {
-        font-family: 'Open Sans';
+
         font-style: normal;
         font-weight: 700;
         font-size: 18px;
@@ -1875,7 +1874,7 @@ a:hover .__icon.--path__custom:after {
     }
 
     .step--content .step--content__title {
-        font-family: 'Open Sans';
+
         font-style: normal;
         font-weight: 600;
         font-size: 14px;
@@ -1885,7 +1884,7 @@ a:hover .__icon.--path__custom:after {
     }
 
     .step--content .card--gray.card__notify .card__message {
-        font-family: 'Open Sans';
+
         font-style: normal;
         font-weight: 400;
         font-size: 12px;
@@ -2047,7 +2046,7 @@ a:hover .__icon.--path__custom:after {
         border: 1px solid #82869E;
         border-radius: 8px;
         padding: 6px 15px;
-        font-family: 'Open Sans';
+
         font-style: normal;
         font-weight: 400;
         font-size: 12px;
@@ -2130,7 +2129,7 @@ a:hover .__icon.--path__custom:after {
         margin-top: 12px;
     }
 
-    /*    Dịch vụ */
+    /*    Dá»‹ch vá»¥ */
     .label--checkbox .label--checkbox__name {
         display: block;
     }
@@ -2183,4 +2182,40 @@ a:hover .__icon.--path__custom:after {
     -moz-transform:rotate(360deg);
     -webkit-transform:rotate(360deg);
     transform:rotate(360deg);
+}
+.sugges_list {
+    background-color: #fff;
+    border: 1px solid #E4E5F0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    z-index: 1;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 290px;
+    overflow-y: auto;
+}
+.sugges_list:empty {
+    display: none;
+}
+.sugges_list::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Handle */
+.sugges_list::-webkit-scrollbar-thumb {
+    background: rgba(188, 191, 214, 0.5);
+    border-radius: 14px;
+}
+
+.sugges_list .sugges_item {
+    text-align: left;
+    padding: 12px;
+    cursor: pointer;
+}
+.sugges_list .sugges_item:not(:last-child){
+    box-shadow: inset 0 -1px 0 #E4E5F0;
 }
