@@ -300,7 +300,6 @@
       ]
     }
     </script>
-
     @elseif(Request::is('tin-tuc/'. $data->slug .''))
 
         <script type="application/ld+json">

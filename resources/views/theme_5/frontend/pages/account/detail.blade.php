@@ -114,43 +114,57 @@
 
             @if(isset($game_auto_props) && count($game_auto_props))
                 @if($slug_category == 'nick-lien-minh')
-                @php
-                    if (isset($game_auto_props) && count($game_auto_props)){
-                        $total_tuong = 0;
-                        $total_bieucam = 0;
-                        $total_chuongluc = 0;
-                        $total_sandau = 0;
-                        $total_linhthu = 0;
-                        $total_trangphuc = 0;
-                        $total_thongtinchung = 0;
+                    @php
+                        if (isset($game_auto_props) && count($game_auto_props)){
+                            $total_tuong = 0;
+                            $total_bieucam = 0;
+                            $total_chuongluc = 0;
+                            $total_sandau = 0;
+                            $total_linhthu = 0;
+                            $total_trangphuc = 0;
+                            $total_thongtinchung = 0;
 
-                        if(isset($game_auto_props) && count($game_auto_props)){
-                            foreach($game_auto_props as $game_auto_prop){
 
-                                if($game_auto_prop->key == 'champions'){
+                            foreach ($game_auto_props as $key => $item) {
 
-                                    $total_tuong = $total_tuong + 1;
-                                    if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
-                                        foreach($game_auto_prop->childs as $c_child){
-                                            $total_trangphuc = $total_trangphuc + 1;
-                                        }
+                                if ($key == 'champions') {
+
+                                    foreach ($game_auto_props['champions'] as $arr_champ) {
+                                        $total_tuong += count($arr_champ);
                                     }
-                                }elseif ($game_auto_prop->key == 'emotes'){
-                                    $total_bieucam = $total_bieucam + 1;
-                                }elseif ($game_auto_prop->key == 'tftdamageskins'){
-                                    $total_chuongluc = $total_chuongluc + 1;
-                                }elseif ($game_auto_prop->key == 'tftmapskins'){
-                                    $total_sandau = $total_sandau + 1;
-                                }elseif ($game_auto_prop->key == 'tftcompanions'){
-                                    $total_linhthu = $total_linhthu + 1;
+                                }
+                                if($key == 'skins') {
+                                    foreach ($game_auto_props['skins'] as $arr_skins) {
+                                        $total_trangphuc += count($arr_skins);
+                                    }
+                                }
+                                if ($key == 'tftmapskins'){
+                                    foreach ($game_auto_props['tftmapskins'] as $arr_mapskins) {
+                                        $total_sandau += count($arr_mapskins);
+                                    }
+                                }
 
+                                if ($key == 'tftdamageskins'){
+                                    foreach ($game_auto_props['tftdamageskins'] as $arr_dameskins) {
+                                        $total_chuongluc += count($arr_dameskins);
+                                    }
+                                }
+
+                                if ($key == 'tftcompanions'){
+                                    foreach ($game_auto_props['tftcompanions'] as $arr_linh_thu) {
+                                        $total_linhthu += count($arr_linh_thu);
+                                    }
+                                }
+
+                                if ($key == 'emotes'){
+                                    foreach ($game_auto_props['emotes'] as $arr_emotes) {
+                                        $total_bieucam += count($arr_emotes);
+                                    }
                                 }
                             }
                         }
-                    }
-                @endphp
-
-                    <!-- Modal Tướng -->
+                    @endphp
+                <!-- Modal Tướng -->
                     <div class="modal fade show modal-lmht" id="modal-champ" aria-modal="true">
                         <div class="modal-dialog modal-dialog-centered animated">
                             <div class="modal-content">
@@ -162,7 +176,7 @@
                                             <ul class="suggest-list d-none">
 
                                             </ul>
-                                            <button class="btn primary d-none d-lg-inline-block" type="submit"></button>
+                                            <button class="btn -primary d-none d-lg-inline-block" type="submit"></button>
                                         </form>
                                     </div>
                                     <button type="button" class="close" data-dismiss="modal"></button>
@@ -176,7 +190,7 @@
 
                                                     @foreach($game_auto_props['champions'] as $key => $arr_champ)
                                                         <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
-                                                            id="tab-champ-{{$key}}" role="tabpanel">
+                                                             id="tab-champ-{{$key}}" role="tabpanel">
                                                             <div class="row" style="margin-right: 0;">
                                                                 @foreach($arr_champ as $champ)
                                                                     <div class="col-lg-2 col-6">
@@ -236,10 +250,12 @@
                                     <div class="modal-lmht-search-results row" style="margin-right: 0;">
 
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <!-- Modal Skin -->
                     <div class="modal fade show modal-lmht" id="modal-skin" aria-modal="true">
                         <div class="modal-dialog modal-dialog-centered animated">
@@ -252,7 +268,7 @@
                                             <ul class="suggest-list d-none">
 
                                             </ul>
-                                            <button class="btn primary d-none d-lg-inline-block" type="submit"></button>
+                                            <button class="btn -primary d-none d-lg-inline-block" type="submit"></button>
                                         </form>
                                     </div>
                                     <button type="button" class="close" data-dismiss="modal"></button>
@@ -266,7 +282,7 @@
 
                                                     @foreach($game_auto_props['skins'] as $key => $arr_skins)
                                                         <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
-                                                            id="tab-skin-{{$key}}" role="tabpanel">
+                                                             id="tab-skin-{{$key}}" role="tabpanel">
                                                             <div class="row" style="margin-right: 0;">
                                                                 @foreach($arr_skins as $skin)
                                                                     <div class="col-lg-2 col-6">
@@ -342,7 +358,7 @@
                                             <ul class="suggest-list d-none">
 
                                             </ul>
-                                            <button class="btn primary d-none d-lg-inline-block" type="submit"></button>
+                                            <button class="btn -primary d-none d-lg-inline-block" type="submit"></button>
                                         </form>
                                     </div>
                                     <button type="button" class="close" data-dismiss="modal"></button>
@@ -355,7 +371,7 @@
 
                                                     @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
                                                         <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
-                                                            id="tab-companion-{{$key}}" role="tabpanel">
+                                                             id="tab-companion-{{$key}}" role="tabpanel">
                                                             <div class="row" style="margin-right: 0;">
                                                                 @foreach($arr_companions as $companion)
                                                                     <div class="col-lg-2 col-6">

@@ -64,13 +64,13 @@
                                     <div class="swiper gallery-top d-none d-lg-block">
                                         <div class="swiper-wrapper">
                                             @foreach(explode('|',$data->image_extension) as $val)
-
+                                                @if($val != '')
                                                 <div class="swiper-slide">
                                                     <div class="gallery-photo" >
                                                         <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                                     </div>
                                                 </div>
-
+                                                @endif
                                             @endforeach
 
 
@@ -80,6 +80,7 @@
                                     <div class="swiper gallery-thumbs c-ml-16 c-ml-lg-0">
                                         <div class="swiper-wrapper">
                                             @foreach(explode('|',$data->image_extension) as $val)
+                                                @if($val != '')
                                             <div class="swiper-slide">
                                                 <div class="gallery-photo d-none d-lg-block" data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false">
                                                     <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
@@ -89,6 +90,7 @@
                                                     <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                                 </div>
                                             </div>
+                                                @endif
                                             @endforeach
                                         </div>
                                     </div>
@@ -168,28 +170,51 @@
                             @if(isset($game_auto_props) && count($game_auto_props))
                                 @if($data_category->slug == 'nick-lien-minh')
                                     @php
-                                        $total_tuong = 0;
-                                        $total_bieucam = 0;
-                                        $total_chuongluc = 0;
-                                        $total_sandau = 0;
-                                        $total_linhthu = 0;
-                                        $total_trangphuc = 0;
-                                        $total_thongtinchung = 0;
+                                        if (isset($game_auto_props) && count($game_auto_props)){
+                                            $total_tuong = 0;
+                                            $total_bieucam = 0;
+                                            $total_chuongluc = 0;
+                                            $total_sandau = 0;
+                                            $total_linhthu = 0;
+                                            $total_trangphuc = 0;
+                                            $total_thongtinchung = 0;
 
-                                        if(isset($game_auto_props) && count($game_auto_props)){
-                                            foreach($game_auto_props as $game_auto_prop){
-                                                if($game_auto_prop->key == 'champions'){
-                                                    $total_tuong = $total_tuong + 1;
-                                                }elseif ($game_auto_prop->key == 'skins'){
-                                                    $total_trangphuc = $total_trangphuc + 1;
-                                                }elseif ($game_auto_prop->key == 'emotes'){
-                                                    $total_bieucam = $total_bieucam + 1;
-                                                }elseif ($game_auto_prop->key == 'tftdamageskins'){
-                                                    $total_chuongluc = $total_chuongluc + 1;
-                                                }elseif ($game_auto_prop->key == 'tftmapskins'){
-                                                    $total_sandau = $total_sandau + 1;
-                                                }elseif ($game_auto_prop->key == 'tftcompanions'){
-                                                    $total_linhthu = $total_linhthu + 1;
+
+                                            foreach ($game_auto_props as $key => $item) {
+
+                                                if ($key == 'champions') {
+
+                                                    foreach ($game_auto_props['champions'] as $arr_champ) {
+                                                        $total_tuong += count($arr_champ);
+                                                    }
+                                                }
+                                                if($key == 'skins') {
+                                                    foreach ($game_auto_props['skins'] as $arr_skins) {
+                                                        $total_trangphuc += count($arr_skins);
+                                                    }
+                                                }
+                                                if ($key == 'tftmapskins'){
+                                                    foreach ($game_auto_props['tftmapskins'] as $arr_mapskins) {
+                                                        $total_sandau += count($arr_mapskins);
+                                                    }
+                                                }
+
+                                                if ($key == 'tftdamageskins'){
+                                                    foreach ($game_auto_props['tftdamageskins'] as $arr_dameskins) {
+                                                        $total_chuongluc += count($arr_dameskins);
+                                                    }
+                                                }
+
+                                                if ($key == 'tftcompanions'){
+                                                    foreach ($game_auto_props['tftcompanions'] as $arr_linh_thu) {
+                                                        $total_linhthu += count($arr_linh_thu);
+                                                    }
+                                                }
+
+                                                if ($key == 'emotes'){
+                                                    foreach ($game_auto_props['emotes'] as $arr_emotes) {
+                                                        $total_bieucam += count($arr_emotes);
+                                                    }
                                                 }
                                             }
                                         }
@@ -1528,13 +1553,23 @@
                                 <div class="acc-holder_badge">1 / {{count(explode('|',$data->image_extension))}}</div>
                                 <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" />
                             </div>
-                            @foreach(explode('|',$data->image_extension) as $key => $val)
+                            @php
+                                $image_extension = explode('|',$data->image_extension);
+                                array_push($image_extension,$data->image);
+                                $count = 0;
+                                foreach($image_extension as $key => $val){
+                                    if($val != ''){
+                                        $count = $count + 1;
+                                    }
+                                }
+                            @endphp
+                            @foreach($image_extension as $key => $val)
                                 @if($val != '')
                                 <div class="acc-holder_slides " >
                                     <a class="acc-holder_expand" data-fancybox="galleryAccount" href="{{\App\Library\MediaHelpers::media($val)}}">
                                         <i class="__icon__profile --sm__profile --link__profile --link--acc" style="--path : url(/assets/frontend/theme_5/image/nam/expand-acc.svg)"></i>
                                     </a>
-                                    <div class="acc-holder_badge">{{$key+2}} / {{count(explode('|',$data->image_extension))}}</div>
+                                    <div class="acc-holder_badge">{{$key+1}} / {{ $count }}</div>
                                     <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" />
                                 </div>
                                 @endif
@@ -1558,15 +1593,11 @@
                         <!-- thumnails in a row -->
                         <div class="flex-grow-1 ml-fix-12">
                             <div class="row acc-thumbnail  mx-0">
-                                <div class="acc-thumbnail_column col-md-3 c-px-6 c-mb-12 ">
-                                    <div class="acc-thumbnail_badge" onclick="currentSlide(1)">1</div>
-                                    <img class="acc-thumbnail-image" src="{{\App\Library\MediaHelpers::media($data->image)}}" onclick="currentSlide(1)" alt="Caption One">
-                                </div>
-                                @foreach(explode('|',$data->image_extension) as $key => $val)
+                                @foreach($image_extension as $key => $val)
                                     @if($val != '')
                                     <div class="acc-thumbnail_column col-md-3 c-px-6 c-mb-12 ">
-                                        <div class="acc-thumbnail_badge" onclick="currentSlide({{$key+2}})">{{$key+2}}</div>
-                                        <img class="acc-thumbnail-image" src="{{\App\Library\MediaHelpers::media($val)}}" onclick="currentSlide({{$key+2}})" alt="Caption One">
+                                        <div class="acc-thumbnail_badge" onclick="currentSlide({{$key+1}})">{{$key+1}}</div>
+                                        <img class="acc-thumbnail-image" src="{{\App\Library\MediaHelpers::media($val)}}" onclick="currentSlide({{$key+1}})" alt="Caption One">
                                     </div>
                                     @endif
                                 @endforeach
@@ -1587,7 +1618,7 @@
                             <div class="acc-holder ">
 
                                 @foreach(explode('|',$data->image_extension) as $key => $val)
-
+                                    @if($val != '')
                                     <div class="acc-holder_slides " >
                                         <a class="acc-holder_expand" data-fancybox="galleryAccount" href="{{\App\Library\MediaHelpers::media($val)}}">
                                             <i class="__icon__profile --sm__profile --link__profile --link--acc" style="--path : url(/assets/frontend/theme_5/image/nam/expand-acc.svg)"></i>
@@ -1596,6 +1627,7 @@
                                         <div class="acc-holder_badge">{{$key+1}} / {{count(explode('|',$data->image_extension))}}</div>
                                         <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" />
                                     </div>
+                                    @endif
                                 @endforeach
 
 
@@ -1617,10 +1649,12 @@
                             <div class="flex-grow-1 ml-fix-12">
                                 <div class="row acc-thumbnail  mx-0">
                                     @foreach(explode('|',$data->image_extension) as $key => $val)
+                                        @if($val != '')
                                         <div class="acc-thumbnail_column col-md-3 c-px-6 c-mb-12 ">
                                             <div class="acc-thumbnail_badge" onclick="currentSlide({{$key+1}})">{{$key+1}}</div>
                                             <img class="acc-thumbnail-image" src="{{\App\Library\MediaHelpers::media($val)}}" onclick="currentSlide({{$key+1}})" alt="Caption One">
                                         </div>
+                                        @endif
                                     @endforeach
                                 </div>
                             </div>
