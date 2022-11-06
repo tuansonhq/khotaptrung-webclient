@@ -47,35 +47,35 @@
             $totalaccount = 0;
         }
     @endphp
-    @php
-        $data_cookie = Cookie::get('viewed_account') ?? '[]';
+{{--    @php--}}
+{{--        $data_cookie = Cookie::get('viewed_account') ?? '[]';--}}
 
-        $flag_viewed = true;
-        $data_cookie = json_decode($data_cookie,true);
+{{--        $flag_viewed = true;--}}
+{{--        $data_cookie = json_decode($data_cookie,true);--}}
 
-            foreach ($data_cookie as $key => $acc_viewed){
-                if($acc_viewed['randId'] == $data->randId){
-                 $flag_viewed = false;
-                }
-            }
-            if ($flag_viewed){
-                    if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {
-                         array_pop($data_cookie);
-                     }
-                    $data_save = [
-                        'image'=>$data->image,
-                        'category'=>isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title,
-                        'randId'=>$data->randId,
-                        'price'=>$data->price,
-                        'price_old'=>$data->price_old,
-                        'promotion'=>$sale_percent,
-                        'buy_account'=>$totalaccount,
-                     ];
-                    array_unshift($data_cookie,$data_save);
-                    $data_cookie = json_encode($data_cookie);
-                    Cookie::queue('viewed_account',$data_cookie,43200);
-            }
-    @endphp
+{{--            foreach ($data_cookie as $key => $acc_viewed){--}}
+{{--                if($acc_viewed['randId'] == $data->randId){--}}
+{{--                 $flag_viewed = false;--}}
+{{--                }--}}
+{{--            }--}}
+{{--            if ($flag_viewed){--}}
+{{--                    if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {--}}
+{{--                         array_pop($data_cookie);--}}
+{{--                     }--}}
+{{--                    $data_save = [--}}
+{{--                        'image'=>$data->image,--}}
+{{--                        'category'=>isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title,--}}
+{{--                        'randId'=>$data->randId,--}}
+{{--                        'price'=>$data->price,--}}
+{{--                        'price_old'=>$data->price_old,--}}
+{{--                        'promotion'=>$sale_percent,--}}
+{{--                        'buy_account'=>$totalaccount,--}}
+{{--                     ];--}}
+{{--                    array_unshift($data_cookie,$data_save);--}}
+{{--                    $data_cookie = json_encode($data_cookie);--}}
+{{--                    Cookie::queue('viewed_account',$data_cookie,43200);--}}
+{{--            }--}}
+{{--    @endphp--}}
 
     <fieldset id="fieldset-one">
         <div id="pageBreadcrumb">
@@ -127,6 +127,12 @@
         <section id="showslideracc">
 
         </section>
+
+        <section id="showswatched">
+
+        </section>
+        {{--            Đã xem   --}}
+{{--        @include('frontend.pages.account.widget.__watched')--}}
 
         <input type="hidden" name="previous" class="input-back-step-two" value="Trang trước"/>
 
@@ -271,7 +277,7 @@
                             </div>
 
                         </div>
-                        
+
                         <div class="modal-lmht-search-results row" style="margin-right: 0;">
 
                         </div>
@@ -360,8 +366,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>  
-                        
+                        </div>
+
                         <div class="modal-lmht-search-results row" style="margin-right: 0;">
 
                         </div>
@@ -445,7 +451,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>                                
+                        </div>
                         <div class="modal-lmht-search-results row" style="margin-right: 0;">
 
                         </div>

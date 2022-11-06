@@ -114,6 +114,8 @@
                 </div >
 
             </section>
+
+
             <!-- Modal Filter -->
             <div class="modal fade" id="modal-filter">
                 <div class="modal-dialog modal-dialog-centered">
@@ -544,8 +546,48 @@
 {{--  Danh mục nick khác   --}}
         @include('frontend.pages.account.widget.__related__category')
 
+            @if($data->custom->content)
+                <div class="c-mb-16">
+                    <div class="card overflow-hidden detailViewBlock">
+                        <div class="card-body c-px-16">
+                            @if(substr($data->custom->content, 1200))
+                                <div class="content-desc hide detailViewBlockContent">
+                                    {!! $data->custom->content !!}
+                                </div>
+                            @else
+                                <div class="content-desc detailViewBlockContent">
+                                    {!! $data->custom->content !!}
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="card-footer text-center">
+                            <span class="see-more" data-content="Xem thêm nội dung"></span>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="c-mb-16 c-mt-16">
+                    <div class="card overflow-hidden detailViewBlock">
+                        <div class="card-body c-px-16">
+                            @if(substr($data->content, 1200))
+                                <div class="content-desc hide detailViewBlockContent">
+                                    {!! $data->content !!}
+                                </div>
+                            @else
+                                <div class="content-desc detailViewBlockContent">
+                                    {!! $data->content !!}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            @endif
+
         {{--            Dịch vụ khác   --}}
         @include('frontend.widget.__services__other')
+
+
 
             <input type="hidden" value="{{ $slug }}" name="slug" class="slug">
             {{--    <input type="hidden" value="{{ $slug_category }}" name="slug_category" class="slug_category">--}}

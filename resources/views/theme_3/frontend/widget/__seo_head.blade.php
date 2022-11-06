@@ -300,7 +300,6 @@
       ]
     }
     </script>
-
     @elseif(Request::is('tin-tuc/'. $data->slug .''))
 
         <script type="application/ld+json">
@@ -390,8 +389,11 @@
                     }
                 }
             @endphp
-
-            <script type="application/ld+json">
+            @if((isset($first_question) && isset($first_answer))
+                || (isset($second_question) && isset($second_answer))
+                || (isset($three_question) && isset($three_answer))
+                || (isset($foor_question) && isset($foor_answer)))
+                <script type="application/ld+json">
                 {
                     "@context": "https://schema.org",
                     "@type": "FAQPage",
@@ -403,29 +405,39 @@
                         "text": "{{ $first_answer??'' }}"
                     }
                 },
-                {
-                    "@type": "Question",
-                    "name": "{{ $second_question??'' }}",
+                @if(isset($second_question) && isset($second_answer))
+                        {
+                            "@type": "Question",
+                            "name": "{{ $second_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $second_answer??'' }}"
                     }
-                },{
-                    "@type": "Question",
-                    "name": "{{ $three_question??'' }}",
+                },
+                @endif
+                    @if(isset($three_question) && isset($three_answer))
+                        {
+                            "@type": "Question",
+                            "name": "{{ $three_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $three_answer??'' }}"
                     }
-                },{
-                    "@type": "Question",
-                    "name": "{{ $foor_question??'' }}",
+                },
+                @endif
+                    @if(isset($foor_question) && isset($foor_question))
+                        {
+                            "@type": "Question",
+                            "name": "{{ $foor_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $foor_answer??'' }}"
                     }
-                }]}
-            </script>
+                }
+                @endif
+                    ]}
+</script>
+            @endif
         @endif
     @elseif(Request::is('blog/'. $data->slug .''))
 

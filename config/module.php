@@ -111,7 +111,7 @@ return [
             'CHALLENGER' => 'Thách đấu',
         ],
         'viewed'=>[
-            'limit_count'=>10,
+            'limit_count'=>20,
         ],
     ],
     'txns' => [

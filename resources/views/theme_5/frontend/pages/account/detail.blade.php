@@ -25,33 +25,33 @@
         $totalaccount = 0;
     }
 @endphp
-@php
-    $data_cookie = Cookie::get('viewed_account') ?? '[]';
-    $flag_viewed = true;
-    $data_cookie = json_decode($data_cookie,true);
-        foreach ($data_cookie as $key => $acc_viewed){
-            if($acc_viewed['randId'] == $data->randId){
-             $flag_viewed = false;
-            }
-        }
-        if ($flag_viewed){
-                if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {
-                     array_pop($data_cookie);
-                 }
-                $data_save = [
-                    'image'=>$data->image,
-                    'category'=>isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title,
-                    'randId'=>$data->randId,
-                    'price'=>$data->price,
-                    'price_old'=>$data->price_old,
-                    'promotion'=>$sale_percent,
-                    'buy_account'=>$totalaccount,
-                 ];
-                array_unshift($data_cookie,$data_save);
-                $data_cookie = json_encode($data_cookie);
-                Cookie::queue('viewed_account',$data_cookie,43200);
-        }
-@endphp
+{{--@php--}}
+{{--    $data_cookie = Cookie::get('viewed_account') ?? '[]';--}}
+{{--    $flag_viewed = true;--}}
+{{--    $data_cookie = json_decode($data_cookie,true);--}}
+{{--        foreach ($data_cookie as $key => $acc_viewed){--}}
+{{--            if($acc_viewed['randId'] == $data->randId){--}}
+{{--             $flag_viewed = false;--}}
+{{--            }--}}
+{{--        }--}}
+{{--        if ($flag_viewed){--}}
+{{--                if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {--}}
+{{--                     array_pop($data_cookie);--}}
+{{--                 }--}}
+{{--                $data_save = [--}}
+{{--                    'image'=>$data->image,--}}
+{{--                    'category'=>isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title,--}}
+{{--                    'randId'=>$data->randId,--}}
+{{--                    'price'=>$data->price,--}}
+{{--                    'price_old'=>$data->price_old,--}}
+{{--                    'promotion'=>$sale_percent,--}}
+{{--                    'buy_account'=>$totalaccount,--}}
+{{--                 ];--}}
+{{--                array_unshift($data_cookie,$data_save);--}}
+{{--                $data_cookie = json_encode($data_cookie);--}}
+{{--                Cookie::queue('viewed_account',$data_cookie,43200);--}}
+{{--        }--}}
+{{--@endphp--}}
 @section('content')
     <div class="container c-container" id="account-detail">
         @if($data == null)
@@ -91,13 +91,21 @@
 {{--                @include('frontend.pages.account.widget.__same__price')--}}
             </div>
 
+            <div id="showswatched">
+{{--                <div class="loading-wrap c-my-24">--}}
+{{--                    <span class="modal-loader-spin"></span>--}}
+{{--                </div>--}}
+                {{--  TK đồng giá   --}}
+                {{--                @include('frontend.pages.account.widget.__same__price')--}}
+            </div>
+
 
             <div>
                 {{--            Siêu ưu đã   --}}
 {{--                @include('frontend.pages.account.widget.__flash__sale')--}}
 
                 {{--            Đã xem   --}}
-                @include('frontend.pages.account.widget.__viewed__account')
+{{--                @include('frontend.pages.account.widget.__viewed__account')--}}
 
                 {{--            Dịch vụ khác   --}}
                 @include('frontend.widget.__services__other')
@@ -106,43 +114,57 @@
 
             @if(isset($game_auto_props) && count($game_auto_props))
                 @if($slug_category == 'nick-lien-minh')
-                @php
-                    if (isset($game_auto_props) && count($game_auto_props)){
-                        $total_tuong = 0;
-                        $total_bieucam = 0;
-                        $total_chuongluc = 0;
-                        $total_sandau = 0;
-                        $total_linhthu = 0;
-                        $total_trangphuc = 0;
-                        $total_thongtinchung = 0;
+                    @php
+                        if (isset($game_auto_props) && count($game_auto_props)){
+                            $total_tuong = 0;
+                            $total_bieucam = 0;
+                            $total_chuongluc = 0;
+                            $total_sandau = 0;
+                            $total_linhthu = 0;
+                            $total_trangphuc = 0;
+                            $total_thongtinchung = 0;
 
-                        if(isset($game_auto_props) && count($game_auto_props)){
-                            foreach($game_auto_props as $game_auto_prop){
 
-                                if($game_auto_prop->key == 'champions'){
+                            foreach ($game_auto_props as $key => $item) {
 
-                                    $total_tuong = $total_tuong + 1;
-                                    if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
-                                        foreach($game_auto_prop->childs as $c_child){
-                                            $total_trangphuc = $total_trangphuc + 1;
-                                        }
+                                if ($key == 'champions') {
+
+                                    foreach ($game_auto_props['champions'] as $arr_champ) {
+                                        $total_tuong += count($arr_champ);
                                     }
-                                }elseif ($game_auto_prop->key == 'emotes'){
-                                    $total_bieucam = $total_bieucam + 1;
-                                }elseif ($game_auto_prop->key == 'tftdamageskins'){
-                                    $total_chuongluc = $total_chuongluc + 1;
-                                }elseif ($game_auto_prop->key == 'tftmapskins'){
-                                    $total_sandau = $total_sandau + 1;
-                                }elseif ($game_auto_prop->key == 'tftcompanions'){
-                                    $total_linhthu = $total_linhthu + 1;
+                                }
+                                if($key == 'skins') {
+                                    foreach ($game_auto_props['skins'] as $arr_skins) {
+                                        $total_trangphuc += count($arr_skins);
+                                    }
+                                }
+                                if ($key == 'tftmapskins'){
+                                    foreach ($game_auto_props['tftmapskins'] as $arr_mapskins) {
+                                        $total_sandau += count($arr_mapskins);
+                                    }
+                                }
 
+                                if ($key == 'tftdamageskins'){
+                                    foreach ($game_auto_props['tftdamageskins'] as $arr_dameskins) {
+                                        $total_chuongluc += count($arr_dameskins);
+                                    }
+                                }
+
+                                if ($key == 'tftcompanions'){
+                                    foreach ($game_auto_props['tftcompanions'] as $arr_linh_thu) {
+                                        $total_linhthu += count($arr_linh_thu);
+                                    }
+                                }
+
+                                if ($key == 'emotes'){
+                                    foreach ($game_auto_props['emotes'] as $arr_emotes) {
+                                        $total_bieucam += count($arr_emotes);
+                                    }
                                 }
                             }
                         }
-                    }
-                @endphp
-
-                    <!-- Modal Tướng -->
+                    @endphp
+                <!-- Modal Tướng -->
                     <div class="modal fade show modal-lmht" id="modal-champ" aria-modal="true">
                         <div class="modal-dialog modal-dialog-centered animated">
                             <div class="modal-content">
@@ -154,7 +176,7 @@
                                             <ul class="suggest-list d-none">
 
                                             </ul>
-                                            <button class="btn primary d-none d-lg-inline-block" type="submit"></button>
+                                            <button class="btn -primary d-none d-lg-inline-block" type="submit"></button>
                                         </form>
                                     </div>
                                     <button type="button" class="close" data-dismiss="modal"></button>
@@ -165,10 +187,10 @@
                                         <div class="tab-content" id="content_page_champ">
                                             @foreach($game_auto_props as $key => $game_auto_prop)
                                                 @if($key == 'champions' && count($game_auto_props['champions']))
-        
+
                                                     @foreach($game_auto_props['champions'] as $key => $arr_champ)
                                                         <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
-                                                            id="tab-champ-{{$key}}" role="tabpanel">
+                                                             id="tab-champ-{{$key}}" role="tabpanel">
                                                             <div class="row" style="margin-right: 0;">
                                                                 @foreach($arr_champ as $champ)
                                                                     <div class="col-lg-2 col-6">
@@ -188,15 +210,15 @@
                                                 @endif
                                             @endforeach
                                         </div>
-        
+
                                         <div class="row justify-content-center" style="margin-right: 0;">
                                             <div class="col-auto paginate__category__col">
                                                 <div class="data_paginate paging_bootstrap paginations_custom">
-        
+
                                                     <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle champion-paginate" data-tab="champion-paginate" role="tablist">
                                                         @foreach($game_auto_props as $key => $game_auto_prop)
                                                             @if($key == 'champions' && count($game_auto_props['champions']) > 1)
-        
+
                                                                 @foreach($game_auto_props['champions'] as $key => $arr_champ)
                                                                     @if($key == count($game_auto_props['champions']) - 1)
                                                                         <li class="page-item disabled hidden-xs dot-last-paginate">
@@ -214,24 +236,26 @@
                                                                         </li>
                                                                     @endif
                                                                 @endforeach
-        
-        
+
+
                                                             @endif
                                                         @endforeach
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
-    
+
                                     </div>
-                                    
+
                                     <div class="modal-lmht-search-results row" style="margin-right: 0;">
-    
+
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <!-- Modal Skin -->
                     <div class="modal fade show modal-lmht" id="modal-skin" aria-modal="true">
                         <div class="modal-dialog modal-dialog-centered animated">
@@ -242,9 +266,9 @@
                                         <form action="" class="form-search-modal c-ml-16 c-ml-lg-0 position-relative" data-tab="#content_page_skin">
                                             <input type="text" class="form-search-modal-input input-primary" placeholder="Tìm kiếm...">
                                             <ul class="suggest-list d-none">
-    
+
                                             </ul>
-                                            <button class="btn primary d-none d-lg-inline-block" type="submit"></button>
+                                            <button class="btn -primary d-none d-lg-inline-block" type="submit"></button>
                                         </form>
                                     </div>
                                     <button type="button" class="close" data-dismiss="modal"></button>
@@ -255,10 +279,10 @@
                                         <div class="tab-content" id="content_page_skin">
                                             @foreach($game_auto_props as $key => $game_auto_prop)
                                                 @if($key == 'skins' && count($game_auto_props['skins']))
-        
+
                                                     @foreach($game_auto_props['skins'] as $key => $arr_skins)
                                                         <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
-                                                            id="tab-skin-{{$key}}" role="tabpanel">
+                                                             id="tab-skin-{{$key}}" role="tabpanel">
                                                             <div class="row" style="margin-right: 0;">
                                                                 @foreach($arr_skins as $skin)
                                                                     <div class="col-lg-2 col-6">
@@ -278,15 +302,15 @@
                                                 @endif
                                             @endforeach
                                         </div>
-        
+
                                         <div class="row justify-content-center" style="margin-right: 0;">
                                             <div class="col-auto paginate__category__col">
                                                 <div class="data_paginate paging_bootstrap paginations_custom">
-        
+
                                                     <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle skin-paginate" data-tab="skin-paginate" role="tablist">
                                                         @foreach($game_auto_props as $key => $game_auto_prop)
                                                             @if($key == 'skins' && count($game_auto_props['skins']) > 1)
-        
+
                                                                 @foreach($game_auto_props['skins'] as $key => $arr_skins)
                                                                     @if($key == count($game_auto_props['skins']) - 1)
                                                                         <li class="page-item disabled hidden-xs dot-last-paginate">
@@ -304,18 +328,18 @@
                                                                         </li>
                                                                     @endif
                                                                 @endforeach
-        
-        
+
+
                                                             @endif
                                                         @endforeach
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>  
-                                    
+                                    </div>
+
                                     <div class="modal-lmht-search-results row" style="margin-right: 0;">
-    
+
                                     </div>
 
                                 </div>
@@ -334,7 +358,7 @@
                                             <ul class="suggest-list d-none">
 
                                             </ul>
-                                            <button class="btn primary d-none d-lg-inline-block" type="submit"></button>
+                                            <button class="btn -primary d-none d-lg-inline-block" type="submit"></button>
                                         </form>
                                     </div>
                                     <button type="button" class="close" data-dismiss="modal"></button>
@@ -344,10 +368,10 @@
                                         <div class="tab-content" id="content_page_companion">
                                             @foreach($game_auto_props as $key => $game_auto_prop)
                                                 @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']))
-        
+
                                                     @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
                                                         <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
-                                                            id="tab-companion-{{$key}}" role="tabpanel">
+                                                             id="tab-companion-{{$key}}" role="tabpanel">
                                                             <div class="row" style="margin-right: 0;">
                                                                 @foreach($arr_companions as $companion)
                                                                     <div class="col-lg-2 col-6">
@@ -367,7 +391,7 @@
                                                 @endif
                                             @endforeach
                                         </div>
-        
+
                                         <div class="row justify-content-center" style="margin-right: 0;">
                                             <div class="col-auto paginate__category__col">
                                                 <div class="data_paginate paging_bootstrap paginations_custom">
@@ -397,9 +421,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>                                
+                                    </div>
                                     <div class="modal-lmht-search-results row" style="margin-right: 0;">
-    
+
                                     </div>
                                 </div>
                             </div>

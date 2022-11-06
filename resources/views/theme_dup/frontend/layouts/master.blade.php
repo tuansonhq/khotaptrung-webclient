@@ -81,11 +81,10 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/rateit/examples.js"></script>
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload2/jquery.lazy.min.js"></script>
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/sweetalert.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/auto-link.js?v={{time()}}"></script>

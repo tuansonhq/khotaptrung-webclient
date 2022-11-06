@@ -96,4 +96,83 @@ $(document).ready(function () {
             }
         });
     }
+
+    getTaiKhoanDaXem();
+
+    function getTaiKhoanDaXem() {
+
+        var url = '/watched-acc';
+        request = $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (data) => {
+
+                if (data.status == 1){
+
+                    $('#showswatched').html('');
+                    $('#showswatched').html(data.datawatched);
+
+                }else if (data.status == 0){
+                    $('#showswatched').html('');
+                    // var html = '';
+                    // html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + data.message + '</span></div></div>';
+                    //
+                    // $('#showdetailacc').html('');
+                    // $('#showdetailacc').html(html);
+                }else if (data.status == 2){
+                    $('#showswatched').html('');
+                    console.log("chưa có dữ liệu")
+                }
+
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+                var list_dong_gia_v2 = new Swiper('.list-dong-gia-v2', {
+                    navigation: {
+                        nextEl: '.list-dong-gia .swiper-button-next',
+                        prevEl: '.list-dong-gia .swiper-button-prev',
+                    },
+                    autoplay: false,
+                    // preloadImages: false,
+                    updateOnImagesReady: true,
+                    // lazyLoading: false,
+                    watchSlidesVisibility: false,
+                    lazyLoadingInPrevNext: false,
+                    lazyLoadingOnTransitionStart: false,
+                    freeMode:true,
+                    loop: false,
+                    centeredSlides: false,
+                    slidesPerView: 4.5,
+                    speed: 800,
+                    slidesPerGroup: 3,
+                    spaceBetween: 0,
+                    touchMove: true,
+                    freeModeSticky:true,
+                    grabCursor: true,
+                    observer: true,
+                    observeParents: true,
+                    breakpoints: {
+                        992: {
+                            slidesPerView: 3.2,
+                        },
+                        768:{
+                            slidesPerView: 2.5,
+                        },
+                        480: {
+                            slidesPerView: 1.8,
+
+                        }
+                    }
+                });
+            }
+        });
+    }
 })
