@@ -373,7 +373,7 @@ class AccController extends Controller
             $perPage = 24;
 
             if (isset(theme('')->theme_key)){
-                if (theme('')->theme_key == "theme_1" || theme('')->theme_key == "theme_4"){
+                if (theme('')->theme_key == "theme_1" || theme('')->theme_key == "theme_4" || theme('')->theme_key == "theme_card_2"){
                     $perPage = 60;
                 }
             }
