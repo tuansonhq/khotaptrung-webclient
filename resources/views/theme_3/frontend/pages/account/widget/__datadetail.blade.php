@@ -1918,6 +1918,10 @@
                                 <!-- thumnails in a row -->
                                 <div class="flex-grow-1 ml-fix-12">
                                     <div class="row acc-thumbnail  mx-0">
+                                        <div class="acc-thumbnail_column col-md-3 px-fix-6 mb-fix-12">
+                                            <div class="acc-thumbnail_badge" onclick="currentSlide(1)">1</div>
+                                            <img class="acc-thumbnail-image" src="{{\App\Library\MediaHelpers::media($data->image)}}" onclick="currentSlide(1)" alt="Caption One">
+                                        </div>
                                         @foreach(explode('|',$data->image_extension) as $key => $val)
                                             @if($val != '')
                                             <div class="acc-thumbnail_column col-md-3 px-fix-6 mb-fix-12">
