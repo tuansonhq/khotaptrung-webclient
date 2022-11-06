@@ -41,11 +41,13 @@
                                         </a>
                                     </div>
                                     @foreach(explode('|',$data->image_extension) as $val)
+                                        @if($val != '')
                                         <div class="swiper-slide">
                                             <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
                                                 <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
                                             </a>
                                         </div>
+                                        @endif
                                     @endforeach
                                 </div>
                             </div>
@@ -56,11 +58,13 @@
                     <div class="swiper gallery-slider">
                         <div class="swiper-wrapper">
                             @foreach(explode('|',$data->image_extension) as $val)
+                                @if($val != '')
                                 <div class="swiper-slide">
                                     <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
                                         <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" >
                                     </a>
                                 </div>
+                                @endif
                             @endforeach
                         </div>
 
@@ -74,12 +78,15 @@
 
                     <div class="swiper gallery-thumbs gallery-thumbsmaxheadth">
                         <div class="swiper-wrapper">
+
                             @foreach(explode('|',$data->image_extension) as $val)
+                                @if($val != '')
                                 <div class="swiper-slide">
                                     <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
                                         <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
                                     </a>
                                 </div>
+                                @endif
                             @endforeach
                         </div>
                     </div>
