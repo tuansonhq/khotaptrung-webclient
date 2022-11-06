@@ -1925,8 +1925,8 @@
                                         @foreach(explode('|',$data->image_extension) as $key => $val)
                                             @if($val != '')
                                             <div class="acc-thumbnail_column col-md-3 px-fix-6 mb-fix-12">
-                                                <div class="acc-thumbnail_badge" onclick="currentSlide({{$key+1}})">{{$key+1}}</div>
-                                                <img class="acc-thumbnail-image" src="{{\App\Library\MediaHelpers::media($val)}}" onclick="currentSlide({{$key+1}})" alt="Caption One">
+                                                <div class="acc-thumbnail_badge" onclick="currentSlide({{$key+2}})">{{$key+2}}</div>
+                                                <img class="acc-thumbnail-image" src="{{\App\Library\MediaHelpers::media($val)}}" onclick="currentSlide({{$key+2}})" alt="Caption One">
                                             </div>
                                             @endif
                                         @endforeach
