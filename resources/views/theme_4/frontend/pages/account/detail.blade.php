@@ -533,6 +533,112 @@
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccslider.js"></script>
+
+    <script>
+        $('#nick-lmht-trangphuc #input-search-skins').on('input', function () {
+
+            let result_ul = $('#nick-lmht-trangphuc .sugges_list');
+            result_ul.empty();
+            result_ul.toggleClass('d-none', !$(this).val().trim());
+
+            let keyword = convertToSlug($(this).val());
+            Array.from($('#content_page_skin .item-nick-lmht__border')).forEach(function (elm) {
+                let text = convertToSlug($(elm).find('.text-theme').text().trim())
+                if (text.indexOf(keyword) > -1) {
+                    let html = `<li class="sugges_item">${$(elm).find('.text-theme').text()}</li>`;
+                    result_ul.append(html);
+                }
+            })
+        });
+
+        $('#nick-lmht-tuong #input-search-champ').on('input', function () {
+
+            let result_ul = $('#nick-lmht-tuong .sugges_list');
+            result_ul.empty();
+            result_ul.toggleClass('d-none', !$(this).val().trim());
+
+            let keyword = convertToSlug($(this).val());
+            Array.from($('#content_page_champ .item-nick-lmht__border')).forEach(function (elm) {
+                let text = convertToSlug($(elm).find('.text-theme').text().trim())
+                if (text.indexOf(keyword) > -1) {
+                    let html = `<li class="sugges_item">${$(elm).find('.text-theme').text()}</li>`;
+                    result_ul.append(html);
+                }
+            })
+        });
+
+        $('#nick-lmht-linhthu #input-search-conpanion').on('input', function () {
+
+            let result_ul = $('#nick-lmht-linhthu .sugges_list');
+            result_ul.empty();
+            result_ul.toggleClass('d-none', !$(this).val().trim());
+
+            let keyword = convertToSlug($(this).val());
+            Array.from($('#content_page_companion .item-nick-lmht__border')).forEach(function (elm) {
+                let text = convertToSlug($(elm).find('.text-theme').text().trim())
+                if (text.indexOf(keyword) > -1) {
+                    let html = `<li class="sugges_item">${$(elm).find('.text-theme').text()}</li>`;
+                    result_ul.append(html);
+                }
+            })
+        });
+
+        $('.submit-search-skins').on('click', function () {
+            let keyword = convertToSlug($('#input-search-skins').val());
+            let elm_result = $('#result-search-skin');
+            elm_result.empty();
+            $('.sugges_list').addClass('d-none')
+            Array.from($('#content_page_skin .item-nick-lmht')).forEach(function (elm) {
+                let text = convertToSlug($(elm).find('.text-theme').text().trim())
+                if (text && text.indexOf(keyword) > -1) {
+                    let new_elm = $(elm).clone();
+                    new_elm.find('img').attr('src', new_elm.find('img').attr('data-original'))
+                    elm_result.append(new_elm);
+                }
+            });
+
+            elm_result.toggleClass('d-none', !keyword);
+            $('#tab-panel-skins').toggleClass('d-none', !!keyword);
+        });
+
+        $('.submit-search-champ').on('click', function () {
+            let keyword = convertToSlug($('#input-search-champ').val());
+            let elm_result = $('#result-search-champ');
+            elm_result.empty();
+            $('.sugges_list').addClass('d-none')
+            Array.from($('#content_page_champ .item-nick-lmht')).forEach(function (elm) {
+                let text = convertToSlug($(elm).find('.text-theme').text().trim())
+                if (text && text.indexOf(keyword) > -1) {
+                    let new_elm = $(elm).clone();
+                    new_elm.find('img').attr('src', new_elm.find('img').attr('data-original'))
+                    elm_result.append(new_elm);
+                }
+            });
+            elm_result.toggleClass('d-none', !keyword);
+            $('#tab-panel-champ').toggleClass('d-none', !!keyword);
+        });
+        $('.submit-search-companion').on('click', function () {
+            let keyword = convertToSlug($('#input-search-conpanion').val());
+            let elm_result = $('#result-search-companion');
+            elm_result.empty();
+            $('.sugges_list').addClass('d-none')
+            Array.from($('#content_page_companion .item-nick-lmht')).forEach(function (elm) {
+                let text = convertToSlug($(elm).find('.text-theme').text().trim())
+                if (text && text.indexOf(keyword) > -1) {
+                    let new_elm = $(elm).clone();
+                    new_elm.find('img').attr('src', new_elm.find('img').attr('data-original'))
+                    elm_result.append(new_elm);
+                }
+            });
+            elm_result.toggleClass('d-none', !keyword);
+            $('#tab-panel-companion').toggleClass('d-none', !!keyword);
+        });
+        $('.sugges_list').on('click', '.sugges_item', function () {
+            let text = $(this).text();
+            $(this).parent().prev().val(text);
+            $(this).parent().next().trigger('click');
+        })
+    </script>
 @endsection
 
 
