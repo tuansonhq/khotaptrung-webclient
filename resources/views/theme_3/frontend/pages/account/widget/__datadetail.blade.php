@@ -1883,6 +1883,12 @@
                                     @php
                                         $image_extension = explode('|',$data->image_extension);
                                         array_push($image_extension,$data->image);
+                                        $count = 0;
+                                        foreach($image_extension as $key => $val){
+                                            if($val != ''){
+                                                $count = $count + 1;
+                                            }
+                                        }
                                     @endphp
 
                                     @foreach($image_extension as $key => $val)
@@ -1892,7 +1898,7 @@
                                             <i class="__icon__profile --sm__profile --link__profile --link--acc" style="--path : url(/assets/frontend/theme_3/image/svg/expand-acc.svg)"></i>
 {{--                                            <img src="/assets/frontend/theme_3/image/svg/expand-acc.svg" alt="">--}}
                                         </a>
-                                        <div class="acc-holder_badge">{{$key+1}} / {{count($image_extension)}}</div>
+                                        <div class="acc-holder_badge">{{$key+1}} / {{ $count }}</div>
                                         <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" />
                                     </div>
                                     @endif
