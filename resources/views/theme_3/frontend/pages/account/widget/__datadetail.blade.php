@@ -63,12 +63,14 @@
                                                         <div class="swiper gallery-slider swiper-container-horizontal">
                                                             <div class="swiper-wrapper">
                                                                 @foreach(explode('|',$data->image_extension) as $val)
+                                                                    @if($val != '')
                                                                     <div class="swiper-slide">
                                                                         <a  data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false" class="d-none d-lg-block ">
 
                                                                             <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                                                                         </a>
                                                                     </div>
+                                                                    @endif
                                                                 @endforeach
                                                             </div>
 
@@ -114,12 +116,14 @@
                                                     <div class="swiper gallery-thumbs gallery-thumbsmaxheadth swiper-container-horizontal">
                                                         <div class="swiper-wrapper">
                                                             @foreach(explode('|',$data->image_extension) as $val)
+                                                                @if($val != '')
                                                                 <div class="swiper-slide">
 
                                                                     <a  class="d-lg-block d-none ">
                                                                         <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                                                                     </a>
                                                                 </div>
+                                                                @endif
                                                             @endforeach
                                                         </div>
                                                     </div>
@@ -622,11 +626,13 @@
                                 <div class="swiper gallery-slider-mobile swiper-container-horizontal">
                                     <div class="swiper-wrapper">
                                         @foreach(explode('|',$data->image_extension) as $key => $val)
+                                            @if($val != '')
                                             <div class="swiper-slide">
                                                 <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}" class="d-lg-none">
                                                     <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                                                 </a>
                                             </div>
+                                            @endif
                                         @endforeach
                                     </div>
                                 </div>
@@ -679,6 +685,7 @@
                                                     <div class="swiper gallery-thumbs-mobile gallery-thumbsmaxheadth swiper-container-horizontal">
                                                         <div class="swiper-wrapper">
                                                             @foreach(explode('|',$data->image_extension) as $val)
+                                                                @if($val != '')
                                                                 <div class="swiper-slide">
                                                                     <a class="" >
                                                                         <div class="row marginauto">
@@ -688,6 +695,7 @@
                                                                         </div>
                                                                     </a>
                                                                 </div>
+                                                                @endif
                                                             @endforeach
                                                         </div>
                                                     </div>
@@ -1872,7 +1880,7 @@
                             <!-- main images -->
                                 <div class="acc-holder ">
                                     @foreach(explode('|',$data->image_extension) as $key => $val)
-
+                                    @if($val != '')
                                     <div class="acc-holder_slides " >
                                         <a class="acc-holder_expand" data-fancybox="galleryAccount" href="{{\App\Library\MediaHelpers::media($val)}}">
                                             <i class="__icon__profile --sm__profile --link__profile --link--acc" style="--path : url(/assets/frontend/theme_3/image/svg/expand-acc.svg)"></i>
@@ -1881,6 +1889,7 @@
                                         <div class="acc-holder_badge">{{$key+1}} / {{count(explode('|',$data->image_extension))}}</div>
                                         <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" />
                                     </div>
+                                    @endif
                                     @endforeach
 
 
@@ -1902,10 +1911,12 @@
                                 <div class="flex-grow-1 ml-fix-12">
                                     <div class="row acc-thumbnail  mx-0">
                                         @foreach(explode('|',$data->image_extension) as $key => $val)
+                                            @if($val != '')
                                             <div class="acc-thumbnail_column col-md-3 px-fix-6 mb-fix-12">
                                                 <div class="acc-thumbnail_badge" onclick="currentSlide({{$key+1}})">{{$key+1}}</div>
                                                 <img class="acc-thumbnail-image" src="{{\App\Library\MediaHelpers::media($val)}}" onclick="currentSlide({{$key+1}})" alt="Caption One">
                                             </div>
+                                            @endif
                                         @endforeach
                                     </div>
                                 </div>
