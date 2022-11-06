@@ -1879,6 +1879,14 @@
 
                             <!-- main images -->
                                 <div class="acc-holder ">
+                                    <div class="acc-holder_slides " >
+                                        <a class="acc-holder_expand" data-fancybox="galleryAccount" href="{{\App\Library\MediaHelpers::media($data->image)}}">
+                                            <i class="__icon__profile --sm__profile --link__profile --link--acc" style="--path : url(/assets/frontend/theme_3/image/svg/expand-acc.svg)"></i>
+                                            {{--                                            <img src="/assets/frontend/theme_3/image/svg/expand-acc.svg" alt="">--}}
+                                        </a>
+                                        <div class="acc-holder_badge">1 / {{count(explode('|',$data->image_extension))}}</div>
+                                        <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" />
+                                    </div>
                                     @foreach(explode('|',$data->image_extension) as $key => $val)
                                     @if($val != '')
                                     <div class="acc-holder_slides " >
@@ -1886,7 +1894,7 @@
                                             <i class="__icon__profile --sm__profile --link__profile --link--acc" style="--path : url(/assets/frontend/theme_3/image/svg/expand-acc.svg)"></i>
 {{--                                            <img src="/assets/frontend/theme_3/image/svg/expand-acc.svg" alt="">--}}
                                         </a>
-                                        <div class="acc-holder_badge">{{$key+1}} / {{count(explode('|',$data->image_extension))}}</div>
+                                        <div class="acc-holder_badge">{{$key+2}} / {{count(explode('|',$data->image_extension))}}</div>
                                         <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" />
                                     </div>
                                     @endif
