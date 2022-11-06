@@ -235,7 +235,7 @@
     border-bottom: 2px solid var(--primary-color);
 }
 
-/* Chọn mệnh giá */
+/* Chá»n má»‡nh giÃ¡ */
 #content-store-card .denos--title,
 #content-store-card .card--amount .card--amount__title,
 #content-store-card .discount .discount--title,
@@ -355,7 +355,7 @@
     color: var(--primary-color);
 }
 
-/*Mô tả thẻ*/
+/*MÃ´ táº£ tháº»*/
 #content-store-card .card--desc__title {
 
     font-style: normal;
@@ -1354,7 +1354,7 @@ a:hover .__icon.--path__custom:after {
     color: #1B1D29;
 }
 
-/*Dịch vụ */
+/*Dá»‹ch vá»¥ */
 .service--thumbnail {
     position: relative;
     padding-bottom: 60%;
@@ -2129,7 +2129,7 @@ a:hover .__icon.--path__custom:after {
         margin-top: 12px;
     }
 
-    /*    Dịch vụ */
+    /*    Dá»‹ch vá»¥ */
     .label--checkbox .label--checkbox__name {
         display: block;
     }
