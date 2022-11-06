@@ -56,7 +56,7 @@
 @section('content')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/theme_main.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css?v={{time()}}">
-
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css?v={{time()}}">
     @if($data == null)
         <div class="item_buy">
 
