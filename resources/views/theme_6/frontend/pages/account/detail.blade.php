@@ -26,33 +26,33 @@
         $totalaccount = 0;
     }
 @endphp
-@php
-    $data_cookie = Cookie::get('viewed_account') ?? '[]';
-    $flag_viewed = true;
-    $data_cookie = json_decode($data_cookie,true);
-        foreach ($data_cookie as $key => $acc_viewed){
-            if($acc_viewed['randId'] == $data->randId){
-             $flag_viewed = false;
-            }
-        }
-        if ($flag_viewed){
-                if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {
-                     array_pop($data_cookie);
-                 }
-                $data_save = [
-                    'image'=>$data->image??'',
-                    'category'=>isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title,
-                    'randId'=>$data->randId,
-                    'price'=>$data->price,
-                    'price_old'=>$data->price_old,
-                    'promotion'=>$sale_percent,
-                    'buy_account'=>$totalaccount,
-                 ];
-                array_unshift($data_cookie,$data_save);
-                $data_cookie = json_encode($data_cookie);
-                Cookie::queue('viewed_account',$data_cookie,43200);
-        }
-@endphp
+{{--@php--}}
+{{--    $data_cookie = Cookie::get('viewed_account') ?? '[]';--}}
+{{--    $flag_viewed = true;--}}
+{{--    $data_cookie = json_decode($data_cookie,true);--}}
+{{--        foreach ($data_cookie as $key => $acc_viewed){--}}
+{{--            if($acc_viewed['randId'] == $data->randId){--}}
+{{--             $flag_viewed = false;--}}
+{{--            }--}}
+{{--        }--}}
+{{--        if ($flag_viewed){--}}
+{{--                if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {--}}
+{{--                     array_pop($data_cookie);--}}
+{{--                 }--}}
+{{--                $data_save = [--}}
+{{--                    'image'=>$data->image??'',--}}
+{{--                    'category'=>isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title,--}}
+{{--                    'randId'=>$data->randId,--}}
+{{--                    'price'=>$data->price,--}}
+{{--                    'price_old'=>$data->price_old,--}}
+{{--                    'promotion'=>$sale_percent,--}}
+{{--                    'buy_account'=>$totalaccount,--}}
+{{--                 ];--}}
+{{--                array_unshift($data_cookie,$data_save);--}}
+{{--                $data_cookie = json_encode($data_cookie);--}}
+{{--                Cookie::queue('viewed_account',$data_cookie,43200);--}}
+{{--        }--}}
+{{--@endphp--}}
 @section('content')
 
     @if($data == null)
@@ -134,9 +134,7 @@
                 </div>
 
                 <div class="row marginauto">
-                    <div class="col-md-12 left-right">
-                        @include('frontend.pages.account.widget.__viewed__account')
-                    </div>
+
                     <div class="col-md-12 left-right" id="showslideracc">
                         <div class="body-box-loadding result-amount-loadding result-amount-loadding__nick-lien-quan">
                             <div class="d-flex justify-content-center" style="padding-top: 112px;">
@@ -144,6 +142,10 @@
                             </div>
                         </div>
 
+                    </div>
+
+                    <div class="col-md-12 left-right" id="showswatched">
+{{--                        @include('frontend.pages.account.widget.__viewed__account')--}}
                     </div>
                 </div>
 

@@ -235,7 +235,7 @@
     border-bottom: 2px solid var(--primary-color);
 }
 
-/* Chọn mệnh giá */
+/* Chá»n má»‡nh giÃ¡ */
 #content-store-card .denos--title,
 #content-store-card .card--amount .card--amount__title,
 #content-store-card .discount .discount--title,
@@ -355,7 +355,7 @@
     color: var(--primary-color);
 }
 
-/*Mô tả thẻ*/
+/*MÃ´ táº£ tháº»*/
 #content-store-card .card--desc__title {
 
     font-style: normal;
@@ -1354,7 +1354,7 @@ a:hover .__icon.--path__custom:after {
     color: #1B1D29;
 }
 
-/*Dịch vụ */
+/*Dá»‹ch vá»¥ */
 .service--thumbnail {
     position: relative;
     padding-bottom: 60%;
@@ -2129,7 +2129,7 @@ a:hover .__icon.--path__custom:after {
         margin-top: 12px;
     }
 
-    /*    Dịch vụ */
+    /*    Dá»‹ch vá»¥ */
     .label--checkbox .label--checkbox__name {
         display: block;
     }
@@ -2182,4 +2182,40 @@ a:hover .__icon.--path__custom:after {
     -moz-transform:rotate(360deg);
     -webkit-transform:rotate(360deg);
     transform:rotate(360deg);
+}
+.sugges_list {
+    background-color: #fff;
+    border: 1px solid #E4E5F0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    z-index: 1;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 290px;
+    overflow-y: auto;
+}
+.sugges_list:empty {
+    display: none;
+}
+.sugges_list::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Handle */
+.sugges_list::-webkit-scrollbar-thumb {
+    background: rgba(188, 191, 214, 0.5);
+    border-radius: 14px;
+}
+
+.sugges_list .sugges_item {
+    text-align: left;
+    padding: 12px;
+    cursor: pointer;
+}
+.sugges_list .sugges_item:not(:last-child){
+    box-shadow: inset 0 -1px 0 #E4E5F0;
 }

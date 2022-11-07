@@ -11,6 +11,7 @@
         <div class="swiper-wrapper">
 
             @foreach($data as $key => $item)
+                @if($key<6)
             <div class="swiper-slide">
                 <div class="block-item scale-thumb">
                     <div class="block-thumb top-buy" data-content="Top {{ $key + 1 }}">
@@ -43,7 +44,7 @@
                     </div>
                 </div>
             </div>
-
+                @endif
             @endforeach
 
         </div>

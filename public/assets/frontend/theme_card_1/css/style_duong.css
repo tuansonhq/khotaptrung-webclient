@@ -229,7 +229,6 @@
     font-size: 18px;
     font-weight: bold;
     display: block;
-    margin-bottom: 15px;
     cursor: pointer;
     width: 100%;
     background: #28a745;
@@ -240,7 +239,158 @@
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
     border-radius: 8px;
-    border: 2px solid #28a745;
-    padding: 11px 0;
-    margin-top: 10px;
+}
+/*css dich vu da mua */
+.user-manager {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.user-manager .site-menu {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    margin-bottom: 15px;
+}
+.user-manager .site-form{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+
+}
+
+.user-manager .menu-content {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.user-manager .menu-link {
+
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 15px 1px rgb(137 147 164 / 15%);
+    border-radius: 8px;
+    width: 100% !important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    color: rgb(238, 70, 35) !important;
+    cursor: pointer;
+    display: block;
+    padding: 12px 0px;
+}
+
+.user-manager .menu-link ul {
+    list-style-type: none;
+}
+
+
+.user-manager .menu-link .root-left {
+    font-size: 17px;
+    border-left: 3px solid rgb(238, 70, 35) !important;
+    padding: 15px 15px;
+    margin: 0;
+}
+
+.user-manager .menu-link ul li {
+    width: 100% !important;
+    cursor: pointer;
+    padding-left: 15px;
+
+}
+
+.user-manager .menu-link ul li.active, .user-manager .menu-link ul li:hover {
+
+}
+
+.user-manager .menu-link ul li.active a, .user-manager .menu-link ul li:hover a,.user-manager .menu-link ul li a.active {
+    color: rgb(238, 70, 35) !important;
+}
+
+
+.user-manager .menu-link ul li a {
+    width: 100% !important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    display: block;
+    padding: 15px 15px;
+}
+
+.user-manager .menu-link ul li a i {
+    margin-right: 10px;
+}
+
+
+.user-manager .menu-content {
+
+
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 15px 1px rgba(137, 147, 164, 0.15);
+    border-radius: 8px;
+    min-height: 212.568px;
+}
+
+
+.user-manager .menu-content .title {
+    background: #FFFFFF;
+    border-bottom: 1px solid #cccccc;
+    padding: 16px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.user-manager .menu-content .title h3 {
+    color: rgb(238, 70, 35) !important;
+    font-weight: bold;
+    font-size: 21px;
+    line-height: 32px;
+    margin-bottom: 0px !important;
+}
+
+
+.user-manager .menu-content .wapper .form-row input#upload {
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    background-color: #FFF4E6;
+}
+
+.user-manager .menu-content .wapper .form-row #image_profile {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    float: right;
+    margin-right: 50px;
+}
+
+.user-manager .menu-content .wapper .form-row span.label {
+    position: relative;
+    z-index: 0;
+    display: inline-block;
+    background: #FFF4E6;
+    cursor: pointer;
+    color: #FF6700;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+
+.user-manager .menu-content .wapper button.btn-submit {
+    border-radius: 2px;
+    background: rgb(238, 70, 35) !important;
+    padding: 8px 90px;
+    margin: 10px 0px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
 }

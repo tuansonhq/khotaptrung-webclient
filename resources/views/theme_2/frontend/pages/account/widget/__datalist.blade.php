@@ -264,7 +264,7 @@
                                                         <div class="info-attr">
                                                             Rank:
                                                             @if($rank_info->tier == "NONE")
-                                                                {{ $rank_info->tier }}
+                                                                CHƯA CÓ RANK
                                                             @else
                                                                 {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                             @endif
@@ -324,6 +324,55 @@
                                                                 {{ $in->name??'' }} :
                                                                 {{ $in->value??'' }}
                                                             </div>
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @elseif($data->slug == "nick-ngoc-rong-online")
+
+                                            @php
+                                                $server = null;
+                                                $info = array();
+
+                                                $params = $item->params;
+                                                if (isset($params->server)){
+                                                    $server = $params->server;
+                                                }
+                                                if (isset($params->info) && count($params->info)){
+                                                    $info = $params->info;
+                                                }
+                                            @endphp
+                                            @if(isset($server))
+                                                <?php
+                                                $total = $total + 1;
+                                                ?>
+                                                <div class="info-attr">
+                                                    Server:
+                                                    {{ $server??'' }}
+                                                </div>
+
+
+                                            @endif
+
+                                            @if(isset($info) && count($info))
+                                                @foreach($info as $ke => $in)
+                                                    @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
+
+                                                        @if($total < 4)
+                                                            <?php
+                                                            $total = $total + 1;
+                                                            ?>
+                                                            @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                <div class="info-attr">
+                                                                    {{ $in->name??'' }} :
+                                                                    {{ $in->value??'' }}
+                                                                </div>
+                                                            @else
+                                                                <div class="info-attr">
+                                                                    {{ $in->name??'' }} :
+                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                </div>
+                                                            @endif
                                                         @endif
                                                     @endif
                                                 @endforeach

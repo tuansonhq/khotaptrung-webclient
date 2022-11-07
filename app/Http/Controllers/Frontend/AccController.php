@@ -7,6 +7,7 @@ use App\Library\AuthCustom;
 use App\Library\DirectAPI;
 use App\Library\Helpers;
 use Carbon\Carbon;
+use Cookie;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Session;
@@ -65,13 +66,14 @@ class AccController extends Controller
                 $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
                 $response_cate_data = $result_Api_cate->response_data??null;
 
-            }elseif ($slug == 'nick-ninja-school'){
-                $dataSendCate = array();
-                $dataSendCate['data'] = 'property_auto';
-                $dataSendCate['provider'] = 'ninjaschool';
-                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-                $response_cate_data = $result_Api_cate->response_data??null;
             }
+//            elseif ($slug == 'nick-ninja-school'){
+//                $dataSendCate = array();
+//                $dataSendCate['data'] = 'property_auto';
+//                $dataSendCate['provider'] = 'ninjaschool';
+//                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+//                $response_cate_data = $result_Api_cate->response_data??null;
+//            }
             else {
                 $dataSendCate = array();
                 $dataSendCate['data'] = 'category_detail';
@@ -160,9 +162,8 @@ class AccController extends Controller
                 if (theme('')->theme_key == "theme_5"){
                     $dataSend['limit'] =  15;
                 }
-
+//                $dataSend['randId'] = 'P9359';
                 if ($request->filled('id_data'))  {
-
                     $dataSend['randId'] = \App\Library\Helpers::decodeItemID($request->id_data);
                 }
 
@@ -372,7 +373,7 @@ class AccController extends Controller
             $perPage = 24;
 
             if (isset(theme('')->theme_key)){
-                if (theme('')->theme_key == "theme_1"){
+                if (theme('')->theme_key == "theme_1" || theme('')->theme_key == "theme_4" || theme('')->theme_key == "theme_card_2" || theme('')->theme_key == "theme_dup"){
                     $perPage = 60;
                 }
             }
@@ -385,12 +386,13 @@ class AccController extends Controller
 
                         foreach ($game_auto_props as $element) {
                             $result[$element->key][] = $element;
-                            if ($element->key == 'champions' && isset($element->childs) && count($element->childs)) {
-                                foreach ($element->childs as $skin) {
-                                    $result['skins_custom'][] = $skin;
-                                }
-                            }
                         }
+                        $game_auto_props = $result;
+
+                        foreach ($game_auto_props as $key => $item){
+                            $game_auto_props[$key] = array_chunk($item,$perPage);
+                        }
+
                         $game_auto_props = $result;
                         foreach ($game_auto_props as $key => $item){
                             $game_auto_props[$key] = array_chunk($item,$perPage);
@@ -450,6 +452,33 @@ class AccController extends Controller
                 $htmlmenu = view('frontend.pages.account.widget.__datamenu')
                     ->with('data',$data)->render();
 
+//                Lưu cookie.
+
+                $data_cookie = Cookie::get('watched_account') ?? '[]';
+
+                $flag_viewed = true;
+                $data_cookie = json_decode($data_cookie,true);
+
+                if (isset($data_cookie) && count($data_cookie)){
+                    foreach ($data_cookie as $key => $acc_viewed){
+                        if($acc_viewed == $data->id){
+                            $flag_viewed = false;
+                        }
+                    }
+                }
+
+                if ($flag_viewed){
+                    if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {
+                        array_pop($data_cookie);
+                    }
+                    $data_save = $data->id;
+                    array_unshift($data_cookie,$data_save);
+                    $data_cookie = json_encode($data_cookie);
+
+                    Cookie::queue('watched_account',$data_cookie,43200);
+
+                }
+
                 $html = view('frontend.pages.account.widget.__datadetail')
                     ->with('data_category',$data_category)
                     ->with('game_auto_props',$game_auto_props)
@@ -475,6 +504,7 @@ class AccController extends Controller
     }
 
     public function getRelated(Request $request){
+
         if ($request->ajax()){
             $slug = $request->slug;
             $url = '/acc';
@@ -509,6 +539,65 @@ class AccController extends Controller
                     'message'=>$response_data->message??"Không thể lấy dữ liệu"
                 ]);
             }
+        }
+    }
+
+    public function getWatched(Request $request){
+
+        if ($request->ajax()){
+
+            $watcheds = Cookie::get('watched_account') ?? '[]';
+            $watcheds = json_decode($watcheds,true);
+
+
+            if (isset($watcheds) && count($watcheds)){
+                $url = '/acc';
+                $method = "GET";
+                $arr_id = null;
+                foreach ($watcheds as $watched){
+                    if (isset($arr_id)){
+                        $arr_id = $arr_id.','.$watched;
+                    }else{
+                        $arr_id = $watched;
+                    }
+                }
+
+                $dataSend = array();
+                $dataSend['data'] = 'list_acc';
+                $dataSend['arr_id'] = $arr_id;
+                $dataSend['status'] = 1;
+                $dataSend['limit'] = 12;
+
+                $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+                $response_data = $result_Api->response_data??null;
+
+                if(isset($response_data) && $response_data->status == 1){
+                    $data = $response_data->data;
+
+                    $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
+
+                    $htmlslider = view('frontend.pages.account.widget.__watched')
+                        ->with('data',$data)->render();
+
+                    return response()->json([
+                        'datawatched' => $htmlslider,
+                        'status' => 1,
+                        'message' => 'Load dữ liệu thành công',
+                    ]);
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                    ]);
+                }
+            }else{
+                return response()->json([
+                    'status' => 2,
+                    'message'=>$response_data->message??"Không có dữ liệu"
+                ]);
+            }
+
         }
     }
 
@@ -1014,11 +1103,10 @@ class AccController extends Controller
             $dataSend = array();
             $dataSend['data'] = 'list_acc';
             $dataSend['user_id'] = AuthCustom::user()->id;
-            $dataSend['id'] = $id;
+            $dataSend['randId'] = $id;
 
             $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
             $response_data = $result_Api->response_data??null;
-
 
             if(isset($response_data) && $response_data->status == 1){
                 if (isset($response_data->data)){
@@ -1107,7 +1195,7 @@ class AccController extends Controller
                 $method = "GET";
                 $dataSend = array();
                 $dataSend['id'] = $id;
-                $dataSend['data'] = 'show_password';
+                    $dataSend['data'] = 'show_password';
                 $dataSend['user_id'] = AuthCustom::user()->id;
 
                 $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);

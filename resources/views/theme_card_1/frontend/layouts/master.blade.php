@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="vi" lang="vi">
 
@@ -20,6 +21,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
     @stack('style')
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet"
@@ -31,6 +33,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/responsive.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/blog.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_nam.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_duong.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/storecard.css?v={{time()}}">
@@ -116,8 +119,7 @@
     <div class="modal-dialog modal-md">
         <div class="panel panel-primary">
             <div class="modal-header">
-                <button type="button" data-dismiss="modal" aria-hidden="true" class="close">x</button>
-                <span></span></div>
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="close">x</button><span></span></div>
             <div class="modal-body">
                 <p></p>
             </div>
@@ -198,6 +200,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
 <button type="button" class="btn btn-danger btn-floating btn-lg ripple-surface" id="btn-back-to-top"
         style="display: none; min-width: 45px;z-index: 999">
+<button type="button" class="btn btn-danger btn-floating btn-lg ripple-surface" id="btn-back-to-top" style="display: none; min-width: 45px;z-index: 999">
     <i class="fas fa-arrow-up"></i>
 </button>
 @yield('scripts')

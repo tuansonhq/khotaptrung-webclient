@@ -271,15 +271,13 @@
                                         <a id="txtPrice" style="font-weight: bold;display: block;margin-bottom: 15px;    width: 100%;background: rgb(238, 70, 35) !important;font-size: 18px;color: #ffffff;text-align: center;-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;border: 2px solid rgb(238, 70, 35) !important;padding: 11px 0;margin-top: 10px;"
                                            class="total-money-detail-service btn btn-success">Tổng: 0 Xu</a>
                                         @if(App\Library\AuthCustom::check())
-                                            <button id="btnPurchase" type="button"
-                                                    style="font-weight: bold;display: block;margin-bottom: 15px;cursor: pointer;width: 100%;background: #28a745;font-size: 18px;color: #ffffff;text-align: center;-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;border: 2px solid #28a745;padding: 11px 0;margin-top: 10px;}"
-                                                    class="btn-auth">
-                                                <i class="pay-detail-service fa fa-credit-card" aria-hidden="true"></i>
-                                                Thanh toán
-                                            </button>
+                                            <button  data-toggle="modal" id="btnPurchase"
+                                               style="font-weight: bold;display: block;margin-bottom: 15px;cursor: pointer;width: 100%;background: #28a745;font-size: 18px;color: #ffffff;text-align: center;-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;border: 2px solid #28a745;padding: 11px 0;margin-top: 10px;"
+                                               class="btn-auth"><i class="fa fa-credit-card" aria-hidden="true"></i>
+                                                Thanh toán</button>
                                         @else
                                             <a href="#" data-toggle="modal" data-target="#modal-login"
-                                               style="font-weight: bold;display: block;margin-bottom: 15px;cursor: pointer;    width: 100%;background: #28a745;font-size: 18px;color: #ffffff;text-align: center;-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;border: 2px solid #28a745;padding: 11px 0;margin-top: 10px;"
+                                               style="font-weight: bold;display: block;margin-bottom: 15px;cursor: pointer;width: 100%;background: #28a745;font-size: 18px;color: #ffffff;text-align: center;-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;border: 2px solid #28a745;padding: 11px 0;margin-top: 10px;"
                                                class="btn-auth"><i class="fa fa-credit-card" aria-hidden="true"></i>
                                                 Thanh toán</a>
                                         @endif
@@ -496,11 +494,7 @@
                                                                 <span class="pay">Thanh toán</span>
                                                             @else
                                                                 {{--                                                            <a href="#" data-toggle="modal" data-target="#modal-login" style="font-size: 18px;font-weight: bold;display: block;margin-bottom: 15px;cursor: pointer"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</a>--}}
-
-                                                                <a href="#" data-toggle="modal"
-                                                                   data-target="#modal-login" style="font-size: 16px;"
-                                                                   class="followus c-pay"><i aria-hidden="true"></i>
-                                                                    Đăng nhập</a>
+                                                                <a href="#" data-toggle="modal" data-target="#modal-login" style="font-size: 16px;" class="followus c-pay"><i aria-hidden="true"></i>Đăng nhập</a>
                                                             @endif
 
                                                         </td>
@@ -535,11 +529,7 @@
                                             color: #fff !important;
                                         }
                                     </style>
-                                    <script type="text/javascript">
-                                        $(".pay").click(function () {
-                                            $('#homealert').modal('show');
-                                        })
-                                    </script>
+
                                 </div>
                             </div>
                             <input type="hidden" id="json_rank" name="custId" value="{{ json_encode($data) }}">
@@ -1247,7 +1237,11 @@
         }
     </script>
 
-
+    <script type="text/javascript">
+        $(".pay").click(function () {
+            $('#homealert').modal('show');
+        })
+    </script>
     @endif
 
 @endsection

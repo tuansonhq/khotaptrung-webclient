@@ -8,51 +8,6 @@
 @section('styles')
 
 @endsection
-@php
-    if (isset($data->price_old)) {
-        $sale_percent = (($data->price_old - $data->price) / $data->price_old) * 100;
-        $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
-    } else {
-        $sale_percent = 0;
-    }
-@endphp
-@php
-    $totalaccount = 0;
-    if(isset($data->category->items_count)){
-        if ((isset($data->category->account_fake) && $data->category->account_fake > 1) || (isset($data->category->custom->account_fake) && $data->category->custom->account_fake > 1)){
-            $totalaccount = str_replace(',','.',number_format(round(isset($data->category->custom->account_fake) ? $data->category->items_count*$data->category->custom->account_fake : $data->category->items_count*$data->category->account_fake)));
-        }
-    }else{
-        $totalaccount = 0;
-    }
-@endphp
-@php
-    $data_cookie = Cookie::get('viewed_account') ?? '[]';
-    $flag_viewed = true;
-    $data_cookie = json_decode($data_cookie,true);
-        foreach ($data_cookie as $key => $acc_viewed){
-            if($acc_viewed['randId'] == $data->randId){
-             $flag_viewed = false;
-            }
-        }
-        if ($flag_viewed){
-                if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {
-                     array_pop($data_cookie);
-                 }
-                $data_save = [
-                    'image'=>$data->image??'',
-                    'category'=>isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title,
-                    'randId'=>$data->randId,
-                    'price'=>$data->price,
-                    'price_old'=>$data->price_old,
-                    'promotion'=>$sale_percent,
-                    'buy_account'=>$totalaccount,
-                 ];
-                array_unshift($data_cookie,$data_save);
-                $data_cookie = json_encode($data_cookie);
-                Cookie::queue('viewed_account',$data_cookie,43200);
-        }
-@endphp
 @section('content')
 
     @if($data == null)
@@ -76,6 +31,51 @@
 
         </div>
     @else
+        @php
+            if (isset($data->price_old)) {
+                $sale_percent = (($data->price_old - $data->price) / $data->price_old) * 100;
+                $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
+            } else {
+                $sale_percent = 0;
+            }
+        @endphp
+        @php
+            $totalaccount = 0;
+            if(isset($data->category->items_count)){
+                if ((isset($data->category->account_fake) && $data->category->account_fake > 1) || (isset($data->category->custom->account_fake) && $data->category->custom->account_fake > 1)){
+                    $totalaccount = str_replace(',','.',number_format(round(isset($data->category->custom->account_fake) ? $data->category->items_count*$data->category->custom->account_fake : $data->category->items_count*$data->category->account_fake)));
+                }
+            }else{
+                $totalaccount = 0;
+            }
+        @endphp
+{{--        @php--}}
+{{--            $data_cookie = Cookie::get('viewed_account') ?? '[]';--}}
+{{--            $flag_viewed = true;--}}
+{{--            $data_cookie = json_decode($data_cookie,true);--}}
+{{--                foreach ($data_cookie as $key => $acc_viewed){--}}
+{{--                    if($acc_viewed['randId'] == $data->randId){--}}
+{{--                     $flag_viewed = false;--}}
+{{--                    }--}}
+{{--                }--}}
+{{--                if ($flag_viewed){--}}
+{{--                        if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {--}}
+{{--                             array_pop($data_cookie);--}}
+{{--                         }--}}
+{{--                        $data_save = [--}}
+{{--                            'image'=>$data->image??'',--}}
+{{--                            'category'=>isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title,--}}
+{{--                            'randId'=>$data->randId,--}}
+{{--                            'price'=>$data->price,--}}
+{{--                            'price_old'=>$data->price_old,--}}
+{{--                            'promotion'=>$sale_percent,--}}
+{{--                            'buy_account'=>$totalaccount,--}}
+{{--                         ];--}}
+{{--                        array_unshift($data_cookie,$data_save);--}}
+{{--                        $data_cookie = json_encode($data_cookie);--}}
+{{--                        Cookie::queue('viewed_account',$data_cookie,43200);--}}
+{{--                }--}}
+{{--        @endphp--}}
         @if(isset($game_auto_props) && count($game_auto_props))
             @if($slug_category == 'nick-lien-minh')
                 @php
@@ -97,8 +97,8 @@
                                     $total_tuong += count($arr_champ);
                                 }
                             }
-                            if($key == 'skins_custom') {
-                                foreach ($game_auto_props['skins_custom'] as $arr_skins) {
+                            if($key == 'skins') {
+                                foreach ($game_auto_props['skins'] as $arr_skins) {
                                     $total_trangphuc += count($arr_skins);
                                 }
                             }
@@ -176,14 +176,27 @@
                     </div>
                 </div>
 
-                <div class="row marginauto d-none">
-                    <div class="col-md-12 left-right" id="section-viewed-account">
-                        @include('frontend.pages.account.widget.__viewed__account')
-                    </div>
-                </div>
+
 
                 <div class="row marginauto">
                     <div class="col-md-12 left-right" id="showslideracc">
+                        <div class="body-box-loadding result-amount-loadding result-amount-loadding__nick-lien-quan">
+                            <div class="d-flex justify-content-center" style="padding-top: 112px;">
+                                <span class="pulser"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+{{--                <div class="row marginauto d-none">--}}
+{{--                    <div class="col-md-12 left-right" id="section-viewed-account">--}}
+{{--                        @include('frontend.pages.account.widget.__viewed__account')--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+                <div class="row marginauto">
+                    <div class="col-md-12 left-right" id="showswatched">
                         <div class="body-box-loadding result-amount-loadding result-amount-loadding__nick-lien-quan">
                             <div class="d-flex justify-content-center" style="padding-top: 112px;">
                                 <span class="pulser"></span>
@@ -241,9 +254,9 @@
                                                             <div class="row marginauto item-nick-lmht__border">
                                                                 <div
                                                                     class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                                                    <img
-                                                                        class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy"
-                                                                        data-original="https://cdn.upanh.info/{{$companion->thumb}}"
+                                                                    <img src="https://cdn.upanh.info/{{$companion->thumb}}"
+                                                                        class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
+
                                                                         alt="{{ $companion->name }}">
                                                                 </div>
                                                                 <div class="col-md-12 pl-0 pr-0 text-center">
@@ -269,7 +282,7 @@
                                                     @foreach($game_auto_props as $key => $game_auto_prop)
                                                         @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']) > 1)
                                                             @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
-                                                                @if($key == count($game_auto_props['skins_custom']) - 1)
+                                                                @if($key == count($game_auto_props['skins']) - 1)
                                                                     <li class="page-item disabled hidden-xs dot-last-paginate">
                                                                         <span class="page-link">...</span>
                                                                     </li>
@@ -328,9 +341,9 @@
                                 <div class="tab-content" id="content_page_skin">
 
                                     @foreach($game_auto_props as $key => $game_auto_prop)
-                                        @if($key == 'skins_custom' && count($game_auto_props['skins_custom']))
+                                        @if($key == 'skins' && count($game_auto_props['skins']))
 
-                                            @foreach($game_auto_props['skins_custom'] as $key => $arr_skins)
+                                            @foreach($game_auto_props['skins'] as $key => $arr_skins)
                                                 <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
                                                      id="tab-skin-{{$key}}" role="tabpanel">
                                                     <div class="row">
@@ -341,8 +354,8 @@
                                                                 <div
                                                                     class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
                                                                     <img
-                                                                        class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy"
-                                                                        data-original="https://cdn.upanh.info/{{$skin->thumb}}"
+                                                                        src="https://cdn.upanh.info/{{$skin->thumb}}"
+                                                                        class="w-100 brs-4 position-absolute item-nick-lmht__border__img "
                                                                         alt="{{ $skin->name }}">
                                                                 </div>
                                                                 <div class="col-md-12 pl-0 pr-0 text-center">
@@ -367,10 +380,10 @@
 
                                             <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle skin-paginate" data-tab="skin-paginate" role="tablist">
                                                 @foreach($game_auto_props as $key => $game_auto_prop)
-                                                    @if($key == 'skins_custom' && count($game_auto_props['skins_custom']) > 1)
+                                                    @if($key == 'skins' && count($game_auto_props['skins']) > 1)
 
-                                                        @foreach($game_auto_props['skins_custom'] as $key => $arr_skins)
-                                                            @if($key == count($game_auto_props['skins_custom']) - 1)
+                                                        @foreach($game_auto_props['skins'] as $key => $arr_skins)
+                                                            @if($key == count($game_auto_props['skins']) - 1)
                                                                 <li class="page-item disabled hidden-xs dot-last-paginate">
                                                                     <span class="page-link">...</span>
                                                                 </li>
@@ -443,7 +456,10 @@
                                                         <span>
                                                             <div class="row marginauto item-nick-lmht__border">
                                                                 <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
-                                                                    <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy" data-original="https://cdn.upanh.info/{{$champ->thumb}}" alt="{{ $champ->name }}">
+                                                                    <img
+                                                                        src="https://cdn.upanh.info/{{$champ->thumb}}"
+                                                                        class="w-100 brs-4 position-absolute item-nick-lmht__border__img"
+                                                                        d alt="{{ $champ->name }}">
                                                                 </div>
                                                                 <div class="col-md-12 pl-0 pr-0 text-center">
                                                                     <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme text-limit limit-1">{{ $champ->name }}</p>
@@ -589,8 +605,8 @@
 
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccslider.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js?v={{time()}}"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccslider.js?v={{time()}}"></script>
         <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
 
         <script>
@@ -659,7 +675,7 @@
                 elm_result.toggleClass('d-none', !keyword);
                 $('#tab-panel-skins').toggleClass('d-none', !!keyword);
             });
-            
+
             $('.submit-search-champ').on('click', function () {
                 let keyword = convertToSlug($('#input-search-champ').val());
                 let elm_result = $('#result-search-champ');

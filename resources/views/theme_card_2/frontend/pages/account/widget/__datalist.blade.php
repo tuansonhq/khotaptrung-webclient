@@ -108,11 +108,11 @@
                                 <div class="item_buy_list_img item_buy_list_img_custom">
                                     <a href="javascript:void(0)" class="buyacc" data-id="{{ $item->randId }}">
                                         @if(isset($data->params->thumb_default) && isset($data->params))
-                                            <img class="lazy item_buy_list_img-main item_buy_list_img-main{{ $item->randId }} " data-original="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->randId }}" >
+                                            <img class="item_buy_list_img-main item_buy_list_img-main{{ $item->randId }} " src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->randId }}" >
                                         @else
 
                                             @if(isset($item->image))
-                                                <img class="lazy item_buy_list_img-main item_buy_list_img-main{{ $item->randId }}" data-original="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
+                                                <img class="item_buy_list_img-main item_buy_list_img-main{{ $item->randId }}" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
                                             @else
                                                 {{--                                                <img class="item_buy_list_img-main item_buy_list_img-main{{ $item->randId }}" data-original="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">--}}
                                             @endif
@@ -543,7 +543,7 @@
                                     <a href="/acc/{{ $item->randId }}">
                                         @if(isset($item->image))
 
-                                            <img class="item_buy_list_img-main lazy" data-original="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
+                                            <img class="item_buy_list_img-main" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
                                         @else
                                             {{--                                            <img class="item_buy_list_img-main" data-original="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">--}}
                                         @endif
@@ -646,7 +646,7 @@
                                                             <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
                                                                 {{--                                                                                        {{ $param??null }}--}}
                                                                 @if($rank_info->tier == "NONE")
-                                                                    {{ $rank_info->tier }}
+                                                                    CHƯA CÓ RANK
                                                                 @else
                                                                     {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                 @endif
@@ -739,6 +739,68 @@
                                                             </div>
                                                         @endif
 
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @elseif($data->slug == "nick-ngoc-rong-online")
+
+                                            @php
+                                                $server = null;
+                                                $info = array();
+
+                                                $params = $item->params;
+                                                if (isset($params->server)){
+                                                    $server = $params->server;
+                                                }
+                                                if (isset($params->info) && count($params->info)){
+                                                    $info = $params->info;
+                                                }
+                                            @endphp
+                                            @if(isset($server))
+                                                <?php
+                                                $total++;
+                                                ?>
+                                                <div class="row" style="margin: 0 auto;width: 100%">
+                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                        Server :
+                                                    </div>
+                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                        {{--                                                                                        {{ $param??null }}--}}
+                                                        {{ $server??'' }}
+                                                    </div>
+                                                </div>
+
+                                            @endif
+
+                                            @if(isset($info) && count($info))
+                                                @foreach($info as $ke => $in)
+                                                    @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
+                                                        <?php
+                                                        $total++;
+                                                        ?>
+                                                        @if($index < 5)
+                                                        @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                            <div class="row" style="margin: 0 auto;width: 100%">
+                                                                <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                                    {{ $in->name??'' }} :
+                                                                </div>
+                                                                <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                    {{--                                                                                        {{ $param??null }}--}}
+                                                                    {{ $in->value??'' }}
+                                                                </div>
+                                                            </div>
+                                                        @else
+                                                            <div class="row" style="margin: 0 auto;width: 100%">
+                                                                <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                                    {{ $in->name??'' }} :
+                                                                </div>
+                                                                <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                    {{--                                                                                        {{ $param??null }}--}}
+                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                        @endif
                                                     @endif
                                                 @endforeach
                                             @endif

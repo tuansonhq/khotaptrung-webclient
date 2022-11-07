@@ -8,7 +8,48 @@
                         <div class="tab-pane fade show active" id="tab-thumb" role="tabpanel">
                             <div class="card-body c-p-16 c-p-lg-0 mx-n3 mx-lg-0 d-flex">
                                 @if(isset($game_auto_props) && count($game_auto_props) && $data_category->slug == 'nick-lien-minh')
+                                    @if(isset($data->image_extension))
+                                        <div class="swiper gallery-top d-none d-lg-block">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($data->image)}}">
+                                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="mua-nick" >
+                                                    </div>
+                                                </div>
+                                                @foreach(explode('|',$data->image_extension) as $val)
+                                                    @if($val != '')
+                                                    <div class="swiper-slide">
+                                                        <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                                            <img class="lazy" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                        </div>
+                                                    </div>
+                                                    @endif
+                                                @endforeach
+
+                                            </div>
+                                        </div>
+
+                                        <div class="swiper gallery-thumbs c-ml-16 c-ml-lg-0">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($data->image)}}">
+                                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="mua-nick" >
+                                                    </div>
+                                                </div>
+                                                @foreach(explode('|',$data->image_extension) as $val)
+                                                    @if($val != '')
+                                                    <div class="swiper-slide">
+                                                        <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                                            <img class="lazy" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                        </div>
+                                                    </div>
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @else
                                     <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" >
+                                    @endif
                                 @else
                                 <div class="swiper gallery-top d-none d-lg-block">
                                     <div class="swiper-wrapper">
@@ -21,7 +62,6 @@
                                             </div>
 
                                         @endforeach
-
 
                                     </div>
                                 </div>
@@ -52,7 +92,7 @@
                         <ul class="nav nav-tabs size-auto" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a class="tab-show-acc active count-thumb" data-toggle="tab" href="#tab-thumb" role="tab"
-                                   aria-selected="true"></a>
+                                   aria-selected="true">Ảnh</a>
                             </li>
                             <li class="c-mx-4"></li>
                             <li class="nav-item" role="presentation">
@@ -164,7 +204,7 @@
                                                 <tr>
                                                     <td><span class="link-color">RANKED TFT</span></td>
                                                     <td><span>@if($rank_info->tier == "NONE")
-                                                                {{ $rank_info->tier }}
+                                                                CHƯA CÓ RANK
                                                             @else
                                                                 {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                             @endif</span></td>
@@ -176,7 +216,7 @@
                                                     <td><span class="link-color">RANKED SOLO</span></td>
                                                     <td><span>
                                                         @if($rank_info->tier == "NONE")
-                                                                {{ $rank_info->tier }}
+                                                                CHƯA CÓ RANK
                                                             @else
                                                                 {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                             @endif
@@ -189,7 +229,7 @@
 
                                     @endif
                                 @endif
-                            @else
+                            @elseif($data_category->slug == 'nick-ninja-school')
                                 @php
                                     $server = null;
                                     $params = null;
@@ -240,6 +280,49 @@
                                         @endif
                                     @endforeach
                                 @endif
+                            @elseif($data_category->slug == 'nick-ngoc-rong-online')
+                                @php
+                                    $server = null;
+                                    $params = null;
+                                    $info = array();
+                                    if (isset($data->params)){
+                                        $params = $data->params;
+                                        if (isset($params->server)){
+                                            $server = $params->server;
+                                        }
+                                        if (isset($params->info) && count($params->info)){
+                                            $info = $params->info;
+                                        }
+                                    }
+                                @endphp
+                                @if(isset($server))
+                                    <tr>
+                                        <td><span class="link-color">Server</span></td>
+                                        <td>
+                                            <span>{{ $server??null }}</span>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                @endif
+                                @if(isset($info) && count($info))
+                                    @foreach($info as $ke => $in)
+                                        @if(in_array($in->name,config('module.acc.auto_nro_tt')))
+                                            <tr>
+                                                <td><span class="link-color">{{ $in->name??'' }}</span></td>
+                                                <td>
+                                                        <span>
+                                                            @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                {{ $in->value??'' }}
+                                                            @else
+
+                                                                {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                            @endif</span>
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                @endif
                             @endif
                         @else
                         @endif
@@ -285,9 +368,6 @@
                                                                     {{ $param }}
                                                                 </span>
                                                             </td>
-                                                            {{--                                                    <td>--}}
-                                                            {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
-                                                            {{--                                                    </td>--}}
                                                         </tr>
 
                                                     @endif
@@ -345,7 +425,7 @@
                                                             <tr>
                                                                 <td><span class="link-color">RANKED TFT</span></td>
                                                                 <td><span>@if($rank_info->tier == "NONE")
-                                                                            {{ $rank_info->tier }}
+                                                                            CHƯA CÓ RANK
                                                                         @else
                                                                             {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                         @endif</span></td>
@@ -357,7 +437,7 @@
                                                                 <td><span class="link-color">RANKED SOLO</span></td>
                                                                 <td><span>
                                                         @if($rank_info->tier == "NONE")
-                                                                            {{ $rank_info->tier }}
+                                                                            CHƯA CÓ RANK
                                                                         @else
                                                                             {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                         @endif
@@ -370,7 +450,7 @@
 
                                                 @endif
                                             @endif
-                                        @else
+                                        @elseif($data_category->slug == "nick-ninja-school")
                                             @php
                                                 $server = null;
                                                 $params = null;
@@ -405,6 +485,49 @@
                                                                     @else
                                                                         {{ $in->value??'' }}
                                                                     @endif</span>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @elseif($data_category->slug == 'nick-ngoc-rong-online')
+                                            @php
+                                                $server = null;
+                                                $params = null;
+                                                $info = array();
+                                                if (isset($data->params)){
+                                                    $params = $data->params;
+                                                    if (isset($params->server)){
+                                                        $server = $params->server;
+                                                    }
+                                                    if (isset($params->info) && count($params->info)){
+                                                        $info = $params->info;
+                                                    }
+                                                }
+                                            @endphp
+                                            @if(isset($server))
+                                                <tr>
+                                                    <td><span class="link-color">Server</span></td>
+                                                    <td>
+                                                        <span>{{ $server??null }}</span>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            @endif
+                                            @if(isset($info) && count($info))
+                                                @foreach($info as $ke => $in)
+                                                    @if(in_array($in->name,config('module.acc.auto_nro_tt')))
+                                                        <tr>
+                                                            <td><span class="link-color">{{ $in->name??'' }}</span></td>
+                                                            <td>
+                                                                <span>
+                                                                    @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                        {{ $in->value??'' }}
+                                                                    @else
+                                                                        {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                    @endif
+                                                                </span>
                                                             </td>
                                                             <td></td>
                                                         </tr>
@@ -642,7 +765,7 @@
                                                         </div>
                                                         <div class="card--attr__value fz-13 fw-500">
                                                             @if($rank_info->tier == "NONE")
-                                                                {{ $rank_info->tier }}
+                                                                CHƯA CÓ RANK
                                                             @else
                                                                 {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                             @endif
@@ -655,7 +778,7 @@
                                                         </div>
                                                         <div class="card--attr__value fz-13 fw-500">
                                                             @if($rank_info->tier == "NONE")
-                                                                {{ $rank_info->tier }}
+                                                                CHƯA CÓ RANK
                                                             @else
                                                                 {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                             @endif
@@ -666,7 +789,7 @@
 
                                         @endif
                                     @endif
-                                    @else
+                                    @elseif($data_category->slug == 'nick-ninja-school')
                                         @php
                                             $server = null;
                                             $params = null;
@@ -712,6 +835,48 @@
                                                                 @endif</div>
                                                         </div>
                                                     @endif
+
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @elseif($data_category->slug == 'nick-ngoc-rong-online')
+                                        @php
+                                            $server = null;
+                                            $params = null;
+                                            $info = array();
+                                            if (isset($data->params)){
+                                                $params = $data->params;
+                                                if (isset($params->server)){
+                                                    $server = $params->server;
+                                                }
+                                                if (isset($params->info) && count($params->info)){
+                                                    $info = $params->info;
+                                                }
+                                            }
+                                        @endphp
+                                        @if(isset($server))
+                                            <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                    Server
+                                                </div>
+                                                <div class="card--attr__value fz-13 fw-500">{{ $server??null }}</div>
+                                            </div>
+
+                                        @endif
+                                        @if(isset($info) && count($info))
+                                            @foreach($info as $ke => $in)
+                                                @if(in_array($in->name,config('module.acc.auto_nro_tt')))
+                                                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                        <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                            {{ $in->name??'' }}
+                                                        </div>
+                                                        <div class="card--attr__value fz-13 fw-500">
+                                                            @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                {{ $in->value??'' }}
+                                                            @else
+                                                                {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                            @endif</div>
+                                                    </div>
 
                                                 @endif
                                             @endforeach
@@ -1044,7 +1209,7 @@
                                                 </div>
                                                 <div class="card--attr__value fz-13 fw-500">
                                                     @if($rank_info->tier == "NONE")
-                                                        {{ $rank_info->tier }}
+                                                        CHƯA CÓ RANK
                                                     @else
                                                         {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                     @endif
@@ -1057,7 +1222,7 @@
                                                 </div>
                                                 <div class="card--attr__value fz-13 fw-500">
                                                     @if($rank_info->tier == "NONE")
-                                                        {{ $rank_info->tier }}
+                                                        CHƯA CÓ RANK
                                                     @else
                                                         {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                     @endif
@@ -1068,7 +1233,7 @@
 
                                 @endif
                             @endif
-                        @else
+                        @elseif($data_category->slug == 'nick-ninja-school')
                             @php
                                 $server = null;
                                 $params = null;
@@ -1119,6 +1284,50 @@
                                     @endif
                                 @endforeach
                             @endif
+                        @elseif($data_category->slug == 'nick-ngoc-rong-online')
+                            @php
+                                $server = null;
+                                $params = null;
+                                $info = array();
+                                if (isset($data->params)){
+                                    $params = $data->params;
+                                    if (isset($params->server)){
+                                        $server = $params->server;
+                                    }
+                                    if (isset($params->info) && count($params->info)){
+                                        $info = $params->info;
+                                    }
+                                }
+                            @endphp
+                            @if(isset($server))
+
+                                <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                    <div class="card--attr__name fw-400 fz-13 text-center">
+                                        Server
+                                    </div>
+                                    <div class="card--attr__value fz-13 fw-500">{{ $server??null }}</div>
+                                </div>
+
+                            @endif
+                            @if(isset($info) && count($info))
+                                @foreach($info as $ke => $in)
+                                    @if(in_array($in->name,config('module.acc.auto_nro_tt')))
+                                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                                {{ $server??null }}
+                                            </div>
+                                            <div class="card--attr__value fz-13 fw-500">
+                                                @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                    {{ $in->value??'' }}
+                                                @else
+                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                @endif</div>
+                                        </div>
+
+                                    @endif
+                                @endforeach
+                            @endif
+
                         @endif
                     @else
                     @endif
