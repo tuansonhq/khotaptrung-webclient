@@ -154,25 +154,52 @@ $( document ).ready(function() {
     });
 
 });
+// $(document).ready(function(){
+//
+//     // $(function() {
+//         $('.lazy').Lazy({
+//             // your configuration goes here
+//             // placeholder: "data:image/gif;base64,R0lGODlhEALAPQAPzl5uLr9Nrl8e7...",
+//             // scrollDirection: 'vertical',
+//             effect: 'fadeIn',
+//             visibleOnly: true,
+//             afterLoad: function(element) {
+//                 $('img.lazy').css('background-image','unset')
+//             },
+//             onFinishedAll: function() {
+//                 // called once all elements was handled
+//             }
+//
+//         });
+//
+//     // });
+//
+// });
 $(document).ready(function(){
 
-    // $(function() {
-        $('.lazy').Lazy({
-            // your configuration goes here
-            // placeholder: "data:image/gif;base64,R0lGODlhEALAPQAPzl5uLr9Nrl8e7...",
-            // scrollDirection: 'vertical',
-            effect: 'fadeIn',
-            visibleOnly: true,
-            afterLoad: function(element) {
-                $('img.lazy').css('background-image','unset')
-            },
-            onFinishedAll: function() {
-                // called once all elements was handled
-            }
+(function () {
 
-        });
+    // function logElementEvent(eventName, element) {
+    //     console.log(new Date().getTime(), eventName, element.getAttribute('data-original'));
+    // }
+    //
+    // function logEvent(eventName, elementsLeft) {
+    //     console.log(new Date().getTime(), eventName, elementsLeft + " images left");
+    // }
 
-    // });
+    /* Uncomment the callbacks in LazyLoad options to see the callbacks logs in your browser's console */
 
+    new LazyLoad(/*{
+			callback_load: function (element) {
+				logElementEvent("LOADED", element);
+			},
+			callback_set: function (element) {
+				logElementEvent("SET", element);
+			},
+			callback_processed: function(elementsLeft) {
+				logEvent("PROCESSED", elementsLeft);
+			}
+		}*/);
+
+}());
 });
-

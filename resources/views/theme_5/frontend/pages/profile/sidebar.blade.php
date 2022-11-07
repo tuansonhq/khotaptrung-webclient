@@ -11,7 +11,7 @@
 
             <div class="login-popup_content c-ml-24">
                 <div class="text-secondary-color fw-700 lh-28 fz-20">
-                    Nick.vn xin chào!
+                    {{\Request::server ("HTTP_HOST")}} xin chào!
                 </div>
                 <div class="fw-400 c-mt-4">Vui lòng đăng nhập để sử dụng dịch vụ của chúng tôi</div>
                 <button class="btn primary w-100 c-mt-12" id="handleLoginPopup">Đăng nhập</button>

@@ -1,5 +1,4 @@
 @if(isset($data) )
-
     @foreach($data as $item)
         <div class="news_content_list">
             <div class="news_content_list_item">
@@ -50,7 +49,7 @@
                             @endif
                         </div>
                         <div>
-                            <i class="fas fa-newspaper"></i><a href=""> {{ $item->groups[0]->title }} </a>
+                            <i class="fas fa-newspaper"></i><a href=""> {{@$item->groups[0]->title }} </a>
                         </div>
                     </div>
 

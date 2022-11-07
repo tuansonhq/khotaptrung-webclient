@@ -256,8 +256,6 @@ $(document).ready(function () {
 
                         }
 
-
-
                     });
 
                     //Get amount of the card just been choosen when render
@@ -290,17 +288,6 @@ $(document).ready(function () {
         e.preventDefault();
         getCardAmount($(this).val());
     });
-
-    //Get amount of the card just been choosen when render
-    getCardAmount($('input[name="card-type"]').val());
-
-    //Listen to onchange event in input card-type
-    $('input[name="card-type"]').change(function (e) {
-        e.preventDefault();
-        getCardAmount($(this).val());
-    });
-
-
 
     // slider_card_telecom.update();
 

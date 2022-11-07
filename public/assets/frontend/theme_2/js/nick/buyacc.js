@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    setDisplayLink(0, 'skin-paginate');
+    setDisplayLink(0, 'tft-paginate');
+    setDisplayLink(0, 'champion-paginate');
+
     $(document).on('click', '.buyacc',function(e){
         e.preventDefault();
         var htmlloading = '';
@@ -40,25 +44,7 @@ $(document).ready(function () {
 
                 if(response.status == 1){
                     $('.loadModal__acount').modal('hide');
-                    swal({
-                        title: "Mua tài khoản thành công",
-                        text: "Thông tin chi tiết tài khoản vui lòng về lịch sử đơn hàng.",
-                        type: "success",
-                        confirmButtonText: "Lịch sử đơn hàng",
-                        showCancelButton: true,
-                        cancelButtonText: "Đóng",
-                    })
-                        .then((result) => {
-                            var slug_category = $('.slug_category').val();
-                            console.log(slug_category)
-                            if (result.value) {
-                                window.location = '/lich-su-mua-nick';
-                            } else if (result.dismiss === "Đóng") {
-                                window.location = '/mua-acc/'+ slug_category;
-                            }else {
-                                window.location = '/mua-acc/'+ slug_category;
-                            }
-                        })
+                    $('#successNickPurchase').modal('show');
                 }
                 else if (response.status == 2){
                     $('.loadModal__acount').modal('hide');
@@ -109,10 +95,6 @@ $(document).ready(function () {
         $('#notInbox').modal('show');
     });
 
-    $(document).on('click', '.the-cao-atm',function(e){
-        $('#notBuy').modal('show');
-    });
-
 
 
     function convertToSlug(title) {
@@ -157,27 +139,105 @@ $(document).ready(function () {
         $('#modal-animal').modal('show').find('.modal-body').trigger('scroll');
     })
 
-    $('.form-search-modal').on('submit',function (e) {
-        e.preventDefault();
-        let keyword = $(this).find('input').val();
-        keyword = convertToSlug(keyword);
-
-        let $elements = $(this).closest('.modal').find('.row > .col-6');
-        Array.from($elements).forEach(function (elm) {
-            let text = $(elm).find('.card-name').text().trim();
-            text = convertToSlug(text);
-            let condition = text.indexOf(keyword) * 1 > -1;
-            $(elm).toggle(condition);
-        });
-        let has_result = $($elements).filter(function() {
-            return $(this).css('display') !== 'none';
-        }).length;
-
-        $(this).closest('.modal').find('.text-invalid').toggle(!has_result);
-    });
-
     $('.modal-lmht .modal-body').on('scroll',function () {
         $('html body').trigger('scroll');
+    });
+
+    // Paginate Handle
+    function setDisplayLink (page, paginateTab) {
+        let firstPage = $(`.js-pagination-handle.${paginateTab} .page-item:first-child .page-link`).data('page');
+        let lastPage = $(`.js-pagination-handle.${paginateTab} .page-item:last-child .page-link`).data('page');
+
+        //Display none all page item
+        $(`.js-pagination-handle.${paginateTab} .page-item`).addClass('d-none');
+
+        if ( page > 2 ) {
+            $(`.js-pagination-handle.${paginateTab} .page-item-0`).removeClass('d-none');
+        }
+
+        if ( page > 3 ) {
+            $(`.js-pagination-handle.${paginateTab} .page-item.dot-first-paginate`).removeClass('d-none');
+        }
+
+        for ( let i = firstPage; i <= lastPage; i++ ) {
+            if ( i >= page - 2 && i <= page + 2 ) {
+                if ( i == page ) {
+                    $(`.js-pagination-handle.${paginateTab} .page-item`).removeClass('active');
+                    $(`.js-pagination-handle.${paginateTab} .page-item-${i}`).removeClass('d-none');
+                    $(`.js-pagination-handle.${paginateTab} .page-item-${i}`).addClass('active');
+                } else {
+                    $(`.js-pagination-handle.${paginateTab} .page-item-${i}`).removeClass('d-none');
+                }
+            }
+        }
+
+        if ( page < lastPage - 3 ) {
+            $(`.js-pagination-handle.${paginateTab} .page-item.dot-last-paginate`).removeClass('d-none');
+        }
+
+        if ( page < lastPage - 2 ) {
+            $(`.js-pagination-handle.${paginateTab} .page-item-${lastPage}`).removeClass('d-none');
+        }
+
+    }
+
+    $('.js-pagination-handle .page-item .page-link').on('click', function (e) {
+        e.preventDefault();
+        let pageSelected = $(this).data('page');
+        let paginateTab = $(this).closest('.js-pagination-handle').data('tab');
+        if ( pageSelected === undefined || pageSelected === null || pageSelected === "" ) {
+            return false;
+        }
+
+        setDisplayLink(pageSelected, paginateTab);
+    });
+
+    // Handle suggestion
+    $('.form-search-modal-input').on('input', function () {
+
+        let formBlock = $(this).closest('.form-search-modal');
+        let dataBlock = formBlock.data('tab');
+        let result_ul = $(formBlock).find('.suggest-list');
+
+        result_ul.empty();
+        result_ul.toggleClass('d-none', !$(this).val().trim());
+
+        let keyword = convertToSlug($(this).val());
+        Array.from($(`${dataBlock} .card-lmht`)).forEach(function (elm) {
+            let text = convertToSlug($(elm).find('.card-name').text().trim())
+            if (text.indexOf(keyword) > -1) {
+                let html = `<li class="suggest-item">${$(elm).find('.card-name').text().trim()}</li>`;
+                result_ul.append(html);
+            }
+        })
+    });
+
+    $('.suggest-list').on('click', '.suggest-item', function () {
+        let text = $(this).text();
+        $(this).parent().prev().val(text);
+        $(this).parent().next().trigger('click');
+    });
+
+    $('.form-search-modal').on('submit', function (e) {
+        e.preventDefault();
+        let modalBlock = $(this).closest('.modal-lmht');
+        let dataBlock = $(this).data('tab');
+        let keyword = convertToSlug($(this).find('.form-search-modal-input').val().trim());
+        let elm_result = $(modalBlock).find('.modal-lmht-search-results');
+        elm_result.empty();
+        $('.suggest-list').addClass('d-none')
+        Array.from($(`${dataBlock} .card-lmht`)).forEach(function (elm) {
+            let text = convertToSlug($(elm).find('.card-name').text().trim())
+            if (text && text.indexOf(keyword) > -1) {
+                let new_elm = $(elm).clone();
+                new_elm.find('img').attr('src', new_elm.find('img').attr('data-original'));
+                let elmBlock = jQuery("<div></div>", {class: "col-lg-2 col-6"});
+                elmBlock.append(new_elm);
+                elm_result.append(elmBlock);
+            }
+        });
+        elm_result.toggleClass('d-none', !keyword);
+        $(modalBlock).find('.modal-lmht-tabs-block').toggleClass('d-none', !!keyword);
     });
 
 });

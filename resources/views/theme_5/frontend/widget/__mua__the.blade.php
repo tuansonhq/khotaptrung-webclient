@@ -1,6 +1,6 @@
 @if(isset($telecoms))
 
-    <div class="section-header c-pt-36 c-pt-lg-24 c-mb-24 c-mb-lg-20 justify-content-between">
+    <div class="section-header c-pt-32 c-pt-lg-24 c-mb-24 c-mb-lg-20 justify-content-between">
         <h2 class="section-title">
             <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/son/naptien.svg)"></i>
             {{ $title??'Mua thẻ' }}
@@ -31,8 +31,10 @@
                                         @if(isset($telecom->params) and $telecom->params->teltecom_type == 2)
                                             <div class="col-2 c-px-4 c-py-0 card-type-form">
                                                 <input type="radio" id="card-{{ $key }}" value="{{ $telecom->key }}"
-                                                        name="card-type-game" data-img="{{ $telecom->image }}"
-                                                        data-title="{{ $telecom->title }}" hidden>
+                                                        name="card-type" data-img="{{ $telecom->image }}"
+                                                        data-title="{{ $telecom->title }}"
+                                                        data-tab="1"
+                                                        hidden>
                                                 <label for="card-{{ $key }}" class="brs-8 c-mb-8">
                                                     <img src="{{ $telecom->image }}" alt="{{ $telecom->title }}">
                                                 </label>
@@ -50,8 +52,10 @@
                                             <div class="swiper-slide card-type-form">
                                                 <input type="radio" id="card-{{ $key }}-slide"
                                                         value="{{ $telecom->key }}"
-                                                        name="card-type-game" data-img="{{ $telecom->image }}"
-                                                        data-title="{{ $telecom->title }}" hidden>
+                                                        name="card-type" data-img="{{ $telecom->image }}"
+                                                        data-title="{{ $telecom->title }}" 
+                                                        data-tab="1"
+                                                        hidden>
                                                 <label for="card-{{ $key }}-slide" class="brs-8 c-mb-8">
                                                     <img src="{{ $telecom->image }}" alt="{{ $telecom->title }}">
                                                 </label>
@@ -108,8 +112,10 @@
                                         @if(!isset($telecom->params) || $telecom->params->teltecom_type != 2)
                                             <div class="col-2 c-px-4 c-py-0 card-type-form">
                                                 <input type="radio" id="card-{{ $key }}" value="{{ $telecom->key }}"
-                                                       name="card-type-mobile" data-img="{{ $telecom->image }}"
-                                                       data-title="{{ $telecom->title }}" hidden>
+                                                       name="card-type" data-img="{{ $telecom->image }}"
+                                                       data-title="{{ $telecom->title }}"
+                                                       data-tab="2"
+                                                       hidden>
                                                 <label for="card-{{ $key }}" class="brs-8 c-mb-8">
                                                     <img src="{{ $telecom->image }}" alt="{{ $telecom->title }}">
                                                 </label>
@@ -127,8 +133,10 @@
                                             <div class="swiper-slide card-type-form">
                                                 <input type="radio" id="card-{{ $key }}-slide"
                                                        value="{{ $telecom->key }}"
-                                                       name="card-type-mobile" data-img="{{ $telecom->image }}"
-                                                       data-title="{{ $telecom->title }}" hidden>
+                                                       name="card-type" data-img="{{ $telecom->image }}"
+                                                       data-title="{{ $telecom->title }}"
+                                                       data-tab="2"
+                                                       hidden>
                                                 <label for="card-{{ $key }}-slide" class="brs-8 c-mb-8">
                                                     <img src="{{ $telecom->image }}" alt="{{ $telecom->title }}">
                                                 </label>

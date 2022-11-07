@@ -1,7 +1,4 @@
-let $input_params = $('#data_params_service');
 
-if ($input_params.length) {
-    let $params = JSON.parse($input_params.val());
     let $item_selected, $server;
     let input_pack = $('#input_pack');
     let $text_total = $('.total__price');
@@ -112,7 +109,7 @@ if ($input_params.length) {
                 $('input[name=selected]').val($item_selected)
             }
             total = number_format.to(total);
-            $text_total.text(total)
+            $text_total.text(total);
         }
 
             break
@@ -225,7 +222,7 @@ if ($input_params.length) {
                 let html_pack = `<div class="t-sub-3 text-right">${total}</div>`;
                 $('.show-pack').html(html_pack);
 
-                $('.total__price__modal').text(number_format.to(price).replace(purchase_name,'VNĐ'));
+                $('.total__price__modal').html(number_format.to(price).replace(purchase_name,'VNĐ'));
             } else {
                 $text_total.text('Tiền nhập không đúng');
             }
@@ -246,7 +243,6 @@ if ($input_params.length) {
         let new_numb = number.replace(/\./g, "").toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
         return new_numb.split('').reverse().join('').replace(/^[\.]/, '');
     }
-}
 
 //Validator
 $(document).ready(function () {

@@ -1,5 +1,6 @@
 @if(isset($data))
-    @forelse($data as $key  => $items)
+
+    @forelse($data as $items)
         @php
             $dataAttribute = null;
 

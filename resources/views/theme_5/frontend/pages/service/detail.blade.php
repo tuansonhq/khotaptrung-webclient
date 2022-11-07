@@ -17,7 +17,10 @@
     $send_type = \App\Library\HelpersDecode::DecodeJson('send_type',$data->params);
 @endphp
 @section('content')
-    <input type="hidden" id="data_params_service" value="{{ $data->params }}">
+    <script>
+        let $params = <?php echo json_encode($data->params); ?>;
+        $params = JSON.parse($params);
+    </script>
 
     <div class="container c-container" id="service-detail">
         <ul class="breadcrumb-list">
@@ -34,7 +37,7 @@
         <div class="head-mobile">
             <a href="/dich-vu" class="link-back"></a>
 
-            <h1 class="head-title text-title">Dịch vụ game</h1>
+            <p class="head-title text-title">Dịch vụ game</p>
 
             <a href="/" class="home"></a>
         </div>
@@ -192,9 +195,9 @@
                         @else
                         @endif
 
-                        <h2 class="text-title fw-700 title-color-lg c-py-16  c-py-lg-20">
+                        <p class="text-title fw-700 title-color-lg c-py-16  c-py-lg-20">
                             Thông tin người dùng
-                        </h2>
+                        </p>
                         <div class="card unset-lg">
                             <div class="card-body c-p-16 c-p-lg-0 d-flex flex-wrap mx-n2">
                                 @if(!empty($send_name) && !empty($send_type))
@@ -203,7 +206,7 @@
                                             @case('1')
                                             @case('2')
                                             @case('3')
-                                            <div class="input-group c-px-8 align-content-start">
+                                            <div class="input-group c-px-8 align-content-end">
                                                 <div class="form-label">
                                                     {{ @$send_name_text }}
                                                 </div>
@@ -212,7 +215,7 @@
                                             </div>
                                             @break
                                             @case('5')
-                                            <div class="input-group c-px-8 align-content-start">
+                                            <div class="input-group c-px-8 align-content-end">
                                                 <div class="form-label">
                                                     {{ @$send_name_text }}
                                                 </div>
@@ -252,15 +255,15 @@
                             <div class="card overflow-hidden detailViewBlock">
                                 <div class="card-body c-px-16">
                                     <h2 class="text-title-bold d-none d-lg-block c-mb-24 detailViewBlockTitle">Chi tiết dịch vụ</h2>
-                                    @if(substr($data->description, 1200))
+                                    @if(substr($data->content, 1200))
                                     <div class="content-desc hide detailViewBlockContent">
                                     @else
                                     <div class="content-desc detailViewBlockContent">
                                     @endif
-                                        {!! $data->description !!}
+                                        {!! $data->content !!}
                                     </div>
                                 </div>
-                                @if(substr($data->description, 1200))
+                                @if(substr($data->content, 1200))
                                 <div class="card-footer text-center">
                                     <span class="see-more" data-content="Xem thêm nội dung"></span>
                                 </div>
@@ -340,7 +343,7 @@
         <div class="modal-dialog modal-dialog-centered modal-custom">
             <div class="modal-content c-p-24">
                 <div class="modal-header">
-                    <h2 class="modal-title center">Xác nhận thanh toán</h2>
+                    <p class="modal-title center">Xác nhận thanh toán</p>
                     <button type="button" class="close" data-dismiss="modal"></button>
                 </div>
                 <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
@@ -416,7 +419,7 @@
         <div class="head-mobile">
             <a href="javascript:void(0) " class="link-back close-step"></a>
 
-            <h1 class="head-title text-title">Xác nhận thanh toán</h1>
+            <p class="head-title text-title">Xác nhận thanh toán</p>
 
             <a href="/" class="home"></a>
         </div>

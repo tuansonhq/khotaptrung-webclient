@@ -9,7 +9,7 @@
                     @if($data->display_type == 2)
 
                         <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
-                            <a href="javascript:void(0)" class="{{ App\Library\AuthCustom::check()?'buyacc':'nick-checkdangnhap' }}" data-id="{{ $item->randId }}">
+                            <a href="javascript:void(0)" class="buyacc" data-id="{{ $item->randId }}">
                                 @if(isset($data->params->thumb_default) && isset($data->params))
                                     <img class="entries_item-img lazy item_buy_list_img-main{{ $item->randId }}" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->title }}" class="entries_item-img">
                                 @endif
@@ -82,24 +82,22 @@
                                 <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">{{ str_replace(',','.',number_format($data->price_old??$data->price)) }}đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">{{ $sale_percent }}%</span></p>
                                 @endif
 
-                                @if(App\Library\AuthCustom::check())
                                 <button class="btn btn-danger btn-muangay" style="width: 100%;margin-top: 16px;background: rgb(238, 70, 35)">Mua ngay</button>
-                                @else
-                                <button class="btn btn-danger nick-checkdangnhap" style="width: 100%;margin-top: 16px;background: rgb(238, 70, 35)">Mua ngay</button>
-                                @endif
                             </a>
 
                         </div>
 
                         <div class="form-random formDonhangAccount{{ $item->randId }}">
-                            <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
+                            @if(App\Library\AuthCustom::check() && App\Library\AuthCustom::user()->balance >= $data->price)
+                            <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" data-ranid="{{ $item->randId }}" method="POST">
+                            @else
+                            <form class="formDonhangAccount">
+                            @endif
                                 {{ csrf_field() }}
 
                                 <div class="modal-header" style="padding-left: 16px;padding-right: 16px">
-                                    <h4 class="modal-title">Xác nhận mua tài khoản</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
+                                    <span class="nick-modal-header">Xác nhận mua tài khoản</span>
+                                    <img data-dismiss="modal" class="nick-modal-header-close" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
                                 </div>
 
                                 <div class="modal-body">
@@ -114,93 +112,95 @@
                                         </ul>
                                         <div class="tab-content">
                                             <div role="tabpanel" class="tab-pane fade in active show tabpaymentv2{{ $item->randId }}" id="paymentv2{{ $item->randId }}">
-                                                <ul class="c-tab-items p-t-0 p-b-0 p-l-5 p-r-5">
-                                                    <li class="c-font-dark">
-                                                        <table class="table table-striped">
-                                                            <tbody>
-                                                            <tr>
-                                                                <th colspan="2">Thông tin tài khoản #{{ $item->randId }}</th>
-                                                            </tr>
-                                                            </tbody><tbody>
-                                                            @php
-                                                                $title_nph = '';
-                                                                if (isset($item->groups) && count($item->groups)){
-                                                                    foreach ($item->groups as $t_group){
-                                                                        if ($t_group->module == "acc_provider"){
-                                                                            $title_nph = $t_group->title;
-                                                                        }
+                                                <p class="c-tab-header-account">Thông tin tài khoản #{{ $item->randId }}</p>
+                                                <div class="table-nick-properties">
+                                                    <div class="table-nick-items justify-content-between d-flex">
+                                                        <div class="table-properties-name">Nhà phát hành</div>
+                                                        @php
+                                                            $title_nph = '';
+                                                            if (isset($item->groups) && count($item->groups)){
+                                                                foreach ($item->groups as $t_group){
+                                                                    if ($t_group->module == "acc_provider"){
+                                                                        $title_nph = $t_group->title;
                                                                     }
                                                                 }
-                                                            @endphp
-                                                            <tr>
-                                                                <td>Nhà phát hành:</td>
-                                                                <th>{{ $title_nph }}</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Tên game:</td>
-                                                                {{--                                    @dd($data_category)--}}
-                                                                <th>{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Giá tiền:</td>
-                                                                <th style="color: rgb(238, 70, 35)">
-                                                                    @if(isset($data->price))
-                                                                        {{ str_replace(',','.',number_format($data->price)) }}đ
-                                                                    @endif
-                                                                </th>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </li>
-                                                </ul>
+                                                            }
+                                                        @endphp
+                                                        <div class="table-properties-value">
+                                                            {{ $title_nph }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="table-nick-items justify-content-between d-flex">
+                                                        <div class="table-properties-name">Tên game</div>
+                                                        <div class="table-properties-value">
+                                                            {{ isset($data->custom->title) ? $data->custom->title :  $data->title }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="table-nick-items justify-content-between d-flex">
+                                                        <div class="table-properties-name">Giá tiền</div>
+                                                        <div class="table-properties-value">
+                                                            @if(isset($data->price))
+                                                                {{ str_replace(',','.',number_format($data->price)) }}đ
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="c-account-price-block justify-content-between d-flex">
+                                                    <div class="c-account-price-title">Số tiền cần thanh toán</div>
+                                                        <div class="c-account-price-value">
+                                                            @if(isset($data->category->params->price) && isset($data->category->params))
+                                                                {{ str_replace(',','.',number_format($data->category->params->price)) }} đ
+                                                            @else
+                                                                {{ str_replace(',','.',number_format($data->price)) }} đ
+                                                            @endif
+                                                        </div>
+                                                </div>
                                             </div>
                                             <div role="tabpanel" class="tab-pane fade tabinfov2{{ $item->randId }}" id="infov2{{ $item->randId }}">
-                                                <ul class="c-tab-items p-t-0 p-b-0 p-l-5 p-r-5">
-                                                    <li class="c-font-dark">
-                                                        <table class="table table-striped">
-                                                            <tbody>
-                                                            <tr>
-                                                                <th colspan="2">Chi tiết tài khoản #{{ $item->randId }}</th>
-                                                            </tr>
-                                                            @if(isset($item->groups))
-                                                                <?php $att_values = $item->groups ?>
-                                                                @foreach($att_values as $att_value)
-                                                                    @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                                        @if(isset($att_value->parent))
-                                                                            <tr>
-                                                                                <td style="width:50%">{{ $att_value->parent->title??null }}:</td>
-                                                                                <td class="text-danger" style="font-weight: 700">{{ $att_value->title??null }}</td>
-                                                                            </tr>
-                                                                        @endif
-                                                                    @endif
-                                                                @endforeach
-                                                            @endif
-                                                            @if(isset($item->params) && isset($item->params->ext_info))
-                                                                <?php $params = json_decode(json_encode($item->params->ext_info),true) ?>
-                                                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                                                    @foreach($dataAttribute as $index=>$att)
-                                                                        @if($att->position == 'text')
-                                                                            @if(isset($att->childs))
-                                                                                @foreach($att->childs as $child)
-                                                                                    @foreach($params as $key => $param)
-                                                                                        @if($key == $child->id)
-                                                                                            <tr>
-                                                                                                <td style="width:50%">{{ $child->title }}:</td>
-                                                                                                <td class="text-danger" style="font-weight: 700">{{ $param }}</td>
-                                                                                            </tr>
-                                                                                        @endif
-                                                                                    @endforeach
-                                                                                @endforeach
-                                                                            @endif
+                                                <p class="c-tab-header-account">Chi tiết tài khoản #{{ $item->randId }}</p>
+                                                <div class="table-nick-properties">
 
-                                                                        @endif
-                                                                    @endforeach
+                                                    @if(isset($item->groups))
+                                                        <?php $att_values = $item->groups ?>
+                                                        @foreach($att_values as $att_value)
+                                                            @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                                @if(isset($att_value->parent))
+                                                                    <div class="table-nick-items justify-content-between d-flex">
+                                                                        <div class="table-properties-name">{{ $att_value->parent->title??null }}</div>
+                                                                        <div class="table-properties-value">
+                                                                            {{ $att_value->title??null }}
+                                                                        </div>
+                                                                    </div>
                                                                 @endif
                                                             @endif
-                                                            </tbody>
-                                                        </table>
-                                                    </li>
-                                                </ul>
+                                                        @endforeach
+                                                    @endif
+                                                    @if(isset($item->params) && isset($item->params->ext_info))
+                                                        <?php $params = json_decode(json_encode($item->params->ext_info),true) ?>
+                                                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                                            @foreach($dataAttribute as $index=>$att)
+                                                                @if($att->position == 'text')
+                                                                    @if(isset($att->childs))
+                                                                        @foreach($att->childs as $child)
+                                                                            @foreach($params as $key => $param)
+                                                                                @if($key == $child->id)
+                                                                                    <div class="table-nick-items justify-content-between d-flex">
+                                                                                        <div class="table-properties-name">{{ $child->title }}</div>
+                                                                                        <div class="table-properties-value">
+                                                                                            {{ $param }}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endif
+                                                                            @endforeach
+                                                                        @endforeach
+                                                                    @endif
+
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -230,38 +230,28 @@
                                             });
                                         })
                                     </script>
-                                    <div class="form-group form-group_buyacc ">
-                                        @if(App\Library\AuthCustom::check())
-
-                                            @if(App\Library\AuthCustom::user()->balance < $data->price)
-                                                <div class="col-md-12"><label class="form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</label></div>
-                                            @else
-                                                <div class="col-md-12"><label class="form-control-label" style="text-align: center;margin: 10px 0; ">Tài khoản của bạn chưa cấu hình bảo mật ODP nên chỉ cần click vào nút xác nhận mua để hoàn tất giao dịch</label></div>
-                                            @endif
-
-                                        @else
-                                            <label class="col-md-12 form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn phải đăng nhập mới có thể mua tài khoản tự động.</label>
-                                        @endif
-
-                                    </div>
-
-                                    <div style="clear: both"></div>
                                 </div>
 
                                 <div class="modal-footer">
-
                                     @if(App\Library\AuthCustom::check())
 
                                         @if(App\Library\AuthCustom::user()->balance < $data->price)
-                                            <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2 btn-success" href="/nap-the" id="d3">Nạp thẻ cào</a>
-                                            <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2 btn-success" style="color: #FFFFFF" href="/recharge-atm">Nạp từ ATM - Ví điện tử</a>
+                                        <div class="nick-footer-notify">
+                                            <p style="color: #DA4343;">Số dư tài khoản không đủ để thanh toán vui lòng nạp tiền để tiếp tục giao dịch</p>
+                                        </div>
+                                        <div class="d-flex justify-content-center w-100">
+                                            <button class="btn-nick btn-ghost" disabled>Thanh toán</button>
+                                            <button class="btn-nick btn-primary" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp tiền</button>
+                                        </div>
                                         @else
-                                            <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs" style="background: rgb(238, 70, 35);color: #ffffff;position: relative"  id="d3">Xác nhận mua<div class="row justify-content-center loading-data__muangay"></div></button>
+                                            <div class="nick-footer-notify">
+                                                <p style="color: #1473CC;">Tài khoản của bạn chưa cấu hình ODP nên chỉ cần click vào nút xác nhận mua để hoàn tất giao dịch</p>
+                                            </div>
+                                            <button type="submit" class="btn-nick btn-primary loginBox__layma__button__displayabs" style="position: relative">Thanh toán</button>
                                         @endif
                                     @else
-                                        <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold nick-checkdangnhap" style="background: rgb(238, 70, 35);color: #ffffff" href="javascript:void(0)">Đăng nhập</a>
+                                        <button class="btn-nick btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#modal-login">Đăng nhập</button>
                                     @endif
-                                    <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
                                 </div>
                             </form>
                         </div>
@@ -272,11 +262,11 @@
                                 <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                      alt="{{ $item->title }}" class="entries_item-img">
                                 <h2 class="text-title text-left  fw-bold" style="color: #434657;margin-bottom: 8px;font-weight: 700">#{{ $item->randId }}</h2>
+                                <?php
+                                $total = 0;
+                                ?>
+                                @if($data->slug != "nick-lien-minh" && $data->slug != "nick-ninja-school" && $data->slug != "nick-ngoc-rong-online")
 
-                                @if($data->slug != "nick-lien-minh")
-                                    <?php
-                                    $total = 0;
-                                    ?>
                                     @if(isset($item->groups))
                                         <?php
                                         $att_values = $item->groups;
@@ -328,46 +318,115 @@
                                     @endif
                                 @else
                                     @if(isset($item->params))
-                                        @if(isset($item->params->rank_info))
+                                        @if($data->slug == "nick-lien-minh")
+                                            @if(isset($item->params->rank_info))
 
-                                            @foreach($item->params->rank_info as $rank_info)
-                                                @if($rank_info->queueType == "RANKED_TFT")
-{{--                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">RANKED TFT:--}}
-{{--                                                        @if($rank_info->tier == "NONE")--}}
-{{--                                                            {{ $rank_info->tier }}--}}
-{{--                                                        @else--}}
-{{--                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}--}}
-{{--                                                        @endif--}}
-{{--                                                    </p>--}}
+                                                @foreach($item->params->rank_info as $rank_info)
+                                                    @if($rank_info->queueType == "RANKED_TFT")
 
-                                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Rank:
-                                                        @if($rank_info->tier == "NONE")
-                                                            {{ $rank_info->tier }}
-                                                        @else
-                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                        @endif
+                                                    @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                        <p class="text-left" style="color: #82869E;margin-bottom: 4px">Rank:
+                                                            @if($rank_info->tier == "NONE")
+                                                                CHƯA CÓ RANK
+                                                            @else
+                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                            @endif
+                                                        </p>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                            @if(isset($item->params->rank_level))
+                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Level:
+                                                    {{ $item->params->rank_level }}
+                                                </p>
+
+                                            @endif
+
+                                            @if(isset($item->params->count))
+                                                @if(isset($item->params->count->champions))
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Số tướng :
+                                                        {{ $item->params->count->champions }}
                                                     </p>
                                                 @endif
-                                            @endforeach
-                                        @endif
-                                        @if(isset($item->params->rank_level))
-                                            <p class="text-left" style="color: #82869E;margin-bottom: 4px">Level:
-                                                {{ $item->params->rank_level }}
-                                            </p>
+                                                @if(isset($item->params->count->skins))
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Trang phục :
+                                                        {{ $item->params->count->skins }}
+                                                    </p>
+                                                @endif
+                                            @endif
+                                        @elseif($data->slug == "nick-ninja-school")
 
-                                        @endif
+                                            @php
+                                                $server = null;
+                                                $info = array();
 
-                                        @if(isset($item->params->count))
-                                            @if(isset($item->params->count->champions))
-                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Số tướng :
-                                                    {{ $item->params->count->champions }}
+                                                $params = $item->params;
+                                                if (isset($params->server)){
+                                                    $server = $params->server;
+                                                }
+                                                if (isset($params->info) && count($params->info)){
+                                                    $info = $params->info;
+                                                }
+                                            @endphp
+                                            @if(isset($server))
+                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Server:
+                                                    {{ $server??'' }}
                                                 </p>
                                             @endif
-                                            @if(isset($item->params->count->skins))
-                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Trang phục :
-                                                    {{ $item->params->count->skins }}
+
+                                            @if(isset($info) && count($info))
+                                                @foreach($info as $ke => $in)
+                                                    @if(in_array($in->name,config('module.acc.auto_ninja_list_tt')))
+                                                        <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $in->name??'' }}:
+                                                            @if($in->name == 'Yên')
+                                                                {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                            @else
+                                                                {{ $in->value??'' }}
+                                                            @endif
+                                                        </p>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @elseif($data->slug == "nick-ngoc-rong-online")
+
+                                            @php
+                                                $server = null;
+                                                $info = array();
+
+                                                $params = $item->params;
+                                                if (isset($params->server)){
+                                                    $server = $params->server;
+                                                }
+                                                if (isset($params->info) && count($params->info)){
+                                                    $info = $params->info;
+                                                }
+                                            @endphp
+                                            @if(isset($server))
+                                                <?php
+                                                $total = $total + 1;
+                                                ?>
+                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Server:
+                                                    {{ $server??'' }}
                                                 </p>
+                                            @endif
+
+                                            @if(isset($info) && count($info))
+                                                @foreach($info as $ke => $in)
+                                                    @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
+                                                        @if($total < 4)
+                                                            <?php
+                                                            $total = $total + 1;
+                                                            ?>
+                                                            <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $in->name??'' }}:
+                                                                @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                    {{ $in->value??'' }}
+                                                                @else
+                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                @endif
+                                                            </p>
+                                                        @endif
+                                                    @endif
+                                                @endforeach
                                             @endif
                                         @endif
                                     @endif

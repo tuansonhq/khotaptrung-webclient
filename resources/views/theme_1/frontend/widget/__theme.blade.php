@@ -87,7 +87,8 @@
             opacity: .8;
         }
         .content-video .container {
-            border: 1px solid #cccccc;
+            border: none;
+            /*border: 1px solid #cccccc;*/
         }
     </style>
     <script>

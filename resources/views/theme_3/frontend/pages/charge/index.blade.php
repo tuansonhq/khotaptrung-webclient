@@ -294,12 +294,10 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="tab-pane  @if(Request::is('recharge-atm')) active show @endif fade  mt-3 " id="atm_card" role="tabpanel" >
+                                <div class="tab-pane @if(Request::is('recharge-atm')) active show @endif fade mt-3" id="atm_card" role="tabpanel" >
+
                                     <form action="">
                                         <div class="box-charge-card">
-{{--                                            <div class="atm-card-title mb-fix-20">--}}
-{{--                                                <span>Để hoàn tất đơn nạp, bạn vui lòng chuyển khoản theo cú pháp sau:</span>--}}
-{{--                                            </div>--}}
                                             <div class="dialog--content mb-fix-20">
                                                 <div class="card--gray">
                                                     @if (setting('sys_tranfer_content') != "")
@@ -403,7 +401,7 @@
 
                                     <div class="row marginauto background-order-body-row-ct">
                                         <div class="col-auto left-right background-order-col-left-ct">
-                                            <span>Giá niêm yết</span>
+                                            <span>Mệnh giá</span>
                                         </div>
                                         <div class="col-auto left-right background-order-col-right-ct charge_amount">
 

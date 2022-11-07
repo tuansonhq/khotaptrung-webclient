@@ -1,8 +1,8 @@
 @extends('frontend.layouts.master')
 @section('scripts')
-    <script src="/js/{{theme('')->theme_key}}/store-card/store-card.js"></script>
+    {{-- <script src="/js/{{theme('')->theme_key}}/store-card/store-card.js"></script> --}}
 {{--    <script src="/assets/frontend/theme_3/js/js_phu/purchase_card.js?v={{time()}}"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/buycard.js"></script>--}}
+   <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/buycard.js"></script>
 @endsection
 @section('seo_head')
     @include('frontend.widget.__seo_head')
@@ -58,21 +58,24 @@
                                 <div class="tab-pane fade show active select-tag-type" id="card-game" role="tabpanel" aria-labelledby="card-game-tab">
                                     <ul class="cards__list row d-none d-lg-flex" id="cardGameListV2">
                                         @foreach($telecoms as $key => $telecom)
-                                            @if($telecom->params->teltecom_type == 2)
-                                                @if($key == 0)
-                                                    <li class="cards__item card__item-tag p_0">
-                                                        <input type="radio" id="card-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" checked hidden>
-                                                        <label for="card-{{ $telecom->id }}">
-                                                            <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->image }}">
-                                                        </label>
-                                                    </li>
-                                                @else
-                                                    <li class="cards__item card__item-tag p_0">
-                                                        <input type="radio" id="card-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type"  hidden>
-                                                        <label for="card-{{ $telecom->id }}">
-                                                            <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->image }}">
-                                                        </label>
-                                                    </li>
+                                            @if(isset($telecom->params->teltecom_type))
+
+                                                @if($telecom->params->teltecom_type == 2)
+                                                    @if($key == 0)
+                                                        <li class="cards__item card__item-tag p_0">
+                                                            <input type="radio" id="card-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" checked hidden>
+                                                            <label for="card-{{ $telecom->id }}">
+                                                                <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->image }}">
+                                                            </label>
+                                                        </li>
+                                                    @else
+                                                        <li class="cards__item card__item-tag p_0">
+                                                            <input type="radio" id="card-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type"  hidden>
+                                                            <label for="card-{{ $telecom->id }}">
+                                                                <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->image }}">
+                                                            </label>
+                                                        </li>
+                                                    @endif
                                                 @endif
                                             @endif
                                         @endforeach
@@ -81,27 +84,29 @@
                                         <div class="swiper-wrapper" id="cardGameListMobileV2">
 
                                             @foreach($telecoms as $key => $telecom)
-                                                @if($telecom->params->teltecom_type == 2)
-                                                    @if($key == 0)
-                                                        <div class="swiper-slide">
-                                                            <div class="cards__item  w-100">
-                                                                <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" checked hidden>
+                                                @if(isset($telecom->params->teltecom_type))
+                                                    @if($telecom->params->teltecom_type == 2)
+                                                        @if($key == 0)
+                                                            <div class="swiper-slide">
+                                                                <div class="cards__item  w-100">
+                                                                    <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" checked hidden>
 
-                                                                <label for="card-mobile-{{ $telecom->id }}">
-                                                                    <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
-                                                                </label>
+                                                                    <label for="card-mobile-{{ $telecom->id }}">
+                                                                        <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
+                                                                    </label>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    @else
-                                                        <div class="swiper-slide">
-                                                            <div class="cards__item  w-100">
-                                                                <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" hidden>
+                                                        @else
+                                                            <div class="swiper-slide">
+                                                                <div class="cards__item  w-100">
+                                                                    <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" hidden>
 
-                                                                <label for="card-mobile-{{ $telecom->id }}">
-                                                                    <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
-                                                                </label>
+                                                                    <label for="card-mobile-{{ $telecom->id }}">
+                                                                        <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
+                                                                    </label>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        @endif
                                                     @endif
                                                 @endif
                                             @endforeach
@@ -113,22 +118,31 @@
                                 <div class="tab-pane fade" id="card-phone" role="tabpanel" aria-labelledby="card-phone-tab">
                                     <ul class="cards__list row d-none d-lg-flex" id="cardPhoneListV2">
                                         @foreach($telecoms as $key => $telecom)
-                                            @if($telecom->params->teltecom_type != 2)
-                                                @if($key == 0)
-                                                    <li class="cards__item card__item-tag p_0">
-                                                        <input type="radio" id="card-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" checked hidden>
-                                                        <label for="card-{{ $telecom->id }}">
-                                                            <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->image }}">
-                                                        </label>
-                                                    </li>
-                                                @else
-                                                    <li class="cards__item card__item-tag p_0">
-                                                        <input type="radio" id="card-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type"  hidden>
-                                                        <label for="card-{{ $telecom->id }}">
-                                                            <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->image }}">
-                                                        </label>
-                                                    </li>
+                                            @if(isset($telecom->params->teltecom_type))
+                                                @if($telecom->params->teltecom_type != 2)
+                                                    @if($key == 0)
+                                                        <li class="cards__item card__item-tag p_0">
+                                                            <input type="radio" id="card-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" checked hidden>
+                                                            <label for="card-{{ $telecom->id }}">
+                                                                <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->image }}">
+                                                            </label>
+                                                        </li>
+                                                    @else
+                                                        <li class="cards__item card__item-tag p_0">
+                                                            <input type="radio" id="card-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type"  hidden>
+                                                            <label for="card-{{ $telecom->id }}">
+                                                                <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->image }}">
+                                                            </label>
+                                                        </li>
+                                                    @endif
                                                 @endif
+                                            @else
+                                                <li class="cards__item card__item-tag p_0">
+                                                    <input type="radio" id="card-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" hidden>
+                                                    <label for="card-{{ $telecom->id }}">
+                                                        <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->image }}">
+                                                    </label>
+                                                </li>
                                             @endif
                                         @endforeach
                                     </ul>
@@ -136,28 +150,40 @@
                                         <div class="swiper-wrapper" id="cardPhoneListMobileV2">
 
                                             @foreach($telecoms as $key => $telecom)
-                                                @if($telecom->params->teltecom_type != 2)
-                                                    @if($key == 0)
-                                                        <div class="swiper-slide">
-                                                            <div class="cards__item  w-100">
-                                                                <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" checked hidden>
+                                                @if(isset($telecom->params->teltecom_type))
+                                                    @if($telecom->params->teltecom_type != 2)
+                                                        @if($key == 0)
+                                                            <div class="swiper-slide">
+                                                                <div class="cards__item  w-100">
+                                                                    <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" checked hidden>
 
-                                                                <label for="card-mobile-{{ $telecom->id }}">
-                                                                    <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
-                                                                </label>
+                                                                    <label for="card-mobile-{{ $telecom->id }}">
+                                                                        <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
+                                                                    </label>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    @else
-                                                        <div class="swiper-slide">
-                                                            <div class="cards__item  w-100">
-                                                                <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" hidden>
+                                                        @else
+                                                            <div class="swiper-slide">
+                                                                <div class="cards__item  w-100">
+                                                                    <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" hidden>
 
-                                                                <label for="card-mobile-{{ $telecom->id }}">
-                                                                    <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
-                                                                </label>
+                                                                    <label for="card-mobile-{{ $telecom->id }}">
+                                                                        <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
+                                                                    </label>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        @endif
                                                     @endif
+                                                @else
+                                                    <div class="swiper-slide">
+                                                        <div class="cards__item  w-100">
+                                                            <input type="radio" id="card-mobile-{{ $telecom->id }}" value="{{ $telecom->key }}" data-img="{{ $telecom->image }}" name="card-type" hidden>
+
+                                                            <label for="card-mobile-{{ $telecom->id }}">
+                                                                <img src="{{ $telecom->image }}" class="card--logo" alt="{{ $telecom->title }}">
+                                                            </label>
+                                                        </div>
+                                                    </div>
                                                 @endif
                                             @endforeach
 
@@ -304,7 +330,7 @@
                         </div>
                         <div class="card--attr">
                             <div class="card--attr__name">
-                                Giá niêm yết
+                                Mệnh giá
                             </div>
                             <div class="card--attr__value" id="confirmMobilePrice">
 
@@ -396,7 +422,7 @@
                                 </div>
                                 <div class="card--attr">
                                     <div class="card--attr__name">
-                                        Giá niêm yết
+                                        Mệnh giá
                                     </div>
                                     <div class="card--attr__value" id="confirmPrice">
 
@@ -527,7 +553,7 @@
                                 </div>
                                 <div class="card--attr">
                                     <div class="card--attr__name">
-                                        Giá niêm yết
+                                        Mệnh giá
                                     </div>
                                     <div class="card--attr__value" id="successPrice">
 

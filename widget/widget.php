@@ -645,6 +645,20 @@ View::composer('frontend.widget.__menu_profile', function ($view) {
     return $view->with('data',$data);
 
 });
+View::composer('frontend.widget.__menu_profile_header', function ($view) {
+    $data = \Cache::rememberForever('__menu_profile_header', function() {
+        $url = '/menu-profile';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
 
 View::composer('frontend.widget.__menu_profile_desktop', function ($view) {
     $data = \Cache::rememberForever('__menu_profile_desktop', function() {
@@ -738,7 +752,6 @@ View::composer('frontend.pages.article.widget.__danh__muc', function ($view) {
 
         return $datacate = $result_Api->response_data->datacategory??null;
     });
-
 
     return $view->with('datacate', $datacate);
 
@@ -842,7 +855,6 @@ View::composer('frontend.widget.__menu__category__article__index', function ($vi
         return $data = $result_Api->response_data->data->data??null;
 
     });
-
     return $view->with('data',$data);
 
 });
@@ -972,8 +984,8 @@ View::composer('frontend.widget.__slider__banner__napthe', function ($view) {
 View::composer('frontend.widget.__services__other', function ($view) {
 
     $data = \Cache::rememberForever('__services__other', function() {
-        $url = '/menu-transaction';
-        $method = "POST";
+        $url = '/get-dich-vu-noibat';
+        $method = "GET";
         $dataSend = array();
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
@@ -1349,4 +1361,68 @@ View::composer('frontend.widget.__menu__category__article_theme_5', function ($v
     }
 
     return $view->with('data_category', $data)->with('data_detail', $dataDetail);
+});
+
+View::composer('frontend.widget.__list__service__mobile', function ($view) {
+
+    $data = \Cache::rememberForever('__list__service__mobile', function() {
+        $url = '/menu-category';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+View::composer('frontend.widget.__menu__bottom', function ($view) {
+
+    $data = \Cache::rememberForever('__menu__bottom', function() {
+        $url = '/menu-transaction';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+
+//Related service and related acc in news page theme_5
+
+View::composer('frontend.widget.__related__acc__article_theme_5', function ($view) {
+
+    $data = \Cache::rememberForever('__related__acc__article_theme_5', function() {
+        $url = '/acc';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['data'] = 'category_list';
+        $dataSend['module'] = 'acc_category';
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+    });
+
+    return $view->with('data_acc',$data);
+
+});
+
+View::composer('frontend.widget.__related__service__article_theme_5', function ($view) {
+
+    $data = \Cache::rememberForever('__related__service__article_theme_5', function() {
+        $url = '/service';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['limit'] = 8;
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data->data??null;
+    });
+
+    return $view->with('data_service',$data);
+
 });

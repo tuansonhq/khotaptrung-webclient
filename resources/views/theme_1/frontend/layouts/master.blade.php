@@ -77,8 +77,8 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/rateit/examples.js"></script>
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazy/jquery.lazy.min.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazy/jquery.lazy.plugins.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload2/jquery.lazy.min.js"></script>
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazy/jquery.lazy.plugins.min.js"></script>--}}
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
@@ -198,7 +198,6 @@
 </head>
 <body>
 @include('frontend.widget.__theme')
-
 
 @if(setting('sys_google_tag_manager_body') != '')
     <!-- Google Tag Manager (noscript) -->

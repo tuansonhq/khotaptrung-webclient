@@ -1,4 +1,5 @@
 
+
 <!-- BEGIN List Items -->
 {{--@dd($data->data)--}}
 
@@ -147,9 +148,9 @@
 
             @endforeach
         @else
-{{--            <div class="col-md-12 data-card">--}}
-{{--                <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>--}}
-{{--            </div>--}}
+            {{--            <div class="col-md-12 data-card">--}}
+            {{--                <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>--}}
+            {{--            </div>--}}
 
         @endif
     </div>

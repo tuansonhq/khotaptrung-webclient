@@ -1981,6 +1981,20 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 .default-paginate .pagination-sm .page-item:last-child .page-link:after {
     background-image: url(../image/icons/arrows/pg-next.png);
 }
+
+.modal-lmht .default-paginate .pagination-sm .page-item:first-child .page-link,
+.modal-lmht .default-paginate .pagination-sm .page-item:last-child .page-link
+{
+    display: block;
+    align-items: unset;
+    width: inherit;
+}
+.modal-lmht .default-paginate .pagination-sm .page-item:first-child .page-link:after,
+.modal-lmht .default-paginate .pagination-sm .page-item:last-child .page-link:after
+{
+    content: none;
+}
+
 /* Hết Phân trang */
 
 .li-boloc{
@@ -3551,7 +3565,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 .button-success-secondary a {
     display: block;
     color: #F67600;
-    padding: 12px 0;
+    padding: 10px 0;
     font-size: 16px;
     font-weight: 600;
 }
@@ -3568,6 +3582,23 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     color: #FFFFFF;
 }
 
+.button-success-secondary:disabled {
+    border: 1px solid #7D7D7D;
+}
+
+.button-success-secondary:disabled a {
+    color: #7D7D7D;
+    font-weight: 400;
+}
+
+.button-success-secondary:disabled:hover {
+    background: transparent;
+}
+
+.button-success-secondary:disabled:hover a {
+    color: #7D7D7D;
+}
+
 .button-success-primary {
     width: 100%;
     border: 1px solid #F67600;
@@ -3578,7 +3609,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 .button-success-primary a {
     display: block;
     color: #FFFFFF;
-    padding: 12px 0;
+    padding: 10px 0;
     font-size: 16px;
     font-weight: 600;
 }
@@ -6721,5 +6752,43 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     height: auto;
 }
 
+/* Suggest list */
+.suggest-list {
+    background-color: #fff;
+    border: 1px solid #E4E5F0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    z-index: 1;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 290px;
+    overflow-y: auto;
+}
+.suggest-list:empty {
+    display: none;
+}
+.suggest-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Handle */
+.suggest-list::-webkit-scrollbar-thumb {
+    background: rgba(188, 191, 214, 0.5);
+    border-radius: 14px;
+}
+
+.suggest-list .suggest-item {
+    text-align: left;
+    padding: 12px;
+    cursor: pointer;
+}
+.suggest-list .suggest-item:not(:last-child) {
+    box-shadow: inset 0 -1px 0 #E4E5F0;
+}
+/* End suggest list */
 
 

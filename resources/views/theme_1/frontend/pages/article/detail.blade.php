@@ -69,5 +69,7 @@
         @include('frontend.widget.__bai__viet__lien__quan')
     </div>
     @endif
+    @include('frontend.widget.__theme')
+
 @endsection
 

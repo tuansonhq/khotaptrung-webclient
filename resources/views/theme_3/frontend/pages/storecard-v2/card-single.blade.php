@@ -282,7 +282,7 @@
                 </div>
                 <div class="card--attr">
                     <div class="card--attr__name">
-                        Giá niêm yết
+                        Mệnh giá
                     </div>
                     <div class="card--attr__value" id="detail--deno__mobile">
                         10.000 đ

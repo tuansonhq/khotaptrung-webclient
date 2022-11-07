@@ -66,7 +66,7 @@ header nav.heading .header-container {
     background: white;
     right: 0;
     top: 64px;
-    transition: .2s;
+    transition: .5s;
     overflow: hidden;
     box-shadow: 0 5px 5px -5px #00000033;
 }
@@ -82,11 +82,11 @@ header nav.heading .header-container {
 
 .box-menu:hover .menu-list{
     height: 60px;
-    transition: .2s;
+    transition: .5s;
 }
 .menu-fix .menu-list{
     height: 60px !important;
-    transition: .2s;
+    transition: .5s;
 
 
 }
@@ -290,3 +290,6 @@ header nav.heading .header-container {
     }
 }
 /* End Header responsive */
+.box-search_mobile{
+    display: none;
+}

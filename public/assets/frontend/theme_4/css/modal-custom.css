@@ -529,3 +529,172 @@
 .swiper-slide{
     border-radius: 8px;
 }
+
+.lm_xemthem {
+    cursor: pointer;
+    color: #ffffff;
+    background: #82869E;
+    border-radius: 4px;
+    padding: 2px 6px;
+    border: 1px solid #82869E;
+}
+
+.lm_xemthem:hover {
+    color: rgb(238, 70, 35)!important;
+    background: transparent!important;
+    border: 1px solid rgb(238, 70, 35)!important;
+}
+
+.modal-nick-auto-lol .modal-header {
+    position: relative;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.nick-auto-title {
+    margin-right: 24px;
+}
+
+.nick-auto-title-content {
+    line-height: 32px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.nick-auto-count {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.form-search {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.input-search-lmht {
+    width: 264px;
+}
+
+.submit--search {
+    position: absolute;
+    background: #32c5d2;
+    border: 1px solid #32c5d2;
+    padding: 15px;
+    border-radius: 4px;
+    right: 4px;
+}
+
+.modal-nick-auto-lol .modal-body {
+    padding-right: 18px;
+    padding-left: 18px;
+    padding-top: 10px;
+    padding-bottom: 0;
+    max-width: 1140px;
+    --tw-bg-opacity: 1;
+    background-color: #ffffff;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    height: 600px;
+    max-height: 600px;
+    overflow: auto;
+}
+
+.item-nick-lmht {
+    padding: 8px 6px;
+}
+
+.item-nick-lmht__border {
+    padding: 8px 8px 0 8px;
+    border: 1px solid #E4E5F0;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.item-nick-lmht a .item-nick-lmht__border__col {
+    border-radius: 4px;
+}
+
+.item-nick-lmht__border__col {
+    padding-bottom: 100%;
+    overflow: hidden;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.item-nick-lmht__border__img {
+    position: absolute;
+    border-radius: 4px;
+    transition: 0.2s;
+    object-fit: cover;
+    height: 100%;
+}
+
+.properties-lol-title {
+    font-weight: 400;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.body-modal__nick__text-error {
+    text-align: center;
+    color: red;
+}
+
+@media (min-width: 992px) {
+    .modal-nick-auto-lol .modal-dialog {
+        max-width: 1140px!important;
+    }
+}
+
+@media (max-width: 992px) {
+    .input-search-lmht {
+        width: 194px;
+    }
+}
+
+.sugges_list {
+    background-color: #fff;
+    border: 1px solid #E4E5F0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    z-index: 1;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 290px;
+    overflow-y: auto;
+}
+.sugges_list:empty {
+    display: none;
+}
+.sugges_list::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Handle */
+.sugges_list::-webkit-scrollbar-thumb {
+    background: rgba(188, 191, 214, 0.5);
+    border-radius: 14px;
+}
+
+.sugges_list .sugges_item {
+    text-align: left;
+    padding: 12px;
+    cursor: pointer;
+}
+.sugges_list .sugges_item:not(:last-child){
+    box-shadow: inset 0 -1px 0 #E4E5F0;
+}
+

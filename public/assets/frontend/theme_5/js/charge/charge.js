@@ -440,5 +440,32 @@ $(document).ready(function () {
         });
     }
 
+    // Active swiper atm bank list both in modal and in pages
+    let swiper_bank_lists = new Swiper('.swiper-bank-list', {
+        autoplay: false,
+        updateOnImagesReady: true,
+        watchSlidesVisibility: false,
+        lazyLoadingInPrevNext: false,
+        lazyLoadingOnTransitionStart: false,
+        slidesPerView: 6,
+        speed: 300,
+        spaceBetween: 16,
+        allowTouchMove: false,
+        grabCursor: false,
+        observer: true,
+        observeParents: true,
+        freeMode: false,
+        breakpoints: {
+            992: {
+                allowTouchMove: true,
+                slidesPerView: 5,
+            },
+            768: {
+                allowTouchMove: true,
+                slidesPerView: 2.8,
+                spaceBetween: 12,
+            }
+        }
+    });
 
 });

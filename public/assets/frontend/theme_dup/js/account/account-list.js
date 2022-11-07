@@ -95,7 +95,7 @@ $(document).ready(function(){
 
             },
             complete: function (data) {
-
+                LazyLoad();
             }
         });
     }
@@ -109,6 +109,8 @@ $(document).ready(function(){
         $('.loading-data__timkiem').html(htmlloading);
 
         var id = $('.id').val();
+        var rand_id = $('.acc_ranId').val();
+
         var title = $('.title').val();
         var price = $('.price').val();
         var status = $('.status').val();
@@ -121,12 +123,11 @@ $(document).ready(function(){
 
             itemselect += $(elm).val();
         })
-        if (id == null || id == undefined || id == ''){
+        if (id == null || id == undefined || id == '' || rand_id == null || rand_id == undefined || rand_id == ''){
             $('.id_data').val('');
         }else {
-            $('.id_data').val(id);
+            $('.id_data').val(rand_id+id);
         }
-
         if (title == null || title == undefined || title == ''){
             $('.title_data').val('');
         }else {
@@ -250,6 +251,7 @@ $(document).ready(function(){
         e.preventDefault();
 
         var id = $('.id-mobile').val();
+        var rand_id = $('.acc_ranId').val();
         var title = $('.title-mobile').val();
         var price = $('.price-mobile').val();
         var status = $('.status-mobile').val();
@@ -261,10 +263,10 @@ $(document).ready(function(){
 
             itemselect += $(elm).val();
         })
-        if (id == null || id == undefined || id == ''){
+        if (id == null || id == undefined || id == '' || rand_id == null || rand_id == undefined || rand_id == ''){
             $('.id_data').val('');
         }else {
-            $('.id_data').val(id);
+            $('.id_data').val(rand_id+id);
         }
 
         if (title == null || title == undefined || title == ''){
@@ -329,6 +331,7 @@ $(document).ready(function(){
         }
 
         var id_data = $('.id_data').val();
+        console.log(id_data)
         var title_data = $('.title_data').val();
         var price_data = $('.price_data').val();
         var status_data = $('.status_data').val();

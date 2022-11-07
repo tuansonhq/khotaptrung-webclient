@@ -155,106 +155,142 @@
                                     </select>
                                 </div>
                                 @if(isset($auto_properties))
-                                    @foreach($auto_properties as $auto_propertie)
-                                        @if($auto_propertie->key == 'champions')
-                                            <div class="input-group">
-                                                <label class="form-label">
-                                                    {{ $auto_propertie->name }}
-                                                </label>
-                                                <select name="champions_data" class="select-2-custom w-100" id="">
-                                                    <option value="">--Không chọn--</option>
-                                                    @if(isset($auto_propertie->childs))
-                                                        @foreach($auto_propertie->childs as $child)
-                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
-                                                        @endforeach
-                                                    @endif
-                                                </select>
-                                            </div>
+                                    @if($slug == 'nick-lien-minh')
+                                        @foreach($auto_properties as $auto_propertie)
 
-                                            <div class="input-group">
-                                                <label class="form-label">
-                                                    Trang phục
-                                                </label>
-                                                <select name="skill_data" class="select-2-custom w-100" id="">
-                                                    <option value="">--Không chọn--</option>
-                                                    @if(isset($auto_propertie->childs) && count($auto_propertie->childs))
-                                                        @foreach($auto_propertie->childs as $child)
-
-                                                            @if(isset($child->childs) && count($child->childs))
-                                                                @foreach($child->childs as $c_child)
-                                                                    <option value="{{ $c_child->id }}">{{ $c_child->name }}</option>
+                                                @if($auto_propertie->key == 'champions')
+                                                    <div class="input-group">
+                                                        <label class="form-label">
+                                                            {{ $auto_propertie->name }}
+                                                        </label>
+                                                        <select name="champions_data" class="select-2-custom w-100" id="">
+                                                            <option value="">--Không chọn--</option>
+                                                            @if(isset($auto_propertie->childs))
+                                                                @foreach($auto_propertie->childs as $child)
+                                                                    <option value="{{ $child->id }}">{{ $child->name }}</option>
                                                                 @endforeach
                                                             @endif
+                                                        </select>
+                                                    </div>
 
-                                                        @endforeach
-                                                    @endif
-                                                </select>
-                                            </div>
+                                                    <div class="input-group">
+                                                        <label class="form-label">
+                                                            Trang phục
+                                                        </label>
+                                                        <select name="skill_data" class="select-2-custom w-100" id="">
+                                                            <option value="">--Không chọn--</option>
+                                                            @if(isset($auto_propertie->childs) && count($auto_propertie->childs))
+                                                                @foreach($auto_propertie->childs as $child)
 
-                                        @elseif($auto_propertie->key == 'tftcompanions')
-                                            <div class="input-group">
-                                                <label class="form-label">
-                                                    {{ $auto_propertie->name }}
-                                                </label>
-                                                <select name="tftcompanions_data" class="select-2-custom w-100" id="">
-                                                    <option value="">--Không chọn--</option>
-                                                    @if($auto_propertie->childs)
-                                                        @foreach($auto_propertie->childs as $child)
-                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
-                                                        @endforeach
-                                                    @endif
-                                                </select>
-                                            </div>
-                                        @elseif($auto_propertie->key == 'tftmapskins')
-                                            <div class="input-group">
-                                                <label class="form-label">
-                                                    {{ $auto_propertie->name }}
-                                                </label>
-                                                <select name="tftmapskins_data" class="select-2-custom w-100" id="">
-                                                    <option value="">--Không chọn--</option>
-                                                    @if($auto_propertie->childs)
-                                                        @foreach($auto_propertie->childs as $child)
-                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
-                                                        @endforeach
-                                                    @endif
-                                                </select>
-                                            </div>
+                                                                    @if(isset($child->childs) && count($child->childs))
+                                                                        @foreach($child->childs as $c_child)
+                                                                            <option value="{{ $c_child->id }}">{{ $c_child->name }}</option>
+                                                                        @endforeach
+                                                                    @endif
 
-                                        @elseif($auto_propertie->key == 'tftdamageskins')
-                                            <div class="input-group">
-                                                <label class="form-label">
-                                                    {{ $auto_propertie->name }}
-                                                </label>
-                                                <select name="tftdamageskins_data" class="select-2-custom w-100" id="">
-                                                    <option value="">--Không chọn--</option>
-                                                    @if($auto_propertie->childs)
-                                                        @foreach($auto_propertie->childs as $child)
-                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
-                                                        @endforeach
-                                                    @endif
-                                                </select>
-                                            </div>
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
+                                                    </div>
 
-                                        @endif
-                                    @endforeach
+                                                @elseif($auto_propertie->key == 'tftcompanions')
+                                                    <div class="input-group">
+                                                        <label class="form-label">
+                                                            {{ $auto_propertie->name }}
+                                                        </label>
+                                                        <select name="tftcompanions_data" class="select-2-custom w-100" id="">
+                                                            <option value="">--Không chọn--</option>
+                                                            @if($auto_propertie->childs)
+                                                                @foreach($auto_propertie->childs as $child)
+                                                                    <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
+                                                    </div>
+                                                @elseif($auto_propertie->key == 'tftmapskins')
+                                                    <div class="input-group">
+                                                        <label class="form-label">
+                                                            {{ $auto_propertie->name }}
+                                                        </label>
+                                                        <select name="tftmapskins_data" class="select-2-custom w-100" id="">
+                                                            <option value="">--Không chọn--</option>
+                                                            @if($auto_propertie->childs)
+                                                                @foreach($auto_propertie->childs as $child)
+                                                                    <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
+                                                    </div>
+
+                                                @elseif($auto_propertie->key == 'tftdamageskins')
+                                                    <div class="input-group">
+                                                        <label class="form-label">
+                                                            {{ $auto_propertie->name }}
+                                                        </label>
+                                                        <select name="tftdamageskins_data" class="select-2-custom w-100" id="">
+                                                            <option value="">--Không chọn--</option>
+                                                            @if($auto_propertie->childs)
+                                                                @foreach($auto_propertie->childs as $child)
+                                                                    <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
+                                                    </div>
+                                                @endif
+                                        @endforeach
+                                    @elseif($slug == 'nick-ninja-school')
+                                        @foreach($auto_properties as $auto_propertie)
+                                            @if($auto_propertie->key == 'CAPTURES')
+                                                <div class="input-group">
+                                                    <label class="form-label">
+                                                        {{ $auto_propertie->key }}
+                                                    </label>
+                                                    <select name="tftcompanions_data" class="select-2-custom w-100" id="">
+                                                        <option value="">--Không chọn--</option>
+                                                        @if($auto_propertie->childs)
+                                                            @foreach($auto_propertie->childs as $child)
+                                                                <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                            @else
+
+                                                <div class="input-group">
+                                                    <label class="form-label">
+                                                        {{ $auto_propertie->key }}
+                                                    </label>
+                                                    <select name="tftmapskins_data" class="select-2-custom w-100" id="">
+                                                        <option value="">--Không chọn--</option>
+                                                        @if($auto_propertie->childs)
+                                                            @foreach($auto_propertie->childs as $child)
+                                                                <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                </div>
+
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 @else
-                                @if(isset($dataAttribute) && count($dataAttribute) > 0)
-                                    @foreach($dataAttribute as $val)
-                                        @if($val->position == 'select')
-                                            <div class="input-group">
-                                                <label class="form-label">
-                                                    {{ $val->title }}
-                                                </label>
-                                                <select class="account-filter-field" name="select_data"  data-title="{{ $val->title }}">
-                                                    <option value="" selected>--Không chọn--</option>
-                                                    @foreach($val->childs as $child)
-                                                        <option value="{{ $child->id }}">{{ $child->title }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                @endif
+                                    @if(isset($dataAttribute) && count($dataAttribute) > 0)
+                                        @foreach($dataAttribute as $val)
+                                            @if($val->position == 'select')
+                                                <div class="input-group">
+                                                    <label class="form-label">
+                                                        {{ $val->title }}
+                                                    </label>
+                                                    <select class="account-filter-field" name="select_data"  data-title="{{ $val->title }}">
+                                                        <option value="" selected>--Không chọn--</option>
+                                                        @foreach($val->childs as $child)
+                                                            <option value="{{ $child->id }}">{{ $child->title }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 @endif
 {{--                                <div class="input-group">--}}
 {{--                                    <label class="form-label">--}}
@@ -320,24 +356,138 @@
                                     <option value="10000000">Trên 10 Triệu</option>
                                 </select>
                             </div>
+                            @if(isset($auto_properties))
+                                @if($slug == 'nick-lien-minh')
+                                    @foreach($auto_properties as $auto_propertie)
 
-                            @if(isset($dataAttribute) && count($dataAttribute) > 0)
-                                @foreach($dataAttribute as $val)
-                                    @if($val->position == 'select')
-                                        <div class="input-group">
-                                            <label class="form-label">
-                                                {{ $val->title }}
-                                            </label>
-                                            <select class="account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}" id="">
-                                                <option value="" selected disabled>--Không chọn--</option>
-                                                @foreach($val->childs as $child)
-                                                    <option value="{{ $child->id }}">{{ $child->title }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    @endif
-                                @endforeach
+                                        @if($auto_propertie->key == 'champions')
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    {{ $auto_propertie->key }}
+                                                </label>
+                                                <select class="account-filter-field" name="champions_data"  data-title="{{ $auto_propertie->key }}" id="">
+                                                    <option value="" selected disabled>--Không chọn--</option>
+                                                    @if(isset($auto_propertie->childs))
+                                                        @foreach($auto_propertie->childs as $child)
+                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                        @endforeach
+                                                    @endif
+
+                                                </select>
+                                            </div>
+
+                                        @elseif($auto_propertie->key == 'tftcompanions')
+
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    {{ $auto_propertie->key }}
+                                                </label>
+                                                <select class="account-filter-field" name="tftcompanions_data"  data-title="{{ $auto_propertie->key }}" id="">
+                                                    <option value="" selected disabled>--Không chọn--</option>
+                                                    @if(isset($auto_propertie->childs))
+                                                        @foreach($auto_propertie->childs as $child)
+                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                        @endforeach
+                                                    @endif
+
+                                                </select>
+                                            </div>
+
+                                        @elseif($auto_propertie->key == 'tftmapskins')
+
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    {{ $auto_propertie->key }}
+                                                </label>
+                                                <select class="account-filter-field" name="tftmapskins_data"  data-title="{{ $auto_propertie->key }}" id="">
+                                                    <option value="" selected disabled>--Không chọn--</option>
+                                                    @if(isset($auto_propertie->childs))
+                                                        @foreach($auto_propertie->childs as $child)
+                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                        @endforeach
+                                                    @endif
+
+                                                </select>
+                                            </div>
+
+                                        @elseif($auto_propertie->key == 'tftdamageskins')
+
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    {{ $auto_propertie->key }}
+                                                </label>
+                                                <select class="account-filter-field" name="tftdamageskins_data"  data-title="{{ $auto_propertie->key }}" id="">
+                                                    <option value="" selected disabled>--Không chọn--</option>
+                                                    @if(isset($auto_propertie->childs))
+                                                        @foreach($auto_propertie->childs as $child)
+                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                        @endforeach
+                                                    @endif
+
+                                                </select>
+                                            </div>
+
+                                        @endif
+                                    @endforeach
+                                @elseif($slug == 'nick-ninja-school')
+                                    @foreach($auto_properties as $auto_propertie)
+                                        @if($auto_propertie->key == 'CAPTURES')
+
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    {{ $auto_propertie->key }}
+                                                </label>
+                                                <select class="account-filter-field" name="tftcompanions_data"  data-title="{{ $auto_propertie->key }}" id="">
+                                                    <option value="" selected disabled>--Không chọn--</option>
+                                                    @if(isset($auto_propertie->childs))
+                                                        @foreach($auto_propertie->childs as $child)
+                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                        @endforeach
+                                                    @endif
+
+                                                </select>
+                                            </div>
+
+                                        @else
+
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    {{ $auto_propertie->key }}
+                                                </label>
+                                                <select class="account-filter-field" name="tftmapskins_data"  data-title="{{ $auto_propertie->key }}" id="">
+                                                    <option value="" selected disabled>--Không chọn--</option>
+                                                    @if(isset($auto_propertie->childs))
+                                                        @foreach($auto_propertie->childs as $child)
+                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                        @endforeach
+                                                    @endif
+
+                                                </select>
+                                            </div>
+
+                                        @endif
+                                    @endforeach
+                                @endif
+                            @else
+                                @if(isset($dataAttribute) && count($dataAttribute) > 0)
+                                    @foreach($dataAttribute as $val)
+                                        @if($val->position == 'select')
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    {{ $val->title }}
+                                                </label>
+                                                <select class="account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}" id="">
+                                                    <option value="" selected disabled>--Không chọn--</option>
+                                                    @foreach($val->childs as $child)
+                                                        <option value="{{ $child->id }}">{{ $child->title }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
                             @endif
+
                         </div>
                         <div class="sheet-footer">
                             <button type="button" class="btn ghost js-reset-form">Xoá bộ lọc</button>
@@ -400,7 +550,7 @@
             <input type="hidden" name="sort_by_data" class="sort_by_data" value="">
 
             {{--    Modal xác nhận thanh toán--}}
-            <div class="modal fade modal__buyacount loadModal__acount" id="LoadModal">
+            <div class="modal fade modal__buyacount loadModal__acount modal-big" id="LoadModal">
                 <div class="modal-dialog modal-dialog-centered modal-custom">
                     <div class="modal-content c-p-24 data__form__random">
 
@@ -408,26 +558,31 @@
                 </div>
             </div>
 
-            <!-- Modal 04 -->
-            <div class="modal fade modal-small" id="notBuy">
+            <div class="modal fade modal-small" id="successNickRandomPurchase">
                 <div class="modal-dialog modal-dialog-centered modal-custom">
                     <div class="modal-content">
                         <div class="modal-header justify-content-center p-0">
-                            <img class="c-pt-16 c-pb-16" src="/assets/frontend/{{theme('')->theme_key}}/image/son/thatbai.png" alt="">
+                            <img class="c-pt-20 c-pb-20" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png" alt="">
                         </div>
                         <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
-                            <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua thẻ nick thất bại</p>
-                            <p class="fw-400 fz-13 c-mt-10 mb-0">Rất tiếc việc mua nick đã thất bại do tài khoản của bạn không đủ, vui lòng nạp tiền để tiếp tục giao dịch!</p>
+                            <p class="fw-700 fz-15 fz-lg-15 fz-md-14 fz-sm-12 c-mt-12 mb-0 text-title-theme">Mua Nick thành công</p>
+                            <div class="input-group c-mt-16">
+                                <div class="form-label">ID tài khoản</div>
+                                <div class="toggle-password">
+                                    <input id="nickIdInput" type="password" placeholder="ID tài khoản" class="password" value="">
+                                </div>
+                            </div>
+                            <p class="fw-400 fz-13 fz-lg-13 fz-md-12 fz-sm-11 c-mt-16 mb-0">
+                                Nick của bạn được sẽ gửi tới trang Lịch sử mua Nick, vui lòng kiểm tra và đăng nhập vào Game để thay đổi mật khẩu để bảo mật cho tài khoản đã mua
+                            </p>
                         </div>
                         <div class="modal-footer c-p-24">
-                            <a href="/recharge-atm" class="btn secondary" data-dismiss="modal">Nạp ATM</a>
-                            <a href="/nap-the" class="btn primary">Nạp tiền</a>
+                            <a class="btn secondary" href="/" style="width: calc(40% - 6px);">Trang chủ</a>
+                            <a class="btn primary" href="/lich-su-mua-account" style="width: calc(60% - 6px);">Lịch sử mua hàng</a>
                         </div>
                     </div>
                 </div>
             </div>
-
-
 
         @endif
     </div>

@@ -162,7 +162,9 @@ $(document).ready(function(){
                         title: "Thành công !",
                         text: data.message,
                         icon: "success",
-                    })
+                    }).then((value) => {
+                        window.location.href = "/nap-the";
+                    });
                 }
                 else if(data.status == 401){
                     window.location.href = '/login?return_url='+window.location.href;
@@ -175,7 +177,9 @@ $(document).ready(function(){
                         buttons: {
                             cancel: "Đóng",
                         },
-                    })
+                    }).then((value) => {
+                        window.location.href = "/nap-the";
+                    });
                 }
                 else{
                     swal({

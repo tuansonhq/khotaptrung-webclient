@@ -2499,3 +2499,7 @@ input[type="number"] {
 .news_detail_content img{
     height: auto!important;
 }
+#intro_text img{
+    max-width: 100%;
+    height: auto;
+}

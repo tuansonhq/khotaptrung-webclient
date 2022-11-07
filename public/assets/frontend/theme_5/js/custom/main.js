@@ -1,5 +1,5 @@
 /*Lấy chiều dài để responsive*/
-let width = $(document).width();
+let width = $(window).width();
 
 /*format tiền*/
 let money_format = wNumb({
@@ -267,9 +267,7 @@ $(document).ready(function() {
         $('#viewMore #detailContent').html(viewBlockContent);
         $('#sheet-view-more #detailTitleSheet').text(viewBlockTitle);
         $('#sheet-view-more #detailContentSheet').html(viewBlockContent);
-        if ( width >= 992 ) {
             $('#viewMore').modal('show');
-        }
     });
 
     // Handle Toggle Nick
