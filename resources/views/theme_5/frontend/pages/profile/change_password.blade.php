@@ -2,6 +2,9 @@
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/user/change-password.js?v={{time()}}"></script>
 @endsection
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('meta_robots')
     <meta name="robots" content="noindex,nofollow" />
 @endsection

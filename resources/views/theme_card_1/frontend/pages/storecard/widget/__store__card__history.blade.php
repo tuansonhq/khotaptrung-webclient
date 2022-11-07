@@ -45,7 +45,7 @@
                                     <div class="mb-2 d-flex justify-content-between">
                                         <div class="text-secondary">Mệnh giá</div>
                                         <div>
-                                            <td>{{ formatPrice((int)$itemCard->amount) }} đ</td>
+                                            <td>{{ formatPrice(json_decode($item->params)->amount) }} đ</td>
                                         </div>
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@
                                     <div class="mb-2 d-flex justify-content-between">
                                         <div class="text-secondary">Mệnh giá</div>
                                         <div>
-                                            <td>{{ formatPrice((int)$itemCard->amount) }} đ</td>
+                                            <td>{{ formatPrice(json_decode($item->params)->amount) }} đ</td>
                                         </div>
                                     </div>
                                 </div>
@@ -148,9 +148,9 @@
 
             @endforeach
         @else
-            {{--            <div class="col-md-12 data-card">--}}
-            {{--                <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>--}}
-            {{--            </div>--}}
+                        <div class="col-md-12 data-card">
+                            <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
+                        </div>
 
         @endif
     </div>

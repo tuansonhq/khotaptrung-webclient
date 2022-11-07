@@ -56,7 +56,7 @@
         <div class="col-lg-6 col-md-12 top_box-product">
             @foreach($data as $key=> $item)
                 @if($key == 0)
-                    <div class="fix_ads-banner-fecond fix_ads-banner-second_top fix_ads-banner-ffist brs-12">
+                    <div class="fix_ads-banner-fecond fix_ads-banner-second_top fix_ads-banner-ffist brs-12 h-100">
                         @if(setting('sys_zip_shop') && setting('sys_zip_shop') != '')
                             <a href="/blog/{{ $item->slug }}" >
                                 @if(isset($item->image))

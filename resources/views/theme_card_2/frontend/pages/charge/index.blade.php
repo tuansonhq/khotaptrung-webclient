@@ -1,5 +1,12 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
+
     <div id="profile" style="margin-top: 15px;">
         <div class="container">
             <div class="row">
@@ -11,19 +18,27 @@
                         <div class="content-profile">
                             <h3>Nạp thẻ</h3>
                             <hr class="lines">
+                            @if (setting('sys_charge_content') != "")
+
+                                    {!! setting('sys_charge_content') !!}
+
+
+                            @endif
                             <div class="wapper profile">
-                                <form enctype="multipart/form-data" class="recharge_card_pay" id="recharge-card-form" name="recharge-card-form">
-                                    <input type="hidden" name="_token" value="xFq3elRKASTTapeLJdzOUIWmPQd26P46cExTroYU">
-                                    <div class="form-group m-form__group row">
-                                        <label for="" class="col-3 col-form-label">Tài khoản:</label>
-                                        <div class="col-9">
-                                            <input class="form-control m-input" type="text" value="Đỗ Hải Nam" readonly="">
-                                        </div>
-                                    </div>
+                                <form action="{{route('postTelecomDepositAuto')}}" method="POST"  id="form-charge2"  class="recharge_card_pay" name="recharge-card-form">
+                                    @csrf
+
                                     <div class="form-group m-form__group row">
                                         <label for="" class="col-3 col-form-label">Loại thẻ:</label>
                                         <div class="col-9">
-                                            <select class="form-control m-input " name="type" id="type" required=""><option value="">-- Chọn loại thẻ --</option><option value="VIETNAMOBLIE">VIETNAMOBLIE</option><option value="GARENA">GARENA</option><option value="VIETTEL">VIETTEL</option><option value="VINAPHONE">VINAPHONE</option><option value="MOBIFONE">MOBIFONE</option><option value="VCOIN">VCOIN</option><option value="GATE">GATE</option><option value="ZING">ZING</option></select>
+                                            <select class="form-control m-input " name="type" id="telecom" required="">
+{{--                                                <option value="">-- Chọn loại thẻ --</option>--}}
+                                                @if(isset($data) && $data !== null)
+                                                    @foreach($data as $val)
+                                                        <option value="{{$val->key}}">{{$val->title}}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -50,105 +65,46 @@
                                         <div class="col-9">
                                             <div class="input-group">
                                                 <input type="text" class="form-control m-input refresh" id="captcha" name="captcha" placeholder="Mã bảo vệ" maxlength="3" autocomplete="off" required="">
-                                                <div class="input-group-append">
-                                                <span class="input-group-text" id="basic-addon2" style="padding: 1px; cursor: pointer">
-                                                    <img src="https://muathegarena.com/captcha/flat?59A29AKC" height="30px" id="imgcaptcha" onclick="document.getElementById('imgcaptcha').src ='https://muathegarena.com/captcha/flat?EoaguwRZ'+Math.random();document.getElementById('captcha').focus();">
-                                                </span>
+                                                <div style=" border: 1px solid #ced4da;height: 40px;display:flex">
+                                                    <div class="captcha_1">
+                                                      <span class="reload h-100 d-flex">
+                                                        {!! captcha_img('flat') !!}
+                                                      </span>
+                                                    </div>
                                                 </div>
+                                                <button type="button" class="btn reload"  id="reload_1" style="border-radius: 0;color: red;border: 1px solid #ced4da;height: 40px;background-color: white" >
+                                                    &#x21bb;
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group text-center">
-                                        <button style="width:100%" type="submit" class="btn btn-recharge_card btn-success " data-loading-text="<i class='fa fa-spinner fa-spin '></i>"><span class="content-ajax">NẠP THẺ</span> <div class="m-loader m-loader--lg m-loader--success mb-3 mt-2 ajax-loader text-center" style="width: 30px;display: none"></div></button>
+                                        <button style="width:100%" type="submit" class="btn btn-recharge_card btn-success " data-loading-text="<i class='fa fa-spinner fa-spin '></i>">
+                                            NẠP THẺ
+                                        </button>
                                     </div>
                                 </form>
 
                             </div>
-                            <div id="content-cart" class="m-portlet__body">
-                                <div style="overflow-x: auto" class="tab-content">
-                                    <table class="table table-hover table-custom-res" id="deposit-table">
-                                        <thead>
-                                        <tr role="row">
-                                            <th>Thời gian</th>
 
-                                            <th>Kiểu nạp</th>
-                                            <th>Nhà mạng</th>
-                                            <th>Mã thẻ</th>
-                                            <th>Serial</th>
-                                            <th>Trị giá</th>
-                                            <th>Kết quả</th>
-                                            <th>Thực nhận</th>
-                                        </tr>
-                                        </thead>
+
+                            <!-- END: PAGE CONTENT -->
+                            <div class="paycartdata m-portlet__body card-table" >
+                                <div class="position-relative"  style="min-height: 200px" >
+                                    <table class="table table-hover table-custom-res table-striped">
+                                        <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>
+
                                         <tbody>
-
-                                        <tr class="" style="background-color: #abe7ed;">
-                                            <td colspan="2" class="row-date"><b>Tổng cộng các trang:</b></td>
-                                            <td class="row-date-sub"><b> 0 thẻ </b></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="row-date-sub"><b> 0 </b></td>
-                                            <td class="row-date-sub"><b> 0 </b></td>
-                                            <td class="row-date-sub"><b> 0 </b></td>
-
-                                        </tr>
-
-
-
-                                        <tr>
-                                            <td colspan="3"><b>Ngày 12/10/2022</b></td>
-
-
-
-
-
-
-
-
-
-                                            <td><b>1 thẻ</b></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td><b>0 </b></td>
-                                            <td><b>0 </b></td>
-
-
-                                        </tr>
-                                        <tr>
-                                            <td>15:25:43</td>
-
-                                            <td>
-                                                Nạp tự động
-                                            </td>
-                                            <td>VIETTEL</td>
-                                            <td>98798798789798</td>
-                                            <td>987987987897</td>
-                                            <td>10,000</td>
-                                            <td>
-
-                                                <b class='text-danger'>Thẻ sai</b>
-
-                                            </td>
-
-
-                                            <td>
-                                                <span class="c-font-bold text-info">+0đ</span>
-                                            </td>
-
-                                        </tr>
-
-
-
-
+                                        <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">
+                                            {{--                                    <div class="loading"></div>--}}
+                                            <div class="loading-wrap mb-3">
+                                                <span class="modal-loader-spin mb-3"></span>
+                                            </div>
+                                        </div>
                                         </tbody>
                                     </table>
-                                    <!-- END: PAGE CONTENT -->
-
-                                    <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-
-                                    </div>
-                                    <!-- END: PAGE CONTENT -->
                                 </div>
+                                {{--                                                @include('frontend.pages.charge.widget.__charge_history')--}}
                             </div>
                         </div>
                     </div>
@@ -156,5 +112,7 @@
             </div>
         </div>
     </div>
+    <input type="hidden" name="hidden_page_ls" id="hidden_page_service_nt" class="hidden_page_service_nt" value="1" />
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js?v={{time()}}"></script>
+
 @endsection
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js?v={{time()}}"></script>

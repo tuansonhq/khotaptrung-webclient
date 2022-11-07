@@ -168,6 +168,7 @@ $(document).ready(function(){
             }
         });
     });
+    let page = $('#hidden_page_service_nt').val();
 
     $(document).on('click', '.paginate__v1__nt .pagination a',function(event){
         event.preventDefault();
@@ -184,9 +185,9 @@ $(document).ready(function(){
         html += '<table class="table table-hover table-custom-res">';
         html += ' <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
         html += ' <tbody>';
-        html += ' <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">';
-        html += '  <div class="d-flex justify-content-center">';
-        html += ' <span class="pulser"></span>';
+        html += ' <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">';
+        html += '  <div class="loading-wrap mb-3">';
+        html += '  <span class="modal-loader-spin mb-3"></span>';
         html += ' </div>';
         html += ' </div>';
         html += '</tbody>';
@@ -196,7 +197,9 @@ $(document).ready(function(){
     });
 
     function paycartDataChargeHistory(page) {
-
+        if (page == null || page == '' || page == undefined){
+            page = 1;
+        }
         request = $.ajax({
             type: 'GET',
             url: '/get-tele-card/data',
@@ -204,7 +207,7 @@ $(document).ready(function(){
                 page:page,
             },
             beforeSend: function (xhr) {
-
+                console.log(page)
             },
             success: (data) => {
                 if (data.status == 1){
@@ -214,7 +217,7 @@ $(document).ready(function(){
                     var html = '';
                     html += '<div class="table-responsive" id="tableacchstory">';
                     html += '<table class="table table-hover table-custom-res">';
-                    html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+                    html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
                     html += '<tbody>';
                     html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
                     html += '</tbody>';

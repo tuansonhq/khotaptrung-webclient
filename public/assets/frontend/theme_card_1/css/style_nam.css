@@ -217,3 +217,8 @@
     background-size: 24px 24px;
     filter: var(--filter-text-color);
 }
+.account-sidebar{
+    width: 4px;
+    background: #f25922;
+    margin-right: 12px;
+}

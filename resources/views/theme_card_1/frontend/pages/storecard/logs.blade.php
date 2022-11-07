@@ -24,9 +24,9 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="input-group mb-2 c-square">
-                                    <div class="input-group date date-picker" data-date-format="dd/mm/yyyy" data-rtl="false">
+                                    <div class="input-group date date-picker " data-date-format="dd/mm/yyyy" data-rtl="false">
                                         <span class="input-group-btn">
-                                            <button class="btn default c-btn-square pl-2 pr-2" type="button"><i class="fa fa-calendar"></i></button>
+                                            <button class="btn default c-btn-square pl-2 pr-2 input-group-addon" type="button"><i class="fa fa-calendar"></i></button>
                                         </span>
                                         <input type="text" class="form-control c-square c-theme" name="started_at" autocomplete="off" autofocus placeholder="Từ ngày" value="">
                                     </div>
@@ -36,7 +36,7 @@
                                 <div class="input-group mb-2 c-square">
                                     <div class="input-group date date-picker" data-date-format="dd/mm/yyyy" data-rtl="false">
                                         <span class="input-group-btn">
-                                             <button class="btn default c-btn-square pl-2 pr-2" type="button"><i class="fa fa-calendar"></i></button>
+                                             <button class="btn default c-btn-square pl-2 pr-2 input-group-addon" type="button"><i class="fa fa-calendar"></i></button>
                                         </span>
                                         <input type="text" class="form-control c-square c-theme" name="ended_at" autocomplete="off" placeholder="Đến ngày" value="">
                                     </div>
@@ -52,12 +52,13 @@
                         </div>
                     </form>
                     <div id="data_store_card" style="position: relative">
-                        <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">
-                            <div class="d-flex justify-content-center">
-                                <span class="pulser"></span>
+                        <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">
+                            {{--                                    <div class="loading"></div>--}}
+                            <div class="loading-wrap mb-3">
+                                <span class="modal-loader-spin mb-3"></span>
                             </div>
                         </div>
-                        @include('frontend.pages.storecard.widget.__store__card__history')
+{{--                        @include('frontend.pages.storecard.widget.__store__card__history')--}}
                     </div>
 
                 </div>
@@ -75,5 +76,5 @@
 
 
 </style>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/storecard-history.js?v={{time()}}"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard/storecard-history.js?v={{time()}}"></script>
 @endsection

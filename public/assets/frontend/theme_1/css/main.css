@@ -517,6 +517,7 @@ header .nav-bar{
     padding: 2px;
     text-align: center;
     border-radius: 4px;
+    min-height: 100%;
 }
 
 .game-list-content:hover{
@@ -2160,6 +2161,10 @@ footer{
 @media (min-width: 576px){
     .modal-dialog__account {
         max-width: 722px!important;
+    }
+
+    #successModal .modal-dialog__account {
+        max-width: 580px !important;
     }
 }
 

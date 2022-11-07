@@ -304,7 +304,7 @@
                         </div>
                         <div class="card--attr">
                             <div class="card--attr__name">
-                                Giá niêm yết
+                                Mệnh giá
                             </div>
                             <div class="card--attr__value" id="confirmMobilePrice">
 
@@ -396,7 +396,7 @@
                                 </div>
                                 <div class="card--attr">
                                     <div class="card--attr__name">
-                                        Giá niêm yết
+                                        Mệnh giá
                                     </div>
                                     <div class="card--attr__value" id="confirmPrice">
 
@@ -527,7 +527,7 @@
                                 </div>
                                 <div class="card--attr">
                                     <div class="card--attr__name">
-                                        Giá niêm yết
+                                        Mệnh giá
                                     </div>
                                     <div class="card--attr__value" id="successPrice">
 

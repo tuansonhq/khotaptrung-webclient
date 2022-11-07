@@ -19,9 +19,9 @@
 
                                 @endif
                                 @if(isset($item->image))
-                                    <img class="game-list-image-in lazy" data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
+                                    <img class="game-list-image-in lazy" data-original="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
                                 @else
-                                    <img class="game-list-image-in lazy" data-src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
+                                    <img class="game-list-image-in lazy" data-original="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
                                 @endif
 {{--                                                                                Anh chinh--}}
 

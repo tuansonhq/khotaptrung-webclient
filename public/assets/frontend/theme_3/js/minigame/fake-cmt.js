@@ -248,7 +248,7 @@ if (cookies_minigame){
         ];
 
         d_totaltime = d_totaltime + lamtron(number)*1;
-        c_totaltime = (totaltime - d_totaltime)*1;
+        c_totaltime = totaltime + d_totaltime;
         if (j == 0){
             dateTimeDefault.setSeconds(dateTimeDefault.getSeconds() - totaltime); // timestamp
         }else{
@@ -277,7 +277,7 @@ if (cookies_minigame){
         arr_item.push(chatArrayDefault[randomChatDefault]);
         arr_item.push(dateTimeDefault);
         arr_item.push(arrUserName[randomUserDefault]);
-        arr_group.push(arr_item);
+        arr_group.unshift(arr_item);
         var htmldefault = `
             <li>
                 <div class="comment-item comment-item-khach" data-time="${dateTimeDefault}">
@@ -307,7 +307,7 @@ if (cookies_minigame){
 
             </li>`
 
-        $('.list-unstyled').append(htmldefault);
+        $('.list-unstyled').prepend(htmldefault);
 
     }
 

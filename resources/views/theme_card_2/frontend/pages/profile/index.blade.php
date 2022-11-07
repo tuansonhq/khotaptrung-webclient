@@ -1,4 +1,10 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
     <div id="profile" style="margin-top: 15px;">
         <div class="container">
@@ -15,25 +21,21 @@
                                 <tbody>
                                 <tr>
                                     <th>ID của bạn:</th>
-                                    <th>60527</th>
+                                    <th id="info_id"></th>
                                 </tr>
                                 <tr>
                                     <th>Tên của bạn:</th>
-                                    <th>Đỗ Hải Nam</th>
+                                    <th id="info_name"></th>
                                 </tr>
                                 <tr>
                                     <th>Số dư tài khoản:</th>
-                                    <th>0 VNĐ</th>
+                                    <th id="info_balance"></th>
                                 </tr>
-                                <tr>
-                                    <th>Ngày tham gia:</th>
-                                    <th>
-                                        31/05/2022
-                                    </th>
-                                </tr>
+
                                 <tr>
                                     <th>Mật khẩu:</th>
-                                    <th>**************    <button style="font-family: 'Nunito', sans-serif;" type="button" data-toggle="modal" data-target="#modal_password" class="btn btn-password btn-danger">Đổi mật khẩu</button></th>
+{{--                                    <th>**************    <button style="font-family: 'Nunito', sans-serif;" type="button" data-toggle="modal" data-target="#modal_password" class="btn btn-password btn-danger">Đổi mật khẩu</button></th>--}}
+                                    <th>**************    <a href="/changepassword" class="btn btn-password btn-danger">Đổi mật khẩu</a></th>
                                 </tr>
                                 </tbody>
                             </table>
@@ -43,4 +45,6 @@
             </div>
         </div>
     </div>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/profile.js?v={{time()}}"></script>
+
 @endsection

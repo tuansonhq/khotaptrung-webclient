@@ -89,7 +89,7 @@ li {
 .menu {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 .menu > li {
     position: relative;
@@ -97,6 +97,7 @@ li {
     display: flex;
     align-items: center;
     height: 40px;
+    margin: 0 12px;
 }
 .menu li.m1.active > a,
 .menu li.m1 > a:hover {
@@ -368,14 +369,14 @@ section {
     margin: 7px 0 0 7px;
 }
 .icon-tel {
-    background: url(../images/new/icons.png) no-repeat 0 0;
+    background: url(/assets/frontend/theme_card_1/image/icons.png) no-repeat 0 0;
     width: 60px;
     height: 60px;
     display: inline-block;
     vertical-align: top;
 }
 .icon-game {
-    background: url(../images/new/icons.png) no-repeat 0 -720px;
+    background: url(/assets/frontend/theme_card_1/image/icons.png) no-repeat 0 -720px;
     width: 60px;
     height: 60px;
     display: inline-block;
@@ -982,7 +983,7 @@ input:checked ~ .control__indicator1:after {
     color: #444;
     border-bottom: 2px solid #f25922;
     padding-right: 16px;
-    background: url(../images/new/icons.png) no-repeat;
+    background: url(/assets/frontend/theme_card_1/image/icons.png) no-repeat;
     background-position: 0 -116px;
     background-size: 30px 420px;
     padding-left: 35px;
@@ -1090,7 +1091,7 @@ input:checked ~ .control__indicator1:after {
 }
 .chtg h4,
 .tcn h4 {
-    background: url(../images/new/icons.png) no-repeat;
+    background: url(/assets/frontend/theme_card_1/image/icons.png) no-repeat;
     background-position: 0 -146px;
     padding-left: 35px;
     text-transform: uppercase;
@@ -2035,7 +2036,7 @@ p.label_card_input {
     color: #444;
     border-bottom: 2px solid #f25922;
     padding-right: 16px;
-    background: url(../images/new/icons.png) no-repeat left;
+    background: url(/assets/frontend/theme_card_1/image/icons.png) no-repeat left;
     background-size: 30px 420px;
     padding-left: 35px;
     background-position: 0 -117px;
@@ -3398,7 +3399,7 @@ a.btn span {
     padding: 6px 12px;
     font-size: 14px;
     font-weight: 400;
-    line-height: 1;
+    /*line-height: 1;*/
     color: #545454;
     text-align: center;
     background-color: #fff;
@@ -3406,7 +3407,7 @@ a.btn span {
     border-bottom: 1px solid #ccc;
     border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 0;
 }
 .box_seach input {
     float: left;
@@ -7357,7 +7358,7 @@ pre a {
         margin-top: 20px;
     }
     #main_home .item {
-        margin-top: -40px;
+        margin-top: 0;
         padding: 0 13px 40px;
         width: calc(100% + 30px);
         margin-left: -15px;
@@ -7509,6 +7510,7 @@ pre a {
  .banner_index img{margin: auto;
      text-align: center;
      display: block;
+     width: 100%;
  }
 .card_process {
     margin-top: -23px;

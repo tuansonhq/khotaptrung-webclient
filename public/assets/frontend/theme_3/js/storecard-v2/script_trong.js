@@ -164,7 +164,7 @@ $(document).ready(function () {
         quantity:0,
         _token: $('meta[name="csrf-token"]').attr('content'),
     };
-    if ($(document).width() > 1199){
+    if ($(window).width() > 1199){
         // handle modal show
         $(document).on('click', '.btn-buy-card', function () {
             let elm = $(this).parent();
@@ -201,11 +201,11 @@ $(document).ready(function () {
                         $('#modal--success__payment .card--attr__quantity').text(pad(data_send.quantity));
                         if (data_send.quantity > 1){
                             swiper_card.params.slidesPerView = 1.25;
-                        }else {
+                        } else {
                             swiper_card.params.slidesPerView = 1;
                         }
                         if (data_send.quantity > 0){
-                            $('#modal--success__payment .swiper-wrapper').empty()
+                            $('#modal--success__payment .swiper-wrapper').empty();
                             data.data_card.forEach(function (card) {
                                 let html_card = '';
                                 html_card += `<div class="swiper-slide card__detail">`;
@@ -283,7 +283,6 @@ $(document).ready(function () {
             // chặn tất cả những sự kiện ( modal ... )
             e.stopPropagation();
             e.preventDefault();
-            console.log("11111111111111")
             if (e.target.tagName === 'BUTTON'){
                 // set info card
                 let elm = $(this).parent();

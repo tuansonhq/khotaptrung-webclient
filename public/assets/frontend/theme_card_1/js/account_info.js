@@ -52,7 +52,7 @@ $(document).ready(function(){
                     html += '<div class="login">';
                     html += '<span class="btn_login" data-toggle="modal" data-target="#signin"><i class="icon_account ic_login"><img src="/assets/frontend/theme_card_1/image/svg//icon_login.svg" alt="login"></i>Đăng nhập</span>\n';
                     html += '<span style="border: 1px solid #FFFFFF;transform: rotate(104.43deg);background:#ffffff;width:20px;display:inline-block; vertical-align:middle;"></span>\n';
-                    html += '<span class="btn_register" onclick="window.location.href = \'/register\';"><i class="icon_account ic_register"><img src="/assets/frontend/theme_card_1/image/svg//icon_register.svg" alt="register"></i>Đăng ký</span>\n';
+                    html += '<span class="btn_register" data-toggle="modal" data-target="#signup"><i class="icon_account ic_register"><img src="/assets/frontend/theme_card_1/image/svg//icon_register.svg" alt="register"></i>Đăng ký</span>\n';
                     html += ' </div>';
                     $('.wp_login').html(html);
                     $('#store_pay').attr('data-target','#signin').html('Đăng nhập để thanh toán');

@@ -9,9 +9,9 @@
         <div class="container container-fix menu-container-ct">
             <ul>
                 <li><a href="/">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="javascript:void(0)">LỊCH SỬ CHƠI {{$group->title}} TRÚNG VẬT PHẨM</a></li>
             </ul>
         </div>
@@ -23,7 +23,7 @@
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%">
                     <a href="" class="previous-step-one" style="line-height: 28px">
-                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>
 
@@ -59,10 +59,10 @@
 
                         <div class="col-md-12 logs-search left-right">
 
-                            <div class="row marginauto">
-                                <div class="col-12 left-right">
+                            <div class="row marginauto align-items-center">
+                                <div class="col-12 col-md-10 left-right">
                                     <div class="row marginauto">
-                                        <div class="col-md-3 col-5 logs-vat-pham-left">
+                                        <div class="col-md-3 col-6 logs-vat-pham-left">
                                             <div class="row marginauto">
                                                 <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
                                                     <select class="wide" name="type" id="type">
@@ -72,12 +72,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-3 col-5 logs-vat-pham-right">
+                                        <div class="col-md-5 col-6 logs-vat-pham-right">
                                             <div class="row marginauto">
                                                 <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
                                                     <select class="wide" name="id" id="id">
                                                         @foreach($group_api as $item)
-                                                            <option value="{{route('getLog',[$item->id])}}" {{$group->id==$item->id?'selected':''}}>{{$item->title}}</option>
+                                                            <option value="{{route('getLog',['id' => $item->id])}}" {{$group->id==$item->id?'selected':''}}>{{$item->title}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -97,7 +97,7 @@
                                 </div>
                                 <div class="col-auto ml-auto left-right">
 
-                                    <div class="row marginauto justify-content-end nick-findter-row">
+                                    <div class="row marginauto justify-content-end minigame-findter-row">
 
                                         <div class="col-auto nick-findter" style="position: relative">
                                             <ul>

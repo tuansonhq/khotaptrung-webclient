@@ -3349,3 +3349,10 @@ img.lazy {
     height: 32px;
     object-fit: cover;
 }
+
+.card--attr__payment_failed {
+    font-weight: 400;
+    font-size: 14px;
+    color: #DA4343;
+    margin-bottom: 0;
+}

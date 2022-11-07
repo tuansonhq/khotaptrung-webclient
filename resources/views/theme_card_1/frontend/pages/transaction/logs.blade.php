@@ -16,6 +16,7 @@
                     <hr class="lines">
                     <form class="form-charge form-charge__accounttxns account_content_transaction_history__v2 form-horizontal form-find mb-4 " role="form" method="get">
                         <div class="row">
+                            @if(isset($config))
                             <div class="col-md-4">
                                 <div class="input-group mb-2 c-square">
                                     <span class="input-group-addon" id="basic-addon1">Giao dịch</span>
@@ -27,11 +28,12 @@
                                     </select>
                                 </div>
                             </div>
+                            @endif
                             <div class="col-md-4">
                                 <div class="input-group mb-2 c-square">
                                     <div class="input-group date date-picker" data-date-format="dd/mm/yyyy" data-rtl="false">
                                         <span class="input-group-btn">
-                                              <button class="btn default c-btn-square pl-2 pr-2" type="button">
+                                              <button class="btn default c-btn-square pl-2 pr-2 input-group-addon" type="button">
                                                   <i class="fa fa-calendar"></i>
                                               </button>
                                         </span>
@@ -43,7 +45,7 @@
                                 <div class="input-group mb-2 c-square">
                                     <div class="input-group date date-picker" data-date-format="dd/mm/yyyy" data-rtl="false">
                                         <span class="input-group-btn">
-                                            <button class="btn default c-btn-square pl-2 pr-2" type="button">
+                                            <button class="btn default c-btn-square pl-2 pr-2 input-group-addon" type="button">
                                                 <i class="fa fa-calendar"></i>
                                             </button>
                                         </span>
@@ -81,9 +83,9 @@
                     </form>
 
                     <div id="data_lich__su_history" style="position: relative">
-                        <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">
-                            <div class="d-flex justify-content-center">
-                                <span class="pulser"></span>
+                        <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">
+                            <div class="loading-wrap mb-3">
+                                <span class="modal-loader-spin mb-3"></span>
                             </div>
                         </div>
                         @include('frontend.pages.transaction.widget.__transaction_history')

@@ -15,7 +15,7 @@
         {{--breadcrumb--}}
         <section class="breadcrumb-container">
             <ul class="breadcrumb breadcrumb-arrow">
-                <li class="breadcrumb-item"><a href="">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
                 <li class="breadcrumb-item"><a href="">Rút vật phẩm</a></li>
             </ul>
         </section>

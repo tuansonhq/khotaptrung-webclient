@@ -76,8 +76,8 @@
 }
 /*regist*/
 .login-box, .register-box {
-    margin: 7% auto;
-    padding: 20px;;
+    margin: 8% auto;
+    width: 400px;
 }
 @media (max-width: 991.98px) {
     .login-box{
@@ -104,4 +104,27 @@
     border: 1px solid #cccccc;
     padding: 20px;
     color: #666;
+}
+.swiper {
+    overflow-x: hidden;
+    position: relative;
+    max-height: 300px;
+    opacity: 0;
+    transition: .3s;
+    padding-bottom: 2px;
+}
+
+.swiper {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.swiper::-webkit-scrollbar {
+    display: none;
+}
+
+.swiper.swiper-container-horizontal,
+.swiper.swiper-container-vertical
+{
+    opacity: 1;
+    max-height: inherit;
 }

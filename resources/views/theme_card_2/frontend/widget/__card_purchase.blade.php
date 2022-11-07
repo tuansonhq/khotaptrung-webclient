@@ -129,7 +129,7 @@
                         </div>
                     </div>
                     <div class="wapper-pay text-center position-relative">
-                        <button type="button" data-toggle="modal"  class="btn btn-success " id="store_pay" style="background-color:#30C1CE ;height: 42px;font-family: 'Nunito', sans-serif;">
+                        <button type="button" data-toggle="modal"  class="btn btn-success " id="store_pay" style="background-color:#30C1CE ;height: 42px;">
                             <div class="loading-wrap ">
                                 <span class="modal-loader-spin "></span>
                             </div>
@@ -193,7 +193,7 @@
 
 
         <div class="modal fade show" id="modal_pay" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">XÁC NHẬN THANH TOÁN</h5>

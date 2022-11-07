@@ -58,7 +58,11 @@
                                         </a>
                                     </div>
                                     <div class="formDonhangAccount{{ $item->randId }}" style="display: none">
-                                        <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
+                                        @if(App\Library\AuthCustom::check() && App\Library\AuthCustom::user()->balance >= $data->price)
+                                        <form class="formDonhangAccount" data-ranid="{{ $item->randId }}" action="/ajax/acc/{{ $item->randId }}/databuy" method="POST">
+                                        @else
+                                        <form class="formDonhangAccount">
+                                        @endif
                                             {{ csrf_field() }}
                                             <div class="modal-header p-0" style="border-bottom: 0">
                                                 <div class="row marginauto modal-header-order-ct">
@@ -76,25 +80,6 @@
                                                     <div class="col-md-12 left-right title-order-ct">
                                                         <span>Thông tin acc</span>
                                                     </div>
-
-
-                                                    @if (App\Library\AuthCustom::check())
-                                                        <div class="col-md-12 left-right padding-order-ct">
-                                                            <div class="row marginauto">
-                                                                <div class="col-md-12 left-right background-order-ct">
-                                                                    <div class="row marginauto background-order-row-ct">
-                                                                        <div class="col-auto left-right background-order-col-left-ct">
-                                                                            <span>Tài khoản</span>
-                                                                        </div>
-                                                                        <div class="col-auto left-right background-order-col-right-ct">
-                                                                            <small>{{ App\Library\AuthCustom::user()->username }}</small>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endif
-
 
                                                     <div class="col-md-12 left-right padding-order-ct">
                                                         <div class="row marginauto">
@@ -190,6 +175,39 @@
                                                     <div class="col-md-12 left-right padding-order-ct">
                                                         <div class="row marginauto">
                                                             <div class="col-md-12 left-right background-order-ct">
+                                                                <div class="row marginauto background-order-body-row-ct">
+                                                                    <div class="col-auto left-right background-order-col-left-ct">
+                                                                        <span>Phương thức thanh toán</span>
+                                                                    </div>
+                                                                    <div class="col-auto left-right background-order-col-right-ct">
+                                                                        <small>Tài khoản Shopbrand</small>
+                                                                    </div>
+                                                                </div>
+                                                                @if(App\Library\AuthCustom::check())
+                                                                    <div class="row marginauto background-order-body-row-ct">
+                                                                        <div class="col-auto left-right background-order-col-left-ct">
+                                                                            <span>Số dư tài khoản</span>
+                                                                        </div>
+                                                                        <div class="col-auto left-right background-order-col-right-ct">
+                                                                            <small>{{ str_replace(',','.',number_format(round(\App\Library\AuthCustom::user()->balance))) }} đ</small>
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                                <div class="row marginauto background-order-body-row-ct">
+                                                                    <div class="col-auto left-right background-order-col-left-ct">
+                                                                        <span>Phí thanh toán</span>
+                                                                    </div>
+                                                                    <div class="col-auto left-right background-order-col-right-ct">
+                                                                        <small>Miễn phí</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12 left-right padding-order-ct">
+                                                        <div class="row marginauto">
+                                                            <div class="col-md-12 left-right background-order-ct">
                                                                 <div class="row marginauto background-order-row-ct">
                                                                     <div class="col-auto left-right background-order-col-left-ct">
                                                                         <span>Tổng thanh toán</span>
@@ -205,28 +223,39 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-12 left-right" id="order-errors">
-                                                        <div class="row marginauto order-errors">
-                                                            <div class="col-md-12 left-right">
-                                                                @if(App\Library\AuthCustom::check())
-                                                                    @if(App\Library\AuthCustom::user()->balance < $data->price)
-                                                                        <small>Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</small>
-                                                                    @endif
-                                                                @else
-                                                                    <small>Bạn phải đăng nhập mới có thể mua tài khoản tự động.</small>
-                                                                @endif
+
+                                                    @if(App\Library\AuthCustom::check() && App\Library\AuthCustom::user()->balance < $data->price)
+                                                        <div class="col-md-12 left-right padding-order-ct">
+                                                            <div class="row marginauto">
+                                                                <div class="col-md-12 left-right background-order-ct">
+                                                                    <div class="row marginauto background-order-row-ct">
+                                                                        <p class="card--attr__payment_failed">Tài khoản của bạn không đủ để thanh toán, vui lòng nạp tiền để tiếp tục giao dịch</p>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    @endif
+
                                                     <div class="col-md-12 left-right padding-order-footer-ct">
                                                         <div class="row marginauto">
                                                             <div class="col-md-12 left-right">
                                                                 @if(App\Library\AuthCustom::check())
 
                                                                     @if(App\Library\AuthCustom::user()->balance >= $data->price)
-                                                                        <button class="button-default-ct button-next-step-two" type="submit">Xác nhận</button>
+                                                                        <button class="button-default-ct button-next-step-two" type="submit">Thanh toán</button>
                                                                     @else
-                                                                        <button class="button-default-ct btn-open-recharge" type="button" data-tab="1" data-dismiss="modal">Nạp tiền</button>
+                                                                        <div class="row marginauto justify-content-center">
+                                                                            <div class="col-6 modal-footer-success-col-left-ct">
+                                                                                <button type="button" class="button-success-secondary" disabled>
+                                                                                    <a href="javascript:void(0);">Thanh toán</a>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="col-6 modal-footer-success-col-right-ct">
+                                                                                <button type="button" class="button-success-primary btn-open-recharge" data-tab="1" data-dismiss="modal">
+                                                                                    <a href="javascript:void(0);">Nạp tiền</a>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
                                                                     @endif
                                                                 @else
                                                                     <button class="button-default-ct" data-dismiss="modal" type="button" onclick="openLoginModal();">Đăng nhập</button>
@@ -282,66 +311,154 @@
                                                                 @endforeach
                                                             @endif
                                                                 @if(isset($item->params))
-                                                                    @if(isset($item->params->rank_info))
+                                                                    @if($data->slug == "nick-lien-minh")
+                                                                        @if(isset($item->params->rank_info))
 
-                                                                        @foreach($item->params->rank_info as $rank_info)
+                                                                            @foreach($item->params->rank_info as $rank_info)
 
-                                                                            @if($rank_info->queueType == "RANKED_TFT")
-                                                                            @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                                                @if($rank_info->queueType == "RANKED_TFT")
+                                                                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                                                    <?php
+                                                                                    $total = $total + 1;
+                                                                                    ?>
+                                                                                    <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                                        <small>
+                                                                                            Rank :
+                                                                                            @if($rank_info->tier == "NONE")
+                                                                                                {{ $rank_info->tier }}
+                                                                                            @else
+                                                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                                            @endif
+                                                                                        </small>
+                                                                                    </div>
+                                                                                @endif
+                                                                            @endforeach
+                                                                        @endif
+
+                                                                        @if(isset($item->params->count))
+                                                                            @if(isset($item->params->count->champions))
                                                                                 <?php
                                                                                 $total = $total + 1;
                                                                                 ?>
                                                                                 <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                                                     <small>
-                                                                                        Rank :
-                                                                                        @if($rank_info->tier == "NONE")
-                                                                                            {{ $rank_info->tier }}
+                                                                                        Số tướng :
+                                                                                        {{ $item->params->count->champions }}
+                                                                                    </small>
+                                                                                </div>
+
+
+                                                                            @endif
+                                                                            @if(isset($item->params->count->skins))
+                                                                                <?php
+                                                                                $total = $total + 1;
+                                                                                ?>
+                                                                                <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                                    <small>
+                                                                                        Trang phục :
+                                                                                        {{ $item->params->count->skins }}
+                                                                                    </small>
+                                                                                </div>
+                                                                            @endif
+                                                                        @endif
+                                                            @elseif($data->slug == "nick-ninja-school")
+
+                                                                @php
+                                                                    $server = null;
+                                                                    $info = array();
+
+                                                                    $params = $item->params;
+                                                                    if (isset($params->server)){
+                                                                        $server = $params->server;
+                                                                    }
+                                                                    if (isset($params->info) && count($params->info)){
+                                                                        $info = $params->info;
+                                                                    }
+                                                                @endphp
+                                                                @if(isset($server))
+                                                                    <?php
+                                                                    $total = $total + 1;
+                                                                    ?>
+                                                                    <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                        <small>
+                                                                            Server :
+                                                                            {{ $server??'' }}
+                                                                        </small>
+                                                                    </div>
+
+                                                                @endif
+
+                                                                @if(isset($info) && count($info))
+                                                                    @foreach($info as $ke => $in)
+                                                                        @if(in_array($in->name,config('module.acc.auto_ninja_list_tt')))
+                                                                            <?php
+                                                                            $total = $total + 1;
+                                                                            ?>
+                                                                            <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                                <small>
+                                                                                    {{ $in->name??'' }} :
+                                                                                    @if($in->name == 'Yên')
+                                                                                        {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                                    @else
+                                                                                        {{ $in->value??'' }}
+                                                                                    @endif
+                                                                                </small>
+                                                                            </div>
+
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                            @elseif($data->slug == "nick-ngoc-rong-online")
+
+                                                                @php
+                                                                    $server = null;
+                                                                    $info = array();
+
+                                                                    $params = $item->params;
+                                                                    if (isset($params->server)){
+                                                                        $server = $params->server;
+                                                                    }
+                                                                    if (isset($params->info) && count($params->info)){
+                                                                        $info = $params->info;
+                                                                    }
+                                                                @endphp
+                                                                @if(isset($server))
+                                                                    <?php
+                                                                    $total = $total + 1;
+                                                                    ?>
+                                                                    <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                        <small>
+                                                                            Server :
+                                                                            {{ $server??'' }}
+                                                                        </small>
+                                                                    </div>
+
+                                                                @endif
+
+                                                                @if(isset($info) && count($info))
+                                                                    @foreach($info as $ke => $in)
+                                                                        @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
+                                                                            @if($total < 4)
+                                                                                <?php
+                                                                                $total = $total + 1;
+                                                                                ?>
+                                                                                <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                                    <small>
+                                                                                        {{ $in->name??'' }} :
+                                                                                        @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                                            {{ $in->value??'' }}
                                                                                         @else
-                                                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+
+                                                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
                                                                                         @endif
                                                                                     </small>
                                                                                 </div>
                                                                             @endif
-                                                                        @endforeach
-                                                                    @endif
-{{--                                                                    @if(isset($item->params->rank_level))--}}
-{{--                                                                        <?php--}}
-{{--                                                                        $total = $total + 1;--}}
-{{--                                                                        ?>--}}
-{{--                                                                        <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">--}}
-{{--                                                                            <small>--}}
-{{--                                                                                Level :--}}
-{{--                                                                                {{ $item->params->rank_level }}--}}
-{{--                                                                            </small>--}}
-{{--                                                                        </div>--}}
-{{--                                                                    @endif--}}
-
-                                                                    @if(isset($item->params->count))
-                                                                        @if(isset($item->params->count->champions))
-                                                                            <?php
-                                                                            $total = $total + 1;
-                                                                            ?>
-                                                                            <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
-                                                                                <small>
-                                                                                    Số tướng :
-                                                                                    {{ $item->params->count->champions }}
-                                                                                </small>
-                                                                            </div>
-
-
                                                                         @endif
-                                                                        @if(isset($item->params->count->skins))
-                                                                            <?php
-                                                                            $total = $total + 1;
-                                                                            ?>
-                                                                            <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
-                                                                                <small>
-                                                                                    Trang phục :
-                                                                                    {{ $item->params->count->skins }}
-                                                                                </small>
-                                                                            </div>
-                                                                        @endif
-                                                                    @endif
+                                                                    @endforeach
+                                                                @endif
+
+                                                            @endif
                                                                 @endif
                                                             @if(isset($item->params) && isset($item->params->ext_info))
                                                                 <?php

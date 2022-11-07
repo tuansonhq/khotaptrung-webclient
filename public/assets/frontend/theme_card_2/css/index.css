@@ -17,6 +17,9 @@ body.m-content--skin-light2{
     line-height: 100px;
     height: 100px;
 }
+header .logo img{
+    width: 140px;
+}
 /* img.img-logo{
     margin-top: 25px;
 } */
@@ -492,10 +495,12 @@ li.li_button{
     header {
         position: fixed;
         z-index: 1000;
-        overflow: hidden;
+        /*overflow: hidden;*/
         /* box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16); */
         margin-bottom: 20px;
         background-color: #000;
+        left: 0;
+        right: 0;
     }
 
     header a, header label {
@@ -511,9 +516,9 @@ li.li_button{
     header label {
         position: absolute;
         top: 10px;
-        font-size: 30px;
+        font-size: 20px;
         /* float: left; */
-        padding: 18px 20px;
+        /* padding: 18px 20px; */
         cursor: pointer;
     }
 
@@ -530,7 +535,7 @@ li.li_button{
 
     nav {
         float: left;
-        max-height: 0;
+        height: 0;
         width: 100%;
         -webkit-transition: max-height 0.3s;
         -moz-transition: max-height 0.3s;
@@ -576,7 +581,9 @@ li.li_button{
         display: none;
     }
     #nav:checked ~ nav {
-        max-height: 270px; /* This can be anything bigger than your nav height. The transition duration works with this */
+        height: auto;
+        /*overflow-y: auto;*/
+        /*max-height: 270px; !* This can be anything bigger than your nav height. The transition duration works with this *!*/
     }
 }
 
@@ -830,4 +837,3 @@ header li.hvr-underline-from-left:hover:before{
     z-index: 110;
     border-radius: 100%;
 }
-

@@ -28,7 +28,7 @@
                                     <img onerror="imgError(this)" class="lazy" data-src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
 
                                 </div>
-                                <div class="item-nick-name">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</div>
+                                <div class="item-nick-name text-title limit-1">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</div>
                             </a>
                         </div>
 

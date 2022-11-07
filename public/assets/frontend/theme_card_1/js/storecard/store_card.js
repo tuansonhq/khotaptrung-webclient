@@ -252,14 +252,14 @@ $(document).ready(function(){
 
                             charge: {
                                 text: "Nạp tiền",
-                                value: "charge",
+                                value: "/nap-the",
+
                             },
                             cancel: "Đóng",
                         },
+
                     })
-                    //     .then((value) => {
-                    //     window.location.href = "https://thegarenagiare.com/nap-the";
-                    // });
+
                 }
                 else{
                     $('#modal_pay').modal('hide');

@@ -8,7 +8,7 @@ $(document).ready(function(){
             success: function (data) {
                 if(data.status == 1){
                     let html = '';
-                    html += '<p class="text-danger">'+ data.data +'</p>  <span style="padding-left: 8px;cursor: pointer"><i class="fas fa-copy"  data-id="'+ data.data +'"></i></span>';
+                    html += '<p class="text-danger" style="font-weight: 600">'+ data.data +'</p>  <span style="padding-left: 8px;cursor: pointer"><i class="fas fa-copy"  data-id="'+ data.data +'"></i></span>';
                     $('.transfer-code').html(html)
 
 

@@ -19,6 +19,22 @@ $(document).ready(function(){
         var started_at_data = $('.started_at_data').val();
         var ended_at_data = $('.ended_at_data').val();
 
+        let html ='';
+        html += '<div class="">';
+        html += ' <table class="table table-hover table-custom-res table-striped">';
+        html += ' <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+        html += '  <tbody>';
+        html += ' <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">';
+        html += '   <div class="loading-wrap mb-3">';
+        html += ' <span class="modal-loader-spin mb-3"></span>';
+        html += ' </div>';
+        html += ' </div>';
+        html += ' <tbody>';
+        html += ' </table>';
+        html += '</div>';
+        $("#data_lich__su_history").empty().html('');
+        $("#data_lich__su_history").empty().html(html);
+
         loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data)
     });
 
@@ -67,7 +83,21 @@ $(document).ready(function(){
         var sort_by_data = $('.sort_by_data').val();
         var page = $('#hidden_page_service').val();
 
-
+        let html ='';
+        html += '<div class="">';
+        html += ' <table class="table table-hover table-custom-res table-striped">';
+        html += ' <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+        html += '  <tbody>';
+        html += ' <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">';
+        html += '   <div class="loading-wrap mb-3">';
+        html += ' <span class="modal-loader-spin mb-3"></span>';
+        html += ' </div>';
+        html += ' </div>';
+        html += ' <tbody>';
+        html += ' </table>';
+        html += '</div>';
+        $("#data_lich__su_history").empty().html('');
+        $("#data_lich__su_history").empty().html(html);
         loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data)
 
     });
@@ -91,6 +121,21 @@ $(document).ready(function(){
         var page = $('#hidden_page_service').val();
         var sort_by_data = $('.sort_by_data').val();
 
+        let html ='';
+        html += '<div class="">';
+        html += ' <table class="table table-hover table-custom-res table-striped">';
+        html += ' <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+        html += '  <tbody>';
+        html += ' <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">';
+        html += '   <div class="loading-wrap mb-3">';
+        html += ' <span class="modal-loader-spin mb-3"></span>';
+        html += ' </div>';
+        html += ' </div>';
+        html += ' <tbody>';
+        html += ' </table>';
+        html += '</div>';
+        $("#data_lich__su_history").empty().html('');
+        $("#data_lich__su_history").empty().html(html);
         loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data)
 
     });
@@ -109,6 +154,22 @@ $(document).ready(function(){
 
         var page = $('#hidden_page_service').val();
 
+
+        let html ='';
+        html += '<div class="">';
+        html += ' <table class="table table-hover table-custom-res table-striped">';
+        html += ' <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+        html += '  <tbody>';
+        html += ' <div class="row justify-content-center position-absolute" style="top: 50%;left: 50%" id="loading-data">';
+        html += '   <div class="loading-wrap mb-3">';
+        html += ' <span class="modal-loader-spin mb-3"></span>';
+        html += ' </div>';
+        html += ' </div>';
+        html += ' <tbody>';
+        html += ' </table>';
+        html += '</div>';
+        $("#data_lich__su_history").empty().html('');
+        $("#data_lich__su_history").empty().html(html);
         loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data)
 
     });

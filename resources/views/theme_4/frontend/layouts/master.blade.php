@@ -293,20 +293,22 @@
 </script>
 
 @include('frontend.layouts.includes.footer')
-@if(Session::has('check_login'))
-    <script>
-        $(document).ready(function () {
-            $('#modal-login').modal('show');
-            setTimeout(() => {
-                $('#loginModal #modal-login-container').removeClass('right-panel-active');
-            }, 200);
+@if(Request::is('login'))
+    @if(!\App\Library\AuthCustom::check())
+        <script>
+            $(document).ready(function () {
+                $('#modal-login').modal('show');
+                setTimeout(() => {
+                    $('#loginModal #modal-login-container').removeClass('right-panel-active');
+                }, 200);
 
-        });
-    </script>
-    @php
-        Session::pull('check_login');
-    @endphp
+            });
+        </script>
+    @endif
+
 @endif
+
+
 @if (!\App\Library\AuthCustom::check())
     @include('frontend.widget.modal.__login')
 @endif
@@ -402,7 +404,24 @@
             }
         });
     });
+    $('.xt').click(function () {
+        $('.content_bvct').css('height', 'unset');
+        $('.xt').hide();
+    });
 
+
+
+
+    $('.expand-button').on('click', function() {
+
+        $('.special-text').toggleClass('-expanded');
+
+        if ($('.special-text').hasClass('-expanded')) {
+            $('.expand-button').html('Thu gọn nội dung');
+        } else {
+            $('.expand-button').html('Xem thêm nội dung');
+        }
+    });
 </script>
 
 @yield('scripts')

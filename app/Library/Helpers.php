@@ -49,9 +49,14 @@ class Helpers
         return ['q','s','e','r','t','y','u','i','o','p'];
     }
 
-    public static function encodeItemID($id){
+    static function encodeItemID($id, $shop_id = 0){
         $num_str = ['q','s','e','r','t','y','u','i','o','p'];
-        $shop_id = session('shop_id')??0;
+        if (!$shop_id) {
+            $shop_id = config('etc.shop_id')??0;
+            if (session('shop_id')) {
+                $shop_id = session('shop_id');
+            }
+        }
         $alpha_id = '';
         foreach (str_split($shop_id) as $i) {
             $alpha_id .= self::encoder_num_str()[intval($i)];
@@ -59,7 +64,7 @@ class Helpers
         return strtoupper($alpha_id).($id+$shop_id*2);
     }
 
-    public static function decodeItemID($str){
+    static function decodeItemID($str){
         $str = strtolower($str);
         $shop_id = '';
         $alpha = '';

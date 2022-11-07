@@ -1,5 +1,10 @@
 @extends('frontend.layouts.master')
-
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
 <div class="row my-3">
     <div class="col-xl-3  col-sm-3 col-md-3 col-12">
@@ -20,13 +25,13 @@
                             <div class="col-md-4">
                                 <div class="input-group mb-2 c-square ">
                                     <span class="input-group-addon" id="basic-addon1">Thẻ cào</span>
-                                    <input type="text" class="form-control c-square c-theme" name="serial" value="" autofocus placeholder="Mã thẻ,Serial...">
+                                    <input type="text" class="form-control c-square c-theme serial" name="serial" value="" autofocus placeholder="Mã thẻ,Serial...">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="input-group mb-2 c-square">
                                     <span class="input-group-addon" id="basic-addon1">Loại thẻ</span>
-                                    <select name="key" class="form-control c-square c-theme">.
+                                    <select name="key" class="form-control c-square c-theme key">.
                                         <option value=""> Tất cả loại thẻ</option>
                                         @foreach($data_telecome as $val)
                                             <option value="{{ $val->key }}">{{ $val->title }}</option>
@@ -37,7 +42,7 @@
                             <div class="col-md-4">
                                 <div class="input-group mb-2 c-square">
                                     <span class="input-group-addon" id="basic-addon1">Trạng thái</span>
-                                    {{Form::select('status',array(''=>'-- Chọn trạng thái --')+config('module.charge.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'form-control status c-square c-theme'))}}
+                                    {{Form::select('status',array(''=>'-- Chọn trạng thái --')+config('module.charge.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'form-control status c-square c-theme status'))}}
 
                                     {{--                                    <select name="status" id="status" class="form-control c-square c-theme">.--}}
 
@@ -68,7 +73,7 @@
                                 <div class="input-group mb-2 c-square">
                                     <div class="input-group date date-picker" data-date-format="dd/mm/yyyy" data-rtl="false">
                                         <span class="input-group-btn">
-                                            <button class="btn default c-btn-square pl-2 pr-2" type="button"><i class="fa fa-calendar"></i></button>
+                                            <button class="btn default c-btn-square pl-2 pr-2 input-group-addon" type="button"><i class="fa fa-calendar"></i></button>
                                         </span>
                                         <input type="text" class="form-control c-square c-theme started_at" name="started_at" autocomplete="off" autofocus placeholder="Từ ngày" value="">
                                     </div>
@@ -79,7 +84,7 @@
                                     <div class="input-group date date-picker" data-date-format="dd/mm/yyyy"
                                          data-rtl="false">
                                     <span class="input-group-btn">
-                                         <button class="btn default c-btn-square pl-2 pr-2" type="button"><i class="fa fa-calendar"></i></button>
+                                         <button class="btn default c-btn-square pl-2 pr-2 input-group-addon" type="button"><i class="fa fa-calendar"></i></button>
                                     </span>
                                         <input type="text" class="form-control c-square c-theme ended_at" name="ended_at" autocomplete="off" placeholder="Đến ngày" value="">
                                     </div>

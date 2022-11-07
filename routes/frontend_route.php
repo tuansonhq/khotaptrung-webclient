@@ -69,12 +69,20 @@ Route::group(array('middleware' => ['theme']) , function (){
             Route::group(['middleware' => ['intend']], function () {
                 Route::get('/', [HomeController::class , "index"])->name('homeIndex')->middleware('intend');
 
-                Route::get('/tin-tuc', [ArticleController::class , "getList"])->name('articleList');
-                Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"])->name('articleDetail');
+                if(setting('sys_zip_shop') && setting('sys_zip_shop') != ''){
+                    Route::get('/'. setting('sys_zip_shop') .'', [ArticleController::class , "getList"])->name('articleList');
 
-                Route::get('/blog', [ArticleController::class , "getList"]);
+                    Route::get('/'. setting('sys_zip_shop') .'/{slug}', [ArticleController::class , "getDetail"])->name('articleDetail');
+                }else{
+                    Route::get('/tin-tuc', [ArticleController::class , "getList"])->name('articleList');
 
-                Route::get('/blog/{slug}', [ArticleController::class , "getDetail"]);
+                    Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"])->name('articleDetail');
+                }
+
+//
+//                Route::get('/blog', [ArticleController::class , "getList"]);
+//
+//                Route::get('/blog/{slug}', [ArticleController::class , "getDetail"]);
 
 
                 Route::get('/dich-vu', [ServiceController::class, "getList"])->name('serviceList');
@@ -109,7 +117,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
                 Route::post('/lich-su-mua-nick-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])->name('getShowpassNick');
 
-                Route::post('/lich-su-mua-acoount-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])->name('getShowpassNick');
+//                Route::post('/lich-su-mua-acoount-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])->name('getShowpassNick');
 
                 Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);
 
@@ -143,7 +151,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/lich-su-nap-the-{id}', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistoryDetail'])->name('getChargeDepositHistoryDetail');
 
                     if (isset(theme('')->theme_key)){
-                        if (theme('')->theme_key == "theme_1"||theme('')->theme_key == "theme_4" ||theme('')->theme_key == "theme_dup" ||theme('')->theme_key == "theme_6"){
+                        if (theme('')->theme_key == "theme_1"||theme('')->theme_key == "theme_4" ||theme('')->theme_key == "theme_card_2" ||theme('')->theme_key == "theme_dup" ||theme('')->theme_key == "theme_6"){
                             /*Theme_1*/
                             Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getLogs'])->name('getBuyAccountHistory');
                         }else {
@@ -283,8 +291,8 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::post('/minigame-play', [\App\Http\Controllers\Frontend\MinigameController::class , 'postRoll'])->name('postRoll');
                 Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'postBonus'])->name('postBonus');
-                Route::get('/minigame-log-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLog'])->name('getLog');
-                Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLogAcc'])->name('getLogAcc');
+                Route::get('/minigame-log', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLog'])->name('getLog');
+                Route::get('/minigame-logacc', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLogAcc'])->name('getLogAcc');
 //                Route::get('/trong-test',[\App\Http\Controllers\Frontend\MinigameController::class,'getIndexUpdate']);
                 Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])->name('getWithdrawItem');
                 Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])->name('postWithdrawItem');
@@ -302,8 +310,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])->name('getIndex');
 
                 });
-                Route::get('/service-mobile', [\App\Http\Controllers\Frontend\ServiceController::class , 'getListMobile'])->name('getListMobile');
-
+                Route::get('/service-mobile', function ()
+                {
+                    return view('frontend.layouts.includes.list-mobile');
+                })->name('getListMobile');
 
             });
         });

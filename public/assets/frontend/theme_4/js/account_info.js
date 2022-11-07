@@ -67,6 +67,7 @@ $(document).ready(function(){
 
                 }
                 if(data.status == 401){
+
                     if($(window).width() > 992){
 
                         $('.box-loading').hide();
@@ -89,7 +90,6 @@ $(document).ready(function(){
                     }
 
                     $('meta[name="jwt"]').attr('content','');
-
                 }
                 if(data.status === "ERROR"){
                     alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
@@ -103,7 +103,7 @@ $(document).ready(function(){
                         html += '<div class="btn-group d-none d-lg-block show " >';
                         html += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="border: 1px solid #cccccc;border-radius: 5px;padding: 10px 19px;margin-left: 50px">\n';
                         html += '<div class="text" style="display: inline-block">';
-                        html += '<img class="" src="https://napgamegiare.net/assets/frontend/images/default-avatar.png" width="20px" height="20px" style="border-radius: 50%;margin-top: -1px;margin-right: 5px">';
+                        html += '<img class="" src="/assets/frontend/theme_4/image/svg/anhdaidien.svg" width="20px" height="20px" style="border-radius: 50%;margin-top: -1px;margin-right: 5px">';
                         html += '<span id="account-name">'+fn(data.info.username, 12)+'</span>';
                         html += '</div>';
                         html += '</a>';

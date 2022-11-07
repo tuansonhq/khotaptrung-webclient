@@ -123,14 +123,9 @@ $(document).ready(function(){
                 // }
             },
             error: function (data) {
-                swal({
-                    title: "Lỗi !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(nạp thẻ (getAmount)(/nap-the))')
+
+
             },
             complete: function (data) {
 
@@ -167,7 +162,9 @@ $(document).ready(function(){
                         title: "Thành công !",
                         text: data.message,
                         icon: "success",
-                    })
+                    }).then((value) => {
+                        window.location.href = "/nap-the";
+                    });
                 }
                 else if(data.status == 401){
                     window.location.href = '/login?return_url='+window.location.href;
@@ -180,7 +177,9 @@ $(document).ready(function(){
                         buttons: {
                             cancel: "Đóng",
                         },
-                    })
+                    }).then((value) => {
+                        window.location.href = "/nap-the";
+                    });
                 }
                 else{
                     swal({
@@ -194,14 +193,8 @@ $(document).ready(function(){
                 }
             },
             error: function (data) {
-                swal({
-                    title: "Có lỗi xảy ra !",
-                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.(nạp thẻ (postCharge)(/nap-the))')
+
             },
             complete: function (data) {
                 $('#reload_1').trigger('click');

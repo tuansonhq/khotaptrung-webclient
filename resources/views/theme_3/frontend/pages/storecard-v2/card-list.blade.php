@@ -4,10 +4,6 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong-style/buy-card.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
-@section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/script_trong.js?v={{time()}}"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/input.js?v={{time()}}"></script>
-@endsection
 @section('seo_head')
     @include('frontend.widget.__seo_head',with(['datacard'=>$key]))
 @endsection
@@ -224,7 +220,12 @@
                                                     src="/assets/frontend/theme_3/image/icons/add.png" alt=""></button>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn -secondary w-100 _mt-075 js_step" data-go_to="step2">Chọn mua</button>
+
+                                    @if(\App\Library\AuthCustom::check())
+                                        <button type="button" class="btn -secondary w-100 _mt-075 js_step" data-go_to="step2">Chọn mua</button>
+                                    @else
+                                        <button type="button" class="btn -secondary w-100 _mt-075" onclick="openLoginModal();">Chọn mua</button>
+                                    @endif
                                 </div>
                                 @empty
                                     <div class="text-invalid w-100 text-center">Chưa cấu hình mệnh giá thẻ</div>
@@ -344,7 +345,7 @@
                 </div>
                 <div class="card--attr">
                     <div class="card--attr__name">
-                        Giá niêm yết
+                        Mệnh giá
                     </div>
                     <div class="card--attr__value" id="detail--deno__mobile">
                         10.000 đ
@@ -651,5 +652,9 @@
         </div>
     </div>
 
+@endsection
+@section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/script_trong.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/input.js?v={{time()}}"></script>
 @endsection
 

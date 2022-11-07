@@ -1,4 +1,7 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('meta_robots')
     <meta name="robots" content="noindex,nofollow" />
 @endsection
@@ -70,9 +73,9 @@
                             <div class="content-bottom-sheet bar-slide">
                                 <form action="" class="form-filter">
                                     <div class="sheet-header">
-                                        <h2 class="text-title center">
+                                        <p class="text-title center">
                                             Bộ lọc
-                                        </h2>
+                                        </p>
                                         <label class="close"></label>
                                     </div>
                                     <div class="sheet-body overflow-visible">
@@ -132,7 +135,7 @@
                                 <form action="" class="form-filter">
                                     <div class="modal-content">
                                         <div class="modal-header justify-content-center p-0">
-                                            <h2 class="modal-title center">Bộ lọc</h2>
+                                            <p class="modal-title center">Bộ lọc</p>
                                             <button type="button" class="close" data-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body c-p-0">

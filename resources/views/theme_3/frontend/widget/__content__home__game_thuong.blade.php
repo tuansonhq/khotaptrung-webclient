@@ -26,7 +26,7 @@
                                         @endif
                                     </div>
                                     <div class="item-product__box-content">
-                                        <div class="item-product__box-name">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</div>
+                                        <div class="item-product__box-name text-title limit-1">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</div>
                                         @if(isset($item->items_count))
                                             @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
                                                 <div class="item-product__box-sale">Số tài khoản: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }} </div>

@@ -1,5 +1,5 @@
 /*Lấy chiều dài để responsive*/
-let width = $(document).width();
+let width = $(window).width();
 
 /*format tiền*/
 let money_format = wNumb({

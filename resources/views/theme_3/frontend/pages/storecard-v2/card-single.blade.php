@@ -4,11 +4,6 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong-style/buy-card.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
-@section('scripts')
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/buy-card.js?v={{time()}}"></script>--}}
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/script_trong.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/input.js"></script>
-@endsection
 @section('seo_head')
     @include('frontend.widget.__seo_head',with(['datakey'=>$value,'dataname'=>$key]))
 @endsection
@@ -190,7 +185,8 @@
                                             </div>
                                         </div>
                                         @if(\App\Library\AuthCustom::check())
-                                            <button type="button" class="btn -secondary w-100 _mt-075 btn-buy-card" data-toggle="modal" data-target="#modal--confirm__payment">Chọn mua</button>
+                                            <button type="button" class="btn -secondary w-100 _mt-075 btn-buy-card d-none d-lg-block" data-toggle="modal" data-target="#modal--confirm__payment">Chọn mua</button>
+                                            <button type="button" class="btn -secondary w-100 _mt-075 btn-buy-card d-block d-lg-none js_step" data-toggle="modal" data-go_to="step2">Chọn mua</button>
                                         @else
                                             <button type="button" class="btn -secondary w-100 _mt-075" onclick="openLoginModal()">Chọn mua</button>
                                         @endif
@@ -286,7 +282,7 @@
                 </div>
                 <div class="card--attr">
                     <div class="card--attr__name">
-                        Giá niêm yết
+                        Mệnh giá
                     </div>
                     <div class="card--attr__value" id="detail--deno__mobile">
                         10.000 đ
@@ -592,4 +588,9 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/buy-card.js?v={{time()}}"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/script_trong.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/input.js"></script>
 @endsection

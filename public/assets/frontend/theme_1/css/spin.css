@@ -549,7 +549,7 @@
 }
 .item_buy_list_img{
     position: relative;
-
+    padding-bottom: 46.15%;
 }
 .item_buy_list_img-sale{
     position: absolute;
@@ -561,6 +561,7 @@
     height: 75px;
 }
 .item_buy_list_img-main{
+    position: absolute;
     height: 100%;
     max-width: 100%;
     width: 100%;
