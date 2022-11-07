@@ -10,11 +10,11 @@
     <div class=" swiper-wrapper">
         @foreach($data as $item)
 
-        <div class="item image swiper-slide">
+        <div class=" image swiper-slide">
             <a href="/dich-vu/{{ $item->slug}}">
                 <img style="width: 100%;height: 120px;border-radius: 8px" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title   }}" width="120px">
                 <div>
-                    <h3 class="text-title" style="font-size: 12px">{{ $item->title}}</h3>
+                    <h3 class="text-title">{{ $item->title}}</h3>
                 </div>
             </a>
 

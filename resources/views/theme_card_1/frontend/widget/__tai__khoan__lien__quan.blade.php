@@ -5,31 +5,29 @@
     </div>
 
     <div class="entries" style="margin-bottom: 0">
-
-
-        <div class="slick-slider">
-            @foreach($data as $item)
-
-                <div class="item image">
-                    <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
-                        <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" width="120px">
-                        <h3 class="text-title text-left">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h3>
-                        @if(isset($item->items_count))
-                            @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
-                                <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }} </p>
+        <div class="swiper-container swiper-service-related overflow-hidden">
+            <div class="swiper-wrapper">
+                @foreach($data as $item)
+                    <div class="image swiper-slide">
+                        <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
+                            <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" width="120px">
+                            <h3 class="text-title text-left">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h3>
+                            @if(isset($item->items_count))
+                                @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
+                                    <p class="text-left text-account-number" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }} </p>
+                                @else
+                                    <p class="text-left text-account-number" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ $item->items_count }} </p>
+                                @endif
                             @else
-                                <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ $item->items_count }} </p>
+                                <p class="text-left text-account-number" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: 0 </p>
                             @endif
+                        </a>
+                    </div>
 
-                        @else
-                            <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: 0 </p>
-                        @endif
-                    </a>
-                </div>
-
-            @endforeach
-
+                @endforeach
+            </div>
         </div>
     </div>
 
 @endif
+
