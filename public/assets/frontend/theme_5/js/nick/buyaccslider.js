@@ -135,43 +135,7 @@ $(document).ready(function () {
 
             },
             complete: function (data) {
-                var list_dong_gia_v2 = new Swiper('.list-dong-gia-v2', {
-                    navigation: {
-                        nextEl: '.list-dong-gia .swiper-button-next',
-                        prevEl: '.list-dong-gia .swiper-button-prev',
-                    },
-                    autoplay: false,
-                    // preloadImages: false,
-                    updateOnImagesReady: true,
-                    // lazyLoading: false,
-                    watchSlidesVisibility: false,
-                    lazyLoadingInPrevNext: false,
-                    lazyLoadingOnTransitionStart: false,
-                    freeMode:true,
-                    loop: false,
-                    centeredSlides: false,
-                    slidesPerView: 4.5,
-                    speed: 800,
-                    slidesPerGroup: 3,
-                    spaceBetween: 0,
-                    touchMove: true,
-                    freeModeSticky:true,
-                    grabCursor: true,
-                    observer: true,
-                    observeParents: true,
-                    breakpoints: {
-                        992: {
-                            slidesPerView: 3.2,
-                        },
-                        768:{
-                            slidesPerView: 2.5,
-                        },
-                        480: {
-                            slidesPerView: 1.8,
-
-                        }
-                    }
-                });
+                initSwiperNick();
             }
         });
     }
