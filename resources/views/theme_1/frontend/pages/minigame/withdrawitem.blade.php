@@ -80,27 +80,27 @@
 
                     @if(isset($service))
                         <input type="hidden" name="server_id" value="{{ $service->id }}">
-                    @endif
-
-                    @if(isset($server_data) && isset($server_id) && count($server_data) && count($server_id))
-
-                        <div class="form-group row">
-                            <label class="col-md-3 control-label">
-                                Chọn máy chủ:
-                            </label>
-                            <div class="col-md-6">
-                                <div class="input-group" style="width: 100%">
-                                    <select name="server" class="server-filter form-control t14" style="">
-                                        @for($i = 0; $i < count($server_data); $i++)
-                                            @if((strpos($server_data[$i], '[DELETE]') === false))
-                                                <option value="{{$server_id[$i]}}">{{$server_data[$i]}}</option>
-                                            @endif
-                                        @endfor
-                                    </select>
+                        @if(isset($server_data) && isset($server_id) && count($server_data) && count($server_id))
+                            @if($service->idkey != 'roblox_buyserver')
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">
+                                    Chọn máy chủ:
+                                </label>
+                                <div class="col-md-6">
+                                    <div class="input-group" style="width: 100%">
+                                        <select name="server" class="server-filter form-control t14" style="">
+                                            @for($i = 0; $i < count($server_data); $i++)
+                                                @if((strpos($server_data[$i], '[DELETE]') === false))
+                                                    <option value="{{$server_id[$i]}}">{{$server_data[$i]}}</option>
+                                                @endif
+                                            @endfor
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
 
-                        </div>
+                            </div>
+                            @endif
+                        @endif
                     @endif
 
                     <div class="form-group row">
@@ -158,7 +158,6 @@
                         </div>
                     </div>
                 </form>
-
 
                 <div class="" style="margin: 35px 0px;border: 1px solid #cccccc;padding: 15px">
                     {!!isset($result->gametype->description)?$result->gametype->description:''!!}
