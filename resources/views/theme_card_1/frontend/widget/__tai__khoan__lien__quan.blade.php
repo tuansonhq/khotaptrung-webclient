@@ -1,7 +1,7 @@
 @if(isset($data) && count($data) > 0)
 
     <div class="main-title" style="margin-top: 0;margin-bottom: 24px">
-        <h2 style="font-size: 20px;text-transform: uppercase;margin-bottom: 0">Tài khoản liên quan</h2>
+        <h2 style="font-size: 20px;text-transform: uppercase;margin-bottom: 0;padding-top: 24px;">Tài khoản liên quan</h2>
     </div>
 
     <div class="entries" style="margin-bottom: 0">

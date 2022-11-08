@@ -237,11 +237,11 @@
                                         <a id="txtPrice" style="font-size: 18px;font-weight: bold;display: block;margin-bottom: 15px;width: 100%;background: rgb(238, 70, 35) !important;color: #ffffff;text-align: center;-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;border: 2px solid rgb(238, 70, 35) !important;padding: 11px 0;margin-top: 10px;"
                                            class="btn btn-success ">Tổng: 0 Xu</a>
                                         @if(App\Library\AuthCustom::check())
-                                            <button id="btnPurchase" type="button" style="font-size: 18px;font-weight: bold;display: block;cursor: pointer;width: 100%;background: #28a745;color: #ffffff;text-align: center;-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;padding: 11px 0;margin-top: 10px;padding-bottom: 15px" class="btn-auth" >
+                                            <button id="btnPurchase" type="button" style="font-size: 18px;font-weight: bold;display: block;cursor: pointer;width: 100%;background: #28a745;color: #ffffff;text-align: center;-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;padding: 11px 0;margin-top: 10px;padding-bottom: 15px;border: none" class="btn-auth" >
                                                 <i class="fa fa-credit-card " aria-hidden="true"></i> Thanh toán
                                             </button>
                                         @else
-                                            <a href="#" data-toggle="modal" data-target="#modal-login" style="font-size: 18px;font-weight: bold;display: block;cursor: pointer;width: 100%;background: #28a745;color: #ffffff;text-align: center;-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;margin-top: 10px;padding-bottom: 15px" class="btn-auth pay-detail-service"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</a>
+                                            <a href="#" data-toggle="modal" data-target="#modal-login" style="font-size: 18px;font-weight: bold;display: block;cursor: pointer;width: 100%;background: #28a745;color: #ffffff;text-align: center;-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;margin-top: 10px;padding: 11px 0;padding-bottom: 15px" class="btn-auth pay-detail-service"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</a>
                                         @endif
                                     </div>
 
