@@ -28,6 +28,7 @@
             </div>
         </div>
         @include('frontend.widget.__content__home__dichvu')
+        @include('frontend.widget.__content__home__game')
         <div class="clr"></div>
         @if(setting('sys_intro_text'))
         <div class="wp_content_post_index">
