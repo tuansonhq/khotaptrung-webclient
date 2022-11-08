@@ -730,3 +730,7 @@ input[type=text], input[type=password], textarea {
     margin: 0;
     padding: 0;
 }
+
+.data-nick-search {
+    display: none;
+}

@@ -65,13 +65,13 @@
             {{-- Breadcrumb Ajax Loading --}}
             <nav aria-label="breadcrumb" class="data__menuacc" style="margin-top: 10px;"></nav>
 
-            <div class="row bs-normal" style="width: 100%;margin: 0 auto">
+            <div class="row bs-normal" style="width: 100%;margin: 0 auto; padding-bottom: 16px">
                 <div style="width: 100%" id="showdetailacc">
 
                 </div>
             </div>
 
-            <div class="row bs-normal" style="width: 100%;margin: 0 auto">
+            <div class="row bs-normal" style="width: 100%;margin: 0 auto; padding-bottom: 16px">
                 <div style="width: 100%">
                     <div class="d-flex justify-content-between" style="padding-top: 8px;padding-bottom: 16px">
                         <div class="main-title" style="margin-bottom: 0">
@@ -95,6 +95,8 @@
                 {{-- @include('frontend.pages.account.widget.__viewed__account') --}}
 
             </div>
+
+            <div id="showswatched"></div>
 
             @if(isset($game_auto_props) && count($game_auto_props))
                 @if($slug_category == 'nick-lien-minh')
@@ -205,36 +207,37 @@
                                                 @endforeach
                                             </div>
 
-                                            <div class="row bs-normal marinautooo paginate__history paginate__history__fix justify-content-center">
-                                                <div class="col-auto paginate__category__col">
-                                                    <div class="data_paginate paging_bootstrap paginations_custom">
-            
-                                                        <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle champion-paginate" data-tab="champion-paginate" role="tablist">
-                                                            @foreach($game_auto_props as $key => $game_auto_prop)
-                                                                @if($key == 'champions' && count($game_auto_props['champions']) > 1)
-            
-                                                                    @foreach($game_auto_props['champions'] as $key => $arr_champ)
-                                                                        @if($key == count($game_auto_props['champions']) - 1)
-                                                                            <li class="page-item disabled hidden-xs dot-last-paginate">
-                                                                                <span class="page-link">...</span>
+                                            <div class="paginate__v1 paginate__v1_mobie frontend__panigate">
+                                                <div class="row paginate__history paginate__history__fix justify-content-center">
+                                                    <div class="col-auto paginate__category__col">
+                                                        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
+                                                            <ul class="nav nav-tabs pagination pagination-sm js-pagination-handle champion-paginate" data-tab="champion-paginate">
+                                                                @foreach($game_auto_props as $key => $game_auto_prop)
+                                                                    @if($key == 'champions' && count($game_auto_props['champions']) > 1)
+                
+                                                                        @foreach($game_auto_props['champions'] as $key => $arr_champ)
+                                                                            @if($key == count($game_auto_props['champions']) - 1)
+                                                                                <li class="page-item disabled hidden-xs dot-last-paginate">
+                                                                                    <a class="page-link">...</a>
+                                                                                </li>
+                                                                            @endif
+                                                                            <li class="nav-item page-item {{ !$key ? 'active' : '' }} page-item-{{ $key }}">
+                                                                                <a class="page-link {{ !$key ? 'active' : '' }} page-link-{{ $key }}"
+                                                                                data-toggle="tab" href="#tab-champ-{{ $key }}"
+                                                                                role="tab" data-page="{{ $key }}">{{ $key + 1 }}</a>
                                                                             </li>
-                                                                        @endif
-                                                                        <li class="nav-item page-item {{ !$key ? 'active' : '' }} page-item-{{ $key }}">
-                                                                            <a class="page-link {{ !$key ? 'active' : '' }} page-link-{{ $key }}"
-                                                                            data-toggle="tab" href="#tab-champ-{{ $key }}"
-                                                                            role="tab"  data-page="{{ $key }}">{{ $key + 1 }}</a>
-                                                                        </li>
-                                                                        @if(!$key)
-                                                                            <li class="page-item disabled hidden-xs dot-first-paginate">
-                                                                                <span class="page-link">...</span>
-                                                                            </li>
-                                                                        @endif
-                                                                    @endforeach
-            
-            
-                                                                @endif
-                                                            @endforeach
-                                                        </ul>
+                                                                            @if(!$key)
+                                                                                <li class="page-item disabled hidden-xs dot-first-paginate">
+                                                                                    <a class="page-link">...</a>
+                                                                                </li>
+                                                                            @endif
+                                                                        @endforeach
+                
+                
+                                                                    @endif
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -305,35 +308,38 @@
                                                 @endforeach
                                             </div>
 
-                                            <div class="row bs-normal marinautooo paginate__history paginate__history__fix justify-content-center">
-                                                <div class="col-auto paginate__category__col">
-                                                    <div class="data_paginate paging_bootstrap paginations_custom">
-                                                        <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle tft-paginate" data-tab="tft-paginate" role="tablist">
-                                                            @foreach($game_auto_props as $key => $game_auto_prop)
-                                                                @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']) > 1)
-                                                                    @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
-                                                                        @if($key == count($game_auto_props['skins']) - 1)
-                                                                            <li class="page-item disabled hidden-xs dot-last-paginate">
-                                                                                <span class="page-link">...</span>
+                                            <div class="paginate__v1 paginate__v1_mobie frontend__panigate">
+                                                <div class="row paginate__history paginate__history__fix justify-content-center">
+                                                    <div class="col-auto paginate__category__col">
+                                                        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
+                                                            <ul class="nav nav-tabs pagination pagination-sm js-pagination-handle tft-paginate" data-tab="tft-paginate">
+                                                                @foreach($game_auto_props as $key => $game_auto_prop)
+                                                                    @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']) > 1)
+                                                                        @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
+                                                                            @if($key == count($game_auto_props['skins']) - 1)
+                                                                                <li class="page-item disabled hidden-xs dot-last-paginate">
+                                                                                    <span class="page-link">...</span>
+                                                                                </li>
+                                                                            @endif
+                                                                            <li class="nav-item page-item {{ !$key ? 'active' : '' }} page-item-{{ $key }}">
+                                                                                <a class="page-link {{ !$key ? 'active' : '' }} page-link-{{ $key }}"
+                                                                                data-toggle="tab" href="#tab-companion-{{ $key }}"
+                                                                                role="tab"  data-page="{{ $key }}">{{ $key + 1 }}</a>
                                                                             </li>
-                                                                        @endif
-                                                                        <li class="nav-item page-item {{ !$key ? 'active' : '' }} page-item-{{ $key }}">
-                                                                            <a class="page-link {{ !$key ? 'active' : '' }} page-link-{{ $key }}"
-                                                                            data-toggle="tab" href="#tab-companion-{{ $key }}"
-                                                                            role="tab"  data-page="{{ $key }}">{{ $key + 1 }}</a>
-                                                                        </li>
-                                                                        @if(!$key)
-                                                                            <li class="page-item disabled hidden-xs dot-first-paginate">
-                                                                                <span class="page-link">...</span>
-                                                                            </li>
-                                                                        @endif
-                                                                    @endforeach
-                                                                @endif
-                                                            @endforeach
-                                                        </ul>
+                                                                            @if(!$key)
+                                                                                <li class="page-item disabled hidden-xs dot-first-paginate">
+                                                                                    <span class="page-link">...</span>
+                                                                                </li>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                     <div class="row bs-normal modal-container-body d-none" id="result-search-companion" style="margin: 0;">
@@ -402,36 +408,37 @@
                                                 @endforeach
                                             </div>
 
-                                            <div class="row bs-normal marinautooo paginate__history paginate__history__fix justify-content-center">
-                                                <div class="col-auto paginate__category__col">
-                                                    <div class="data_paginate paging_bootstrap paginations_custom">
-            
-                                                        <ul class="nav nav-tabs pagination pagination-sm border-0 js-pagination-handle skin-paginate" data-tab="skin-paginate" role="tablist">
-                                                            @foreach($game_auto_props as $key => $game_auto_prop)
-                                                                @if($key == 'skins' && count($game_auto_props['skins']) > 1)
-            
-                                                                    @foreach($game_auto_props['skins'] as $key => $arr_skins)
-                                                                        @if($key == count($game_auto_props['skins']) - 1)
-                                                                            <li class="page-item disabled hidden-xs dot-last-paginate">
-                                                                                <span class="page-link">...</span>
+                                            <div class="paginate__v1 paginate__v1_mobie frontend__panigate">
+                                                <div class="row paginate__history paginate__history__fix justify-content-center">
+                                                    <div class="col-auto paginate__category__col">
+                                                        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
+                                                            <ul class="nav nav-tabs pagination pagination-sm js-pagination-handle skin-paginate" data-tab="skin-paginate">
+                                                                @foreach($game_auto_props as $key => $game_auto_prop)
+                                                                    @if($key == 'skins' && count($game_auto_props['skins']) > 1)
+                
+                                                                        @foreach($game_auto_props['skins'] as $key => $arr_skins)
+                                                                            @if($key == count($game_auto_props['skins']) - 1)
+                                                                                <li class="page-item disabled hidden-xs dot-last-paginate">
+                                                                                    <span class="page-link">...</span>
+                                                                                </li>
+                                                                            @endif
+                                                                            <li class="nav-item page-item {{ !$key ? 'active' : '' }} page-item-{{ $key }}">
+                                                                                <a class="page-link {{ !$key ? 'active' : '' }} page-link-{{ $key }}"
+                                                                                data-toggle="tab" href="#tab-skin-{{ $key }}"
+                                                                                role="tab"  data-page="{{ $key }}">{{ $key + 1 }}</a>
                                                                             </li>
-                                                                        @endif
-                                                                        <li class="nav-item page-item {{ !$key ? 'active' : '' }} page-item-{{ $key }}">
-                                                                            <a class="page-link {{ !$key ? 'active' : '' }} page-link-{{ $key }}"
-                                                                            data-toggle="tab" href="#tab-skin-{{ $key }}"
-                                                                            role="tab"  data-page="{{ $key }}">{{ $key + 1 }}</a>
-                                                                        </li>
-                                                                        @if(!$key)
-                                                                            <li class="page-item disabled hidden-xs dot-first-paginate">
-                                                                                <span class="page-link">...</span>
-                                                                            </li>
-                                                                        @endif
-                                                                    @endforeach
-            
-            
-                                                                @endif
-                                                            @endforeach
-                                                        </ul>
+                                                                            @if(!$key)
+                                                                                <li class="page-item disabled hidden-xs dot-first-paginate">
+                                                                                    <span class="page-link">...</span>
+                                                                                </li>
+                                                                            @endif
+                                                                        @endforeach
+                
+                
+                                                                    @endif
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
