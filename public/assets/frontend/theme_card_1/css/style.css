@@ -30,6 +30,10 @@ summary {
 li {
     list-style: none;
 }
+
+strong {
+    font-family: 'Roboto', sans-serif !important;
+}
 a {
     text-decoration: none;
 }
@@ -1696,9 +1700,9 @@ p.service_first_link {
 #main_home .content_bvct h2 {
     font-size: 18px !important;
 }
-#main_home .content_bvct p a span {
-    font-family: Roboto-bold !important;
-}
+/*#main_home .content_bvct p a span {*/
+/*    font-family: Roboto-bold !important;*/
+/*}*/
 #main_home .xt {
     display: block;
     margin: -37px auto 0;
