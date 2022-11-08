@@ -26,6 +26,7 @@ class ServiceController extends Controller
         $method = "GET";
 
         $dataSend = array();
+        $dataSend['limit'] = 100;
 
         if ($request->ajax()){
 
