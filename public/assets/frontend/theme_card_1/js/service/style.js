@@ -1,15 +1,12 @@
+
 $('#txtSearch').donetyping(function() {
-
-
     let keyword = convertToSlug($(this).val());
-
     let index = 0;
     let value = 0;
-
     $('.entries_item_service').each(function (i,elm) {
         $(this).removeClass('dis-block-service');
     })
-
+return 111;
     $('.entries_item_service').each(function (i,elm) {
 
         let slug_item = $(elm).find('img').attr('alt');
@@ -29,7 +26,6 @@ $('#txtSearch').donetyping(function() {
             $(this).css('display','none');
         }
     })
-
 
     if (index <= 8){
         value = 1;
