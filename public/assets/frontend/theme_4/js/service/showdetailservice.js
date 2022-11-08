@@ -247,6 +247,7 @@ $(document).ready(function(){
 
     $(document).on('submit', '.purchaseForm', function(e){
         e.preventDefault();
+
         var htmlloading = '';
 
         htmlloading += '<div class="loading"></div>';

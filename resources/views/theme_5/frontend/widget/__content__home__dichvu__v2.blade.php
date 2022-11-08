@@ -9,8 +9,6 @@
         </div>
         <div class="list-category">
             @foreach($data as $key => $item)
-                @if($key<5)
-
                     <div class="item-category c-px-8 c-mb-12 c-px-lg-6">
                         <div class="card">
                             <div class="card-body c-p-16 c-p-lg-12 scale-thumb">
@@ -53,10 +51,6 @@
                             </div>
                         </div>
                     </div>
-
-                @endif
-
-
             @endforeach
         </div>
     </section>
