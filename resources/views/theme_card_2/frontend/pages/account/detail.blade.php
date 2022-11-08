@@ -166,7 +166,7 @@
                                     <div class="c-line-center c-theme-bg"></div>
                                 </div>
 
-                                <div class="shop_product_another_content">
+                                <div class="shop_product_another_content px-3">
                                     <div class="item_buy_list row">
                                         <div class="col-md-12">
                                             <span>{!! $data->description !!}</span>
