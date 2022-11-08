@@ -592,7 +592,6 @@
 
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/buyaccrandom.js?v={{time()}}"></script>
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/history-filter/handle.js?v{{time()}}"></script>--}} <!-- cái này nhúng ở master rồi -->
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/account-list.js?v={{time()}}"></script>
 
 
