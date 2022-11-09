@@ -161,11 +161,18 @@
                                     <option value="{{ $childs->id }}-110-119">110 - 119</option>
                                     <option value="{{ $childs->id }}-120-129">120 - 129</option>
                                     <option value="{{ $childs->id }}-130">130 - </option>
-                                    {{--                                        @if(isset($auto_propertie->childs))--}}
-                                    {{--                                            @foreach($auto_propertie->childs as $child)--}}
-                                    {{--                                                <option value="{{ $child->id }}">{{ $child->name }}</option>--}}
-                                    {{--                                            @endforeach--}}
-                                    {{--                                        @endif--}}
+                                </select>
+                            </div>
+                        </div>
+                    @elseif($childs->key == 'CHAR_CLASS')
+                        <div class="col-3 item_buy_form_search">
+                            <div class="input-group">
+                                <span class="input-group-addon">CLASS</span>
+                                <select type="text" class="form-control champions" name="champions">
+                                    <option value="">--Không chọn--</option>
+                                    @foreach($childs->childs as $child)
+                                        <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
