@@ -10,6 +10,9 @@
             <div class="entries">
                 <div class="row bs-normal fix-border fix-border-nick " id="showslideracc">
                     @foreach($data as $item)
+                        @if ($item->randId == $ran_id)
+                            @continue;
+                        @endif
                         <div class="col-md-3 col-sm-6 col-6 list-item" style="display: block">
                             <a href="/acc/{{ $item->randId }}">
                                 <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
