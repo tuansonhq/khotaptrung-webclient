@@ -61,7 +61,7 @@
     @endif
 @elseif(isset($data->randId))
     @if(Request::is('acc/'. $data->randId .''))
-
+        <link rel="canonical" href="{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug??'' }}" />
         <meta name="description" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}">
         <meta property="og:description" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}"/>
 
@@ -140,7 +140,16 @@
 <meta name="keywords" content="{{setting('sys_keyword')}}">
 <link rel="shortcut icon" href="{{\App\Library\MediaHelpers::media(setting('sys_favicon'))}}" type="image/x-icon">
 <meta property="og:url" content="{{url()->current()}}"/>
-<link rel="canonical" href="{{ url()->current() }}">
+@if(isset($data->randId))
+
+    @if(Request::is('acc/'. $data->randId .''))
+        <link rel="canonical" href="https://{{\Request::server ("HTTP_HOST")}}/mua-acc/{{ $data->category->slug }}" />
+    @endif
+@else
+    <link rel="canonical" href="{{ url()->current() }}">
+@endif
+
+
 {{--@if(Request::is('mua-the'))--}}
 {{--    <title>{{setting('sys_store_card_title')??setting('sys_title') }}</title>--}}
 {{--    <meta name="description" content="{{ strip_tags(setting('sys_store_card_seo')??setting('sys_description')) }}">--}}
@@ -164,7 +173,7 @@
             "@type": "ListItem",
             "position": 2,
             "name": "✅(Đã xác minh uy tín)",
-            "item": "https://https://{{\Request::server ("HTTP_HOST")}}/mua-acc/{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}"
+            "item": "https://{{\Request::server ("HTTP_HOST")}}/mua-acc/{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}"
           }]
         }
     </script>
@@ -300,7 +309,6 @@
       ]
     }
     </script>
-
     @elseif(Request::is('tin-tuc/'. $data->slug .''))
 
         <script type="application/ld+json">
