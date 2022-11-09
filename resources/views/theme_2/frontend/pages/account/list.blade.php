@@ -400,6 +400,28 @@
                                                 </select>
                                             </div>
 
+
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    Trang phục
+                                                </label>
+                                                <select class="account-filter-field" name="champions_data"  data-title="{{ $auto_propertie->key }}" id="">
+                                                    <option value="" selected disabled>--Không chọn--</option>
+                                                    @if(isset($auto_propertie->childs) && count($auto_propertie->childs))
+                                                        @foreach($auto_propertie->childs as $child)
+
+                                                            @if(isset($child->childs) && count($child->childs))
+                                                                @foreach($child->childs as $c_child)
+                                                                    <option value="{{ $c_child->id }}">{{ $c_child->name }}</option>
+                                                                @endforeach
+                                                            @endif
+
+                                                        @endforeach
+                                                    @endif
+
+                                                </select>
+                                            </div>
+
                                         @elseif($auto_propertie->key == 'tftcompanions')
 
                                             <div class="input-group">
