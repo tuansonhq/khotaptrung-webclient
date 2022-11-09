@@ -1511,6 +1511,7 @@
                 var free_wheel = 0;
                 var value_gif_bonus = '';
                 var msg_random_bonus = '';
+                var showwithdrawbtn = true;
                 //var arrDiscount = '';
 
                 $('body').delegate('#start-played', 'click', function () {
@@ -1555,6 +1556,7 @@
                                     $('#noticeModal').modal('show');
                                     return;
                                 }
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 gift_detail = data.gift_detail;
                                 gift_revice = data.arr_gift;
@@ -1749,6 +1751,9 @@
                                 }
                             }
                         }
+                        if (!showwithdrawbtn) {
+                            $("#btnWithdraw").hide();
+                        }else{ $("#btnWithdraw").show(); }
 
                         $('#noticeModal .content-popup').html($html);
 
@@ -1854,6 +1859,7 @@
                 var angles = 0;
                 var free_wheel = 0;
                 var arrDiscount = '';
+                var showwithdrawbtn = true;
                 //Click nút lật
                 $('body').delegate('.img_remove', 'click', function(){
                     $('.boxflip .flip-box-front').removeClass('img_remove');
@@ -1914,6 +1920,7 @@
                                     // }
                                     return;
                                 }
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 free_wheel = data.free_wheel;
                                 //arrDiscount = data.arrDiscount;
@@ -2066,6 +2073,9 @@
                                         }
                                     }
                                 }
+                                if (!showwithdrawbtn) {
+                                    $("#btnWithdraw").hide();
+                                }else{ $("#btnWithdraw").show(); }
 
                                 $('#noticeModal .content-popup').html($html);
                                 if (userpoint > 99) {
@@ -2221,6 +2231,7 @@
                 var slot1_fake;
                 var slot2_fake;
                 var slot3_fake;
+                var showwithdrawbtn = true;
                 //Click nút quay
                 $('body').delegate('#start-played', 'click', function() {
 
@@ -2280,6 +2291,7 @@
 
 
                                 gift_revice = data.arr_gift;
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 arrxgt = data.xgt;
                                 if (arrxgt > 0) {
@@ -2411,6 +2423,7 @@
                                 doSlot(num1,num2,num3);
 
                                 gift_revice = data.arr_gift;
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 arrxgt = data.xgt;
                                 if (arrxgt > 0) {
@@ -2647,6 +2660,9 @@
                             }
                         }
                     }
+                    if (!showwithdrawbtn) {
+                        $("#btnWithdraw").hide();
+                    }else{ $("#btnWithdraw").show(); }
 
                     $('#noticeModal .content-popup').html($html);
 
@@ -2815,6 +2831,7 @@
                 var slot3_fake;
                 var slot4_fake;
                 var slot5_fake;
+                var showwithdrawbtn = true;
                 //Click nút quay
                 $('body').delegate('#start-played', 'click', function() {
 
@@ -2903,6 +2920,7 @@
 
 
                                 gift_revice = data.arr_gift;
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 arrxgt = data.xgt;
                                 if (arrxgt > 0) {
@@ -3062,6 +3080,7 @@
 
 
                                 gift_revice = data.arr_gift;
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 arrxgt = data.xgt;
                                 if (arrxgt > 0) {
@@ -3414,6 +3433,9 @@
                             }
                         }
                     }
+                    if (!showwithdrawbtn) {
+                        $("#btnWithdraw").hide();
+                    }else{ $("#btnWithdraw").show(); }
 
                     $('#noticeModal .content-popup').html($html);
 
@@ -3575,6 +3597,7 @@
                 var msg_random_bonus = '';
                 var startat = 0;
 
+                var showwithdrawbtn = true;
                 //Click nút quay
                 $('body').delegate('#start-played', 'click', function() {
 
@@ -3616,6 +3639,7 @@
                                     $('#noticeModal').modal('show');
                                     return;
                                 }
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 gift_detail = data.gift_detail;
                                 gift_revice = data.arr_gift;
@@ -3732,6 +3756,7 @@
                                     $('#noticeModal').modal('show');
                                     return;
                                 }
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 gift_detail = data.gift_detail;
                                 gift_revice = data.arr_gift;
@@ -3935,6 +3960,9 @@
                                 }
                             }
                         }
+                        if (!showwithdrawbtn) {
+                            $("#btnWithdraw").hide();
+                        }else{ $("#btnWithdraw").show(); }
 
                         $('#noticeModal .content-popup').html($html);
 
@@ -4050,6 +4078,8 @@
                 var free_wheel = 0;
                 var value_gif_bonus = '';
                 var msg_random_bonus = '';
+
+                var showwithdrawbtn = true;
                 //var arrDiscount = '';
 
                 $('body').delegate('#start-played', 'click', function() {
@@ -4096,9 +4126,10 @@
                                     $('#noticeModal').modal('show');
                                     return;
                                 }
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 gift_detail = data.gift_detail;
-                                console.log(gift_detail);
+
                                 if(gift_detail.image.length > 0)
                                 {
                                     $('#lac_lixi').attr('src',gift_detail.image);
@@ -4303,6 +4334,9 @@
                             }
                         }
                     }
+                    if (!showwithdrawbtn) {
+                        $("#btnWithdraw").hide();
+                    }else{ $("#btnWithdraw").show(); }
 
                     $('#noticeModal .content-popup').html($html);
 

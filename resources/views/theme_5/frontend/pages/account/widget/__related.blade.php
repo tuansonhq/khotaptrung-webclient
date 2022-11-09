@@ -14,7 +14,10 @@
             <div class="swiper-wrapper">
 
                 @foreach($data as $item)
-                    <div class="swiper-slide">
+                    @if ($item->randId == $ran_id)
+                        @continue;
+                    @endif
+                    <div class="swiper-slide acc-related-{{ $item->randId }}">
                         <div class="item-category">
                             <div class="card">
                                 <a href="/acc/{{ $item->randId }}" class="card-body scale-thumb c-p-16 c-p-lg-12">
