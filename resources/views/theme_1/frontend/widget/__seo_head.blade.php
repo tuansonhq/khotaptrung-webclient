@@ -140,7 +140,15 @@
 <meta name="keywords" content="{{setting('sys_keyword')}}">
 <link rel="shortcut icon" href="{{\App\Library\MediaHelpers::media(setting('sys_favicon'))}}" type="image/x-icon">
 <meta property="og:url" content="{{url()->current()}}"/>
-{{--<link rel="canonical" href="{{ url()->current() }}">--}}
+@if(isset($data->randId))
+    @if(Request::is('acc/'. $data->randId .''))
+        <link rel="canonical" href="https://shopngocrong.net/mua-acc/nick-ninja-school" />
+    @endif
+@else
+    <link rel="canonical" href="{{ url()->current() }}">
+@endif
+
+
 {{--@if(Request::is('mua-the'))--}}
 {{--    <title>{{setting('sys_store_card_title')??setting('sys_title') }}</title>--}}
 {{--    <meta name="description" content="{{ strip_tags(setting('sys_store_card_seo')??setting('sys_description')) }}">--}}
