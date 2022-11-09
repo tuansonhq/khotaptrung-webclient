@@ -8,7 +8,9 @@
         <div class="container">
 
             <div class="row user-manager">
-                @include('frontend.widget.__menu_profile')
+                <div class="col-12 col-md-4 col-lg-3  site-menu" style="background-color: #fff;border-radius: 12px;">
+                    @include('frontend.widget.__menu_profile')
+                </div>
 
                 <div class="col-12 col-md-8 col-lg-9 site-form " style="min-height: 212.568px;">
 
