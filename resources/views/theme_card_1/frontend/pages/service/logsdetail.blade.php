@@ -8,10 +8,12 @@
         <div class="container">
 
             <div class="row user-manager">
+                <div class="col-12 col-md-4 col-lg-3  site-menu">
                 @include('frontend.widget.__menu_profile')
+                </div>
+                <div class="col-12 col-md-8 col-lg-9 site-form menu-content" style="min-height: 212.568px">
 
-                <div class="col-12 col-md-8 col-lg-9 site-form " style="min-height: 212.568px;background: #ffffff;border-radius: 8px">
-                    <div class="account_sidebar_content" style="padding: 16px 8px">
+                    <div class="account_sidebar_content " style="padding: 16px 8px">
                         @if(isset($data->itemconfig_ref->params))
                         <div class="c-layout-sidebar-content ">
                             <!-- BEGIN: PAGE CONTENT -->
@@ -309,6 +311,7 @@
                             <span style="color: red;font-size: 16px">Không có dữ liệu</span>
                         @endif
                     </div>
+
                 </div>
 
             </div>
