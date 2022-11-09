@@ -6,7 +6,7 @@
         </div>
         <div class="service-search d-none d-lg-block ">
             <div class="input-group p-box">
-                <input type="text" id="txtSearchNick" placeholder="Tìm dịch vụ" value="" class="" width="200px">
+                <input type="text" id="txtSearchNick" placeholder="Tìm danh mục" value="" class="" width="200px">
                 <span class="icon-search"><i class="fas fa-search"></i></span>
             </div>
         </div>
@@ -15,7 +15,7 @@
     <div class="entries">
         <div class="row fix-border fix-border-nick">
             <div class="col-md-12 left-right data-nick-search">
-                <span style="color: rgb(238, 70, 35);">Dịch vụ cần tìm không tồn tại.</span>
+                <span style="color: rgb(238, 70, 35);">Danh mục cần tìm không tồn tại.</span>
             </div>
             @php
                 $index = 0;

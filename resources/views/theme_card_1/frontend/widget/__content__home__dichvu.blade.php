@@ -1,6 +1,6 @@
 @if(isset($data) && count($data) > 0)
 
-    <div class="d-flex justify-content-between" style="padding-top: 24px">
+    <div class="d-flex justify-content-between" style="padding-top: 24px; padding-bottom: 16px">
         <div class="main-title">
             <h1>Dịch vụ game</h1>
         </div>
@@ -108,7 +108,7 @@
             });
 
 
-            $('#txtSearch').donetyping(function() {
+            $('#txtSearch').on('input', function() {
                 let keyword = convertToSlug($(this).val());
                 let index = 0;
                 let value = 0;
@@ -160,7 +160,7 @@
                 }
 
                 //$(this).val() // get the current value of the input field.
-            }, 400);
+            });
 
 
             function convertToSlug(title) {
