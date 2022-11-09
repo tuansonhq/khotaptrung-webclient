@@ -1,6 +1,6 @@
 @if(isset($data))
 
-    <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
+    <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow " style="background-color: #fff;border-radius: 12px;">
     @foreach($data??[] as $item)
         @if ($item->parent_id == 0)
             <li class="m-menu__item {{ '/'.request()->path() == $item->url ? 'active' : ''}}  " aria-haspopup="true">

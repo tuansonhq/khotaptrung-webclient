@@ -109,7 +109,7 @@
 
                             <div class="modal-header">
                                 <div class="col-1"></div>
-                                <div class="col-10 text-center"><h6 class="modal-title">Xác nhận thanh toán</h6></div>
+                                <div class="col-10 text-center"><h6 class="modal-title">Xác nhận nạp thẻ</h6></div>
                                 <div class="col-1 ">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
