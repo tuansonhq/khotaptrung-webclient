@@ -40,25 +40,25 @@
                             </select>
                         </div>
                     </div>
-                    {{--                <div class="col-3 item_buy_form_search">--}}
-                    {{--                    <div class="input-group">--}}
-                    {{--                        <span class="input-group-addon">Trang phục</span>--}}
-                    {{--                        <select type="text" class="form-control skill" name="skill">--}}
-                    {{--                            <option value="">--Không chọn--</option>--}}
-                    {{--                            @if(isset($auto_propertie->childs) && count($auto_propertie->childs))--}}
-                    {{--                                @foreach($auto_propertie->childs as $child)--}}
+                    <div class="col-3 item_buy_form_search">
+                        <div class="input-group">
+                            <span class="input-group-addon">Trang phục</span>
+                            <select type="text" class="form-control skill" name="skill">
+                                <option value="">--Không chọn--</option>
+                                @if(isset($auto_propertie->childs) && count($auto_propertie->childs))
+                                    @foreach($auto_propertie->childs as $child)
 
-                    {{--                                    @if(isset($child->childs) && count($child->childs))--}}
-                    {{--                                        @foreach($child->childs as $c_child)--}}
-                    {{--                                            <option value="{{ $c_child->id }}">{{ $c_child->name }}</option>--}}
-                    {{--                                        @endforeach--}}
-                    {{--                                    @endif--}}
+                                        @if(isset($child->childs) && count($child->childs))
+                                            @foreach($child->childs as $c_child)
+                                                <option value="{{ $c_child->id }}">{{ $c_child->name }}</option>
+                                            @endforeach
+                                        @endif
 
-                    {{--                                @endforeach--}}
-                    {{--                            @endif--}}
-                    {{--                        </select>--}}
-                    {{--                    </div>--}}
-                    {{--                </div>--}}
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                    </div>
                 @elseif($auto_propertie->key == 'tftcompanions')
                     <div class="col-3 item_buy_form_search">
                         <div class="input-group">
