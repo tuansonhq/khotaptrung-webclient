@@ -14,6 +14,9 @@
             <div class="swiper-wrapper">
 
                 @foreach($data as $item)
+                    @if ($item->randId == $ran_id)
+                        @continue;
+                    @endif
                     <div class="swiper-slide">
                         <div class="item-category">
                             <div class="card">

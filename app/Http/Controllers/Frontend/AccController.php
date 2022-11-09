@@ -506,6 +506,7 @@ class AccController extends Controller
     public function getRelated(Request $request){
 
         if ($request->ajax()){
+            $ran_id = $request->ran_id;
             $slug = $request->slug;
             $url = '/acc';
             $method = "GET";
@@ -525,7 +526,7 @@ class AccController extends Controller
                 $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
 
                 $htmlslider = view('frontend.pages.account.widget.__related')
-                    ->with('data',$data)->with('slug',$slug)->render();
+                    ->with('data',$data)->with('ran_id', $ran_id)->with('slug',$slug)->render();
 
                 return response()->json([
                     'dataslider' => $htmlslider,
@@ -549,6 +550,7 @@ class AccController extends Controller
             $watcheds = Cookie::get('watched_account') ?? '[]';
             $watcheds = json_decode($watcheds,true);
 
+            $ran_id = $request->ran_id;
 
             if (isset($watcheds) && count($watcheds)){
                 $url = '/acc';
@@ -577,7 +579,7 @@ class AccController extends Controller
                     $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
 
                     $htmlslider = view('frontend.pages.account.widget.__watched')
-                        ->with('data',$data)->render();
+                        ->with('data',$data)->with('ran_id', $ran_id)->render();
 
                     return response()->json([
                         'datawatched' => $htmlslider,

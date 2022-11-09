@@ -12,6 +12,9 @@
         <div class="row fix-border fix-border-nick ">
             @foreach($data as $item)
                 @if($item->status == 1)
+                    @if ($item->randId == $ran_id)
+                        @continue;
+                    @endif
                     <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
                         <a href="/acc/{{ $item->randId }}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
