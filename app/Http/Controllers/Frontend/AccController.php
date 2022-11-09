@@ -105,7 +105,6 @@ class AccController extends Controller
                 $arr_auto = '';
 
                 if ($request->filled('server_data') || $request->filled('champions_data') || $request->filled('skill_data') || $request->filled('tftcompanions_data') || $request->filled('tftdamageskins_data') || $request->filled('tftmapskins_data'))  {
-//                    $dataSend['data'] = 'property_lienminh_auto';
 
                     if ($request->filled('tftmapskins_data')){
 
@@ -174,7 +173,7 @@ class AccController extends Controller
                 $dataSend['limit'] =  12;
                 $dataSend['sort'] = 'random';
 
-                if (theme('')->theme_key == "theme_5"){
+                if (theme('')->theme_key == "theme_5" || theme('')->theme_key == "theme_2"){
                     $dataSend['limit'] =  15;
                 }
 //                $dataSend['randId'] = 'P9359';
