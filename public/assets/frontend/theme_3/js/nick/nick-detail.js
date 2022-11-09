@@ -5,7 +5,7 @@ $(document).ready(function (e) {
 
     setDisplayLink(0, 'skin-paginate');
     setDisplayLink(0, 'tft-paginate');
-    setDisplayLink(0, 'champion-paginate')
+    setDisplayLink(0, 'champion-paginate');
 
     getShowAccDetail(slug);
 
@@ -76,7 +76,8 @@ $(document).ready(function (e) {
             type: 'GET',
             url: url,
             data: {
-                slug:slug_category
+                slug:slug_category,
+                ran_id: slug
             },
             beforeSend: function (xhr) {
 
@@ -148,7 +149,7 @@ $(document).ready(function (e) {
             type: 'GET',
             url: url,
             data: {
-
+                ran_id: slug
             },
             beforeSend: function (xhr) {
 

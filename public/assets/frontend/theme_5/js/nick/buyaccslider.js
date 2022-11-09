@@ -3,7 +3,7 @@ $(document).ready(function () {
     var slug = $('.slug').val();
     var slug_category = $('.slug_category').val();
 
-    getShowAccDetail(slug)
+    getShowAccDetail(slug);
 
     function getShowAccDetail(slug) {
 
@@ -65,7 +65,8 @@ $(document).ready(function () {
             type: 'GET',
             url: url,
             data: {
-                slug:slug_category
+                slug:slug_category,
+                ran_id: slug
             },
             beforeSend: function (xhr) {
 
@@ -106,7 +107,7 @@ $(document).ready(function () {
             type: 'GET',
             url: url,
             data: {
-
+                ran_id: slug
             },
             beforeSend: function (xhr) {
 
