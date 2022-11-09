@@ -91,7 +91,7 @@
                 <form action="" class="form-search c-mb-24 d-lg-none">
                     <input type="search" placeholder="Tìm kiếm" class="search">
                 </form>
-                <div class="text-title fw-700 c-mb-8 d-lg-none">Nick Freefire cực phẩm</div>
+                <div class="text-title fw-700 c-mb-8 d-lg-none">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</div>
                 <div class="mobile-tools c-mb-8 d-lg-none">
                     <label class="tool-filter c-mr-12 open-sheet" data-target="#sheet-filter">
                         Bộ lọc
