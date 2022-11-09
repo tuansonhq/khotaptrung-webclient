@@ -92,7 +92,8 @@ $(document).ready(function () {
             type: 'GET',
             url: url,
             data: {
-                slug:slug_category
+                slug:slug_category,
+                ran_id: slug
             },
             beforeSend: function (xhr) {
 
@@ -133,7 +134,7 @@ $(document).ready(function () {
             type: 'GET',
             url: url,
             data: {
-
+                ran_id: slug
             },
             beforeSend: function (xhr) {
 

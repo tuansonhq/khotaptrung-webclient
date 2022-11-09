@@ -8,6 +8,9 @@
         <div class="shop_product_another_content">
             <div class="item_buy_list row">
                 @foreach($data as $item)
+                    @if ($item->randId == $ran_id)
+                        @continue;
+                    @endif
 
                     <div class="col-6 col-sm-6 col-lg-3 fixcssacount">
                         <div class="item_buy_list_in">
