@@ -18,7 +18,7 @@ $(document).ready(function(){
         var status_data = $('.status_data').val();
         var select_data = $('.select_data').val();
         var sort_by_data = $('.sort_by_data').val();
-
+        var server_data = $('.server_data').val();
         //LM
 
         var champions_data = $('.champions_data').val();
@@ -27,13 +27,13 @@ $(document).ready(function(){
         var tftdamageskins_data = $('.tftdamageskins_data').val();
         var tftmapskins_data = $('.tftmapskins_data').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data,server_data)
         // loadDataAccountList(page);
     });
 
     loadDataAccountList()
 
-    function loadDataAccountList(page,id_data = '',title_data = '',price_data = '',status_data = '',select_data = '',sort_by_data = '',champions_data = '',skill_data = '',tftcompanions_data = '',tftdamageskins_data = '',tftmapskins_data = '') {
+    function loadDataAccountList(page,id_data = '',title_data = '',price_data = '',status_data = '',select_data = '',sort_by_data = '',champions_data = '',skill_data = '',tftcompanions_data = '',tftdamageskins_data = '',tftmapskins_data = '',server_data = '') {
 
         let slug = $('.slug').val();
 
@@ -58,7 +58,8 @@ $(document).ready(function(){
                 skill_data:skill_data,
                 tftcompanions_data:tftcompanions_data,
                 tftdamageskins_data:tftdamageskins_data,
-                tftmapskins_data:tftmapskins_data
+                tftmapskins_data:tftmapskins_data,
+                server_data:server_data,
             },
             beforeSend: function (xhr) {
 
@@ -112,6 +113,7 @@ $(document).ready(function(){
         var title = $('.title').val();
         var price = $('.price').val();
         var status = $('.status').val();
+        var server = $('.server').val();
 
         var itemselect = '';
         $('.select').each(function (idx, elm) {
@@ -125,6 +127,12 @@ $(document).ready(function(){
             $('.id_data').val('');
         }else {
             $('.id_data').val(id);
+        }
+
+        if (server == null || server == undefined || server == ''){
+            $('.server_data').val('');
+        }else {
+            $('.server_data').val(server);
         }
 
         if (title == null || title == undefined || title == ''){
@@ -195,6 +203,7 @@ $(document).ready(function(){
         var status_data = $('.status_data').val();
         var select_data = $('.select_data').val();
         var sort_by_data = $('.sort_by_data').val();
+        var server_data = $('.server_data').val();
 
         var champions_data = $('.champions_data').val();
         var skill_data = $('.skill_data').val();
@@ -206,7 +215,7 @@ $(document).ready(function(){
         $('#hidden_page_service').val(1);
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data,server_data)
 
     });
 
@@ -227,6 +236,7 @@ $(document).ready(function(){
         $('.tftcompanions_data').val('');
         $('.tftdamageskins_data').val('');
         $('.tftmapskins_data').val('');
+        $('.server_data').val('');
 
         var id_data = $('.id_data').val();
         var title_data = $('.title_data').val();
@@ -239,10 +249,11 @@ $(document).ready(function(){
         var tftcompanions_data = $('.tftcompanions_data').val();
         var tftdamageskins_data = $('.tftdamageskins_data').val();
         var tftmapskins_data = $('.tftmapskins_data').val();
+        var server_data = $('.server_data').val();
 
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data,server_data)
 
     });
 
@@ -253,6 +264,7 @@ $(document).ready(function(){
         var title = $('.title-mobile').val();
         var price = $('.price-mobile').val();
         var status = $('.status-mobile').val();
+        var server = $('.server-mobile').val();
         var itemselect = '';
         $('.select-mobile').each(function (idx, elm) {
             if (itemselect != '') {
@@ -271,6 +283,12 @@ $(document).ready(function(){
             $('.title_data').val('');
         }else {
             $('.title_data').val(title);
+        }
+
+        if (server == null || server == undefined || server == ''){
+            $('.server_data').val('');
+        }else {
+            $('.server_data').val(server);
         }
 
         if (price == null || price == undefined || price == ''){
@@ -334,6 +352,7 @@ $(document).ready(function(){
         var status_data = $('.status_data').val();
         var select_data = $('.select_data').val();
         var sort_by_data = $('.sort_by_data').val();
+        var server_data = $('.server_data').val();
 
         var champions_data = $('.champions_data').val();
         var skill_data = $('.skill_data').val();
@@ -344,7 +363,7 @@ $(document).ready(function(){
         $('#hidden_page_service').val(1);
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data,server_data)
 
     });
 
@@ -377,7 +396,7 @@ $(document).ready(function(){
 
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data,server_data)
 
     });
 
@@ -394,13 +413,14 @@ $(document).ready(function(){
         var tftcompanions_data = $('.tftcompanions_data').val();
         var tftdamageskins_data = $('.tftdamageskins_data').val();
         var tftmapskins_data = $('.tftmapskins_data').val();
+        var server_data = $('.server_data').val();
 
         var sort_by = $('.sort_by').val();
         $('.sort_by_data').val(sort_by);
         var sort_by_data = $('.sort_by_data').val();
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data,server_data)
 
     });
 
@@ -417,13 +437,14 @@ $(document).ready(function(){
         var tftcompanions_data = $('.tftcompanions_data').val();
         var tftdamageskins_data = $('.tftdamageskins_data').val();
         var tftmapskins_data = $('.tftmapskins_data').val();
+        var server_data = $('.server_data').val();
 
         var sort_by = $('.sort_by_mobile').val();
         $('.sort_by_data').val(sort_by);
         var sort_by_data = $('.sort_by_data').val();
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data,server_data)
 
     });
 

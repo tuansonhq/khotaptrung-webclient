@@ -61,7 +61,7 @@
     @endif
 @elseif(isset($data->randId))
     @if(Request::is('acc/'. $data->randId .''))
-
+        <link rel="canonical" href="{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug??'' }}" />
         <meta name="description" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}">
         <meta property="og:description" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}"/>
 

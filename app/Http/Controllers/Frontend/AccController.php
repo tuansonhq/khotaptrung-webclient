@@ -67,10 +67,17 @@ class AccController extends Controller
                 $response_cate_data = $result_Api_cate->response_data??null;
 
             }
-//            elseif ($slug == 'nick-ninja-school'){
+            elseif ($slug == 'nick-ninja-school'){
+                $dataSendCate = array();
+                $dataSendCate['data'] = 'property_auto';
+                $dataSendCate['provider'] = 'ninjaschool';
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
+            }
+//            elseif ($slug == 'ban-nick-ngoc-rong'){
 //                $dataSendCate = array();
 //                $dataSendCate['data'] = 'property_auto';
-//                $dataSendCate['provider'] = 'ninjaschool';
+////                $dataSendCate['provider'] = 'ninjaschool';
 //                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
 //                $response_cate_data = $result_Api_cate->response_data??null;
 //            }
@@ -97,7 +104,7 @@ class AccController extends Controller
                 $dataSend = array();
                 $arr_auto = '';
 
-                if ($request->filled('champions_data') || $request->filled('skill_data') || $request->filled('tftcompanions_data') || $request->filled('tftdamageskins_data') || $request->filled('tftmapskins_data'))  {
+                if ($request->filled('server_data') || $request->filled('champions_data') || $request->filled('skill_data') || $request->filled('tftcompanions_data') || $request->filled('tftdamageskins_data') || $request->filled('tftmapskins_data'))  {
 //                    $dataSend['data'] = 'property_lienminh_auto';
 
                     if ($request->filled('tftmapskins_data')){
@@ -140,6 +147,14 @@ class AccController extends Controller
                             $arr_auto = $request->champions_data;
                         }else{
                             $arr_auto = $arr_auto.','.$request->champions_data;
+                        }
+                    }
+
+                    if ($request->filled('server_data')){
+                        if ($arr_auto == ''){
+                            $arr_auto = $request->server_data;
+                        }else{
+                            $arr_auto = $arr_auto.','.$request->server_data;
                         }
                     }
 
@@ -212,6 +227,7 @@ class AccController extends Controller
                     }
                 }
 
+//                dd($dataSend);
                 $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
                 $response_data = $result_Api->response_data??null;
 
@@ -856,16 +872,16 @@ class AccController extends Controller
                                     $key = Helpers::Decrypt($datashow->slug,config('module.acc.encrypt_key'));
                                 }
 
-                                if (!isset($datashow->groups[1]) || !isset($datashow->groups[1]->id)){
-                                    return response()->json([
-                                        'status' => 0,
-                                        'message' => 'Không có dữ liệu groups.',
-                                    ]);
-                                }
+//                                if (!isset($datashow->groups[1]) || !isset($datashow->groups[1]->id)){
+//                                    return response()->json([
+//                                        'status' => 0,
+//                                        'message' => 'Không có dữ liệu groups.',
+//                                    ]);
+//                                }
 
                                 $dataSendCategory = array();
                                 $dataSendCategory['data'] = 'category_detail';
-                                $dataSendCategory['id'] = $datashow->groups[1]->id;
+                                $dataSendCategory['id'] = $datashow->category->id;
 
                                 $result_category_Api = DirectAPI::_makeRequest($url,$dataSendCategory,$method);
                                 $response_category_data = $result_category_Api->response_data??null;

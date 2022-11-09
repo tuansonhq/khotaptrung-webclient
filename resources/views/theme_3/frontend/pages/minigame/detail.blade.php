@@ -2,6 +2,7 @@
 @section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$result->group]))
 @endsection
+
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/breadcrumb.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/spin.css">
@@ -612,6 +613,7 @@
                     </div>
                     <div class="service-detail">
                         <h2>Chi tiết dịch vụ</h2>
+                        @dd($result->group)
                         <div class="service-detail-content">
                             @if(isset($result->group->description))
                                 {!! $result->group->description !!}
