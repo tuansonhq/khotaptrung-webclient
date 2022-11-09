@@ -141,7 +141,6 @@
 <link rel="shortcut icon" href="{{\App\Library\MediaHelpers::media(setting('sys_favicon'))}}" type="image/x-icon">
 <meta property="og:url" content="{{url()->current()}}"/>
 @if(isset($data->randId))
-
     @if(Request::is('acc/'. $data->randId .''))
         <link rel="canonical" href="https://{{\Request::server ("HTTP_HOST")}}/mua-acc/{{ $data->category->slug }}" />
     @endif
