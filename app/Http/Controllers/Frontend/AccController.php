@@ -62,7 +62,8 @@ class AccController extends Controller
             if ($slug == config('module.acc.slug-auto')){
 
                 $dataSendCate = array();
-                $dataSendCate['data'] = 'property_lienminh_auto';
+                $dataSendCate['data'] = 'property_auto';
+                $dataSendCate['provider'] = 'lienminh';
                 $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
                 $response_cate_data = $result_Api_cate->response_data??null;
 
