@@ -393,24 +393,6 @@
                                         @foreach($auto_properties as $auto_propertie)
                                             @if($auto_propertie->key == 'CAPTURES')
 
-                                                <div class="col-md-12 left-right modal-nick-padding">
-                                                    <div class="row marginauto">
-                                                        <div class="col-12 left-right background-nick-col-top-ct">
-                                                            <small>{{ $auto_propertie->key }}</small>
-                                                        </div>
-                                                        <div class="col-12 left-right background-nick-col-bottom-ct">
-                                                            <select class="select-2-custom account-filter-field" data-query="champions_data"  data-title="">
-                                                                <option value="">--Không chọn--</option>
-                                                                @if(isset($auto_propertie->childs))
-                                                                    @foreach($auto_propertie->childs as $child)
-                                                                        <option value="{{ $child->id }}">{{ $child->name }}</option>
-                                                                    @endforeach
-                                                                @endif
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                             @else
 
                                                 <div class="col-md-12 left-right modal-nick-padding">

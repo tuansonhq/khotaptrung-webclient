@@ -140,6 +140,8 @@
         <input type="hidden" name="status_data" class="status_data" value="">
         <input type="hidden" name="sort_by_data" class="sort_by_data" value="">
 
+        <input type="hidden" name="server_data" class="server_data" value="">
+
         {{--        Lm auto  --}}
 
         <input type="hidden" name="champions_data" class="champions_data" value="">
