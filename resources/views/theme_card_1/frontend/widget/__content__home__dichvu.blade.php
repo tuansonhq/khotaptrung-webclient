@@ -91,7 +91,7 @@
         </div>
 
     </div>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/style.js"></script>
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/style.js"></script>--}}
     <script type="text/javascript">
         $(document).ready(function () {
             $('#btn-expand-serivce').on('click', function(e) {
@@ -106,6 +106,92 @@
                     $(this).remove();
                 }
             });
+
+
+            $('#txtSearch').donetyping(function() {
+                let keyword = convertToSlug($(this).val());
+                let index = 0;
+                let value = 0;
+                $('.entries_item_service').each(function (i,elm) {
+                    $(this).removeClass('dis-block-service');
+                })
+                $('.entries_item_service').each(function (i,elm) {
+
+                    let slug_item = $(elm).find('img').attr('alt');
+                    slug_item = convertToSlug(slug_item);
+                    $(this).toggle(slug_item.indexOf(keyword) > -1);
+                    if (slug_item.indexOf(keyword) > -1){
+                        ++index;
+                        $(this).addClass('dis-block-service');
+                    }else {}
+
+                    $('#btn-expand-serivce').remove();
+                    $('#btn-expand-serivce-search').remove();
+                })
+
+                $('.dis-block-service').each(function (i,elm) {
+                    if (i>=8){
+                        $(this).css('display','none');
+                    }
+                })
+
+                if (index <= 8){
+                    value = 1;
+                }else if (index <= 16){
+                    value = 2;
+                }else if (index <= 24){
+                    value = 3;
+                }else if (index <= 32){
+                    value = 4;
+                }else if (index <= 40){
+                    value = 5;
+                }
+
+                if (value > 1){
+
+                    let htmlservice = '<button id="btn-expand-serivce-search" class="expand-button" data-page-current="1" data-page-max="' + value + '">Xem thêm dịch vụ</button>';
+                    $('.fix-border-dich-vu').append(htmlservice);
+                }
+
+                if (index == 0){
+                    $('.data-service-search').css('display','block');
+                }else {
+                    $('.data-service-search').css('display','none');
+                }
+
+                //$(this).val() // get the current value of the input field.
+            }, 400);
+
+
+            function convertToSlug(title) {
+                var slug;
+                //Đổi chữ hoa thành chữ thường
+                slug = title.toLowerCase();
+                //Đổi ký tự có dấu thành không dấu
+                slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
+                slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
+                slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
+                slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
+                slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
+                slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
+                slug = slug.replace(/đ/gi, 'd');
+                //Xóa các ký tự đặt biệt
+                slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\<|\'|\"|\:|\;|_/gi, '');
+                //Đổi khoảng trắng thành ký tự gạch ngang
+                slug = slug.replace(/ /gi, "-");
+                //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
+                //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
+                slug = slug.replace(/\-\-\-\-\-/gi, '-');
+                slug = slug.replace(/\-\-\-\-/gi, '-');
+                slug = slug.replace(/\-\-\-/gi, '-');
+                slug = slug.replace(/\-\-/gi, '-');
+                //Xóa các ký tự gạch ngang ở đầu và cuối
+                slug = '@' + slug + '@';
+                slug = slug.replace(/\@\-|\-\@|\@/gi, '');
+                // trả về kết quả
+                return slug;
+            }
+
         });
 
     </script>
