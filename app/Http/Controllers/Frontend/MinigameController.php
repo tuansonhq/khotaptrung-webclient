@@ -310,7 +310,8 @@ class MinigameController extends Controller
                             'userpoint' => $result->userpoint,
                             'listgift' => $result->listgift,
                             'status' => 1,
-                            'msg' => $result->msg
+                            'msg'=> $result->msg,
+                            'showwithdrawbtn' => $result->showwithdrawbtn
                         ], 200);
                     } else {
                         return response()->json([
