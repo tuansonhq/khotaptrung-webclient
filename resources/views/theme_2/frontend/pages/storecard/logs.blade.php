@@ -21,9 +21,9 @@
                                     <input type="text" placeholder="ID" name="id_lsmt" class="id_lsmt">
                                     <div class="input-group date-ranger-picker ms-3">
 
-                                        <input type="text" class="form-control border-end-0 started_at_lsmt" placeholder="DD/MM/YYYY" value="">
+                                        <input type="text" class="form-control border-end-0 started_at_lsmt" name="started_at" placeholder="DD/MM/YYYY" value="" autocomplete="off">
                                         <span class="input-group-text bg-transparent text-secondary"><i class="las la-arrow-right"></i></span>
-                                        <input type="text" class="form-control border-start-0 ended_at_lsmt" placeholder="DD/MM/YYYY" value="">
+                                        <input type="text" class="form-control border-start-0 ended_at_lsmt" name="ended_at" placeholder="DD/MM/YYYY" value=""  autocomplete="off">
                                         <button class="btn bg-primary text-white" type="submit"><i class="las la-angle-right"></i></button>
                                         <input type="hidden" name="log" value="store-card">
                                     </div>
