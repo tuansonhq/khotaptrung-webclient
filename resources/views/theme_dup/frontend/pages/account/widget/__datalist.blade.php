@@ -121,9 +121,9 @@
                                         <span>MS: {{ preg_replace('/[a-zA-Z]+/', '', $item->randId) }}</span>
                                     </a>
                                 </div>
-                                <div class="item_buy_list_description">
-                                    bảo hành 100%,lỗi hoàn tiền
-                                </div>
+{{--                                <div class="item_buy_list_description">--}}
+{{--                                    bảo hành 100%,lỗi hoàn tiền--}}
+{{--                                </div>--}}
                                 <div class="item_buy_list_info item_buy_list_info_custom">
                                         <div class="row item_buy_list_info__row">
                                             <?php
@@ -696,11 +696,11 @@
                                 @else
 
                                 @endif
-                                @if($checkindex == 0)
-                                    <div class="item_buy_list_description">
-                                        bảo hành 100%,lỗi hoàn tiền
-                                    </div>
-                                @endif
+{{--                                @if($checkindex == 0)--}}
+{{--                                    <div class="item_buy_list_description">--}}
+{{--                                        bảo hành 100%,lỗi hoàn tiền--}}
+{{--                                    </div>--}}
+{{--                                @endif--}}
 
                                 <div class="item_buy_list_info item_buy_list_info_custom">
                                     <div class="row item_buy_list_info__row">
