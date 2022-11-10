@@ -2,7 +2,7 @@
 
     <div class="d-flex justify-content-between" style="padding-top: 24px; padding-bottom: 16px">
         <div class="main-title">
-            <h1>Dịch vụ game</h1>
+            <h2>Dịch vụ game</h2>
         </div>
         <div class="service-search d-none d-lg-block ">
             <div class="input-group p-box">
@@ -29,7 +29,7 @@
                         <a href="/dich-vu/{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title">{{ $item->title   }}</h2>
+                            <h3 class="text-title">{{ $item->title   }}</h3>
                         </a>
                     </div>
                 @elseif($key < 16)
@@ -40,7 +40,7 @@
                         <a href="/dich-vu/{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title">{{ $item->title   }}</h2>
+                            <h3 class="text-title">{{ $item->title   }}</h3>
                         </a>
                     </div>
                 @elseif($key < 24)
@@ -51,7 +51,7 @@
                         <a href="/dich-vu/{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title">{{ $item->title   }}</h2>
+                            <h3 class="text-title">{{ $item->title   }}</h3>
                         </a>
                     </div>
                 @elseif($key < 32)
@@ -62,7 +62,7 @@
                         <a href="/dich-vu/{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title">{{ $item->title   }}</h2>
+                            <h3 class="text-title">{{ $item->title   }}</h3>
                         </a>
                     </div>
                 @elseif($key < 40)
@@ -73,7 +73,7 @@
                         <a href="/dich-vu/{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title">{{ $item->title   }}</h2>
+                            <h3 class="text-title">{{ $item->title   }}</h3>
                         </a>
                     </div>
                 @endif
