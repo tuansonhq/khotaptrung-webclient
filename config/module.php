@@ -82,7 +82,8 @@ return [
             'tỉ lệ chí mạng',
             'KI max',
             'Skill Pet',
-            'Cải trang'
+            'Cải trang',
+            'Hành tinh'
         ],
         'auto_nro_list_tt' => [
             'giáp',
@@ -101,7 +102,8 @@ return [
             'tỉ lệ chí mạng',
             'KI max',
             'Skill Pet',
-            'Cải trang'
+            'Cải trang',
+            'Hành tinh'
         ],
         'auto_lm_rank' => [
             'IRON' => 'Sắt',
