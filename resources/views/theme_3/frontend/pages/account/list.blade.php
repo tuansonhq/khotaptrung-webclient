@@ -391,17 +391,17 @@
                                     @endforeach
                                     @elseif($slug == 'nick-ninja-school')
                                         @foreach($auto_properties as $auto_propertie)
+
                                             @if($auto_propertie->key == 'CAPTURES')
 
-                                            @else
-
+                                            @elseif($auto_propertie->key == 'SERVER')
                                                 <div class="col-md-12 left-right modal-nick-padding">
                                                     <div class="row marginauto">
                                                         <div class="col-12 left-right background-nick-col-top-ct">
                                                             <small>{{ $auto_propertie->key }}</small>
                                                         </div>
                                                         <div class="col-12 left-right background-nick-col-bottom-ct">
-                                                            <select class="select-2-custom account-filter-field" data-query="tftcompanions_data"  data-title="">
+                                                            <select class="select-2-custom account-filter-field" data-query="tftmapskins_data"  data-title="">
                                                                 <option value="">--Không chọn--</option>
                                                                 @if(isset($auto_propertie->childs))
                                                                     @foreach($auto_propertie->childs as $child)
@@ -413,7 +413,55 @@
                                                     </div>
                                                 </div>
 
+                                            @else
+                                                @foreach($auto_propertie->childs as $childs)
+                                                    @if($childs->key == 'CHAR_LEVEL')
+                                                        <div class="col-md-12 left-right modal-nick-padding">
+                                                            <div class="row marginauto">
+                                                                <div class="col-12 left-right background-nick-col-top-ct">
+                                                                    <small>LEVEL</small>
+                                                                </div>
+                                                                <div class="col-12 left-right background-nick-col-bottom-ct">
+                                                                    <select class="select-2-custom account-filter-field" data-query="tftdamageskins_data"  data-title="">
+                                                                        <option value="">--Không chọn--</option>
+                                                                        <option value="{{ $childs->id }}-1-39">1 - 39</option>
+                                                                        <option value="{{ $childs->id }}-40-49">40 - 49</option>
+                                                                        <option value="{{ $childs->id }}-50-59">50 - 59</option>
+                                                                        <option value="{{ $childs->id }}-60-69">60 - 69</option>
+                                                                        <option value="{{ $childs->id }}-70-79">70 - 79</option>
+                                                                        <option value="{{ $childs->id }}-80-89">80 - 89</option>
+                                                                        <option value="{{ $childs->id }}-90-99">90 - 99</option>
+                                                                        <option value="{{ $childs->id }}-100-109">100 - 109</option>
+                                                                        <option value="{{ $childs->id }}-110-119">110 - 119</option>
+                                                                        <option value="{{ $childs->id }}-120-129">120 - 129</option>
+                                                                        <option value="{{ $childs->id }}-130">130</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    @elseif($childs->key == 'CHAR_CLASS')
+                                                        <div class="col-md-12 left-right modal-nick-padding">
+                                                            <div class="row marginauto">
+                                                                <div class="col-12 left-right background-nick-col-top-ct">
+                                                                    <small>CLASS</small>
+                                                                </div>
+                                                                <div class="col-12 left-right background-nick-col-bottom-ct">
+                                                                    <select class="select-2-custom account-filter-field" data-query="champions_data"  data-title="">
+                                                                        <option value="">--Không chọn--</option>
+                                                                        @foreach($childs->childs as $child)
+                                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    @endif
+                                                @endforeach
+
                                             @endif
+
                                         @endforeach
                                     @endif
                                 @else

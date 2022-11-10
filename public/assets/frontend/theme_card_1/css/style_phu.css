@@ -734,3 +734,7 @@ input[type=text], input[type=password], textarea {
 .data-nick-search {
     display: none;
 }
+
+.data-service-search {
+    display: none;
+}
