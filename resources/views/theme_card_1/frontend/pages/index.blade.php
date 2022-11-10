@@ -10,7 +10,7 @@
         <div class="item">
             <div class="index_title">
                 <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/ic_h1.svg" alt="mua thẻ điện thoại online"></span>
-                <h1> mua thẻ online</h1>
+                <h2 style="padding-top: 62px"> mua thẻ online</h2>
             </div>
             @include('frontend.widget.__card_purchase')
         </div>
