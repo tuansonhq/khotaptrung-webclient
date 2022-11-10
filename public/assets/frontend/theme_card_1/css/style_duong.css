@@ -206,6 +206,12 @@
     border: 4px solid darken(darkcyan, 10%);
 }
 
+@media only screen and (max-width: 480px) {
+    .expand-button {
+        width: 50% !important;
+    }
+}
+
 
 /*css dich vu da mua */
 .user-manager {

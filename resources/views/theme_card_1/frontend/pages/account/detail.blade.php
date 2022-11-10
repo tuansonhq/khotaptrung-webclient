@@ -1,4 +1,7 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+@endsection
 @php
     if (isset($data->price_old)) {
         $sale_percent = (($data->price_old - $data->price) / $data->price_old) * 100;

@@ -6,7 +6,7 @@
 
 <div class="entries" style="margin-bottom: 0">
 
-  <div class="swiper-container swiper-service-related overflow-hidden" style="background: none;box-shadow: none">
+  <div class="swiper swiper-container swiper-list-item swiper-service-related overflow-hidden" style="background: none;box-shadow: none">
     <div class=" swiper-wrapper">
         @foreach($data as $item)
 
@@ -23,12 +23,16 @@
         @endforeach
 
     </div>
+
+    <div class="navigation swiper-list-prev"></div>
+    <div class="navigation swiper-list-next"></div>
+
   </div>
 </div>
 @endif
 @section('scripts')
     <script>
-        new Swiper('.swiper-service-related', {
+        new Swiper('.swiper-list-item', {
             autoplay: false,
             updateOnImagesReady: true,
             watchSlidesVisibility: false,
@@ -61,7 +65,11 @@
                     slidesPerView: 1.8,
                     spaceBetween: 6,
                 }
-            }
+            },
+            navigation: {
+                nextEl: ".swiper-list-acc .swiper-list-next",
+                prevEl: ".swiper-list-acc .swiper-list-prev",
+            },
         });
     </script>
 @endsection
