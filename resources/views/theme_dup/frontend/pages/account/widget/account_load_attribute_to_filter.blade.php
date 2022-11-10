@@ -139,7 +139,7 @@
                                         <option value="{{ $childs->id }}-100-109">100 - 109</option>
                                         <option value="{{ $childs->id }}-110-119">110 - 119</option>
                                         <option value="{{ $childs->id }}-120-129">120 - 129</option>
-                                        <option value="{{ $childs->id }}-130">130 - </option>
+                                        <option value="{{ $childs->id }}-130">130</option>
                                     </select>
                                 </div>
                             </div>
