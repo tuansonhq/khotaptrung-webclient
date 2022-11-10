@@ -495,6 +495,58 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            @elseif($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                @if($in->name == 'Skill Pet')
+                                                    <div class="col-md-12">
+                                                        <div class="row gallery__03">
+                                                            <div class="col-md-12 gallery__01__row">
+                                                                <div class="row">
+                                                                    <div class="col-auto span__dangky__auto">
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col-md-4 col-4 pl-0">
+                                                                        <span class="span__dangky">{{ $in->name??'' }} </span>
+                                                                    </div>
+                                                                    <div class="col-md-6 col-6 pl-0">
+                                                                        <span class="span__dangky">
+
+                                                                            @if(isset($in->value) && count($in->value) )
+                                                                            @foreach($in->value as $value)
+                                                                                {{ $value->name }} - {{ $value->value }} <br>
+                                                                            @endforeach
+                                                                            @endif
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @elseif($in->name == 'Cải trang')
+                                                    <div class="col-md-12">
+                                                        <div class="row gallery__03">
+                                                            <div class="col-md-12 gallery__01__row">
+                                                                <div class="row">
+                                                                    <div class="col-auto span__dangky__auto">
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col-md-4 col-4 pl-0">
+                                                                        <span class="span__dangky">{{ $in->name??'' }} </span>
+                                                                    </div>
+                                                                    <div class="col-md-6 col-6 pl-0">
+                                                                        <span class="span__dangky">
+
+                                                                            @if(isset($in->value) && count($in->value) )
+                                                                                @foreach($in->value as $value)
+                                                                                    {{ $value }} <br>
+                                                                                @endforeach
+                                                                            @endif
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
                                             @else
                                                 <div class="col-md-12">
                                                     <div class="row gallery__03">
