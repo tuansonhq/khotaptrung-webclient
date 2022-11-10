@@ -147,8 +147,8 @@
                     <div class="service-detail d-lg-none d-xl-none">
                         <h6>Chi tiết dịch vụ</h6>
                         <div class="service-detail-content">
-                            @if(isset($result->group->description))
-                                {!! $result->group->description !!}
+                            @if(isset($result->group->content))
+                                {!! $result->group->content !!}
                             @endif
                         </div>
                     </div>
@@ -300,8 +300,8 @@
                     <div class="service-detail">
                         <h6>Chi tiết dịch vụ</h6>
                         <div class="service-detail-content">
-                            @if(isset($result->group->description))
-                                {!! $result->group->description !!}
+                            @if(isset($result->group->content))
+                                {!! $result->group->content !!}
                             @endif
                         </div>
                     </div>

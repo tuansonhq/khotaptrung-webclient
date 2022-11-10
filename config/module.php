@@ -81,6 +81,9 @@ return [
             'ngọc khóa',
             'tỉ lệ chí mạng',
             'KI max',
+            'Skill Pet',
+            'Cải trang',
+            'Hành tinh'
         ],
         'auto_nro_list_tt' => [
             'giáp',
@@ -98,6 +101,9 @@ return [
             'ngọc khóa',
             'tỉ lệ chí mạng',
             'KI max',
+            'Skill Pet',
+            'Cải trang',
+            'Hành tinh'
         ],
         'auto_lm_rank' => [
             'IRON' => 'Sắt',
