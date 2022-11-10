@@ -495,7 +495,7 @@
                                                                                 <div class="col-md-6 col-6 pl-0">
                                                                                     <span class="span__dangky">
 
-                                                                                        {{ $value->name }} - {{ $value->value }} <br>
+                                                                                        {{ $value->value }}
 
                                                                                     </span>
                                                                                 </div>
