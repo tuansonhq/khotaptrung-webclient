@@ -5,7 +5,7 @@
     </div>
 
     <div class="entries" style="margin-bottom: 0">
-        <div class="swiper-container swiper-service-related overflow-hidden">
+        <div class="swiper swiper-container swiper-list-item swiper-service-related overflow-hidden">
             <div class="swiper-wrapper">
                 @foreach($data as $item)
                     <div class="image swiper-slide">
@@ -26,6 +26,10 @@
 
                 @endforeach
             </div>
+
+            <div class="navigation swiper-list-prev"></div>
+            <div class="navigation swiper-list-next"></div>
+            
         </div>
     </div>
 

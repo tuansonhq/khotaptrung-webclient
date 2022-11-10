@@ -26,6 +26,40 @@ $(document).ready(function () {
         });
     }
 
+    function initAccListSwiper () {
+        if ($('.swiper-list-item').length) {
+            let swiperListAcc = new Swiper('.swiper-list-item',{
+                autoplay: false,
+                updateOnImagesReady: true,
+                watchSlidesVisibility: false,
+                lazyLoadingInPrevNext: false,
+                lazyLoadingOnTransitionStart: false,
+                slidesPerView: 5,
+                speed: 300,
+                spaceBetween: 16,
+                touchMove: true,
+                grabCursor: true,
+                observer: true,
+                observeParents: true,
+                breakpoints: {
+                    992: {
+                        freeMode: true,
+                        slidesPerView: 3,
+                    },
+                    768: {
+                        freeMode: true,
+                        slidesPerView: 1.8,
+                    }
+                },
+                navigation: {
+                    nextEl: ".swiper-list-acc .swiper-list-next",
+                    prevEl: ".swiper-list-acc .swiper-list-prev",
+                },
+            });
+        } 
+    }
+
+
     var slug = $('.slug').val();
     var slug_category = $('.slug_category').val();
 
@@ -107,6 +141,8 @@ $(document).ready(function () {
 
                     $('#showslideracc').html(data.dataslider);
 
+                    initAccListSwiper();
+
                 }else if (data.status == 0){
 
                     var html = '';
@@ -147,6 +183,8 @@ $(document).ready(function () {
                     $('#showswatched').html('');
                     $('#showswatched').html(data.datawatched);
 
+                    initAccListSwiper();
+
                 }else if (data.status == 0){
                     $('#showswatched').html('');
                 }else if (data.status == 2){
@@ -159,7 +197,7 @@ $(document).ready(function () {
 
             },
             complete: function (data) {
-                initSwiperNick();
+
             }
         });
     }
