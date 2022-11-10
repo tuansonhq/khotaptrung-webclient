@@ -615,8 +615,8 @@
                         <h2>Chi tiết dịch vụ</h2>
                         @dd($result->group)
                         <div class="service-detail-content">
-                            @if(isset($result->group->description))
-                                {!! $result->group->description !!}
+                            @if(isset($result->group->content))
+                                {!! $result->group->content !!}
                             @endif
                         </div>
                     </div>

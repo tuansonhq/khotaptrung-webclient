@@ -154,7 +154,7 @@
     .boxlogin {
         width: 100%;
     }
-    .row {
+    .row:not(.bs-normal) {
         margin-left: 0;
         margin-right: 0;
     }
