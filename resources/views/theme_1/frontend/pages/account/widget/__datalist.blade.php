@@ -771,38 +771,39 @@
 
                                             @endif
 
-{{--                                            @if(isset($info) && count($info))--}}
-{{--                                                @foreach($info as $ke => $in)--}}
-{{--                                                    @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))--}}
-{{--                                                        <?php--}}
-{{--                                                        $total = $total + 1;--}}
-{{--                                                        ?>--}}
-{{--                                                        @if($total < 5)--}}
-{{--                                                            @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')--}}
-{{--                                                                <div class="row" style="margin: 0 auto;width: 100%">--}}
-{{--                                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">--}}
-{{--                                                                        {{ $in->name??'' }} :--}}
-{{--                                                                    </div>--}}
-{{--                                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">--}}
-{{--                                                                        --}}{{--                                                                                        {{ $param??null }}--}}
-{{--                                                                        {{ $in->value??'' }}--}}
-{{--                                                                    </div>--}}
-{{--                                                                </div>--}}
-{{--                                                            @else--}}
-{{--                                                                <div class="row" style="margin: 0 auto;width: 100%">--}}
-{{--                                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">--}}
-{{--                                                                        {{ $in->name??'' }} :--}}
-{{--                                                                    </div>--}}
-{{--                                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">--}}
-{{--                                                                        --}}{{--                                                                                        {{ $param??null }}--}}
-{{--                                                                        {{ str_replace(',','.',number_format($in->value??'')) }}--}}
-{{--                                                                    </div>--}}
-{{--                                                                </div>--}}
-{{--                                                            @endif--}}
-{{--                                                        @endif--}}
-{{--                                                    @endif--}}
-{{--                                                @endforeach--}}
-{{--                                            @endif--}}
+                                            @if(isset($info) && count($info))
+                                                @foreach($info as $ke => $in)
+                                                    @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
+                                                        <?php
+                                                        $index++;
+                                                        ?>
+                                                        @if($index < 5)
+                                                            @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                <div class="row" style="margin: 0 auto;width: 100%">
+                                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                                        {{ $in->name??'' }} :
+                                                                    </div>
+                                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                        {{--                                                                                        {{ $param??null }}--}}
+                                                                        {{ $in->value??'' }}
+                                                                    </div>
+                                                                </div>
+                                                            @else
+
+                                                                <div class="row" style="margin: 0 auto;width: 100%">
+                                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                                        {{ $in->name??'' }} :
+                                                                    </div>
+                                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                        {{--                                                                                        {{ $param??null }}--}}
+                                                                        {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                            @endif
                                         @endif
                                     @endif
 
