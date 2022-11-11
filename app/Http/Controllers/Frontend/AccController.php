@@ -74,6 +74,14 @@ class AccController extends Controller
                 $dataSendCate['provider'] = 'ninjaschool';
                 $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
                 $response_cate_data = $result_Api_cate->response_data??null;
+
+                if (!isset($response_cate_data->data)){
+                    $dataSendCate = array();
+                    $dataSendCate['data'] = 'category_detail';
+                    $dataSendCate['slug'] = $slug;
+                    $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                    $response_cate_data = $result_Api_cate->response_data??null;
+                }
             }
             elseif ($slug == 'nick-ngoc-rong-online'){
                 $dataSendCate = array();
@@ -90,6 +98,7 @@ class AccController extends Controller
                 $response_cate_data = $result_Api_cate->response_data??null;
 
             }
+
 
             cache(["game_props_list_{$slug}" => $response_cate_data], 604800);
         }
