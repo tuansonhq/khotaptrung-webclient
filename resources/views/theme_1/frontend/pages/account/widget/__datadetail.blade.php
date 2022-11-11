@@ -495,7 +495,7 @@
                                                                             @if(isset($in->value) && count($in->value) )
                                                                                 @foreach($in->value as $k_value => $value)
                                                                                     @if($k_value != 0)
-                                                                                        Skill {{ $k_value }} {{ $value->name }} - {{ $value->value }} <br>
+                                                                                        Skill {{ $k_value + 1 }} {{ $value->name }} - {{ $value->value }} <br>
                                                                                     @endif
                                                                                 @endforeach
                                                                             @endif
