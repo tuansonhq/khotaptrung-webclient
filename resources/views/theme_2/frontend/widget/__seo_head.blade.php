@@ -444,7 +444,8 @@
                     }
                 }
                 @endif
-                    ]}
+                ]}
+            }
 </script>
             @endif
         @endif
@@ -584,6 +585,7 @@
                 }
                 @endif
                     ]}
+            }
 </script>
             @endif
         @endif
