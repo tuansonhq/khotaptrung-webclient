@@ -2219,3 +2219,7 @@ a:hover .__icon.--path__custom:after {
 .sugges_list .sugges_item:not(:last-child){
     box-shadow: inset 0 -1px 0 #E4E5F0;
 }
+
+.fancybox__backdrop {
+    background: var(--fancybox-bg, rgba(24, 24, 27, 0.98));
+}
