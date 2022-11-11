@@ -5,14 +5,13 @@
             <div class="c-line-center c-theme-bg"></div>
         </div>
 
-        <div class="shop_product_another_content swiper swiper-container swiper-account-related">
-            <div class="item_buy_list row swiper-wrapper">
+        <div class="shop_product_another_content swiper-container swiper-account-related">
+            <div class="swiper-wrapper">
                 @foreach($data as $item)
                     @if ($item->randId == $ran_id)
                         @continue;
                     @endif
-
-                    <div class="swiper-slide col-6 col-sm-6 col-lg-3 fixcssacount">
+                    <div class="swiper-slide fixcssacount">
                         <div class="item_buy_list_in">
                             <div class="item_buy_list_img">
                                 <a href="/acc/{{ $item->randId }}">
