@@ -174,7 +174,7 @@
 
                     <div class="modal-header">
                         <span class="nick-modal-header">Thanh toán thành công</span>
-                        <img data-dismiss="modal" class="nick-modal-header-close" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
+                        <img data-dismiss="modal" class="nick-modal-header-close" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/close.svg" alt="">
                     </div>
 
                     <div class="modal-body">
