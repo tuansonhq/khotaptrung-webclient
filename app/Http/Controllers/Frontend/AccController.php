@@ -89,6 +89,13 @@ class AccController extends Controller
                 $dataSendCate['provider'] = 'nro';
                 $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
                 $response_cate_data = $result_Api_cate->response_data??null;
+                if (!isset($response_cate_data->data)){
+                    $dataSendCate = array();
+                    $dataSendCate['data'] = 'category_detail';
+                    $dataSendCate['slug'] = $slug;
+                    $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                    $response_cate_data = $result_Api_cate->response_data??null;
+                }
             }
             else {
                 $dataSendCate = array();
