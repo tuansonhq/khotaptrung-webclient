@@ -442,10 +442,9 @@
                     "@type": "Answer",
                     "text": "{{ $foor_answer??'' }}"
                     }
+                    @endif
+                }]
                 }
-                @endif
-                ]}
-            }
 </script>
             @endif
         @endif
@@ -582,10 +581,9 @@
                     "@type": "Answer",
                     "text": "{{ $foor_answer??'' }}"
                     }
-                }
-                @endif
-                    ]}
-            }
+                    @endif
+                    }]
+                    }
 </script>
             @endif
         @endif
