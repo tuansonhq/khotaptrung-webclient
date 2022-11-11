@@ -5,6 +5,7 @@
     position: relative;
     vertical-align: middle;
     flex: 1;
+    min-width: 0;
 }
 .select2-container .selection {
     outline: none;
