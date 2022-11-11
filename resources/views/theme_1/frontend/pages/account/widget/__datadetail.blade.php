@@ -495,7 +495,10 @@
 
                                                                             @if(isset($in->value) && count($in->value) )
                                                                                 @foreach($in->value as $k_value => $value)
-                                                                                    {{ $value }}
+                                                                                    {{ $k_value + 1 }}
+                                                                                    @if($k_value + 1 < count($in->value))
+                                                                                        +
+                                                                                    @endif
                                                                                 @endforeach
                                                                             @endif
 
@@ -522,9 +525,8 @@
                                                                         <span class="span__dangky">
 
                                                                             @if(isset($in->value) && count($in->value) )
-{{--                                                                                {{ count($in->value) }}--}}
                                                                                 @foreach($in->value as $value)
-                                                                                    {{ $value }} <br>
+                                                                                    {{ $value->name }} - {{ $value->value }} <br>
                                                                                 @endforeach
                                                                             @endif
                                                                         </span>
