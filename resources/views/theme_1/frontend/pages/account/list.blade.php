@@ -207,12 +207,11 @@
     @endif
     <script>
         // config select 2
-
         let $select_2 = $('.select-2-custom');
         $select_2.select2({
             placeholder: '--Không chọn--',
             allowClear: true,
-            tags: false
+            tags: false,
         });
     </script>
 @endsection

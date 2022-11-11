@@ -127,7 +127,7 @@
     /*border: 1px solid #ccc;*/
     /*border-radius: 4px;*/
 }
-.form-charge span{
+.form-charge span:not([class*="select2"]){
     /*padding: 6px 12px;*/
     font-size: 14px;
     font-weight: 400;
@@ -202,8 +202,6 @@
     .account_content_transaction_historyv2 th,.account_content_transaction_historyv2 td{
         font-size: 14px;
     }
-
-
     .account_pay_card .control-label{
         text-align: left;
     }
