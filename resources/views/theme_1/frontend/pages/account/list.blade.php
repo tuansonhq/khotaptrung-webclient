@@ -6,7 +6,7 @@
     <meta name="robots" content="index,follow"/>
 @endsection
 @section('content')
-
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/select2/select2.min.css">
     @if($data == null)
         <div class="item_buy">
 
@@ -202,8 +202,17 @@
 {{--        @endif--}}
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccrandom.js?v={{time()}}"></script>
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/account-list.js?v={{time()}}"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/lib/select2/select2.min.js"></script>
 {{--        <script src="/js/{{theme('')->theme_key}}/account/list_2.js"></script>--}}
     @endif
-
+    <script>
+        // config select 2
+        let $select_2 = $('.select-2-custom');
+        $select_2.select2({
+            placeholder: '--Không chọn--',
+            allowClear: true,
+            tags: false,
+        });
+    </script>
 @endsection
 

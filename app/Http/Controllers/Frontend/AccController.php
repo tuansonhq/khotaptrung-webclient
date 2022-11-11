@@ -68,20 +68,35 @@ class AccController extends Controller
                 $response_cate_data = $result_Api_cate->response_data??null;
 
             }
-            elseif ($slug == 'nick-ninja-school'){
-                $dataSendCate = array();
-                $dataSendCate['data'] = 'property_auto';
-                $dataSendCate['provider'] = 'ninjaschool';
-                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-                $response_cate_data = $result_Api_cate->response_data??null;
-            }
-            elseif ($slug == 'ban-nick-ngoc-rong'){
-                $dataSendCate = array();
-                $dataSendCate['data'] = 'property_auto';
-                $dataSendCate['provider'] = 'nro';
-                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-                $response_cate_data = $result_Api_cate->response_data??null;
-            }
+//            elseif ($slug == 'nick-ninja-school'){
+//                $dataSendCate = array();
+//                $dataSendCate['data'] = 'property_auto';
+//                $dataSendCate['provider'] = 'ninjaschool';
+//                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+//                $response_cate_data = $result_Api_cate->response_data??null;
+//
+//                if (!isset($response_cate_data->data)){
+//                    $dataSendCate = array();
+//                    $dataSendCate['data'] = 'category_detail';
+//                    $dataSendCate['slug'] = $slug;
+//                    $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+//                    $response_cate_data = $result_Api_cate->response_data??null;
+//                }
+//            }
+//            elseif ($slug == 'nick-ngoc-rong-online'){
+//                $dataSendCate = array();
+//                $dataSendCate['data'] = 'property_auto';
+//                $dataSendCate['provider'] = 'nro';
+//                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+//                $response_cate_data = $result_Api_cate->response_data??null;
+//                if (!isset($response_cate_data->data)){
+//                    $dataSendCate = array();
+//                    $dataSendCate['data'] = 'category_detail';
+//                    $dataSendCate['slug'] = $slug;
+//                    $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+//                    $response_cate_data = $result_Api_cate->response_data??null;
+//                }
+//            }
             else {
                 $dataSendCate = array();
                 $dataSendCate['data'] = 'category_detail';
@@ -90,6 +105,7 @@ class AccController extends Controller
                 $response_cate_data = $result_Api_cate->response_data??null;
 
             }
+
 
             cache(["game_props_list_{$slug}" => $response_cate_data], 604800);
         }
@@ -229,6 +245,7 @@ class AccController extends Controller
 
 //                dd($dataSend);
                 $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
                 $response_data = $result_Api->response_data??null;
 
                 if(isset($response_data) && $response_data->status == 1){

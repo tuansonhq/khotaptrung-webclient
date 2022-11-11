@@ -24,7 +24,7 @@
     <link href="/assets/frontend/{{theme('')->theme_key}}/lib/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/index.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/profile.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/frontend/{{theme('')->theme_key}}/css/blog.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/frontend/{{theme('')->theme_key}}/css/blog.css?v={{time()}}" rel="stylesheet" type="text/css"/>
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/style.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/style_nam.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu.css" rel="stylesheet" type="text/css"/>

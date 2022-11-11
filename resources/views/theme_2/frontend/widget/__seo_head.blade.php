@@ -413,35 +413,36 @@
                         "@type": "Answer",
                         "text": "{{ $first_answer??'' }}"
                     }
-                },
+                }
                 @if(isset($second_question) && isset($second_answer))
-                        {
+                        ,{
                             "@type": "Question",
                             "name": "{{ $second_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $second_answer??'' }}"
                     }
-                },
+                }
                 @endif
                     @if(isset($three_question) && isset($three_answer))
-                        {
+                        ,{
                             "@type": "Question",
                             "name": "{{ $three_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $three_answer??'' }}"
                     }
-                },
+                }
                 @endif
                     @if(isset($foor_question) && isset($foor_question))
-                        {
+                        ,{
                             "@type": "Question",
                             "name": "{{ $foor_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $foor_answer??'' }}"
                     }
+
                 }
                 @endif
                     ]}
@@ -552,38 +553,39 @@
                         "@type": "Answer",
                         "text": "{{ $first_answer??'' }}"
                     }
-                },
+                }
                 @if(isset($second_question) && isset($second_answer))
-                        {
+                        ,{
                             "@type": "Question",
                             "name": "{{ $second_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $second_answer??'' }}"
                     }
-                },
+                }
                 @endif
-                    @if(isset($three_question) && isset($three_answer))
-                        {
+                @if(isset($three_question) && isset($three_answer))
+                        ,{
                             "@type": "Question",
                             "name": "{{ $three_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $three_answer??'' }}"
                     }
-                },
+                }
                 @endif
-                    @if(isset($foor_question) && isset($foor_question))
-                        {
+                @if(isset($foor_question) && isset($foor_question))
+                        ,{
                             "@type": "Question",
                             "name": "{{ $foor_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $foor_answer??'' }}"
                     }
+
                 }
                 @endif
-                    ]}
+                ]}
 </script>
             @endif
         @endif

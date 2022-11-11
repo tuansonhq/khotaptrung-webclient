@@ -9,7 +9,7 @@
     <div class="input-group">
         <span class="input-group-addon">Giá tiền</span>
 
-        <select type="text" name="price" class="form-control price">
+        <select type="text" name="price" class="form-control price select-2-custom">
             <option value="">Chọn giá tiền</option>
             <option value="0-50000">Dưới 50K</option>
             <option value="50000-200000">Từ 50K - 200K</option>
@@ -32,7 +32,7 @@
                 <div class="col-3 item_buy_form_search">
                     <div class="input-group">
                         <span class="input-group-addon">{{ $auto_propertie->name }}</span>
-                        <select type="text" class="form-control champions" name="champions">
+                        <select type="text" class="form-control champions select-2-custom" name="champions">
                             <option value="">--Không chọn--</option>
                             @if(isset($auto_propertie->childs))
                                 @foreach($auto_propertie->childs as $child)
@@ -45,7 +45,7 @@
                 <div class="col-3 item_buy_form_search">
                     <div class="input-group">
                         <span class="input-group-addon">Trang phục</span>
-                        <select type="text" class="form-control skill" name="skill">
+                        <select type="text" class="form-control skill select-2-custom" name="skill">
                             <option value="">--Không chọn--</option>
                             @if(isset($auto_propertie->childs) && count($auto_propertie->childs))
                                 @foreach($auto_propertie->childs as $child)
@@ -65,7 +65,7 @@
                 <div class="col-3 item_buy_form_search">
                     <div class="input-group">
                         <span class="input-group-addon">{{ $auto_propertie->name }}</span>
-                        <select type="text" class="form-control tftcompanions" name="tftcompanions">
+                        <select type="text" class="form-control tftcompanions select-2-custom" name="tftcompanions">
                             <option value="">--Không chọn--</option>
                             @if($auto_propertie->childs)
                                 @foreach($auto_propertie->childs as $child)
@@ -79,7 +79,7 @@
                 <div class="col-3 item_buy_form_search">
                     <div class="input-group">
                         <span class="input-group-addon">{{ $auto_propertie->name }}</span>
-                        <select type="text" class="form-control tftmapskins" name="tftmapskins">
+                        <select type="text" class="form-control tftmapskins select-2-custom" name="tftmapskins">
                             <option value="">--Không chọn--</option>
                             @if($auto_propertie->childs)
                                 @foreach($auto_propertie->childs as $child)
@@ -93,7 +93,7 @@
                 <div class="col-3 item_buy_form_search">
                     <div class="input-group">
                         <span class="input-group-addon">{{ $auto_propertie->name }}</span>
-                        <select type="text" class="form-control tftdamageskins" name="tftdamageskins">
+                        <select type="text" class="form-control tftdamageskins select-2-custom" name="tftdamageskins">
                             <option value="">--Không chọn--</option>
                             @if($auto_propertie->childs)
                                 @foreach($auto_propertie->childs as $child)
@@ -113,7 +113,7 @@
                     <div class="col-3 item_buy_form_search">
                         <div class="input-group">
                             <span class="input-group-addon">{{ $auto_propertie->key }}</span>
-                            <select type="text" class="form-control tftcompanions" name="tftcompanions">
+                            <select type="text" class="form-control tftcompanions select-2-custom" name="tftcompanions">
                                 <option value="">--Không chọn--</option>
                                 @if(isset($auto_propertie->childs))
                                     @foreach($auto_propertie->childs as $child)
@@ -129,7 +129,7 @@
                             <div class="col-3 item_buy_form_search">
                                 <div class="input-group">
                                     <span class="input-group-addon">LEVEL</span>
-                                    <select type="text" class="form-control tftdamageskins" name="tftdamageskins">
+                                    <select type="text" class="form-control tftdamageskins select-2-custom" name="tftdamageskins">
                                         <option value="">--Không chọn--</option>
                                         <option value="{{ $childs->id }}-1-39">1 - 39</option>
                                         <option value="{{ $childs->id }}-40-49">40 - 49</option>
@@ -149,7 +149,7 @@
                             <div class="col-3 item_buy_form_search">
                                 <div class="input-group">
                                     <span class="input-group-addon">CLASS</span>
-                                    <select type="text" class="form-control champions" name="champions">
+                                    <select type="text" class="form-control champions select-2-custom" name="champions">
                                         <option value="">--Không chọn--</option>
                                         @foreach($childs->childs as $child)
                                             <option value="{{ $child->id }}">{{ $child->name }}</option>
@@ -226,7 +226,7 @@
                 <div class="col-3 item_buy_form_search">
                     <div class="input-group">
                         <span class="input-group-addon">{{ $val->title }}</span>
-                        <select type="text" class="form-control select" name="attribute_id_{{ $val->id }}">
+                        <select type="text" class="form-control select select-2-custom" name="attribute_id_{{ $val->id }}">
                             <option value="">--Không chọn--</option>
                             @foreach($val->childs as $child)
                                 <option value="{{ $child->id }}">{{ $child->title }}</option>
@@ -265,7 +265,7 @@
                 <div class="col-auto">
                     <div class="input-group">
                         <span class="input-group-addon">Sắp xếp theo</span>
-                        <select type="text" name="sort_by" class="form-control sort_by">
+                        <select type="text" name="sort_by" class="form-control sort_by select-2-custom">
                             <option value="">Chọn cách sắp xếp</option>
                             <option value="random">Ngẫu nhiên</option>
                             <option value="price_start">Giá tiền từ cao đến thấp</option>
