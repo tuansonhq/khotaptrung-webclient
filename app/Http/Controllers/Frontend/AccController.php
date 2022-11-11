@@ -75,7 +75,7 @@ class AccController extends Controller
                 $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
                 $response_cate_data = $result_Api_cate->response_data??null;
             }
-            elseif ($slug == 'ban-nick-ngoc-rong'){
+            elseif ($slug == 'nick-ngoc-rong-online'){
                 $dataSendCate = array();
                 $dataSendCate['data'] = 'property_auto';
                 $dataSendCate['provider'] = 'nro';
@@ -229,6 +229,7 @@ class AccController extends Controller
 
 //                dd($dataSend);
                 $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
                 $response_data = $result_Api->response_data??null;
 
                 if(isset($response_data) && $response_data->status == 1){
