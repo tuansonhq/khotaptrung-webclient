@@ -495,7 +495,7 @@
 
                                                                             @if(isset($in->value) && count($in->value) )
                                                                                 @foreach($in->value as $k_value => $value)
-                                                                                    {{ $k_value + 1 }}
+                                                                                    {{ $value }}
                                                                                     @if($k_value + 1 < count($in->value))
                                                                                     +
                                                                                     @endif
@@ -524,10 +524,10 @@
                                                                         <span class="span__dangky">
 
                                                                             @if(isset($in->value) && count($in->value) )
-                                                                                {{ count($in->value) }}
-{{--                                                                                @foreach($in->value as $value)--}}
-{{--                                                                                    {{ $value }} <br>--}}
-{{--                                                                                @endforeach--}}
+{{--                                                                                {{ count($in->value) }}--}}
+                                                                                @foreach($in->value as $value)
+                                                                                    {{ $value }} <br>
+                                                                                @endforeach
                                                                             @endif
                                                                         </span>
                                                                     </div>

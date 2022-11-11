@@ -791,7 +791,7 @@
                                                                             @if(isset($in->value) && count($in->value) )
                                                                                 @foreach($in->value as $k_value => $value)
 
-                                                                                    {{ $value }}
+                                                                                    {{ $k_value + 1 }}
                                                                                     @if($k_value + 1 < count($in->value))
                                                                                         +
                                                                                     @endif
@@ -807,10 +807,10 @@
                                                                         </div>
                                                                         <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
                                                                             @if(isset($in->value) && count($in->value) )
-                                                                                @foreach($in->value as $value)
-                                                                                    {{ $value }} <br>
-                                                                                @endforeach
-{{--                                                                                {{ count($in->value) }}--}}
+{{--                                                                                @foreach($in->value as $value)--}}
+{{--                                                                                    {{ $value }} <br>--}}
+{{--                                                                                @endforeach--}}
+                                                                                {{ count($in->value) }}
                                                                             @endif
                                                                         </div>
                                                                     </div>
