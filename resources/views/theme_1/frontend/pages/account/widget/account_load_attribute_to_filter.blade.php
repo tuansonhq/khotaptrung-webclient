@@ -9,7 +9,7 @@
     <div class="input-group">
         <span class="input-group-addon">Giá tiền</span>
 
-        <select type="text" name="price" class="form-control price">
+        <select type="text" name="price" class="form-control price select-2-custom">
             <option value="">Chọn giá tiền</option>
             <option value="0-50000">Dưới 50K</option>
             <option value="50000-200000">Từ 50K - 200K</option>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-3 item_buy_form_search">
                     <div class="input-group">
-                        <span class="input-group-addon">Trang phục</span>\
+                        <span class="input-group-addon">Trang phục</span>
                         <select type="text" class="form-control skill select-2-custom" name="skill">
                             <option value="">--Không chọn--</option>
                             @if(isset($auto_propertie->childs) && count($auto_propertie->childs))
@@ -265,7 +265,7 @@
                 <div class="col-auto">
                     <div class="input-group">
                         <span class="input-group-addon">Sắp xếp theo</span>
-                        <select type="text" name="sort_by" class="form-control sort_by">
+                        <select type="text" name="sort_by" class="form-control sort_by select-2-custom">
                             <option value="">Chọn cách sắp xếp</option>
                             <option value="random">Ngẫu nhiên</option>
                             <option value="price_start">Giá tiền từ cao đến thấp</option>
