@@ -166,7 +166,7 @@
                                     <div class="c-line-center c-theme-bg"></div>
                                 </div>
 
-                                <div class="shop_product_another_content">
+                                <div class="shop_product_another_content px-3">
                                     <div class="item_buy_list row">
                                         <div class="col-md-12">
                                             <span>{!! $data->description !!}</span>
@@ -234,7 +234,7 @@
                                 </ul>
                                 <button class="submit-search-companion submit--search" type="button"></button>
                             </div>
-                            <img class="c-close-modal" src="/assets/frontend/theme_1/image/son/close.svg" alt="">
+                            <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/close.svg" alt="">
                         </div>
                     </div>
                     <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">
@@ -332,7 +332,7 @@
                                 </ul>
                                 <button class="submit-search-skins submit--search" type="button"></button>
                             </div>
-                            <img class="c-close-modal" src="/assets/frontend/theme_1/image/son/close.svg" alt="">
+                            <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/close.svg" alt="">
                         </div>
                     </div>
                     <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">
@@ -437,7 +437,7 @@
                                 </ul>
                                 <button class="submit-search-champ submit--search" type="button"></button>
                             </div>
-                            <img class="c-close-modal" src="/assets/frontend/theme_1/image/son/close.svg"
+                            <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/close.svg"
                                  alt="">
                         </div>
                     </div>

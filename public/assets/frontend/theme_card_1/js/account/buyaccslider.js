@@ -26,6 +26,40 @@ $(document).ready(function () {
         });
     }
 
+    function initAccListSwiper () {
+        if ($('.swiper-list-item').length) {
+            let swiperListAcc = new Swiper('.swiper-list-item',{
+                autoplay: false,
+                updateOnImagesReady: true,
+                watchSlidesVisibility: false,
+                lazyLoadingInPrevNext: false,
+                lazyLoadingOnTransitionStart: false,
+                slidesPerView: 5,
+                speed: 300,
+                spaceBetween: 16,
+                touchMove: true,
+                grabCursor: true,
+                observer: true,
+                observeParents: true,
+                breakpoints: {
+                    992: {
+                        freeMode: true,
+                        slidesPerView: 3,
+                    },
+                    768: {
+                        freeMode: true,
+                        slidesPerView: 1.8,
+                    }
+                },
+                navigation: {
+                    nextEl: ".swiper-list-acc .swiper-list-next",
+                    prevEl: ".swiper-list-acc .swiper-list-prev",
+                },
+            });
+        } 
+    }
+
+
     var slug = $('.slug').val();
     var slug_category = $('.slug_category').val();
 
@@ -93,7 +127,8 @@ $(document).ready(function () {
             type: 'GET',
             url: url,
             data: {
-                slug:slug_category
+                slug:slug_category,
+                ran_id: slug
             },
             beforeSend: function (xhr) {
 
@@ -106,6 +141,8 @@ $(document).ready(function () {
 
                     $('#showslideracc').html(data.dataslider);
 
+                    initAccListSwiper();
+
                 }else if (data.status == 0){
 
                     var html = '';
@@ -113,6 +150,46 @@ $(document).ready(function () {
 
                     $('#showdetailacc').html('');
                     $('#showdetailacc').html(html);
+                }
+
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+
+            }
+        });
+    }
+
+    getTaiKhoanDaXem();
+
+    function getTaiKhoanDaXem() {
+
+        var url = '/watched-acc';
+        request = $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                ran_id: slug
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (data) => {
+
+                if (data.status == 1){
+
+                    $('#showswatched').html('');
+                    $('#showswatched').html(data.datawatched);
+
+                    initAccListSwiper();
+
+                }else if (data.status == 0){
+                    $('#showswatched').html('');
+                }else if (data.status == 2){
+                    $('#showswatched').html('');
+                    console.log("chưa có dữ liệu")
                 }
 
             },

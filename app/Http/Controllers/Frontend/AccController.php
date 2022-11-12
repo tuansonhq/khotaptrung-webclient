@@ -62,18 +62,41 @@ class AccController extends Controller
             if ($slug == config('module.acc.slug-auto')){
 
                 $dataSendCate = array();
-                $dataSendCate['data'] = 'property_lienminh_auto';
+                $dataSendCate['data'] = 'property_auto';
+                $dataSendCate['provider'] = 'lienminh';
                 $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
                 $response_cate_data = $result_Api_cate->response_data??null;
 
             }
-//            elseif ($slug == 'nick-ninja-school'){
-//                $dataSendCate = array();
-//                $dataSendCate['data'] = 'property_auto';
-//                $dataSendCate['provider'] = 'ninjaschool';
-//                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-//                $response_cate_data = $result_Api_cate->response_data??null;
-//            }
+            elseif ($slug == 'nick-ninja-school'){
+                $dataSendCate = array();
+                $dataSendCate['data'] = 'property_auto';
+                $dataSendCate['provider'] = 'ninjaschool';
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
+
+                if (!isset($response_cate_data->data)){
+                    $dataSendCate = array();
+                    $dataSendCate['data'] = 'category_detail';
+                    $dataSendCate['slug'] = $slug;
+                    $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                    $response_cate_data = $result_Api_cate->response_data??null;
+                }
+            }
+            elseif ($slug == 'nick-ngoc-rong-online' || $slug == 'ban-nick-ngoc-rong'){
+                $dataSendCate = array();
+                $dataSendCate['data'] = 'property_auto';
+                $dataSendCate['provider'] = 'nro';
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
+                if (!isset($response_cate_data->data)){
+                    $dataSendCate = array();
+                    $dataSendCate['data'] = 'category_detail';
+                    $dataSendCate['slug'] = $slug;
+                    $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                    $response_cate_data = $result_Api_cate->response_data??null;
+                }
+            }
             else {
                 $dataSendCate = array();
                 $dataSendCate['data'] = 'category_detail';
@@ -97,8 +120,7 @@ class AccController extends Controller
                 $dataSend = array();
                 $arr_auto = '';
 
-                if ($request->filled('champions_data') || $request->filled('skill_data') || $request->filled('tftcompanions_data') || $request->filled('tftdamageskins_data') || $request->filled('tftmapskins_data'))  {
-//                    $dataSend['data'] = 'property_lienminh_auto';
+                if ($request->filled('server_data') || $request->filled('champions_data') || $request->filled('skill_data') || $request->filled('tftcompanions_data') || $request->filled('tftdamageskins_data') || $request->filled('tftmapskins_data'))  {
 
                     if ($request->filled('tftmapskins_data')){
 
@@ -143,6 +165,14 @@ class AccController extends Controller
                         }
                     }
 
+                    if ($request->filled('server_data')){
+                        if ($arr_auto == ''){
+                            $arr_auto = $request->server_data;
+                        }else{
+                            $arr_auto = $arr_auto.','.$request->server_data;
+                        }
+                    }
+
                     if ($arr_auto == ''){
 
                     }else{
@@ -159,7 +189,7 @@ class AccController extends Controller
                 $dataSend['limit'] =  12;
                 $dataSend['sort'] = 'random';
 
-                if (theme('')->theme_key == "theme_5"){
+                if (theme('')->theme_key == "theme_5" || theme('')->theme_key == "theme_2"){
                     $dataSend['limit'] =  15;
                 }
 //                $dataSend['randId'] = 'P9359';
@@ -212,7 +242,9 @@ class AccController extends Controller
                     }
                 }
 
+//                dd($dataSend);
                 $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
                 $response_data = $result_Api->response_data??null;
 
                 if(isset($response_data) && $response_data->status == 1){
@@ -506,6 +538,7 @@ class AccController extends Controller
     public function getRelated(Request $request){
 
         if ($request->ajax()){
+            $ran_id = $request->ran_id;
             $slug = $request->slug;
             $url = '/acc';
             $method = "GET";
@@ -525,7 +558,7 @@ class AccController extends Controller
                 $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
 
                 $htmlslider = view('frontend.pages.account.widget.__related')
-                    ->with('data',$data)->with('slug',$slug)->render();
+                    ->with('data',$data)->with('ran_id', $ran_id)->with('slug',$slug)->render();
 
                 return response()->json([
                     'dataslider' => $htmlslider,
@@ -549,6 +582,7 @@ class AccController extends Controller
             $watcheds = Cookie::get('watched_account') ?? '[]';
             $watcheds = json_decode($watcheds,true);
 
+            $ran_id = $request->ran_id;
 
             if (isset($watcheds) && count($watcheds)){
                 $url = '/acc';
@@ -577,7 +611,7 @@ class AccController extends Controller
                     $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
 
                     $htmlslider = view('frontend.pages.account.widget.__watched')
-                        ->with('data',$data)->render();
+                        ->with('data',$data)->with('ran_id', $ran_id)->render();
 
                     return response()->json([
                         'datawatched' => $htmlslider,
@@ -854,16 +888,16 @@ class AccController extends Controller
                                     $key = Helpers::Decrypt($datashow->slug,config('module.acc.encrypt_key'));
                                 }
 
-                                if (!isset($datashow->groups[1]) || !isset($datashow->groups[1]->id)){
-                                    return response()->json([
-                                        'status' => 0,
-                                        'message' => 'Không có dữ liệu groups.',
-                                    ]);
-                                }
+//                                if (!isset($datashow->groups[1]) || !isset($datashow->groups[1]->id)){
+//                                    return response()->json([
+//                                        'status' => 0,
+//                                        'message' => 'Không có dữ liệu groups.',
+//                                    ]);
+//                                }
 
                                 $dataSendCategory = array();
                                 $dataSendCategory['data'] = 'category_detail';
-                                $dataSendCategory['id'] = $datashow->groups[1]->id;
+                                $dataSendCategory['id'] = $datashow->category->id;
 
                                 $result_category_Api = DirectAPI::_makeRequest($url,$dataSendCategory,$method);
                                 $response_category_data = $result_category_Api->response_data??null;

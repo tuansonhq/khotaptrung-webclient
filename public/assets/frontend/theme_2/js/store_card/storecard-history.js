@@ -89,15 +89,14 @@ $(document).ready(function(){
     $(document).on('submit', '.form-store-card', function(e){
         e.preventDefault();
 
-
-        var started_at_data = $('.started_at').val();
+        var started_at_data = $('input[name="started_at"]').val();
         if (started_at_data == null || started_at_data == undefined || started_at_data == ''){
             $('.started_at_storecard').val('');
         }else {
             $('.started_at_storecard').val(started_at_data);
         }
 
-        var ended_at_data =  $('.ended_at').val();
+        var ended_at_data =  $('input[name="ended_at"]').val();
         if (ended_at_data == null || ended_at_data == undefined || ended_at_data == ''){
             $('.ended_at_storecard').val('');
         }else {
@@ -124,7 +123,6 @@ $(document).ready(function(){
         html_loading += '</div>';
         $("#data_store_card").empty().html('');
         $("#data_store_card").empty().html(html_loading);
-
 
         loadDataStoreCardHistory(page,id_storecard,started_at,ended_at);
     });

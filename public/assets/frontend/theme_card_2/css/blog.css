@@ -161,8 +161,8 @@
 
 /*  */
 #blog-content .content-blog-item img{
-    width: 100%;
     height: auto !important;
+    max-width: 100%;
 }
 
 

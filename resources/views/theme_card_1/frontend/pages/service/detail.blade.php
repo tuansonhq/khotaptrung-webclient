@@ -6,7 +6,6 @@
     <meta name="robots" content="index,follow"/>
 @endsection
 @section('content')
-
     <section>
 
         <link href="/assets/frontend/{{theme('')->theme_key}}/css/service.css" rel="stylesheet" type="text/css"/>
@@ -50,15 +49,13 @@
                 <div class="text-center" style="margin-bottom: 24px;margin-top: 0px;">
                     <h1 style="font-size: 1.5rem;font-weight: bold;text-transform: uppercase">{{ $data->title }}</h1>
                 </div>
-                <form method="POST" action="/dich-vu/{{ $data->id }}/purchase" accept-charset="UTF-8"
-                      class="purchaseForm" enctype="multipart/form-data">
+                <form method="POST" action="/dich-vu/{{ $data->id }}/purchase" accept-charset="UTF-8" class="purchaseForm" enctype="multipart/form-data">
                     @csrf
                     <div class="detail-service">
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="text-center">
-                                    <img style="width: 100%" src="{{\App\Library\MediaHelpers::media($data->image)}}"
-                                         alt="{{ $data->title }}" alt="{{ $data->title }}">
+                                    <img style="width: 100%" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="{{ $data->title }}" alt="{{ $data->title }}">
                                 </div>
                             </div>
                             <div class="col-md-5">
@@ -77,8 +74,7 @@
                                                 <select name="server[]" class="server-filter form-control t14" style="">
                                                     @for($i = 0; $i < count($server_data); $i++)
                                                         @if((strpos($server_data[$i], '[DELETE]') === false))
-                                                            <option
-                                                                value="{{$server_id[$i]}}">{{$server_data[$i]}}</option>
+                                                            <option value="{{$server_id[$i]}}">{{$server_data[$i]}}</option>
                                                         @endif
                                                     @endfor
                                                 </select>
@@ -95,9 +91,7 @@
                                     @endphp
                                     @if(!empty($name))
                                         <div class="form-group">
-                                            <label
-                                                style="font-weight: 700">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}
-                                                :</label>
+                                            <label style="font-weight: 700">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</label>
 
                                             <select name="selected" class="s-filter form-control t14" style="">
                                                 @for ($i = 0; $i < count($name); $i++)
@@ -114,30 +108,22 @@
                                         <div class="row" style="width: 100%;margin: 0 auto">
                                             <div class="col-auto" style="width: 80%;padding-right: 8px;padding-left: 0">
                                                 <label style="font-weight: 700">Nhập số tiền cần mua:</label>
-                                                <input style="margin-bottom: 8px" autofocus=""
-                                                       value="{{old('input_pack',\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}"
-                                                       class="form-control t14 price " id="input_pack" type="text"
-                                                       placeholder="Số tiền">
-                                                <span style="font-size: 14px;">Số tiền thanh toán phải từ <b
-                                                        style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))) }}đ</b>  đến <b
-                                                        style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))) }}đ</b> </span>
+                                                <input style="margin-bottom: 8px" autofocus="" value="{{old('input_pack',\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}" class="form-control t14 price " id="input_pack" type="text" placeholder="Số tiền">
+                                                <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))) }}đ</b>  đến <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))) }}đ</b> </span>
                                             </div>
 
                                             <div class="col-auto" style="width: 20%;padding-left: 8px;padding-right: 0">
                                                 <label style="font-weight: 700">Hệ số:</label>
-                                                <input type="text" id="txtDiscount" class="form-control t14"
-                                                       placeholder="" value="" readonly="">
+                                                <input type="text" id="txtDiscount" class="form-control t14" placeholder="" value="" readonly="">
                                             </div>
                                         </div>
 
                                     </div>
                                     @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
                                     <div class="form-group">
-                                        <label>{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}
-                                            :</label>
+                                        <label>{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</label>
                                         <div class="col-m-12 message-error" id="error-mes-checkbox"></div>
-                                        <div class="simple-checkbox s-filter"
-                                             style="border: 1px solid #ced4da;border-radius: 8px;padding: 8px 0px 8px 8px;">
+                                        <div class="simple-checkbox s-filter" style="border: 1px solid #ced4da;border-radius: 8px;padding: 8px 0px 8px 8px;">
                                             <div class="row" style="width: 100%;margin: 0 auto">
                                                 <div class="col-md-12 left-right" id="chonnhieu">
                                                     @php
@@ -147,11 +133,8 @@
                                                     @if(!empty($name))
                                                         @for ($i = 0; $i < count($name); $i++)
                                                             @if($name[$i]!=null)
-                                                                <p><input class="allgame" value="{{$i}}" type="checkbox"
-                                                                          id="{{$i}}">
-                                                                    <label
-                                                                        style="font-family: Roboto, Helvetica Neue, Helvetica, Arial;font-size: 14px"
-                                                                        for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".str_replace(',','.',number_format($price[$i])). " VNĐ":""}}</label>
+                                                                <p><input class="allgame" value="{{$i}}" type="checkbox" id="{{$i}}">
+                                                                    <label style="font-family: Roboto, Helvetica Neue, Helvetica, Arial;font-size: 14px" for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".str_replace(',','.',number_format($price[$i])). " VNĐ":""}}</label>
                                                                 </p>
                                                             @endif
 
@@ -184,40 +167,27 @@
                                                                 @endif
                                                                 @if($send_type[$i] !=7)
                                                                     @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5" && $i == 0)
-                                                                        <label style="font-weight: 700"
-                                                                               class="form-group-tt">{{$send_name[$i]}}
-                                                                            :</label>
+                                                                        <label style="font-weight: 700" class="form-group-tt">{{$send_name[$i]}}:</label>
                                                                     @else
-                                                                        <label
-                                                                            style="font-weight: 700">{{$send_name[$i]}}
-                                                                            :</label>
+                                                                        <label style="font-weight: 700">{{$send_name[$i]}}:</label>
                                                                     @endif
                                                                 @endif
                                                                 @if($send_type[$i]==1 || $send_type[$i]==2||$send_type[$i]==3)
                                                                     @php
                                                                         $index = $index + 1;
                                                                     @endphp
-                                                                    <input type="text" required
-                                                                           name="customer_data{{$i}}"
-                                                                           class="form-control t14 "
-                                                                           placeholder="{{$send_name[$i]}}" value="">
+                                                                    <input type="text" required name="customer_data{{$i}}" class="form-control t14 " placeholder="{{$send_name[$i]}}" value="">
                                                                     <div class="error-message-text"></div>
                                                                 @elseif($send_type[$i]==4)
                                                                     @php
                                                                         $index = $index + 1;
                                                                     @endphp
-                                                                    <input type="file" required accept="image/*"
-                                                                           class="form-control"
-                                                                           name="customer_data{{$i}}"
-                                                                           placeholder="{{$send_name[$i]}}">
+                                                                    <input type="file" required accept="image/*" class="form-control" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
                                                                 @elseif($send_type[$i]==5)
                                                                     @php
                                                                         $index = $index + 1;
                                                                     @endphp
-                                                                    <input type="password" required
-                                                                           class="form-control "
-                                                                           name="customer_data{{$i}}"
-                                                                           placeholder="{{$send_name[$i]}}">
+                                                                    <input type="password" required class="form-control " name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
                                                                     <div class="error-message-text"></div>
                                                                 @elseif($send_type[$i]==6)
                                                                     @php
@@ -226,12 +196,10 @@
                                                                     @php
                                                                         $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
                                                                     @endphp
-                                                                    <select name="customer_data{{$i}}" required
-                                                                            class="mb-15 control-label bb">
+                                                                    <select name="customer_data{{$i}}" required class="mb-15 control-label bb">
                                                                         @if(!empty($send_data))
                                                                             @for ($sn = 0; $sn < count($send_data); $sn++)
-                                                                                <option
-                                                                                    value="{{$sn}}">{{$send_data[$sn]}}</option>
+                                                                                <option value="{{$sn}}">{{$send_data[$sn]}}</option>
                                                                             @endfor
                                                                         @endif
                                                                     </select>
@@ -243,15 +211,13 @@
                                                                         $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
                                                                     @endphp
                                                                     <div class="d-flex">
-                                                                        <input class="confirm-rules"
-                                                                               name="customer_data{{$i}}"
-                                                                               type="checkbox" id="customer_data{{$i}}">
-                                                                        <label style="margin-left: 8px;cursor: pointer"
-                                                                               for="customer_data{{$i}}">{{$send_name[$i]}}</label>
+                                                                        <input class="confirm-rules" name="customer_data{{$i}}" type="checkbox" id="customer_data{{$i}}">
+                                                                        <label style="margin-left: 8px;cursor: pointer" for="customer_data{{$i}}">{{$send_name[$i]}}</label>
 
                                                                     </div>
                                                                     <div class="error-message-checkbox"></div>
                                                                 @endif
+
 
 
                                                             </div>
@@ -268,124 +234,16 @@
                                         <input type="hidden" name="value" value="">
                                         <input type="hidden" name="selected" value="">
                                         <input type="hidden" name="server">
-                                        <a id="txtPrice" style="font-weight: bold;display: block;margin-bottom: 15px;    width: 100%;background: rgb(238, 70, 35) !important;font-size: 18px;color: #ffffff;text-align: center;-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;border: 2px solid rgb(238, 70, 35) !important;padding: 11px 0;margin-top: 10px;"
-                                           class="total-money-detail-service btn btn-success">Tổng: 0 Xu</a>
+                                        <a id="txtPrice" style="font-size: 18px;font-weight: bold;display: block;margin-bottom: 15px;width: 100%;background: rgb(238, 70, 35) !important;color: #ffffff;text-align: center;-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;border: 2px solid rgb(238, 70, 35) !important;padding: 11px 0;margin-top: 10px;"
+                                           class="btn btn-success ">Tổng: 0 Xu</a>
                                         @if(App\Library\AuthCustom::check())
-                                            <button  data-toggle="modal" id="btnPurchase"
-                                               style="font-weight: bold;display: block;margin-bottom: 15px;cursor: pointer;width: 100%;background: #28a745;font-size: 18px;color: #ffffff;text-align: center;-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;border: 2px solid #28a745;padding: 11px 0;margin-top: 10px;"
-                                               class="btn-auth"><i class="fa fa-credit-card" aria-hidden="true"></i>
-                                                Thanh toán</button>
+                                            <button id="btnPurchase" type="button" style="font-size: 18px;font-weight: bold;display: block;cursor: pointer;width: 100%;background: #28a745;color: #ffffff;text-align: center;-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;padding: 11px 0;margin-top: 10px;padding-bottom: 15px;border: none" class="btn-auth" >
+                                                <i class="fa fa-credit-card " aria-hidden="true"></i> Thanh toán
+                                            </button>
                                         @else
-                                            <a href="#" data-toggle="modal" data-target="#modal-login"
-                                               style="font-weight: bold;display: block;margin-bottom: 15px;cursor: pointer;width: 100%;background: #28a745;font-size: 18px;color: #ffffff;text-align: center;-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;border: 2px solid #28a745;padding: 11px 0;margin-top: 10px;"
-                                               class="btn-auth"><i class="fa fa-credit-card" aria-hidden="true"></i>
-                                                Thanh toán</a>
+                                            <a href="#" data-toggle="modal" data-target="#modal-login" style="font-size: 18px;font-weight: bold;display: block;cursor: pointer;width: 100%;background: #28a745;color: #ffffff;text-align: center;-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;margin-top: 10px;padding: 11px 0;padding-bottom: 15px" class="btn-auth pay-detail-service"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</a>
                                         @endif
                                     </div>
-{{-- login --}}
-                                    <div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="" style=" padding-right: 17px;">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <div class="col-1"></div>
-                                                    <div class="col-10 text-center"><h6 class="modal-title">Đăng nhập</h6></div>
-                                                    <div class="col-1 ">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">×</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form id="formLogin" class="formLogin" action="https://kimcuongfreefire.vn/ajax/login" method="POST">
-                                                        <input type="hidden" name="_token" value="fg4qTBOjsdhTpFnyLs0CFYXEP3JFic4CUKnpgI3y"> <div class=" text-center">
-                                                            <div class="my-4 text-center">
-                                                                <b class="text-danger"></b>
-                                                                <span class="help-block text-danger notify-error login-error">
-<strong></strong>
-</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Tài khoản hoặc email</label>
-                                                            <input type="text" class="form-control" placeholder="Tài khoản hoặc email" name="username">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Mật khẩu</label>
-                                                            <input type="password" id="password" class="form-control" autocomplete="off" placeholder="Nhập mật khẩu" name="password">
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-off"></span> Đăng nhập
-                                                        </button>
-                                                        <div class="checkbox icheck" style="margin-top: 8px">
-                                                            <label>
-                                                                <input type="checkbox" name="remember_token" value="1">
-                                                                <span style="margin-left: 4px;cursor: pointer">Ghi nhớ</span>
-                                                            </label>
-                                                        </div>
-                                                        <div class="modal-bottom" style="margin-top: 15px">
-                                                            <p class="text-center">
-                                                                <a href="http://fb.nhapnick.com/kimcuongfreefire_vn" class="btn  btn-social btn-facebook btn-flat d-inline-block" style="margin-bottom:5px"><img src="/assets/frontend/theme_4/image/facebook-icon.png" alt="" width="32px" height="32px">
-                                                                </a>
-                                                            </p>
-                                                            <p class="text-center">
-                                                                Bạn chưa có tài khoản. <a class="btn-a-register" href="#" data-dismiss="modal" data-toggle="modal" data-target="#modal-register" style="color:#007bff">Đăng kí ngay !</a>
-                                                            </p>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-{{-- end login --}}
-                                    {{-- register --}}
-                                    <div class="modal fade " id="modal-register" tabindex="-1" role="dialog" aria-labelledby="" style="">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <div class="col-1"></div>
-                                                    <div class="col-10 text-center"><h6 class="modal-title">Đăng ký</h6></div>
-                                                    <div class="col-1 ">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">×</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form id="formRegister" action="https://kimcuongfreefire.vn/ajax/register" method="POST">
-                                                        <input type="hidden" name="_token" value="wjGnGHYiZ7hAABhay6hLk4MxkF2rwIN5IXDoL1Ui"> <div class=" text-center">
-                                                            <div class="my-4 text-center">
-                                                                <b class="text-danger"></b>
-                                                                <span class="help-block text-danger notify-error register-error">
-<strong></strong>
-</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Tài khoản <span style="color: red">(*)</span></label>
-                                                            <input type="text" class="form-control" autocomplete="off" placeholder="Tài khoản" value="" name="username" required="">
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-md-6 ">
-                                                                <label>Mật khẩu <span style="color: red">(*)</span></label>
-                                                                <input type="password" class="form-control" autocomplete="off" placeholder="Mật khẩu" value="" name="password" required="">
-                                                            </div>
-                                                            <div class="form-group col-md-6 ">
-                                                                <label>Xác nhân mật khẩu <span style="color: red">(*)</span></label>
-                                                                <input type="password" class="form-control" autocomplete="off" placeholder="Xác nhận mật khẩu" name="password_confirmation" required="">
-                                                            </div>
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-off"></span> Đăng ký
-                                                        </button>
-                                                        <div class="modal-bottom">
-                                                            <p class="text-center" style="margin-top: 15px">
-                                                                Đã có tài khoản. <a class="btn-a-login" href="#" data-dismiss="modal" data-toggle="modal" data-target="#modal-login" style="color:#007bff">Đăng nhập tại đây !</a>
-                                                            </p>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{-- end register --}}
 
                                     {{--                            <div class="row"--}}
                                     {{--                                 style="color: #505050;padding:20px;line-height: 2;margin-top: 30px">--}}
@@ -404,21 +262,16 @@
                         <div class="row" style="margin: 0 auto; width: 100%;padding-top: 24px">
                             <div class="col-md-12 left-right float_mb">
                                 <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/rslider.js"></script>
-                                <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/select-chosen.js"
-                                        type="text/javascript"></script>
-                                <link href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css"
-                                      rel="stylesheet" type="text/css"/>
-                                <link rel="stylesheet" type="text/css"
-                                      href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css">
-                                <link rel="stylesheet" type="text/css"
-                                      href="/assets/frontend/{{theme('')->theme_key}}/rank/css/responsive.css">
-                                <link rel="stylesheet" type="text/css"
-                                      href="/assets/frontend/{{theme('')->theme_key}}/rank/css/chosen.css">
+                                <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/select-chosen.js" type="text/javascript"></script>
+                                <link href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css" rel="stylesheet" type="text/css"/>
+                                <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css">
+                                <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/responsive.css">
+                                <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/chosen.css">
                                 <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
 
                                 <div class="range_slider" style="">
                                     <div class="nstSlider" data-range_min="0" data-cur_min="0">
-                                        <div class="bar"></div>
+                                        <div class="bar" ></div>
                                         <div class="leftGrip"></div>
                                         <div class="rightGrip"></div>
                                     </div>
@@ -461,8 +314,7 @@
 
                                 <h2>Bảng giá</h2>
                                 <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded">
-                                    <table
-                                        class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+                                    <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
                                         <thead class="m-datatable__head">
                                         <tr class="m-datatable__row">
                                             <th style="width:30px;" class="m-datatable__cell">
@@ -485,16 +337,15 @@
                                                 @if($name[$i]!=null)
                                                     <tr class="m-datatable__row m-datatable__row--even">
                                                         <td style="width:30px;" class="m-datatable__cell">{{$i+1}}</td>
-                                                        <td class="m-datatable__cell">{{$name[$i]}}
-                                                            -> {{$name[$i+1]}}</td>
-                                                        <td style="width:150px;"
-                                                            class="m-datatable__cell">{{ str_replace(',','.',number_format(intval($price[$i+1])- intval($price[$i]))). " VNĐ"}}</td>
+                                                        <td class="m-datatable__cell">{{$name[$i]}} -> {{$name[$i+1]}}</td>
+                                                        <td style="width:150px;" class="m-datatable__cell">{{ str_replace(',','.',number_format(intval($price[$i+1])- intval($price[$i]))). " VNĐ"}}</td>
                                                         <td class="m-datatable__cell">
                                                             @if(\App\Library\AuthCustom::check())
                                                                 <span class="pay">Thanh toán</span>
                                                             @else
                                                                 {{--                                                            <a href="#" data-toggle="modal" data-target="#modal-login" style="font-size: 18px;font-weight: bold;display: block;margin-bottom: 15px;cursor: pointer"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</a>--}}
-                                                                <a href="#" data-toggle="modal" data-target="#modal-login" style="font-size: 16px;" class="followus c-pay"><i aria-hidden="true"></i>Đăng nhập</a>
+
+                                                                <a href="#" data-toggle="modal" data-target="#modal-login" style="font-size: 16px;" class="followus c-pay"><i aria-hidden="true"></i> Đăng nhập</a>
                                                             @endif
 
                                                         </td>
@@ -511,8 +362,7 @@
                                                 float: left;
                                             }
                                         }
-
-                                        .c-pay {
+                                        .c-pay{
                                             display: block;
                                             background: rgb(238, 70, 35);
                                             border-radius: 17px;
@@ -525,11 +375,15 @@
                                             font-size: 16px;
                                         }
 
-                                        .c-pay:hover {
-                                            color: #fff !important;
+                                        .c-pay:hover{
+                                            color: #fff!important;
                                         }
                                     </style>
-
+                                    <script type="text/javascript">
+                                        $(".pay").click(function(){
+                                            $('#homealert').modal('show');
+                                        })
+                                    </script>
                                 </div>
                             </div>
                             <input type="hidden" id="json_rank" name="custId" value="{{ json_encode($data) }}">
@@ -540,17 +394,18 @@
                         <div class="modal fade" id="homealert" role="dialog" style="display: none;" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
+
+
                                     <div class="modal-header">
                                         <div class="col-1"></div>
-                                        <div class="col-10 text-center"><h6 class="modal-title">Xác nhận thanh toán</h6>
-                                        </div>
+                                        <div class="col-10 text-center"><h6 class="modal-title">Xác nhận thanh toán</h6></div>
                                         <div class="col-1 ">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div >
                                         <div class="row error__service">
 
                                         </div>
@@ -563,10 +418,10 @@
 
                                         <input type="hidden" name="index" value="{{ $index }}">
                                         <button type="submit"
-                                                class="btn btn-success c-theme-btn c-btn-square c-btn-uppercase c-btn-bold"
-                                                id="d3"
+                                                class="btn btn-success c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" id="d3"
                                                 style="">Xác nhận thanh toán
                                         </button>
+
 
 
                                         <button type="button"
@@ -582,7 +437,6 @@
 
                     </div>
                 </form>
-
                 <div class="job-wide-devider data-bot">
 
                 </div>
@@ -603,8 +457,8 @@
                 @include('frontend.pages.service.widget.__binhluan')
 
             </div>
-
-        </div><!-- /.container -->
+        </div>
+        <!-- /.container -->
     </section>
 
 
