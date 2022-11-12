@@ -532,7 +532,7 @@
                                                         </div>
                                                     </div>
                                                 @endif
-                                            @elseif($in->name == 'Hành tinh')
+                                            @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai')
                                                 <div class="col-md-12">
                                                     <div class="row gallery__03">
                                                         <div class="col-md-12 gallery__01__row">
