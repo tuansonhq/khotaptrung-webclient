@@ -289,7 +289,7 @@
                                                                             </div>
                                                                         @endif
 
-                                                                    @elseif($in->name == 'Hành tinh')
+                                                                    @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai')
 
                                                                         <div class="row" style="margin: 0 auto;width: 100%">
                                                                             <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
