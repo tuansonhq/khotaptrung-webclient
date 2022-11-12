@@ -1,47 +1,39 @@
 
-<div class="col-lg-4 d-none d-lg-block c-pt-36">
+<div class="col-lg-4 d-none d-lg-block">
     @if(isset($data_detail) && count($data_detail) > 0)
         @foreach($data_detail as $val)
             @if(isset($val->data->data) && count($val->data->data) > 0)
-                <div class="card --custom hot-news-article">
-                    <div class="nav-bar-hr">
-                        <div class="row marginauto nav-bar-nick nav-bar-parent">
-                            <div class="col-md-12 left-right">
-                                <div class="row marginauto nav-bar-article-title">
-                                    <div class="d-flex col-12 left-right">
-                                        <span>{{ $val->categoryarticle->title }}</span>
-                                        <div class="navbar-spacer"></div>
-                                        <div class="text-view-more">
-                                            <a href="/tin-tuc/{{ $val->categoryarticle->slug }}" class="global__link">Xem tất cả<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/theme_5/image/duong/arrowright.svg)"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="sub-article-block">
+                    
+                    <div class="sub-article-block-header d-flex justify-content-between align-items-center c-px-16 c-py-12">
+                        <h2 class="fw-700 fz-24 lh-32">
+                            {{ $val->categoryarticle->title }}
+                        </h2>
+                        <a href="/tin-tuc/{{ $val->categoryarticle->slug }}" class="link arr-right">Xem tất cả</a>
+                    </div>
 
-                        @foreach($val->data->data as $key=> $item)
-                            @if($key >= 3)
-                                @break
-                            @endif
-                            <div class="sub-article">
-                                <div class="row">
-                                    <div class="col-6 sub-article--thumbnail-container">
-                                        <div class="sub-article--thumbnail">
-                                            <a href="/tin-tuc/{{ $item->slug }}">
-                                                <img onerror="imgError(this)"  data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="sub-article--thumbnail__image lazy">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 sub-article--info">
-                                        <a href="/tin-tuc/{{ $item->slug }}" class="sub-article--title__link">
-                                            {{ $item->title }}
+                    @foreach($val->data->data as $key=> $item)
+                        @if($key >= 3)
+                            @break
+                        @endif
+                        <div class="sub-article c-px-16">
+                            <div class="row">
+                                <div class="col-6 sub-article--thumbnail-container">
+                                    <div class="sub-article--thumbnail">
+                                        <a href="/tin-tuc/{{ $item->slug }}">
+                                            <img onerror="imgError(this)"  data-src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="sub-article--thumbnail__image lazy">
                                         </a>
                                     </div>
                                 </div>
+                                <div class="col-6 sub-article--info">
+                                    <a href="/tin-tuc/{{ $item->slug }}" class="sub-article--title__link">
+                                        {{ $item->title }}
+                                    </a>
+                                </div>
                             </div>
-                        @endforeach
+                        </div>
+                    @endforeach
 
-                    </div>
                 </div>
             @endif
         @endforeach

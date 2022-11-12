@@ -383,21 +383,21 @@
                         </div>
                     </div>
 
-                    @if(isset($result->group->description))
+                    @if(isset($result->group->content))
                         <div class="service-detail-block c-mb-16 c-px-lg-16 detailViewBlock">
                             <h6 class="d-block d-lg-none fz-15 fw-700 lh-24 c-mb-8">Chi tiết dịch vụ</h6>
                             <div class="card overflow-hidden detailViewBlock">
                                 <div class="card-body c-p-16">
                                     <h2 class="text-title-bold d-none d-lg-block c-mb-24 detailViewBlockTitle">Chi tiết dịch vụ</h2>
-                                    @if(substr($result->group->description, 1200))
+                                    @if(substr($result->group->content, 1200))
                                     <div class="content-desc hide detailViewBlockContent">
                                     @else
                                     <div class="content-desc detailViewBlockContent">
                                     @endif
-                                        {!! $result->group->description !!}
+                                        {!! $result->group->content !!}
                                     </div>
                                 </div>
-                                @if(substr($result->group->description, 1200))
+                                @if(substr($result->group->content, 1200))
                                 <div class="card-footer text-center">
                                     <span class="see-more" data-content="Xem thêm nội dung"></span>
                                 </div>

@@ -83,7 +83,7 @@
                                                                     <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
                                                                         {{--                                                                {{ $att_valuev2->title??null }}--}}
                                                                         @if($rank_info->tier == "NONE")
-                                                                            {{ $rank_info->tier }}
+                                                                            CHƯA CÓ RANK
                                                                         @else
                                                                             {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                         @endif

@@ -128,15 +128,15 @@ $(document).ready(function () {
 
     $('body').on('click','.show-modal-champ',function (e) {
         e.preventDefault();
-        $('#modal-champ').modal('show');
+        $('#modal-champ').modal('show').find('.modal-body').trigger('scroll');
     })
     $('body').on('click','.show-modal-skin',function (e) {
         e.preventDefault();
-        $('#modal-skin').modal('show');
+        $('#modal-skin').modal('show').find('.modal-body').trigger('scroll');
     })
     $('body').on('click','.show-modal-animal',function (e) {
         e.preventDefault();
-        $('#modal-animal').modal('show');
+        $('#modal-animal').modal('show').find('.modal-body').trigger('scroll');
     })
 
     $('.modal-lmht .modal-body').on('scroll',function () {

@@ -303,7 +303,12 @@
                                                     @if (setting('sys_tranfer_content') != "")
                                                         {!! setting('sys_tranfer_content') !!}
                                                     @endif
-                                                    <div class="card--attr transfer-title">
+                                                    <div class="error_transfer_code">
+                                                        <p style="text-align: center; margin: auto; color: #000;font-weight: 600;font-size: 14px"> 
+                                                            Vui lòng <span style="color: red; text-decoration: underline; cursor: pointer;" onclick="openLoginModal();">đăng nhập</span> để nhận được nội dung chuyển tiền
+                                                        </p>
+                                                    </div>
+                                                    <div class="card--attr transfer-title" style="display: none;">
                                                         <div class="card--attr__name">
                                                             Nội dung chuyển tiền
                                                         </div>

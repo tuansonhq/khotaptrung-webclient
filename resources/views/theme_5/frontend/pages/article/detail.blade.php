@@ -56,8 +56,10 @@
                 </div>
             </div>
 
-                @include('frontend.pages.article.widget.__ads__article__theme__5')
-
+            <div class="col-lg-4 d-none d-lg-block">
+                @include('frontend.widget.__related__service__article_theme_5')
+                @include('frontend.widget.__related__acc__article_theme_5')
+            </div>
         </div>
 
         {{--        Cùng chủ đề--}}

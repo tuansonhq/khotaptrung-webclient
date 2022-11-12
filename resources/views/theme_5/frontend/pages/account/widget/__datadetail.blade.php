@@ -9,18 +9,68 @@
                             <div class="tab-pane fade show active" id="tab-thumb" role="tabpanel">
                                 <div class="card-body c-p-16 c-p-lg-0 mx-n3 mx-lg-0 d-flex">
                                     @if(isset($game_auto_props) && count($game_auto_props) && $data_category->slug == 'nick-lien-minh')
+                                        @if(isset($data->image_extension))
+                                            <div class="swiper gallery-top d-none d-lg-block">
+                                                <div class="swiper-wrapper">
+                                                    <div class="swiper-slide">
+                                                        <div class="gallery-photo" >
+                                                            <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="mua-nick" >
+                                                        </div>
+                                                    </div>
+                                                    @foreach(explode('|',$data->image_extension) as $val)
+                                                        @if($val != '')
+                                                        <div class="swiper-slide">
+                                                            <div class="gallery-photo" >
+                                                                <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                            </div>
+                                                        </div>
+                                                        @endif
+                                                    @endforeach
+
+
+                                                </div>
+                                            </div>
+
+                                            <div class="swiper gallery-thumbs c-ml-16 c-ml-lg-0">
+                                                <div class="swiper-wrapper">
+                                                    <div class="swiper-slide">
+                                                        <div class="gallery-photo d-none d-lg-block" data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+                                                            <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="mua-nick" >
+                                                        </div>
+
+                                                        <div class="gallery-photo d-lg-none" data-fancybox="galleryNickDetail" href="{{\App\Library\MediaHelpers::media($data->image)}}">
+                                                            <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="mua-nick" >
+                                                        </div>
+                                                    </div>
+                                                    @foreach(explode('|',$data->image_extension) as $val)
+                                                        @if($val != '')
+                                                        <div class="swiper-slide">
+                                                            <div class="gallery-photo d-none d-lg-block" data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+                                                                <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                            </div>
+
+                                                            <div class="gallery-photo d-lg-none" data-fancybox="galleryNickDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                                                <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                            </div>
+                                                        </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @else
                                         <img style="width: 100%" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" >
+                                        @endif
                                     @else
                                     <div class="swiper gallery-top d-none d-lg-block">
                                         <div class="swiper-wrapper">
                                             @foreach(explode('|',$data->image_extension) as $val)
-
+                                                @if($val != '')
                                                 <div class="swiper-slide">
                                                     <div class="gallery-photo" >
                                                         <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                                     </div>
                                                 </div>
-
+                                                @endif
                                             @endforeach
 
 
@@ -30,6 +80,7 @@
                                     <div class="swiper gallery-thumbs c-ml-16 c-ml-lg-0">
                                         <div class="swiper-wrapper">
                                             @foreach(explode('|',$data->image_extension) as $val)
+                                                @if($val != '')
                                             <div class="swiper-slide">
                                                 <div class="gallery-photo d-none d-lg-block" data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false">
                                                     <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
@@ -39,6 +90,7 @@
                                                     <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                                 </div>
                                             </div>
+                                                @endif
                                             @endforeach
                                         </div>
                                     </div>
@@ -130,6 +182,7 @@
                                             foreach($game_auto_props as $game_auto_prop){
                                                 if($game_auto_prop->key == 'champions'){
                                                     $total_tuong = $total_tuong + 1;
+
                                                 }elseif ($game_auto_prop->key == 'skins'){
                                                     $total_trangphuc = $total_trangphuc + 1;
                                                 }elseif ($game_auto_prop->key == 'emotes'){
@@ -168,7 +221,7 @@
                                                     <tr>
                                                         <td><span class="link-color">RANKED TFT</span></td>
                                                         <td><span>@if($rank_info->tier == "NONE")
-                                                                    {{ $rank_info->tier }}
+                                                                    CHƯA CÓ RANK
                                                                 @else
                                                                     {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                 @endif</span></td>
@@ -180,7 +233,7 @@
                                                         <td><span class="link-color">RANKED SOLO</span></td>
                                                         <td><span>
                                                             @if($rank_info->tier == "NONE")
-                                                                    {{ $rank_info->tier }}
+                                                                    CHƯA CÓ RANK
                                                                 @else
                                                                     {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                 @endif
@@ -397,7 +450,7 @@
                                                                 <tr>
                                                                     <td><span class="link-color">RANKED TFT</span></td>
                                                                     <td><span>@if($rank_info->tier == "NONE")
-                                                                                {{ $rank_info->tier }}
+                                                                                CHƯA CÓ RANK
                                                                             @else
                                                                                 {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                             @endif</span></td>
@@ -409,7 +462,7 @@
                                                                     <td><span class="link-color">RANKED SOLO</span></td>
                                                                     <td><span>
                                                             @if($rank_info->tier == "NONE")
-                                                                                {{ $rank_info->tier }}
+                                                                                CHƯA CÓ RANK
                                                                             @else
                                                                                 {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                             @endif
@@ -685,7 +738,7 @@
                                                             </div>
                                                             <div class="card--attr__value fz-13 fw-500">
                                                                 @if($rank_info->tier == "NONE")
-                                                                    {{ $rank_info->tier }}
+                                                                    CHƯA CÓ RANK
                                                                 @else
                                                                     {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                 @endif
@@ -698,7 +751,7 @@
                                                             </div>
                                                             <div class="card--attr__value fz-13 fw-500">
                                                                 @if($rank_info->tier == "NONE")
-                                                                    {{ $rank_info->tier }}
+                                                                    CHƯA CÓ RANK
                                                                 @else
                                                                     {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                                 @endif
@@ -1120,7 +1173,7 @@
                                                     </div>
                                                     <div class="card--attr__value fz-13 fw-500">
                                                         @if($rank_info->tier == "NONE")
-                                                            {{ $rank_info->tier }}
+                                                            CHƯA CÓ RANK
                                                         @else
                                                             {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                         @endif
@@ -1133,7 +1186,7 @@
                                                     </div>
                                                     <div class="card--attr__value fz-13 fw-500">
                                                         @if($rank_info->tier == "NONE")
-                                                            {{ $rank_info->tier }}
+                                                            CHƯA CÓ RANK
                                                         @else
                                                             {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
                                                         @endif
@@ -1463,7 +1516,7 @@
                     </div>
                 </div>
             </div>
-
+            @if(isset($game_auto_props) && count($game_auto_props) && $data_category->slug == 'nick-lien-minh')
             <div class="modal-body modal-body-order-ct">
                 <div class="row marginauto">
 
@@ -1471,16 +1524,26 @@
 
                     <!-- main images -->
                         <div class="acc-holder ">
-                            @foreach(explode('|',$data->image_extension) as $key => $val)
-
+                            @php
+                                $image_extension = explode('|',$data->image_extension);
+                                array_push($image_extension,$data->image);
+                                $count = 0;
+                                foreach($image_extension as $key => $val){
+                                    if($val != ''){
+                                        $count = $count + 1;
+                                    }
+                                }
+                            @endphp
+                            @foreach($image_extension as $key => $val)
+                                @if($val != '')
                                 <div class="acc-holder_slides " >
                                     <a class="acc-holder_expand" data-fancybox="galleryAccount" href="{{\App\Library\MediaHelpers::media($val)}}">
                                         <i class="__icon__profile --sm__profile --link__profile --link--acc" style="--path : url(/assets/frontend/theme_5/image/nam/expand-acc.svg)"></i>
-                                        {{--                                            <img src="/assets/frontend/theme_3/image/svg/expand-acc.svg" alt="">--}}
                                     </a>
-                                    <div class="acc-holder_badge">{{$key+1}} / {{count(explode('|',$data->image_extension))}}</div>
+                                    <div class="acc-holder_badge">{{$key+1}} / {{ $count }}</div>
                                     <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" />
                                 </div>
+                                @endif
                             @endforeach
 
 
@@ -1501,11 +1564,13 @@
                         <!-- thumnails in a row -->
                         <div class="flex-grow-1 ml-fix-12">
                             <div class="row acc-thumbnail  mx-0">
-                                @foreach(explode('|',$data->image_extension) as $key => $val)
+                                @foreach($image_extension as $key => $val)
+                                    @if($val != '')
                                     <div class="acc-thumbnail_column col-md-3 c-px-6 c-mb-12 ">
                                         <div class="acc-thumbnail_badge" onclick="currentSlide({{$key+1}})">{{$key+1}}</div>
                                         <img class="acc-thumbnail-image" src="{{\App\Library\MediaHelpers::media($val)}}" onclick="currentSlide({{$key+1}})" alt="Caption One">
                                     </div>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
@@ -1514,6 +1579,62 @@
 
                 </div>
             </div>
+            @else
+                <div class="modal-body modal-body-order-ct">
+                    <div class="row marginauto">
+
+                        <div class="d-flex">
+
+                            <!-- main images -->
+                            <div class="acc-holder ">
+
+                                @foreach(explode('|',$data->image_extension) as $key => $val)
+                                    @if($val != '')
+                                    <div class="acc-holder_slides " >
+                                        <a class="acc-holder_expand" data-fancybox="galleryAccount" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                            <i class="__icon__profile --sm__profile --link__profile --link--acc" style="--path : url(/assets/frontend/theme_5/image/nam/expand-acc.svg)"></i>
+                                            {{--                                            <img src="/assets/frontend/theme_3/image/svg/expand-acc.svg" alt="">--}}
+                                        </a>
+                                        <div class="acc-holder_badge">{{$key+1}} / {{count(explode('|',$data->image_extension))}}</div>
+                                        <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" />
+                                    </div>
+                                    @endif
+                                @endforeach
+
+
+                                <div class="prevAccount">
+                                    <a class="prev" onclick="plusSlides(-1)">
+                                        <img src="/assets/frontend/theme_3/image/swiper-prev.svg" alt="">
+                                    </a>
+                                </div>
+                                <div class="nextAccount">
+                                    <a class="next" onclick="plusSlides(1)">
+                                        <img src="/assets/frontend/theme_3/image/swiper-next.svg" alt="">
+                                    </a>
+                                </div>
+
+
+                            </div>
+
+                            <!-- thumnails in a row -->
+                            <div class="flex-grow-1 ml-fix-12">
+                                <div class="row acc-thumbnail  mx-0">
+                                    @foreach(explode('|',$data->image_extension) as $key => $val)
+                                        @if($val != '')
+                                        <div class="acc-thumbnail_column col-md-3 c-px-6 c-mb-12 ">
+                                            <div class="acc-thumbnail_badge" onclick="currentSlide({{$key+1}})">{{$key+1}}</div>
+                                            <img class="acc-thumbnail-image" src="{{\App\Library\MediaHelpers::media($val)}}" onclick="currentSlide({{$key+1}})" alt="Caption One">
+                                        </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 

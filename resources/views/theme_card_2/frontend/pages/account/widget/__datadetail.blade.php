@@ -5,7 +5,54 @@
         <div class="col-lg-6 col-md-12 shop_product_detailS__col">
             <div class="gallery" style="overflow: hidden">
                 @if(isset($game_auto_props) && count($game_auto_props) && $data_category->slug == 'nick-lien-minh')
-                    <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" >
+                    @if(isset($data->image_extension))
+                        <div class="swiper gallery-slider">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($data->image)}}">
+                                        <img src="{{\App\Library\MediaHelpers::media($data->image)}}" style="width: 100%" alt="" >
+                                    </a>
+                                </div>
+                                @foreach(explode('|',$data->image_extension) as $val)
+                                    @if($val != '')
+                                    <div class="swiper-slide">
+                                        <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                            <img src="{{\App\Library\MediaHelpers::media($val)}}" style="width: 100%" alt="" >
+                                        </a>
+                                    </div>
+                                    @endif
+                                @endforeach
+                            </div>
+
+                            <div class="swiper-button-prev">
+                                <i style="color: #ffffff;position: absolute;top: 13px;left: 13px" class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="swiper-button-next">
+                                <i style="color: #ffffff;position: absolute;top: 13px;left: 13px" class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+
+                        <div class="swiper gallery-thumbs gallery-thumbsmaxheadth">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($data->image)}}">
+                                        <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" class="lazy">
+                                    </a>
+                                </div>
+                                @foreach(explode('|',$data->image_extension) as $val)
+                                    @if($val != '')
+                                    <div class="swiper-slide">
+                                        <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                            <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
+                                        </a>
+                                    </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    @else
+                        <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" >
+                    @endif
                 @else
                     <div class="swiper gallery-slider">
                         <div class="swiper-wrapper">
@@ -274,7 +321,7 @@
                                                                 </div>
                                                                 <div class="col-md-6 col-6 pl-0">
                                                                     @if($rank_info->tier == "NONE")
-                                                                        <span class="span__dangky">{{ $rank_info->tier }}</span>
+                                                                        <span class="span__dangky">CHƯA CÓ RANK</span>
                                                                     @else
 
                                                                         <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
@@ -300,7 +347,7 @@
                                                                 <div class="col-md-6 col-6 pl-0">
 
                                                                     @if($rank_info->tier == "NONE")
-                                                                        <span class="span__dangky">{{ $rank_info->tier }}</span>
+                                                                        <span class="span__dangky">CHƯA CÓ RANK</span>
                                                                     @else
                                                                         <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
                                                                     @endif
@@ -720,7 +767,7 @@
                                                                                 <td style="width:50%">RANKED TFT:</td>
                                                                                 <td class="text-danger" style="font-weight: 700">
                                                                                     @if($rank_info->tier == "NONE")
-                                                                                        {{ $rank_info->tier }}
+                                                                                        CHƯA CÓ RANK
                                                                                     @else
 
                                                                                         {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
@@ -732,7 +779,7 @@
                                                                             <td style="width:50%">RANKED SOLO:</td>
                                                                             <td class="text-danger" style="font-weight: 700">
                                                                                 @if($rank_info->tier == "NONE")
-                                                                                    {{ $rank_info->tier }}
+                                                                                    CHƯA CÓ RANK
                                                                                 @else
 
                                                                                     {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}

@@ -1393,3 +1393,36 @@ View::composer('frontend.widget.__menu__bottom', function ($view) {
     return $view->with('data',$data);
 
 });
+
+//Related service and related acc in news page theme_5
+
+View::composer('frontend.widget.__related__acc__article_theme_5', function ($view) {
+
+    $data = \Cache::rememberForever('__related__acc__article_theme_5', function() {
+        $url = '/acc';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['data'] = 'category_list';
+        $dataSend['module'] = 'acc_category';
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+    });
+
+    return $view->with('data_acc',$data);
+
+});
+
+View::composer('frontend.widget.__related__service__article_theme_5', function ($view) {
+
+    $data = \Cache::rememberForever('__related__service__article_theme_5', function() {
+        $url = '/service';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['limit'] = 8;
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data->data??null;
+    });
+
+    return $view->with('data_service',$data);
+
+});
