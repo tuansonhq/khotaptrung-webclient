@@ -247,33 +247,32 @@
                                                     @if(isset($info) && count($info))
                                                         @foreach($info as $ke => $in)
                                                             @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
-                                                                <?php
-
-                                                                $index = $index + 1;
-                                                                ?>
                                                                 @if($index < 5)
                                                                     @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
                                                                         @if($in->name == 'Skill Pet')
-                                                                            <div class="row" style="margin: 0 auto;width: 100%">
-                                                                                <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                                                    Skill đệ tử :
-                                                                                </div>
-                                                                                <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                                    {{--                                                                            Các cấp đang có--}}
+{{--                                                                            <div class="row" style="margin: 0 auto;width: 100%">--}}
+{{--                                                                                <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">--}}
+{{--                                                                                    Skill đệ tử :--}}
+{{--                                                                                </div>--}}
+{{--                                                                                <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">--}}
+{{--                                                                                    --}}{{--                                                                            Các cấp đang có--}}
 
-                                                                                    @if(isset($in->value) && count($in->value) )
-                                                                                        @foreach($in->value as $k_value => $value)
+{{--                                                                                    @if(isset($in->value) && count($in->value) )--}}
+{{--                                                                                        @foreach($in->value as $k_value => $value)--}}
 
-                                                                                            {{ $k_value + 1 }}
-                                                                                            @if($k_value + 1 < count($in->value))
-                                                                                                +
-                                                                                            @endif
-                                                                                        @endforeach
-                                                                                    @endif
-                                                                                </div>
-                                                                            </div>
+{{--                                                                                            {{ $k_value + 1 }}--}}
+{{--                                                                                            @if($k_value + 1 < count($in->value))--}}
+{{--                                                                                                +--}}
+{{--                                                                                            @endif--}}
+{{--                                                                                        @endforeach--}}
+{{--                                                                                    @endif--}}
+{{--                                                                                </div>--}}
+{{--                                                                            </div>--}}
                                                                         @elseif($in->name == 'Cải trang')
+                                                                            <?php
 
+                                                                            $index = $index + 1;
+                                                                            ?>
                                                                             <div class="row" style="margin: 0 auto;width: 100%">
                                                                                 <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
                                                                                     {{ $in->name??'' }} :
@@ -289,8 +288,11 @@
                                                                             </div>
                                                                         @endif
 
-                                                                    @elseif($in->name == 'Hành tinh')
+                                                                    @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai')
+                                                                        <?php
 
+                                                                        $index = $index + 1;
+                                                                        ?>
                                                                         <div class="row" style="margin: 0 auto;width: 100%">
                                                                             <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
                                                                                 {{ $in->name??'' }} :

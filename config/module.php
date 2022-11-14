@@ -83,7 +83,8 @@ return [
             'KI max',
             'Skill Pet',
             'Cải trang',
-            'Hành tinh'
+            'Hành tinh',
+            'Bông tai'
         ],
         'auto_nro_list_tt' => [
 //            'giáp',
@@ -103,7 +104,8 @@ return [
 //            'KI max',
             'Skill Pet',
             'Cải trang',
-            'Hành tinh'
+            'Hành tinh',
+            'Bông tai'
         ],
         'auto_lm_rank' => [
             'IRON' => 'Sắt',
