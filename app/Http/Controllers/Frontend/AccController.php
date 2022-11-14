@@ -83,7 +83,7 @@ class AccController extends Controller
 //                    $response_cate_data = $result_Api_cate->response_data??null;
 //                }
 //            }
-//            elseif ($slug == 'nick-ngoc-rong-online'){
+//            elseif ($slug == 'nick-ngoc-rong-online' || $slug == 'ban-nick-ngoc-rong'){
 //                $dataSendCate = array();
 //                $dataSendCate['data'] = 'property_auto';
 //                $dataSendCate['provider'] = 'nro';
@@ -105,7 +105,6 @@ class AccController extends Controller
                 $response_cate_data = $result_Api_cate->response_data??null;
 
             }
-
 
             cache(["game_props_list_{$slug}" => $response_cate_data], 604800);
         }

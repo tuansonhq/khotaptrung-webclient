@@ -1,15 +1,14 @@
 @if (isset($datacate) && count($datacate) > 0)
 
-    <div class="container item_play_dif__img">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="h3" style="font-size: 18px;font-weight: 700">DỊCH VỤ KHÁC</div>
-                <div class="news_content_line"></div>
-            </div>
+        <div class="h3" style="font-size: 18px;font-weight: 700">DỊCH VỤ KHÁC</div>
+        <div class="news_content_line" style="width: 132px"></div>
+
+    <div class="container item_play_dif__img swiper-service-related swiper-container">
+        <div class="swiper-wrapper">
             @if(isset($datacate) && count($datacate) > 0)
                 @foreach ($datacate as $item)
                     @if($item->id != $id)
-                    <div class="col-6 col-sm-6 col-lg-3 fixcssacount fixslidercsssev">
+                    <div class="swiper-slide fixcssacount fixslidercsssev">
                         <div class="item_buy_list_in">
                             <div class="item_buy_list_img">
                                 <a href="/dich-vu/{{ $item->slug }}">
@@ -82,3 +81,4 @@
     </div>
 
 @endif
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/account/swiper_js.js"></script>
