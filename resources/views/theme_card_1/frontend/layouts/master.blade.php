@@ -46,7 +46,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/moment/moment.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.umd.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.js"></script>
-    
+
     <script
         src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrapdatepicker/bootstrap-datepicker.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/bootstrap-datetimepicker.min.js"></script>
@@ -204,8 +204,10 @@
 <script type="text/javascript" src="/assets/frontend/{{theme('')->theme_key}}/js/slick.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
 <button type="button" class="btn btn-danger btn-floating btn-lg ripple-surface" id="btn-back-to-top"
-        style="display: none; min-width: 45px;z-index: 999">
-<button type="button" class="btn btn-danger btn-floating btn-lg ripple-surface" id="btn-back-to-top" style="display: none; min-width: 45px;z-index: 999">
+        style="display: none; min-width: 45px;min-height: 45px;border-radius: 100%;z-index: 999">
+    <i class="fas fa-arrow-up"></i>
+</button>
+<button type="button" class="btn btn-danger btn-floating btn-lg ripple-surface" id="btn-back-to-top" style="display: none; min-width: 45px;min-height: 45px;border-radius: 100%;z-index: 999">
     <i class="fas fa-arrow-up"></i>
 </button>
 @yield('scripts')
