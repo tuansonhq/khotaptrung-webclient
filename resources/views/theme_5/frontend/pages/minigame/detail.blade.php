@@ -501,7 +501,7 @@
                             <div class="c-px-16">
                                 <div class="leaderboard-items brs-8 c-mb-4 c-px-12 c-py-8 d-flex align-items-center">
                                     <span class="fw-400 fz-13 c-mr-8 lh-16">Bạn đang có:</span>
-                                    <p class="c-mb-0 fw-700 fz-15 lh-24">{{ str_replace(',','.',number_format($result->number_item)) }} {{ $result->name_item->image }}</p>
+                                    <p class="c-mb-0 fw-700 fz-15 lh-24">{{ str_replace(',','.',number_format($result->number_item)) }} {{ $result->name_item->image??'' }}</p>
                                 </div>
                             </div>
                         @endif
@@ -555,7 +555,7 @@
                         @if (\App\Library\AuthCustom::check())
                             <div class="leaderboard-items brs-8 c-mb-12 c-px-12 c-py-8 d-flex align-items-center">
                                 <span class="fw-400 fz-13 c-mr-8 lh-16">Bạn đang có:</span>
-                                <p class="c-mb-0 fw-700 fz-15 lh-24">{{ str_replace(',','.',number_format($result->number_item)) }} {{ $result->name_item->image }}</p>
+                                <p class="c-mb-0 fw-700 fz-15 lh-24">{{ str_replace(',','.',number_format($result->number_item)) }} {{ $result->name_item->image??'' }}</p>
                             </div>
                         @endif
                         <div class="leaderboard-buttons c-pb-24 c-mb-16 row no-gutters">
