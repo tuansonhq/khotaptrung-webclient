@@ -1040,7 +1040,7 @@
 
     @switch($position)
         @case('rubywheel')
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/rubywheel.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/rubywheel.js?v={{time()}}"></script>
         @break
         @case('flip')
         <style type="text/css">
@@ -1055,13 +1055,13 @@
                 100%{ transform:rotatey(360deg); }
             }
         </style>
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/flip.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/flip.js?v={{time()}}"></script>
         @foreach($result->group->items as $item)
             <input type="hidden" class="image_gift" value="{{ \App\Library\MediaHelpers::media($item->parrent->image) }}">
         @endforeach
         @break
         @case('slotmachine')
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine.js?v={{time()}}"></script>
         <style>
             @php
     $count = 0;
@@ -1075,7 +1075,7 @@
         </style>
         @break
         @case('slotmachine5')
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine5.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine5.js?v={{time()}}"></script>
         <style>
             @php
     $count = 0;
@@ -1098,7 +1098,7 @@
                 @endforeach
             </script>
         @endif
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/squarewheel.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/squarewheel.js?v={{time()}}"></script>
         <style>
             .box img.active{box-shadow:0 0 1px #fff, 0 0 2px #fff, 0 0 45px #f00, 0 0 30px #ff0013, 0 0 25px #f10303}
         </style>
@@ -1106,7 +1106,7 @@
         @case('smashwheel')
         @case('rungcay')
         @case('gieoque')
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/smashwheel.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/smashwheel.js?v={{time()}}"></script>
         @break
 
     @endswitch
