@@ -241,7 +241,7 @@
                                         </div>
                                         <div class="d-flex justify-content-center w-100">
                                             <button class="btn-nick btn-ghost" disabled>Thanh toán</button>
-                                            <button class="btn-nick btn-primary" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp tiền</button>
+                                            <a href="/nap-the" class="btn-nick btn-primary">Nạp tiền</a>
                                         </div>
                                         @else
                                             <div class="nick-footer-notify">
