@@ -64,166 +64,171 @@
             </div>
         </section>
         {{--   Bopđyy --}}
+        <style>
+            .body-header-col-ct-titile{
+                font-family: 'Roboto' !important;
+            }
+        </style>
         <section>
-            <div id="" class="container container-fix body-container-ct">
-                <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
+                <div id="font-acc" class="container container-fix body-container-ct" >
+                    <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
 
-                    <div class="col-md-12 left-right">
-                        <div class="row marginauto nick-list-bg" style="background: #FFFFFF">
-                            <div class="col-md-12 left-right">
-                                <img class="lazy theme_3_imagebanner" src="{{ isset($data->custom->image_banner) ? \App\Library\MediaHelpers::media($data->custom->image_banner) : \App\Library\MediaHelpers::media($data->image_banner) }}" alt="">
-                            </div>
-                        </div>
-                        <div class="row marginauto body-row-nick-ct">
-
-                            <div class="col-md-12 left-right">
-                                <div class="row marginauto body-header-ct">
-                                    <div class="col-auto left-right">
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
-                                    </div>
-                                    <div class="col-md-10 col-10 body-header-col-ct">
-                                        <span class="body-header-col-ct-titile">{{ $data->custom->title ? $data->custom->title : $data->title }}</span>
-                                    </div>
+                        <div class="col-md-12 left-right">
+                            <div class="row marginauto nick-list-bg" style="background: #FFFFFF">
+                                <div class="col-md-12 left-right">
+                                    <img class="lazy theme_3_imagebanner" src="{{ isset($data->custom->image_banner) ? \App\Library\MediaHelpers::media($data->custom->image_banner) : \App\Library\MediaHelpers::media($data->image_banner) }}" alt="">
                                 </div>
                             </div>
+                            <div class="row marginauto body-row-nick-ct">
 
-                            <div class="col-md-12 left-right">
-                                <div class="row marginauto body-search-ct">
-                                    <div class="col-md-12 text-left left-right">
-                                        <span>Tìm kiếm</span>
+                                <div class="col-md-12 left-right">
+                                    <div class="row marginauto body-header-ct">
+                                        <div class="col-auto left-right">
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
+                                        </div>
+                                        <div class="col-md-10 col-10 body-header-col-ct">
+                                            <span class="body-header-col-ct-titile">{{ $data->custom->title ? $data->custom->title : $data->title }}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {{--                        Find    --}}
-                            <div class="col-md-12 left-right">
-
-                                <div class="row marginauto">
-                                    <div class="col-12 left-right">
-                                        <form id="idFilterForm" method="POST">
-                                            <div class="row marginauto body-form-search-ct">
-                                                <div class="col-auto left-right">
-                                                    <input autocomplete="off" type="text" name="search" class="input-search-ct" placeholder="Nhập từ khóa">
-                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
-                                                </div>
-                                                <div class="col-4 body-form-search-button-ct media-web">
-                                                    <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                <div class="col-md-12 left-right">
+                                    <div class="row marginauto body-search-ct">
+                                        <div class="col-md-12 text-left left-right">
+                                            <span>Tìm kiếm</span>
+                                        </div>
                                     </div>
-                                    <div class="col-auto ml-auto left-right">
+                                </div>
 
-                                        <div class="row marginauto justify-content-end nick-findter-row">
+                                {{--                        Find    --}}
+                                <div class="col-md-12 left-right">
 
-                                            <div class="col-auto nick-findter" style="position: relative">
-                                                <ul>
-                                                    <li class="li-boloc">Bộ lọc</li>
-                                                    <li class="margin-findter">
-                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick/filter.png" alt="">
-                                                        <span class="overlay-find">
+                                    <div class="row marginauto">
+                                        <div class="col-12 left-right">
+                                            <form id="idFilterForm" method="POST">
+                                                <div class="row marginauto body-form-search-ct">
+                                                    <div class="col-auto left-right">
+                                                        <input autocomplete="off" type="text" name="search" class="input-search-ct" placeholder="Nhập từ khóa">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
+                                                    </div>
+                                                    <div class="col-4 body-form-search-button-ct media-web">
+                                                        <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-auto ml-auto left-right">
+
+                                            <div class="row marginauto justify-content-end nick-findter-row">
+
+                                                <div class="col-auto nick-findter" style="position: relative">
+                                                    <ul>
+                                                        <li class="li-boloc">Bộ lọc</li>
+                                                        <li class="margin-findter">
+                                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick/filter.png" alt="">
+                                                            <span class="overlay-find">
                                                         0
                                                     </span>
-                                                    </li>
-                                                </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row marginauto nick-findter-data">
+
+                                    </div>
+                                </div>
+                                {{--End find   --}}
+                                <div class="col-md-12 left-right d-none d-lg-block">
+                                    <div class="row marginauto body-search-ct sort-nick">
+                                        <div class="col-auto text-left left-right sort-nick-left">
+                                            <span class="nick_total"></span>
+                                        </div>
+                                        <div class="col-auto left-right sort-nick-right">
+                                            <div class="row marginauto align-items-center">
+                                                <div class="col-auto left-right">
+                                                    <span>Sắp xếp theo:</span>
+                                                </div>
+                                                <div class="col-auto left-right item-sort-nick">
+                                                    <input checked id="sort-1" class="sort" type="radio" name="sort" value="random" hidden>
+                                                    <label for="sort-1" class="item-sort-nick-label">
+                                                        <span>Ngẫu nhiên</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-auto left-right item-sort-nick">
+                                                    <input id="sort-2" class="sort" type="radio" name="sort" value="price_start" hidden>
+                                                    <label for="sort-2" class="item-sort-nick-label">
+                                                        <span>Giá giảm dần</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-auto left-right item-sort-nick">
+                                                    <input id="sort-3" class="sort" type="radio" name="sort" value="price_end" hidden>
+                                                    <label for="sort-3" class="item-sort-nick-label">
+                                                        <span>Giá tăng dần</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-auto left-right item-sort-nick">
+                                                    <input id="sort-4" class="sort" type="radio" name="sort" value="created_at_start" hidden>
+                                                    <label for="sort-4" class="item-sort-nick-label">
+                                                        <span>Mới nhất</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-auto left-right item-sort-nick">
+                                                    <input id="sort-5" class="sort" type="radio" name="sort" value="created_at_end" hidden>
+                                                    <label for="sort-5" class="item-sort-nick-label">
+                                                        <span>Cũ nhất</span>
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
 
-                                <div class="row marginauto nick-findter-data">
+                                <div id="account_data" style="width: 100%;">
 
                                 </div>
-                            </div>
-                            {{--End find   --}}
-                            <div class="col-md-12 left-right d-none d-lg-block">
-                                <div class="row marginauto body-search-ct sort-nick">
-                                    <div class="col-auto text-left left-right sort-nick-left">
-                                        <span class="nick_total"></span>
-                                    </div>
-                                    <div class="col-auto left-right sort-nick-right">
-                                        <div class="row marginauto align-items-center">
-                                            <div class="col-auto left-right">
-                                                <span>Sắp xếp theo:</span>
+
+                                <div id="listLoader" class="w-100" style="min-height: 500px">
+                                    <div class="loader position-relative" style="padding: 1rem">
+                                        <div class="loading-spokes">
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
                                             </div>
-                                            <div class="col-auto left-right item-sort-nick">
-                                                <input checked id="sort-1" class="sort" type="radio" name="sort" value="random" hidden>
-                                                <label for="sort-1" class="item-sort-nick-label">
-                                                    <span>Ngẫu nhiên</span>
-                                                </label>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
                                             </div>
-                                            <div class="col-auto left-right item-sort-nick">
-                                                <input id="sort-2" class="sort" type="radio" name="sort" value="price_start" hidden>
-                                                <label for="sort-2" class="item-sort-nick-label">
-                                                    <span>Giá giảm dần</span>
-                                                </label>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
                                             </div>
-                                            <div class="col-auto left-right item-sort-nick">
-                                                <input id="sort-3" class="sort" type="radio" name="sort" value="price_end" hidden>
-                                                <label for="sort-3" class="item-sort-nick-label">
-                                                    <span>Giá tăng dần</span>
-                                                </label>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
                                             </div>
-                                            <div class="col-auto left-right item-sort-nick">
-                                                <input id="sort-4" class="sort" type="radio" name="sort" value="created_at_start" hidden>
-                                                <label for="sort-4" class="item-sort-nick-label">
-                                                    <span>Mới nhất</span>
-                                                </label>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
                                             </div>
-                                            <div class="col-auto left-right item-sort-nick">
-                                                <input id="sort-5" class="sort" type="radio" name="sort" value="created_at_end" hidden>
-                                                <label for="sort-5" class="item-sort-nick-label">
-                                                    <span>Cũ nhất</span>
-                                                </label>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
+                                            </div>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
+                                            </div>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-                            </div>
 
-                            <div id="account_data" style="width: 100%;">
 
                             </div>
-
-                            <div id="listLoader" class="w-100" style="min-height: 500px">
-                                <div class="loader position-relative" style="padding: 1rem">
-                                    <div class="loading-spokes">
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
         </section>
 
         <section class="media-mobile">
