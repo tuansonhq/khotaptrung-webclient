@@ -529,14 +529,14 @@
                                         <div class="row bs-normal atmvdtntc">
                                             <div class="col-md-6 col-sm-6 col-6 atmvdt">
                                                 @if(App\Library\AuthCustom::check())
-                                                    <button data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">ATM - VÍ ĐIỆN TỬ</button>
+                                                    <a href="/nap-the"  class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">ATM - VÍ ĐIỆN TỬ</a>
                                                 @else
                                                     <button class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;" data-toggle="modal" data-target="#signin">ATM - VÍ ĐIỆN TỬ</button>
                                                 @endif
                                             </div>
                                             <div class="col-md-6 col-sm-6 col-6 ntc">
                                                 @if(App\Library\AuthCustom::check())
-                                                    <button data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">NẠP THẺ CÀO</button>
+                                                    <a href="/nap-the" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">NẠP THẺ CÀO</a>
                                                 @else
                                                     <button class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;" data-toggle="modal" data-target="#signin">NẠP THẺ CÀO</button>
                                                 @endif
@@ -774,7 +774,7 @@
                                     </div>
                                     <div class="d-flex justify-content-center w-100">
                                         <button class="btn-nick btn-ghost" disabled>Thanh toán</button>
-                                        <button class="btn-nick btn-primary" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp tiền</button>
+                                        <a href="/nap-the" class="btn-nick btn-primary">Nạp tiền</a>
                                     </div>
                                     @else
                                         <div class="nick-footer-notify">
@@ -783,7 +783,7 @@
                                         <button type="submit" class="btn-nick btn-primary loginBox__layma__button__displayabs" style="position: relative">Thanh toán</button>
                                     @endif
                                 @else
-                                    <button class="btn-nick btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#si">Đăng nhập</button>
+                                    <button class="btn-nick btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#signin">Đăng nhập</button>
                                 @endif
                             </div>
                         </form>
