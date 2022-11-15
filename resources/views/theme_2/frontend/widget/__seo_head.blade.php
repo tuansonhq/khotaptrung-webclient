@@ -261,11 +261,11 @@
                 "@context": "http://schema.org/",
                 "@type": "Product",
                 "name": "{{ $data->title??'' }}",
-                    "description": "Hệ thống bán RP liên minh giá rẻ. Đảm bảo RP sạch 100%.Mọi giao dịch đều có ảnh hóa đơn của GARENA gửi cho quý khách. Ngoài cách nạp RP - LOL ( Liên Minh ) trực tiếp, các bạn có thể mua thẻ Garena giá rẻ với chiết khấu lên đến 5% tại đây.",
+                    "description": "{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}",
                      "image": "{{ $data->image??'' }}",
                     "brand": {
                         "@type": "Brand",
-                        "name": "webnick"
+                        "name": "{{\Request::server ("HTTP_HOST")}}"
                       },
                     "aggregateRating": {
                         "@type": "AggregateRating",
@@ -279,9 +279,9 @@
                     "mpn": "{{ $data->slug??'' }}",
                     "offers": {
                             "@type": "Offer",
-                             "url": "https://{{\Request::server ("HTTP_HOST")}}/dich-vu/",
+                             "url": "https://{{\Request::server ("HTTP_HOST")}}/dich-vu/{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}",
                             "priceCurrency": "VND",
-                            "price": "7700",
+                            "price": "{{ isset($data_seo_price) ? $data_seo_price : "7700" }}",
                             "priceValidUntil": "2099-12-31",
                             "availability": "https://schema.org/InStock",
                             "itemCondition": "https://schema.org/NewCondition"
