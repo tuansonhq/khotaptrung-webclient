@@ -1740,30 +1740,52 @@
 
                                     $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
                                 }
-                            } else {
+                            } else
+                            {
                                 $("#btnWithdraw").hide();
-                                if (gift_revice.length == 1) {
-                                    $html += "<span>Kết quả chơi thử: " + gift_revice[0]["title"] + "</span><br/>";
-                                    if (gift_detail.winbox == 1) {
-                                        $html += "<span>Mua X1: Nhận được " + gift_revice[0]['parrent'].params.value + "</span><br/>";
+                                if(gift_revice.length == 1)
+                                {
+                                    $html += "<span>Kết quả chơi thử: "+gift_revice[0]["title"]+"</span><br/>";
+                                    if(gift_detail.winbox == 1){
+                                        $revice = gift_revice[0]['parrent'].params.value;
+                                        $revice = $revice.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                                        $revice = $revice.split('').reverse().join('').replace(/^[\.]/,'');
+
+
+
+                                        $html += "<span>Mua X1: Nhận được "+$revice+"</span><br/>";
+
+                                        $totalRevice = parseInt(gift_revice[0]['parrent'].params.value)*(parseInt(xvalueaDD[0]));
+                                        $totalRevice = $totalRevice.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                                        $totalRevice = $totalRevice.split('').reverse().join('').replace(/^[\.]/,'');
+
                                         //$html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]['parrent'].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
-                                        $html += "<span>Tổng cộng: " + parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + "</span>";
+                                        $html += "<span>Tổng cộng: "+ $totalRevice +"</span>";
                                     }
-                                } else {
+                                }
+                                else
+                                {
                                     $totalRevice = 0;
-                                    $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
-                                    $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
-                                    for ($i = 0; $i < gift_revice.length; $i++) {
-                                        $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i]['parrent'].title;
-                                        if (gift_revice[$i].winbox == 1) {
-                                            $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + "" + msg_random_bonus[$i] + "</span><br/>";
-                                        } else {
-                                            $html += "" + msg_random_bonus[$i] + "<br/>";
+                                    $html += "<span>Kết quả chơi thử: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt quay.</span><br/>";
+                                    $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
+
+                                    for($i=0;$i<gift_revice.length;$i++)
+                                    {
+                                        $html += "<span>Lần quay "+($i + 1)+": "+gift_revice[$i].title;
+                                        if(gift_revice[$i].winbox == 1){
+                                            $html +=" - nhận được: "+gift_revice[$i]['parrent'].params.value+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]['parrent'].params.value)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>";
                                         }
-                                        $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                        else
+                                        {
+                                            $html +=""+msg_random_bonus[$i]+"<br/>";
+                                        }
+                                        $totalRevice +=  parseInt(gift_revice[$i]['parrent'].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
                                     }
 
-                                    $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
+                                    $totalRevice = $totalRevice.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                                    $totalRevice = $totalRevice.split('').reverse().join('').replace(/^[\.]/,'');
+
+                                    $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                                 }
                             }
                         }
