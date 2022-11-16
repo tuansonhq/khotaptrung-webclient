@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('seo_head')
-    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+    @include('frontend.widget.__seo_head',with(['data'=>$data, 'data_seo_price' => $data_seo_price]))
 @endsection
 @section('meta_robots')
     <meta name="robots" content="index,follow"/>

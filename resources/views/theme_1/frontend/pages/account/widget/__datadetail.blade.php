@@ -490,12 +490,12 @@
                                                                                     <i class="fas fa-angle-right"></i>
                                                                                 </div>
                                                                                 <div class="col-md-4 col-4 pl-0">
-                                                                                    <span class="span__dangky">{{ $value->name??'' }} </span>
+                                                                                    <span class="span__dangky">Skill {{ $k_value + 1 }} </span>
                                                                                 </div>
                                                                                 <div class="col-md-6 col-6 pl-0">
                                                                                     <span class="span__dangky">
 
-                                                                                        {{ $value->value }}
+                                                                                        {{ $value->name }} - {{ $value->value }} <br>
 
                                                                                     </span>
                                                                                 </div>
@@ -532,7 +532,7 @@
                                                         </div>
                                                     </div>
                                                 @endif
-                                            @elseif($in->name == 'Hành tinh')
+                                            @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai')
                                                 <div class="col-md-12">
                                                     <div class="row gallery__03">
                                                         <div class="col-md-12 gallery__01__row">
