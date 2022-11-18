@@ -11,12 +11,26 @@
                     <div class="special-text">
                         {!! $data->content  !!}
                     </div>
-                    <button class="expand-button">
+                    <span class="expand-button" style="text-align: center">
                         Xem thêm nội dung
-                    </button>
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 
 </div>
+<script>
+
+    $('.expand-button').on('click', function() {
+
+        $('.special-text').toggleClass('-expanded');
+
+        if ($('.special-text').hasClass('-expanded')) {
+            $('.expand-button').html('Thu gọn nội dung');
+        } else {
+            $('.expand-button').html('Xem thêm nội dung');
+        }
+    });
+</script>
+
