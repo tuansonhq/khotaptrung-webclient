@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Cookie;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Redirect;
 use Session;
 use Cache;
 use function PHPUnit\Framework\isEmpty;
@@ -325,6 +326,17 @@ class AccController extends Controller
                 return view('frontend.pages.account.list')
                     ->with('message',$message)
                     ->with('data',$data);
+            }
+
+            if (isset($data->custom)){
+                if ($data->custom->slug){
+                    $slug_custom = $data->custom->slug;
+                    if ($slug != $slug_custom){
+                        $url = 'https://'.\Request::server ("HTTP_HOST").'/mua-acc/'.$slug_custom;
+
+                        return Redirect::to($url);
+                    }
+                }
             }
 
             if (!isset($data->childs) && $data->status == 0){
