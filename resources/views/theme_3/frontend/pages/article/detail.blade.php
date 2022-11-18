@@ -325,6 +325,6 @@
 {{--        Cùng chủ đề--}}
         @include('frontend.widget.__bai__viet__lien__quan', ['data_article' => $data])
     </div>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/article-detail.js?v={{time()}}"></script>
+    {{-- <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/article-detail.js?v={{time()}}"></script> --}}
     @endif
 @endsection
