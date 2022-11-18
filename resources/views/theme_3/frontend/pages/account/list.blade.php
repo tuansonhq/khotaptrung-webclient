@@ -65,7 +65,7 @@
         </section>
         {{--   Bopđyy --}}
         <style>
-            .body-header-col-ct-titile{
+            #font-acc a span small li{
                 font-family: 'Roboto' !important;
             }
         </style>
