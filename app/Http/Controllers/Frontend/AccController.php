@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Cookie;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Redirect;
 use Session;
 use Cache;
 use function PHPUnit\Framework\isEmpty;
@@ -68,35 +69,35 @@ class AccController extends Controller
                 $response_cate_data = $result_Api_cate->response_data??null;
 
             }
-//            elseif ($slug == 'nick-ninja-school'){
-//                $dataSendCate = array();
-//                $dataSendCate['data'] = 'property_auto';
-//                $dataSendCate['provider'] = 'ninjaschool';
-//                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-//                $response_cate_data = $result_Api_cate->response_data??null;
-//
-//                if (!isset($response_cate_data->data)){
-//                    $dataSendCate = array();
-//                    $dataSendCate['data'] = 'category_detail';
-//                    $dataSendCate['slug'] = $slug;
-//                    $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-//                    $response_cate_data = $result_Api_cate->response_data??null;
-//                }
-//            }
-//            elseif ($slug == 'nick-ngoc-rong-online' || $slug == 'ban-nick-ngoc-rong'){
-//                $dataSendCate = array();
-//                $dataSendCate['data'] = 'property_auto';
-//                $dataSendCate['provider'] = 'nro';
-//                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-//                $response_cate_data = $result_Api_cate->response_data??null;
-//                if (!isset($response_cate_data->data)){
-//                    $dataSendCate = array();
-//                    $dataSendCate['data'] = 'category_detail';
-//                    $dataSendCate['slug'] = $slug;
-//                    $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-//                    $response_cate_data = $result_Api_cate->response_data??null;
-//                }
-//            }
+            elseif ($slug == 'nick-ninja-school'){
+                $dataSendCate = array();
+                $dataSendCate['data'] = 'property_auto';
+                $dataSendCate['provider'] = 'ninjaschool';
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
+
+                if (!isset($response_cate_data->data)){
+                    $dataSendCate = array();
+                    $dataSendCate['data'] = 'category_detail';
+                    $dataSendCate['slug'] = $slug;
+                    $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                    $response_cate_data = $result_Api_cate->response_data??null;
+                }
+            }
+            elseif ($slug == 'nick-ngoc-rong-online' || $slug == 'ban-nick-ngoc-rong'){
+                $dataSendCate = array();
+                $dataSendCate['data'] = 'property_auto';
+                $dataSendCate['provider'] = 'nro';
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
+                if (!isset($response_cate_data->data)){
+                    $dataSendCate = array();
+                    $dataSendCate['data'] = 'category_detail';
+                    $dataSendCate['slug'] = $slug;
+                    $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                    $response_cate_data = $result_Api_cate->response_data??null;
+                }
+            }
             else {
                 $dataSendCate = array();
                 $dataSendCate['data'] = 'category_detail';
@@ -325,6 +326,17 @@ class AccController extends Controller
                 return view('frontend.pages.account.list')
                     ->with('message',$message)
                     ->with('data',$data);
+            }
+
+            if (isset($data->custom)){
+                if ($data->custom->slug){
+                    $slug_custom = $data->custom->slug;
+                    if ($slug != $slug_custom){
+                        $url = 'https://'.\Request::server ("HTTP_HOST").'/mua-acc/'.$slug_custom;
+
+                        return Redirect::to($url);
+                    }
+                }
             }
 
             if (!isset($data->childs) && $data->status == 0){
