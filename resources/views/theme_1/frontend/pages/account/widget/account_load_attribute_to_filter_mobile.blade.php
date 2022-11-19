@@ -129,7 +129,7 @@
 {{--                    </div>--}}
 {{--                </div>--}}
             @elseif($auto_propertie->key == 'SERVER')
-                <div class="col-3 item_buy_form_search">
+                <div class="col-12 item_buy_form_search">
                     <div class="input-group">
                         <span class="input-group-addon">{{ $auto_propertie->key }}</span>
                         <select type="text" class="form-control server-mobile select-2-custom" name="server">
@@ -145,7 +145,7 @@
             @else
                 @foreach($auto_propertie->childs as $childs)
                     @if($childs->key == 'CHAR_LEVEL')
-                        <div class="col-3 item_buy_form_search">
+                        <div class="col-12 item_buy_form_search">
                             <div class="input-group">
                                 <span class="input-group-addon">CLASS</span>
                                 <select type="text" class="form-control tftdamageskins select-2-custom" name="tftdamageskins">
@@ -165,7 +165,7 @@
                             </div>
                         </div>
                     @elseif($childs->key == 'CHAR_CLASS')
-                        <div class="col-3 item_buy_form_search">
+                        <div class="col-12 item_buy_form_search">
                             <div class="input-group">
                                 <span class="input-group-addon">CLASS</span>
                                 <select type="text" class="form-control champions" name="champions">
@@ -185,7 +185,7 @@
             @if($auto_propertie->key == 'CAPTURES')
 
             @elseif($auto_propertie->key == 'SERVER')
-                <div class="col-3 item_buy_form_search">
+                <div class="col-12 item_buy_form_search">
                     <div class="input-group">
                         <span class="input-group-addon">{{ $auto_propertie->key }}</span>
                         <select type="text" class="form-control server-mobile select-2-custom" name="server">
@@ -204,7 +204,7 @@
                     @foreach($auto_propertie->childs as $childs)
                         @if($childs->key == 'CAI_TRANG')
 
-                            <div class="col-3 item_buy_form_search">
+                            <div class="col-12 item_buy_form_search">
                                 <div class="input-group">
                                     <span class="input-group-addon">CAI TRANG</span>
                                     <select type="text" class="form-control server-mobile select-2-custom" name="server">
@@ -220,7 +220,7 @@
 
                         @elseif($childs->key == 'SKILL_PET')
 
-                            <div class="col-3 item_buy_form_search">
+                            <div class="col-12 item_buy_form_search">
                                 <div class="input-group">
                                     <span class="input-group-addon">SKILL PET</span>
                                     <select type="text" class="form-control server-mobile select-2-custom" name="server">
