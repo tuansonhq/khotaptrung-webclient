@@ -1463,7 +1463,7 @@
         </div>
     </div>
     <input type="hidden" id="type_play" value="real">
-    <input type="hidden" name="checkPoint" value="{{$result->checkPoint}}">
+    <input type="text" id="checkPoint" name="checkPoint" value="{{$result->checkPoint}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @foreach(config('constants.'.'game_type') as $item => $key)
         <input type="hidden" id="withdrawruby_{{$item}}" value="{{$key}}">
@@ -1478,6 +1478,7 @@
     squarewheel - Quay vòng vòng
     smashwheel - Đập lu , rung cây , gieo quẻ
     --}}
+
     @switch($position)
         @case('rubywheel')
         <script>
@@ -1599,6 +1600,7 @@
 
 
                 function getgifbonus() {
+                    console.log($('#checkPoint').val())
                     if ($('#checkPoint').val() != "1") {
                         return;
                     }
