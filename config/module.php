@@ -118,6 +118,21 @@ return [
             'MASTER' => 'Cao thủ',
             'CHALLENGER' => 'Thách đấu',
         ],
+        'auto_nro_skill_pet_2' => [
+            'Chiêu Masenko' => 'Chiêu Masenko',
+            'Chiêu Kamejoko' => 'Chiêu Kamejoko',
+            'Chiêu Antomic' => 'Chiêu Antomic',
+        ],
+        'auto_nro_skill_pet_3' => [
+            'Thái Dương Hạ San' => 'Thái Dương Hạ San',
+            'Tái tạo năng lượng' => 'Tái tạo năng lượng',
+            'Kaioken' => 'Kaioken',
+        ],
+        'auto_nro_skill_pet_4' => [
+            'Đẻ trứng' => 'Đẻ trứng',
+            'Biến hình' => 'Biến hình',
+            'Khiên năng lượng' => 'Khiên năng lượng',
+        ],
         'viewed'=>[
             'limit_count'=>20,
         ],
