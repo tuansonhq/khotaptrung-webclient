@@ -147,7 +147,7 @@
                     @if($childs->key == 'CHAR_LEVEL')
                         <div class="col-12 item_buy_form_search">
                             <div class="input-group">
-                                <span class="input-group-addon">CLASS</span>
+                                <span class="input-group-addon">LEVER</span>
                                 <select type="text" class="form-control tftdamageskins select-2-custom" name="tftdamageskins">
                                     <option value="">--Không chọn--</option>
                                     <option value="{{ $childs->id }}-1-39">1 - 39</option>
