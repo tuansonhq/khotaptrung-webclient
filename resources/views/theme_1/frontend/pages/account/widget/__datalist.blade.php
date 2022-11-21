@@ -600,35 +600,36 @@
                                         $total = 0;
                                         ?>
 
-                                        @if(isset($item->groups))
-                                            <?php
-                                            $att_values = $item->groups;
-                                            ?>
+                                    @if(isset($item->groups))
+                                        <?php
+                                        $att_values = $item->groups;
+                                        ?>
 
-                                            {{--                                            @dd($att_values)--}}
-                                            @foreach($att_values as $att_value)
-                                                {{--            @dd($att_value)--}}
-                                                @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                    {{--                                                        @dd($att_value->parent)--}}
-                                                    @if(isset($att_value->parent))
-                                                        @if($total < 4)
-                                                            <?php
-                                                            $total = $total + 1;
-                                                            ?>
-                                                            <div class="row" style="margin: 0 auto;width: 100%">
-                                                                <div class="col-auto text-left fixcssacount item_buy_list_info_inacc"">
+                                        {{--                                            @dd($att_values)--}}
+                                        @foreach($att_values as $att_value)
+                                            {{--            @dd($att_value)--}}
+                                            @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                {{--                                                        @dd($att_value->parent)--}}
+                                                @if(isset($att_value->parent))
+                                                    @if($total < 4)
+                                                        <?php
+                                                        $total = $total + 1;
+                                                        ?>
+                                                        <div class="row" style="margin: 0 auto;width: 100%">
+                                                            <div class="col-auto text-left fixcssacount item_buy_list_info_inacc"">
                                                                 {{ $att_value->parent->title??null }} :
                                                             </div>
                                                             <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
                                                                 {{--                                                                    {{ $att_value->title??null }}--}}
                                                                 {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}
                                                             </div>
-                                    </div>
+                                                        </div>
+                                                    @endif
+                                                @endif
+                                            @endif
+                                        @endforeach
                                     @endif
-                                    @endif
-                                    @endif
-                                    @endforeach
-                                    @endif
+                                    
                                     @if(isset($item->params))
                                         @if($data->slug == "nick-lien-minh")
                                             @if(isset($item->params->rank_info))
