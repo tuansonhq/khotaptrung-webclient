@@ -416,36 +416,74 @@
                                         </div>
 
                                     @endif
+
                                     @if(isset($info) && count($info))
                                         @foreach($info as $ke => $in)
-                                            @if(in_array($in->name,config('module.acc.auto_nro_tt')))
+                                            @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
 
-                                                <div class="col-md-12">
-                                                    <div class="row bs-normal gallery__03">
-                                                        <div class="col-md-12 gallery__01__row">
-                                                            <div class="row bs-normal">
-                                                                <div class="col-auto span__dangky__auto">
-                                                                    <i class="fas fa-angle-right"></i>
+                                                @if($total < 4)
+
+                                                    @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                        @if($in->name == 'Skill Pet')
+                                                        @elseif($in->name == 'Cải trang')
+                                                            <?php
+                                                            $total = $total + 1;
+                                                            ?>
+                                                            <div class="col-md-12">
+                                                                <div class="row bs-normal gallery__03">
+                                                                    <div class="col-md-12 gallery__01__row">
+                                                                        <div class="row bs-normal">
+                                                                            <div class="col-auto span__dangky__auto">
+                                                                                <i class="fas fa-angle-right"></i>
+                                                                            </div>
+                                                                            <div class="col-md-4 col-4 pl-0">
+                                                                                <span class="span__dangky">{{ $in->name??'' }}</span>
+                                                                            </div>
+                                                                            <div class="col-md-1 col-2 pl-0 pr-0">
+                                                                                <span class="span__dangky">
+                                                                                    @if(isset($in->value) && count($in->value) )
+                                                                                        {{ count($in->value) }}
+                                                                                    @endif    
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="col-md-4 col-4 pl-0">
-                                                                    <span class="span__dangky">{{ $in->name??'' }}</span>
-                                                                </div>
-                                                                <div class="col-md-1 col-2 pl-0 pr-0">
-                                                                    <span class="span__dangky">
-                                                                        @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
-                                                                            {{ $in->value??'' }}
-                                                                        @else
-                                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
-                                                                        @endif</span>
+                                                            </div>
+                                                        @endif
+
+                                                    @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai' )
+                                                        <?php
+                                                        $total = $total + 1;
+                                                        ?>
+                                                        <div class="col-md-12">
+                                                            <div class="row bs-normal gallery__03">
+                                                                <div class="col-md-12 gallery__01__row">
+                                                                    <div class="row bs-normal">
+                                                                        <div class="col-auto span__dangky__auto">
+                                                                            <i class="fas fa-angle-right"></i>
+                                                                        </div>
+                                                                        <div class="col-md-4 col-4 pl-0">
+                                                                            <span class="span__dangky">{{ $in->name??'' }}</span>
+                                                                        </div>
+                                                                        <div class="col-md-1 col-2 pl-0 pr-0">
+                                                                            <span class="span__dangky">
+                                                                                {{ $param??null }}
+                                                                                {{ $in->value }}    
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
+                                                    @endif
+
+                                                @endif
 
                                             @endif
                                         @endforeach
                                     @endif
+                                    
                                 @endif
                             @endif
 
