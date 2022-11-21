@@ -198,9 +198,6 @@ class MinigameController extends Controller
                     $data['page'] = 1;
                     $result_Api_logs = DirectAPI::_makeRequest($url_logs, $data, $method);
 
-
-
-
                     if (isset($result_Api_logs) && $result_Api_logs->response_code == 200) {
                         $data_view = [
                             'result' => $result,
@@ -306,6 +303,7 @@ class MinigameController extends Controller
                             'xValue' => $result->xValue,
                             'numrollbyorder' => $result->numrollbyorder,
                             'value_gif_bonus' => $result->value_gif_bonus,
+                            'game_type_value' => config('module.minigame.game_type_value.'.$result->game_type),
                             'msg_random_bonus' => $result->msg_random_bonus,
                             'userpoint' => $result->userpoint,
                             'listgift' => $result->listgift,
@@ -365,9 +363,11 @@ class MinigameController extends Controller
 
                 $url = '/minigame/post-minigamebonus';
                 $result_Api = DirectAPI::_makeRequest($url, $data, $method);
+
                 if (isset($result_Api) && $result_Api->response_code == 200) {
                     $result = $result_Api->response_data;
                     if ($result->status == 1) {
+
                         return response()->json([
                             'free_wheel' => $result->free_wheel,
                             'arr_gift' => $result->arr_gift,
@@ -378,6 +378,7 @@ class MinigameController extends Controller
                             'msg_random_bonus' => $result->msg_random_bonus,
                             'userpoint' => $result->userpoint,
                             'listgift' => $result->listgift,
+                            'game_type_value' => config('module.minigame.game_type_value.'.$result->game_type),
                             'status' => 1,
                             'msg' => $result->msg
                         ], 200);
@@ -472,6 +473,7 @@ class MinigameController extends Controller
 
                 if (isset($result_Api) && $result_Api->response_code == 200) {
                     $result = $result_Api->response_data;
+
                     if (isset($result->status) && $result->status == 0) {
                         return redirect()->back()->withErrors($result->msg);
                     } else {
