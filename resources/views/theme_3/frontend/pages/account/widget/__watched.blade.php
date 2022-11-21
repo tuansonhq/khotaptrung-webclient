@@ -125,7 +125,9 @@
                                                                             }
                                                                         @endphp
                                                                         @if(isset($server))
-
+                                                                            <?php
+                                                                            $index = $index + 1;
+                                                                            ?>
                                                                             <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                                                 <small>
                                                                                     Server :
@@ -139,16 +141,27 @@
                                                                             @foreach($info as $ke => $in)
                                                                                 @if(in_array($in->name,config('module.acc.auto_ninja_list_tt')))
 
-                                                                                    <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
-                                                                                        <small>
-                                                                                            {{ $in->name??'' }} :
-                                                                                            @if($in->name == 'Yên')
+                                                                                    @if($in->name == 'Yên')
+                                                                                        <?php
+                                                                                        $index = $index + 1;
+                                                                                        ?>
+                                                                                        <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                                            <small>
+                                                                                                {{ $in->name??'' }} : 
                                                                                                 {{ str_replace(',','.',number_format($in->value??'')) }}
-                                                                                            @else
+                                                                                            </small>
+                                                                                        </div>
+                                                                                    @else
+                                                                                        <?php
+                                                                                        $index = $index + 1;
+                                                                                        ?>
+                                                                                        <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                                            <small>
+                                                                                                {{ $in->name??'' }} : 
                                                                                                 {{ $in->value??'' }}
-                                                                                            @endif
-                                                                                        </small>
-                                                                                    </div>
+                                                                                            </small>
+                                                                                        </div>
+                                                                                    @endif
 
                                                                                 @endif
                                                                             @endforeach
@@ -168,7 +181,9 @@
                                                                             }
                                                                         @endphp
                                                                         @if(isset($server))
-
+                                                                            <?php
+                                                                            $index = $index + 1;
+                                                                            ?>
                                                                             <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                                                 <small>
                                                                                     Server :
@@ -182,16 +197,36 @@
                                                                             @foreach($info as $ke => $in)
                                                                                 @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
 
-                                                                                    <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
-                                                                                        <small>
-                                                                                            {{ $in->name??'' }} :
-                                                                                            @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
-                                                                                                {{ $in->value??'' }}
-                                                                                            @else
-                                                                                                {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                                    @if($index < 4)
+                                                                                        @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                                                            @if($in->name == 'Skill Pet')
+                                                                                            @elseif($in->name == 'Cải trang')
+                                                                                                <?php
+                                                                                                $index = $index + 1;
+                                                                                                ?>
+                                                                                                <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                                                    <small>
+                                                                                                        {{ $in->name??'' }} :
+                                                                                                        @if(isset($in->value) && count($in->value) )
+                                                                                                            {{ count($in->value) }}
+                                                                                                        @endif
+                                                                                                    </small>
+                                                                                                </div>
                                                                                             @endif
-                                                                                        </small>
-                                                                                    </div>
+
+                                                                                        @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai' )
+                                                                                            <?php
+                                                                                            $index = $index + 1;
+                                                                                            ?>
+                                                                                            <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
+                                                                                                <small>
+                                                                                                    {{ $in->name??'' }} :
+                                                                                                    {{ $param??null }}
+                                                                                                    {{ $in->value }}
+                                                                                                </small>
+                                                                                            </div>
+                                                                                        @endif
+                                                                                    @endif
 
                                                                                 @endif
                                                                             @endforeach
@@ -201,6 +236,13 @@
                                                                 @endif
 
                                                             @endif
+
+                                                            @if ($index < 4)
+                                                                @for ($i = 0; $i < 4 - $index; $i++)
+                                                                    <div class="col-md-12 left-right text-left body-detail-account-small-span-ct"></div>
+                                                                @endfor
+                                                            @endif
+
                                                             <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                                 <ul>
                                                                     @if(isset($item->price))

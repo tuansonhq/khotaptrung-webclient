@@ -86,6 +86,7 @@
                         <div class="article--thumbnail py-4">
                             <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" class="article--thumbnail__image py-3">
                         </div>
+                        <div id="toctoc"></div>
                         <div class="article--content pb-3">
                             <div class="article--content__text pb-2">
                                 {!! $data->content !!}
@@ -324,5 +325,6 @@
 {{--        Cùng chủ đề--}}
         @include('frontend.widget.__bai__viet__lien__quan', ['data_article' => $data])
     </div>
+    {{-- <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/article-detail.js?v={{time()}}"></script> --}}
     @endif
 @endsection

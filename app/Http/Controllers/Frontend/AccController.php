@@ -595,6 +595,7 @@ class AccController extends Controller
             $watcheds = json_decode($watcheds,true);
 
             $ran_id = $request->ran_id;
+            $slug = $request->slug;
 
             if (isset($watcheds) && count($watcheds)){
                 $url = '/acc';
@@ -623,7 +624,7 @@ class AccController extends Controller
                     $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
 
                     $htmlslider = view('frontend.pages.account.widget.__watched')
-                        ->with('data',$data)->with('ran_id', $ran_id)->render();
+                        ->with('data',$data)->with('ran_id', $ran_id)->with('slug',$slug)->render();
 
                     return response()->json([
                         'datawatched' => $htmlslider,

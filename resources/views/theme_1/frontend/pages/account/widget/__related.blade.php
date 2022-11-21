@@ -162,7 +162,7 @@
                                                                 <?php
                                                                 $index = $index + 1;
                                                                 ?>
-                                                                @if($total < 5)
+                                                                @if($index < 5)
                                                                     @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
                                                                         @if($in->name == 'Skill Pet')
                                                                             <div class="row" style="margin: 0 auto;width: 100%">
