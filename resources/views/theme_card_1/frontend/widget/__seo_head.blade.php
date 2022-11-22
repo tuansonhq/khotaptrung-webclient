@@ -2,6 +2,12 @@
     if (isset($data->custom->slug)){
         $data->slug = $data->custom->slug;
     }
+    if (isset($data->custom->seo_description)){
+        $data->seo_description = $data->custom->seo_description;
+    }
+    if (isset($data->custom->seo_description)){
+        $data->seo_description = $data->custom->seo_description;
+    }
 @endphp
 
 {{--title description --}}
@@ -18,30 +24,12 @@
     <meta property="og:description" content="Shop bán acc all game: Free Fire, Liên Quân, Liên Minh, PUBG Mobile, Tốc Chiến, Ngọc Rồng, Ninja,.. uy tín, giá rẻ. Giao dịch nick tự động 24/7. Tài khoản lỗi hoàn tiền 100%. Website phục vụ 100.000 giao dịch thành công mỗi ngày cho khách hàng cả nước."/>
     <meta property="og:title" content="Mua acc all game uy tín, giá rẻ. Giao dịch nick tự động 100%. Tài khoản lỗi hoàn tiền 1 - 1">
 @elseif(isset($data->slug) && !isset($data->randId))
-    @if(Request::is('mua-acc/'. $data->slug .''))
+    @if(Request::is('mua-acc/'. $data->slug .'') || Request::is('dich-vu/'. $data->slug .'') || Request::is('tin-tuc/'. $data->slug .'') || Request::is('blog/'. $data->slug .'') || Request::is('minigame-'. $data->slug .''))
         {{--        Danh sách danh mục nick --}}
         <title>{{ isset($data->custom->seo_title) ? $data->custom->seo_title :  $data->seo_title }}</title>
         <meta name="description" content="{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}">
         <meta property="og:description" content="{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}"/>
         <meta property="og:title" content="{{ isset($data->custom->seo_title) ? $data->custom->seo_title :  $data->seo_title }}">
-    @elseif(Request::is('dich-vu/'. $data->slug .''))
-        {{--        Trang chi tiết dịch vụ   --}}
-        <title>{{ $data->seo_title??'' }}</title>
-        <meta name="description" content="{{ $data->seo_description??'' }}">
-        <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
-        <meta property="og:title" content="{{ $data->title??'' }}">
-    @elseif(Request::is('tin-tuc/'. $data->slug .''))
-        {{--        Chi tiết tin tức--}}
-        <title>{{ $data->seo_title??'' }}</title>
-        <meta name="description" content="{{ $data->seo_description??'' }}">
-        <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
-        <meta property="og:title" content="{{ $data->seo_title??'' }}">
-    @elseif(Request::is('blog/'. $data->slug .''))
-        {{--        Chi tiết tin tức--}}
-        <title>{{ $data->seo_title??'' }}</title>
-        <meta property="og:title" content="{{ $data->seo_title??'' }}">
-        <meta name="description" content="{{ $data->seo_description??'' }}">
-        <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
     @endif
 @elseif(Request::is('dich-vu'))
     {{--    Danh sách dịch vụ--}}
