@@ -277,7 +277,7 @@ return [
         ],
         'game_type_value' => [
             '1' => 'QUÂN HUY',
-            '2' => 'KIM CƯƠNG',
+            '2' => 'KC',
             '3' => 'RP',
             '4' => 'VÀNG',
             '5' => 'ads',

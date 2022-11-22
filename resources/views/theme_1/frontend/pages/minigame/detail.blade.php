@@ -909,6 +909,7 @@
                         <marquee style="padding: 10px 0">{!!$currentPlayList!!}</marquee>
                         <div class="item_square" style="display: flex; flex-wrap: wrap;" >
                             <table id="squaredesktop" class="square">
+
                                 <tr>
                                     <td></td>
                                     <td><div  data-num="1" class="gift1 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
@@ -2064,7 +2065,7 @@
                             },
                             type: 'post',
                             success: function (data) {
-                                console.log(data)
+
                                 gift_detail = data.gift_detail;
                                 setTimeout(function(){
                                     if(gift_detail != undefined){
@@ -3194,7 +3195,6 @@
             }
         </style>
         @break
-
         @case('slotmachine5')
         <script>
             function animate(options) {
@@ -4064,6 +4064,7 @@
 
             })
         </script>
+
         <style>
             @php
     $count = 0;
@@ -4092,10 +4093,10 @@
         <script>
             $(document).ready(function(e) {
                 @if(isset($result->group->items) && count($result->group->items)>0)
-                @foreach($result->group->items as $index=>$item)
-                $('.gift'+({{$index}}+1)).attr('id',"id"+{{$item->item_id}});
-                $('.gift'+({{$index}}+1)+' img').attr('src','{{\App\Library\MediaHelpers::media($item->parrent->image)}}');
-                @endforeach
+                    @foreach($result->group->items as $index=>$item)
+                        $('.gift'+({{$index}}+1)).attr('id',"id"+{{$item->item_id}});
+                        $('.gift'+({{$index}}+1)+' img').attr('src','{{\App\Library\MediaHelpers::media($item->image)}}');
+                    @endforeach
                 @endif
                 $(".thele").on("click", function(){
                     $("#theleModal").modal('show');
@@ -4803,19 +4804,20 @@
                                 xvalueaDD = data.xValue;
                                 free_wheel = data.free_wheel;
                                 num_roll_remain = gift_detail.num_roll_remain;
+                                userpoint = data.userpoint;
                                 angles = 0;
                                 angle_gift = gift_detail.order * (360 / num_gift);
                                 loop();
 
                                 if($('#type_play').val()=='real'){
-                                    userpoint = data.userpoint;
+
                                     if(userpoint<100){
-                                        $(".item_spin_progress_bubble").css("width", data.userpoint + "%")
+                                        $(".item_play_spin_progress_bubble").css("width", data.userpoint + "%")
                                     }else{
-                                        $(".item_spin_progress_bubble").css("width", "100%");
-                                        $(".item_spin_progress_bubble").addClass('clickgif');
+                                        $(".item_play_spin_progress_percent").css("width", "100%");
+                                        $(".item_play_spin_progress_percent").addClass('clickgif');
                                     }
-                                    $(".item_spin_progress_percent").html(data.userpoint + "/100 point");
+                                    $(".item_play_spin_progress_percent").html(data.userpoint + "/100 point");
                                     $("#saleoffpass").val("");
                                     //saleoffmessage = data.saleMessage;
                                 }
@@ -4889,14 +4891,15 @@
                             //$("#noticeModalNoHu #btnWithdraw").hide();
                             $('#noticeModal').modal('show');
                             var userpoint = data.userpoint;
+
                             if(userpoint<100){
-                                $(".item_spin_progress_bubble").css("width", data.userpoint + "%");
-                                $(".item_spin_progress_bubble").removeClass('clickgif');
+                                $(".item_play_spin_progress_bubble").css("width", data.userpoint + "%");
+                                $(".item_play_spin_progress_percent").removeClass('clickgif');
                             }else{
-                                $(".item_spin_progress_bubble").css("width", "100%");
-                                $(".item_spin_progress_bubble").addClass('clickgif');
+                                $(".item_play_spin_progress_bubble").css("width", "100%");
+                                $(".item_play_spin_progress_percent").addClass('clickgif');
                             }
-                            $(".item_spin_progress_percent").html(data.userpoint + "/100 point");
+                            $(".item_play_spin_progress_percent").html(data.userpoint + "/100 point");
                             $(".pyro").show();
                             setTimeout(function(){
                                 $(".pyro").hide();
@@ -4995,7 +4998,7 @@
                                 if (!flag_bonus) {//trường hợp bonus.
 
                                     $totalRevice = 0;
-                                    $html += "<span>Kết quả: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
+                                    $html += "<span>Kết quả: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt chơi.</span><br/>";
                                     $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
                                     for ($i = 0; $i < gift_revice.length; $i++) {
 
@@ -5066,7 +5069,7 @@
                             {
                                 if (!flag_bonus) {//trường hợp bonus.
                                     $totalRevice = 0;
-                                    $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
+                                    $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt chơi.</span><br/>";
                                     $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
                                     for ($i = 0; $i < gift_revice.length; $i++) {
 
