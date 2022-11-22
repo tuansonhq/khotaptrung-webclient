@@ -1,4 +1,4 @@
-@extends('theme_3.frontend.layouts.master')
+@extends('frontend.layouts.master')
 @section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$result->group]))
 @endsection
@@ -613,7 +613,7 @@
                     </div>
                     <div class="service-detail">
                         <h2>Chi tiết dịch vụ</h2>
-                  
+
                         <div class="service-detail-content">
                             @if(isset($result->group->content))
                                 {!! $result->group->content !!}
