@@ -59,7 +59,6 @@
                                                                 {{ $att_value->parent->title??null }} :
                                                             </div>
                                                             <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
-{{--                                                                {{ $att_valuev2->title??null }}--}}
                                                                 {{ isset($att_value->title) ? \Str::limit($att_value->title,16) : null }}
 
                                                             </div>
@@ -69,191 +68,215 @@
                                             @endif
                                         @endforeach
                                     @endif
-                                        @if(isset($item->params))
-                                            @if(isset($slug))
-                                                @if($slug == "nick-lien-minh")
-                                                    @if(isset($item->params->rank_info))
+                                    @if(isset($item->params))
+                                        @if(isset($slug))
+                                            @if($slug == "nick-lien-minh")
+                                                @if(isset($item->params->rank_info))
 
-                                                        @foreach($item->params->rank_info as $rank_info)
-                                                            @if($rank_info->queueType == "RANKED_TFT")
-                                                            @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
-                                                                <?php
-                                                                $index = $index + 1;
-                                                                ?>
-                                                                <div class="row" style="margin: 0 auto;width: 100%">
-                                                                    <div class="col-auto item_buy_list_info_inacc fixcssacount">
-                                                                        Rank :
-                                                                    </div>
-                                                                    <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                        {{--                                                                {{ $att_valuev2->title??null }}--}}
-                                                                        @if($rank_info->tier == "NONE")
-                                                                            CHƯA CÓ RANK
-                                                                        @else
-                                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                                        @endif
-
-                                                                    </div>
-                                                                </div>
-                                                            @endif
-                                                        @endforeach
-                                                    @endif
-                                                    @if(isset($item->params->count))
-                                                        @if(isset($item->params->count->champions))
+                                                    @foreach($item->params->rank_info as $rank_info)
+                                                        @if($rank_info->queueType == "RANKED_TFT")
+                                                        @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
                                                             <?php
                                                             $index = $index + 1;
                                                             ?>
                                                             <div class="row" style="margin: 0 auto;width: 100%">
                                                                 <div class="col-auto item_buy_list_info_inacc fixcssacount">
-                                                                    Số tướng :
+                                                                    Rank :
                                                                 </div>
                                                                 <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
                                                                     {{--                                                                {{ $att_valuev2->title??null }}--}}
-                                                                    {{ $item->params->count->champions }}
-
-                                                                </div>
-                                                            </div>
-
-                                                        @endif
-                                                        @if(isset($item->params->count->skins))
-                                                            <?php
-                                                            $index = $index + 1;
-                                                            ?>
-                                                            <div class="row" style="margin: 0 auto;width: 100%">
-                                                                <div class="col-auto item_buy_list_info_inacc fixcssacount">
-                                                                    Trang phục :
-                                                                </div>
-                                                                <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                    {{--                                                                {{ $att_valuev2->title??null }}--}}
-                                                                    {{ $item->params->count->skins }}
+                                                                    @if($rank_info->tier == "NONE")
+                                                                        CHƯA CÓ RANK
+                                                                    @else
+                                                                        {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                    @endif
 
                                                                 </div>
                                                             </div>
                                                         @endif
-                                                    @endif
-                                                @elseif($slug == "nick-ninja-school")
-                                                    @php
-                                                        $server = null;
-                                                        $info = array();
-
-                                                        $params = $item->params;
-                                                        if (isset($params->server)){
-                                                            $server = $params->server;
-                                                        }
-                                                        if (isset($params->info) && count($params->info)){
-                                                            $info = $params->info;
-                                                        }
-                                                    @endphp
-                                                    @if(isset($server))
-                                                        <div class="row" style="margin: 0 auto;width: 100%">
-                                                            <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                                Server :
-                                                            </div>
-                                                            <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                {{--                                                                                        {{ $param??null }}--}}
-                                                                {{ $server??'' }}
-                                                            </div>
-                                                        </div>
-
-                                                    @endif
-
-                                                    @if(isset($info) && count($info))
-                                                        @foreach($info as $ke => $in)
-                                                            @if(in_array($in->name,config('module.acc.auto_ninja_list_tt')))
-                                                                <div class="row" style="margin: 0 auto;width: 100%">
-                                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                                        {{ $in->name??'' }} :
-                                                                    </div>
-                                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                        {{--                                                                                        {{ $param??null }}--}}
-                                                                        @if($in->name == 'Yên')
-                                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
-                                                                        @else
-                                                                            {{ $in->value??'' }}
-                                                                        @endif
-                                                                    </div>
-                                                                </div>
-
-                                                            @endif
-                                                        @endforeach
-                                                    @endif
-                                                @elseif($slug == "nick-ngoc-rong-online")
-                                                    @php
-                                                        $server = null;
-                                                        $info = array();
-
-                                                        $params = $item->params;
-                                                        if (isset($params->server)){
-                                                            $server = $params->server;
-                                                        }
-                                                        if (isset($params->info) && count($params->info)){
-                                                            $info = $params->info;
-                                                        }
-                                                    @endphp
-                                                    @if(isset($server))
+                                                    @endforeach
+                                                @endif
+                                                @if(isset($item->params->count))
+                                                    @if(isset($item->params->count->champions))
                                                         <?php
                                                         $index = $index + 1;
                                                         ?>
                                                         <div class="row" style="margin: 0 auto;width: 100%">
-                                                            <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                                Server :
+                                                            <div class="col-auto item_buy_list_info_inacc fixcssacount">
+                                                                Số tướng :
                                                             </div>
-                                                            <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                {{--                                                                                        {{ $param??null }}--}}
-                                                                {{ $server??'' }}
+                                                            <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                {{--                                                                {{ $att_valuev2->title??null }}--}}
+                                                                {{ $item->params->count->champions }}
+
                                                             </div>
                                                         </div>
 
                                                     @endif
+                                                    @if(isset($item->params->count->skins))
+                                                        <?php
+                                                        $index = $index + 1;
+                                                        ?>
+                                                        <div class="row" style="margin: 0 auto;width: 100%">
+                                                            <div class="col-auto item_buy_list_info_inacc fixcssacount">
+                                                                Trang phục :
+                                                            </div>
+                                                            <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                {{--                                                                {{ $att_valuev2->title??null }}--}}
+                                                                {{ $item->params->count->skins }}
 
-                                                    @if(isset($info) && count($info))
-                                                        @foreach($info as $ke => $in)
-                                                            @if(in_array($in->name,config('module.acc.auto_ninja_list_tt')))
-                                                                @if($index < 4)
-                                                                <?php
-                                                                $index = $index + 1;
-                                                                ?>
-                                                                <div class="row" style="margin: 0 auto;width: 100%">
-                                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                                        {{ $in->name??'' }} :
-                                                                    </div>
-                                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                        {{--                                                                                        {{ $param??null }}--}}
-                                                                        @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
-                                                                            {{ $in->value??'' }}
-                                                                        @else
-                                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
-                                                                        @endif
-                                                                    </div>
-                                                                </div>
-                                                                @endif
-                                                            @endif
-                                                        @endforeach
+                                                            </div>
+                                                        </div>
                                                     @endif
                                                 @endif
-                                            @endif
-                                        @endif
-                                    @if(isset($item->params) && isset($item->params->ext_info))
-                                            <?php $params = json_decode(json_encode($item->params->ext_info),true) ?>
-                                            @if(isset($item->category->childs) && count($item->category->childs)>0)
-                                                @foreach($item->category->childs as $index=>$att)
-                                                    @if($att->position == 'text')
-                                                        @if(isset($att->childs))
-                                                            @foreach($att->childs as $child)
-                                                                @foreach($params as $key => $param)
-                                                                    @if($key == $child->id)
-                                                                        <tr>
-                                                                            <td style="width:50%">{{ $child->title }}:</td>
-                                                                            <td class="text-danger" style="font-weight: 700">{{ $param }}</td>
-                                                                        </tr>
-                                                                    @endif
-                                                                @endforeach
-                                                            @endforeach
-                                                        @endif
+                                            @elseif($slug == "nick-ninja-school")
+                                                @php
+                                                    $server = null;
+                                                    $info = array();
 
-                                                    @endif
-                                                @endforeach
+                                                    $params = $item->params;
+                                                    if (isset($params->server)){
+                                                        $server = $params->server;
+                                                    }
+                                                    if (isset($params->info) && count($params->info)){
+                                                        $info = $params->info;
+                                                    }
+                                                @endphp
+                                                @if(isset($server))
+                                                    <div class="row" style="margin: 0 auto;width: 100%">
+                                                        <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                            Server :
+                                                        </div>
+                                                        <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                            {{--                                                                                        {{ $param??null }}--}}
+                                                            {{ $server??'' }}
+                                                        </div>
+                                                    </div>
+
+                                                @endif
+
+                                                @if(isset($info) && count($info))
+                                                    @foreach($info as $ke => $in)
+                                                        @if(in_array($in->name,config('module.acc.auto_ninja_list_tt')))
+                                                            <div class="row" style="margin: 0 auto;width: 100%">
+                                                                <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                                    {{ $in->name??'' }} :
+                                                                </div>
+                                                                <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                    {{--                                                                                        {{ $param??null }}--}}
+                                                                    @if($in->name == 'Yên')
+                                                                        {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                    @else
+                                                                        {{ $in->value??'' }}
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @elseif($slug == "nick-ngoc-rong-online")
+                                                @php
+                                                    $server = null;
+                                                    $info = array();
+
+                                                    $params = $item->params;
+                                                    if (isset($params->server)){
+                                                        $server = $params->server;
+                                                    }
+                                                    if (isset($params->info) && count($params->info)){
+                                                        $info = $params->info;
+                                                    }
+                                                @endphp
+                                                @if(isset($server))
+                                                    <?php
+                                                    $index = $index + 1;
+                                                    ?>
+                                                    <div class="row" style="margin: 0 auto;width: 100%">
+                                                        <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                            Server :
+                                                        </div>
+                                                        <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                            {{--                                                                                        {{ $param??null }}--}}
+                                                            {{ $server??'' }}
+                                                        </div>
+                                                    </div>
+
+                                                @endif
+
+                                                @if(isset($info) && count($info))
+                                                    @foreach($info as $ke => $in)
+                                                        @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
+                                                            @if($index < 5)
+                                                                @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                                    @if($in->name == 'Skill Pet')
+                                                                    @elseif($in->name == 'Cải trang')
+                                                                        <?php
+
+                                                                        $index = $index + 1;
+                                                                        ?>
+                                                                        <div class="row" style="margin: 0 auto;width: 100%">
+                                                                            <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                                                {{ $in->name??'' }} :
+                                                                            </div>
+                                                                            <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                                @if(isset($in->value) && count($in->value) )
+                                                                                    {{--                                                                                @foreach($in->value as $value)--}}
+                                                                                    {{--                                                                                    {{ $value }} <br>--}}
+                                                                                    {{--                                                                                @endforeach--}}
+                                                                                    {{ count($in->value) }}
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
+
+                                                                @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai')
+                                                                    <?php
+
+                                                                    $index = $index + 1;
+                                                                    ?>
+                                                                    <div class="row" style="margin: 0 auto;width: 100%">
+                                                                        <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                                            {{ $in->name??'' }} :
+                                                                        </div>
+                                                                        <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+
+                                                                            {{ $param??null }}
+                                                                            {{ $in->value }}
+
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                            @endif
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+
                                             @endif
                                         @endif
+                                    @endif
+                                    @if(isset($item->params) && isset($item->params->ext_info))
+                                        <?php $params = json_decode(json_encode($item->params->ext_info),true) ?>
+                                        @if(isset($item->category->childs) && count($item->category->childs)>0)
+                                            @foreach($item->category->childs as $index=>$att)
+                                                @if($att->position == 'text')
+                                                    @if(isset($att->childs))
+                                                        @foreach($att->childs as $child)
+                                                            @foreach($params as $key => $param)
+                                                                @if($key == $child->id)
+                                                                    <tr>
+                                                                        <td style="width:50%">{{ $child->title }}:</td>
+                                                                        <td class="text-danger" style="font-weight: 700">{{ $param }}</td>
+                                                                    </tr>
+                                                                @endif
+                                                            @endforeach
+                                                        @endforeach
+                                                    @endif
+
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @endif
 
                                 </div>
                             </div>

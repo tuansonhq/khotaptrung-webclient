@@ -187,19 +187,34 @@
                                                 @if(isset($info) && count($info))
                                                     @foreach($info as $ke => $in)
                                                         @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
+                                                            
                                                             @if($total < 4)
-                                                                <?php
-                                                                $total = $total + 1;
-                                                                ?>
-                                                                <div class="info-attr">
-                                                                    {{ $in->name??'' }} :
-                                                                    @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
-                                                                        {{ $in->value??'' }}
-                                                                    @else
-                                                                        {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                                    @if($in->name == 'Skill Pet')
+                                                                    @elseif($in->name == 'Cải trang')
+                                                                        <?php
+                                                                        $total = $total + 1;
+                                                                        ?>
+                                                                        <div class="info-attr">
+                                                                            {{ $in->name??'' }} :
+                                                                            @if(isset($in->value) && count($in->value) )
+                                                                                {{ count($in->value) }}
+                                                                            @endif
+                                                                        </div>
                                                                     @endif
-                                                                </div>
+
+                                                                @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai' )
+                                                                    <?php
+                                                                    $total = $total + 1;
+                                                                    ?>
+                                                                    <div class="info-attr">
+                                                                        {{ $in->name??'' }} :
+                                                                        {{ $param??null }}
+                                                                        {{ $in->value }}
+                                                                    </div>
+                                                                @endif
                                                             @endif
+
                                                         @endif
                                                     @endforeach
                                                 @endif

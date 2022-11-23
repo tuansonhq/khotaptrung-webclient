@@ -265,173 +265,187 @@
                                 <?php
                                 $total = 0;
                                 ?>
-                                @if($data->slug != "nick-lien-minh" && $data->slug != "nick-ninja-school" && $data->slug != "nick-ngoc-rong-online")
-
-                                    @if(isset($item->groups))
-                                        <?php
-                                        $att_values = $item->groups;
-                                        ?>
-                                        @foreach($att_values as $att_value)
-                                            {{--            @dd($att_value)--}}
-                                            @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                {{--                                                        @dd($att_value->parent)--}}
-                                                @if(isset($att_value->parent))
-                                                    @if($total < 4)
-                                                        <?php
-                                                        $total = $total + 1;
-                                                        ?>
-                                                        <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $att_value->parent->title??null }}: {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}</p>
-                                                    @endif
+                                @if(isset($item->groups))
+                                    <?php
+                                    $att_values = $item->groups;
+                                    ?>
+                                    @foreach($att_values as $att_value)
+                                        {{--            @dd($att_value)--}}
+                                        @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                            {{--                                                        @dd($att_value->parent)--}}
+                                            @if(isset($att_value->parent))
+                                                @if($total < 4)
+                                                    <?php
+                                                    $total = $total + 1;
+                                                    ?>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $att_value->parent->title??null }}: {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}</p>
                                                 @endif
-                                            @endif
-                                        @endforeach
-                                    @endif
-
-                                    @if(isset($item->params) && isset($item->params->ext_info))
-                                        <?php
-                                        $params = json_decode(json_encode($item->params->ext_info),true);
-                                        ?>
-
-                                        @if($total < 4)
-                                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                                @foreach($dataAttribute as $index=>$att)
-                                                    @if($att->position == 'text')
-                                                        @if(isset($att->childs))
-                                                            @foreach($att->childs as $child)
-                                                                @foreach($params as $key => $param)
-                                                                    @if($key == $child->id && $child->is_slug_override == null)
-
-                                                                        @if($total < 4)
-                                                                            <?php
-                                                                            $total = $total + 1;
-                                                                            ?>
-                                                                            <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $child->title??null }}: {{ isset($param) ? \Str::limit($param,16) : null }}</p>
-                                                                        @endif
-                                                                    @endif
-                                                                @endforeach
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
-                                                @endforeach
                                             @endif
                                         @endif
-                                    @endif
-                                @else
-                                    @if(isset($item->params))
-                                        @if($data->slug == "nick-lien-minh")
-                                            @if(isset($item->params->rank_info))
+                                    @endforeach
+                                @endif
 
-                                                @foreach($item->params->rank_info as $rank_info)
-                                                    @if($rank_info->queueType == "RANKED_TFT")
+                                @if(isset($item->params))
+                                    @if($data->slug == "nick-lien-minh")
+                                        @if(isset($item->params->rank_info))
 
-                                                    @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
-                                                        <p class="text-left" style="color: #82869E;margin-bottom: 4px">Rank:
-                                                            @if($rank_info->tier == "NONE")
-                                                                CHƯA CÓ RANK
-                                                            @else
-                                                                {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
-                                                            @endif
-                                                        </p>
-                                                    @endif
-                                                @endforeach
-                                            @endif
-                                            @if(isset($item->params->rank_level))
-                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Level:
-                                                    {{ $item->params->rank_level }}
-                                                </p>
+                                            @foreach($item->params->rank_info as $rank_info)
+                                                @if($rank_info->queueType == "RANKED_TFT")
 
-                                            @endif
-
-                                            @if(isset($item->params->count))
-                                                @if(isset($item->params->count->champions))
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Số tướng :
-                                                        {{ $item->params->count->champions }}
+                                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Rank:
+                                                        @if($rank_info->tier == "NONE")
+                                                            CHƯA CÓ RANK
+                                                        @else
+                                                            {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                        @endif
                                                     </p>
                                                 @endif
-                                                @if(isset($item->params->count->skins))
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Trang phục :
-                                                        {{ $item->params->count->skins }}
+                                            @endforeach
+                                        @endif
+                                        @if(isset($item->params->rank_level))
+                                            <p class="text-left" style="color: #82869E;margin-bottom: 4px">Level:
+                                                {{ $item->params->rank_level }}
+                                            </p>
+
+                                        @endif
+
+                                        @if(isset($item->params->count))
+                                            @if(isset($item->params->count->champions))
+                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Số tướng :
+                                                    {{ $item->params->count->champions }}
+                                                </p>
+                                            @endif
+                                            @if(isset($item->params->count->skins))
+                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Trang phục :
+                                                    {{ $item->params->count->skins }}
+                                                </p>
+                                            @endif
+                                        @endif
+                                    @elseif($data->slug == "nick-ninja-school")
+
+                                        @php
+                                            $server = null;
+                                            $info = array();
+
+                                            $params = $item->params;
+                                            if (isset($params->server)){
+                                                $server = $params->server;
+                                            }
+                                            if (isset($params->info) && count($params->info)){
+                                                $info = $params->info;
+                                            }
+                                        @endphp
+                                        @if(isset($server))
+                                            <p class="text-left" style="color: #82869E;margin-bottom: 4px">Server:
+                                                {{ $server??'' }}
+                                            </p>
+                                        @endif
+
+                                        @if(isset($info) && count($info))
+                                            @foreach($info as $ke => $in)
+                                                @if(in_array($in->name,config('module.acc.auto_ninja_list_tt')))
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $in->name??'' }}:
+                                                        @if($in->name == 'Yên')
+                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                        @else
+                                                            {{ $in->value??'' }}
+                                                        @endif
                                                     </p>
                                                 @endif
-                                            @endif
-                                        @elseif($data->slug == "nick-ninja-school")
+                                            @endforeach
+                                        @endif
+                                    @elseif($data->slug == "nick-ngoc-rong-online")
 
-                                            @php
-                                                $server = null;
-                                                $info = array();
+                                        @php
+                                            $server = null;
+                                            $info = array();
 
-                                                $params = $item->params;
-                                                if (isset($params->server)){
-                                                    $server = $params->server;
-                                                }
-                                                if (isset($params->info) && count($params->info)){
-                                                    $info = $params->info;
-                                                }
-                                            @endphp
-                                            @if(isset($server))
-                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Server:
-                                                    {{ $server??'' }}
-                                                </p>
-                                            @endif
+                                            $params = $item->params;
+                                            if (isset($params->server)){
+                                                $server = $params->server;
+                                            }
+                                            if (isset($params->info) && count($params->info)){
+                                                $info = $params->info;
+                                            }
+                                        @endphp
+                                        @if(isset($server))
+                                            <?php
+                                            $total = $total + 1;
+                                            ?>
+                                            <p class="text-left" style="color: #82869E;margin-bottom: 4px">Server:
+                                                {{ $server??'' }}
+                                            </p>
+                                        @endif
 
-                                            @if(isset($info) && count($info))
-                                                @foreach($info as $ke => $in)
-                                                    @if(in_array($in->name,config('module.acc.auto_ninja_list_tt')))
-                                                        <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $in->name??'' }}:
-                                                            @if($in->name == 'Yên')
-                                                                {{ str_replace(',','.',number_format($in->value??'')) }}
-                                                            @else
-                                                                {{ $in->value??'' }}
+                                        @if(isset($info) && count($info))
+                                            @foreach($info as $ke => $in)
+                                                @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
+
+                                                    @if($total < 4)
+
+                                                        @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                            @if($in->name == 'Skill Pet')
+                                                            @elseif($in->name == 'Cải trang')
+                                                                <?php
+                                                                $total = $total + 1;
+                                                                ?>
+                                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">
+                                                                    {{ $in->name??'' }}:
+                                                                    @if(isset($in->value) && count($in->value) )
+                                                                        {{ count($in->value) }}
+                                                                    @endif
+                                                                </p>
                                                             @endif
-                                                        </p>
-                                                    @endif
-                                                @endforeach
-                                            @endif
-                                        @elseif($data->slug == "nick-ngoc-rong-online")
 
-                                            @php
-                                                $server = null;
-                                                $info = array();
-
-                                                $params = $item->params;
-                                                if (isset($params->server)){
-                                                    $server = $params->server;
-                                                }
-                                                if (isset($params->info) && count($params->info)){
-                                                    $info = $params->info;
-                                                }
-                                            @endphp
-                                            @if(isset($server))
-                                                <?php
-                                                $total = $total + 1;
-                                                ?>
-                                                <p class="text-left" style="color: #82869E;margin-bottom: 4px">Server:
-                                                    {{ $server??'' }}
-                                                </p>
-                                            @endif
-
-                                            @if(isset($info) && count($info))
-                                                @foreach($info as $ke => $in)
-                                                    @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
-                                                        @if($total < 4)
+                                                        @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai' )
                                                             <?php
                                                             $total = $total + 1;
                                                             ?>
-                                                            <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $in->name??'' }}:
-                                                                @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
-                                                                    {{ $in->value??'' }}
-                                                                @else
-                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
-                                                                @endif
+                                                            <p class="text-left" style="color: #82869E;margin-bottom: 4px">
+                                                                {{ $in->name??'' }}:
+                                                                {{ $param??null }}
+                                                                {{ $in->value }}
                                                             </p>
                                                         @endif
+
                                                     @endif
-                                                @endforeach
-                                            @endif
+
+                                                @endif
+                                            @endforeach
                                         @endif
                                     @endif
                                 @endif
 
+                                @if(isset($item->params) && isset($item->params->ext_info))
+                                    <?php
+                                    $params = json_decode(json_encode($item->params->ext_info),true);
+                                    ?>
+
+                                    @if($total < 4)
+                                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                            @foreach($dataAttribute as $index=>$att)
+                                                @if($att->position == 'text')
+                                                    @if(isset($att->childs))
+                                                        @foreach($att->childs as $child)
+                                                            @foreach($params as $key => $param)
+                                                                @if($key == $child->id && $child->is_slug_override == null)
+
+                                                                    @if($total < 4)
+                                                                        <?php
+                                                                        $total = $total + 1;
+                                                                        ?>
+                                                                        <p class="text-left" style="color: #82869E;margin-bottom: 4px">{{ $child->title??null }}: {{ isset($param) ? \Str::limit($param,16) : null }}</p>
+                                                                    @endif
+                                                                @endif
+                                                            @endforeach
+                                                        @endforeach
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @endif
+                                @endif
 
                                 @php
                                     if (isset($item->price_old)) {

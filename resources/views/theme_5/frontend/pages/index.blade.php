@@ -174,7 +174,7 @@
         <div class="modal-dialog modal-dialog-centered modal-custom">
             <div class="modal-content c-p-24">
                 <div class="modal-header">
-                    <p class="modal-title center">Xác nhận thanh toán</p>
+                    <p class="modal-title center">Xác nhận nạp thẻ</p>
                     <button type="button" class="close" data-dismiss="modal"></button>
                 </div>
                 <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
