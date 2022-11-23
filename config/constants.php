@@ -26,6 +26,22 @@ return [
         '9' => 'aumobile',
         '10' => 'blockmango'
     ],
+    'game_type_value' => [
+        '1' => 'QUÂN HUY',
+        '2' => 'KC',
+        '3' => 'RP',
+        '4' => 'VÀNG',
+        '5' => 'ads',
+        '6' => 'fo4',
+        '7' => 'fo4m',
+        '8' => 'UC',
+        '9' => 'aumobile',
+        '10' => 'GCUBE',
+        '11' => 'XU',
+        '12' => 'HỒNG NGỌC',
+        '13' => 'ROBUX',
+        '14' => 'VÀNG',
+    ],
     'withdraw_status' => [
         '0'=>'Chờ xử lý',
         '1'=>'Hoàn thành',

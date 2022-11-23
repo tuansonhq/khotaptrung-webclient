@@ -69,35 +69,35 @@ class AccController extends Controller
                 $response_cate_data = $result_Api_cate->response_data??null;
 
             }
-//            elseif ($slug == 'nick-ninja-school'){
-//                $dataSendCate = array();
-//                $dataSendCate['data'] = 'property_auto';
-//                $dataSendCate['provider'] = 'ninjaschool';
-//                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-//                $response_cate_data = $result_Api_cate->response_data??null;
-//
-//                if (!isset($response_cate_data->data)){
-//                    $dataSendCate = array();
-//                    $dataSendCate['data'] = 'category_detail';
-//                    $dataSendCate['slug'] = $slug;
-//                    $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-//                    $response_cate_data = $result_Api_cate->response_data??null;
-//                }
-//            }
-//            elseif ($slug == 'nick-ngoc-rong-online' || $slug == 'ban-nick-ngoc-rong'){
-//                $dataSendCate = array();
-//                $dataSendCate['data'] = 'property_auto';
-//                $dataSendCate['provider'] = 'nro';
-//                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-//                $response_cate_data = $result_Api_cate->response_data??null;
-//                if (!isset($response_cate_data->data)){
-//                    $dataSendCate = array();
-//                    $dataSendCate['data'] = 'category_detail';
-//                    $dataSendCate['slug'] = $slug;
-//                    $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-//                    $response_cate_data = $result_Api_cate->response_data??null;
-//                }
-//            }
+            elseif ($slug == 'nick-ninja-school'){
+                $dataSendCate = array();
+                $dataSendCate['data'] = 'property_auto';
+                $dataSendCate['provider'] = 'ninjaschool';
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
+
+                if (!isset($response_cate_data->data)){
+                    $dataSendCate = array();
+                    $dataSendCate['data'] = 'category_detail';
+                    $dataSendCate['slug'] = $slug;
+                    $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                    $response_cate_data = $result_Api_cate->response_data??null;
+                }
+            }
+            elseif ($slug == 'nick-ngoc-rong-online' || $slug == 'ban-nick-ngoc-rong'){
+                $dataSendCate = array();
+                $dataSendCate['data'] = 'property_auto';
+                $dataSendCate['provider'] = 'nro';
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
+                if (!isset($response_cate_data->data)){
+                    $dataSendCate = array();
+                    $dataSendCate['data'] = 'category_detail';
+                    $dataSendCate['slug'] = $slug;
+                    $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                    $response_cate_data = $result_Api_cate->response_data??null;
+                }
+            }
             else {
                 $dataSendCate = array();
                 $dataSendCate['data'] = 'category_detail';
@@ -595,6 +595,7 @@ class AccController extends Controller
             $watcheds = json_decode($watcheds,true);
 
             $ran_id = $request->ran_id;
+            $slug = $request->slug;
 
             if (isset($watcheds) && count($watcheds)){
                 $url = '/acc';
@@ -623,7 +624,7 @@ class AccController extends Controller
                     $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
 
                     $htmlslider = view('frontend.pages.account.widget.__watched')
-                        ->with('data',$data)->with('ran_id', $ran_id)->render();
+                        ->with('data',$data)->with('ran_id', $ran_id)->with('slug',$slug)->render();
 
                     return response()->json([
                         'datawatched' => $htmlslider,
