@@ -64,13 +64,9 @@
             </div>
         </section>
         {{--   Bopđyy --}}
-        <style>
-            #font-acc a span small li{
-                font-family: 'Roboto' !important;
-            }
-        </style>
+
         <section>
-                <div id="font-acc" class="container container-fix body-container-ct" >
+                <div class="container container-fix body-container-ct" >
                     <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
 
                         <div class="col-md-12 left-right">
@@ -87,7 +83,7 @@
                                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
                                         </div>
                                         <div class="col-md-10 col-10 body-header-col-ct">
-                                            <span class="body-header-col-ct-titile">{{ $data->custom->title ? $data->custom->title : $data->title }}</span>
+                                            <h1 class="">{{ $data->custom->title ? $data->custom->title : $data->title }}</h1>
                                         </div>
                                     </div>
                                 </div>
