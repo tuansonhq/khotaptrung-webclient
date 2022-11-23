@@ -316,7 +316,7 @@
                                                     <label class="form-label">
                                                         {{ $auto_propertie->key }}
                                                     </label>
-                                                    <select name="champions_data" class="select-2-custom w-100" id="">
+                                                    <select name="tftcompanions_data" class="select-2-custom w-100" id="">
                                                         <option value="">--Không chọn--</option>
                                                         @if(isset($auto_propertie->childs))
                                                             @foreach($auto_propertie->childs as $child)
@@ -347,7 +347,7 @@
                                                                 <label class="form-label">
                                                                     SKILL PET 2
                                                                 </label>
-                                                                <select name="champions_data" class="select-2-custom w-100" id="">
+                                                                <select name="tftmapskins_data" class="select-2-custom w-100" id="">
                                                                     <option value="">--Không chọn--</option>
                                                                     @if(isset($childs->childs))
                                                                         @foreach($childs->childs as $child)
@@ -363,7 +363,7 @@
                                                                 <label class="form-label">
                                                                     SKILL PET 3
                                                                 </label>
-                                                                <select name="champions_data" class="select-2-custom w-100" id="">
+                                                                <select name="tftdamageskins_data" class="select-2-custom w-100" id="">
                                                                     <option value="">--Không chọn--</option>
                                                                     @if(isset($childs->childs))
                                                                         @foreach($childs->childs as $child)
@@ -379,7 +379,7 @@
                                                                 <label class="form-label">
                                                                     SKILL PET 4
                                                                 </label>
-                                                                <select name="champions_data" class="select-2-custom w-100" id="">
+                                                                <select name="skill_data" class="select-2-custom w-100" id="">
                                                                     <option value="">--Không chọn--</option>
                                                                     @if(isset($childs->childs))
                                                                         @foreach($childs->childs as $child)
