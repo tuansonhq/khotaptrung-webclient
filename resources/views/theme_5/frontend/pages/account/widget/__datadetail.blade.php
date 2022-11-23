@@ -501,15 +501,51 @@
                                                     @foreach($info as $ke => $in)
                                                         @if(in_array($in->name,config('module.acc.auto_nro_tt')))
 
-                                                            <tr>
-                                                                <td><span class="link-color">{{ $in->name??'' }}</span></td>
-                                                                <td><span>
-                                                                        @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
-                                                                            {{ $in->value??'' }}
-                                                                        @else
-                                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
-                                                                        @endif</span></td>
-                                                            </tr>
+                                                            @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                                @if($in->name == 'Skill Pet')
+                                                                    @if(isset($in->value) && count($in->value) )
+                                                                        @foreach($in->value as $k_value => $value)
+                                                                            @if($k_value != 0)
+
+                                                                                <tr>
+                                                                                    <td><span class="link-color">Skill {{ $k_value + 1 }}</span></td>
+                                                                                    <td>
+                                                                                        <span>
+                                                                                            {{ $value->name }} - {{ $value->value }}
+                                                                                        </span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
+                                                                @elseif($in->name == 'Cải trang')
+
+                                                                    <tr>
+                                                                        <td><span class="link-color">{{ $in->name??'' }}</span></td>
+                                                                        <td>
+                                                                            <span>
+                                                                                @if(isset($in->value) && count($in->value) )
+                                                                                    @foreach($in->value as $value)
+                                                                                        {{ $value }}
+                                                                                    @endforeach
+                                                                                @endif
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                @endif
+                                                            @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai')
+
+                                                                <tr>
+                                                                    <td><span class="link-color">{{ $in->name??'' }}</span></td>
+                                                                    <td>
+                                                                        <span>
+                                                                            {{ $in->value }}
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+
+                                                            @endif
 
                                                         @endif
                                                     @endforeach
@@ -831,17 +867,52 @@
                                         @if(isset($info) && count($info))
                                             @foreach($info as $ke => $in)
                                                 @if(in_array($in->name,config('module.acc.auto_nro_tt')))
-                                                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
-                                                        <div class="card--attr__name fw-400 fz-13 text-center text-order">
-                                                            {{ $in->name??'' }}
+
+                                                    @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                        @if($in->name == 'Skill Pet')
+                                                            @if(isset($in->value) && count($in->value) )
+                                                                @foreach($in->value as $k_value => $value)
+                                                                    @if($k_value != 0)
+                                                                        <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                                            <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                                                Skill {{ $k_value + 1 }}
+                                                                            </div>
+                                                                            <div class="card--attr__value fz-13 fw-500">
+                                                                                {{ $value->name }} - {{ $value->value }}
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                        @elseif($in->name == 'Cải trang')
+
+                                                            <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                                <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                                    {{ $in->name??'' }}
+                                                                </div>
+                                                                <div class="card--attr__value fz-13 fw-500">
+                                                                    @if(isset($in->value) && count($in->value) )
+                                                                        @foreach($in->value as $value)
+                                                                            {{ $value }}
+                                                                        @endforeach
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+
+                                                        @endif
+                                                    @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai')
+
+                                                        <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                            <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                                                                {{ $in->name??'' }}
+                                                            </div>
+                                                            <div class="card--attr__value fz-13 fw-500">
+                                                                {{ $in->value }}
+                                                            </div>
                                                         </div>
-                                                        <div class="card--attr__value fz-13 fw-500">
-                                                            @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
-                                                                {{ $in->value??'' }}
-                                                            @else
-                                                                {{ str_replace(',','.',number_format($in->value??'')) }}
-                                                            @endif</div>
-                                                    </div>
+
+                                                    @endif
+
                                                 @endif
                                             @endforeach
                                         @endif
@@ -1269,17 +1340,50 @@
                                     @foreach($info as $ke => $in)
                                         @if(in_array($in->name,config('module.acc.auto_nro_tt')))
 
-                                            <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
-                                                <div class="card--attr__name fw-400 fz-13 text-center">
-                                                    {{ $in->name??'' }}
+                                            @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                @if($in->name == 'Skill Pet')
+                                                    @if(isset($in->value) && count($in->value) )
+                                                        @foreach($in->value as $k_value => $value)
+                                                            @if($k_value != 0)
+                                                                <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                                    <div class="card--attr__name fw-400 fz-13 text-center">
+                                                                        Skill {{ $k_value + 1 }}
+                                                                    </div>
+                                                                    <div class="card--attr__value fz-13 fw-500">
+                                                                        {{ $value->name }} - {{ $value->value }}
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                @elseif($in->name == 'Cải trang')
+
+                                                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                        <div class="card--attr__name fw-400 fz-13 text-center">
+                                                            {{ $in->name??'' }}
+                                                        </div>
+                                                        <div class="card--attr__value fz-13 fw-500">
+                                                            @if(isset($in->value) && count($in->value) )
+                                                                @foreach($in->value as $value)
+                                                                    {{ $value }}
+                                                                @endforeach
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    
+                                                @endif
+                                            @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai')
+
+                                                <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                                                    <div class="card--attr__name fw-400 fz-13 text-center">
+                                                        {{ $in->name??'' }}
+                                                    </div>
+                                                    <div class="card--attr__value fz-13 fw-500">
+                                                        {{ $in->value }}
+                                                    </div>
                                                 </div>
-                                                <div class="card--attr__value fz-13 fw-500">
-                                                    @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
-                                                        {{ $in->value??'' }}
-                                                    @else
-                                                        {{ str_replace(',','.',number_format($in->value??'')) }}
-                                                    @endif</div>
-                                            </div>
+
+                                            @endif
 
                                         @endif
                                     @endforeach

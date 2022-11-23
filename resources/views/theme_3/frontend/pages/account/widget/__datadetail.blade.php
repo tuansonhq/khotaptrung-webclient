@@ -411,9 +411,9 @@
                                                                                             <small>Server</small>
                                                                                         </div>
                                                                                         <div class="col-auto gallery-col-auto-right left-right">
-                                                                                <span>
-                                                                                    {{ $server??null }}
-                                                                                </span>
+                                                                                            <span>
+                                                                                                {{ $server??null }}
+                                                                                            </span>
                                                                                         </div>
                                                                                     </div>
 
@@ -421,23 +421,64 @@
                                                                                 @if(isset($info) && count($info))
                                                                                     @foreach($info as $ke => $in)
                                                                                         @if(in_array($in->name,config('module.acc.auto_nro_tt')))
-                                                                                            <?php
-                                                                                            $total = $total + 1;
-                                                                                            ?>
-                                                                                            <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
-                                                                                                <div class="col-auto gallery-col-auto-left left-right">
-                                                                                                    <small>{{ $in->name??'' }}</small>
+
+                                                                                            @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                                                                @if($in->name == 'Skill Pet')
+                                                                                                    @if(isset($in->value) && count($in->value) )
+                                                                                                        @foreach($in->value as $k_value => $value)
+                                                                                                            @if($k_value != 0)
+                                                                                                                <?php
+                                                                                                                $total = $total + 1;
+                                                                                                                ?>
+                                                                                                                <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                                                    <div class="col-auto gallery-col-auto-left left-right">
+                                                                                                                        <small>Skill {{ $k_value + 1 }}</small>
+                                                                                                                    </div>
+                                                                                                                    <div class="col-auto gallery-col-auto-right left-right">
+                                                                                                                        <span>
+                                                                                                                            {{ $value->name }} - {{ $value->value }}
+                                                                                                                        </span>
+                                                                                                                    </div>
+                                                                                                                </div>
+
+                                                                                                            @endif
+                                                                                                        @endforeach
+                                                                                                    @endif
+                                                                                                @elseif($in->name == 'Cải trang')
+                                                                                                    <?php
+                                                                                                    $total = $total + 1;
+                                                                                                    ?>
+                                                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                                        <div class="col-auto gallery-col-auto-left left-right">
+                                                                                                            <small>{{ $in->name??'' }}</small>
+                                                                                                        </div>
+                                                                                                        <div class="col-auto gallery-col-auto-right left-right">
+                                                                                                            <span>
+                                                                                                                @if(isset($in->value) && count($in->value) )
+                                                                                                                    @foreach($in->value as $value)
+                                                                                                                        {{ $value }} <br>
+                                                                                                                    @endforeach
+                                                                                                                @endif
+                                                                                                            </span>
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                @endif
+                                                                                            @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai')
+                                                                                                <?php
+                                                                                                $total = $total + 1;
+                                                                                                ?>
+                                                                                                <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                                    <div class="col-auto gallery-col-auto-left left-right">
+                                                                                                        <small>{{ $in->name??'' }}</small>
+                                                                                                    </div>
+                                                                                                    <div class="col-auto gallery-col-auto-right left-right">
+                                                                                                        <span>
+                                                                                                            {{ $in->value }}
+                                                                                                        </span>
+                                                                                                    </div>
                                                                                                 </div>
-                                                                                                <div class="col-auto gallery-col-auto-right left-right">
-                                                                                                    <span>
-                                                                                                        @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
-                                                                                                            {{ $in->value??'' }}
-                                                                                                        @else
-                                                                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
-                                                                                                        @endif
-                                                                                                    </span>
-                                                                                                </div>
-                                                                                            </div>
+                                                                                            @endif
 
                                                                                         @endif
                                                                                     @endforeach
@@ -928,19 +969,54 @@
                                                                             @foreach($info as $ke => $in)
                                                                                 @if(in_array($in->name,config('module.acc.auto_nro_tt')))
 
-                                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
-                                                                                        <div class="col-auto gallery-col-auto-left left-right">
-                                                                                            <small>{{ $in->name??'' }}</small>
+                                                                                    @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                                                        @if($in->name == 'Skill Pet')
+                                                                                            @if(isset($in->value) && count($in->value) )
+                                                                                                @foreach($in->value as $k_value => $value)
+                                                                                                    @if($k_value != 0)
+                                                                                                        <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                                            <div class="col-auto gallery-col-auto-left left-right">
+                                                                                                                <small>Skill {{ $k_value + 1 }}</small>
+                                                                                                            </div>
+                                                                                                            <div class="col-auto gallery-col-auto-right left-right">
+                                                                                                                <span>
+                                                                                                                    {{ $value->name }} - {{ $value->value }}
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                    @endif
+                                                                                                @endforeach
+                                                                                            @endif
+                                                                                        @elseif($in->name == 'Cải trang')
+                                                                                            <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                                <div class="col-auto gallery-col-auto-left left-right">
+                                                                                                    <small>{{ $in->name??'' }}</small>
+                                                                                                </div>
+                                                                                                <div class="col-auto gallery-col-auto-right left-right">
+                                                                                                    <span>
+                                                                                                        @if(isset($in->value) && count($in->value) )
+                                                                                                            @foreach($in->value as $value)
+                                                                                                                {{ $value }} <br>
+                                                                                                            @endforeach
+                                                                                                        @endif
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                        @endif
+                                                                                    @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai')
+                                                                                        <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                            <div class="col-auto gallery-col-auto-left left-right">
+                                                                                                <small>{{ $in->name??'' }}</small>
+                                                                                            </div>
+                                                                                            <div class="col-auto gallery-col-auto-right left-right">
+                                                                                                <span>
+                                                                                                    {{ $in->value }}
+                                                                                                </span>
+                                                                                            </div>
                                                                                         </div>
-                                                                                        <div class="col-auto gallery-col-auto-right left-right d-flex justify-content-between">
-                                                                                            <span>
-                                                                                                @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
-                                                                                                    {{ $in->value??'' }}
-                                                                                                @else
-                                                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
-                                                                                                @endif</span>
-                                                                                        </div>
-                                                                                    </div>
+                                                                                    @endif
 
                                                                                 @endif
                                                                             @endforeach
@@ -1168,7 +1244,11 @@
                                                             @if(isset($data->params->rank_info) && count($data->params->rank_info))
                                                                 <small>Garena</small>
                                                             @else
-                                                                <small>{{ $data->groups[0]->title }}</small>
+                                                                <small>
+                                                                    @if (isset($data->groups[0]))
+                                                                        {{ $data->groups[0]->title }}
+                                                                    @endif
+                                                                </small>
                                                             @endif
                                                         @endif
 
@@ -1346,19 +1426,56 @@
                                                         @if(isset($info) && count($info))
                                                             @foreach($info as $ke => $in)
                                                                 @if(in_array($in->name,config('module.acc.auto_nro_tt')))
-                                                                    <div class="row marginauto background-order-body-row-ct">
-                                                                        <div class="col-auto left-right background-order-col-left-ct">
-                                                                            <span>{{ $in->name??'' }}</span>
+                                                                    
+                                                                    @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                                        @if($in->name == 'Skill Pet')
+                                                                            @if(isset($in->value) && count($in->value) )
+                                                                                @foreach($in->value as $k_value => $value)
+                                                                                    @if($k_value != 0)
+                                                                                        <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                            <div class="col-auto gallery-col-auto-left left-right">
+                                                                                                <small>Skill {{ $k_value + 1 }}</small>
+                                                                                            </div>
+                                                                                            <div class="col-auto gallery-col-auto-right left-right">
+                                                                                                <span>
+                                                                                                    {{ $value->name }} - {{ $value->value }}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            @endif
+                                                                        @elseif($in->name == 'Cải trang')
+                                                                            <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                <div class="col-auto gallery-col-auto-left left-right">
+                                                                                    <small>{{ $in->name??'' }}</small>
+                                                                                </div>
+                                                                                <div class="col-auto gallery-col-auto-right left-right">
+                                                                                    <span>
+                                                                                        @if(isset($in->value) && count($in->value) )
+                                                                                            @foreach($in->value as $value)
+                                                                                                {{ $value }} <br>
+                                                                                            @endforeach
+                                                                                        @endif
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        @endif
+                                                                    @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai')
+                                                                        <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                            <div class="col-auto gallery-col-auto-left left-right">
+                                                                                <small>{{ $in->name??'' }}</small>
+                                                                            </div>
+                                                                            <div class="col-auto gallery-col-auto-right left-right">
+                                                                                <span>
+                                                                                    {{ $in->value }}
+                                                                                </span>
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="col-auto left-right background-order-col-right-ct">
-                                                                            <small>
-                                                                                @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
-                                                                                    {{ $in->value??'' }}
-                                                                                @else
-                                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
-                                                                                @endif</small>
-                                                                        </div>
-                                                                    </div>
+                                                                    @endif
+
                                                                 @endif
                                                             @endforeach
                                                         @endif
@@ -1546,7 +1663,11 @@
                                                     @if(isset($data->params->rank_info) && count($data->params->rank_info))
                                                         <small>Garena</small>
                                                     @else
-                                                        <small>{{ $data->groups[0]->title }}</small>
+                                                        <small>
+                                                            @if (isset($data->groups[0]))
+                                                                {{ $data->groups[0]->title }}
+                                                            @endif
+                                                        </small>
                                                     @endif
                                                 @endif
                                             </div>

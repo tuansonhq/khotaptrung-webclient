@@ -231,29 +231,29 @@
                                     </div>
                                     <?php
                                         $total = 0;
+                                    ?>
+                                    @if(isset($item->groups))
+                                        <?php
+                                        $att_values = $item->groups;
                                         ?>
-                                        @if(isset($item->groups))
-                                            <?php
-                                            $att_values = $item->groups;
-                                            ?>
 
-                                            {{--                                            @dd($att_values)--}}
-                                            @foreach($att_values as $att_value)
-                                                {{--            @dd($att_value)--}}
-                                                @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                    @if(isset($att_value->parent))
-                                                        @if($total < 4)
-                                                            <?php
-                                                            $total = $total + 1;
-                                                            ?>
-                                                                <div class="info-attr">
-                                                                    {{ $att_value->parent->title??null }}: {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}
-                                                                </div>
-                                                        @endif
+                                        {{--                                            @dd($att_values)--}}
+                                        @foreach($att_values as $att_value)
+                                            {{--            @dd($att_value)--}}
+                                            @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                @if(isset($att_value->parent))
+                                                    @if($total < 4)
+                                                        <?php
+                                                        $total = $total + 1;
+                                                        ?>
+                                                            <div class="info-attr">
+                                                                {{ $att_value->parent->title??null }}: {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}
+                                                            </div>
                                                     @endif
                                                 @endif
-                                            @endforeach
-                                        @endif
+                                            @endif
+                                        @endforeach
+                                    @endif
                                     @if(isset($item->params))
                                         @if($data->slug == "nick-lien-minh")
                                             @if(isset($item->params->rank_info))
@@ -359,20 +359,32 @@
                                                     @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
 
                                                         @if($total < 4)
-                                                            <?php
-                                                            $total = $total + 1;
-                                                            ?>
-                                                            @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+
+                                                            @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                                @if($in->name == 'Skill Pet')
+                                                                @elseif($in->name == 'Cải trang')
+                                                                    <?php
+                                                                    $total = $total + 1;
+                                                                    ?>
+                                                                    <div class="info-attr">
+                                                                        {{ $in->name??'' }} :
+                                                                        @if(isset($in->value) && count($in->value) )
+                                                                            {{ count($in->value) }}
+                                                                        @endif
+                                                                    </div>
+                                                                @endif
+
+                                                            @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai' )
+                                                                <?php
+                                                                $total = $total + 1;
+                                                                ?>
                                                                 <div class="info-attr">
                                                                     {{ $in->name??'' }} :
-                                                                    {{ $in->value??'' }}
-                                                                </div>
-                                                            @else
-                                                                <div class="info-attr">
-                                                                    {{ $in->name??'' }} :
-                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                    {{ $param??null }}
+                                                                    {{ $in->value }}
                                                                 </div>
                                                             @endif
+
                                                         @endif
                                                     @endif
                                                 @endforeach
@@ -380,37 +392,37 @@
 
                                         @endif
                                     @endif
-                                        @if(isset($item->params) && isset($item->params->ext_info))
-                                            <?php
-                                            $params = json_decode(json_encode($item->params->ext_info),true);
-                                            ?>
+                                    @if(isset($item->params) && isset($item->params->ext_info))
+                                        <?php
+                                        $params = json_decode(json_encode($item->params->ext_info),true);
+                                        ?>
 
-                                            @if($total < 4)
-                                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                                    @foreach($dataAttribute as $index=>$att)
-                                                        @if($att->position == 'text')
-                                                            @if(isset($att->childs))
-                                                                @foreach($att->childs as $child)
-                                                                    @foreach($params as $key => $param)
-                                                                        @if($key == $child->id && $child->is_slug_override == null)
+                                        @if($total < 4)
+                                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                                @foreach($dataAttribute as $index=>$att)
+                                                    @if($att->position == 'text')
+                                                        @if(isset($att->childs))
+                                                            @foreach($att->childs as $child)
+                                                                @foreach($params as $key => $param)
+                                                                    @if($key == $child->id && $child->is_slug_override == null)
 
-                                                                            @if($total < 4)
-                                                                                <?php
-                                                                                $total = $total + 1;
-                                                                                ?>
-                                                                                    <div class="info-attr">
-                                                                                        {{ $child->title??null }}: {{ isset($param) ? \Str::limit($param,16) : null }}
-                                                                                    </div>
-                                                                            @endif
+                                                                        @if($total < 4)
+                                                                            <?php
+                                                                            $total = $total + 1;
+                                                                            ?>
+                                                                                <div class="info-attr">
+                                                                                    {{ $child->title??null }}: {{ isset($param) ? \Str::limit($param,16) : null }}
+                                                                                </div>
                                                                         @endif
-                                                                    @endforeach
+                                                                    @endif
                                                                 @endforeach
-                                                            @endif
+                                                            @endforeach
                                                         @endif
-                                                    @endforeach
-                                                @endif
+                                                    @endif
+                                                @endforeach
                                             @endif
                                         @endif
+                                    @endif
                                 </div>
                                 @php
                                     if (isset($item->price_old)) {
