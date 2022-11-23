@@ -33,12 +33,15 @@ class Theme
 
                 if(isset($result) && $result->response_code == 200){
 
-                    $seo = $result->response_data->data;
-                    if (empty(get_object_vars($seo))){
-                        $data = new \stdClass();
-                        $data->theme_key = 'theme_1';
-                        $seo = $data;
+                    if (isset($result->response_data->data)){
+                        $seo = $result->response_data->data;
+                        if (empty(get_object_vars($seo))){
+                            $data = new \stdClass();
+                            $data->theme_key = 'theme_1';
+                            $seo = $data;
+                        }
                     }
+
                 }
                 return $seo;
             });
