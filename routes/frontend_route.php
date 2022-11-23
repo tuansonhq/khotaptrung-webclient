@@ -325,6 +325,15 @@ Route::group(array('middleware' => ['theme']) , function (){
                     });
                 }
 
+                Route::get('/danh-muc/{slug}', function ()
+                {
+                    $slug = '/mua-acc/nick-dot-kich-gia-re';
+                    $url = 'https://'.\Request::server("HTTP_HOST").$slug;
+                    return Redirect::to($url);
+                });
+
+                Route::get('/danh-muc/{slug}', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'index']);
+
             });
         });
 
