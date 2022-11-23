@@ -119,12 +119,12 @@
     color: var(--ghost-border-hover-color);
 }
 @media (max-width: 992px) {
-    .banner-slide .swiper-slide{
-        padding-bottom: 54%;
-    }
-    .ads-banner .banner-slide .swiper-slide{
-        padding-bottom: 54%;
-    }
+    /*.banner-slide .swiper-slide{*/
+    /*    padding-bottom: 40%;*/
+    /*}*/
+    /*.ads-banner .banner-slide .swiper-slide{*/
+    /*    padding-bottom: 54%;*/
+    /*}*/
     .swiper-banner .navigation{
         visibility: hidden;
     }

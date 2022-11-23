@@ -316,6 +316,15 @@ Route::group(array('middleware' => ['theme']) , function (){
                     return view('frontend.layouts.includes.list-mobile');
                 })->name('getListMobile');
 
+                if(setting('sys_google_plus') != ''){
+                    Route::get('/danh-muc/nick-cf', function ()
+                    {
+                        $slug = '/mua-acc/nick-dot-kich-gia-re';
+                        $url = 'https://'.\Request::server("HTTP_HOST").$slug;
+                        return Redirect::to($url);
+                    });
+                }
+
             });
         });
 

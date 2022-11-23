@@ -1928,7 +1928,6 @@
 
                                         $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
                                     }
-
                                 }
                             }
                         }

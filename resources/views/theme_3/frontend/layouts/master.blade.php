@@ -158,6 +158,8 @@
     })
 </script>
 
+
+
 <div class="modal-loader-container">
     <div class="modal-loader-content">
         <span class="modal-loader-spin"></span>
@@ -220,7 +222,7 @@
 </div>
 
 
-
+@if(setting('sys_id_chat_message') != '')
 <!-- Messenger Plugin chat Code -->
 <div id="fb-root" style="    z-index: 666;"></div>
 <!-- Your Plugin chat code -->
@@ -256,6 +258,7 @@
 
 
 </script>
+@endif
 
 @if (!\App\Library\AuthCustom::check())
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_phu/login_modal.js"></script>
