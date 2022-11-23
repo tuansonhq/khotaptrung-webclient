@@ -93,12 +93,8 @@ class RedirectUrl extends Controller
                             return Redirect::to($url);
                         break;
                     case 'thu-van-may-vip-dac-biet':
-                            $slug_new = '/mua-acc/thu-van-may-free-fire-vip-1';
-                            $url = 'https://'.\Request::server("HTTP_HOST").$slug_new;
-                            return Redirect::to($url);
-                        break;
                     case 'random-sieu-bat-ngo':
-                            $slug_new = '/mua-acc/random-sieu-bat-ngo';
+                            $slug_new = '/mua-acc/thu-van-may-free-fire-vip-1';
                             $url = 'https://'.\Request::server("HTTP_HOST").$slug_new;
                             return Redirect::to($url);
                         break;
