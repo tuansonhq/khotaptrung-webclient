@@ -307,6 +307,94 @@
                                             @endif
 
                                         @endforeach
+                                    @elseif($slug == 'ban-nick-ngoc-rong' || $slug == 'nick-ngoc-rong-online')
+                                        @foreach($auto_properties as $auto_propertie)
+                                            @if($auto_propertie->key == 'CAPTURES')
+                            
+                                            @elseif($auto_propertie->key == 'SERVER')
+                                                <div class="input-group">
+                                                    <label class="form-label">
+                                                        {{ $auto_propertie->key }}
+                                                    </label>
+                                                    <select name="champions_data" class="select-2-custom w-100" id="">
+                                                        <option value="">--Không chọn--</option>
+                                                        @if(isset($auto_propertie->childs))
+                                                            @foreach($auto_propertie->childs as $child)
+                                                                <option value="{{ $child->id }}">Server {{ $child->name }}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                            @elseif($auto_propertie->key == 'INFO')
+                                                @if(isset($auto_propertie->childs))
+                                                    @foreach($auto_propertie->childs as $childs)
+                                                        @if($childs->key == 'CAI_TRANG')
+                                                            <div class="input-group">
+                                                                <label class="form-label">
+                                                                    CAI TRANG
+                                                                </label>
+                                                                <select name="champions_data" class="select-2-custom w-100" id="">
+                                                                    <option value="">--Không chọn--</option>
+                                                                    @if(isset($childs->childs))
+                                                                        @foreach($childs->childs as $child)
+                                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                                        @endforeach
+                                                                    @endif
+                                                                </select>
+                                                            </div>
+                                                        @elseif($childs->key == 'SKILL_PET')
+                                                            <div class="input-group">
+                                                                <label class="form-label">
+                                                                    SKILL PET 2
+                                                                </label>
+                                                                <select name="champions_data" class="select-2-custom w-100" id="">
+                                                                    <option value="">--Không chọn--</option>
+                                                                    @if(isset($childs->childs))
+                                                                        @foreach($childs->childs as $child)
+                                                                            @if($child->name == config('module.acc.auto_nro_skill_pet_2.'.$child->name))
+                                                                                <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="input-group">
+                                                                <label class="form-label">
+                                                                    SKILL PET 3
+                                                                </label>
+                                                                <select name="champions_data" class="select-2-custom w-100" id="">
+                                                                    <option value="">--Không chọn--</option>
+                                                                    @if(isset($childs->childs))
+                                                                        @foreach($childs->childs as $child)
+                                                                            @if($child->name == config('module.acc.auto_nro_skill_pet_3.'.$child->name))
+                                                                                <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="input-group">
+                                                                <label class="form-label">
+                                                                    SKILL PET 4
+                                                                </label>
+                                                                <select name="champions_data" class="select-2-custom w-100" id="">
+                                                                    <option value="">--Không chọn--</option>
+                                                                    @if(isset($childs->childs))
+                                                                        @foreach($childs->childs as $child)
+                                                                            @if($child->name == config('module.acc.auto_nro_skill_pet_4.'.$child->name))
+                                                                                <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
+                                                                </select>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @endif
+                                        @endforeach
                                     @endif
                                 @else
                                 @if(isset($dataAttribute) && count($dataAttribute) > 0)
