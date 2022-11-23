@@ -316,8 +316,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                     return view('frontend.layouts.includes.list-mobile');
                 })->name('getListMobile');
 
+
                 Route::get('/danh-muc/{slug}', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlDanhmuc']);
                 Route::get('/garena/{slug}', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlGarena']);
+
             });
         });
 
