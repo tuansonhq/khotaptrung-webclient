@@ -128,6 +128,8 @@
         </div>
     </div>
 </div>
+
+@if(setting('sys_id_chat_message') != '')
 <!-- Messenger Plugin chat Code -->
 <div id="fb-root" style="    z-index: 666;"></div>
 
@@ -159,7 +161,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-
+@endif
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/scripts.bundle.js" type="text/javascript"></script>
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2.js" type="text/javascript"></script>

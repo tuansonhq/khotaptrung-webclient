@@ -64,7 +64,7 @@
     @endif
 @endif
 <style>
-    #font-acc a small span p{
+    .font-detail-service a small span p{
         font-family: 'Open Sans' !important;
     }
 </style>

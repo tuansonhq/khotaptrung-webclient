@@ -480,28 +480,85 @@
                                         @foreach($info as $ke => $in)
                                             @if(in_array($in->name,config('module.acc.auto_nro_tt')))
 
-                                                <div class="col-md-12">
-                                                    <div class="row gallery__03">
-                                                        <div class="col-md-12 gallery__01__row">
-                                                            <div class="row">
-                                                                <div class="col-auto span__dangky__auto">
-                                                                    <i class="fas fa-angle-right"></i>
+                                                @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                    @if($in->name == 'Skill Pet')
+                                                        @if(isset($in->value) && count($in->value) )
+                                                            @foreach($in->value as $k_value => $value)
+                                                                @if($k_value != 0)
+
+                                                                    <div class="col-md-12">
+                                                                        <div class="row gallery__03">
+                                                                            <div class="col-md-12 gallery__01__row">
+                                                                                <div class="row">
+                                                                                    <div class="col-auto span__dangky__auto">
+                                                                                        <i class="fas fa-angle-right"></i>
+                                                                                    </div>
+                                                                                    <div class="col-md-4 col-4 pl-0">
+                                                                                        <span class="span__dangky">Skill {{ $k_value + 1 }}</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-5 col-2 pl-0 pr-0">
+                                                                                        <span class="span__dangky">
+                                                                                            {{ $value->name }} - {{ $value->value }}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                    @elseif($in->name == 'Cải trang')
+
+                                                        <div class="col-md-12">
+                                                            <div class="row gallery__03">
+                                                                <div class="col-md-12 gallery__01__row">
+                                                                    <div class="row">
+                                                                        <div class="col-auto span__dangky__auto">
+                                                                            <i class="fas fa-angle-right"></i>
+                                                                        </div>
+                                                                        <div class="col-md-4 col-4 pl-0">
+                                                                            <span class="span__dangky">{{ $in->name??'' }}</span>
+                                                                        </div>
+                                                                        <div class="col-md-5 col-2 pl-0 pr-0">
+                                                                            <span class="span__dangky">
+                                                                                @if(isset($in->value) && count($in->value) )
+                                                                                    @foreach($in->value as $value)
+                                                                                        {{ $value }}
+                                                                                    @endforeach
+                                                                                @endif
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="col-md-4 col-4 pl-0">
-                                                                    <span class="span__dangky">{{ $in->name??'' }}</span>
-                                                                </div>
-                                                                <div class="col-md-1 col-2 pl-0 pr-0">
-                                                                    <span class="span__dangky">
-                                                                        @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
-                                                                            {{ $in->value??'' }}
-                                                                        @else
-                                                                            {{ str_replace(',','.',number_format($in->value??'')) }}
-                                                                        @endif</span>
+                                                            </div>
+                                                        </div>
+
+                                                    @endif
+                                                @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai')
+
+                                                    <div class="col-md-12">
+                                                        <div class="row gallery__03">
+                                                            <div class="col-md-12 gallery__01__row">
+                                                                <div class="row">
+                                                                    <div class="col-auto span__dangky__auto">
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col-md-4 col-4 pl-0">
+                                                                        <span class="span__dangky">{{ $in->name??'' }}</span>
+                                                                    </div>
+                                                                    <div class="col-md-5 col-2 pl-0 pr-0">
+                                                                        <span class="span__dangky">
+                                                                            {{ $in->value }}
+                                                                        </span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+
+                                                @endif
 
                                             @endif
                                         @endforeach
@@ -850,16 +907,46 @@
                                                                     @foreach($info as $ke => $in)
                                                                         @if(in_array($in->name,config('module.acc.auto_nro_tt')))
 
-                                                                            <tr>
-                                                                                <td style="width:50%">{{ $in->name??'' }}:</td>
-                                                                                <td class="text-danger" style="font-weight: 700">
-                                                                                    @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
-                                                                                        {{ $in->value??'' }}
-                                                                                    @else
-                                                                                        {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                            @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                                                @if($in->name == 'Skill Pet')
+                                                                                    @if(isset($in->value) && count($in->value) )
+                                                                                        @foreach($in->value as $k_value => $value)
+                                                                                            @if($k_value != 0)
+
+                                                                                                <tr>
+                                                                                                    <td style="width:50%">Skill {{ $k_value + 1 }}:</td>
+                                                                                                    <td class="text-danger" style="font-weight: 700">
+                                                                                                        {{ $value->name }} - {{ $value->value }}
+                                                                                                    </td>
+                                                                                                </tr>
+
+                                                                                            @endif
+                                                                                        @endforeach
                                                                                     @endif
-                                                                                </td>
-                                                                            </tr>
+                                                                                @elseif($in->name == 'Cải trang')
+
+                                                                                    <tr>
+                                                                                        <td style="width:50%">{{ $in->name??'' }}:</td>
+                                                                                        <td class="text-danger" style="font-weight: 700">
+                                                                                            @if(isset($in->value) && count($in->value) )
+                                                                                                @foreach($in->value as $value)
+                                                                                                    {{ $value }}
+                                                                                                @endforeach
+                                                                                            @endif
+                                                                                        </td>
+                                                                                    </tr>
+
+                                                                                @endif
+                                                                            @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai')
+
+                                                                                <tr>
+                                                                                    <td style="width:50%">{{ $in->name??'' }}:</td>
+                                                                                    <td class="text-danger" style="font-weight: 700">
+                                                                                        {{ $in->value }}
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                            @endif
 
                                                                         @endif
                                                                     @endforeach

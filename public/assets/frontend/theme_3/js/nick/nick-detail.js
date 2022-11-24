@@ -149,6 +149,7 @@ $(document).ready(function (e) {
             type: 'GET',
             url: url,
             data: {
+                slug:slug_category,
                 ran_id: slug
             },
             beforeSend: function (xhr) {

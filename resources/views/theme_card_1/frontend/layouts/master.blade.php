@@ -164,6 +164,8 @@
 <div id="m_scroll_top" class="m-scroll-top">
     <i class="la la-arrow-up"></i>
 </div>
+
+@if(setting('sys_id_chat_message') != '')
 <!-- Messenger Plugin chat Code -->
 <div id="fb-root" style="    z-index: 666;"></div>
 
@@ -196,6 +198,8 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
+
+@endif
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazysizes.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert/sweetalert.min.js"></script>

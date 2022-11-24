@@ -332,6 +332,7 @@
     </div>
 </div>
 
+@if(setting('sys_id_chat_message') != '')
 <!-- Messenger Plugin chat Code -->
 <div id="fb-root" style="    z-index: 666;"></div>
 
@@ -362,7 +363,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-
+@endif
 @include('frontend.layouts.includes.footer')
 
 @include('frontend.layouts.includes.menu-bottom')

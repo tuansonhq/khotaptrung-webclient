@@ -83,7 +83,7 @@
                                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
                                         </div>
                                         <div class="col-md-10 col-10 body-header-col-ct">
-                                            <span class="body-header-col-ct-titile">{{ $data->custom->title ? $data->custom->title : $data->title }}</span>
+                                            <h1 class="">{{ $data->custom->title ? $data->custom->title : $data->title }}</h1>
                                         </div>
                                     </div>
                                 </div>

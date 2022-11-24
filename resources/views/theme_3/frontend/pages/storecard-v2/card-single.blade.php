@@ -342,7 +342,7 @@
             <div class="modal-content -custom dialog">
                 <div class="dialog--header">
                     <div class="dialog--header__title">
-                        Xác nhận thanh toán
+                        Xác nhận nạp thẻ
                     </div>
                     <button type="button" class="close dialog__close" data-dismiss="modal">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/close.png" alt="">
