@@ -5,29 +5,18 @@
 @section('meta_robots')
     <meta name="robots" content="index,follow" />
 @endsection
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/service/style.js"></script>
 @section('content')
     <div style="width:100%;position: relative;" class="homeitem">
         <div class="item">
             <div class="index_title">
                 <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/ic_h1.svg" alt="mua thẻ điện thoại online"></span>
-                <h1> mua thẻ online</h1>
+                <h2 style="padding-top: 62px"> mua thẻ online</h2>
             </div>
             @include('frontend.widget.__card_purchase')
         </div>
         <!--popup work start here-->
-        <div class="d-flex justify-content-between" style="padding-top: 24px">
-            <div class="main-title">
-                <h1>Dịch vụ game</h1>
-            </div>
-            <div class="service-search d-none d-lg-block ">
-                <div class="input-group p-box">
-                    <input type="text" id="txtSearch" placeholder="Tìm dịch vụ" value="" class="" width="200px">
-                    <span class="icon-search"><i class="fas fa-search"></i></span>
-                </div>
-            </div>
-        </div>
         @include('frontend.widget.__content__home__dichvu')
+        @include('frontend.widget.__content__home__game')
         <div class="clr"></div>
         @if(setting('sys_intro_text'))
         <div class="wp_content_post_index">
@@ -55,4 +44,5 @@
         @endif
     </div>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard/store_card.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/showdetailservice.js?v={{time()}}"></script>
 @endsection

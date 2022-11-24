@@ -1,11 +1,57 @@
 @if(isset($data))
     @if($data->status == 1)
-
     <div class="row marginauto">
         <div class="col-lg-6 col-md-12 shop_product_detailS__col">
             <div class="gallery" style="overflow: hidden">
                 @if(isset($game_auto_props) && count($game_auto_props) && $data_category->slug == 'nick-lien-minh')
-                    <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" >
+                    @if(isset($data->image_extension))
+                        <div class="swiper gallery-slider">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($data->image)}}">
+                                        <img src="{{\App\Library\MediaHelpers::media($data->image)}}" style="width: 100%" alt="" >
+                                    </a>
+                                </div>
+                                @foreach(explode('|',$data->image_extension) as $val)
+                                    @if($val != '')
+                                    <div class="swiper-slide">
+                                        <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                            <img src="{{\App\Library\MediaHelpers::media($val)}}" style="width: 100%" alt="" >
+                                        </a>
+                                    </div>
+                                    @endif
+                                @endforeach
+                            </div>
+
+                            <div class="swiper-button-prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="swiper-button-next">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+
+                        <div class="swiper gallery-thumbs gallery-thumbsmaxheadth">
+                            <div class="swiper-wrapper">
+                                @foreach(explode('|',$data->image_extension) as $val)
+
+                                    @if($val != '')
+
+                                    <div class="swiper-slide">
+                                        <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                            <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
+                                        </a>
+                                    </div>
+
+                                    @endif
+
+                                @endforeach
+                            </div>
+                        </div>
+                    @else
+                        <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" >
+                    @endif
+
                 @else
                     <div class="swiper gallery-slider">
                         <div class="swiper-wrapper">
@@ -431,25 +477,62 @@
                                 @if(isset($info) && count($info))
                                     @foreach($info as $ke => $in)
                                         @if(in_array($in->name,config('module.acc.auto_nro_tt')))
-                                            @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
-                                                <div class="col-md-12">
-                                                    <div class="row gallery__03">
-                                                        <div class="col-md-12 gallery__01__row">
-                                                            <div class="row">
-                                                                <div class="col-auto span__dangky__auto">
-                                                                    <i class="fas fa-angle-right"></i>
+                                            @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                @if($in->name == 'Skill Pet')
+                                                    @if(isset($in->value) && count($in->value) )
+                                                        @foreach($in->value as $k_value => $value)
+                                                            @if($k_value != 0)
+                                                                <div class="col-md-12">
+                                                                    <div class="row gallery__03">
+                                                                        <div class="col-md-12 gallery__01__row">
+                                                                            <div class="row">
+                                                                                <div class="col-auto span__dangky__auto">
+                                                                                    <i class="fas fa-angle-right"></i>
+                                                                                </div>
+                                                                                <div class="col-md-4 col-4 pl-0">
+                                                                                    <span class="span__dangky">Skill {{ $k_value + 1 }} </span>
+                                                                                </div>
+                                                                                <div class="col-md-6 col-6 pl-0">
+                                                                                    <span class="span__dangky">
+
+                                                                                        {{ $value->name }} - {{ $value->value }} <br>
+
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="col-md-4 col-4 pl-0">
-                                                                    <span class="span__dangky">{{ $in->name??'' }} </span>
-                                                                </div>
-                                                                <div class="col-md-6 col-6 pl-0">
-                                                                    <span class="span__dangky">{{ $in->value??'' }} </span>
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                @elseif($in->name == 'Cải trang')
+                                                    <div class="col-md-12">
+                                                        <div class="row gallery__03">
+                                                            <div class="col-md-12 gallery__01__row">
+                                                                <div class="row">
+                                                                    <div class="col-auto span__dangky__auto">
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col-md-4 col-4 pl-0">
+                                                                        <span class="span__dangky">{{ $in->name??'' }} </span>
+                                                                    </div>
+                                                                    <div class="col-md-6 col-6 pl-0">
+                                                                        <span class="span__dangky">
+
+                                                                            @if(isset($in->value) && count($in->value) )
+                                                                                @foreach($in->value as $value)
+                                                                                    {{ $value }} <br>
+                                                                                @endforeach
+                                                                            @endif
+                                                                        </span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @else
+                                                @endif
+                                            @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai')
                                                 <div class="col-md-12">
                                                     <div class="row gallery__03">
                                                         <div class="col-md-12 gallery__01__row">
@@ -461,7 +544,7 @@
                                                                     <span class="span__dangky">{{ $in->name??'' }} </span>
                                                                 </div>
                                                                 <div class="col-md-6 col-6 pl-0">
-                                                                    <span class="span__dangky">{{ str_replace(',','.',number_format($in->value??'')) }}</span>
+                                                                    <span class="span__dangky">{{ $in->value }}</span>
                                                                 </div>
                                                             </div>
                                                         </div>

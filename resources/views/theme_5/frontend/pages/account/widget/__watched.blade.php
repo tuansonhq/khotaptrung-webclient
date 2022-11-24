@@ -1,152 +1,246 @@
-<section class="section-category watched tk_watched">
-    <div class="section-header c-mb-24 c-mb-lg-16">
-        <h2 class="section-title fz-lg-15">
-            {{--            <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/1362.svg)"></i>--}}
-            Tài khoản đã xem
-        </h2>
-        <a href="" class="link arr-right ml-auto">Xem thêm</a>
-    </div>
+@if(isset($data) && count($data))
+    <section class="section-category section-category_c same-price">
+        <div class="section-header c-mb-24 c-mb-lg-16">
+            <h2 class="section-title fz-lg-15">
+                {{--            <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/1362.svg)"></i>--}}
+                Tài khoản đã xem
+            </h2>
+        </div>
 
     <!-- Đặt tên class cho swiper sau đó config trong file "public/assets/frontend/{{theme('')->theme_key}}/js/swiper-slider-conf/swiper-slider-conf.js" -->
-    <!-- Nếu có giao diện giống nhau hoàn toàn thì có thể dùng chung config (chung tên class 'class-config-demo') -->
+        <!-- Nếu có giao diện giống nhau hoàn toàn thì có thể dùng chung config (chung tên class 'class-config-demo') -->
 
-    <div class="swiper class-config-account-viewed card-list">
-        <div class="swiper-wrapper data_watched">
+        <div class="swiper class-config-demo card-list">
+            <div class="swiper-wrapper">
 
-{{--            <div class="swiper-slide">--}}
-{{--                <div class="item-category">--}}
-{{--                    <div class="card">--}}
-{{--                        <a href="/acc/id" class="card-body scale-thumb c-p-16 c-p-lg-12">--}}
-{{--                            <div class="account-thumb c-mb-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/image 2.png" alt="" class="account-thumb-image"></div>--}}
-{{--                            <div class="account-title"><div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div></div>--}}
-{{--                            <div class="account-info c-mb-8">--}}
-{{--                                <div class="info-attr">Đã bán: 45.000</div>--}}
-{{--                                <div class="info-attr">ID: #451234</div>--}}
-{{--                            </div>--}}
-{{--                            <div class="price">--}}
-{{--                                <div class="price-current w-100">250.000đ</div>--}}
-{{--                                <div class="price-old c-mr-8">250.000đ</div>--}}
-{{--                                <div class="discount">10%</div>--}}
-{{--                            </div>--}}
-{{--                        </a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+                @foreach($data as $item)
+                    @if ($item->randId == $ran_id)
+                        @continue;
+                    @endif
+                    <div class="swiper-slide">
+                        <div class="item-category">
+                            <div class="card">
+                                <a href="/acc/{{ $item->randId }}" class="card-body scale-thumb c-p-16 c-p-lg-12">
+                                    <div class="account-thumb c-mb-8">
+                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}" class="account-thumb-image lazy">
+                                    </div>
+                                    <div class="account-title c-mb-8">
+                                        <div class="text-title fw-700 text-limit limit-1">#{{ $item->randId }}</div>
+                                    </div>
+
+                                    <?php
+                                    $total = 0;
+                                    $index = 0;
+                                    ?>
+                                    @if(isset($item->groups))
+                                        <?php
+                                        $att_values = $item->groups;
+                                        ?>
+
+                                        {{--                                            @dd($att_values)--}}
+                                        @foreach($att_values as $att_value)
+                                            {{--            @dd($att_value)--}}
+                                            @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                @if(isset($att_value->parent))
+                                                    @if($total < 4)
+                                                        <?php
+                                                        $total = $total + 1;
+                                                        ?>
+                                                        <div class="info-attr">
+                                                            {{ $att_value->parent->title??null }}: {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}
+                                                        </div>
+                                                    @endif
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    @endif
+
+                                    @if(isset($item->params) && isset($item->params->ext_info))
+                                        <?php $params = json_decode(json_encode($item->params->ext_info),true) ?>
+                                        @if(isset($item->category->childs) && count($item->category->childs)>0)
+                                            @foreach($item->category->childs as $index=>$att)
+                                                @if($att->position == 'text')
+                                                    @if(isset($att->childs))
+                                                        @foreach($att->childs as $child)
+                                                            @foreach($params as $key => $param)
+                                                                @if($key == $child->id)
+                                                                    {{ $child->title??null }}: {{ isset($param) ? \Str::limit($param,16) : null }}
+                                                                @endif
+                                                            @endforeach
+                                                        @endforeach
+                                                    @endif
+
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @endif
+                                    @if(isset($item->params))
+                                        @if(isset($slug))
+                                            @if($slug == "nick-lien-minh")
+                                                @if(isset($item->params->rank_info))
+
+                                                    @foreach($item->params->rank_info as $rank_info)
+                                                        @if($rank_info->queueType == "RANKED_TFT")
+                                                        @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+                                                            <?php
+                                                            $index = $index + 1;
+                                                            ?>
+                                                            <div class="info-attr">
+                                                                Rank :
+                                                                @if($rank_info->tier == "NONE")
+                                                                    CHƯA CÓ RANK
+                                                                @else
+                                                                    {{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}
+                                                                @endif
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                                @if(isset($item->params->count))
+                                                    @if(isset($item->params->count->champions))
+                                                        <?php
+                                                        $index = $index + 1;
+                                                        ?>
+                                                        <div class="info-attr">
+                                                            Số tướng : {{ $item->params->count->champions }}
+                                                        </div>
+                                                    @endif
+                                                    @if(isset($item->params->count->skins))
+                                                        <?php
+                                                        $index = $index + 1;
+                                                        ?>
+                                                        <div class="info-attr">
+                                                            Trang phục : {{ $item->params->count->skins }}
+                                                        </div>
+                                                    @endif
+                                                @endif
+                                            @elseif($slug == "nick-ninja-school")
+
+                                                @php
+                                                    $server = null;
+                                                    $info = array();
+
+                                                    $params = $item->params;
+                                                    if (isset($params->server)){
+                                                        $server = $params->server;
+                                                    }
+                                                    if (isset($params->info) && count($params->info)){
+                                                        $info = $params->info;
+                                                    }
+                                                @endphp
+                                                @if(isset($server))
+                                                    <?php
+                                                    $total = $total + 1;
+                                                    ?>
+                                                    <div class="info-attr">
+                                                        Server :
+                                                        {{ $server??'' }}
+                                                    </div>
 
 
+                                                @endif
+
+                                                @if(isset($info) && count($info))
+                                                    @foreach($info as $ke => $in)
+                                                        @if(in_array($in->name,config('module.acc.auto_ninja_list_tt')))
+                                                            <?php
+                                                            $total = $total + 1;
+                                                            ?>
+                                                            <div class="info-attr">
+                                                                {{ $in->name??'' }} :
+                                                                @if($in->name == 'Yên')
+                                                                    {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                @else
+                                                                    {{ $in->value??'' }}
+                                                                @endif
+                                                            </div>
+
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @elseif($slug == "nick-ngoc-rong-online")
+
+                                                @php
+                                                    $server = null;
+                                                    $info = array();
+
+                                                    $params = $item->params;
+                                                    if (isset($params->server)){
+                                                        $server = $params->server;
+                                                    }
+                                                    if (isset($params->info) && count($params->info)){
+                                                        $info = $params->info;
+                                                    }
+                                                @endphp
+                                                @if(isset($server))
+                                                    <?php
+                                                    $total = $total + 1;
+                                                    ?>
+                                                    <div class="info-attr">
+                                                        Server :
+                                                        {{ $server??'' }}
+                                                    </div>
+
+
+                                                @endif
+
+                                                @if(isset($info) && count($info))
+                                                    @foreach($info as $ke => $in)
+                                                        @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
+                                                            @if($total < 4)
+                                                                <?php
+                                                                $total = $total + 1;
+                                                                ?>
+                                                                <div class="info-attr">
+                                                                    {{ $in->name??'' }} :
+                                                                    @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                                        {{ $in->value??'' }}
+                                                                    @else
+                                                                        {{ str_replace(',','.',number_format($in->value??'')) }}
+                                                                    @endif
+                                                                </div>
+                                                            @endif
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @endif
+                                        @endif
+
+                                    @endif
+                                    @php
+                                        if (isset($item->price_old)) {
+                                            $sale_percent = (($item->price_old - $item->price) / $item->price_old) * 100;
+                                            $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
+                                        } else {
+                                            $sale_percent = 0;
+                                        }
+                                    @endphp
+                                    <div class="price mt-auto">
+                                        @if($sale_percent > 0)
+                                            <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
+                                        @else
+                                            <div class="price-current w-100 c-pb-16">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
+                                        @endif
+
+
+                                        @if($sale_percent > 0)
+                                            <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($item->price_old)) }}đ</div>
+                                        @endif
+                                        @if($sale_percent > 0)
+                                            <div class="discount">{{$sale_percent}}%</div>
+                                        @endif
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
+            <div class="navigation slider-next"></div>
+            <div class="navigation slider-prev"></div>
         </div>
-        <div class="navigation slider-next"></div>
-        <div class="navigation slider-prev"></div>
-    </div>
 
-</section>
+    </section>
 
-<script>
-    $(document).ready(function(){
-
-        function setCookie(name,value,days) {
-            var expires = "";
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime() + (days*24*60*60*1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-        }
-
-        function getCookie(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for(var i=0;i < ca.length;i++) {
-                var c = ca[i];
-                while (c.charAt(0)==' ') c = c.substring(1,c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-            }
-            return null;
-        }
-
-        function eraseCookie(name) {
-            document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        }
-
-        let cookies_new = getCookie('for_you_nick');
-
-        if (cookies_new){
-
-            let n_cookies =  cookies_new.split(',');
-
-
-            var html = '';
-            n_cookies = n_cookies.reverse();
-            $.each(n_cookies,function(n_key,n_value){
-
-                let s_cookies = n_value.split('|');
-                let image_c = '';
-                let category_c = '';
-                let randId_c = '';
-                let price_c = '';
-                let price_old_c = '';
-                let promotion_c = '';
-                let buy_account_c = '';
-
-                if (s_cookies[0]){
-                    image_c = s_cookies[0];
-                }
-
-                if (s_cookies[1]){
-                    category_c = s_cookies[1];
-                }
-
-                if (s_cookies[2]){
-                    randId_c = s_cookies[2];
-                }
-
-                if (s_cookies[3]){
-                    price_c = s_cookies[3];
-                }
-
-                if (s_cookies[4]){
-                    price_old_c = s_cookies[4];
-                }
-
-                if (s_cookies[5]){
-                    promotion_c = s_cookies[5];
-                }
-
-                if (s_cookies[6]){
-                    buy_account_c = s_cookies[6];
-                }
-
-                // $.each(s_cookies,function(s_key,s_value){
-                    html += '<div class="swiper-slide">';
-                        html += '<div class="item-category">';
-                            html += '<div class="card">';
-                                html += '<a href="/acc/' +randId_c + '" class="card-body scale-thumb c-p-16 c-p-lg-12">';
-                                    html += '<div class="account-thumb c-mb-8"><img src="' + image_c + '" alt="" class="account-thumb-image lazy"></div>';
-                                    html += '<div class="account-title"><div class="text-title fw-700 text-limit limit-1">' + category_c + '</div></div>';
-                                    html += '<div class="account-info c-mb-8">';
-                                        html += '<div class="info-attr">Đã bán: ' + buy_account_c + '</div>';
-                                        html += '<div class="info-attr">ID: #' + randId_c + '</div>';
-                                    html += '</div>';
-                                    html += '<div class="price">';
-                                        html += '<div class="price-current w-100">' + price_c + 'đ</div>';
-                                        html += '<div class="price-old c-mr-8">' + price_old_c + 'đ</div>';
-                                        html += '<div class="discount">' + promotion_c + '%</div>';
-                                    html += '</div>';
-                                html += '</a>';
-                            html += '</div>';
-                        html += '</div>';
-                    html += '</div>';
-                // })
-
-            })
-
-            $('.data_watched').html('');
-            $('.data_watched').html(html);
-            $('.tk_watched').fadeIn();
-        }
-
-    })
-</script>
-
-
+@endif

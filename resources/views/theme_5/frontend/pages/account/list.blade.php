@@ -36,7 +36,7 @@
                 <a href="/mua-acc" class="breadcrumb-link">Shop Account</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="/mua-acc/{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}" class="breadcrumb-link">Danh sách Nick Liên Quân</a>
+                <a href="/mua-acc/{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}" class="breadcrumb-link">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</a>
             </li>
         </ul>
         <div class="head-mobile">
@@ -91,7 +91,7 @@
                 <form action="" class="form-search c-mb-24 d-lg-none">
                     <input type="search" placeholder="Tìm kiếm" class="search">
                 </form>
-                <div class="text-title fw-700 c-mb-8 d-lg-none">Nick Freefire cực phẩm</div>
+                <div class="text-title fw-700 c-mb-8 d-lg-none">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</div>
                 <div class="mobile-tools c-mb-8 d-lg-none">
                     <label class="tool-filter c-mr-12 open-sheet" data-target="#sheet-filter">
                         Bộ lọc
@@ -114,6 +114,8 @@
                 </div >
 
             </section>
+
+
             <!-- Modal Filter -->
             <div class="modal fade" id="modal-filter">
                 <div class="modal-dialog modal-dialog-centered">
@@ -244,24 +246,10 @@
                                     @endforeach
                                     @elseif($slug == 'nick-ninja-school')
                                         @foreach($auto_properties as $auto_propertie)
+
                                             @if($auto_propertie->key == 'CAPTURES')
 
-                                                <div class="input-group">
-                                                    <label class="form-label">
-                                                        {{ $auto_propertie->key }}
-                                                    </label>
-                                                    <select name="champions_data" class="select-2-custom w-100" id="">
-                                                        <option value="">--Không chọn--</option>
-                                                        @if(isset($auto_propertie->childs))
-                                                            @foreach($auto_propertie->childs as $child)
-                                                                <option value="{{ $child->id }}">{{ $child->name }}</option>
-                                                            @endforeach
-                                                        @endif
-                                                    </select>
-                                                </div>
-
-                                            @else
-
+                                            @elseif($auto_propertie->key == 'SERVER')
                                                 <div class="input-group">
                                                     <label class="form-label">
                                                         {{ $auto_propertie->key }}
@@ -276,7 +264,48 @@
                                                     </select>
                                                 </div>
 
+                                            @else
+                                                @foreach($auto_propertie->childs as $childs)
+                                                    @if($childs->key == 'CHAR_LEVEL')
+                                                        <div class="input-group">
+                                                            <label class="form-label">
+                                                                LEVEL
+                                                            </label>
+                                                            <select name="tftdamageskins_data" class="select-2-custom w-100" id="">
+                                                                <option value="">--Không chọn--</option>
+                                                                <option value="{{ $childs->id }}-1-39">1 - 39</option>
+                                                                <option value="{{ $childs->id }}-40-49">40 - 49</option>
+                                                                <option value="{{ $childs->id }}-50-59">50 - 59</option>
+                                                                <option value="{{ $childs->id }}-60-69">60 - 69</option>
+                                                                <option value="{{ $childs->id }}-70-79">70 - 79</option>
+                                                                <option value="{{ $childs->id }}-80-89">80 - 89</option>
+                                                                <option value="{{ $childs->id }}-90-99">90 - 99</option>
+                                                                <option value="{{ $childs->id }}-100-109">100 - 109</option>
+                                                                <option value="{{ $childs->id }}-110-119">110 - 119</option>
+                                                                <option value="{{ $childs->id }}-120-129">120 - 129</option>
+                                                                <option value="{{ $childs->id }}-130">130</option>
+                                                            </select>
+                                                        </div>
+
+                                                    @elseif($childs->key == 'CHAR_CLASS')
+
+                                                        <div class="input-group">
+                                                            <label class="form-label">
+                                                                CLASS
+                                                            </label>
+                                                            <select name="champions_data" class="select-2-custom w-100" id="">
+                                                                <option value="">--Không chọn--</option>
+                                                                @foreach($childs->childs as $child)
+                                                                    <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+
+                                                    @endif
+                                                @endforeach
+
                                             @endif
+
                                         @endforeach
                                     @endif
                                 @else
@@ -383,6 +412,27 @@
                                                 </select>
                                             </div>
 
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    Trang phục
+                                                </label>
+                                                <select class="account-filter-field" name="champions_data"  data-title="{{ $auto_propertie->key }}" id="">
+                                                    <option value="" selected disabled>--Không chọn--</option>
+                                                    @if(isset($auto_propertie->childs) && count($auto_propertie->childs))
+                                                        @foreach($auto_propertie->childs as $child)
+
+                                                            @if(isset($child->childs) && count($child->childs))
+                                                                @foreach($child->childs as $c_child)
+                                                                    <option value="{{ $c_child->id }}">{{ $c_child->name }}</option>
+                                                                @endforeach
+                                                            @endif
+
+                                                        @endforeach
+                                                    @endif
+
+                                                </select>
+                                            </div>
+
                                         @elseif($auto_propertie->key == 'tftcompanions')
 
                                             <div class="input-group">
@@ -438,7 +488,10 @@
                                     @endforeach
                                 @elseif($slug == 'nick-ninja-school')
                                     @foreach($auto_properties as $auto_propertie)
+
                                         @if($auto_propertie->key == 'CAPTURES')
+
+                                        @elseif($auto_propertie->key == 'SERVER')
 
                                             <div class="input-group">
                                                 <label class="form-label">
@@ -456,23 +509,50 @@
                                             </div>
 
                                         @else
+                                            @foreach($auto_propertie->childs as $childs)
+                                                @if($childs->key == 'CHAR_LEVEL')
 
-                                            <div class="input-group">
-                                                <label class="form-label">
-                                                    {{ $auto_propertie->key }}
-                                                </label>
-                                                <select class="account-filter-field" name="tftmapskins_data"  data-title="{{ $auto_propertie->key }}" id="">
-                                                    <option value="" selected disabled>--Không chọn--</option>
-                                                    @if(isset($auto_propertie->childs))
-                                                        @foreach($auto_propertie->childs as $child)
-                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
-                                                        @endforeach
-                                                    @endif
+                                                    <div class="input-group">
+                                                        <label class="form-label">
+                                                            LEVEL
+                                                        </label>
+                                                        <select class="account-filter-field" name="tftdamageskins_data"  data-title="{{ $childs->key }}" id="">
+                                                            <option value="" selected disabled>--Không chọn--</option>
+                                                            <option value="{{ $childs->id }}-1-39">1 - 39</option>
+                                                            <option value="{{ $childs->id }}-40-49">40 - 49</option>
+                                                            <option value="{{ $childs->id }}-50-59">50 - 59</option>
+                                                            <option value="{{ $childs->id }}-60-69">60 - 69</option>
+                                                            <option value="{{ $childs->id }}-70-79">70 - 79</option>
+                                                            <option value="{{ $childs->id }}-80-89">80 - 89</option>
+                                                            <option value="{{ $childs->id }}-90-99">90 - 99</option>
+                                                            <option value="{{ $childs->id }}-100-109">100 - 109</option>
+                                                            <option value="{{ $childs->id }}-110-119">110 - 119</option>
+                                                            <option value="{{ $childs->id }}-120-129">120 - 129</option>
+                                                            <option value="{{ $childs->id }}-130">130</option>
 
-                                                </select>
-                                            </div>
+                                                        </select>
+                                                    </div>
+
+                                                @elseif($childs->key == 'CHAR_CLASS')
+
+                                                    <div class="input-group">
+                                                        <label class="form-label">
+                                                            CLASS
+                                                        </label>
+                                                        <select class="account-filter-field" name="champions_data"  data-title="{{ $childs->key }}" id="">
+                                                            <option value="" selected disabled>--Không chọn--</option>
+                                                            @foreach($childs->childs as $child)
+                                                                <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                            @endforeach
+
+                                                        </select>
+                                                    </div>
+
+                                                @endif
+                                            @endforeach
 
                                         @endif
+
                                     @endforeach
                                 @endif
                             @else
@@ -544,8 +624,48 @@
 {{--  Danh mục nick khác   --}}
         @include('frontend.pages.account.widget.__related__category')
 
+            @if($data->custom->content)
+                <div class="c-mb-16">
+                    <div class="card overflow-hidden detailViewBlock">
+                        <div class="card-body c-px-16">
+                            @if(substr($data->custom->content, 1200))
+                                <div class="content-desc hide detailViewBlockContent">
+                                    {!! $data->custom->content !!}
+                                </div>
+                            @else
+                                <div class="content-desc detailViewBlockContent">
+                                    {!! $data->custom->content !!}
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="card-footer text-center">
+                            <span class="see-more" data-content="Xem thêm nội dung"></span>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="c-mb-16 c-mt-16">
+                    <div class="card overflow-hidden detailViewBlock">
+                        <div class="card-body c-px-16">
+                            @if(substr($data->content, 1200))
+                                <div class="content-desc hide detailViewBlockContent">
+                                    {!! $data->content !!}
+                                </div>
+                            @else
+                                <div class="content-desc detailViewBlockContent">
+                                    {!! $data->content !!}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            @endif
+
         {{--            Dịch vụ khác   --}}
         @include('frontend.widget.__services__other')
+
+
 
             <input type="hidden" value="{{ $slug }}" name="slug" class="slug">
             {{--    <input type="hidden" value="{{ $slug_category }}" name="slug_category" class="slug_category">--}}

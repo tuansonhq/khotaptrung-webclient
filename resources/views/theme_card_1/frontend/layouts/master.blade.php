@@ -8,21 +8,24 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8"/><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @yield('seo_head')
     @yield('meta_robots')
-    <meta name="path" content="" />
-    <meta name="jwt" content="" />
+    <meta name="path" content=""/>
+    <meta name="jwt" content=""/>
     @if(setting('sys_google_search_console') != '')
-        <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />
+        <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}"/>
     @endif
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
     @stack('style')
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrapdatepicker/bootstrap-datepicker.min.css">
+    <link rel="stylesheet"
+          href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrapdatepicker/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/tui-date-picker.css">
 
@@ -30,32 +33,52 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/responsive.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/blog.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_nam.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_duong.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/storecard.css?v={{time()}}">
-{{--    js--}}
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.css">
+    {{--    js--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/moment/moment.min.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrapdatepicker/bootstrap-datepicker.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.umd.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.js"></script>
+
+    <script
+        src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrapdatepicker/bootstrap-datepicker.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/bootstrap-datetimepicker.min.js"></script>
     @if(setting('sys_google_tag_manager_head') != '')
 
         @foreach(explode('|',setting('sys_google_tag_manager_head')) as $tag => $sys)
             @if($tag == 0)
             <!-- Google Tag Manager -->
-                <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                    })(window,document,'script','dataLayer','{{ $sys }}');</script>
+                <script>(function (w, d, s, l, i) {
+                        w[l] = w[l] || [];
+                        w[l].push({
+                            'gtm.start':
+                                new Date().getTime(), event: 'gtm.js'
+                        });
+                        var f = d.getElementsByTagName(s)[0],
+                            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                        j.async = true;
+                        j.src =
+                            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                        f.parentNode.insertBefore(j, f);
+                    })(window, document, 'script', 'dataLayer', '{{ $sys }}');</script>
                 <!-- End Google Tag Manager -->
             @elseif($tag == 1)
             <!-- Hubjs Tag Manager -->
                 <script type="text/javascript">
                     var _mtm = window._mtm = window._mtm || [];
                     _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
-                    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-                    g.type='text/javascript'; g.async=true; g.src='https://analytics.hub-js.com/js/container_{{ $sys }}.js'; s.parentNode.insertBefore(g,s);
+                    var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+                    g.type = 'text/javascript';
+                    g.async = true;
+                    g.src = 'https://analytics.hub-js.com/js/container_{{ $sys }}.js';
+                    s.parentNode.insertBefore(g, s);
                 </script>
                 <!-- End Hubjs Tag Manager -->
             @endif
@@ -67,8 +90,10 @@
 <body class="c-layout-header-fixed">
 @if(setting('sys_google_tag_manager_body') != '')
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{setting('sys_google_tag_manager_body') }}"
-                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id={{setting('sys_google_tag_manager_body') }}"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
 @endif
 <!--header section work start-->
@@ -77,7 +102,23 @@
 <!--Login Start-->
 <!-- đăng kí -->
 <!-- đăng nhập -->
-@include('frontend.widget.modal.__login')
+@if(Request::is('login'))
+    @if(!\App\Library\AuthCustom::check())
+        <script>
+            $(document).ready(function () {
+                $('#modal-login').modal('show');
+                setTimeout(() => {
+                    $('#loginModal #modal-login-container').removeClass('right-panel-active');
+                }, 200);
+
+            });
+        </script>
+    @endif
+
+@endif
+@if (!\App\Library\AuthCustom::check())
+    @include('frontend.widget.modal.__login')
+@endif
 @include('frontend.widget.modal.__regist')
 <div id="modalinfo" tabindex="-1" role="dialog" class="modal fade" data-backdrop="static">
     <div class="modal-dialog modal-md">
@@ -139,17 +180,18 @@
 
 <!-- Your SDK code -->
 <script>
-    window.fbAsyncInit = function() {
+    window.fbAsyncInit = function () {
         FB.init({
-            xfbml            : true,
-            version          : 'v13.0'
+            xfbml: true,
+            version: 'v13.0'
         });
     };
 
-    (function(d, s, id) {
+    (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
+        js = d.createElement(s);
+        js.id = id;
         js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
@@ -159,11 +201,15 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert/sweetalert.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/main.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
-
-<button type="button" class="btn btn-danger btn-floating btn-lg ripple-surface" id="btn-back-to-top" style="display: none; min-width: 45px;z-index: 999">
+<script type="text/javascript" src="/assets/frontend/{{theme('')->theme_key}}/js/slick.min.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
+<button type="button" class="btn btn-danger btn-floating btn-lg ripple-surface" id="btn-back-to-top"
+        style="display: none; min-width: 45px;min-height: 45px;border-radius: 100%;z-index: 999">
     <i class="fas fa-arrow-up"></i>
 </button>
-
-
+<button type="button" class="btn btn-danger btn-floating btn-lg ripple-surface" id="btn-back-to-top" style="display: none; min-width: 45px;min-height: 45px;border-radius: 100%;z-index: 999">
+    <i class="fas fa-arrow-up"></i>
+</button>
+@yield('scripts')
 </body>
 </html>

@@ -3,7 +3,7 @@ $(document).ready(function () {
     var slug = $('.slug').val();
     var slug_category = $('.slug_category').val();
 
-    getShowAccDetail(slug)
+    getShowAccDetail(slug);
 
     function getShowAccDetail(slug) {
 
@@ -65,7 +65,8 @@ $(document).ready(function () {
             type: 'GET',
             url: url,
             data: {
-                slug:slug_category
+                slug:slug_category,
+                ran_id: slug
             },
             beforeSend: function (xhr) {
 
@@ -85,6 +86,49 @@ $(document).ready(function () {
 
                     $('#showdetailacc').html('');
                     $('#showdetailacc').html(html);
+                }
+
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+                initSwiperNick();
+            }
+        });
+    }
+
+    getTaiKhoanDaXem();
+
+    function getTaiKhoanDaXem() {
+
+        var url = '/watched-acc';
+        request = $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                ran_id: slug
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (data) => {
+
+                if (data.status == 1){
+
+                    $('#showswatched').html('');
+                    $('#showswatched').html(data.datawatched);
+
+                }else if (data.status == 0){
+                    $('#showswatched').html('');
+                    // var html = '';
+                    // html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + data.message + '</span></div></div>';
+                    //
+                    // $('#showdetailacc').html('');
+                    // $('#showdetailacc').html(html);
+                }else if (data.status == 2){
+                    $('#showswatched').html('');
+                    console.log("chưa có dữ liệu")
                 }
 
             },

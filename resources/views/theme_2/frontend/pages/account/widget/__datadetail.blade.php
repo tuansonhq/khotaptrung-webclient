@@ -8,7 +8,48 @@
                         <div class="tab-pane fade show active" id="tab-thumb" role="tabpanel">
                             <div class="card-body c-p-16 c-p-lg-0 mx-n3 mx-lg-0 d-flex">
                                 @if(isset($game_auto_props) && count($game_auto_props) && $data_category->slug == 'nick-lien-minh')
+                                    @if(isset($data->image_extension))
+                                        <div class="swiper gallery-top d-none d-lg-block">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($data->image)}}">
+                                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="mua-nick" >
+                                                    </div>
+                                                </div>
+                                                @foreach(explode('|',$data->image_extension) as $val)
+                                                    @if($val != '')
+                                                    <div class="swiper-slide">
+                                                        <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                                            <img class="lazy" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                        </div>
+                                                    </div>
+                                                    @endif
+                                                @endforeach
+
+                                            </div>
+                                        </div>
+
+                                        <div class="swiper gallery-thumbs c-ml-16 c-ml-lg-0">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($data->image)}}">
+                                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="mua-nick" >
+                                                    </div>
+                                                </div>
+                                                @foreach(explode('|',$data->image_extension) as $val)
+                                                    @if($val != '')
+                                                    <div class="swiper-slide">
+                                                        <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                                            <img class="lazy" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                        </div>
+                                                    </div>
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @else
                                     <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" >
+                                    @endif
                                 @else
                                 <div class="swiper gallery-top d-none d-lg-block">
                                     <div class="swiper-wrapper">
@@ -21,7 +62,6 @@
                                             </div>
 
                                         @endforeach
-
 
                                     </div>
                                 </div>

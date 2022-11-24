@@ -1,133 +1,90 @@
-@if(Request::is('tin-tuc'))
-    <title>Tin tức</title>
-@elseif(Request::is('mua-acc'))
-    <title>Mua acc all game uy tín, giá rẻ. Giao dịch nick tự động 100%. Tài khoản lỗi hoàn tiền 1 - 1</title>
-@elseif(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
-    @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
-        <title>{{ isset($data->custom->seo_title) ? $data->custom->seo_title :  $data->seo_title }}</title>
-    @elseif(Request::is('dich-vu/'. $data->slug .''))
-        <title>{{ $data->seo_title??'' }}</title>
-    @elseif(Request::is('tin-tuc/'. $data->slug .''))
-        <title>{{ $data->seo_title??'' }}</title>
-    @elseif(Request::is('blog/'. $data->slug .''))
-        <title>{{ $data->seo_title??'' }}</title>
-    @endif
-@elseif(Request::is('dich-vu'))
-    <title>Shop dịch vụ all game giá rẻ, uy tín, tự động.</title>
-@elseif(isset($data->randId))
-    @if(Request::is('acc/'. $data->randId .''))
-        <title>{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}</title>
-    @endif
-@elseif(Request::is('mua-the'))
-    <title>{{setting('sys_store_card_title')??setting('sys_title') }}</title>
-@elseif(isset($datacard))
-    <title>Mua thẻ {{ $datacard }}</title>
-@elseif(isset($datakey) && isset($dataname))
-    <title>Mua thẻ {{ $dataname }} mệnh giá {{ $datakey }}</title>
-@elseif(isset($title->title))
-    @if(isset($data->randId))
-    @else
-        <title>{{$title->title }}</title>
-    @endif
-@elseif(isset($data->title))
-    @if(isset($data->randId))
-    @else
-        <title>{{$data->title }}</title>
-    @endif
-@else
-    <title>  {{setting('sys_title') }}</title>
-@endif
+@php
+    if (isset($data->custom->slug)){
+        $data->slug = $data->custom->slug;
+    }
+    if (isset($data->custom->seo_description)){
+        $data->seo_description = $data->custom->seo_description;
+    }
+    if (isset($data->custom->seo_description)){
+        $data->seo_description = $data->custom->seo_description;
+    }
+@endphp
+
+{{--title description --}}
 
 @if(Request::is('tin-tuc'))
+    {{--    Trang danh sách tin tức--}}
+    <title>Tin tức</title>
     <meta name="description" content="Tin tức">
     <meta property="og:description" content="Tin tức"/>
 @elseif(Request::is('mua-acc'))
+    {{--    Trang danh sách nick--}}
+    <title>Mua acc all game uy tín, giá rẻ. Giao dịch nick tự động 100%. Tài khoản lỗi hoàn tiền 1 - 1</title>
     <meta name="description" content="Shop bán acc all game: Free Fire, Liên Quân, Liên Minh, PUBG Mobile, Tốc Chiến, Ngọc Rồng, Ninja,.. uy tín, giá rẻ. Giao dịch nick tự động 24/7. Tài khoản lỗi hoàn tiền 100%. Website phục vụ 100.000 giao dịch thành công mỗi ngày cho khách hàng cả nước.">
     <meta property="og:description" content="Shop bán acc all game: Free Fire, Liên Quân, Liên Minh, PUBG Mobile, Tốc Chiến, Ngọc Rồng, Ninja,.. uy tín, giá rẻ. Giao dịch nick tự động 24/7. Tài khoản lỗi hoàn tiền 100%. Website phục vụ 100.000 giao dịch thành công mỗi ngày cho khách hàng cả nước."/>
-@elseif(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
-    @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
-
+    <meta property="og:title" content="Mua acc all game uy tín, giá rẻ. Giao dịch nick tự động 100%. Tài khoản lỗi hoàn tiền 1 - 1">
+@elseif(isset($data->slug) && !isset($data->randId))
+    @if(Request::is('mua-acc/'. $data->slug .'') || Request::is('dich-vu/'. $data->slug .'') || Request::is('tin-tuc/'. $data->slug .'') || Request::is('blog/'. $data->slug .'') || Request::is('minigame-'. $data->slug .''))
+        {{--        Danh sách danh mục nick --}}
+        <title>{{ isset($data->custom->seo_title) ? $data->custom->seo_title :  $data->seo_title }}</title>
         <meta name="description" content="{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}">
         <meta property="og:description" content="{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}"/>
-    @elseif(Request::is('dich-vu/'. $data->slug .''))
-        <meta name="description" content="{{ $data->seo_description??'' }}">
-        <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
-    @elseif(Request::is('tin-tuc/'. $data->slug .''))
-        <meta name="description" content="{{ $data->seo_description??'' }}">
-        <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
-    @elseif(Request::is('blog/'. $data->slug .''))
-        <meta name="description" content="{{ $data->seo_description??'' }}">
-        <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
-    @endif
-@elseif(isset($data->randId))
-    @if(Request::is('acc/'. $data->randId .''))
-
-        <meta name="description" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}">
-        <meta property="og:description" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}"/>
-
+        <meta property="og:title" content="{{ isset($data->custom->seo_title) ? $data->custom->seo_title :  $data->seo_title }}">
     @endif
 @elseif(Request::is('dich-vu'))
+    {{--    Danh sách dịch vụ--}}
+    <title>Shop dịch vụ all game giá rẻ, uy tín, tự động.</title>
+    <meta property="og:title" content="Shop dịch vụ all game giá rẻ, uy tín, tự động.">
     <meta name="description" content="Website cung cấp các dịch vụ như: nạp game ( kim cương, quân huy, RP, UC, vàng, ngọc, xu... ), cày thuê ( liên quân, liên minh, free fire, ... ), làm nhiệm vụ thuê, ...">
     <meta property="og:description" content="Website cung cấp các dịch vụ như: nạp game ( kim cương, quân huy, RP, UC, vàng, ngọc, xu... ), cày thuê ( liên quân, liên minh, free fire, ... ), làm nhiệm vụ thuê, ..."/>
+@elseif(isset($data->randId))
+    @if(Request::is('acc/'. $data->randId .''))
+        {{--        Chi tiết nick   --}}
+        <title>{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}</title>
+        <link rel="canonical" href="{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug??'' }}" />
+        <meta name="description" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}">
+        <meta property="og:description" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}"/>
+        <meta property="og:title" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->seo_title :  $data->category->seo_title }} mã số {{ $data->randId }}">
+    @endif
 @elseif(Request::is('mua-the'))
+    {{--    Trang mua thẻ--}}
+    <title>{{setting('sys_store_card_title')??setting('sys_title') }}</title>
+    <meta property="og:title" content="{{setting('sys_store_card_title')??setting('sys_title') }}">
     <meta name="description" content="{{ strip_tags(setting('sys_store_card_seo')??setting('sys_description')) }}">
     <meta property="og:description" content="{{ strip_tags(setting('sys_store_card_seo')??setting('sys_description')) }}"/>
 @elseif(isset($datacard))
+    <title>Mua thẻ {{ $datacard }}</title>
+    <meta property="og:title" content="Mua thẻ {{ $datacard }}">
     <meta name="description" content="Mua thẻ {{ $datacard }}">
     <meta property="og:description" content="Mua thẻ {{ $datacard }}"/>
 @elseif(isset($datakey) && isset($dataname))
+    <title>Mua thẻ {{ $dataname }} mệnh giá {{ $datakey }}</title>
+    <meta property="og:title" content="Mua thẻ {{ $dataname }} mệnh giá {{ $datakey }}">
     <meta name="description" content="Mua thẻ {{ $dataname }} mệnh giá {{ $datakey }}">
     <meta property="og:description" content="Mua thẻ {{ $dataname }} mệnh giá {{ $datakey }}"/>
 @elseif(isset($title->seo_description))
     <meta name="description" content="{{ $title->seo_description??'' }}">
     <meta property="og:description" content="{{ $title->seo_description??'' }}"/>
-@elseif(isset($data->seo_description))
-    <meta name="description" content="{{ $data->seo_description??'' }}">
-    <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
-@else
-    <meta name="description" content="{{ setting('sys_description') }}">
-    <meta property="og:description" content="{{ setting('sys_description') }}"/>
-@endif
-
-@if(isset($data->randId))
-    @if(Request::is('acc/'. $data->randId .''))
-        <title>{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}</title>
-        <meta property="og:title" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->seo_title :  $data->category->seo_title }} mã số {{ $data->randId }}">
-        <meta name="description" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}">
-        <meta property="og:description" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}"/>
-    @endif
-@elseif(Request::is('mua-acc'))
-    <meta property="og:title" content="Mua acc all game uy tín, giá rẻ. Giao dịch nick tự động 100%. Tài khoản lỗi hoàn tiền 1 - 1">
-@elseif(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
-    @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
-        <meta property="og:title" content="{{ isset($data->custom->seo_title) ? $data->custom->seo_title :  $data->seo_title }}">
-    @elseif(Request::is('dich-vu/'. $data->slug .''))
-        <meta property="og:title" content="{{ $data->title??'' }}">
-    @elseif(Request::is('tin-tuc/'. $data->slug .''))
-        <meta property="og:title" content="{{ $data->seo_title??'' }}">
-    @elseif(Request::is('blog/'. $data->slug .''))
-        <meta property="og:title" content="{{ $data->seo_title??'' }}">
-    @endif
-@elseif(Request::is('dich-vu'))
-    <meta property="og:title" content="Shop dịch vụ all game giá rẻ, uy tín, tự động.">
-@elseif(Request::is('mua-the'))
-    <meta property="og:title" content="{{setting('sys_store_card_title')??setting('sys_title') }}">
-@elseif(isset($datacard))
-    <meta property="og:title" content="Mua thẻ {{ $datacard }}">
-@elseif(isset($datakey) && isset($dataname))
-    <meta property="og:title" content="Mua thẻ {{ $dataname }} mệnh giá {{ $datakey }}">
 @elseif(isset($title->title))
     @if(isset($data->randId))
     @else
+        <title>{{$title->title }}</title>
         <meta property="og:title" content="{{$title->title}}">
     @endif
 @elseif(isset($data->title))
     @if(isset($data->randId))
     @else
+        <title>{{$data->title }}</title>
         <meta property="og:title" content="{{$data->title}}">
     @endif
+@elseif(isset($data->seo_description))
+    <meta name="description" content="{{ $data->seo_description??'' }}">
+    <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
 @else
+    <title>  {{setting('sys_title') }}</title>
     <meta property="og:title" content="{{setting('sys_title')}}">
+    <meta name="description" content="{{ setting('sys_description') }}">
+    <meta property="og:description" content="{{ setting('sys_description') }}"/>
 @endif
 
 @if(isset($data->image))
@@ -140,14 +97,17 @@
 <meta name="keywords" content="{{setting('sys_keyword')}}">
 <link rel="shortcut icon" href="{{\App\Library\MediaHelpers::media(setting('sys_favicon'))}}" type="image/x-icon">
 <meta property="og:url" content="{{url()->current()}}"/>
-<link rel="canonical" href="{{ url()->current() }}">
-{{--@if(Request::is('mua-the'))--}}
-{{--    <title>{{setting('sys_store_card_title')??setting('sys_title') }}</title>--}}
-{{--    <meta name="description" content="{{ strip_tags(setting('sys_store_card_seo')??setting('sys_description')) }}">--}}
-{{--@else--}}
-{{--    <title>{{$data->title??setting('sys_title') }}</title>--}}
-{{--    <meta name="description" content="{{ strip_tags($data->description??setting('sys_description')) }}">--}}
-{{--@endif--}}
+
+@if(isset($data->randId))
+
+    @if(Request::is('acc/'. $data->randId .''))
+        <link rel="canonical" href="https://{{\Request::server ("HTTP_HOST")}}/mua-acc/{{ $data->category->slug }}" />
+    @endif
+@else
+    <link rel="canonical" href="{{ url()->current() }}">
+@endif
+
+{{-- Schema  --}}
 
 @if(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
     @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
@@ -164,7 +124,7 @@
             "@type": "ListItem",
             "position": 2,
             "name": "✅(Đã xác minh uy tín)",
-            "item": "https://https://{{\Request::server ("HTTP_HOST")}}/mua-acc/{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}"
+            "item": "https://{{\Request::server ("HTTP_HOST")}}/mua-acc/{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}"
           }]
         }
     </script>
@@ -252,11 +212,11 @@
                 "@context": "http://schema.org/",
                 "@type": "Product",
                 "name": "{{ $data->title??'' }}",
-                    "description": "Hệ thống bán RP liên minh giá rẻ. Đảm bảo RP sạch 100%.Mọi giao dịch đều có ảnh hóa đơn của GARENA gửi cho quý khách. Ngoài cách nạp RP - LOL ( Liên Minh ) trực tiếp, các bạn có thể mua thẻ Garena giá rẻ với chiết khấu lên đến 5% tại đây.",
+                    "description": "{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}",
                      "image": "{{ $data->image??'' }}",
                     "brand": {
                         "@type": "Brand",
-                        "name": "webnick"
+                        "name": "{{\Request::server ("HTTP_HOST")}}"
                       },
                     "aggregateRating": {
                         "@type": "AggregateRating",
@@ -270,9 +230,9 @@
                     "mpn": "{{ $data->slug??'' }}",
                     "offers": {
                             "@type": "Offer",
-                             "url": "https://{{\Request::server ("HTTP_HOST")}}/dich-vu/",
+                             "url": "https://{{\Request::server ("HTTP_HOST")}}/dich-vu/{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}",
                             "priceCurrency": "VND",
-                            "price": "7700",
+                            "price": "{{ isset($data_seo_price) ? $data_seo_price : "7700" }}",
                             "priceValidUntil": "2099-12-31",
                             "availability": "https://schema.org/InStock",
                             "itemCondition": "https://schema.org/NewCondition"
@@ -300,7 +260,6 @@
       ]
     }
     </script>
-
     @elseif(Request::is('tin-tuc/'. $data->slug .''))
 
         <script type="application/ld+json">
@@ -390,8 +349,11 @@
                     }
                 }
             @endphp
-
-            <script type="application/ld+json">
+            @if((isset($first_question) && isset($first_answer))
+                || (isset($second_question) && isset($second_answer))
+                || (isset($three_question) && isset($three_answer))
+                || (isset($foor_question) && isset($foor_answer)))
+                <script type="application/ld+json">
                 {
                     "@context": "https://schema.org",
                     "@type": "FAQPage",
@@ -402,30 +364,41 @@
                         "@type": "Answer",
                         "text": "{{ $first_answer??'' }}"
                     }
-                },
-                {
-                    "@type": "Question",
-                    "name": "{{ $second_question??'' }}",
+                }
+                @if(isset($second_question) && isset($second_answer))
+                        ,{
+                            "@type": "Question",
+                            "name": "{{ $second_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $second_answer??'' }}"
                     }
-                },{
-                    "@type": "Question",
-                    "name": "{{ $three_question??'' }}",
+                }
+                @endif
+                    @if(isset($three_question) && isset($three_answer))
+                        ,{
+                            "@type": "Question",
+                            "name": "{{ $three_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $three_answer??'' }}"
                     }
-                },{
-                    "@type": "Question",
-                    "name": "{{ $foor_question??'' }}",
+                }
+                @endif
+                    @if(isset($foor_question) && isset($foor_question))
+                        ,{
+                            "@type": "Question",
+                            "name": "{{ $foor_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $foor_answer??'' }}"
                     }
-                }]}
-            </script>
+
+                }
+                @endif
+                    ]}
+</script>
+            @endif
         @endif
     @elseif(Request::is('blog/'. $data->slug .''))
 
@@ -531,35 +504,36 @@
                         "@type": "Answer",
                         "text": "{{ $first_answer??'' }}"
                     }
-                },
+                }
                 @if(isset($second_question) && isset($second_answer))
-                        {
+                        ,{
                             "@type": "Question",
                             "name": "{{ $second_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $second_answer??'' }}"
                     }
-                },
+                }
                 @endif
                     @if(isset($three_question) && isset($three_answer))
-                        {
+                        ,{
                             "@type": "Question",
                             "name": "{{ $three_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $three_answer??'' }}"
                     }
-                },
+                }
                 @endif
                     @if(isset($foor_question) && isset($foor_question))
-                        {
+                        ,{
                             "@type": "Question",
                             "name": "{{ $foor_question??'' }}",
                     "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "{{ $foor_answer??'' }}"
                     }
+
                 }
                 @endif
                     ]}

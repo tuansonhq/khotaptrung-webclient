@@ -111,10 +111,11 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/mua-acc/{slug}', [AccController::class , "getList"])->name('accList');
                     Route::get('/acc/{slug}', [AccController::class , "getDetail"])->name('accDetail');
                     Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
-
+                    Route::get('/related-acc', [AccController::class , "getRelated"]);
+                    Route::get('/watched-acc', [AccController::class , "getWatched"]);
                 });
                 Route::get('/ajax/mua-nick-random', [AccController::class , "getShowAccRandom"]);
-                Route::get('/related-acc', [AccController::class , "getRelated"]);
+
                 Route::post('/lich-su-mua-account-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])->name('getShowpassNick');
 
 //                Route::post('/lich-su-mua-acoount-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])->name('getShowpassNick');
@@ -151,7 +152,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/lich-su-nap-the-{id}', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistoryDetail'])->name('getChargeDepositHistoryDetail');
 
                     if (isset(theme('')->theme_key)){
-                        if (theme('')->theme_key == "theme_1"||theme('')->theme_key == "theme_4" ||theme('')->theme_key == "theme_card_2" ||theme('')->theme_key == "theme_dup" ||theme('')->theme_key == "theme_6"){
+                        if (theme('')->theme_key == "theme_1"||theme('')->theme_key == "theme_4" ||theme('')->theme_key == "theme_card_2" ||theme('')->theme_key == "theme_dup" ||theme('')->theme_key == "theme_6" ||theme('')->theme_key == "theme_card_1"){
                             /*Theme_1*/
                             Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getLogs'])->name('getBuyAccountHistory');
                         }else {
@@ -314,6 +315,15 @@ Route::group(array('middleware' => ['theme']) , function (){
                 {
                     return view('frontend.layouts.includes.list-mobile');
                 })->name('getListMobile');
+
+                if(setting('sys_google_plus') != ''){
+                    Route::get('/danh-muc/nick-cf', function ()
+                    {
+                        $slug = '/mua-acc/nick-dot-kich-gia-re';
+                        $url = 'https://'.\Request::server("HTTP_HOST").$slug;
+                        return Redirect::to($url);
+                    });
+                }
 
             });
         });

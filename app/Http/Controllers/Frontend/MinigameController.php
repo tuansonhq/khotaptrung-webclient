@@ -310,7 +310,8 @@ class MinigameController extends Controller
                             'userpoint' => $result->userpoint,
                             'listgift' => $result->listgift,
                             'status' => 1,
-                            'msg' => $result->msg
+                            'msg'=> $result->msg,
+                            'showwithdrawbtn' => $result->showwithdrawbtn
                         ], 200);
                     } else {
                         return response()->json([
@@ -586,6 +587,7 @@ class MinigameController extends Controller
                 $url = '/minigame/get-withdraw-item';
                 $data['page'] = $request->page;
                 $data['game_type'] = $game_type;
+
                 $result_Api = DirectAPI::_makeRequest($url, $data, $method);
                 if (isset($result_Api) && $result_Api->response_code == 200) {
                     $result = $result_Api->response_data;
@@ -803,6 +805,8 @@ class MinigameController extends Controller
                 $data['package'] = $request->package;
                 $data['idgame'] = $request->idgame;
                 $data['phone'] = $request->phone;
+                $data['server'] = $request->get('server');
+                $data['server_id'] = $request->get('server_id');
                 $result_Api = DirectAPI::_makeRequest($url, $data, $method);
 
                 if (isset($result_Api) && $result_Api->response_code == 200) {

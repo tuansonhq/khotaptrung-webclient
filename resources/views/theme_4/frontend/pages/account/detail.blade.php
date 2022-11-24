@@ -23,39 +23,39 @@
         $totalaccount = 0;
     }
 @endphp
-@php
-    $data_cookie = Cookie::get('viewed_account') ?? '[]';
-    $flag_viewed = true;
-    $data_cookie = json_decode($data_cookie,true);
-        foreach ($data_cookie as $key => $acc_viewed){
-            if($acc_viewed['randId'] == $data->randId){
-             $flag_viewed = false;
-            }
-        }
-        if ($flag_viewed){
-                if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {
-                     array_pop($data_cookie);
-                 }
-                $data_save = [
-                    'image'=>$data->image??'',
-                    'category'=>isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title,
-                    'randId'=>$data->randId,
-                    'price'=>$data->price,
-                    'price_old'=>$data->price_old,
-                    'promotion'=>$sale_percent,
-                    'buy_account'=>$totalaccount,
-                 ];
-                array_unshift($data_cookie,$data_save);
-                $data_cookie = json_encode($data_cookie);
-                Cookie::queue('viewed_account',$data_cookie,43200);
-        }
-@endphp
+{{--@php--}}
+{{--    $data_cookie = Cookie::get('viewed_account') ?? '[]';--}}
+{{--    $flag_viewed = true;--}}
+{{--    $data_cookie = json_decode($data_cookie,true);--}}
+{{--        foreach ($data_cookie as $key => $acc_viewed){--}}
+{{--            if($acc_viewed['randId'] == $data->randId){--}}
+{{--             $flag_viewed = false;--}}
+{{--            }--}}
+{{--        }--}}
+{{--        if ($flag_viewed){--}}
+{{--                if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {--}}
+{{--                     array_pop($data_cookie);--}}
+{{--                 }--}}
+{{--                $data_save = [--}}
+{{--                    'image'=>$data->image??'',--}}
+{{--                    'category'=>isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title,--}}
+{{--                    'randId'=>$data->randId,--}}
+{{--                    'price'=>$data->price,--}}
+{{--                    'price_old'=>$data->price_old,--}}
+{{--                    'promotion'=>$sale_percent,--}}
+{{--                    'buy_account'=>$totalaccount,--}}
+{{--                 ];--}}
+{{--                array_unshift($data_cookie,$data_save);--}}
+{{--                $data_cookie = json_encode($data_cookie);--}}
+{{--                Cookie::queue('viewed_account',$data_cookie,43200);--}}
+{{--        }--}}
+{{--@endphp--}}
 @section('content')
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/buyacc.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/news.css?v={{time()}}">
 
-
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css?v={{time()}}">
     <section>
         <div class="container">
 
@@ -169,7 +169,9 @@
                                 </div>
 
                                 <div class="entries">
+
                                     <div class="row fix-border fix-border-nick " id="showslideracc">
+
                                         <div class="body-box-loadding result-amount-loadding" style="transform: translateX(-50%);left: 50%">
                                             <div class="d-flex justify-content-center" style="padding-top: 112px;">
                                                 <span class="pulser"></span>
@@ -181,9 +183,11 @@
                                 </div>
 
                             </div>
-                            @include('frontend.pages.account.widget.__viewed__account')
 
-                        </div>
+                            <div class="row" style="width: 100%;margin: 0 auto" id="showswatched">
+
+
+                            </div>
                     </div>
                 </div>
                 <!-- END: BLOG LISTING  -->
@@ -529,6 +533,112 @@
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccslider.js"></script>
+
+    <script>
+        $('#nick-lmht-trangphuc #input-search-skins').on('input', function () {
+
+            let result_ul = $('#nick-lmht-trangphuc .sugges_list');
+            result_ul.empty();
+            result_ul.toggleClass('d-none', !$(this).val().trim());
+
+            let keyword = convertToSlug($(this).val());
+            Array.from($('#content_page_skin .item-nick-lmht__border')).forEach(function (elm) {
+                let text = convertToSlug($(elm).find('.text-theme').text().trim())
+                if (text.indexOf(keyword) > -1) {
+                    let html = `<li class="sugges_item">${$(elm).find('.text-theme').text()}</li>`;
+                    result_ul.append(html);
+                }
+            })
+        });
+
+        $('#nick-lmht-tuong #input-search-champ').on('input', function () {
+
+            let result_ul = $('#nick-lmht-tuong .sugges_list');
+            result_ul.empty();
+            result_ul.toggleClass('d-none', !$(this).val().trim());
+
+            let keyword = convertToSlug($(this).val());
+            Array.from($('#content_page_champ .item-nick-lmht__border')).forEach(function (elm) {
+                let text = convertToSlug($(elm).find('.text-theme').text().trim())
+                if (text.indexOf(keyword) > -1) {
+                    let html = `<li class="sugges_item">${$(elm).find('.text-theme').text()}</li>`;
+                    result_ul.append(html);
+                }
+            })
+        });
+
+        $('#nick-lmht-linhthu #input-search-conpanion').on('input', function () {
+
+            let result_ul = $('#nick-lmht-linhthu .sugges_list');
+            result_ul.empty();
+            result_ul.toggleClass('d-none', !$(this).val().trim());
+
+            let keyword = convertToSlug($(this).val());
+            Array.from($('#content_page_companion .item-nick-lmht__border')).forEach(function (elm) {
+                let text = convertToSlug($(elm).find('.text-theme').text().trim())
+                if (text.indexOf(keyword) > -1) {
+                    let html = `<li class="sugges_item">${$(elm).find('.text-theme').text()}</li>`;
+                    result_ul.append(html);
+                }
+            })
+        });
+
+        $('.submit-search-skins').on('click', function () {
+            let keyword = convertToSlug($('#input-search-skins').val());
+            let elm_result = $('#result-search-skin');
+            elm_result.empty();
+            $('.sugges_list').addClass('d-none')
+            Array.from($('#content_page_skin .item-nick-lmht')).forEach(function (elm) {
+                let text = convertToSlug($(elm).find('.text-theme').text().trim())
+                if (text && text.indexOf(keyword) > -1) {
+                    let new_elm = $(elm).clone();
+                    new_elm.find('img').attr('src', new_elm.find('img').attr('data-original'))
+                    elm_result.append(new_elm);
+                }
+            });
+
+            elm_result.toggleClass('d-none', !keyword);
+            $('#tab-panel-skins').toggleClass('d-none', !!keyword);
+        });
+
+        $('.submit-search-champ').on('click', function () {
+            let keyword = convertToSlug($('#input-search-champ').val());
+            let elm_result = $('#result-search-champ');
+            elm_result.empty();
+            $('.sugges_list').addClass('d-none')
+            Array.from($('#content_page_champ .item-nick-lmht')).forEach(function (elm) {
+                let text = convertToSlug($(elm).find('.text-theme').text().trim())
+                if (text && text.indexOf(keyword) > -1) {
+                    let new_elm = $(elm).clone();
+                    new_elm.find('img').attr('src', new_elm.find('img').attr('data-original'))
+                    elm_result.append(new_elm);
+                }
+            });
+            elm_result.toggleClass('d-none', !keyword);
+            $('#tab-panel-champ').toggleClass('d-none', !!keyword);
+        });
+        $('.submit-search-companion').on('click', function () {
+            let keyword = convertToSlug($('#input-search-conpanion').val());
+            let elm_result = $('#result-search-companion');
+            elm_result.empty();
+            $('.sugges_list').addClass('d-none')
+            Array.from($('#content_page_companion .item-nick-lmht')).forEach(function (elm) {
+                let text = convertToSlug($(elm).find('.text-theme').text().trim())
+                if (text && text.indexOf(keyword) > -1) {
+                    let new_elm = $(elm).clone();
+                    new_elm.find('img').attr('src', new_elm.find('img').attr('data-original'))
+                    elm_result.append(new_elm);
+                }
+            });
+            elm_result.toggleClass('d-none', !keyword);
+            $('#tab-panel-companion').toggleClass('d-none', !!keyword);
+        });
+        $('.sugges_list').on('click', '.sugges_item', function () {
+            let text = $(this).text();
+            $(this).parent().prev().val(text);
+            $(this).parent().next().trigger('click');
+        })
+    </script>
 @endsection
 
 

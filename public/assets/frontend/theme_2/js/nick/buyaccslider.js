@@ -92,7 +92,8 @@ $(document).ready(function () {
             type: 'GET',
             url: url,
             data: {
-                slug:slug_category
+                slug:slug_category,
+                ran_id: slug
             },
             beforeSend: function (xhr) {
 
@@ -124,5 +125,74 @@ $(document).ready(function () {
         });
     }
 
+    getTaiKhoanDaXem();
 
+    function getTaiKhoanDaXem() {
+
+        var url = '/watched-acc';
+        request = $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                ran_id: slug
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (data) => {
+
+                if (data.status == 1){
+
+                    $('#showswatched').html('');
+                    $('#showswatched').html(data.datawatched);
+
+                }else if (data.status == 0){
+                    $('#showdetailacc').html('');
+                    // var html = '';
+                    // html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + data.message + '</span></div></div>';
+                    //
+                    // $('#showdetailacc').html('');
+                    // $('#showdetailacc').html(html);
+                }else if (data.status == 2){
+                    console.log("chưa có dữ liệu");
+                    $('#showswatched').html('');
+                }
+
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+                let swiper_config_category_v2 = new Swiper('.section-category .class-config-demo_v2',{
+                    autoplay: false,
+                    updateOnImagesReady: true,
+                    watchSlidesVisibility: false,
+                    lazyLoadingInPrevNext: false,
+                    lazyLoadingOnTransitionStart: false,
+                    slidesPerView: 5,
+                    speed: 300,
+                    spaceBetween: 16,
+                    touchMove: true,
+                    grabCursor: true,
+                    observer: true,
+                    observeParents: true,
+                    breakpoints: {
+                        992: {
+                            freeMode: true,
+                            slidesPerView: 3,
+                        },
+                        768: {
+                            freeMode: true,
+                            slidesPerView: 1.5,
+                        }
+                    },
+                    navigation: {
+                        nextEl: ".class-config-demo .navigation.slider-next",
+                        prevEl: ".class-config-demo .navigation.slider-prev",
+                    },
+                });
+
+            }
+        });
+    }
 })

@@ -1511,6 +1511,7 @@
                 var free_wheel = 0;
                 var value_gif_bonus = '';
                 var msg_random_bonus = '';
+                var showwithdrawbtn = true;
                 //var arrDiscount = '';
 
                 $('body').delegate('#start-played', 'click', function () {
@@ -1555,6 +1556,7 @@
                                     $('#noticeModal').modal('show');
                                     return;
                                 }
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 gift_detail = data.gift_detail;
                                 gift_revice = data.arr_gift;
@@ -1727,16 +1729,24 @@
                                 if (gift_revice.length == 1) {
                                     $html += "<span>Kết quả chơi thử: " + gift_revice[0]["title"] + "</span><br/>";
                                     if (gift_detail.winbox == 1) {
-                                        $html += "<span>Mua X1: Nhận được " + gift_revice[0]['parrent'].params.value + "</span><br/>";
-                                        //$html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]['parrent'].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
-                                        $html += "<span>Tổng cộng: " + parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + "</span>";
+                                        $revice = gift_revice[0]['parrent'].params.value;
+                                        $revice = $revice.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                                        $revice = $revice.split('').reverse().join('').replace(/^[\.]/,'');
+
+
+
+                                        $html += "<span>Mua X1: Nhận được "+$revice+"</span><br/>";
+
+                                        $totalRevice = parseInt(gift_revice[0]['parrent'].params.value)*(parseInt(xvalueaDD[0]));
+                                        $totalRevice = $totalRevice.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                                        $totalRevice = $totalRevice.split('').reverse().join('').replace(/^[\.]/,''); $html += "<span>Tổng cộng: "+ $totalRevice +"</span>";
                                     }
                                 } else {
                                     $totalRevice = 0;
                                     $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
                                     $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
                                     for ($i = 0; $i < gift_revice.length; $i++) {
-                                        $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i]['parrent'].title;
+                                        $html += "<span>Lần quay "+($i + 1)+": "+gift_revice[$i].title;
                                         if (gift_revice[$i].winbox == 1) {
                                             $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + "" + msg_random_bonus[$i] + "</span><br/>";
                                         } else {
@@ -1745,10 +1755,15 @@
                                         $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
                                     }
 
+                                    $totalRevice = $totalRevice.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                                    $totalRevice = $totalRevice.split('').reverse().join('').replace(/^[\.]/,'');
                                     $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
                                 }
                             }
                         }
+                        if (!showwithdrawbtn) {
+                            $("#btnWithdraw").hide();
+                        }else{ $("#btnWithdraw").show(); }
 
                         $('#noticeModal .content-popup').html($html);
 
@@ -1854,6 +1869,7 @@
                 var angles = 0;
                 var free_wheel = 0;
                 var arrDiscount = '';
+                var showwithdrawbtn = true;
                 //Click nút lật
                 $('body').delegate('.img_remove', 'click', function(){
                     $('.boxflip .flip-box-front').removeClass('img_remove');
@@ -1914,6 +1930,7 @@
                                     // }
                                     return;
                                 }
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 free_wheel = data.free_wheel;
                                 //arrDiscount = data.arrDiscount;
@@ -2066,6 +2083,9 @@
                                         }
                                     }
                                 }
+                                if (!showwithdrawbtn) {
+                                    $("#btnWithdraw").hide();
+                                }else{ $("#btnWithdraw").show(); }
 
                                 $('#noticeModal .content-popup').html($html);
                                 if (userpoint > 99) {
@@ -2221,6 +2241,7 @@
                 var slot1_fake;
                 var slot2_fake;
                 var slot3_fake;
+                var showwithdrawbtn = true;
                 //Click nút quay
                 $('body').delegate('#start-played', 'click', function() {
 
@@ -2280,6 +2301,7 @@
 
 
                                 gift_revice = data.arr_gift;
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 arrxgt = data.xgt;
                                 if (arrxgt > 0) {
@@ -2411,6 +2433,7 @@
                                 doSlot(num1,num2,num3);
 
                                 gift_revice = data.arr_gift;
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 arrxgt = data.xgt;
                                 if (arrxgt > 0) {
@@ -2647,6 +2670,9 @@
                             }
                         }
                     }
+                    if (!showwithdrawbtn) {
+                        $("#btnWithdraw").hide();
+                    }else{ $("#btnWithdraw").show(); }
 
                     $('#noticeModal .content-popup').html($html);
 
@@ -2815,6 +2841,7 @@
                 var slot3_fake;
                 var slot4_fake;
                 var slot5_fake;
+                var showwithdrawbtn = true;
                 //Click nút quay
                 $('body').delegate('#start-played', 'click', function() {
 
@@ -2903,6 +2930,7 @@
 
 
                                 gift_revice = data.arr_gift;
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 arrxgt = data.xgt;
                                 if (arrxgt > 0) {
@@ -3062,6 +3090,7 @@
 
 
                                 gift_revice = data.arr_gift;
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 arrxgt = data.xgt;
                                 if (arrxgt > 0) {
@@ -3414,6 +3443,9 @@
                             }
                         }
                     }
+                    if (!showwithdrawbtn) {
+                        $("#btnWithdraw").hide();
+                    }else{ $("#btnWithdraw").show(); }
 
                     $('#noticeModal .content-popup').html($html);
 
@@ -3575,6 +3607,7 @@
                 var msg_random_bonus = '';
                 var startat = 0;
 
+                var showwithdrawbtn = true;
                 //Click nút quay
                 $('body').delegate('#start-played', 'click', function() {
 
@@ -3616,6 +3649,7 @@
                                     $('#noticeModal').modal('show');
                                     return;
                                 }
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 gift_detail = data.gift_detail;
                                 gift_revice = data.arr_gift;
@@ -3732,6 +3766,7 @@
                                     $('#noticeModal').modal('show');
                                     return;
                                 }
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 gift_detail = data.gift_detail;
                                 gift_revice = data.arr_gift;
@@ -3935,6 +3970,9 @@
                                 }
                             }
                         }
+                        if (!showwithdrawbtn) {
+                            $("#btnWithdraw").hide();
+                        }else{ $("#btnWithdraw").show(); }
 
                         $('#noticeModal .content-popup').html($html);
 
@@ -4050,6 +4088,8 @@
                 var free_wheel = 0;
                 var value_gif_bonus = '';
                 var msg_random_bonus = '';
+
+                var showwithdrawbtn = true;
                 //var arrDiscount = '';
 
                 $('body').delegate('#start-played', 'click', function() {
@@ -4096,9 +4136,10 @@
                                     $('#noticeModal').modal('show');
                                     return;
                                 }
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 gift_detail = data.gift_detail;
-                                console.log(gift_detail);
+
                                 if(gift_detail.image.length > 0)
                                 {
                                     $('#lac_lixi').attr('src',gift_detail.image);
@@ -4303,6 +4344,9 @@
                             }
                         }
                     }
+                    if (!showwithdrawbtn) {
+                        $("#btnWithdraw").hide();
+                    }else{ $("#btnWithdraw").show(); }
 
                     $('#noticeModal .content-popup').html($html);
 

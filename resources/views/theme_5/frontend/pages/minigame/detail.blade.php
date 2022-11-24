@@ -383,21 +383,21 @@
                         </div>
                     </div>
 
-                    @if(isset($result->group->description))
+                    @if(isset($result->group->content))
                         <div class="service-detail-block c-mb-16 c-px-lg-16 detailViewBlock">
                             <h6 class="d-block d-lg-none fz-15 fw-700 lh-24 c-mb-8">Chi tiết dịch vụ</h6>
                             <div class="card overflow-hidden detailViewBlock">
                                 <div class="card-body c-p-16">
                                     <h2 class="text-title-bold d-none d-lg-block c-mb-24 detailViewBlockTitle">Chi tiết dịch vụ</h2>
-                                    @if(substr($result->group->description, 1200))
+                                    @if(substr($result->group->content, 1200))
                                     <div class="content-desc hide detailViewBlockContent">
                                     @else
                                     <div class="content-desc detailViewBlockContent">
                                     @endif
-                                        {!! $result->group->description !!}
+                                        {!! $result->group->content !!}
                                     </div>
                                 </div>
-                                @if(substr($result->group->description, 1200))
+                                @if(substr($result->group->content, 1200))
                                 <div class="card-footer text-center">
                                     <span class="see-more" data-content="Xem thêm nội dung"></span>
                                 </div>
@@ -501,7 +501,7 @@
                             <div class="c-px-16">
                                 <div class="leaderboard-items brs-8 c-mb-4 c-px-12 c-py-8 d-flex align-items-center">
                                     <span class="fw-400 fz-13 c-mr-8 lh-16">Bạn đang có:</span>
-                                    <p class="c-mb-0 fw-700 fz-15 lh-24">{{ str_replace(',','.',number_format($result->number_item)) }} {{ $result->name_item->image }}</p>
+                                    <p class="c-mb-0 fw-700 fz-15 lh-24">{{ str_replace(',','.',number_format($result->number_item)) }} {{ $result->name_item->image??'' }}</p>
                                 </div>
                             </div>
                         @endif
@@ -555,7 +555,7 @@
                         @if (\App\Library\AuthCustom::check())
                             <div class="leaderboard-items brs-8 c-mb-12 c-px-12 c-py-8 d-flex align-items-center">
                                 <span class="fw-400 fz-13 c-mr-8 lh-16">Bạn đang có:</span>
-                                <p class="c-mb-0 fw-700 fz-15 lh-24">{{ str_replace(',','.',number_format($result->number_item)) }} {{ $result->name_item->image }}</p>
+                                <p class="c-mb-0 fw-700 fz-15 lh-24">{{ str_replace(',','.',number_format($result->number_item)) }} {{ $result->name_item->image??'' }}</p>
                             </div>
                         @endif
                         <div class="leaderboard-buttons c-pb-24 c-mb-16 row no-gutters">
@@ -1040,7 +1040,7 @@
 
     @switch($position)
         @case('rubywheel')
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/rubywheel.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/rubywheel.js?v={{time()}}"></script>
         @break
         @case('flip')
         <style type="text/css">
@@ -1055,13 +1055,13 @@
                 100%{ transform:rotatey(360deg); }
             }
         </style>
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/flip.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/flip.js?v={{time()}}"></script>
         @foreach($result->group->items as $item)
             <input type="hidden" class="image_gift" value="{{ \App\Library\MediaHelpers::media($item->parrent->image) }}">
         @endforeach
         @break
         @case('slotmachine')
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine.js?v={{time()}}"></script>
         <style>
             @php
     $count = 0;
@@ -1075,7 +1075,7 @@
         </style>
         @break
         @case('slotmachine5')
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine5.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine5.js?v={{time()}}"></script>
         <style>
             @php
     $count = 0;
@@ -1098,7 +1098,7 @@
                 @endforeach
             </script>
         @endif
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/squarewheel.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/squarewheel.js?v={{time()}}"></script>
         <style>
             .box img.active{box-shadow:0 0 1px #fff, 0 0 2px #fff, 0 0 45px #f00, 0 0 30px #ff0013, 0 0 25px #f10303}
         </style>
@@ -1106,7 +1106,7 @@
         @case('smashwheel')
         @case('rungcay')
         @case('gieoque')
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/smashwheel.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/smashwheel.js?v={{time()}}"></script>
         @break
 
     @endswitch

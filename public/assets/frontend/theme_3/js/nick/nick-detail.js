@@ -6,7 +6,9 @@ $(document).ready(function (e) {
     setDisplayLink(0, 'skin-paginate');
     setDisplayLink(0, 'tft-paginate');
     setDisplayLink(0, 'champion-paginate');
+
     getShowAccDetail(slug);
+
     getRelatedAcc(slug_category);
 
     function getShowAccDetail(slug) {
@@ -74,7 +76,8 @@ $(document).ready(function (e) {
             type: 'GET',
             url: url,
             data: {
-                slug:slug_category
+                slug:slug_category,
+                ran_id: slug
             },
             beforeSend: function (xhr) {
 
@@ -136,6 +139,85 @@ $(document).ready(function (e) {
             }
         });
     };
+
+    getTaiKhoanDaXem();
+
+    function getTaiKhoanDaXem() {
+
+        var url = '/watched-acc';
+        request = $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                ran_id: slug
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (data) => {
+
+                if (data.status == 1){
+
+                    $('#showswatched').html('');
+                    $('#showswatched').html(data.datawatched);
+
+                }else if (data.status == 0){
+                    $('#showswatched').html('');
+                    // var html = '';
+                    // html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + data.message + '</span></div></div>';
+                    //
+                    // $('#showdetailacc').html('');
+                    // $('#showdetailacc').html(html);
+                }else if (data.status == 2){
+                    $('#showswatched').html('');
+                    console.log("chưa có dữ liệu")
+                }
+
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+                var list_dong_gia_v2 = new Swiper('.list-dong-gia-v2', {
+                    navigation: {
+                        nextEl: '.list-dong-gia .swiper-button-next',
+                        prevEl: '.list-dong-gia .swiper-button-prev',
+                    },
+                    autoplay: false,
+                    // preloadImages: false,
+                    updateOnImagesReady: true,
+                    // lazyLoading: false,
+                    watchSlidesVisibility: false,
+                    lazyLoadingInPrevNext: false,
+                    lazyLoadingOnTransitionStart: false,
+                    freeMode:true,
+                    loop: false,
+                    centeredSlides: false,
+                    slidesPerView: 4.5,
+                    speed: 800,
+                    slidesPerGroup: 3,
+                    spaceBetween: 0,
+                    touchMove: true,
+                    freeModeSticky:true,
+                    grabCursor: true,
+                    observer: true,
+                    observeParents: true,
+                    breakpoints: {
+                        992: {
+                            slidesPerView: 3.2,
+                        },
+                        768:{
+                            slidesPerView: 2.5,
+                        },
+                        480: {
+                            slidesPerView: 1.8,
+
+                        }
+                    }
+                });
+            }
+        });
+    }
 
     $(document).on('submit', '.formDonhangAccount', function(e){
         e.preventDefault();
@@ -607,15 +689,15 @@ $(document).ready(function (e) {
 
     $('body').on('click','#show-modal-champ',function (e) {
         e.preventDefault();
-        $('#modal-champ').modal('show');
+        $('#modal-champ').modal('show').find('.modal-body').trigger('scroll');;
     })
     $('body').on('click','#show-modal-skin',function (e) {
         e.preventDefault();
-        $('#modal-skin').modal('show');
+        $('#modal-skin').modal('show').find('.modal-body').trigger('scroll');;
     })
     $('body').on('click','#show-modal-animal',function (e) {
         e.preventDefault();
-        $('#modal-animal').modal('show');
+        $('#modal-animal').modal('show').find('.modal-body').trigger('scroll');;
     })
 
     $('.modal-lmht .modal-body').on('scroll',function () {

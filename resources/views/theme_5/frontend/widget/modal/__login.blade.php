@@ -274,10 +274,4 @@
         });
     });
 </script>
-{{-- js get url --}}
-<script>
-    document.getElementById("get-url").innerHTML = window.location.hostname;
-</script>
-<script>
-    document.getElementById("get-url-1").innerHTML = window.location.hostname;
-</script
+

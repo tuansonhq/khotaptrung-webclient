@@ -16,7 +16,7 @@
             <span class="input-group-btn">
             <p class="input-group-btn-p">Giá tiền</p>
             </span>
-            <select type="text" name="price" class="form-control c-square c-theme price" style="height: 40px">
+            <select type="text" name="price" class="form-control c-square c-theme price select-2-custom" style="height: 40px">
                 <option value="">Chọn giá tiền</option>
                 <option value="0-50000">Dưới 50K</option>
                 <option value="50000-200000">Từ 50K - 200K</option>
@@ -36,7 +36,7 @@
         <span class="input-group-btn">
         <p class="input-group-btn-p">Trạng thái</p>
         </span>
-        <select class="form-control c-square c-theme status" name="status" style="height: 40px">
+        <select class="form-control c-square c-theme status select-2-custom" name="status" style="height: 40px">
             <option value="">Chọn trạng thái</option>
             <option value="1">Chưa bán</option>
             <option value="0">Đã bán</option>
@@ -56,7 +56,7 @@
                             <span class="input-group-btn">
                             <p class="input-group-btn-p">{{ $auto_propertie->name }}</p>
                             </span>
-                            <select class="form-control c-square c-theme champions" name="champions" style="height: 40px">
+                            <select class="form-control c-square c-theme champions select-2-custom" name="champions" style="height: 40px">
                                 <option value="">--Không chọn--</option>
                                 @if(isset($auto_propertie->childs))
                                     @foreach($auto_propertie->childs as $child)
@@ -73,11 +73,17 @@
                             <span class="input-group-btn">
                             <p class="input-group-btn-p">Trang phục</p>
                             </span>
-                            <select class="form-control c-square c-theme skill" name="skill" style="height: 40px">
+                            <select class="form-control c-square c-theme skill select-2-custom" name="skill" style="height: 40px">
                                 <option value="">--Không chọn--</option>
-                                @if(isset($auto_propertie->childs))
+                                @if(isset($auto_propertie->childs) && count($auto_propertie->childs))
                                     @foreach($auto_propertie->childs as $child)
-                                        <option value="{{ $child->id }}">{{ $child->name }}</option>
+
+                                        @if(isset($child->childs) && count($child->childs))
+                                            @foreach($child->childs as $c_child)
+                                                <option value="{{ $c_child->id }}">{{ $c_child->name }}</option>
+                                            @endforeach
+                                        @endif
+
                                     @endforeach
                                 @endif
                             </select>
@@ -92,7 +98,7 @@
                             <span class="input-group-btn">
                             <p class="input-group-btn-p">{{ $auto_propertie->name }}</p>
                             </span>
-                            <select class="form-control c-square c-theme tftcompanions" name="tftcompanions" style="height: 40px">
+                            <select class="form-control c-square c-theme tftcompanions select-2-custom" name="tftcompanions" style="height: 40px">
                                 <option value="">--Không chọn--</option>
                                 @if(isset($auto_propertie->childs))
                                     @foreach($auto_propertie->childs as $child)
@@ -111,7 +117,7 @@
                             <span class="input-group-btn">
                             <p class="input-group-btn-p">{{ $auto_propertie->name }}</p>
                             </span>
-                            <select class="form-control c-square c-theme tftmapskins" name="tftmapskins" style="height: 40px">
+                            <select class="form-control c-square c-theme tftmapskins select-2-custom" name="tftmapskins" style="height: 40px">
                                 <option value="">--Không chọn--</option>
                                 @if(isset($auto_propertie->childs))
                                     @foreach($auto_propertie->childs as $child)
@@ -130,7 +136,7 @@
                             <span class="input-group-btn">
                             <p class="input-group-btn-p">{{ $auto_propertie->name }}</p>
                             </span>
-                            <select class="form-control c-square c-theme tftdamageskins" name="tftdamageskins" style="height: 40px">
+                            <select class="form-control c-square c-theme tftdamageskins select-2-custom" name="tftdamageskins" style="height: 40px">
                                 <option value="">--Không chọn--</option>
                                 @if(isset($auto_propertie->childs))
                                     @foreach($auto_propertie->childs as $child)
@@ -145,14 +151,17 @@
             @endforeach
         @elseif($slug == 'nick-ninja-school')
             @foreach($auto_properties as $auto_propertie)
+
                 @if($auto_propertie->key == 'CAPTURES')
+
+                @elseif($auto_propertie->key == 'SERVER')
 
                     <div class="col-md-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
                         <div class="input-group date date-picker">
                             <span class="input-group-btn">
                             <p class="input-group-btn-p">{{ $auto_propertie->key }}</p>
                             </span>
-                            <select class="form-control c-square c-theme tftmapskins" name="tftmapskins" style="height: 40px">
+                            <select class="form-control c-square c-theme tftcompanions select-2-custom" name="tftcompanions" style="height: 40px">
                                 <option value="">--Không chọn--</option>
                                 @if(isset($auto_propertie->childs))
                                     @foreach($auto_propertie->childs as $child)
@@ -164,23 +173,52 @@
                     </div>
 
                 @else
-                    <div class="col-md-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
-                        <div class="input-group date date-picker">
+                    @foreach($auto_propertie->childs as $childs)
+                        @if($childs->key == 'CHAR_LEVEL')
+
+                            <div class="col-md-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
+                                <div class="input-group date date-picker">
                             <span class="input-group-btn">
-                            <p class="input-group-btn-p">{{ $auto_propertie->key }}</p>
+                            <p class="input-group-btn-p">LEVEL</p>
                             </span>
-                            <select class="form-control c-square c-theme champions" name="champions" style="height: 40px">
-                                <option value="">--Không chọn--</option>
-                                @if(isset($auto_propertie->childs))
-                                    @foreach($auto_propertie->childs as $child)
+                                    <select class="form-control c-square c-theme tftdamageskins select-2-custom" name="tftdamageskins" style="height: 40px">
+                                        <option value="">--Không chọn--</option>
+                                        <option value="{{ $childs->id }}-1-39">1 - 39</option>
+                                        <option value="{{ $childs->id }}-40-49">40 - 49</option>
+                                        <option value="{{ $childs->id }}-50-59">50 - 59</option>
+                                        <option value="{{ $childs->id }}-60-69">60 - 69</option>
+                                        <option value="{{ $childs->id }}-70-79">70 - 79</option>
+                                        <option value="{{ $childs->id }}-80-89">80 - 89</option>
+                                        <option value="{{ $childs->id }}-90-99">90 - 99</option>
+                                        <option value="{{ $childs->id }}-100-109">100 - 109</option>
+                                        <option value="{{ $childs->id }}-110-119">110 - 119</option>
+                                        <option value="{{ $childs->id }}-120-129">120 - 129</option>
+                                        <option value="{{ $childs->id }}-130">130</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        @elseif($childs->key == 'CHAR_CLASS')
+
+                            <div class="col-md-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
+                                <div class="input-group date date-picker">
+                            <span class="input-group-btn">
+                            <p class="input-group-btn-p">CLASS</p>
+                            </span>
+                                <select class="form-control c-square c-theme champions select-2-custom" name="champions" style="height: 40px">
+                                    <option value="">--Không chọn--</option>
+                                    @foreach($childs->childs as $child)
                                         <option value="{{ $child->id }}">{{ $child->name }}</option>
                                     @endforeach
-                                @endif
-                            </select>
-                        </div>
-                    </div>
+                                </select>
+                                </div>
+                            </div>
+
+                        @endif
+                    @endforeach
 
                 @endif
+
             @endforeach
         @endif
     @endif
@@ -194,7 +232,7 @@
                     <span class="input-group-btn">
                     <p class="input-group-btn-p">{{ $val->title }}</p>
                     </span>
-                        <select class="form-control c-square c-theme select" name="attribute_id_{{ $val->id }}" style="height: 40px">
+                        <select class="form-control c-square c-theme select select-2-custom" name="attribute_id_{{ $val->id }}" style="height: 40px">
                             <option value="">--Không chọn--</option>
                             @foreach($val->childs as $child)
                                 <option value="{{ $child->id }}">{{ $child->title }}</option>

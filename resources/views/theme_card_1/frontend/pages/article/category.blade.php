@@ -11,7 +11,7 @@
         @if($data == null)
         @else
             <div class="divcontent1">
-                <div class="left left_list">
+                <div class="left ">
                     <div class="row">
                         <div class="col-md-12 col-xs-12 main-tintuc-left">
 

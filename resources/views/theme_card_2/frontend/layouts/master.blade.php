@@ -24,10 +24,13 @@
     <link href="/assets/frontend/{{theme('')->theme_key}}/lib/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/index.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/profile.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/frontend/{{theme('')->theme_key}}/css/blog.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/frontend/{{theme('')->theme_key}}/css/blog.css?v={{time()}}" rel="stylesheet" type="text/css"/>
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/style.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/style_nam.css" rel="stylesheet" type="text/css"/>
-
+    <link href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fixed-sticky/fixedsticky.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/storecard.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/owl-carousel/owl.theme.css">
@@ -45,7 +48,8 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
-
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.umd.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.js"></script>
 @if(setting('sys_google_tag_manager_head') != '')
 
         @foreach(explode('|',setting('sys_google_tag_manager_head')) as $tag => $sys)

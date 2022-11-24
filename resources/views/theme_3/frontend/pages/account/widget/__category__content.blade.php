@@ -1,7 +1,7 @@
 @if(isset($data->custom->content))
 
     <section>
-        <div class="container container-fix body-container-ct">
+        <div class="font-detail-service container container-fix body-container-ct">
             <div class="row marginauto body-container-row-ct">
                 <div class="col-md-12 left-right detailViewBlock">
                     <div class="row marginauto body-row-ct footer-row-ct">
@@ -33,7 +33,7 @@
 
     @if(isset($data->content))
         <section>
-            <div class="container container-fix body-container-ct">
+            <div class="font-detail-service container container-fix body-container-ct">
                 <div class="row marginauto body-container-row-ct">
                     <div class="col-md-12 left-right detailViewBlock">
                         <div class="row marginauto body-row-ct footer-row-ct">
@@ -59,6 +59,12 @@
 
                 </div>
             </div>
+            </div>
         </section>
     @endif
 @endif
+<style>
+    #font-acc a small span p{
+        font-family: 'Open Sans' !important;
+    }
+</style>

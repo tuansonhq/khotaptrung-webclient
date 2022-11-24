@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Redirect;
 use Session;
 
 class ArticleController extends Controller
@@ -69,7 +70,7 @@ class ArticleController extends Controller
 
     public function getDetail(Request $request,$slug){
 
-            $url = '/article/'.$slug;
+        $url = '/article/'.$slug;
         $method = "GET";
         $dataSend = array();
         $dataSend['page'] = $request->page;
@@ -84,6 +85,10 @@ class ArticleController extends Controller
 
                 Session::put('path', $_SERVER['REQUEST_URI']);
                 $data = $response_data->data;
+
+                if (isset($data->url_redirect_301)){
+                    return Redirect::to($data->url_redirect_301);
+                }
 
                 return view('frontend.pages.article.detail')
                     ->with('slug',$slug)

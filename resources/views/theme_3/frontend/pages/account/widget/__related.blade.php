@@ -21,6 +21,9 @@
                         <div class="swiper-container list-dong-gia col-md-12 text-left left-right">
                             <div class="swiper-wrapper">
                                 @foreach($data as $item)
+                                    @if ($item->randId == $ran_id)
+                                        @continue;
+                                    @endif
                                     <div class="swiper-slide body-detail-nick-slider-ct">
                                         <a href="/acc/{{ $item->randId }}" class="list-item-nick-hover">
                                             <div class="row marginauto list-item-nick-hover-row">
@@ -239,7 +242,6 @@
     </div>
 </div>
 @endif
-{{--            Đã xem   --}}
-@include('frontend.pages.account.widget.__watched')
+
 
 

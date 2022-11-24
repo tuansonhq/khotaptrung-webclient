@@ -26,6 +26,7 @@ class ServiceController extends Controller
         $method = "GET";
 
         $dataSend = array();
+        $dataSend['limit'] = 100;
 
         if ($request->ajax()){
 
@@ -113,6 +114,36 @@ class ServiceController extends Controller
         if(isset($response_data) && ($response_data->status??"") == 1){
 
             $data = $response_data->data;
+
+            try {
+
+                $data_seo_price = 0;
+                $service_params = json_decode($data->params);
+                $filter_type = $service_params->filter_type;
+                $server_mode = $service_params->server_mode;
+                $server_price = $service_params->server_price;
+
+                if ( $filter_type == 7 ) {
+                    $data_seo_price = $service_params->input_pack_min;
+                }
+
+                if ( $filter_type == 4 || $filter_type == 5 ) {
+                    if ( $server_mode == 1 && $server_price == 1 ) {
+                        $server_id =  $service_params->server_id[0];
+                        $data_seo_price = $service_params->{'price'.$server_id}[0];
+                    } else {
+                        $data_seo_price = $service_params->price[0];
+                    }
+                }
+
+                if ( $filter_type == 6 ) {
+                    $data_seo_price = $service_params->price[0];
+                }
+                
+            } catch (\Exception $e) {
+                $data_seo_price = 7700;
+            }
+
             $urlCate = '/service';
 
             $dataSendCate = array();
@@ -136,6 +167,7 @@ class ServiceController extends Controller
 
                 return view('frontend.pages.service.detail')
                     ->with('data', $data)
+                    ->with('data_seo_price', $data_seo_price)
                     ->with('datacate', $datacate)
                     ->with('slug', $slug);
 

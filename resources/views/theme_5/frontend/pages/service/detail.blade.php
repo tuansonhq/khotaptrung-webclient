@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('seo_head')
-    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+    @include('frontend.widget.__seo_head',with(['data'=>$data, 'data_seo_price' => $data_seo_price]))
 @endsection
 @section('meta_robots')
     <meta name="robots" content="index,follow"/>
@@ -17,7 +17,10 @@
     $send_type = \App\Library\HelpersDecode::DecodeJson('send_type',$data->params);
 @endphp
 @section('content')
-    <input type="hidden" id="data_params_service" value="{{ $data->params }}">
+    <script>
+        let $params = <?php echo json_encode($data->params); ?>;
+        $params = JSON.parse($params);
+    </script>
 
     <div class="container c-container" id="service-detail">
         <ul class="breadcrumb-list">

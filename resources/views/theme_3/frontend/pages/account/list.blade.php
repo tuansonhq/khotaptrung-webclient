@@ -64,166 +64,167 @@
             </div>
         </section>
         {{--   Bopđyy --}}
+
         <section>
-            <div class="container container-fix body-container-ct">
-                <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
+                <div class="container container-fix body-container-ct" >
+                    <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
 
-                    <div class="col-md-12 left-right">
-                        <div class="row marginauto nick-list-bg" style="background: #FFFFFF">
-                            <div class="col-md-12 left-right">
-                                <img class="lazy theme_3_imagebanner" src="{{ isset($data->custom->image_banner) ? \App\Library\MediaHelpers::media($data->custom->image_banner) : \App\Library\MediaHelpers::media($data->image_banner) }}" alt="">
-                            </div>
-                        </div>
-                        <div class="row marginauto body-row-nick-ct">
-
-                            <div class="col-md-12 left-right">
-                                <div class="row marginauto body-header-ct">
-                                    <div class="col-auto left-right">
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
-                                    </div>
-                                    <div class="col-md-10 col-10 body-header-col-ct">
-                                        <span class="body-header-col-ct-titile">{{ $data->custom->title ? $data->custom->title : $data->title }}</span>
-                                    </div>
+                        <div class="col-md-12 left-right">
+                            <div class="row marginauto nick-list-bg" style="background: #FFFFFF">
+                                <div class="col-md-12 left-right">
+                                    <img class="lazy theme_3_imagebanner" src="{{ isset($data->custom->image_banner) ? \App\Library\MediaHelpers::media($data->custom->image_banner) : \App\Library\MediaHelpers::media($data->image_banner) }}" alt="">
                                 </div>
                             </div>
+                            <div class="row marginauto body-row-nick-ct">
 
-                            <div class="col-md-12 left-right">
-                                <div class="row marginauto body-search-ct">
-                                    <div class="col-md-12 text-left left-right">
-                                        <span>Tìm kiếm</span>
+                                <div class="col-md-12 left-right">
+                                    <div class="row marginauto body-header-ct">
+                                        <div class="col-auto left-right">
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
+                                        </div>
+                                        <div class="col-md-10 col-10 body-header-col-ct">
+                                            <span class="body-header-col-ct-titile">{{ $data->custom->title ? $data->custom->title : $data->title }}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {{--                        Find    --}}
-                            <div class="col-md-12 left-right">
-
-                                <div class="row marginauto">
-                                    <div class="col-12 left-right">
-                                        <form id="idFilterForm" method="POST">
-                                            <div class="row marginauto body-form-search-ct">
-                                                <div class="col-auto left-right">
-                                                    <input autocomplete="off" type="text" name="search" class="input-search-ct" placeholder="Nhập từ khóa">
-                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
-                                                </div>
-                                                <div class="col-4 body-form-search-button-ct media-web">
-                                                    <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                <div class="col-md-12 left-right">
+                                    <div class="row marginauto body-search-ct">
+                                        <div class="col-md-12 text-left left-right">
+                                            <span>Tìm kiếm</span>
+                                        </div>
                                     </div>
-                                    <div class="col-auto ml-auto left-right">
+                                </div>
 
-                                        <div class="row marginauto justify-content-end nick-findter-row">
+                                {{--                        Find    --}}
+                                <div class="col-md-12 left-right">
 
-                                            <div class="col-auto nick-findter" style="position: relative">
-                                                <ul>
-                                                    <li class="li-boloc">Bộ lọc</li>
-                                                    <li class="margin-findter">
-                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick/filter.png" alt="">
-                                                        <span class="overlay-find">
+                                    <div class="row marginauto">
+                                        <div class="col-12 left-right">
+                                            <form id="idFilterForm" method="POST">
+                                                <div class="row marginauto body-form-search-ct">
+                                                    <div class="col-auto left-right">
+                                                        <input autocomplete="off" type="text" name="search" class="input-search-ct" placeholder="Nhập từ khóa">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
+                                                    </div>
+                                                    <div class="col-4 body-form-search-button-ct media-web">
+                                                        <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-auto ml-auto left-right">
+
+                                            <div class="row marginauto justify-content-end nick-findter-row">
+
+                                                <div class="col-auto nick-findter" style="position: relative">
+                                                    <ul>
+                                                        <li class="li-boloc">Bộ lọc</li>
+                                                        <li class="margin-findter">
+                                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick/filter.png" alt="">
+                                                            <span class="overlay-find">
                                                         0
                                                     </span>
-                                                    </li>
-                                                </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row marginauto nick-findter-data">
+
+                                    </div>
+                                </div>
+                                {{--End find   --}}
+                                <div class="col-md-12 left-right d-none d-lg-block">
+                                    <div class="row marginauto body-search-ct sort-nick">
+                                        <div class="col-auto text-left left-right sort-nick-left">
+                                            <span class="nick_total"></span>
+                                        </div>
+                                        <div class="col-auto left-right sort-nick-right">
+                                            <div class="row marginauto align-items-center">
+                                                <div class="col-auto left-right">
+                                                    <span>Sắp xếp theo:</span>
+                                                </div>
+                                                <div class="col-auto left-right item-sort-nick">
+                                                    <input checked id="sort-1" class="sort" type="radio" name="sort" value="random" hidden>
+                                                    <label for="sort-1" class="item-sort-nick-label">
+                                                        <span>Ngẫu nhiên</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-auto left-right item-sort-nick">
+                                                    <input id="sort-2" class="sort" type="radio" name="sort" value="price_start" hidden>
+                                                    <label for="sort-2" class="item-sort-nick-label">
+                                                        <span>Giá giảm dần</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-auto left-right item-sort-nick">
+                                                    <input id="sort-3" class="sort" type="radio" name="sort" value="price_end" hidden>
+                                                    <label for="sort-3" class="item-sort-nick-label">
+                                                        <span>Giá tăng dần</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-auto left-right item-sort-nick">
+                                                    <input id="sort-4" class="sort" type="radio" name="sort" value="created_at_start" hidden>
+                                                    <label for="sort-4" class="item-sort-nick-label">
+                                                        <span>Mới nhất</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-auto left-right item-sort-nick">
+                                                    <input id="sort-5" class="sort" type="radio" name="sort" value="created_at_end" hidden>
+                                                    <label for="sort-5" class="item-sort-nick-label">
+                                                        <span>Cũ nhất</span>
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
 
-                                <div class="row marginauto nick-findter-data">
+                                <div id="account_data" style="width: 100%;">
 
                                 </div>
-                            </div>
-                            {{--End find   --}}
-                            <div class="col-md-12 left-right d-none d-lg-block">
-                                <div class="row marginauto body-search-ct sort-nick">
-                                    <div class="col-auto text-left left-right sort-nick-left">
-                                        <span class="nick_total"></span>
-                                    </div>
-                                    <div class="col-auto left-right sort-nick-right">
-                                        <div class="row marginauto align-items-center">
-                                            <div class="col-auto left-right">
-                                                <span>Sắp xếp theo:</span>
+
+                                <div id="listLoader" class="w-100" style="min-height: 500px">
+                                    <div class="loader position-relative" style="padding: 1rem">
+                                        <div class="loading-spokes">
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
                                             </div>
-                                            <div class="col-auto left-right item-sort-nick">
-                                                <input checked id="sort-1" class="sort" type="radio" name="sort" value="random" hidden>
-                                                <label for="sort-1" class="item-sort-nick-label">
-                                                    <span>Ngẫu nhiên</span>
-                                                </label>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
                                             </div>
-                                            <div class="col-auto left-right item-sort-nick">
-                                                <input id="sort-2" class="sort" type="radio" name="sort" value="price_start" hidden>
-                                                <label for="sort-2" class="item-sort-nick-label">
-                                                    <span>Giá giảm dần</span>
-                                                </label>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
                                             </div>
-                                            <div class="col-auto left-right item-sort-nick">
-                                                <input id="sort-3" class="sort" type="radio" name="sort" value="price_end" hidden>
-                                                <label for="sort-3" class="item-sort-nick-label">
-                                                    <span>Giá tăng dần</span>
-                                                </label>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
                                             </div>
-                                            <div class="col-auto left-right item-sort-nick">
-                                                <input id="sort-4" class="sort" type="radio" name="sort" value="created_at_start" hidden>
-                                                <label for="sort-4" class="item-sort-nick-label">
-                                                    <span>Mới nhất</span>
-                                                </label>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
                                             </div>
-                                            <div class="col-auto left-right item-sort-nick">
-                                                <input id="sort-5" class="sort" type="radio" name="sort" value="created_at_end" hidden>
-                                                <label for="sort-5" class="item-sort-nick-label">
-                                                    <span>Cũ nhất</span>
-                                                </label>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
+                                            </div>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
+                                            </div>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-                            </div>
 
-                            <div id="account_data" style="width: 100%;">
 
                             </div>
-
-                            <div id="listLoader" class="w-100" style="min-height: 500px">
-                                <div class="loader position-relative" style="padding: 1rem">
-                                    <div class="loading-spokes">
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                        <div class="spoke-container">
-                                            <div class="spoke"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
         </section>
 
         <section class="media-mobile">
@@ -391,15 +392,17 @@
                                     @endforeach
                                     @elseif($slug == 'nick-ninja-school')
                                         @foreach($auto_properties as $auto_propertie)
+
                                             @if($auto_propertie->key == 'CAPTURES')
 
+                                            @elseif($auto_propertie->key == 'SERVER')
                                                 <div class="col-md-12 left-right modal-nick-padding">
                                                     <div class="row marginauto">
                                                         <div class="col-12 left-right background-nick-col-top-ct">
                                                             <small>{{ $auto_propertie->key }}</small>
                                                         </div>
                                                         <div class="col-12 left-right background-nick-col-bottom-ct">
-                                                            <select class="select-2-custom account-filter-field" data-query="champions_data"  data-title="">
+                                                            <select class="select-2-custom account-filter-field" data-query="tftmapskins_data"  data-title="">
                                                                 <option value="">--Không chọn--</option>
                                                                 @if(isset($auto_propertie->childs))
                                                                     @foreach($auto_propertie->childs as $child)
@@ -412,26 +415,54 @@
                                                 </div>
 
                                             @else
+                                                @foreach($auto_propertie->childs as $childs)
+                                                    @if($childs->key == 'CHAR_LEVEL')
+                                                        <div class="col-md-12 left-right modal-nick-padding">
+                                                            <div class="row marginauto">
+                                                                <div class="col-12 left-right background-nick-col-top-ct">
+                                                                    <small>LEVEL</small>
+                                                                </div>
+                                                                <div class="col-12 left-right background-nick-col-bottom-ct">
+                                                                    <select class="select-2-custom account-filter-field" data-query="tftdamageskins_data"  data-title="">
+                                                                        <option value="">--Không chọn--</option>
+                                                                        <option value="{{ $childs->id }}-1-39">1 - 39</option>
+                                                                        <option value="{{ $childs->id }}-40-49">40 - 49</option>
+                                                                        <option value="{{ $childs->id }}-50-59">50 - 59</option>
+                                                                        <option value="{{ $childs->id }}-60-69">60 - 69</option>
+                                                                        <option value="{{ $childs->id }}-70-79">70 - 79</option>
+                                                                        <option value="{{ $childs->id }}-80-89">80 - 89</option>
+                                                                        <option value="{{ $childs->id }}-90-99">90 - 99</option>
+                                                                        <option value="{{ $childs->id }}-100-109">100 - 109</option>
+                                                                        <option value="{{ $childs->id }}-110-119">110 - 119</option>
+                                                                        <option value="{{ $childs->id }}-120-129">120 - 129</option>
+                                                                        <option value="{{ $childs->id }}-130">130</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-                                                <div class="col-md-12 left-right modal-nick-padding">
-                                                    <div class="row marginauto">
-                                                        <div class="col-12 left-right background-nick-col-top-ct">
-                                                            <small>{{ $auto_propertie->key }}</small>
+                                                    @elseif($childs->key == 'CHAR_CLASS')
+                                                        <div class="col-md-12 left-right modal-nick-padding">
+                                                            <div class="row marginauto">
+                                                                <div class="col-12 left-right background-nick-col-top-ct">
+                                                                    <small>CLASS</small>
+                                                                </div>
+                                                                <div class="col-12 left-right background-nick-col-bottom-ct">
+                                                                    <select class="select-2-custom account-filter-field" data-query="champions_data"  data-title="">
+                                                                        <option value="">--Không chọn--</option>
+                                                                        @foreach($childs->childs as $child)
+                                                                            <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-12 left-right background-nick-col-bottom-ct">
-                                                            <select class="select-2-custom account-filter-field" data-query="tftcompanions_data"  data-title="">
-                                                                <option value="">--Không chọn--</option>
-                                                                @if(isset($auto_propertie->childs))
-                                                                    @foreach($auto_propertie->childs as $child)
-                                                                        <option value="{{ $child->id }}">{{ $child->name }}</option>
-                                                                    @endforeach
-                                                                @endif
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
+
+                                                    @endif
+                                                @endforeach
 
                                             @endif
+
                                         @endforeach
                                     @endif
                                 @else

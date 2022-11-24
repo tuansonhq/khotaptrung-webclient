@@ -225,168 +225,168 @@
 
                         <div class="formDonhangAccount{{ $item->randId }} hide">
                             @if(App\Library\AuthCustom::check() && App\Library\AuthCustom::user()->balance >= $data->price)
-                            <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" data-ranid="{{ $item->randId }}" method="POST">
-                            @else
-                            <form class="formDonhangAccount">
-                            @endif
-                                {{ csrf_field() }}
+                                <form class="formDonhangAccount" action="/ajax/acc/{{ $item->randId }}/databuy" data-ranid="{{ $item->randId }}" method="POST">
+                                    @else
+                                        <form class="formDonhangAccount">
+                                            @endif
+                                            {{ csrf_field() }}
 
-                                <div class="modal-header">
-                                    <span class="nick-modal-header">Xác nhận mua tài khoản</span>
-                                    <img data-dismiss="modal" class="nick-modal-header-close" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
-                                </div>
-
-                                <div class="modal-body">
-                                    <div class="c-content-tab-4 c-opt-3" role="tabpanel">
-                                        <ul class="nav nav-justified nav-justified__ul" role="tablist">
-                                            <li role="presentation" class="active justified__ul_li">
-                                                <a href="#paymentv2{{ $item->randId }}" role="tab" data-toggle="tab" aria-selected="true" class="c-font-16 active paymentv2{{ $item->randId }}">Thanh toán</a>
-                                            </li>
-                                            <li role="presentation" class="justified__ul_li">
-                                                <a href="#infov2{{ $item->randId }}" role="tab" data-toggle="tab" aria-selected="false" class="c-font-16 infov2{{ $item->randId }}">Thông tin tài khoản</a>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content">
-                                            <div role="tabpanel" class="tab-pane fade in active show tabpaymentv2{{ $item->randId }}" id="paymentv2{{ $item->randId }}">
-                                                <p class="c-tab-header-account">Thông tin tài khoản #{{ $item->randId }}</p>
-                                                <div class="table-nick-properties">
-                                                    <div class="table-nick-items justify-content-between d-flex">
-                                                        <div class="table-properties-name">Nhà phát hành</div>
-                                                        @php
-                                                            $title_nph = '';
-                                                            if (isset($item->groups) && count($item->groups)){
-                                                                foreach ($item->groups as $t_group){
-                                                                    if ($t_group->module == "acc_provider"){
-                                                                        $title_nph = $t_group->title;
-                                                                    }
-                                                                }
-                                                            }
-                                                        @endphp
-                                                        <div class="table-properties-value">
-                                                            {{ $title_nph }}
-                                                        </div>
-                                                    </div>
-                                                    <div class="table-nick-items justify-content-between d-flex">
-                                                        <div class="table-properties-name">Tên game</div>
-                                                        <div class="table-properties-value">
-                                                            {{ isset($data->custom->title) ? $data->custom->title :  $data->title }}
-                                                        </div>
-                                                    </div>
-                                                    <div class="table-nick-items justify-content-between d-flex">
-                                                        <div class="table-properties-name">Giá tiền</div>
-                                                        <div class="table-properties-value">
-                                                            @if(isset($data->price))
-                                                                {{ str_replace(',','.',number_format($data->price)) }}đ
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="c-account-price-block justify-content-between d-flex">
-                                                    <div class="c-account-price-title">Số tiền cần thanh toán</div>
-                                                        <div class="c-account-price-value">
-                                                            @if(isset($data->category->params->price) && isset($data->category->params))
-                                                                {{ str_replace(',','.',number_format($data->category->params->price)) }} đ
-                                                            @else
-                                                                {{ str_replace(',','.',number_format($data->price)) }} đ
-                                                            @endif
-                                                        </div>
-                                                </div>
+                                            <div class="modal-header">
+                                                <span class="nick-modal-header">Xác nhận mua tài khoản</span>
+                                                <img data-dismiss="modal" class="nick-modal-header-close" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
                                             </div>
-                                            <div role="tabpanel" class="tab-pane fade tabinfov2{{ $item->randId }}" id="infov2{{ $item->randId }}">
-                                                <p class="c-tab-header-account">Chi tiết tài khoản #{{ $item->randId }}</p>
-                                                <div class="table-nick-properties">
 
-                                                    @if(isset($item->groups))
-                                                        <?php $att_values = $item->groups ?>
-                                                        @foreach($att_values as $att_value)
-                                                            @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                                @if(isset($att_value->parent))
-                                                                    <div class="table-nick-items justify-content-between d-flex">
-                                                                        <div class="table-properties-name">{{ $att_value->parent->title??null }}</div>
-                                                                        <div class="table-properties-value">
-                                                                            {{ $att_value->title??null }}
-                                                                        </div>
+                                            <div class="modal-body">
+                                                <div class="c-content-tab-4 c-opt-3" role="tabpanel">
+                                                    <ul class="nav nav-justified nav-justified__ul" role="tablist">
+                                                        <li role="presentation" class="active justified__ul_li">
+                                                            <a href="#paymentv2{{ $item->randId }}" role="tab" data-toggle="tab" aria-selected="true" class="c-font-16 active paymentv2{{ $item->randId }}">Thanh toán</a>
+                                                        </li>
+                                                        <li role="presentation" class="justified__ul_li">
+                                                            <a href="#infov2{{ $item->randId }}" role="tab" data-toggle="tab" aria-selected="false" class="c-font-16 infov2{{ $item->randId }}">Thông tin tài khoản</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div role="tabpanel" class="tab-pane fade in active show tabpaymentv2{{ $item->randId }}" id="paymentv2{{ $item->randId }}">
+                                                            <p class="c-tab-header-account">Thông tin tài khoản #{{ $item->randId }}</p>
+                                                            <div class="table-nick-properties">
+                                                                <div class="table-nick-items justify-content-between d-flex">
+                                                                    <div class="table-properties-name">Nhà phát hành</div>
+                                                                    @php
+                                                                        $title_nph = '';
+                                                                        if (isset($item->groups) && count($item->groups)){
+                                                                            foreach ($item->groups as $t_group){
+                                                                                if ($t_group->module == "acc_provider"){
+                                                                                    $title_nph = $t_group->title;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    @endphp
+                                                                    <div class="table-properties-value">
+                                                                        {{ $title_nph }}
                                                                     </div>
-                                                                @endif
-                                                            @endif
-                                                        @endforeach
-                                                    @endif
-                                                    @if(isset($item->params) && isset($item->params->ext_info))
-                                                        <?php $params = json_decode(json_encode($item->params->ext_info),true) ?>
-                                                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                                            @foreach($dataAttribute as $index=>$att)
-                                                                @if($att->position == 'text')
-                                                                    @if(isset($att->childs))
-                                                                        @foreach($att->childs as $child)
-                                                                            @foreach($params as $key => $param)
-                                                                                @if($key == $child->id)
-                                                                                    <div class="table-nick-items justify-content-between d-flex">
-                                                                                        <div class="table-properties-name">{{ $child->title }}</div>
-                                                                                        <div class="table-properties-value">
-                                                                                            {{ $param }}
-                                                                                        </div>
+                                                                </div>
+                                                                <div class="table-nick-items justify-content-between d-flex">
+                                                                    <div class="table-properties-name">Tên game</div>
+                                                                    <div class="table-properties-value">
+                                                                        {{ isset($data->custom->title) ? $data->custom->title :  $data->title }}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="table-nick-items justify-content-between d-flex">
+                                                                    <div class="table-properties-name">Giá tiền</div>
+                                                                    <div class="table-properties-value">
+                                                                        @if(isset($data->price))
+                                                                            {{ str_replace(',','.',number_format($data->price)) }}đ
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="c-account-price-block justify-content-between d-flex">
+                                                                <div class="c-account-price-title">Số tiền cần thanh toán</div>
+                                                                <div class="c-account-price-value">
+                                                                    @if(isset($data->category->params->price) && isset($data->category->params))
+                                                                        {{ str_replace(',','.',number_format($data->category->params->price)) }} đ
+                                                                    @else
+                                                                        {{ str_replace(',','.',number_format($data->price)) }} đ
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div role="tabpanel" class="tab-pane fade tabinfov2{{ $item->randId }}" id="infov2{{ $item->randId }}">
+                                                            <p class="c-tab-header-account">Chi tiết tài khoản #{{ $item->randId }}</p>
+                                                            <div class="table-nick-properties">
+
+                                                                @if(isset($item->groups))
+                                                                    <?php $att_values = $item->groups ?>
+                                                                    @foreach($att_values as $att_value)
+                                                                        @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                                            @if(isset($att_value->parent))
+                                                                                <div class="table-nick-items justify-content-between d-flex">
+                                                                                    <div class="table-properties-name">{{ $att_value->parent->title??null }}</div>
+                                                                                    <div class="table-properties-value">
+                                                                                        {{ $att_value->title??null }}
                                                                                     </div>
+                                                                                </div>
+                                                                            @endif
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                                @if(isset($item->params) && isset($item->params->ext_info))
+                                                                    <?php $params = json_decode(json_encode($item->params->ext_info),true) ?>
+                                                                    @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                                                        @foreach($dataAttribute as $index=>$att)
+                                                                            @if($att->position == 'text')
+                                                                                @if(isset($att->childs))
+                                                                                    @foreach($att->childs as $child)
+                                                                                        @foreach($params as $key => $param)
+                                                                                            @if($key == $child->id)
+                                                                                                <div class="table-nick-items justify-content-between d-flex">
+                                                                                                    <div class="table-properties-name">{{ $child->title }}</div>
+                                                                                                    <div class="table-properties-value">
+                                                                                                        {{ $param }}
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            @endif
+                                                                                        @endforeach
+                                                                                    @endforeach
                                                                                 @endif
-                                                                            @endforeach
+
+                                                                            @endif
                                                                         @endforeach
                                                                     @endif
-
                                                                 @endif
-                                                            @endforeach
-                                                        @endif
-                                                    @endif
 
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
+
+                                                <script>
+                                                    $(document).ready(function () {
+                                                        $(document).on('click', '.paymentv2{{ $item->randId }}',function(e){
+                                                            e.preventDefault();
+                                                            $('.tabpaymentv2{{ $item->randId }}').addClass('in');
+                                                            $('.tabpaymentv2{{ $item->randId }}').addClass('active');
+                                                            $('.tabpaymentv2{{ $item->randId }}').addClass('show');
+                                                            $('.tabinfov2{{ $item->randId }}').removeClass('show');
+                                                            $('.tabinfov2{{ $item->randId }}').removeClass('active');
+                                                            $('.tabinfov2{{ $item->randId }}').removeClass('in');
+                                                        });
+                                                        $(document).on('click', '.infov2{{ $item->randId }}',function(e){
+                                                            e.preventDefault();
+                                                            $('.tabinfov2{{ $item->randId }}').addClass('in');
+                                                            $('.tabinfov2{{ $item->randId }}').addClass('active');
+                                                            $('.tabinfov2{{ $item->randId }}').addClass('show');
+                                                            $('.tabpaymentv2{{ $item->randId }}').removeClass('show');
+                                                            $('.tabpaymentv2{{ $item->randId }}').removeClass('active');
+                                                            $('.tabpaymentv2{{ $item->randId }}').removeClass('in');
+                                                        });
+                                                    })
+                                                </script>
                                             </div>
-                                        </div>
-                                    </div>
 
-                                    <script>
-                                        $(document).ready(function () {
-                                            $(document).on('click', '.paymentv2{{ $item->randId }}',function(e){
-                                                e.preventDefault();
-                                                $('.tabpaymentv2{{ $item->randId }}').addClass('in');
-                                                $('.tabpaymentv2{{ $item->randId }}').addClass('active');
-                                                $('.tabpaymentv2{{ $item->randId }}').addClass('show');
-                                                $('.tabinfov2{{ $item->randId }}').removeClass('show');
-                                                $('.tabinfov2{{ $item->randId }}').removeClass('active');
-                                                $('.tabinfov2{{ $item->randId }}').removeClass('in');
-                                            });
-                                            $(document).on('click', '.infov2{{ $item->randId }}',function(e){
-                                                e.preventDefault();
-                                                $('.tabinfov2{{ $item->randId }}').addClass('in');
-                                                $('.tabinfov2{{ $item->randId }}').addClass('active');
-                                                $('.tabinfov2{{ $item->randId }}').addClass('show');
-                                                $('.tabpaymentv2{{ $item->randId }}').removeClass('show');
-                                                $('.tabpaymentv2{{ $item->randId }}').removeClass('active');
-                                                $('.tabpaymentv2{{ $item->randId }}').removeClass('in');
-                                            });
-                                        })
-                                    </script>
-                                </div>
+                                            <div class="modal-footer">
+                                                @if(App\Library\AuthCustom::check())
 
-                                <div class="modal-footer">
-                                    @if(App\Library\AuthCustom::check())
-
-                                        @if(App\Library\AuthCustom::user()->balance < $data->price)
-                                        <div class="nick-footer-notify">
-                                            <p style="color: #DA4343;">Số dư tài khoản không đủ để thanh toán vui lòng nạp tiền để tiếp tục giao dịch</p>
-                                        </div>
-                                        <div class="d-flex justify-content-center w-100">
-                                            <button class="btn-nick btn-ghost" disabled>Thanh toán</button>
-                                            <button class="btn-nick btn-primary" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp tiền</button>
-                                        </div>
-                                        @else
-                                            <div class="nick-footer-notify">
-                                                <p style="color: #1473CC;">Tài khoản của bạn chưa cấu hình ODP nên chỉ cần click vào nút xác nhận mua để hoàn tất giao dịch</p>
+                                                    @if(App\Library\AuthCustom::user()->balance < $data->price)
+                                                        <div class="nick-footer-notify">
+                                                            <p style="color: #DA4343;">Số dư tài khoản không đủ để thanh toán vui lòng nạp tiền để tiếp tục giao dịch</p>
+                                                        </div>
+                                                        <div class="d-flex justify-content-center w-100">
+                                                            <button class="btn-nick btn-ghost" disabled>Thanh toán</button>
+                                                            <button class="btn-nick btn-primary" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp tiền</button>
+                                                        </div>
+                                                    @else
+                                                        <div class="nick-footer-notify">
+                                                            <p style="color: #1473CC;">Tài khoản của bạn chưa cấu hình ODP nên chỉ cần click vào nút xác nhận mua để hoàn tất giao dịch</p>
+                                                        </div>
+                                                        <button type="submit" class="btn-nick btn-primary loginBox__layma__button__displayabs" style="position: relative">Thanh toán</button>
+                                                    @endif
+                                                @else
+                                                    <a class="btn-nick btn-primary" href="/login?return_url=/acc/{{ $item->randId }}">Đăng nhập</a>
+                                                @endif
                                             </div>
-                                            <button type="submit" class="btn-nick btn-primary loginBox__layma__button__displayabs" style="position: relative">Thanh toán</button>
-                                        @endif
-                                    @else
-                                        <a class="btn-nick btn-primary" href="/login?return_url=/acc/{{ $item->randId }}">Đăng nhập</a>
-                                    @endif
-                                </div>
-                            </form>
+                                        </form>
                         </div>
 
                         <style>
@@ -558,33 +558,33 @@
                                     <?php
                                     $params = json_decode(json_encode($item->params->ext_info),true);
                                     ?>
-                                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                            @foreach($dataAttribute as $index=>$att)
-                                                @if($att->position == 'text')
-                                                    @if(isset($att->childs))
-                                                        @foreach($att->childs as $child)
+                                    @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                        @foreach($dataAttribute as $index=>$att)
+                                            @if($att->position == 'text')
+                                                @if(isset($att->childs))
+                                                    @foreach($att->childs as $child)
 
-                                                            @if($child->slug == "noi-bat")
+                                                        @if($child->slug == "noi-bat")
 
-                                                                @foreach($params as $key => $param)
-                                                                    @if($key == $child->id && $child->is_slug_override == null)
-                                                                        @php
-                                                                            $checkindex = 1;
-                                                                        @endphp
-                                                                        <div class="item_buy_list_description">
-                                                                            {{ isset($param) ? \Str::limit($param,25) : null }}
-                                                                        </div>
+                                                            @foreach($params as $key => $param)
+                                                                @if($key == $child->id && $child->is_slug_override == null)
+                                                                    @php
+                                                                        $checkindex = 1;
+                                                                    @endphp
+                                                                    <div class="item_buy_list_description">
+                                                                        {{ isset($param) ? \Str::limit($param,25) : null }}
+                                                                    </div>
 
-                                                                    @endif
-                                                                @endforeach
-                                                            @else
+                                                                @endif
+                                                            @endforeach
+                                                        @else
 
-                                                            @endif
-                                                        @endforeach
-                                                    @endif
+                                                        @endif
+                                                    @endforeach
                                                 @endif
-                                            @endforeach
-                                        @endif
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 @else
 
                                 @endif
@@ -600,34 +600,34 @@
                                         $total = 0;
                                         ?>
 
-                                    @if(isset($item->groups))
-                                        <?php
-                                        $att_values = $item->groups;
-                                        ?>
+                                        @if(isset($item->groups))
+                                            <?php
+                                            $att_values = $item->groups;
+                                            ?>
 
-                                        {{--                                            @dd($att_values)--}}
-                                        @foreach($att_values as $att_value)
-                                            {{--            @dd($att_value)--}}
-                                            @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                {{--                                                        @dd($att_value->parent)--}}
-                                            @if(isset($att_value->parent))
-                                                    @if($total < 4)
-                                                        <?php
-                                                        $total = $total + 1;
-                                                        ?>
-                                                        <div class="row" style="margin: 0 auto;width: 100%">
-                                                            <div class="col-auto text-left fixcssacount item_buy_list_info_inacc"">
-                                                            {{ $att_value->parent->title??null }} :
-                                                        </div>
-                                                        <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                            {{--                                                                    {{ $att_value->title??null }}--}}
-                                                            {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}
-                                                        </div>
-                                </div>
-                                @endif
-                                @endif
-                                            @endif
-                                        @endforeach
+                                            {{--                                            @dd($att_values)--}}
+                                            @foreach($att_values as $att_value)
+                                                {{--            @dd($att_value)--}}
+                                                @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                    {{--                                                        @dd($att_value->parent)--}}
+                                                    @if(isset($att_value->parent))
+                                                        @if($total < 4)
+                                                            <?php
+                                                            $total = $total + 1;
+                                                            ?>
+                                                            <div class="row" style="margin: 0 auto;width: 100%">
+                                                                <div class="col-auto text-left fixcssacount item_buy_list_info_inacc"">
+                                                                {{ $att_value->parent->title??null }} :
+                                                            </div>
+                                                            <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                {{--                                                                    {{ $att_value->title??null }}--}}
+                                                                {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}
+                                                            </div>
+                                    </div>
+                                    @endif
+                                    @endif
+                                    @endif
+                                    @endforeach
                                     @endif
                                     @if(isset($item->params))
                                         @if($data->slug == "nick-lien-minh")
@@ -774,28 +774,62 @@
                                             @if(isset($info) && count($info))
                                                 @foreach($info as $ke => $in)
                                                     @if(in_array($in->name,config('module.acc.auto_nro_list_tt')))
-                                                        <?php
-                                                        $total = $total + 1;
-                                                        ?>
+
                                                         @if($total < 5)
-                                                            @if($in->name == 'tên nhân vật' || $in->name == 'cấp độ')
+                                                            @if($in->name == 'Skill Pet' || $in->name == 'Cải trang')
+                                                                @if($in->name == 'Skill Pet')
+{{--                                                                    <div class="row" style="margin: 0 auto;width: 100%">--}}
+{{--                                                                        <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">--}}
+{{--                                                                            Skill đệ tử :--}}
+{{--                                                                        </div>--}}
+{{--                                                                        <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">--}}
+{{--                                                                            Các cấp đang có--}}
+
+{{--                                                                            @if(isset($in->value) && count($in->value) )--}}
+{{--                                                                                @foreach($in->value as $k_value => $value)--}}
+
+{{--                                                                                    {{ $k_value + 1 }}--}}
+{{--                                                                                    @if($k_value + 1 < count($in->value))--}}
+{{--                                                                                        +--}}
+{{--                                                                                    @endif--}}
+{{--                                                                                @endforeach--}}
+{{--                                                                            @endif--}}
+{{--                                                                        </div>--}}
+{{--                                                                    </div>--}}
+                                                                @elseif($in->name == 'Cải trang')
+                                                                    <?php
+
+                                                                    $total = $total + 1;
+                                                                    ?>
+                                                                    <div class="row" style="margin: 0 auto;width: 100%">
+                                                                        <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                                            {{ $in->name??'' }} :
+                                                                        </div>
+                                                                        <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                            @if(isset($in->value) && count($in->value) )
+{{--                                                                                @foreach($in->value as $value)--}}
+{{--                                                                                    {{ $value }} <br>--}}
+{{--                                                                                @endforeach--}}
+                                                                                {{ count($in->value) }}
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+
+                                                            @elseif($in->name == 'Hành tinh' || $in->name == 'Bông tai' )
+                                                                <?php
+
+                                                                $total = $total + 1;
+                                                                ?>
                                                                 <div class="row" style="margin: 0 auto;width: 100%">
                                                                     <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
                                                                         {{ $in->name??'' }} :
                                                                     </div>
                                                                     <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                        {{--                                                                                        {{ $param??null }}--}}
-                                                                        {{ $in->value??'' }}
-                                                                    </div>
-                                                                </div>
-                                                            @else
-                                                                <div class="row" style="margin: 0 auto;width: 100%">
-                                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                                        {{ $in->name??'' }} :
-                                                                    </div>
-                                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                        {{--                                                                                        {{ $param??null }}--}}
-                                                                        {{ str_replace(',','.',number_format($in->value??'')) }}
+
+                                                                        {{ $param??null }}
+                                                                        {{ $in->value }}
+
                                                                     </div>
                                                                 </div>
                                                             @endif
@@ -807,41 +841,41 @@
                                     @endif
 
                                     @if(isset($item->params) && isset($item->params->ext_info))
-                                            <?php
-                                            $params = json_decode(json_encode($item->params->ext_info),true);
-                                            ?>
-                                            @if($total < 4)
-                                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                                    @foreach($dataAttribute as $index=>$att)
-                                                        @if($att->position == 'text')
-                                                            @if(isset($att->childs))
-                                                                @foreach($att->childs as $child)
-                                                                    @foreach($params as $key => $param)
-                                                                        @if($key == $child->id && $child->is_slug_override == null)
-                                                                            @if($total < 4)
-                                                                                <?php
-                                                                                $total = $total + 1;
-                                                                                ?>
-                                                                                <div class="row" style="margin: 0 auto;width: 100%">
-                                                                                    <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                                                        {{ $child->title??null }} :
-                                                                                    </div>
-                                                                                    <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                                        {{--                                                                                        {{ $param??null }}--}}
-                                                                                        {{ isset($param) ? \Str::limit($param,16) : null }}
-                                                                                    </div>
+                                        <?php
+                                        $params = json_decode(json_encode($item->params->ext_info),true);
+                                        ?>
+                                        @if($total < 4)
+                                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                                @foreach($dataAttribute as $index=>$att)
+                                                    @if($att->position == 'text')
+                                                        @if(isset($att->childs))
+                                                            @foreach($att->childs as $child)
+                                                                @foreach($params as $key => $param)
+                                                                    @if($key == $child->id && $child->is_slug_override == null)
+                                                                        @if($total < 4)
+                                                                            <?php
+                                                                            $total = $total + 1;
+                                                                            ?>
+                                                                            <div class="row" style="margin: 0 auto;width: 100%">
+                                                                                <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
+                                                                                    {{ $child->title??null }} :
                                                                                 </div>
-                                                                            @else
-                                                                            @endif
+                                                                                <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
+                                                                                    {{--                                                                                        {{ $param??null }}--}}
+                                                                                    {{ isset($param) ? \Str::limit($param,16) : null }}
+                                                                                </div>
+                                                                            </div>
+                                                                        @else
                                                                         @endif
-                                                                    @endforeach
+                                                                    @endif
                                                                 @endforeach
-                                                            @endif
+                                                            @endforeach
                                                         @endif
-                                                    @endforeach
-                                                @endif
+                                                    @endif
+                                                @endforeach
                                             @endif
                                         @endif
+                                    @endif
                                 </div>
                             </div>
                             <div class="item_buy_list_more">
