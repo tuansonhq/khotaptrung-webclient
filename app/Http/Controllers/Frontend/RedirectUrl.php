@@ -115,6 +115,55 @@ class RedirectUrl extends Controller
                             return view('frontend.404.404');
                         break;
                 }
+            }elseif (\Request::server("HTTP_HOST") == 'shopfreefire.vn'
+                || \Request::server("HTTP_HOST") == 'shopfreefiregiare.com'
+                || \Request::server("HTTP_HOST") == 'shopducmomtv.com'){
+                switch($slug){
+                    case 'nick-free-fire-gia-re':
+                            $slug_new = '/mua-acc/nick-free-fire';
+                            $url = 'https://'.\Request::server("HTTP_HOST").$slug_new;
+                            return Redirect::to($url);
+                        break;
+                    default:
+                        return view('frontend.404.404');
+                        break;
+                }
+            }elseif (\Request::server("HTTP_HOST") == 'nickfreefiregiare.com'){
+                switch($slug){
+                    case 'nick-free-fire-gia-re':
+                        $slug_new = '/mua-acc/free-fire';
+                        $url = 'https://'.\Request::server("HTTP_HOST").$slug_new;
+                        return Redirect::to($url);
+                        break;
+                    default:
+                        return view('frontend.404.404');
+                        break;
+                }
+            }elseif (\Request::server("HTTP_HOST") == 'acclienquan.net'){
+                switch($slug){
+                    case 'nick-lien-quan-gia-re':
+                        $slug_new = '/mua-acc/nick-lien-quan-gia-re';
+                        $url = 'https://'.\Request::server("HTTP_HOST").$slug_new;
+                        return Redirect::to($url);
+                        break;
+                    default:
+                        return view('frontend.404.404');
+                        break;
+                }
+            }else{
+                return view('frontend.404.404');
+            }
+        }else{
+            return view('frontend.404.404');
+        }
+    }
+
+    public function redirectUrlRikaki(Request $request){
+        if(setting('sys_google_plus') != ''){
+            if (\Request::server("HTTP_HOST") == 'rikaki.vn'){
+                $slug_new = '/mua-acc/nick-free-fire';
+                $url = 'https://'.\Request::server("HTTP_HOST").$slug_new;
+                return Redirect::to($url);
             }else{
                 return view('frontend.404.404');
             }
