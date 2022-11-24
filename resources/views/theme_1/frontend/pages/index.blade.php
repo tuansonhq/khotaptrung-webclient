@@ -167,6 +167,7 @@
             </div>
 
         </div>
+        @include('frontend.widget.__bonus')
 
 
         @include('frontend.widget.__menu__taget')

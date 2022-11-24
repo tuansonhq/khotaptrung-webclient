@@ -91,10 +91,8 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/script.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
-    <script src="/js/{{theme('')->theme_key}}/main_top.js?v={{time()}}"></script>
     <script>
         $(document).ready(function () {
             @if(Request::is('thong-tin'))
@@ -281,7 +279,7 @@
                                                 <div class="card__info transfer-code" id=""></div>
 
                                                 <div class="icon--coppy js-copy-text" aria-describedby="tippy-7" >
-                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
+{{--                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">--}}
                                                 </div>
                                             </div>
                                         </div>
@@ -394,7 +392,6 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/action.js?v={{time()}}"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/@if(isset(theme('')->theme_config->sys_config_menu)){{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}@endif/theme.js"></script>
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
 

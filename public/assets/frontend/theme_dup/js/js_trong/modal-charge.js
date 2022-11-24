@@ -88,7 +88,7 @@ $(document).ready(function () {
     function reload_captcha() {
         $.ajax({
             type: 'GET',
-            url: '/ajax/reload-captcha',
+            url: '/reload-captcha',
             success: function (data) {
                 $(".captcha_1 span").html(data.captcha);
             }
