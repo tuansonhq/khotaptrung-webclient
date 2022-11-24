@@ -1426,3 +1426,15 @@ View::composer('frontend.widget.__related__service__article_theme_5', function (
     return $view->with('data_service',$data);
 
 });
+
+View::composer('frontend.widget.__bonus', function ($view) {
+    $url = '/minigame/bonus';
+    $method = "GET";
+    $dataSend = array();
+        $dataSend['secret_key'] = config('api.secret_key');
+    $dataSend['domain'] = \Request::server("HTTP_HOST");
+    $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+    $data = $result_Api->response_data??null;
+    return $view->with('data',$data);
+
+});
