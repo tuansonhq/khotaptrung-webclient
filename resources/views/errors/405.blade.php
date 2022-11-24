@@ -19,10 +19,10 @@
                     <div class="col-md-12 left__right">
                         <div class="row marginauto mobile_text">
                             <div class="col-md-12 left__right">
-                                <h3 class="title__error">Chúng tôi đang nâng cấp trải nghiệm của bạn!</h3>
+                                <h3 class="title__error" style="font-family: 'Roboto';">Chúng tôi đang nâng cấp trải nghiệm của bạn!</h3>
                             </div>
                             <div class="col-md-12 left__right container_error_col">
-                                <span class="text__error">Chúng tôi sẽ sớm trở lại. Hẹn gặp lại bạn trong thời gian sớm nhất!</span>
+                                <span class="text__error" style="font-family: 'Roboto';">Chúng tôi sẽ sớm trở lại. Hẹn gặp lại bạn trong thời gian sớm nhất!</span>
                             </div>
                         </div>
                     </div>
