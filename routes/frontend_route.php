@@ -306,6 +306,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/ajax-modal-logs-spin-bonus-acc',[\App\Http\Controllers\Frontend\MinigameController::class,'getLogsModalSpinBonus']);
 
                 Route::post('/bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'postBonusLogin'])->name('postBonusLogin');
+                Route::get('/bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'getBonusLogin'])->name('getBonusLogin');
 
                 Route::group(['middleware' => ['intend']], function () {
 
