@@ -965,4 +965,45 @@ class MinigameController extends Controller
             ]);
         }
     }
+
+    public function postBonusLogin(Request $request)
+    {
+        if (!empty(Session::get('jwt'))) {
+            try {
+                $game_type = $request->game_type;
+                $method = "POST";
+                $data = array();
+                $data['token'] = Session::get('jwt');;
+                $data['secret_key'] = config('api.secret_key');
+                $data['domain'] = \Request::server("HTTP_HOST");
+                $url = '/minigame/bonus';
+                $result_Api = DirectAPI::_makeRequest($url, $data, $method);
+
+                if (isset($result_Api) && $result_Api->response_code == 200) {
+                    $result = $result_Api->response_data;
+                    return response()->json([
+                        'type' => $result->type,
+                        'msg' => $result->msg,
+                        'status' => $result->status,
+                        'slug' => $result->slug
+                    ], 200);
+                }else{
+                    return response()->json([
+                        'status' => 'ERROR',
+                        'message' => 'Có lỗi phát sinh.Xin vui lòng thử lại !',
+                    ]);
+                }
+            } catch (\Exception $e) {
+                logger($e);
+                return response()->json([
+                    'status' => 'ERROR',
+                    'message' => 'Có lỗi phát sinh.Xin vui lòng thử lại !',
+                ]);
+            }
+        } else {
+            return response()->json([
+                'status' => 'LOGIN',
+            ]);
+        }
+    }
 }
