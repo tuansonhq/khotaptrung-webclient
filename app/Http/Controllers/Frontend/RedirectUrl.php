@@ -137,7 +137,7 @@ class RedirectUrl extends Controller
                         return view('frontend.404.404');
                         break;
                 }
-            }elseif (\Request::server("HTTP_HOST") == 'shopducmomtv.com'){
+            }elseif (\Request::server("HTTP_HOST") == 'shopducmomtv.vn'){
                 switch($slug){
                     case 'nick-free-fire-gia-re':
                         $slug_new = '/mua-acc/nick-free-fire';
