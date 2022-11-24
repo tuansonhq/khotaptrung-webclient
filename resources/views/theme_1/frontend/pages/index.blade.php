@@ -148,7 +148,6 @@
                 @include('frontend.widget.__content__home__dichvu')
 
                 @include('frontend.widget.__content__home__minigame')
-                @include('frontend.widget.__bonus')
 
             @endif
 
@@ -168,6 +167,7 @@
             </div>
 
         </div>
+        @include('frontend.widget.__bonus')
 
 
         @include('frontend.widget.__menu__taget')

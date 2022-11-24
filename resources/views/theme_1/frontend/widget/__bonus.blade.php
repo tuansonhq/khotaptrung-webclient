@@ -44,7 +44,7 @@
             </div>
         @endif
     @endif
-	
+    
 
     <div class="modal fade" id="bonusModal" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -77,8 +77,8 @@
             </div>
         </div>
     </div>
-	
-	
+    
+    
     <script type="text/javascript">
         var isMobile = {
             Android: function() {
@@ -104,39 +104,43 @@
             $('#bonus').addClass('mobile');
         }
         var roll_check = true;
-		
-		$("#bonus_login").click(function(){
-			window.location.href = '/login';
-		})
-		
+        
+        $("#bonus_login").click(function(){
+            window.location.href = '/login';
+        })
+        
         $('#bonus').click(function(){
             if(roll_check){
                 roll_check = false;
                 $.ajax({
-                    url: '/postBonusLogin',
+                    url: '/bonus',
                     datatype:'json',
                     data:{
                         _token: $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
                     success: function (data) {
+                        console.log(data);
                         if(data.status==0){
                             if(data.type == "99")
                             {
-								$(".btnPlayNow a").attr("href",data.slug);
-								$(".btnPlayNow").show();
-								$(".moneyAdd").html(data.msg);
+                                $(".btnPlayNow a").attr("href",data.slug);
+                                $(".btnPlayNow").show();
+                                $(".moneyAdd").html(data.msg);
                                 $('#bonusModal').modal('show');
                                 $('#bonus').remove();
                             }
                             else if(data.type != 11 && data.type != 12 && data.type != 13)
                             {
-								$(".btnRVP a").attr("href",data.slug);
-								$(".btnRVP").show();
+                                $(".btnRVP a").attr("href",data.slug);
+                                $(".btnRVP").show();
                                 $(".moneyAdd").html(data.msg);
                                 $('#bonusModal').modal('show');
                                 $('#bonus').remove();
-							}
+                            }else{
+                                $(".btnPlayNow").hide();
+                                $(".btnRVP").hide();
+                            }
                         }else if(data.status='LOGIN'){
                             window.location.href = '/login';
                         }else{
