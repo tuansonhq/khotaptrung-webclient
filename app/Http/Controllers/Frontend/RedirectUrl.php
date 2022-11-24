@@ -115,9 +115,7 @@ class RedirectUrl extends Controller
                             return view('frontend.404.404');
                         break;
                 }
-            }elseif (\Request::server("HTTP_HOST") == 'shopfreefire.vn'
-                || \Request::server("HTTP_HOST") == 'shopfreefiregiare.com'
-                || \Request::server("HTTP_HOST") == 'shopducmomtv.com'){
+            }elseif (\Request::server("HTTP_HOST") == 'shopfreefire.vn'){
                 switch($slug){
                     case 'nick-free-fire-gia-re':
                             $slug_new = '/mua-acc/nick-free-fire';
@@ -128,7 +126,30 @@ class RedirectUrl extends Controller
                         return view('frontend.404.404');
                         break;
                 }
-            }elseif (\Request::server("HTTP_HOST") == 'nickfreefiregiare.com'){
+            }elseif (\Request::server("HTTP_HOST") == 'shopfreefiregiare.com'){
+                switch($slug){
+                    case 'nick-free-fire-gia-re':
+                        $slug_new = '/mua-acc/nick-free-fire';
+                        $url = 'https://'.\Request::server("HTTP_HOST").$slug_new;
+                        return Redirect::to($url);
+                        break;
+                    default:
+                        return view('frontend.404.404');
+                        break;
+                }
+            }elseif (\Request::server("HTTP_HOST") == 'shopducmomtv.com'){
+                switch($slug){
+                    case 'nick-free-fire-gia-re':
+                        $slug_new = '/mua-acc/nick-free-fire';
+                        $url = 'https://'.\Request::server("HTTP_HOST").$slug_new;
+                        return Redirect::to($url);
+                        break;
+                    default:
+                        return view('frontend.404.404');
+                        break;
+                }
+            }
+            elseif (\Request::server("HTTP_HOST") == 'nickfreefiregiare.com'){
                 switch($slug){
                     case 'nick-free-fire-gia-re':
                         $slug_new = '/mua-acc/free-fire';
