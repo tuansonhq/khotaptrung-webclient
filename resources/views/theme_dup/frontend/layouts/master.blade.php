@@ -279,7 +279,7 @@
                                                 <div class="card__info transfer-code" id=""></div>
 
                                                 <div class="icon--coppy js-copy-text" aria-describedby="tippy-7" >
-                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
+{{--                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">--}}
                                                 </div>
                                             </div>
                                         </div>
