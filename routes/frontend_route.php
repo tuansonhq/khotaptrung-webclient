@@ -305,6 +305,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/ajax-modal-logs-spin-bonus',[\App\Http\Controllers\Frontend\MinigameController::class,'getLogsModalSpinBonus']);
                 Route::get('/ajax-modal-logs-spin-bonus-acc',[\App\Http\Controllers\Frontend\MinigameController::class,'getLogsModalSpinBonus']);
 
+                Route::post('/bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'postBonusLogin'])->name('postBonusLogin');
 
                 Route::group(['middleware' => ['intend']], function () {
 
@@ -318,8 +319,11 @@ Route::group(array('middleware' => ['theme']) , function (){
 
 
                 Route::get('/danh-muc/{slug}', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlDanhmuc']);
-                Route::get('/garena/{slug}', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlGarena']);
-
+//                Shop rikaki
+                Route::get('/free-fire-gia-re', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlRikaki']);
+                Route::get('/nick-free-fire-sieu-re', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlRikaki']);
+                Route::get('/nick-free-fire-sieu-cap', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlRikaki']);
+                Route::get('/free-fire-tam-trung', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlRikaki']);
             });
         });
 
