@@ -317,7 +317,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     return view('frontend.layouts.includes.list-mobile');
                 })->name('getListMobile');
 
-
+                Route::get('/garena/{slug}', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlGarena']);
                 Route::get('/danh-muc/{slug}', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlDanhmuc']);
 //                Shop rikaki
                 Route::get('/free-fire-gia-re', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlRikaki']);
