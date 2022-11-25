@@ -1,5 +1,6 @@
 @if(isset($data))
     @if($data->dacong == 0 && $data->status == 1)
+    <div class="bonusouter">
         <style type="text/css">
             #bonus{
                 position: fixed;
@@ -81,6 +82,7 @@
 
 
         <script type="text/javascript">
+            checkQua();
             var isMobile = {
                 Android: function() {
                     return navigator.userAgent.match(/Android/i);
@@ -156,6 +158,26 @@
                     })
                 }
             })
+
+            function checkQua(){
+                $.ajax({
+                    url: '/bonus',
+                    datatype:'json',
+                    data:{
+                        _token: $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'get',
+                    success: function (data) {
+                        if(data.dacong!=0 || data.dacong!=''){
+                            $('.bonusouter').remove();
+                        }
+                    },
+                    error: function(){
+                        
+                    }
+                })
+            }
         </script>
+    </div>
     @endif
 @endif

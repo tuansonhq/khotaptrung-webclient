@@ -966,6 +966,20 @@ class MinigameController extends Controller
         }
     }
 
+    public function getBonusLogin(Request $request)
+    {
+        $url = '/minigame/bonus';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['secret_key'] = config('api.secret_key');
+        $dataSend['domain'] = \Request::server("HTTP_HOST");
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $data = $result_Api->response_data;
+        return response()->json([
+            'dacong' => $data->dacong
+        ], 200);
+    }
+
     public function postBonusLogin(Request $request)
     {
         if (!empty(Session::get('jwt'))) {
