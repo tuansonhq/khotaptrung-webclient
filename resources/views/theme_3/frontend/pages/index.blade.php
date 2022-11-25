@@ -101,12 +101,15 @@
 {{--            <img src="/assets/frontend/theme_3/image/back-top.svg" alt="" style=" ">--}}
 {{--        </a>--}}
 {{--    </div>--}}
-
+    @include('frontend.widget.__bonus')
     @include('theme_3.frontend.widget.modal.__confirm_charge')
     @include('theme_3.frontend.widget.modal.__success_charge')
     @include('theme_3.frontend.widget.modal.__reject_charge')
     @include('theme_3.frontend.widget.modal.__success_charge_atm')
     @include('theme_3.frontend.widget.modal.__success_wallet_card')
+
+
+
     <script src="/assets/frontend/theme_3/js/js_phu/purchase_card.js?v={{time()}}"></script>
 {{--    <script src="https://cdnjs.com/libraries/handlebars.js"></script>--}}
 {{--    <script src="https://github.com/wycats/handlebars.js"></script>--}}
@@ -116,5 +119,7 @@
     @if(\App\Library\AuthFrontendCustom::check())
         <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
     @endif
+
+
 @endsection
 

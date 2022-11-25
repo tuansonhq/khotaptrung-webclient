@@ -77,6 +77,8 @@
         </div>
     @endif
 
+    @include('frontend.widget.__bonus')
+
     <div class="step" id="step2">
         <div class="head-mobile">
             <a href="#" class="link-back close-step"></a>
