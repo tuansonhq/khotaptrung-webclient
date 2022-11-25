@@ -36,7 +36,7 @@
                 <a href="/mua-acc" class="breadcrumb-link">Shop Account</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="/mua-acc/{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}" class="breadcrumb-link">Danh sách Nick Liên Quân</a>
+                <a href="/mua-acc/{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}" class="breadcrumb-link">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</a>
             </li>
         </ul>
         <div class="head-mobile">

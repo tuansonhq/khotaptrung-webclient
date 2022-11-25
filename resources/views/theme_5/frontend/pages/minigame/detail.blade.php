@@ -755,6 +755,7 @@
 
     <input type="hidden" class="started_at" name="started_at" value="{{ $result->group->started_at??0 }}">
     <input type="hidden" id="type_play" value="real">
+    <input type="text" id="checkPoint" name="checkPoint" value="{{$result->checkPoint}}">
 
     <!-- Modal rút quà -->
     <div class="modal fade" id="modalWithdraw" tabindex="-1" role="dialog">
@@ -1047,60 +1048,170 @@
             .boxflip .active {
                 animation: rotation 100ms infinite linear;
             }
+
             .boxflip .tran {
-                opacity: 0!important;
+                opacity: 0 !important;
             }
 
             @keyframes rotation {
-                100%{ transform:rotatey(360deg); }
+                100% {
+                    transform: rotatey(360deg);
+                }
             }
         </style>
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/flip.js?v={{time()}}"></script>
         @foreach($result->group->items as $item)
-            <input type="hidden" class="image_gift" value="{{ \App\Library\MediaHelpers::media($item->parrent->image) }}">
+            <input type="hidden" class="image_gift"
+                   value="{{ \App\Library\MediaHelpers::media($item->image) }}">
         @endforeach
         @break
         @case('slotmachine')
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine.js?v={{time()}}"></script>
         <style>
             @php
-    $count = 0;
-@endphp
-@foreach($result->group->items as   $gift)
-    @php
-        $count++;
-    @endphp
-        .a{{$count}}{background-image: url("{{@\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
+                $count = 0;
+            @endphp
+
+            @foreach($result->group->items as $gift)
+                @php
+                    $count++;
+                @endphp
+                .a{{$count}} {
+                background-image: url("{{@\App\Library\MediaHelpers::media($gift->image)}}") !important;
+            }
             @endforeach
+
+            #slot1, #slot2, #slot3 {
+                display: inline-block;
+                margin-top: 2px;
+                margin-left: 1px;
+                margin-right: 45px;
+                margin: 0 25px;
+                background-size: 100px 79px;
+                width: 100px;
+                height: 79px;
+                padding: 0 28px;
+                background-repeat: no-repeat;
+            }
+
+            /*  Lap top  */
+            @media only screen and (min-width: 992px) and (max-width: 1200px) {
+                #slot1, #slot2, #slot3 {
+                    background-size: 60px 48px !important;
+                    width: 60px !important;
+                    margin: 0 28px !important;
+                    height: 48px;
+                }
+            }
+
+            @media only screen and (min-width: 573px) and (max-width: 768px) {
+                #slot1, #slot2, #slot3 {
+                    background-size: 64px 48px !important;
+                    width: 64px !important;
+                    margin: 0 22px !important;
+                    height: 50px !important;
+                }
+            }
+
+            @media only screen and (min-width: 376px) and (max-width: 573px) {
+                #slot1, #slot2, #slot3 {
+                    background-size: 56px 40px !important;
+                    width: 48px !important;
+                    margin: 0px 9px !important;
+                    height: 48px !important;
+                }
+
+            }
+
+            @media only screen and (max-width: 376px) {
+                #slot1, #slot2, #slot3 {
+                    background-size: 56px 40px !important;
+                    width: 48px !important;
+                    margin: 0px 9px !important;
+                    height: 48px !important;
+                }
+            }
         </style>
         @break
         @case('slotmachine5')
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine5.js?v={{time()}}"></script>
         <style>
             @php
-    $count = 0;
-@endphp
-@foreach($result->group->items as $gift)
-    @php
-        $count++;
-    @endphp
-    .a{{$count}}{background-image: url("{{@\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
-            @endforeach
+                $count = 0;
+            @endphp
+            @foreach($result->group->items as $gift)
+                @php
+                    $count++;
+                @endphp
+                .a{{$count}} {
+                background-image: url("{{@\App\Library\MediaHelpers::media($gift->image)}}") !important;
+            }
 
+            @endforeach
+            #slot1, #slot2, #slot3, #slot4, #slot5 {
+                display: inline-block;
+                margin-top: 2px;
+                margin-left: 1px;
+                margin-right: 45px;
+                margin: 0 6px;
+                background-size: 100px 93px;
+                width: 100px;
+                height: 93px;
+                background-repeat: no-repeat;
+            }
+
+            @media only screen and (min-width: 992px) and (max-width: 1200px) {
+                #slot1, #slot2, #slot3, #slot4, #slot5 {
+                    background-size: 80px 80px !important;
+                    width: 80px !important;
+                    height: 80px !important;
+                    margin: 0 5px !important;
+                }
+            }
+
+            @media only screen and (min-width: 573px) and (max-width: 768px) {
+                #slot1, #slot2, #slot3, #slot4, #slot5 {
+                    background-size: 74px 74px !important;
+                    width: 74px !important;
+                    height: 74px !important;
+                    margin: 0 5.5px !important;
+                }
+            }
+
+            @media only screen and (min-width: 376px) and (max-width: 573px) {
+                #slot1, #slot2, #slot3, #slot4, #slot5 {
+                    background-size: 54px 52px !important;
+                    width: 54px !important;
+                    height: 54px !important;
+                    margin: 0 4.3px !important;
+                }
+
+            }
+
+            @media only screen and (max-width: 376px) {
+                #slot1, #slot2, #slot3, #slot4, #slot5 {
+                    background-size: 54px 52px !important;
+                    width: 54px !important;
+                    height: 54px !important;
+                    margin: 0 4.3px !important;
+                }
+            }
         </style>
         @break
         @case('squarewheel')
         @if(isset($result->group->items) && count($result->group->items)>0)
             <script>
                 @foreach($result->group->items as $index=>$item)
-                $('.gift'+({{$index}}+1)).attr('id',"id"+{{$item->item_id}});
-                $('.gift'+({{$index}}+1)+' img').attr('src','{{\App\Library\MediaHelpers::media($item->parrent->image)}}');
+                $('.gift' + ({{$index}}+1)).attr('id', "id" +{{$item->item_id}});
+                $('.gift' + ({{$index}}+1) + ' img').attr('src', '{{\App\Library\MediaHelpers::media($item->image)}}');
                 @endforeach
             </script>
         @endif
-        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/squarewheel.js?v={{time()}}"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/squarewheel.js"></script>
         <style>
-            .box img.active{box-shadow:0 0 1px #fff, 0 0 2px #fff, 0 0 45px #f00, 0 0 30px #ff0013, 0 0 25px #f10303}
+            .box img.active {
+                box-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 45px #f00, 0 0 30px #ff0013, 0 0 25px #f10303
+            }
         </style>
         @break
         @case('smashwheel')
@@ -1108,10 +1219,16 @@
         @case('gieoque')
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/smashwheel.js?v={{time()}}"></script>
         @break
-
     @endswitch
 
 
-
+    <script>
+        function getgifbonus() {
+            console.log($('#checkPoint').val())
+            if ($('#checkPoint').val() != "1") {
+                return;
+            }
+        }
+    </script>
 @endsection
 
