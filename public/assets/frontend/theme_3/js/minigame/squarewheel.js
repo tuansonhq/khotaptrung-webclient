@@ -396,7 +396,7 @@ $(document).ready(function(e) {
                             }
                         }else {
 
-                            $html += "<span>Kết quả: "+gift_revice[0]["title"]+"</span><br/>";
+                            $html += "<span>Kết quả: "+gift_revice[0].children[0].title+"</span><br/>";
 
                             if(gift_detail.winbox == 1){
                                 $html += "<span>Mua X1: Nhận được "+gift_revice[0]["parrent"].params.value+"</span><br/>";
@@ -437,7 +437,7 @@ $(document).ready(function(e) {
                                 // {
                                 //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[$i]+"</b></span>";
                                 // }
-                                $html += "<span>Lần quay "+($i + 1)+": "+gift_revice[$i]["title"];
+                                $html += "<span>Lần quay "+($i + 1)+": "+gift_revice[$i].children[0].title;
                                 if(gift_revice[$i].winbox == 1){
                                     $html +=" - nhận được: "+gift_revice[$i]["parrent"].params.value+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>"+$strDiscountcode+"<br/>";
                                 }
@@ -469,7 +469,7 @@ $(document).ready(function(e) {
                             }
                         }else{
 
-                            $html += "<span>Kết quả chơi thử: "+gift_revice[0]["title"]+"</span><br/>";
+                            $html += "<span>Kết quả chơi thử: "+gift_revice[0].children[0].title+"</span><br/>";
 
                             if(gift_detail.winbox == 1){
                                 $html += "<span>Mua X1: Nhận được "+gift_revice[0]["parrent"].params.value+"</span><br/>";
@@ -507,7 +507,7 @@ $(document).ready(function(e) {
 
                             for($i=0;$i<gift_revice.length;$i++)
                             {
-                                $html += "<span>Lần quay "+($i + 1)+": "+gift_revice[$i]['parrent'].title;
+                                $html += "<span>Lần quay "+($i + 1)+": "+gift_revice[$i].children[0].title;
                                 if(gift_revice[$i].winbox == 1){
                                     $html +=" - nhận được: "+gift_revice[$i]["parrent"].params.value+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>";
                                 }

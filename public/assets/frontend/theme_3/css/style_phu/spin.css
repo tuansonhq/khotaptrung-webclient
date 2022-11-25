@@ -35,7 +35,7 @@
 
 .rotation-header-block {
     max-width: 70%;
-    justify-content: space-between;
+    width: 100%;
 }
 
 .rotation-header h1 {
@@ -1195,7 +1195,6 @@
     }
 
     .rotation-header-block {
-        justify-content: flex-start;
         max-width: 100%;
     }
 }
