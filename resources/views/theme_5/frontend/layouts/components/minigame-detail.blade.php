@@ -94,7 +94,7 @@
                             </div>
                         </div>
 
-                        
+
                         <div class="rotation c-p-16" style="background-image: url(/assets/frontend/{{env('THEME_VERSION')}}/image/phu/rotation_bg.png)">
                             <div class="rotation-notify d-none d-lg-flex w-100 c-mb-16">
                                 <img src="/assets/frontend/{{env('THEME_VERSION')}}/image/svg/sound.svg" alt="">
@@ -172,7 +172,7 @@
                             <h6 class="fz-15 fw-700 lh-24 c-mb-24 d-none d-lg-block">Chi tiết dịch vụ</h6>
                             <div class="service-detail-content">
                                 Chơi game được xem là món ăn tinh thần không thể thiếu được đối với giới trẻ hiện nay, đặc biệt là các game online hay game mobile với nhiều hình thức khác nhau như game chiến thuật, game đối kháng, game thẻ bài, gam kiếm hiệp hay game sinh tồn. Chính vì vậy, nhu cầu nạp game là không thể thiếu và ngày càng tăng cao. Đặc biệt với các game thủ muốn đua top hay muốn có những vật phẩm giá trị trong game. Hãy cùng napgamegiare.net tìm hiểu các thông tin liên quan đến nạp game ngay sau đây nhé !
-    
+
                                 Nạp game là gì?
                                 Nạp game hiểu một cách đơn giản là việc nạp tiền vào trong game để mua sắm các vật phẩm, các món đồ trong game hay thực hiện các nhiệm vụ, tăng cấp cho nhân vật trong game. Đây là hình thức vô cùng phổ biến đối với các game thủ. Khi người chơi dùng tiền mặt để nạp vào game thì số tiền này sẽ quy đổi thành một đơn vị, đồng tiền trong game, có thể kể đến như: sò - garena, thóc - funtap, kim cương - gosu,.... Vậy tại sao cần nạp game, nạp game sẽ được những gì ?
                             </div>
@@ -375,9 +375,9 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
                                 </li>
-    
+
                                 <li>
                                     <div class="comment-item d-flex align-items-start c-mb-16">
                                         <div class="comment-avatar c-mr-8">
@@ -397,28 +397,7 @@
                                             </div>
                                         </div>
                                     </div>
-    
-                                </li>
-                                <li>
-                                    <div class="comment-item d-flex align-items-start c-mb-16">
-                                        <div class="comment-avatar c-mr-8">
-                                            <img class="brs-100" src="/assets/frontend/{{env('THEME_VERSION')}}/image/phu/user_avatar.png" alt="">
-                                        </div>
-                                        <div class="comment-detail">
-                                            <div class="comment-info c-mb-4">
-                                                <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
-                                            </div>
-                                            <div class="comment-content fw-400 fz-13">
-                                                Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
-                                            </div>
-                                            <div class="comment-interact c-mt-12">
-                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{env('THEME_VERSION')}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
-                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{env('THEME_VERSION')}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
-                                            </div>
-                                        </div>
-                                    </div>
-    
+
                                 </li>
                                 <li>
                                     <div class="comment-item d-flex align-items-start c-mb-16">
@@ -439,7 +418,7 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
                                 </li>
                                 <li>
                                     <div class="comment-item d-flex align-items-start c-mb-16">
@@ -460,7 +439,7 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
                                 </li>
                                 <li>
                                     <div class="comment-item d-flex align-items-start c-mb-16">
@@ -481,7 +460,7 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
                                 </li>
                                 <li>
                                     <div class="comment-item d-flex align-items-start c-mb-16">
@@ -502,7 +481,7 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
                                 </li>
                                 <li>
                                     <div class="comment-item d-flex align-items-start c-mb-16">
@@ -523,7 +502,7 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
                                 </li>
                                 <li>
                                     <div class="comment-item d-flex align-items-start c-mb-16">
@@ -544,7 +523,7 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
                                 </li>
                                 <li>
                                     <div class="comment-item d-flex align-items-start c-mb-16">
@@ -565,7 +544,7 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
                                 </li>
                                 <li>
                                     <div class="comment-item d-flex align-items-start c-mb-16">
@@ -586,7 +565,7 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
                                 </li>
                                 <li>
                                     <div class="comment-item d-flex align-items-start c-mb-16">
@@ -607,7 +586,7 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
                                 </li>
                                 <li>
                                     <div class="comment-item d-flex align-items-start c-mb-16">
@@ -628,7 +607,7 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
                                 </li>
                                 <li>
                                     <div class="comment-item d-flex align-items-start c-mb-16">
@@ -649,10 +628,31 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
+                                </li>
+                                <li>
+                                    <div class="comment-item d-flex align-items-start c-mb-16">
+                                        <div class="comment-avatar c-mr-8">
+                                            <img class="brs-100" src="/assets/frontend/{{env('THEME_VERSION')}}/image/phu/user_avatar.png" alt="">
+                                        </div>
+                                        <div class="comment-detail">
+                                            <div class="comment-info c-mb-4">
+                                                <h6 class="d-inline-block">Khách</h6>
+                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
+                                            </div>
+                                            <div class="comment-content fw-400 fz-13">
+                                                Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
+                                            </div>
+                                            <div class="comment-interact c-mt-12">
+                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{env('THEME_VERSION')}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
+                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{env('THEME_VERSION')}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </li>
                             </ul>
-    
+
                             <div class="commment-input d-flex align-items-center c-mb-20">
                                 <div class="comment-user-avatar c-mr-8 d-none d-lg-block">
                                     <img src="/assets/frontend/{{env('THEME_VERSION')}}/image/phu/user_avatar.png" alt="">

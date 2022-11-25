@@ -157,7 +157,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="swiper slider--charge--card__amount"   >
+                                                    <div class="swiper slider--charge--card__amount swiper-container">
                                                         <div class="swiper-wrapper" id="amount_mobile" >
 
 
@@ -296,7 +296,7 @@
                                                 {!! setting('sys_tranfer_content') !!}
                                             @endif
                                             <div class="error_transfer_code">
-                                                <p style="text-align: center; margin: auto; color: #000;font-weight: 600;font-size: 14px"> 
+                                                <p style="text-align: center; margin: auto; color: #000;font-weight: 600;font-size: 14px">
                                                     Vui lòng <span style="color: red; text-decoration: underline; cursor: pointer;" onclick="openLoginModal();">đăng nhập</span> để nhận được nội dung chuyển tiền
                                                 </p>
                                             </div>
