@@ -329,7 +329,7 @@
     width: 80%;
 }
 .item_spin_sale-off{
-    margin: 20px auto;
+    /* margin: 20px auto; */
     cursor: pointer;
     display: block;
     width: 165px;
@@ -337,8 +337,8 @@
     /*position: absolute;*/
     /*left: 25px;*/
     justify-content: center;
-    bottom: 37px;
-    z-index: 9999;
+    /* bottom: 37px;
+    z-index: 9999; */
 }
 .item_spin_sale-off input{
     border: 1px solid #f02396;
@@ -734,6 +734,10 @@
     }
     .item_buy_filter{
         display: block;
+    }
+
+    .item_spin_sale-off {
+        margin-bottom: 6px;
     }
 
 }
