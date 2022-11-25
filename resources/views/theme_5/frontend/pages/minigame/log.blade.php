@@ -119,7 +119,7 @@
                                                 <a href="javascript:void(0)">
                                                     <div class="text-left">
                                                     <span class="t-body-2 title-color c-mb-0 text-limit limit-1 bread-word">
-                                                        {{$item->item_ref->parrent->title??""}}
+                                                        {{$item->item_ref->title??""}}
                                                     </span>
                                                         <span class="t-body-1 link-color">
                                                         {{date('d/m/Y - H:i', strtotime($item->created_at))}}
