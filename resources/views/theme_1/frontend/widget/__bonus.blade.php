@@ -1,5 +1,5 @@
 @if(isset($data))
-    @if($data->dacong == 0 && $data->status == 1)
+    @if(($data->dacong == 0 || $data->dacong == '' || $data->dacong == null) && $data->status == 1)
     <div class="bonusouter">
         <style type="text/css">
             #bonus{
@@ -168,7 +168,7 @@
                     },
                     type: 'get',
                     success: function (data) {
-                        if(data.dacong!=0 || data.dacong!=''){
+                        if(data.dacong!=0 && data.dacong!='' && data.dacong!=null){
                             $('.bonusouter').remove();
                         }
                     },
