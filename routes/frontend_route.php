@@ -110,10 +110,12 @@ Route::group(array('middleware' => ['theme']) , function (){
 //                    Route::get('/mua-nick-random', [AccController::class , "getShowAccRandom"]);
                     Route::get('/mua-acc/{slug}', [AccController::class , "getList"])->name('accList');
                     Route::get('/acc/{slug}', [AccController::class , "getDetail"])->name('accDetail');
-                    Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
-                    Route::get('/related-acc', [AccController::class , "getRelated"]);
-                    Route::get('/watched-acc', [AccController::class , "getWatched"]);
                 });
+
+                Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
+                Route::get('/related-acc', [AccController::class , "getRelated"]);
+                Route::get('/watched-acc', [AccController::class , "getWatched"]);
+
                 Route::get('/ajax/mua-nick-random', [AccController::class , "getShowAccRandom"]);
 
                 Route::post('/lich-su-mua-account-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])->name('getShowpassNick');
