@@ -219,6 +219,105 @@
                 @endif
 
             @endforeach
+        @elseif($slug == 'ban-nick-ngoc-rong' || $slug == 'nick-ngoc-rong-online')
+            @foreach($auto_properties as $auto_propertie)
+                @if($auto_propertie->key == 'CAPTURES')
+
+                @elseif($auto_propertie->key == 'SERVER')
+                    <div class="col-12 col-lg-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <p class="input-group-btn-p">{{ $auto_propertie->key }}</p>
+                            </span>
+                            <select class="form-control tftcompanions" name="tftcompanions" style="height: 40px">
+                                <option value="">--Không chọn--</option>
+                                @if(isset($auto_propertie->childs))
+                                    @foreach($auto_propertie->childs as $child)
+                                        <option value="{{ $child->id }}">Server {{ $child->name }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                    </div>
+                @elseif($auto_propertie->key == 'INFO')
+                    @if(isset($auto_propertie->childs))
+                        @foreach($auto_propertie->childs as $childs)
+                            @if($childs->key == 'CAI_TRANG')
+                                <div class="col-12 col-lg-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <p class="input-group-btn-p">CAI TRANG</p>
+                                        </span>
+                                        <select class="form-control champions" name="champions" style="height: 40px">
+                                            <option value="">--Không chọn--</option>
+                                            @if(isset($childs->childs))
+                                                @foreach($childs->childs as $child)
+                                                    <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+                            @elseif($childs->key == 'SKILL_PET')
+
+                                <div class="col-12 col-lg-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <p class="input-group-btn-p">SKILL PET 2</p>
+                                        </span>
+                                        <select class="form-control tftmapskins" name="tftmapskins" style="height: 40px">
+                                            <option value="">--Không chọn--</option>
+                                            @if(isset($childs->childs))
+                                                @foreach($childs->childs as $child)
+                                                    @if($child->name == config('module.acc.auto_nro_skill_pet_2.'.$child->name))
+                                                        <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <p class="input-group-btn-p">SKILL PET 3</p>
+                                        </span>
+                                        <select class="form-control tftdamageskins" name="tftdamageskins" style="height: 40px">
+                                            <option value="">--Không chọn--</option>
+                                            @if(isset($childs->childs))
+                                                @foreach($childs->childs as $child)
+                                                    @if($child->name == config('module.acc.auto_nro_skill_pet_3.'.$child->name))
+                                                        <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-3" style="padding-top: 8px;padding-right: 8px;padding-left: 8px;padding-bottom: 8px">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <p class="input-group-btn-p">SKILL PET 4</p>
+                                        </span>
+                                        <select class="form-control skill" name="skill" style="height: 40px">
+                                            <option value="">--Không chọn--</option>
+                                            @if(isset($childs->childs))
+                                                @foreach($childs->childs as $child)
+                                                    @if($child->name == config('module.acc.auto_nro_skill_pet_4.'.$child->name))
+                                                        <option value="{{ $child->id }}">{{ $child->name }}</option>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    @endif
+                @endif
+            @endforeach
         @endif
     @endif
 @else
