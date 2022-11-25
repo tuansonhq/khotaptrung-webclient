@@ -719,7 +719,7 @@
                             <div class="leaderboard-content leaderboard-3" style="display: none;">
                                 @if(isset($result->group->params->phanthuong))
                                     <div class="leaderboard-item row no-gutters">
-                                        <div class="col-12 leaderboard-item-name">
+                                        <div class="col-12 leaderboard-item-name d-block">
                                             {!!$result->group->params->phanthuong!!}
                                         </div>
                                     </div>
@@ -870,7 +870,7 @@
                             <div class="leaderboard-content leaderboard-3" style="display: none;">
                                 @if(isset($result->group->params->phanthuong))
                                     <div class="leaderboard-item row no-gutters">
-                                        <div class="col-12 leaderboard-item-name">
+                                        <div class="col-12 leaderboard-item-name d-block">
                                             {!!$result->group->params->phanthuong!!}
                                         </div>
                                     </div>
