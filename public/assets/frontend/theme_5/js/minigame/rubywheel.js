@@ -1,3 +1,4 @@
+
 function animate(options) {
     var start = performance.now();
     requestAnimationFrame(function animate(time) {
