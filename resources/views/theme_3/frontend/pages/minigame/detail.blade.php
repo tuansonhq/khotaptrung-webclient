@@ -518,8 +518,7 @@
                                     </div>
                                 </div>
                                 <div class="progress-wrapper">
-                                    <div class="progress-bar"
-                                         style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
+                                    <div class="progress-bar" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
                                     <span class="progress-tooltip">Điểm của bạn: {{$result->pointuser<100?$result->pointuser:'100'}}/100</span>
                                 </div>
                             </div>
@@ -577,17 +576,15 @@
                             <div class="col-12 col-lg-6 rotation-col">
                                 <div class="row">
                                     @if(isset($result->group->params->is_try))
-                                    @if($result->group->params->is_try == 1)
-                                        <div class="col-6 button-col">
-                                            @if(App\Library\AuthCustom::check())
-                                            <button id="playerDemo" class="button-secondary button-demo num-play-try">Chơi thử
-                                            </button>
-                                            @else
-                                                <button type="button" class="button-secondary button-demo" onclick="openLoginModal();">Chơi thử
-                                                </button>
-                                            @endif
-                                        </div>
-                                    @endif
+                                        @if($result->group->params->is_try == 1)
+                                            <div class="col-6 button-col">
+                                                @if(App\Library\AuthCustom::check())
+                                                <button id="playerDemo" class="button-secondary button-demo num-play-try">Chơi thử</button>
+                                                @else
+                                                    <button type="button" class="button-secondary button-demo" onclick="openLoginModal();">Chơi thử</button>
+                                                @endif
+                                            </div>
+                                        @endif
                                     @endif
                                     @if (App\Library\AuthCustom::check())
                                         <div class="col-6 button-rainbow button-col" style="--bg-color: #ecf0f1">
@@ -968,6 +965,7 @@
 
     <input type="hidden" class="started_at" name="started_at" value="{{ $result->group->started_at??0 }}">
     <input type="hidden" id="type_play" value="real">
+    <input type="hidden" id="checkPoint" name="checkPoint" value="{{$result->checkPoint}}">
 
     <div class="modal fade rotation-modal" id="noticeModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered animated" role="document">
@@ -989,7 +987,7 @@
                         {{--                        <p>Tổng nhận được: <span id="rotationTotal" style="font-weight: 600; color: #F67600;">100.100 Kim cương</span></p>--}}
                     </div>
                     <div class="rotation-modal-btn row no-gutters">
-                        <div class="col-6">
+                        <div class="col-12">
 
                             @if(App\Library\AuthCustom::check())
                             <a onclick="openLoginModal();" data-dismiss="modal" data-toggle="modal"
@@ -1168,25 +1166,26 @@
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/flip.js?v={{time()}}"></script>
         @foreach($result->group->items as $item)
             <input type="hidden" class="image_gift"
-                   value="{{ \App\Library\MediaHelpers::media($item->parrent->image) }}">
+                   value="{{ \App\Library\MediaHelpers::media($item->image) }}">
         @endforeach
         @break
         @case('slotmachine')
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine.js?v={{time()}}"></script>
         <style>
             @php
-    $count = 0;
-@endphp
-@foreach($result->group->items as   $gift)
-    @php
-        $count++;
-    @endphp
-    .a{{$count}} {
-                background-image: url("{{@\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;
-            }
+                $count = 0;
+            @endphp
 
+            @foreach($result->group->items as $gift)
+                @php
+                    $count++;
+                @endphp
+                .a{{$count}} {
+                    background-image: url("{{@\App\Library\MediaHelpers::media($gift->image)}}") !important;
+                }
             @endforeach
-#slot1, #slot2, #slot3 {
+
+            #slot1, #slot2, #slot3 {
                 display: inline-block;
                 margin-top: 2px;
                 margin-left: 1px;
@@ -1242,18 +1241,18 @@
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine5.js?v={{time()}}"></script>
         <style>
             @php
-    $count = 0;
-@endphp
-@foreach($result->group->items as $gift)
-    @php
-        $count++;
-    @endphp
-    .a{{$count}} {
-                background-image: url("{{@\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;
-            }
+                $count = 0;
+            @endphp
+            @foreach($result->group->items as $gift)
+                @php
+                    $count++;
+                @endphp
+                .a{{$count}} {
+                    background-image: url("{{@\App\Library\MediaHelpers::media($gift->image)}}") !important;
+                }
 
             @endforeach
-#slot1, #slot2, #slot3, #slot4, #slot5 {
+            #slot1, #slot2, #slot3, #slot4, #slot5 {
                 display: inline-block;
                 margin-top: 2px;
                 margin-left: 1px;
@@ -1307,8 +1306,8 @@
         @if(isset($result->group->items) && count($result->group->items)>0)
             <script>
                 @foreach($result->group->items as $index=>$item)
-                $('.gift' + ({{$index}}+1)).attr('id', "id" +{{$item->item_id}});
-                $('.gift' + ({{$index}}+1) + ' img').attr('src', '{{\App\Library\MediaHelpers::media($item->parrent->image)}}');
+                    $('.gift' + ({{$index}}+1)).attr('id', "id" +{{$item->item_id}});
+                    $('.gift' + ({{$index}}+1) + ' img').attr('src', '{{\App\Library\MediaHelpers::media($item->image)}}');
                 @endforeach
             </script>
         @endif

@@ -139,12 +139,28 @@
                                             <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                             <td>#{{$item->id}}</td>
 
-                                            <td>{{$item->item_ref->parrent->title??""}}</td>
+                                            <td>{{$item->item_ref->title??""}}</td>
                                             <td>
-                                                {{$item->item_ref->parrent->params->value??""}}
+                                                @if(isset($item->item_ref) && isset($item->item_ref->parrent) && isset($item->item_ref->parrent->params))
+                                                    @if($item->item_ref->parrent->params->gift_type == 0)
+                                                        @php
+                                                            $value = $item->item_ref->parrent->params->value;
+                                                            $bonus = 0;
+                                                            if (isset($item->value_gif_bonus)){
+                                                                $bonus = $item->value_gif_bonus;
+                                                            }
+                                                            $total_vp = $value + $bonus;
+                                                        @endphp
+                                                        {{ $total_vp }}
+                                                    @else
+                                                        {{$item->item_ref->parrent->params->value??""}}
+                                                    @endif
+                                                @endif
                                             </td>
                                             <td>
-                                                {{$item->group->title}}
+                                                @if(isset($item->group))
+                                                    {{$item->group->title}}
+                                                @endif
                                             </td>
                                         </tr>
                                         @empty

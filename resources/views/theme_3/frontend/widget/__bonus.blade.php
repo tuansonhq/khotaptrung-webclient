@@ -1,5 +1,5 @@
 @if(isset($data))
-    @if(($data->dacong == 0 || $data->dacong == '' || $data->dacong == null) && $data->status == 1)
+    @if($data->dacong == 0 && $data->status == 1)
     <div class="bonusouter">
         <style type="text/css">
             #bonus{
@@ -37,7 +37,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         @if($data->giatritu > 0 && $data->giatriden > 0)
             @if($data->dangnhap == 0)
-                <a id="bonus_login"  title="Click để nhận thưởng!">
+                <a id="bonus_login" onclick="openLoginModal();"  title="Click để nhận thưởng!">
                     <img src='{{\App\Library\MediaHelpers::media($data->icon)}}'/>
                 </a>
             @else
@@ -108,9 +108,9 @@
             }
             var roll_check = true;
 
-            $("#bonus_login").click(function(){
-                window.location.href = '/login';
-            })
+            // $("#bonus_login").click(function(){
+            //     window.location.href = '/login';
+            // })
 
             $('#bonus').click(function(){
                 if(roll_check){
@@ -145,7 +145,8 @@
                                     $(".btnRVP").hide();
                                 }
                             }else if(data.status='LOGIN'){
-                                window.location.href = '/login';
+                                $('#loginModal').modal('show');
+                                // window.location.href = '/login';
                             }else{
                                 $('.modal-body').text('Có lỗi xảy ra. Vui lòng thử lại!');
                                 $('#bonusModal').modal('show');
@@ -173,7 +174,7 @@
                         }
                     },
                     error: function(){
-                        
+
                     }
                 })
             }
