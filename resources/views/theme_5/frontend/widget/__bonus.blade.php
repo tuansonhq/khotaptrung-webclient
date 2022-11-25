@@ -169,7 +169,7 @@
                     },
                     type: 'get',
                     success: function (data) {
-                        if(data.dacong!=0 || data.dacong!=''){
+                        if(data.dacong!=0 && data.dacong!='' && data.dacong!=null){
                             $('.bonusouter').remove();
                         }
                     },
