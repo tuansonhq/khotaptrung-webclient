@@ -501,7 +501,6 @@ $(document).ready(function(e) {
                     // }
 
                     if (!flag_bonus){//trường hợp bonus.
-                        console.log(4);
                         var total_vp = parseInt(gift_revice[0]['parrent'].params.value) + parseInt(value_gif_bonus[0]);
                         $html += "<span>Kết quả: Bạn đã trúng " + total_vp + c_game_type_value +"</span><br/>";
                         if (gift_detail.winbox == 1) {
@@ -510,7 +509,6 @@ $(document).ready(function(e) {
                             $html += "<span>Tổng cộng: " + (parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + parseInt(value_gif_bonus[0])) + game_type_value +"</span>";
                         }
                     }else {
-                        console.log(1);
                         $html += "<span>Kết quả: " + gift_revice[0]["title"] + "</span><br/>";
                         if (gift_detail.winbox == 1) {
                             $html += "<span>Mua X1: Nhận được " + gift_revice[0]["parrent"].params.value + "</span><br/>";
@@ -522,7 +520,6 @@ $(document).ready(function(e) {
                 } else {
 
                     if (!flag_bonus) {//trường hợp bonus.
-                        console.log(2);
 
                         $totalRevice = 0;
                         $html += "<span>Kết quả: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";

@@ -33,12 +33,23 @@
     justify-content: space-between;
 }
 
+.rotation-header-block {
+    max-width: 70%;
+    justify-content: space-between;
+}
+
 .rotation-header h1 {
     color: #1B1D29;
     font-weight: 700;
     font-size: 24px;
     margin-bottom: 0;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    max-width: 80%;
 }
 
 .rotation-header button {
@@ -1178,6 +1189,15 @@
     .button-play {
         padding: 13px 7px 13px 7px;
     }
+
+    .rotation-header {
+        display: block;
+    }
+
+    .rotation-header-block {
+        justify-content: flex-start;
+        max-width: 100%;
+    }
 }
 
 @media (max-width: 992px) {
@@ -1205,17 +1225,11 @@
         padding-left: 15px;
     }
 
-    .rotation-header {
-        display: block;
-    }
-
-    .rotation-header-block {
-        margin-bottom: 8px;
-    }
 
     .rotation-header h1 {
         font-weight: 600;
         font-size: 16px;
+        max-width: 70%;
     }
 
     .rotation-inputs {
