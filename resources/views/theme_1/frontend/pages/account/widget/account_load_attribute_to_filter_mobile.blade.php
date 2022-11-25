@@ -168,7 +168,7 @@
                         <div class="col-12 item_buy_form_search">
                             <div class="input-group">
                                 <span class="input-group-addon">CLASS</span>
-                                <select type="text" class="form-control champions" name="champions">
+                                <select type="text" class="form-control tftdamageskins select-2-custom" name="champions">
                                     <option value="">--Không chọn--</option>
                                     @foreach($childs->childs as $child)
                                         <option value="{{ $child->id }}">{{ $child->name }}</option>
@@ -176,6 +176,7 @@
                                 </select>
                             </div>
                         </div>
+
                     @endif
                 @endforeach
             @endif
