@@ -200,16 +200,10 @@
                         }
                     }
                 } else {
-                    let s_price = $params["price"];
                     let s_discount = $params["discount"];
-                    discount = s_discount[0];
-                    for (let i = 0; i < s_price.length; i++) {
-                        if (i) {
-                            if (price >= s_price[i]) {
-                                discount = s_discount[i];
-                            }
-                        }
-                    }
+                    let idx_server_selected = $('select[name="server"]').val() * 1;
+                    discount = s_discount[idx_server_selected];
+
                     total = price * discount;
                 }
                 total = parseInt(total / 1000 * $params.input_pack_rate);
