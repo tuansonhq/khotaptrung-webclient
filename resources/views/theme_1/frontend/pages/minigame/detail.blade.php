@@ -4877,14 +4877,14 @@
                                 html_bonus += "</br>";
                                 html_bonus += "</br>";
                                 html_bonus += "Nổ hũ may mắn - bạn đã trúng thêm " + total_vp + c_game_type_value;
-                                $('#noticeModal .content-popup .appendContent').append(html_bonus);
+                                $('#noticeModal .content-popup').append(html_bonus);
 
                             }else{
                                 var html_bonus = "";
                                 html_bonus += "</br>";
                                 html_bonus += "</br>";
                                 html_bonus += data.msg + " - " + data.arr_gift[0].title;
-                                $('#noticeModal .content-popup .appendContent').append(html_bonus);
+                                $('#noticeModal .content-popup').append(html_bonus);
                             }
 
                             //$("#noticeModalNoHu #btnWithdraw").hide();

@@ -1,4 +1,4 @@
-    @extends('frontend.layouts.master')
+@extends('frontend.layouts.master')
 @section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$result->group]))
 @endsection
@@ -101,7 +101,7 @@
         </div>
     </div>
 
-    <div class="item_play pt-3">
+    <div class="item_play">
         <div class="container">
 
             @switch($position)
@@ -214,13 +214,14 @@
                                     $listname = explode(",",$result->group->params->user_wheel);
                                     $listprice = explode(",",$result->group->params->user_wheel_order);
                                 @endphp
+
                                 @foreach($result->log as $item)
                                     @php
                                         $count++;
                                         $add_time=strtotime($item->created_at)+rand(1,2);
                                         $add_date= date('Y-m-d H:i:s',$add_time);
                                     @endphp
-                                    @if($count==5 && isset($listname[$countname]) && $listname[$countname]!="" && isset($listprice[$countname]) && $listprice[$countname]!="")
+                                    @if($count==3 && isset($listname[$countname]) && $listname[$countname]!="" && isset($listprice[$countname]) && $listprice[$countname]!="")
                                         <tr>
                                             <td>{{substr(trim($listname[$countname]),0,3)."***".substr(trim($listname[$countname]),-2)}}</td>
                                             <td>{{trim($listprice[$countname])}}</td>
@@ -228,14 +229,38 @@
                                         </tr>
                                     @endif
                                     @php
-                                        if($count==5){
+                                        if($count==3){
                                             $count = 0;
                                             $countname++;
                                         }
                                     @endphp
                                     <tr>
-                                        <td>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</td>
-                                        <td>{{$item->item_ref->parrent->title??""}}</td>
+                                        <td>
+                                            @if(isset($item->author))
+                                                {{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}
+                                            @endif
+                                        </td>
+
+                                        <td>
+
+                                            @if(isset($item->value_gif_bonus) && $item->value_gif_bonus > 0)
+                                                @php
+                                                    $total_price = 0;
+                                                    if (isset($item->real_received_price) && isset($item->value_gif_bonus)){
+                                                        $total_price = $item->real_received_price + $item->value_gif_bonus;
+                                                    }
+                                                    $type = $item->group->params->game_type;
+                                                    $game_type_value = config('constants.game_type_value.'.$type);
+                                                @endphp
+                                                @if($total_price > 0)
+                                                    Bạn đã trúng {{ $total_price }} {{ $game_type_value }}
+                                                @else
+                                                    {{$item->item_ref->title??""}}
+                                                @endif
+                                            @else
+                                                {{$item->item_ref->title??""}}
+                                            @endif
+                                        </td>
                                         <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                     </tr>
                                 @endforeach
@@ -283,9 +308,7 @@
                                                                 @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                                     <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    <div class="custom-showmore">
-                                                                        Chơi ngay
-                                                                    </div>
+                                                                    Chơi ngay
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -335,6 +358,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <marquee style="padding: 10px 0">{!!$currentPlayList!!}</marquee>
                         <div class="row boxflip">
+
                             @for ($i = 0; $i < count($result->group->items); $i++)
                                 <div class='flipimg col-4 col-sm-4 col-lg-4 flip-box'>
                                     <div data-inner=" inner{{$i}}" class="item_flip_inner">
@@ -389,8 +413,10 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if($result->group->params->is_try == 1)
-                                <a class="btn btn-primary num-play-try">Chơi thử</a>
+                            @if(isset($result->group->params->is_try))
+                                @if($result->group->params->is_try == 1)
+                                    <a class="btn btn-primary num-play-try">Chơi thử</a>
+                                @endif
                             @endif
                             <a class="btn btn-success play k_start" id="start-played"><i class="fas fa-bolt"></i> Chơi ngay</a>
                             <!-- <a class="btn btn-success continue" style="display: none"><i class="fas fa-bolt"></i> Chơi tiếp</a> -->
@@ -461,8 +487,29 @@
                                         }
                                     @endphp
                                     <tr>
+
                                         <td>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</td>
-                                        <td>{{$item->item_ref->parrent->title??""}}</td>
+                                        <td>
+                                            @if(isset($item->value_gif_bonus) && $item->value_gif_bonus > 0)
+                                                @php
+                                                    $total_price = 0;
+                                                    if (isset($item->real_received_price) && isset($item->value_gif_bonus)){
+                                                        $total_price = $item->real_received_price + $item->value_gif_bonus;
+                                                    }
+                                                    $type = $item->group->params->game_type;
+                                                    $game_type_value = config('constants.game_type_value.'.$type);
+                                                @endphp
+
+
+                                                @if($total_price > 0)
+                                                    Bạn đã trúng {{ $total_price }} {{ $game_type_value }}
+                                                @else
+                                                    {{$item->item_ref->title??""}}
+                                                @endif
+                                            @else
+                                                {{$item->item_ref->title??""}}
+                                            @endif
+                                        </td>
                                         <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                     </tr>
                                 @endforeach
@@ -509,9 +556,7 @@
                                                                 @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                                     <img src="{{ \App\Library\MediaHelpers::media($item->params->image_view_all) }}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    <div class="custom-showmore">
-                                                                        Chơi ngay
-                                                                    </div>
+                                                                    Chơi ngay
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -640,8 +685,8 @@
                                                     <div class="item_play_dif_slide_img">
                                                         <a href="{{route('getIndex',[$item->slug])}}">
                                                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{$item->title}}"  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
-                                                            @if(isset($item->params->item_play_dif_slide_img_sale) && $item->params->item_play_dif_slide_img_sale!=null)
-                                                                <img src="{{\App\Library\MediaHelpers::media($item->params->item_play_dif_slide_img_sale)}}" alt="{{$item->title}}" class="item_play_dif_slide_img_sale">
+                                                            @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
+                                                                <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}" alt="{{$item->title}}" class="item_play_dif_slide_img_sale">
                                                             @endif
                                                         </a>
                                                     </div>
@@ -657,12 +702,10 @@
                                                     <div class="item_play_dif_slide_more">
                                                         <div class="item_play_dif_slide_more_view" >
                                                             <a href="{{route('getIndex',[$item->slug])}}">
-                                                                @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
+                                                                @if(isset($item->params->image_percent_sale) && $item->params->image_percent_sale!=null)
                                                                     <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    <div class="custom-showmore">
-                                                                        Chơi ngay
-                                                                    </div>
+                                                                    Quay ngay
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -815,9 +858,7 @@
                                                                 @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                                     <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    <div class="custom-showmore">
-                                                                        Chơi ngay
-                                                                    </div>
+                                                                    Quay ngay
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -868,6 +909,7 @@
                         <marquee style="padding: 10px 0">{!!$currentPlayList!!}</marquee>
                         <div class="item_square" style="display: flex; flex-wrap: wrap;" >
                             <table id="squaredesktop" class="square">
+
                                 <tr>
                                     <td></td>
                                     <td><div  data-num="1" class="gift1 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
@@ -1006,9 +1048,7 @@
                                                                 @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                                     <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    <div class="custom-showmore">
-                                                                        Chơi ngay
-                                                                    </div>
+                                                                    Quay ngay
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -1161,9 +1201,7 @@
                                                                 @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                                     <img src="{{ \App\Library\MediaHelpers::media($item->params->image_view_all) }}"  alt="{{$item->title}}">
                                                                 @else
-                                                                    <div class="custom-showmore">
-                                                                        Chơi ngay
-                                                                    </div>
+                                                                    Chơi ngay
                                                                 @endif
                                                             </a>
                                                         </div>
@@ -1257,7 +1295,27 @@
                                     @endphp
                                     <tr>
                                         <td>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</td>
-                                        <td>{{$item->item_ref->parrent->title??""}}</td>
+                                        <td>
+                                            @if(isset($item->value_gif_bonus) && $item->value_gif_bonus > 0)
+                                                @php
+                                                    $total_price = 0;
+                                                    if (isset($item->real_received_price) && isset($item->value_gif_bonus)){
+                                                        $total_price = $item->real_received_price + $item->value_gif_bonus;
+                                                    }
+                                                    $type = $item->group->params->game_type;
+                                                    $game_type_value = config('constants.game_type_value.'.$type);
+                                                @endphp
+
+
+                                                @if($total_price > 0)
+                                                    Bạn đã trúng {{ $total_price }} {{ $game_type_value }}
+                                                @else
+                                                    {{$item->item_ref->title??""}}
+                                                @endif
+                                            @else
+                                                {{$item->item_ref->title??""}}
+                                            @endif
+                                        </td>
                                         <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                     </tr>
                                 @endforeach
@@ -1299,7 +1357,7 @@
         </div>
     </div>
     <div class="modal fade" id="noticeModal" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"
@@ -1474,8 +1532,9 @@
             </div>
         </div>
     </div>
+
     <input type="hidden" id="type_play" value="real">
-    <input type="hidden" name="checkPoint" value="{{$result->checkPoint}}">
+    <input type="hidden" id="checkPoint" name="checkPoint" value="{{$result->checkPoint}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @foreach(config('constants.'.'game_type') as $item => $key)
         <input type="hidden" id="withdrawruby_{{$item}}" value="{{$key}}">
@@ -1490,6 +1549,7 @@
     squarewheel - Quay vòng vòng
     smashwheel - Đập lu , rung cây , gieo quẻ
     --}}
+
     @switch($position)
         @case('rubywheel')
         <script>
@@ -1509,7 +1569,7 @@
             $(document).ready(function (e) {
 
                 var saleoffpass = "";
-                //var saleoffmessage = "";
+                var game_type_value = "";
                 var userpoint = 0;
                 var numrollbyorder = 0;
                 var roll_check = true;
@@ -1523,6 +1583,7 @@
                 var free_wheel = 0;
                 var value_gif_bonus = '';
                 var msg_random_bonus = '';
+                var showwithdrawbtn = true;
                 //var arrDiscount = '';
 
                 $('body').delegate('#start-played', 'click', function () {
@@ -1567,10 +1628,12 @@
                                     $('#noticeModal').modal('show');
                                     return;
                                 }
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 gift_detail = data.gift_detail;
                                 gift_revice = data.arr_gift;
-                                //arrDiscount = data.arrDiscount;
+
+                                game_type_value = data.game_type_value;
                                 arrxgt = data.xgt;
                                 if (data.xgt > 0) {
                                     xvalue = data.xgt[data.xgt.length - 1];
@@ -1607,8 +1670,8 @@
                     }
                 };
 
-
                 function getgifbonus() {
+
                     if ($('#checkPoint').val() != "1") {
                         return;
                     }
@@ -1621,12 +1684,46 @@
                         },
                         type: 'POST',
                         success: function (data) {
+
                             if (data.status == 0) {
                                 $('#noticeModal .content-popup').text(data.msg);
                                 $('#noticeModal').modal('show');
                                 return;
                             }
-                            $('#noticeModal .content-popup').append(data.msg + " - " + data.arr_gift[0].title);
+
+                            var flag_bonus = true;
+                            var c_game_type_value = '';
+
+                            if (data.game_type_value){
+                                c_game_type_value = " " + data.game_type_value;
+                            }
+
+                            if (data.value_gif_bonus.length > 0){
+                                for (let i = 0; i < data.value_gif_bonus.length; i++ ){
+                                    if (parseInt(data.value_gif_bonus[i]) > 0){
+                                        flag_bonus = false;
+                                    }
+                                }
+                            }
+
+                            var total_vp = parseInt(data.arr_gift[0]['parrent'].params.value) + parseInt(data.value_gif_bonus[0]);
+
+                            if (!flag_bonus){
+                                var html_bonus = "";
+                                html_bonus += "</br>";
+                                html_bonus += "</br>";
+                                html_bonus += "Nổ hũ may mắn - bạn đã trúng thêm " + total_vp + c_game_type_value;
+                                $('#noticeModal .content-popup').append(html_bonus);
+
+                            }else{
+                                var html_bonus = "";
+                                html_bonus += "</br>";
+                                html_bonus += "</br>";
+                                html_bonus += data.msg + " - " + data.arr_gift[0].title;
+                                $('#noticeModal .content-popup').append(html_bonus);
+                            }
+
+
                             //$("#noticeModalNoHu #btnWithdraw").hide();
                             $('#noticeModal').modal('show');
                             var userpoint = data.userpoint;
@@ -1676,15 +1773,6 @@
                             } else if (gift_detail.gift_type == 1) {
                                 $("#btnWithdraw").html("Kiểm tra nick trúng");
                                 $("#btnWithdraw").attr('href', '/minigame-logacc-' + '{{$result->group->id}}');
-                                // } else if (gift_detail.gift_type == 'nrocoin') {
-                                //     $("#btnWithdraw").html("Rút vàng");
-                                //     $("#btnWithdraw").attr('href', '/withdrawservice?id=' + $("#ID_NROCOIN").val());
-                                // } else if (gift_detail.gift_type == 'nrogem') {
-                                //     $("#btnWithdraw").html("Rút ngọc");
-                                //     $("#btnWithdraw").attr('href', '/withdrawservice?id=' + $("#ID_NROGEM").val());
-                                // } else if (gift_detail.gift_type == 'nroxu') {
-                                //     $("#btnWithdraw").html("Rút xu");
-                                //     $("#btnWithdraw").attr('href', '/withdrawservice?id=' + $("#ID_NINJAXU").val());
                             } else if (gift_detail.gift_type == 2) {
                                 $("#btnWithdraw").html("Load lại trang");
                                 $("#btnWithdraw").removeAttr("href");
@@ -1701,88 +1789,151 @@
                             // {
                             //     $html += "<br/><span style='font-size: 14px;color: #f90707;font-style: italic;display: block;text-align: center;'>"+saleoffmessage+"</span><br/>";
                             // }
+                            var flag_bonus = true;
+
+                            if (value_gif_bonus.length > 0){
+                                for (let i = 0; i < value_gif_bonus.length; i++ ){
+                                    if (parseInt(value_gif_bonus[i]) > 0){
+                                        flag_bonus = false;
+                                    }
+                                }
+                            }
+
+                            var c_game_type_value = '';
+                            if (game_type_value){
+                                c_game_type_value = " " + game_type_value;
+                            }
 
                             if ($('#type_play').val() == "real") {
+
+
                                 if (gift_revice.length == 1) {
+
                                     // if(arrDiscount[0] != "")
                                     // {
                                     //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[0]+"</b></span>";
                                     // }
-                                    $html += "<span>Kết quả: " + gift_revice[0]["title"] + "</span><br/>";
-                                    if (gift_detail.winbox == 1) {
-                                        $html += "<span>Mua X1: Nhận được " + gift_revice[0]['parrent'].params.value + "</span><br/>";
-                                        //$html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]['parrent'].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>"+$strDiscountcode;
-                                        $html += "<span>Tổng cộng: " + parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + "</span>";
+                                    if (!flag_bonus){//trường hợp bonus.
+                                        var total_vp = parseInt(gift_revice[0]['parrent'].params.value) + parseInt(value_gif_bonus[0]);
+
+                                        $html += "<span>Kết quả: Bạn đã trúng " + total_vp + c_game_type_value +"</span><br/>";
+                                        if (gift_detail.winbox == 1) {
+
+                                            $html += "<span>Mua X1: Nhận được " + total_vp + game_type_value + "</span><br/>";
+                                            $html += "<span>Tổng cộng: " + (parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + parseInt(value_gif_bonus[0])) + game_type_value +"</span>";
+                                        }
+                                    }else {
+                                        $html += "<span>Kết quả: " + gift_revice[0]["title"] + "</span><br/>";
+                                        if (gift_detail.winbox == 1) {
+
+                                            $html += "<span>Mua X1: Nhận được " + gift_revice[0]['parrent'].params.value + "</span><br/>";
+                                            //$html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]['parrent'].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>"+$strDiscountcode;
+                                            $html += "<span>Tổng cộng: " + parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + "</span>";
+                                        }
                                     }
+
                                 } else {
-                                    $totalRevice = 0;
-                                    $html += "<span>Kết quả: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
-                                    $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
-                                    for ($i = 0; $i < gift_revice.length; $i++) {
-                                        // if(arrDiscount[$i] != "")
-                                        // {
-                                        //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[$i]+"</b></span>";
-                                        // }
-                                        $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i]["title"];
-                                        if (gift_revice[$i].winbox == 1) {
-                                            $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + "" + msg_random_bonus[$i] + "</span><br/>" + $strDiscountcode + "<br/>";
-                                        } else {
-                                            $html += "" + msg_random_bonus[$i] + "<br/>" + $strDiscountcode + "<br/>";
-                                        }
-                                        $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
-                                    }
+                                    if (!flag_bonus) {//trường hợp bonus.
 
-                                    $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
+                                        $totalRevice = 0;
+                                        $html += "<span>Kết quả: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
+                                        $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
+                                        for ($i = 0; $i < gift_revice.length; $i++) {
+
+                                            var total_vp = parseInt(gift_revice[$i]['parrent'].params.value) + parseInt(value_gif_bonus[$i]);
+
+                                            $html += "<span>Lần quay " + ($i + 1) + ": Bạn đã trúng " + total_vp + c_game_type_value;
+                                            if (gift_revice[$i].winbox == 1) {
+
+                                                $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + (parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i])) + "" + c_game_type_value + "</span><br/><br/>";
+                                            } else {
+                                                $html += "<br/><br/>";
+                                            }
+                                            $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                        }
+
+                                        $html += "<span><b>Tổng cộng: " + $totalRevice + c_game_type_value + " </b></span>";
+                                    }else{
+                                        $totalRevice = 0;
+                                        $html += "<span>Kết quả: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
+                                        $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
+                                        for ($i = 0; $i < gift_revice.length; $i++) {
+
+                                            $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i]["title"];
+                                            if (gift_revice[$i].winbox == 1) {
+                                                $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + "" + msg_random_bonus[$i] + "</span><br/>" + $strDiscountcode + "<br/>";
+                                            } else {
+                                                $html += "" + msg_random_bonus[$i] + "<br/>" + $strDiscountcode + "<br/>";
+                                            }
+                                            $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                        }
+
+                                        $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
+                                    }
                                 }
-                            } else
-                            {
+                            } else {
                                 $("#btnWithdraw").hide();
-                                if(gift_revice.length == 1)
-                                {
-                                    $html += "<span>Kết quả chơi thử: "+gift_revice[0]["title"]+"</span><br/>";
-                                    if(gift_detail.winbox == 1){
-                                        $revice = gift_revice[0]['parrent'].params.value;
-                                        $revice = $revice.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-                                        $revice = $revice.split('').reverse().join('').replace(/^[\.]/,'');
+                                if (gift_revice.length == 1) {
+                                    if (!flag_bonus) {//trường hợp bonus.
+                                        var total_vp = parseInt(gift_revice[0]['parrent'].params.value) + parseInt(value_gif_bonus[0]);
 
+                                        $html += "<span>Kết quả: Bạn đã trúng " + total_vp + c_game_type_value +"</span><br/>";
+                                        if (gift_detail.winbox == 1) {
 
-
-                                        $html += "<span>Mua X1: Nhận được "+$revice+"</span><br/>";
-
-                                        $totalRevice = parseInt(gift_revice[0]['parrent'].params.value)*(parseInt(xvalueaDD[0]));
-                                        $totalRevice = $totalRevice.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-                                        $totalRevice = $totalRevice.split('').reverse().join('').replace(/^[\.]/,'');
-
-                                        //$html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]['parrent'].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
-                                        $html += "<span>Tổng cộng: "+ $totalRevice +"</span>";
-                                    }
-                                }
-                                else
-                                {
-                                    $totalRevice = 0;
-                                    $html += "<span>Kết quả chơi thử: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt quay.</span><br/>";
-                                    $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
-
-                                    for($i=0;$i<gift_revice.length;$i++)
-                                    {
-                                        $html += "<span>Lần quay "+($i + 1)+": "+gift_revice[$i].title;
-                                        if(gift_revice[$i].winbox == 1){
-                                            $html +=" - nhận được: "+gift_revice[$i]['parrent'].params.value+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]['parrent'].params.value)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>";
+                                            $html += "<span>Mua X1: Nhận được " + total_vp + game_type_value + "</span><br/>";
+                                            $html += "<span>Tổng cộng: " + (parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + parseInt(value_gif_bonus[0])) + game_type_value +"</span>";
                                         }
-                                        else
-                                        {
-                                            $html +=""+msg_random_bonus[$i]+"<br/>";
+                                    }else{
+                                        $html += "<span>Kết quả chơi thử: " + gift_revice[0]["title"] + "</span><br/>";
+                                        if (gift_detail.winbox == 1) {
+                                            $html += "<span>Mua X1: Nhận được " + gift_revice[0]['parrent'].params.value + "</span><br/>";
+                                            //$html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]['parrent'].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
+                                            $html += "<span>Tổng cộng: " + parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + "</span>";
                                         }
-                                        $totalRevice +=  parseInt(gift_revice[$i]['parrent'].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
                                     }
 
-                                    $totalRevice = $totalRevice.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-                                    $totalRevice = $totalRevice.split('').reverse().join('').replace(/^[\.]/,'');
+                                } else {
+                                    if (!flag_bonus) {//trường hợp bonus.
+                                        $totalRevice = 0;
+                                        $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
+                                        $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
+                                        for ($i = 0; $i < gift_revice.length; $i++) {
 
-                                    $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
+                                            var total_vp = parseInt(gift_revice[$i]['parrent'].params.value) + parseInt(value_gif_bonus[$i]);
+
+                                            $html += "<span>Lần quay " + ($i + 1) + ": Bạn đã trúng " + total_vp + c_game_type_value;
+                                            if (gift_revice[$i].winbox == 1) {
+
+                                                $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + (parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i])) + "" + c_game_type_value + "</span><br/><br/>";
+                                            } else {
+                                                $html += "<br/><br/>";
+                                            }
+                                            $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                        }
+
+                                        $html += "<span><b>Tổng cộng: " + $totalRevice + c_game_type_value + " </b></span>";
+                                    }else{
+                                        $totalRevice = 0;
+                                        $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
+                                        $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
+                                        for ($i = 0; $i < gift_revice.length; $i++) {
+                                            $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i]['parrent'].title;
+                                            if (gift_revice[$i].winbox == 1) {
+                                                $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + "" + msg_random_bonus[$i] + "</span><br/>";
+                                            } else {
+                                                $html += "" + msg_random_bonus[$i] + "<br/>";
+                                            }
+                                            $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                        }
+
+                                        $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
+                                    }
                                 }
                             }
                         }
+                        if (!showwithdrawbtn) {
+                            $("#btnWithdraw").hide();
+                        }else{ $("#btnWithdraw").show(); }
 
                         $('#noticeModal .content-popup').html($html);
 
@@ -1794,7 +1945,6 @@
                 }
             });
 
-
             $('body').delegate('.reLoad', 'click', function () {
                 location.reload();
             })
@@ -1804,7 +1954,7 @@
         @case('flip')
         @foreach($result->group->items as $item)
             <input type="hidden" class="image_gift"
-                   value="{{ \App\Library\MediaHelpers::media($item->parrent->image) }}">
+                   value="{{ \App\Library\MediaHelpers::media($item->image) }}">
         @endforeach
         <style type="text/css">
             .boxflip .active {
@@ -1876,6 +2026,7 @@
                 }
                 var saleoffpass = "";
                 var saleoffmessage = "";
+                var game_type_value = "";
                 var gift_revice="";
                 var userpoint = 0;
                 var roll_check = true;
@@ -1888,6 +2039,7 @@
                 var angles = 0;
                 var free_wheel = 0;
                 var arrDiscount = '';
+                var showwithdrawbtn = true;
                 //Click nút lật
                 $('body').delegate('.img_remove', 'click', function(){
                     $('.boxflip .flip-box-front').removeClass('img_remove');
@@ -1912,7 +2064,7 @@
                             },
                             type: 'post',
                             success: function (data) {
-                                console.log(data)
+
                                 gift_detail = data.gift_detail;
                                 setTimeout(function(){
                                     if(gift_detail != undefined){
@@ -1948,9 +2100,11 @@
                                     // }
                                     return;
                                 }
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 free_wheel = data.free_wheel;
                                 //arrDiscount = data.arrDiscount;
+                                game_type_value = data.game_type_value;
                                 gift_list = data.listgift;
                                 gift_list = shuffle(gift_list);
                                 gift_revice = data.arr_gift;
@@ -2018,6 +2172,7 @@
                                     }
 
                                 }
+
                                 if (gift_revice.length > 0) {
                                     $html = "";
                                     $strDiscountcode="";
@@ -2025,6 +2180,21 @@
                                     // {
                                     //     $html += "<br/><span style='font-size: 14px;color: #f90707;font-style: italic;display: block;text-align: center;'>"+saleoffmessage+"</span><br/>";
                                     // }
+
+                                    var flag_bonus = true;
+
+                                    if (value_gif_bonus.length > 0){
+                                        for (let i = 0; i < value_gif_bonus.length; i++ ){
+                                            if (parseInt(value_gif_bonus[i]) > 0){
+                                                flag_bonus = false;
+                                            }
+                                        }
+                                    }
+
+                                    var c_game_type_value = '';
+                                    if (game_type_value){
+                                        c_game_type_value = " " + game_type_value;
+                                    }
 
                                     if($('#type_play').val() == "real")
                                     {
@@ -2034,36 +2204,70 @@
                                             // {
                                             //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[0]+"</b></span>";
                                             // }
-                                            $html += "<span>Kết quả: "+gift_revice[0]["title"]+"</span><br/>";
-                                            if(gift_detail.winbox == 1){
-                                                $html += "<span>Mua X1: Nhận được "+gift_gift_revice[$i]['parrent'].title+"</span><br/>";
-                                                //$html += "<span>Lật được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>"+$strDiscountcode;
-                                                $html += "<span>Tổng cộng: "+parseInt(gift_revice[0]["parrent"].params.value)*(parseInt(xvalueaDD[0]))+"</span>";
+                                            if (!flag_bonus){//trường hợp bonus.
+                                                var total_vp = parseInt(gift_revice[0]['parrent'].params.value) + parseInt(value_gif_bonus[0]);
+
+                                                $html += "<span>Kết quả: Bạn đã trúng " + total_vp + c_game_type_value +"</span><br/>";
+                                                if (gift_detail.winbox == 1) {
+
+                                                    $html += "<span>Mua X1: Nhận được " + total_vp + game_type_value + "</span><br/>";
+                                                    $html += "<span>Tổng cộng: " + (parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + parseInt(value_gif_bonus[0])) + game_type_value +"</span>";
+                                                }
+                                            }else {
+                                                $html += "<span>Kết quả: "+gift_revice[0]["title"]+"</span><br/>";
+                                                if(gift_detail.winbox == 1){
+                                                    $html += "<span>Mua X1: Nhận được "+gift_gift_revice[$i]['parrent'].title+"</span><br/>";
+                                                    //$html += "<span>Lật được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>"+$strDiscountcode;
+                                                    $html += "<span>Tổng cộng: "+parseInt(gift_revice[0]["parrent"].params.value)*(parseInt(xvalueaDD[0]))+"</span>";
+                                                }
                                             }
+
                                         }
                                         else
                                         {
-                                            $totalRevice = 0;
-                                            $html += "<span>Kết quả: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt lật.</span><br/>";
-                                            $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
-                                            for($i=0;$i<gift_revice.length;$i++)
-                                            {
-                                                // if(arrDiscount[$i] != "")
-                                                // {
-                                                //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[$i]+"</b></span>";
-                                                // }
-                                                $html += "<span>Lần lật "+($i + 1)+": "+gift_revice[$i]["title"];
-                                                if(gift_revice[$i].winbox == 1){
-                                                    $html +=" - nhận được: "+gift_revice[$i]['parrent'].title+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]['parrent'].title)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>"+$strDiscountcode+"<br/>";
-                                                }
-                                                else
-                                                {
-                                                    $html +=""+msg_random_bonus[$i]+"<br/>"+$strDiscountcode+"<br/>";
-                                                }
-                                                $totalRevice +=  parseInt(gift_revice[$i]['parrent'].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
-                                            }
+                                            if (!flag_bonus) {//trường hợp bonus.
 
-                                            $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
+                                                $totalRevice = 0;
+                                                $html += "<span>Kết quả: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt lật.</span><br/>";
+                                                $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
+                                                for ($i = 0; $i < gift_revice.length; $i++) {
+
+                                                    var total_vp = parseInt(gift_revice[$i]['parrent'].params.value) + parseInt(value_gif_bonus[$i]);
+
+                                                    $html += "<span>Lần quay " + ($i + 1) + ": Bạn đã trúng " + total_vp + c_game_type_value;
+                                                    if (gift_revice[$i].winbox == 1) {
+
+                                                        $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + (parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i])) + "" + c_game_type_value + "</span><br/><br/>";
+                                                    } else {
+                                                        $html += "<br/><br/>";
+                                                    }
+                                                    $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                                }
+
+                                                $html += "<span><b>Tổng cộng: " + $totalRevice + c_game_type_value + " </b></span>";
+                                            }else{
+                                                $totalRevice = 0;
+                                                $html += "<span>Kết quả: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt lật.</span><br/>";
+                                                $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
+                                                for($i=0;$i<gift_revice.length;$i++)
+                                                {
+                                                    // if(arrDiscount[$i] != "")
+                                                    // {
+                                                    //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[$i]+"</b></span>";
+                                                    // }
+                                                    $html += "<span>Lần lật "+($i + 1)+": "+gift_revice[$i]["title"];
+                                                    if(gift_revice[$i].winbox == 1){
+                                                        $html +=" - nhận được: "+gift_revice[$i]['parrent'].title+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]['parrent'].title)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>"+$strDiscountcode+"<br/>";
+                                                    }
+                                                    else
+                                                    {
+                                                        $html +=""+msg_random_bonus[$i]+"<br/>"+$strDiscountcode+"<br/>";
+                                                    }
+                                                    $totalRevice +=  parseInt(gift_revice[$i]['parrent'].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
+                                                }
+
+                                                $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
+                                            }
                                         }
                                     }
                                     else
@@ -2071,35 +2275,75 @@
                                         $("#btnWithdraw").hide();
                                         if(gift_revice.length == 1)
                                         {
-                                            $html += "<span>Kết quả chơi thử: "+gift_revice[0]["title"]+"</span><br/>";
-                                            if(gift_detail.winbox == 1){
-                                                $html += "<span>Mua X1: Nhận được "+gift_revice[0]["parrent"].params.value+"</span><br/>";
-                                                //$html += "<span>Lật được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
-                                                $html += "<span>Tổng cộng: "+parseInt(gift_revice[0]["parrent"].params.value)*(parseInt(xvalueaDD[0]))+"</span>";
+                                            if (!flag_bonus){//trường hợp bonus.
+                                                var total_vp = parseInt(gift_revice[0]['parrent'].params.value) + parseInt(value_gif_bonus[0]);
+
+                                                $html += "<span>Kết quả chơi thử: Bạn đã trúng " + total_vp + c_game_type_value +"</span><br/>";
+                                                if (gift_detail.winbox == 1) {
+
+                                                    $html += "<span>Mua X1: Nhận được " + total_vp + game_type_value + "</span><br/>";
+                                                    $html += "<span>Tổng cộng: " + (parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + parseInt(value_gif_bonus[0])) + game_type_value +"</span>";
+                                                }
+                                            }else {
+                                                $html += "<span>Kết quả chơi thử: "+gift_revice[0]["title"]+"</span><br/>";
+                                                if(gift_detail.winbox == 1){
+                                                    $html += "<span>Mua X1: Nhận được "+gift_gift_revice[$i]['parrent'].title+"</span><br/>";
+                                                    //$html += "<span>Lật được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>"+$strDiscountcode;
+                                                    $html += "<span>Tổng cộng: "+parseInt(gift_revice[0]["parrent"].params.value)*(parseInt(xvalueaDD[0]))+"</span>";
+                                                }
                                             }
                                         }
                                         else
                                         {
-                                            $totalRevice = 0;
-                                            $html += "<span>Kết quả chơi thử: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt lật.</span><br/>";
-                                            $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
-                                            for($i=0;$i<gift_revice.length;$i++)
-                                            {
-                                                $html += "<span>Lần lật "+($i + 1)+": "+gift_revice[$i]["title"];
-                                                if(gift_revice[$i].winbox == 1){
-                                                    $html +=" - nhận được: "+gift_revice[$i]['parrent'].title+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]['parrent'].title)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>";
-                                                }
-                                                else
-                                                {
-                                                    $html +=""+msg_random_bonus[$i]+"<br/>";
-                                                }
-                                                $totalRevice +=  parseInt(gift_revice[$i]['parrent'].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
-                                            }
+                                            if (!flag_bonus) {//trường hợp bonus.
 
-                                            $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
+                                                $totalRevice = 0;
+                                                $html += "<span>Kết quả chơi thử: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt lật.</span><br/>";
+                                                $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
+                                                for ($i = 0; $i < gift_revice.length; $i++) {
+
+                                                    var total_vp = parseInt(gift_revice[$i]['parrent'].params.value) + parseInt(value_gif_bonus[$i]);
+
+                                                    $html += "<span>Lần quay " + ($i + 1) + ": Bạn đã trúng " + total_vp + c_game_type_value;
+                                                    if (gift_revice[$i].winbox == 1) {
+
+                                                        $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + (parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i])) + "" + c_game_type_value + "</span><br/><br/>";
+                                                    } else {
+                                                        $html += "<br/><br/>";
+                                                    }
+                                                    $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                                }
+
+                                                $html += "<span><b>Tổng cộng: " + $totalRevice + c_game_type_value + " </b></span>";
+                                            }else{
+                                                $totalRevice = 0;
+                                                $html += "<span>Kết quả chơi thử: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt lật.</span><br/>";
+                                                $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
+                                                for($i=0;$i<gift_revice.length;$i++)
+                                                {
+                                                    // if(arrDiscount[$i] != "")
+                                                    // {
+                                                    //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[$i]+"</b></span>";
+                                                    // }
+                                                    $html += "<span>Lần lật "+($i + 1)+": "+gift_revice[$i]["title"];
+                                                    if(gift_revice[$i].winbox == 1){
+                                                        $html +=" - nhận được: "+gift_revice[$i]['parrent'].title+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]['parrent'].title)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>"+$strDiscountcode+"<br/>";
+                                                    }
+                                                    else
+                                                    {
+                                                        $html +=""+msg_random_bonus[$i]+"<br/>"+$strDiscountcode+"<br/>";
+                                                    }
+                                                    $totalRevice +=  parseInt(gift_revice[$i]['parrent'].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
+                                                }
+
+                                                $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
+                                            }
                                         }
                                     }
                                 }
+                                if (!showwithdrawbtn) {
+                                    $("#btnWithdraw").hide();
+                                }else{ $("#btnWithdraw").show(); }
 
                                 $('#noticeModal .content-popup').html($html);
                                 if (userpoint > 99) {
@@ -2148,7 +2392,39 @@
                                 $('#noticeModal').modal('show');
                                 return;
                             }
-                            $('#noticeModal .content-popup').append(data.msg + " - " + data.arr_gift[0].title);
+
+                            var flag_bonus = true;
+                            var c_game_type_value = '';
+
+                            if (data.game_type_value){
+                                c_game_type_value = " " + data.game_type_value;
+                            }
+
+                            if (data.value_gif_bonus.length > 0){
+                                for (let i = 0; i < data.value_gif_bonus.length; i++ ){
+                                    if (parseInt(data.value_gif_bonus[i]) > 0){
+                                        flag_bonus = false;
+                                    }
+                                }
+                            }
+
+                            var total_vp = parseInt(data.arr_gift[0]['parrent'].params.value) + parseInt(data.value_gif_bonus[0]);
+
+                            if (!flag_bonus){
+                                var html_bonus = "";
+                                html_bonus += "</br>";
+                                html_bonus += "</br>";
+                                html_bonus += "Nổ hũ may mắn - bạn đã trúng thêm " + total_vp + c_game_type_value;
+                                $('#noticeModal .content-popup').append(html_bonus);
+
+                            }else{
+                                var html_bonus = "";
+                                html_bonus += "</br>";
+                                html_bonus += "</br>";
+                                html_bonus += data.msg + " - " + data.arr_gift[0].title;
+                                $('#noticeModal .content-popup').append(html_bonus);
+                            }
+
                             //$("#noticeModalNoHu #btnWithdraw").hide();
                             $('#noticeModal').modal('show');
                             var userpoint = data.userpoint;
@@ -2236,6 +2512,7 @@
                 var tyleLoop = 0;
                 var saleoffpass = "";
                 //var saleoffmessage = "";
+                var game_type_value = "";
                 var gift_revice="";
                 var userpoint = 0;
                 var numrollbyorder = 0;
@@ -2255,6 +2532,7 @@
                 var slot1_fake;
                 var slot2_fake;
                 var slot3_fake;
+                var showwithdrawbtn = true;
                 //Click nút quay
                 $('body').delegate('#start-played', 'click', function() {
 
@@ -2312,8 +2590,9 @@
                                 }
 
 
-
+                                game_type_value = data.game_type_value;
                                 gift_revice = data.arr_gift;
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 arrxgt = data.xgt;
                                 if (arrxgt > 0) {
@@ -2346,7 +2625,6 @@
                     }
                 });
 
-
                 function getgifbonus() {
                     if($('#checkPoint').val() != "1"){
                         return;
@@ -2365,7 +2643,39 @@
                                 $('#noticeModal').modal('show');
                                 return;
                             }
-                            $('#noticeModal .nohuthang').html(data.msg + " - " + data.arr_gift[0].title);
+
+                            var flag_bonus = true;
+                            var c_game_type_value = '';
+
+                            if (data.game_type_value){
+                                c_game_type_value = " " + data.game_type_value;
+                            }
+
+                            if (data.value_gif_bonus.length > 0){
+                                for (let i = 0; i < data.value_gif_bonus.length; i++ ){
+                                    if (parseInt(data.value_gif_bonus[i]) > 0){
+                                        flag_bonus = false;
+                                    }
+                                }
+                            }
+
+                            var total_vp = parseInt(data.arr_gift[0]['parrent'].params.value) + parseInt(data.value_gif_bonus[0]);
+
+                            if (!flag_bonus){
+                                var html_bonus = "";
+                                html_bonus += "</br>";
+                                html_bonus += "</br>";
+                                html_bonus += "Nổ hũ may mắn - bạn đã trúng thêm " + total_vp + c_game_type_value;
+                                $('#noticeModal .nohuthang').append(html_bonus);
+
+                            }else{
+                                var html_bonus = "";
+                                html_bonus += "</br>";
+                                html_bonus += "</br>";
+                                html_bonus += data.msg + " - " + data.arr_gift[0].title;
+                                $('#noticeModal .nohuthang').append(html_bonus);
+                            }
+
                             $('#noticeModal').modal('show');
                             var userpoint = data.userpoint;
                             if(userpoint<100){
@@ -2387,7 +2697,6 @@
                         }
                     })
                 }
-
 
                 $('body').delegate('.num-play-try', 'click', function() {
                     if (roll_check) {
@@ -2445,6 +2754,7 @@
                                 doSlot(num1,num2,num3);
 
                                 gift_revice = data.arr_gift;
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 arrxgt = data.xgt;
                                 if (arrxgt > 0) {
@@ -2617,6 +2927,22 @@
                     if (gift_revice.length > 0) {
                         $html = "";
                         $strDiscountcode = "";
+
+                        var flag_bonus = true;
+
+                        if (value_gif_bonus.length > 0){
+                            for (let i = 0; i < value_gif_bonus.length; i++ ){
+                                if (parseInt(value_gif_bonus[i]) > 0){
+                                    flag_bonus = false;
+                                }
+                            }
+                        }
+
+                        var c_game_type_value = '';
+                        if (game_type_value){
+                            c_game_type_value = "  " + game_type_value;
+                        }
+
                         // if(saleoffmessage.length > 0)
                         // {
                         //     $html += "<br/><span style='font-size: 14px;color: #f90707;font-style: italic;display: block;text-align: center;'>"+saleoffmessage+"</span><br/>";
@@ -2628,59 +2954,136 @@
                                 // {
                                 //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[0]+"</b></span>";
                                 // }
-                                $html += "<span>Kết quả: " + gift_revice[0]["title"] + "</span><br/>";
-                                if (gift_detail.winbox == 1) {
-                                    $html += "<span>Mua X1: Nhận được " + gift_revice[0]["parrent"].params.value + "</span><br/>";
-                                    $html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
-                                    $html += "<span>Tổng cộng: " + parseInt(gift_revice[0]["parrent"].params.value) * (parseInt(xvalueaDD[0])) + "</span>";
-                                }
-                            } else {
-                                $totalRevice = 0;
-                                $html += "<span>Kết quả: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
-                                $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
-                                for ($i = 0; $i < gift_revice.length; $i++) {
-                                    // if(arrDiscount[$i] != "")
-                                    // {
-                                    //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[$i]+"</b></span>";
-                                    // }
-                                    $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i]["title"];
-                                    if (gift_revice[$i].winbox == 1) {
-                                        $html += " - nhận được: " + gift_revice[$i]["parrent"].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + "" + msg_random_bonus[$i] + "</span><br/>"  + "<br/>";
-                                    } else {
-                                        $html += "" + msg_random_bonus[$i] + "<br/>" + $strDiscountcode + "<br/>";
+
+                                if (!flag_bonus){//trường hợp bonus.
+                                    var total_vp = parseInt(gift_revice[0]['parrent'].params.value) + parseInt(value_gif_bonus[0]);
+
+                                    $html += "<span>Kết quả: Bạn đã trúng " + total_vp + c_game_type_value +"</span><br/>";
+                                    if (gift_detail.winbox == 1) {
+
+                                        $html += "<span>Mua X1: Nhận được " + total_vp + game_type_value + "</span><br/>";
+                                        $html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+ (parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + parseInt(value_gif_bonus[0])) + game_type_value +"</span><br/>";
+                                        $html += "<span>Tổng cộng: " + (parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + parseInt(value_gif_bonus[0])) + game_type_value +"</span>";
                                     }
-                                    $totalRevice += parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                }else {
+                                    $html += "<span>Kết quả: " + gift_revice[0]["title"] + "</span><br/>";
+                                    if (gift_detail.winbox == 1) {
+                                        $html += "<span>Mua X1: Nhận được " + gift_revice[0]["parrent"].params.value + "</span><br/>";
+                                        $html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
+                                        $html += "<span>Tổng cộng: " + parseInt(gift_revice[0]["parrent"].params.value) * (parseInt(xvalueaDD[0])) + "</span>";
+                                    }
                                 }
 
-                                $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
+                            } else {
+
+                                if (!flag_bonus) {//trường hợp bonus.
+
+                                    $totalRevice = 0;
+                                    $html += "<span>Kết quả: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
+                                    $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
+                                    for ($i = 0; $i < gift_revice.length; $i++) {
+
+                                        var total_vp = parseInt(gift_revice[$i]['parrent'].params.value) + parseInt(value_gif_bonus[$i]);
+
+                                        $html += "<span>Lần quay " + ($i + 1) + ": Bạn đã trúng " + total_vp + " " + c_game_type_value;
+                                        if (gift_revice[$i].winbox == 1) {
+
+                                            $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + (parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i])) + "" + c_game_type_value + "</span><br/><br/>";
+                                        } else {
+                                            $html += "" + msg_random_bonus[$i] + "<br/>" + $strDiscountcode + "<br/>";
+                                        }
+                                        $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + " " + parseInt(value_gif_bonus[$i]);
+                                    }
+
+                                    $html += "<span><b>Tổng cộng: " + $totalRevice + " " + c_game_type_value + " </b></span>";
+                                }else{
+                                    $totalRevice = 0;
+                                    $html += "<span>Kết quả: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
+                                    $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
+                                    for ($i = 0; $i < gift_revice.length; $i++) {
+                                        // if(arrDiscount[$i] != "")
+                                        // {
+                                        //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[$i]+"</b></span>";
+                                        // }
+                                        $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i]["title"];
+                                        if (gift_revice[$i].winbox == 1) {
+                                            $html += " - nhận được: " + gift_revice[$i]["parrent"].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + "" + msg_random_bonus[$i] + "</span><br/>"  + "<br/>";
+                                        } else {
+                                            $html += "" + msg_random_bonus[$i] + "<br/>" + $strDiscountcode + "<br/>";
+                                        }
+                                        $totalRevice += parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                    }
+
+                                    $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
+                                }
                             }
                         } else {
                             $("#btnWithdraw").hide();
                             if (gift_revice.length == 1) {
-                                $html += "<span>Kết quả chơi thử: " + gift_revice[0]["title"] + "</span><br/>";
-                                if (gift_detail.winbox == 1) {
-                                    $html += "<span>Mua X1: Nhận được " + gift_revice[0]["parrent"].params.value + "</span><br/>";
-                                    $html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
-                                    $html += "<span>Tổng cộng: " + parseInt(gift_revice[0]["parrent"].params.value) * (parseInt(xvalueaDD[0])) + "</span>";
+                                if (!flag_bonus){//trường hợp bonus.
+                                    var total_vp = parseInt(gift_revice[0]['parrent'].params.value) + parseInt(value_gif_bonus[0]);
+
+                                    $html += "<span>Kết quả chơi thử: Bạn đã trúng " + total_vp + " " + c_game_type_value +"</span><br/>";
+                                    if (gift_detail.winbox == 1) {
+
+                                        $html += "<span>Mua X1: Nhận được " + total_vp + " " + + game_type_value + "</span><br/>";
+                                        $html += "<span>Tổng cộng: " + (parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + parseInt(value_gif_bonus[0])) + " " + game_type_value +"</span>";
+                                    }
+                                }else {
+                                    $html += "<span>Kết quả chơi thử: " + gift_revice[0]["title"] + "</span><br/>";
+                                    if (gift_detail.winbox == 1) {
+                                        $html += "<span>Mua X1: Nhận được " + gift_revice[0]["parrent"].params.value + "</span><br/>";
+                                        $html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
+                                        $html += "<span>Tổng cộng: " + parseInt(gift_revice[0]["parrent"].params.value) * (parseInt(xvalueaDD[0])) + "</span>";
+                                    }
                                 }
                             } else {
-                                $totalRevice = 0;
-                                $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
-                                $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
-                                for ($i = 0; $i < gift_revice.length; $i++) {
-                                    $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i]["title"];
-                                    if (gift_revice[$i].winbox == 1) {
-                                        $html += " - nhận được: " + gift_revice[$i]["parrent"].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + "" + msg_random_bonus[$i] + "</span><br/>";
-                                    } else {
-                                        $html += "" + msg_random_bonus[$i] + "<br/>";
-                                    }
-                                    $totalRevice += parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
-                                }
+                                if (!flag_bonus) {//trường hợp bonus.
 
-                                $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
+                                    $totalRevice = 0;
+                                    $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
+                                    $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
+                                    for ($i = 0; $i < gift_revice.length; $i++) {
+
+                                        var total_vp = parseInt(gift_revice[$i]['parrent'].params.value) + parseInt(value_gif_bonus[$i]);
+
+                                        $html += "<span>Lần quay " + ($i + 1) + ": Bạn đã trúng " + total_vp + c_game_type_value;
+                                        if (gift_revice[$i].winbox == 1) {
+
+                                            $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + (parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i])) + "" + c_game_type_value + "</span><br/><br/>";
+                                        } else {
+                                            $html += "<br/><br/>";
+                                        }
+                                        $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                    }
+
+                                    $html += "<span><b>Tổng cộng: " + $totalRevice + c_game_type_value + " </b></span>";
+                                }else{
+                                    $totalRevice = 0;
+                                    $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
+                                    $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
+                                    for ($i = 0; $i < gift_revice.length; $i++) {
+                                        // if(arrDiscount[$i] != "")
+                                        // {
+                                        //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[$i]+"</b></span>";
+                                        // }
+                                        $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i]["title"];
+                                        if (gift_revice[$i].winbox == 1) {
+                                            $html += " - nhận được: " + gift_revice[$i]["parrent"].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + "" + msg_random_bonus[$i] + "</span><br/>"  + "<br/>";
+                                        } else {
+                                            $html += "" + msg_random_bonus[$i] + "<br/>" + $strDiscountcode + "<br/>";
+                                        }
+                                        $totalRevice += parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                    }
+
+                                    $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
+                                }
                             }
                         }
                     }
+                    if (!showwithdrawbtn) {
+                        $("#btnWithdraw").hide();
+                    }else{ $("#btnWithdraw").show(); }
 
                     $('#noticeModal .content-popup').html($html);
 
@@ -2776,7 +3179,7 @@
     @php
         $count++;
     @endphp
-    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
+    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->image)}}") !important;}
             @endforeach
 #slot1,#slot2,#slot3{
                 display: inline-block;
@@ -2791,7 +3194,6 @@
             }
         </style>
         @break
-
         @case('slotmachine5')
         <script>
             function animate(options) {
@@ -2824,10 +3226,10 @@
                     $("#topquaythuongModal").modal('show');
                 })
 
-
                 var tyleLoop = 0;
                 var saleoffpass = "";
                 //var saleoffmessage = "";
+                var game_type_value = "";
                 var gift_revice="";
                 var userpoint = 0;
                 var numrollbyorder = 0;
@@ -2849,6 +3251,7 @@
                 var slot3_fake;
                 var slot4_fake;
                 var slot5_fake;
+                var showwithdrawbtn = true;
                 //Click nút quay
                 $('body').delegate('#start-played', 'click', function() {
 
@@ -2935,8 +3338,9 @@
                                 }
 
 
-
+                                game_type_value = data.game_type_value;
                                 gift_revice = data.arr_gift;
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 arrxgt = data.xgt;
                                 if (arrxgt > 0) {
@@ -2988,7 +3392,39 @@
                                 $('#noticeModal').modal('show');
                                 return;
                             }
-                            $('#noticeModal .nohuthang').html(data.msg + " - " + data.arr_gift[0].title);
+
+                            var flag_bonus = true;
+                            var c_game_type_value = '';
+
+                            if (data.game_type_value){
+                                c_game_type_value = " " + data.game_type_value;
+                            }
+
+                            if (data.value_gif_bonus.length > 0){
+                                for (let i = 0; i < data.value_gif_bonus.length; i++ ){
+                                    if (parseInt(data.value_gif_bonus[i]) > 0){
+                                        flag_bonus = false;
+                                    }
+                                }
+                            }
+
+                            var total_vp = parseInt(data.arr_gift[0]['parrent'].params.value) + parseInt(data.value_gif_bonus[0]);
+
+                            if (!flag_bonus){
+                                var html_bonus = "";
+                                html_bonus += "</br>";
+                                html_bonus += "</br>";
+                                html_bonus += "Nổ hũ may mắn - bạn đã trúng thêm " + total_vp + c_game_type_value;
+                                $('#noticeModal .nohuthang').append(html_bonus);
+
+                            }else{
+                                var html_bonus = "";
+                                html_bonus += "</br>";
+                                html_bonus += "</br>";
+                                html_bonus += data.msg + " - " + data.arr_gift[0].title;
+                                $('#noticeModal .nohuthang').append(html_bonus);
+                            }
+
                             $('#noticeModal').modal('show');
                             var userpoint = data.userpoint;
                             if(userpoint<100){
@@ -3096,6 +3532,7 @@
 
 
                                 gift_revice = data.arr_gift;
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 arrxgt = data.xgt;
                                 if (arrxgt > 0) {
@@ -3389,65 +3826,156 @@
                         //     $html += "<br/><span style='font-size: 14px;color: #f90707;font-style: italic;display: block;text-align: center;'>"+saleoffmessage+"</span><br/>";
                         // }
 
+                        var flag_bonus = true;
+
+                        if (value_gif_bonus.length > 0){
+                            for (let i = 0; i < value_gif_bonus.length; i++ ){
+                                if (parseInt(value_gif_bonus[i]) > 0){
+                                    flag_bonus = false;
+                                }
+                            }
+                        }
+
+                        var c_game_type_value = '';
+                        if (game_type_value){
+                            c_game_type_value = " " + game_type_value;
+                        }
+
                         if (typeRoll == "real") {
                             if (gift_revice.length == 1) {
                                 // if(arrDiscount[0] != "")
                                 // {
                                 //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[0]+"</b></span>";
                                 // }
-                                $html += "<span>Kết quả: " + gift_revice[0]["title"] + "</span><br/>";
-                                if (gift_detail.winbox == 1) {
-                                    $html += "<span>Mua X1: Nhận được " + gift_revice[0]["parrent"].params.value + "</span><br/>";
-                                    $html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
-                                    $html += "<span>Tổng cộng: " + parseInt(gift_revice[0]["parrent"].params.value) * (parseInt(xvalueaDD[0])) + "</span>";
-                                }
-                            } else {
-                                $totalRevice = 0;
-                                $html += "<span>Kết quả: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
-                                $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
-                                for ($i = 0; $i < gift_revice.length; $i++) {
-                                    // if(arrDiscount[$i] != "")
-                                    // {
-                                    //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[$i]+"</b></span>";
-                                    // }
-                                    $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i]["title"];
-                                    if (gift_revice[$i].winbox == 1) {
-                                        $html += " - nhận được: " + gift_revice[$i]["parrent"].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + "" + msg_random_bonus[$i] + "</span><br/>"  + "<br/>";
-                                    } else {
-                                        $html += "" + msg_random_bonus[$i] + "<br/>" + $strDiscountcode + "<br/>";
+                                if (!flag_bonus){//trường hợp bonus.
+                                    var total_vp = parseInt(gift_revice[0]['parrent'].params.value) + parseInt(value_gif_bonus[0]);
+
+                                    $html += "<span>Kết quả: Bạn đã trúng " + total_vp + c_game_type_value +"</span><br/>";
+                                    if (gift_detail.winbox == 1) {
+
+                                        $html += "<span>Mua X1: Nhận được " + total_vp + game_type_value + "</span><br/>";
+                                        $html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: " + (parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + parseInt(value_gif_bonus[0])) + game_type_value +"</span><br/>";
+                                        $html += "<span>Tổng cộng: " + (parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + parseInt(value_gif_bonus[0])) + game_type_value +"</span>";
                                     }
-                                    $totalRevice += parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                }else {
+                                    $html += "<span>Kết quả: " + gift_revice[0]["title"] + "</span><br/>";
+                                    if (gift_detail.winbox == 1) {
+                                        $html += "<span>Mua X1: Nhận được " + gift_revice[0]["parrent"].params.value + "</span><br/>";
+                                        $html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
+                                        $html += "<span>Tổng cộng: " + parseInt(gift_revice[0]["parrent"].params.value) * (parseInt(xvalueaDD[0])) + "</span>";
+                                    }
                                 }
 
-                                $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
+                            } else {
+                                if (!flag_bonus) {//trường hợp bonus.
+
+                                    $totalRevice = 0;
+                                    $html += "<span>Kết quả: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
+                                    $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
+                                    for ($i = 0; $i < gift_revice.length; $i++) {
+
+                                        var total_vp = parseInt(gift_revice[$i]['parrent'].params.value) + parseInt(value_gif_bonus[$i]);
+
+                                        $html += "<span>Lần quay " + ($i + 1) + ": Bạn đã trúng " + total_vp + c_game_type_value;
+                                        if (gift_revice[$i].winbox == 1) {
+
+                                            $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + (parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i])) + "" + c_game_type_value + "</span><br/><br/>";
+                                        } else {
+                                            $html += "<br/><br/>";
+                                        }
+                                        $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                    }
+
+                                    $html += "<span><b>Tổng cộng: " + $totalRevice + c_game_type_value + " </b></span>";
+                                }else{
+                                    $totalRevice = 0;
+                                    $html += "<span>Kết quả: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
+                                    $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
+                                    for ($i = 0; $i < gift_revice.length; $i++) {
+                                        // if(arrDiscount[$i] != "")
+                                        // {
+                                        //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[$i]+"</b></span>";
+                                        // }
+                                        $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i]["title"];
+                                        if (gift_revice[$i].winbox == 1) {
+                                            $html += " - nhận được: " + gift_revice[$i]["parrent"].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + "" + msg_random_bonus[$i] + "</span><br/>"  + "<br/>";
+                                        } else {
+                                            $html += "" + msg_random_bonus[$i] + "<br/>" + $strDiscountcode + "<br/>";
+                                        }
+                                        $totalRevice += parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                    }
+
+                                    $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
+                                }
                             }
                         } else {
                             $("#btnWithdraw").hide();
                             if (gift_revice.length == 1) {
-                                $html += "<span>Kết quả chơi thử: " + gift_revice[0]["title"] + "</span><br/>";
-                                if (gift_detail.winbox == 1) {
-                                    $html += "<span>Mua X1: Nhận được " + gift_revice[0]["parrent"].params.value + "</span><br/>";
-                                    $html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
-                                    $html += "<span>Tổng cộng: " + parseInt(gift_revice[0]["parrent"].params.value) * (parseInt(xvalueaDD[0])) + "</span>";
-                                }
-                            } else {
-                                $totalRevice = 0;
-                                $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
-                                $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
-                                for ($i = 0; $i < gift_revice.length; $i++) {
-                                    $html += "<spasn>Lần quay " + ($i + 1) + ": " + gift_revice[$i]["title"];
-                                    if (gift_revice[$i].winbox == 1) {
-                                        $html += " - nhận được: " + gift_revice[$i]["parrent"].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + "" + msg_random_bonus[$i] + "</span><br/>";
-                                    } else {
-                                        $html += "" + msg_random_bonus[$i] + "<br/>";
+
+                                if (!flag_bonus){//trường hợp bonus.
+                                    var total_vp = parseInt(gift_revice[0]['parrent'].params.value) + parseInt(value_gif_bonus[0]);
+
+                                    $html += "<span>Kết quả chơi thử: Bạn đã trúng " + total_vp + c_game_type_value +"</span><br/>";
+                                    if (gift_detail.winbox == 1) {
+
+                                        $html += "<span>Mua X1: Nhận được " + total_vp + game_type_value + "</span><br/>";
+                                        $html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: " + (parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + parseInt(value_gif_bonus[0])) + game_type_value +"</span><br/>";
+                                        $html += "<span>Tổng cộng: " + (parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + parseInt(value_gif_bonus[0])) + game_type_value +"</span>";
                                     }
-                                    $totalRevice += parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                }else {
+                                    $html += "<span>Kết quả chơi thử: " + gift_revice[0]["title"] + "</span><br/>";
+                                    if (gift_detail.winbox == 1) {
+                                        $html += "<span>Mua X1: Nhận được " + gift_revice[0]["parrent"].params.value + "</span><br/>";
+                                        $html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
+                                        $html += "<span>Tổng cộng: " + parseInt(gift_revice[0]["parrent"].params.value) * (parseInt(xvalueaDD[0])) + "</span>";
+                                    }
                                 }
 
-                                $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
+                            } else {
+
+                                if (!flag_bonus) {//trường hợp bonus.
+
+                                    $totalRevice = 0;
+                                    $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
+                                    $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
+                                    for ($i = 0; $i < gift_revice.length; $i++) {
+
+                                        var total_vp = parseInt(gift_revice[$i]['parrent'].params.value) + parseInt(value_gif_bonus[$i]);
+
+                                        $html += "<span>Lần quay " + ($i + 1) + ": Bạn đã trúng " + total_vp + c_game_type_value;
+                                        if (gift_revice[$i].winbox == 1) {
+
+                                            $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + (parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i])) + "" + c_game_type_value + "</span><br/><br/>";
+                                        } else {
+                                            $html += "<br/><br/>";
+                                        }
+                                        $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                    }
+
+                                    $html += "<span><b>Tổng cộng: " + $totalRevice + c_game_type_value + " </b></span>";
+                                }else{
+                                    $totalRevice = 0;
+                                    $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
+                                    $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
+                                    for ($i = 0; $i < gift_revice.length; $i++) {
+                                        $html += "<spasn>Lần quay " + ($i + 1) + ": " + gift_revice[$i]["title"];
+                                        if (gift_revice[$i].winbox == 1) {
+                                            $html += " - nhận được: " + gift_revice[$i]["parrent"].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + "" + msg_random_bonus[$i] + "</span><br/>";
+                                        } else {
+                                            $html += "" + msg_random_bonus[$i] + "<br/>";
+                                        }
+                                        $totalRevice += parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                    }
+
+                                    $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
+                                }
+
                             }
                         }
                     }
+                    if (!showwithdrawbtn) {
+                        $("#btnWithdraw").hide();
+                    }else{ $("#btnWithdraw").show(); }
 
                     $('#noticeModal .content-popup').html($html);
 
@@ -3535,6 +4063,7 @@
 
             })
         </script>
+
         <style>
             @php
     $count = 0;
@@ -3543,7 +4072,7 @@
     @php
         $count++;
     @endphp
-    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
+    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->image)}}") !important;}
             @endforeach
 #slot1,#slot2,#slot3,#slot4,#slot5{
                 display: inline-block;
@@ -3565,7 +4094,7 @@
                 @if(isset($result->group->items) && count($result->group->items)>0)
                 @foreach($result->group->items as $index=>$item)
                 $('.gift'+({{$index}}+1)).attr('id',"id"+{{$item->item_id}});
-                $('.gift'+({{$index}}+1)+' img').attr('src','{{\App\Library\MediaHelpers::media($item->parrent->image)}}');
+                $('.gift'+({{$index}}+1)+' img').attr('src','{{\App\Library\MediaHelpers::media($item->image)}}');
                 @endforeach
                 @endif
                 $(".thele").on("click", function(){
@@ -3591,7 +4120,7 @@
                 var time = 400
                 var runtime ='';
                 var runrealtime ='';
-
+                var game_type_value = "";
                 var gift_revice = "";
                 var saleoffpass = "";
                 var userpoint = 0;
@@ -3609,6 +4138,7 @@
                 var msg_random_bonus = '';
                 var startat = 0;
 
+                var showwithdrawbtn = true;
                 //Click nút quay
                 $('body').delegate('#start-played', 'click', function() {
 
@@ -3650,6 +4180,7 @@
                                     $('#noticeModal').modal('show');
                                     return;
                                 }
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 gift_detail = data.gift_detail;
                                 gift_revice = data.arr_gift;
@@ -3659,7 +4190,7 @@
                                 } else {
                                     xvalue = 0;
                                 }
-
+                                game_type_value = data.game_type_value;
                                 value_gif_bonus = data.value_gif_bonus;
                                 msg_random_bonus = data.msg_random_bonus;
                                 xvalueaDD = data.xValue;
@@ -3703,7 +4234,39 @@
                                 $('#noticeModal').modal('show');
                                 return;
                             }
-                            $('#noticeModal .nohuthang').html(data.msg + " - " + data.arr_gift[0].title);
+
+                            var flag_bonus = true;
+                            var c_game_type_value = '';
+
+                            if (data.game_type_value){
+                                c_game_type_value = " " + data.game_type_value;
+                            }
+
+                            if (data.value_gif_bonus.length > 0){
+                                for (let i = 0; i < data.value_gif_bonus.length; i++ ){
+                                    if (parseInt(data.value_gif_bonus[i]) > 0){
+                                        flag_bonus = false;
+                                    }
+                                }
+                            }
+
+                            var total_vp = parseInt(data.arr_gift[0]['parrent'].params.value) + parseInt(data.value_gif_bonus[0]);
+
+                            if (!flag_bonus){
+                                var html_bonus = "";
+                                html_bonus += "</br>";
+                                html_bonus += "</br>";
+                                html_bonus += "Nổ hũ may mắn - bạn đã trúng thêm " + total_vp + c_game_type_value;
+                                $('#noticeModal .nohuthang').append(html_bonus);
+
+                            }else{
+                                var html_bonus = "";
+                                html_bonus += "</br>";
+                                html_bonus += "</br>";
+                                html_bonus += data.msg + " - " + data.arr_gift[0].title;
+                                $('#noticeModal .nohuthang').append(html_bonus);
+                            }
+
                             $('#noticeModal').modal('show');
                             var userpoint = data.userpoint;
                             if(userpoint<100){
@@ -3766,6 +4329,7 @@
                                     $('#noticeModal').modal('show');
                                     return;
                                 }
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 gift_detail = data.gift_detail;
                                 gift_revice = data.arr_gift;
@@ -3894,6 +4458,20 @@
                             // {
                             //     $html += "<br/><span style='font-size: 14px;color: #f90707;font-style: italic;display: block;text-align: center;'>"+saleoffmessage+"</span><br/>";
                             // }
+                            var flag_bonus = true;
+
+                            if (value_gif_bonus.length > 0){
+                                for (let i = 0; i < value_gif_bonus.length; i++ ){
+                                    if (parseInt(value_gif_bonus[i]) > 0){
+                                        flag_bonus = false;
+                                    }
+                                }
+                            }
+
+                            var c_game_type_value = '';
+                            if (game_type_value){
+                                c_game_type_value = " " + game_type_value;
+                            }
 
                             if(typeRoll == "real")
                             {
@@ -3903,36 +4481,71 @@
                                     // {
                                     //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[0]+"</b></span>";
                                     // }
-                                    $html += "<span>Kết quả: "+gift_revice[0]["title"]+"</span><br/>";
-                                    if(gift_detail.winbox == 1){
-                                        $html += "<span>Mua X1: Nhận được "+gift_revice[0]["parrent"].params.value+"</span><br/>";
-                                        //$html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>"+$strDiscountcode;
-                                        $html += "<span>Tổng cộng: "+parseInt(gift_revice[0]["parrent"].params.value)*(parseInt(xvalueaDD[0]))+"</span>";
+                                    if (!flag_bonus){//trường hợp bonus.
+                                        var total_vp = parseInt(gift_revice[0]['parrent'].params.value) + parseInt(value_gif_bonus[0]);
+
+                                        $html += "<span>Kết quả: Bạn đã trúng " + total_vp + c_game_type_value +"</span><br/>";
+                                        if (gift_detail.winbox == 1) {
+
+                                            $html += "<span>Mua X1: Nhận được " + total_vp + game_type_value + "</span><br/>";
+                                            $html += "<span>Tổng cộng: " + (parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + parseInt(value_gif_bonus[0])) + game_type_value +"</span>";
+                                        }
+                                    }else {
+                                        $html += "<span>Kết quả: "+gift_revice[0]["title"]+"</span><br/>";
+                                        if(gift_detail.winbox == 1){
+                                            $html += "<span>Mua X1: Nhận được "+gift_revice[0]["parrent"].params.value+"</span><br/>";
+                                            //$html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>"+$strDiscountcode;
+                                            $html += "<span>Tổng cộng: "+parseInt(gift_revice[0]["parrent"].params.value)*(parseInt(xvalueaDD[0]))+"</span>";
+                                        }
                                     }
+
                                 }
                                 else
                                 {
-                                    $totalRevice = 0;
-                                    $html += "<span>Kết quả: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt quay.</span><br/>";
-                                    $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
-                                    for($i=0;$i<gift_revice.length;$i++)
-                                    {
-                                        // if(arrDiscount[$i] != "")
-                                        // {
-                                        //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[$i]+"</b></span>";
-                                        // }
-                                        $html += "<span>Lần quay "+($i + 1)+": "+gift_revice[$i]["title"];
-                                        if(gift_revice[$i].winbox == 1){
-                                            $html +=" - nhận được: "+gift_revice[$i]["parrent"].params.value+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>"+$strDiscountcode+"<br/>";
+                                    if (!flag_bonus) {//trường hợp bonus.
+
+                                        $totalRevice = 0;
+                                        $html += "<span>Kết quả: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
+                                        $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
+                                        for ($i = 0; $i < gift_revice.length; $i++) {
+
+                                            var total_vp = parseInt(gift_revice[$i]['parrent'].params.value) + parseInt(value_gif_bonus[$i]);
+
+                                            $html += "<span>Lần quay " + ($i + 1) + ": Bạn đã trúng " + total_vp + c_game_type_value;
+                                            if (gift_revice[$i].winbox == 1) {
+
+                                                $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + (parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i])) + "" + c_game_type_value + "</span><br/><br/>";
+                                            } else {
+                                                $html += "<br/><br/>";
+                                            }
+                                            $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
                                         }
-                                        else
+
+                                        $html += "<span><b>Tổng cộng: " + $totalRevice + c_game_type_value + " </b></span>";
+                                    }else{
+                                        $totalRevice = 0;
+                                        $html += "<span>Kết quả: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt quay.</span><br/>";
+                                        $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
+                                        for($i=0;$i<gift_revice.length;$i++)
                                         {
-                                            $html +=""+msg_random_bonus[$i]+"<br/>"+$strDiscountcode+"<br/>";
+                                            // if(arrDiscount[$i] != "")
+                                            // {
+                                            //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[$i]+"</b></span>";
+                                            // }
+                                            $html += "<span>Lần quay "+($i + 1)+": "+gift_revice[$i]["title"];
+                                            if(gift_revice[$i].winbox == 1){
+                                                $html +=" - nhận được: "+gift_revice[$i]["parrent"].params.value+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>"+$strDiscountcode+"<br/>";
+                                            }
+                                            else
+                                            {
+                                                $html +=""+msg_random_bonus[$i]+"<br/>"+$strDiscountcode+"<br/>";
+                                            }
+                                            $totalRevice +=  parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
                                         }
-                                        $totalRevice +=  parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
+
+                                        $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                                     }
 
-                                    $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                                 }
                             }
                             else
@@ -3940,35 +4553,71 @@
                                 $("#btnWithdraw").hide();
                                 if(gift_revice.length == 1)
                                 {
-                                    $html += "<span>Kết quả chơi thử: "+gift_revice[0]["title"]+"</span><br/>";
-                                    if(gift_detail.winbox == 1){
-                                        $html += "<span>Mua X1: Nhận được "+gift_revice[0]["parrent"].params.value+"</span><br/>";
-                                        //$html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
-                                        $html += "<span>Tổng cộng: "+parseInt(gift_revice[0]["parrent"].params.value)*(parseInt(xvalueaDD[0]))+"</span>";
+                                    if (!flag_bonus) {//trường hợp bonus.
+                                        var total_vp = parseInt(gift_revice[0]['parrent'].params.value) + parseInt(value_gif_bonus[0]);
+
+                                        $html += "<span>Kết quả chơi thử: Bạn đã trúng " + total_vp + c_game_type_value +"</span><br/>";
+                                        if (gift_detail.winbox == 1) {
+
+                                            $html += "<span>Mua X1: Nhận được " + total_vp + game_type_value + "</span><br/>";
+                                            $html += "<span>Tổng cộng: " + (parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + parseInt(value_gif_bonus[0])) + game_type_value +"</span>";
+                                        }
+                                    }else{
+                                        $html += "<span>Kết quả chơi thử: "+gift_revice[0]["title"]+"</span><br/>";
+                                        if(gift_detail.winbox == 1){
+                                            $html += "<span>Mua X1: Nhận được "+gift_revice[0]["parrent"].params.value+"</span><br/>";
+                                            //$html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
+                                            $html += "<span>Tổng cộng: "+parseInt(gift_revice[0]["parrent"].params.value)*(parseInt(xvalueaDD[0]))+"</span>";
+                                        }
                                     }
+
                                 }
                                 else
                                 {
-                                    $totalRevice = 0;
-                                    $html += "<span>Kết quả chơi thử: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt quay.</span><br/>";
-                                    $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
-                                    for($i=0;$i<gift_revice.length;$i++)
-                                    {
-                                        $html += "<span>Lần quay "+($i + 1)+": "+gift_revice[$i]['parrent'].title;
-                                        if(gift_revice[$i].winbox == 1){
-                                            $html +=" - nhận được: "+gift_revice[$i]["parrent"].params.value+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>";
-                                        }
-                                        else
-                                        {
-                                            $html +=""+msg_random_bonus[$i]+"<br/>";
-                                        }
-                                        $totalRevice +=  parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
-                                    }
+                                    if (!flag_bonus) {//trường hợp bonus.
+                                        $totalRevice = 0;
+                                        $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
+                                        $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
+                                        for ($i = 0; $i < gift_revice.length; $i++) {
 
-                                    $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
+                                            var total_vp = parseInt(gift_revice[$i]['parrent'].params.value) + parseInt(value_gif_bonus[$i]);
+
+                                            $html += "<span>Lần quay " + ($i + 1) + ": Bạn đã trúng " + total_vp + c_game_type_value;
+                                            if (gift_revice[$i].winbox == 1) {
+
+                                                $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + (parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i])) + "" + c_game_type_value + "</span><br/><br/>";
+                                            } else {
+                                                $html += "<br/><br/>";
+                                            }
+                                            $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
+                                        }
+
+                                        $html += "<span><b>Tổng cộng: " + $totalRevice + c_game_type_value + " </b></span>";
+                                    }else{
+                                        $totalRevice = 0;
+                                        $html += "<span>Kết quả chơi thử: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt quay.</span><br/>";
+                                        $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
+                                        for($i=0;$i<gift_revice.length;$i++)
+                                        {
+                                            $html += "<span>Lần quay "+($i + 1)+": "+gift_revice[$i]['parrent'].title;
+                                            if(gift_revice[$i].winbox == 1){
+                                                $html +=" - nhận được: "+gift_revice[$i]["parrent"].params.value+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>";
+                                            }
+                                            else
+                                            {
+                                                $html +=""+msg_random_bonus[$i]+"<br/>";
+                                            }
+                                            $totalRevice +=  parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
+                                        }
+
+                                        $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
+                                    }
                                 }
                             }
                         }
+                        if (!showwithdrawbtn) {
+                            $("#btnWithdraw").hide();
+                        }else{ $("#btnWithdraw").show(); }
 
                         $('#noticeModal .content-popup').html($html);
 
@@ -4084,7 +4733,10 @@
                 var free_wheel = 0;
                 var value_gif_bonus = '';
                 var msg_random_bonus = '';
+                var game_type_value = "";
+                var showwithdrawbtn = true;
                 //var arrDiscount = '';
+                var game_type_value = "";
 
                 $('body').delegate('#start-played', 'click', function() {
                     $('#type_play').val('real');
@@ -4130,9 +4782,10 @@
                                     $('#noticeModal').modal('show');
                                     return;
                                 }
+                                showwithdrawbtn = data.showwithdrawbtn;
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 gift_detail = data.gift_detail;
-                                console.log(gift_detail);
+                                game_type_value = data.game_type_value;
                                 if(gift_detail.image.length > 0)
                                 {
                                     $('#lac_lixi').attr('src',gift_detail.image);
@@ -4150,19 +4803,20 @@
                                 xvalueaDD = data.xValue;
                                 free_wheel = data.free_wheel;
                                 num_roll_remain = gift_detail.num_roll_remain;
+                                userpoint = data.userpoint;
                                 angles = 0;
                                 angle_gift = gift_detail.order * (360 / num_gift);
                                 loop();
 
                                 if($('#type_play').val()=='real'){
-                                    userpoint = data.userpoint;
+
                                     if(userpoint<100){
-                                        $(".item_spin_progress_bubble").css("width", data.userpoint + "%")
+                                        $(".item_play_spin_progress_bubble").css("width", data.userpoint + "%")
                                     }else{
-                                        $(".item_spin_progress_bubble").css("width", "100%");
-                                        $(".item_spin_progress_bubble").addClass('clickgif');
+                                        $(".item_play_spin_progress_percent").css("width", "100%");
+                                        $(".item_play_spin_progress_percent").addClass('clickgif');
                                     }
-                                    $(".item_spin_progress_percent").html(data.userpoint + "/100 point");
+                                    $(".item_play_spin_progress_percent").html(data.userpoint + "/100 point");
                                     $("#saleoffpass").val("");
                                     //saleoffmessage = data.saleMessage;
                                 }
@@ -4200,18 +4854,51 @@
                             {
                                 $('#lac_lixi').attr('src',gift_detail.image);
                             }
-                            $('#noticeModal .content-popup .appendContent').append(data.msg + " - " + data.arr_gift[0].title);
+
+                            var flag_bonus = true;
+                            var c_game_type_value = '';
+
+                            if (data.game_type_value){
+                                c_game_type_value = " " + data.game_type_value;
+                            }
+
+                            if (data.value_gif_bonus.length > 0){
+                                for (let i = 0; i < data.value_gif_bonus.length; i++ ){
+                                    if (parseInt(data.value_gif_bonus[i]) > 0){
+                                        flag_bonus = false;
+                                    }
+                                }
+                            }
+
+                            var total_vp = parseInt(data.arr_gift[0]['parrent'].params.value) + parseInt(data.value_gif_bonus[0]);
+
+                            if (!flag_bonus){
+                                var html_bonus = "";
+                                html_bonus += "</br>";
+                                html_bonus += "</br>";
+                                html_bonus += "Nổ hũ may mắn - bạn đã trúng thêm " + total_vp + c_game_type_value;
+                                $('#noticeModal .content-popup .appendContent').append(html_bonus);
+
+                            }else{
+                                var html_bonus = "";
+                                html_bonus += "</br>";
+                                html_bonus += "</br>";
+                                html_bonus += data.msg + " - " + data.arr_gift[0].title;
+                                $('#noticeModal .content-popup .appendContent').append(html_bonus);
+                            }
+
                             //$("#noticeModalNoHu #btnWithdraw").hide();
                             $('#noticeModal').modal('show');
                             var userpoint = data.userpoint;
+
                             if(userpoint<100){
-                                $(".item_spin_progress_bubble").css("width", data.userpoint + "%");
-                                $(".item_spin_progress_bubble").removeClass('clickgif');
+                                $(".item_play_spin_progress_bubble").css("width", data.userpoint + "%");
+                                $(".item_play_spin_progress_percent").removeClass('clickgif');
                             }else{
-                                $(".item_spin_progress_bubble").css("width", "100%");
-                                $(".item_spin_progress_bubble").addClass('clickgif');
+                                $(".item_play_spin_progress_bubble").css("width", "100%");
+                                $(".item_play_spin_progress_percent").addClass('clickgif');
                             }
-                            $(".item_spin_progress_percent").html(data.userpoint + "/100 point");
+                            $(".item_play_spin_progress_percent").html(data.userpoint + "/100 point");
                             $(".pyro").show();
                             setTimeout(function(){
                                 $(".pyro").hide();
@@ -4258,6 +4945,22 @@
                     if (gift_revice.length > 0) {
                         $html = "";
                         $strDiscountcode="";
+
+                        var flag_bonus = true;
+
+                        if (value_gif_bonus.length > 0){
+                            for (let i = 0; i < value_gif_bonus.length; i++ ){
+                                if (parseInt(value_gif_bonus[i]) > 0){
+                                    flag_bonus = false;
+                                }
+                            }
+                        }
+
+                        var c_game_type_value = '';
+                        if (game_type_value){
+                            c_game_type_value = " " + game_type_value;
+                        }
+
                         // if(saleoffmessage.length > 0)
                         // {
                         //     $html += "<br/><span style='font-size: 14px;color: #f90707;font-style: italic;display: block;text-align: center;'>"+saleoffmessage+"</span><br/>";
@@ -4271,36 +4974,70 @@
                                 // {
                                 //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[0]+"</b></span>";
                                 // }
-                                $html += "<span>Kết quả: "+gift_revice[0]["title"]+"</span><br/>";
-                                if(gift_detail.winbox == 1){
-                                    $html += "<span>Mua X1: Nhận được "+gift_revice[0]["parrent"].params.value+"</span><br/>";
-                                    //$html += "<span>chơi được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>"+$strDiscountcode;
-                                    $html += "<span>Tổng cộng: "+parseInt(gift_revice[0]["parrent"].params.value)*(parseInt(xvalueaDD[0]))+"</span>";
+                                if (!flag_bonus){//trường hợp bonus.
+                                    var total_vp = parseInt(gift_revice[0]['parrent'].params.value) + parseInt(value_gif_bonus[0]);
+
+                                    $html += "<span>Kết quả: Bạn đã trúng " + total_vp + c_game_type_value +"</span><br/>";
+                                    if (gift_detail.winbox == 1) {
+
+                                        $html += "<span>Mua X1: Nhận được " + total_vp + game_type_value + "</span><br/>";
+                                        $html += "<span>Tổng cộng: " + (parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + parseInt(value_gif_bonus[0])) + game_type_value +"</span>";
+                                    }
+                                }else {
+                                    $html += "<span>Kết quả: "+gift_revice[0]["title"]+"</span><br/>";
+                                    if(gift_detail.winbox == 1){
+                                        $html += "<span>Mua X1: Nhận được "+gift_revice[0]["parrent"].params.value+"</span><br/>";
+                                        //$html += "<span>chơi được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>"+$strDiscountcode;
+                                        $html += "<span>Tổng cộng: "+parseInt(gift_revice[0]["parrent"].params.value)*(parseInt(xvalueaDD[0]))+"</span>";
+                                    }
                                 }
                             }
                             else
                             {
-                                $totalRevice = 0;
-                                $html += "<span>Kết quả: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt chơi.</span><br/>";
-                                $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
-                                for($i=0;$i<gift_revice.length;$i++)
-                                {
-                                    // if(arrDiscount[$i] != "")
-                                    // {
-                                    //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[$i]+"</b></span>";
-                                    // }
-                                    $html += "<span>Lần chơi "+($i + 1)+": "+gift_revice[$i]["title"];
-                                    if(gift_revice[$i].winbox == 1){
-                                        $html +=" - nhận được: "+gift_revice[$i]["parrent"].params.value+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>"+$strDiscountcode+"<br/>";
+                                if (!flag_bonus) {//trường hợp bonus.
+
+                                    $totalRevice = 0;
+                                    $html += "<span>Kết quả: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt chơi.</span><br/>";
+                                    $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
+                                    for ($i = 0; $i < gift_revice.length; $i++) {
+
+                                        var total_vp = parseInt(gift_revice[$i]['parrent'].params.value) + parseInt(value_gif_bonus[$i]);
+
+                                        $html += "<span>Lần quay " + ($i + 1) + ": Bạn đã trúng " + total_vp + c_game_type_value;
+                                        if (gift_revice[$i].winbox == 1) {
+
+                                            $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + (parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i])) + "" + c_game_type_value + "</span><br/><br/>";
+                                        } else {
+                                            $html += "<br/><br/>";
+                                        }
+                                        $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
                                     }
-                                    else
+
+                                    $html += "<span><b>Tổng cộng: " + $totalRevice + c_game_type_value + " </b></span>";
+                                }else{
+                                    $totalRevice = 0;
+                                    $html += "<span>Kết quả: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt chơi.</span><br/>";
+                                    $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
+                                    for($i=0;$i<gift_revice.length;$i++)
                                     {
-                                        $html +=""+msg_random_bonus[$i]+"<br/>"+$strDiscountcode+"<br/>";
+                                        // if(arrDiscount[$i] != "")
+                                        // {
+                                        //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[$i]+"</b></span>";
+                                        // }
+                                        $html += "<span>Lần chơi "+($i + 1)+": "+gift_revice[$i]["title"];
+                                        if(gift_revice[$i].winbox == 1){
+                                            $html +=" - nhận được: "+gift_revice[$i]["parrent"].params.value+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>"+$strDiscountcode+"<br/>";
+                                        }
+                                        else
+                                        {
+                                            $html +=""+msg_random_bonus[$i]+"<br/>"+$strDiscountcode+"<br/>";
+                                        }
+                                        $totalRevice +=  parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
                                     }
-                                    $totalRevice +=  parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
+
+                                    $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                                 }
 
-                                $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                             }
                         }
                         else
@@ -4308,35 +5045,72 @@
                             $("#btnWithdraw").hide();
                             if(gift_revice.length == 1)
                             {
-                                $html += "<span>Kết quả chơi thử: "+gift_revice[0]["title"]+"</span><br/>";
-                                if(gift_detail.winbox == 1){
-                                    $html += "<span>Mua X1: Nhận được "+gift_revice[0]["parrent"].params.value+"</span><br/>";
-                                    //$html += "<span>chơi được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
-                                    $html += "<span>Tổng cộng: "+parseInt(gift_revice[0]["parrent"].params.value)*(parseInt(xvalueaDD[0]))+"</span>";
+                                if (!flag_bonus) {//trường hợp bonus.
+                                    var total_vp = parseInt(gift_revice[0]['parrent'].params.value) + parseInt(value_gif_bonus[0]);
+
+                                    $html += "<span>Kết quả chơi thử: Bạn đã trúng " + total_vp + c_game_type_value +"</span><br/>";
+                                    if (gift_detail.winbox == 1) {
+
+                                        $html += "<span>Mua X1: Nhận được " + total_vp + game_type_value + "</span><br/>";
+                                        $html += "<span>Tổng cộng: " + (parseInt(gift_revice[0]['parrent'].params.value) * (parseInt(xvalueaDD[0])) + parseInt(value_gif_bonus[0])) + game_type_value +"</span>";
+                                    }
+                                }else{
+                                    $html += "<span>Kết quả chơi thử: "+gift_revice[0]["title"]+"</span><br/>";
+                                    if(gift_detail.winbox == 1){
+                                        $html += "<span>Mua X1: Nhận được "+gift_revice[0]["parrent"].params.value+"</span><br/>";
+                                        //$html += "<span>chơi được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
+                                        $html += "<span>Tổng cộng: "+parseInt(gift_revice[0]["parrent"].params.value)*(parseInt(xvalueaDD[0]))+"</span>";
+                                    }
                                 }
+
                             }
                             else
                             {
-                                $totalRevice = 0;
-                                $html += "<span>Kết quả chơi thử: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt chơi.</span><br/>";
-                                $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
-                                for($i=0;$i<gift_revice.length;$i++)
-                                {
-                                    $html += "<span>Lần chơi "+($i + 1)+": "+gift_revice[$i]["title"];
-                                    if(gift_revice[$i].winbox == 1){
-                                        $html +=" - nhận được: "+gift_revice[$i]["parrent"].params.value+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>";
+                                if (!flag_bonus) {//trường hợp bonus.
+                                    $totalRevice = 0;
+                                    $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt chơi.</span><br/>";
+                                    $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
+                                    for ($i = 0; $i < gift_revice.length; $i++) {
+
+                                        var total_vp = parseInt(gift_revice[$i]['parrent'].params.value) + parseInt(value_gif_bonus[$i]);
+
+                                        $html += "<span>Lần quay " + ($i + 1) + ": Bạn đã trúng " + total_vp + c_game_type_value;
+                                        if (gift_revice[$i].winbox == 1) {
+
+                                            $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + (parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i])) + "" + c_game_type_value + "</span><br/><br/>";
+                                        } else {
+                                            $html += "<br/><br/>";
+                                        }
+                                        $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
                                     }
-                                    else
+
+                                    $html += "<span><b>Tổng cộng: " + $totalRevice + c_game_type_value + " </b></span>";
+                                }else{
+                                    $totalRevice = 0;
+                                    $html += "<span>Kết quả chơi thử: Nhận "+gift_revice.length+" phần thưởng cho "+gift_revice.length+" lượt chơi.</span><br/>";
+                                    $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
+                                    for($i=0;$i<gift_revice.length;$i++)
                                     {
-                                        $html +=""+msg_random_bonus[$i]+"<br/>";
+                                        $html += "<span>Lần chơi "+($i + 1)+": "+gift_revice[$i]["title"];
+                                        if(gift_revice[$i].winbox == 1){
+                                            $html +=" - nhận được: "+gift_revice[$i]["parrent"].params.value+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>";
+                                        }
+                                        else
+                                        {
+                                            $html +=""+msg_random_bonus[$i]+"<br/>";
+                                        }
+                                        $totalRevice +=  parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
                                     }
-                                    $totalRevice +=  parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
+
+                                    $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                                 }
 
-                                $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                             }
                         }
                     }
+                    if (!showwithdrawbtn) {
+                        $("#btnWithdraw").hide();
+                    }else{ $("#btnWithdraw").show(); }
 
                     $('#noticeModal .content-popup').html($html);
 
