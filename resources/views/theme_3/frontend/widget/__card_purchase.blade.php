@@ -77,7 +77,7 @@
 {{--                                    </div>--}}
 {{--                                </div>--}}
                             </ul>
-                            <div class="swiper slider--card__telecom d-lg-none" >
+                            <div class="swiper slider--card__telecom d-lg-none swiper-container" >
                                 <div class="swiper-wrapper" id="cardGameListMobileV2">
 
                                     @foreach($telecoms as $key => $telecom)
@@ -234,7 +234,7 @@
                         <ul class="deno__list row" id="cardAmountList">
 
                         </ul>
-                        <div class="swiper slider--card__amount" >
+                        <div class="swiper slider--card__amount swiper-container">
                             <div class="swiper-wrapper" id="cardAmountListMobile">
 {{--                                <div class="swiper-slide">--}}
 {{--                                    <div class="deno__item ">--}}

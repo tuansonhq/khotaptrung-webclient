@@ -152,6 +152,7 @@ class RedirectUrl extends Controller
             elseif (\Request::server("HTTP_HOST") == 'nickfreefiregiare.com'){
                 switch($slug){
                     case 'nick-free-fire-gia-re':
+                    case 'thu-van-may-free-fire-vip':
                         $slug_new = '/mua-acc/free-fire';
                         $url = 'https://'.\Request::server("HTTP_HOST").$slug_new;
                         return Redirect::to($url);
@@ -183,6 +184,20 @@ class RedirectUrl extends Controller
         if(setting('sys_google_plus') != ''){
             if (\Request::server("HTTP_HOST") == 'rikaki.vn'){
                 $slug_new = '/mua-acc/nick-free-fire';
+                $url = 'https://'.\Request::server("HTTP_HOST").$slug_new;
+                return Redirect::to($url);
+            }else{
+                return view('frontend.404.404');
+            }
+        }else{
+            return view('frontend.404.404');
+        }
+    }
+
+    public function redirectUrlNickFreeGireGiare(){
+        if(setting('sys_google_plus') != ''){
+            if (\Request::server("HTTP_HOST") == 'nickfreefiregiare.com'){
+                $slug_new = '/mua-acc/free-fire';
                 $url = 'https://'.\Request::server("HTTP_HOST").$slug_new;
                 return Redirect::to($url);
             }else{

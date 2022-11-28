@@ -139,7 +139,7 @@
                                             <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                             <td>#{{$item->id}}</td>
 
-                                            <td>{{$item->item_ref->title??""}}</td>
+                                            <td>{{$item->item_ref->children[0]->title??""}}</td>
                                             <td>
                                                 @if(isset($item->item_ref) && isset($item->item_ref->parrent) && isset($item->item_ref->parrent->params))
                                                     @if($item->item_ref->parrent->params->gift_type == 0)

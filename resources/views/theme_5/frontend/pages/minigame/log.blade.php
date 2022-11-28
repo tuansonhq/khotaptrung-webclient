@@ -119,14 +119,28 @@
                                                 <a href="javascript:void(0)">
                                                     <div class="text-left">
                                                     <span class="t-body-2 title-color c-mb-0 text-limit limit-1 bread-word">
-                                                        {{$item->item_ref->parrent->title??""}}
+                                                        {{$item->item_ref->title??""}}
                                                     </span>
                                                         <span class="t-body-1 link-color">
                                                         {{date('d/m/Y - H:i', strtotime($item->created_at))}}
                                                     </span>
                                                     </div>
                                                     <div class="text-right">
-                                                        <span class="fw-500 d-block c-mb-0">{{$item->item_ref->parrent->params->value??""}}</span>
+                                                        <span class="fw-500 d-block c-mb-0">@if(isset($item->item_ref) && isset($item->item_ref->parrent) && isset($item->item_ref->parrent->params))
+                                                                @if($item->item_ref->parrent->params->gift_type == 0)
+                                                                    @php
+                                                                        $value = $item->item_ref->parrent->params->value;
+                                                                        $bonus = 0;
+                                                                        if (isset($item->value_gif_bonus)){
+                                                                            $bonus = $item->value_gif_bonus;
+                                                                        }
+                                                                        $total_vp = $value + $bonus;
+                                                                    @endphp
+                                                                    {{ $total_vp }}
+                                                                @else
+                                                                    {{$item->item_ref->parrent->params->value??""}}
+                                                                @endif
+                                                            @endif</span>
                                                     </div>
                                                 </a>
                                             </li>
