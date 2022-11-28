@@ -367,3 +367,150 @@
     cursor: pointer;
     border: none;
 }
+
+
+/*Modal recharge*/
+#rechargeModal .modal-dialog {
+    max-width: 500px;
+    margin: auto;
+}
+
+#rechargeModal .modal-dialog .modal-content {
+    border: none;
+    border-radius: 12px;
+}
+
+#rechargeModal .modal-content .modal-header {
+    padding: 12px 24px;
+    border-bottom: 1px solid #E4E5F0;
+    align-items: center;
+}
+
+#rechargeModal .modal-content .modal-title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.5;
+    color: #3f444a;
+}
+
+#rechargeModal .modal-header .close {
+    all: unset;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    background-image: url(../image/svg/close-modal.svg);
+}
+
+#rechargeModal .nav-tabs {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    border: none;
+    height: 48px;
+}
+
+#rechargeModal .nav-tabs .nav-item {
+    display: table-cell;
+    text-align: center;
+}
+
+#rechargeModal .nav-tabs .nav-item .nav-link {
+    color: #82869E;
+    border-bottom: 1px solid #DCDEE9;
+    padding: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+#rechargeModal .nav-tabs .nav-item.show .nav-link,
+#rechargeModal .nav-tabs .nav-link.active {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding-bottom: 11.5px;
+    border-bottom: 2px solid #32c5d2;
+    font-weight: 700;
+    color: #32c5d2;
+}
+
+#rechargeModal .nav-tabs .nav-link:not(.active):hover {
+    border-color: transparent transparent #DCDEE9 transparent;
+    color: #1B1D29;
+}
+
+#rechargeModal .modal-body {
+    padding: 32px 24px 0;
+}
+
+#rechargeModal .modal-footer {
+    border-top: unset;
+    padding: 24px;
+}
+
+#rechargeModal .nice-select {
+    float: none;
+}
+
+#rechargeModal .nice-select .list {
+    width: 100%;
+}
+
+#rechargeModal .list-card-deno {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -6px;
+    margin-left: -6px;
+}
+
+#rechargeModal .list-card-deno .card-item {
+    width: 25%;
+    padding: 0 6px;
+    margin-bottom: 12px;
+}
+
+#rechargeModal .list-card-deno .card-label {
+    position: relative;
+    display: flex;
+    background-color: #FBFBFD;
+    padding: 16px 8px 48%;
+    border: 1px solid #DCDEE9;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+#rechargeModal .list-card-deno input:checked + .card-label {
+    border-color: #32c5d2;
+}
+#rechargeModal .list-card-deno .card-label span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    color: #434657;
+}
+#rechargeModal .list-card-deno input:checked + .card-label span {
+    color: #32c5d2;
+}
+/*text*/
+.t-sub-2 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Small Screen */
+#modal-form-charge .modal-body {
+    padding-top: 12px;
+}
+#modal-form-charge [type=submit] {
+    margin: 0;
+}
