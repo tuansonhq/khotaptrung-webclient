@@ -83,7 +83,7 @@ $(document).ready(function(){
                     $('.box-loading').hide();
                     $('.box-logined').hide();
                     $('.box-account').show();
-                    $('#manageAcount').html('<a href="#" role="button" class="btnc btn-user dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <i class="fas fa-user"></i> <b>'+data.info.username+'</b> <b class="caret"></b> </a>');
+                    $('#manageAcount').html('<a href="#" role="button" class="btnc btn-user dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <i class="fas fa-user"></i> <b>'+data.info.fullname??data.info.username+'</b> <b class="caret"></b> </a>');
                     $('.money_sum').html('<span>Số dư: </span> <span class="tienconlai"><b>'+formatNumber(data.info.balance)+' VNĐ</b> </span>');
                     $('.account_logout').html(' <a rel="nofollow"  onclick="event.preventDefault();\n' +
                         'document.getElementById(\'logout-form\').submit();" id="logoutbtn1"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a> ');

@@ -603,7 +603,7 @@
                                                     <span>Tài khoản</span>
                                                 </div>
                                                 <div class="col-auto left-right background-order-col-right-ct">
-                                                    <small>{{ @App\Library\AuthCustom::user()->username }}</small>
+                                                    <small>{{ @App\Library\AuthCustom::getName() }}</small>
                                                 </div>
                                             </div>
                                         </div>
@@ -736,7 +736,7 @@
                                         <span>Tài khoản</span>
                                     </div>
                                     <div class="col-auto left-right background-order-col-right-ct">
-                                        <small>{{ @App\Library\AuthCustom::user()->username }}</small>
+                                        <small>{{ @App\Library\AuthCustom::getName() }}</small>
                                     </div>
                                 </div>
                             </div>

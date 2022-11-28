@@ -30,7 +30,7 @@ $(document).ready(function(){
                 }
                 if(data.status == true){
                     $('#info_id').html(data.info.id)
-                    $('#info_name').html(data.info.username)
+                    $('#info_name').html(data.info.fullname??data.info.username)
                     $('#info_balance').html(formatNumber(data.info.balance))
                 }
             },
