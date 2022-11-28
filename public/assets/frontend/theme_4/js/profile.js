@@ -21,7 +21,7 @@ $(document).ready(function(){
                 }
                 if(data.status == true){
                     $('#info_id').val(data.info.id)
-                    $('#info_name').val(data.info.username)
+                    $('#info_name').val(data.info.fullname??data.info.username)
                     $('#info_balance').val(formatNumber(data.info.balance))
                 }
             },

@@ -58,12 +58,12 @@ $(document).ready(function(){
                     html += '<img class="img-fluid m--img-rounded m--marginless" src="/assets/frontend/theme_card_2/image/svg/anhdaidien.svg" alt="" />'
                     html += '</div>'
                     html += '<div class="m-card-user__details">'
-                    html += '<span class="m-card-user__name m--font-weight-500">'+data.info.username+'</span>'
+                    html += '<span class="m-card-user__name m--font-weight-500">'+data.info.fullname??data.info.username+'</span>'
                     html += '<a href="" style="text-transform: none" class="m-card-user__email m--font-weight-300 m-link">Số dư: '+formatNumber(data.info.balance)+' VNĐ</a>'
                     html += '</div>'
 
                     $('.manageAcount').html(html);
-                    $('.m-topbar__username').html(data.info.username);
+                    $('.m-topbar__username').html(data.info.fullname??data.info.username);
                     $('.account_logout').html(' <a rel="nofollow"  onclick="event.preventDefault();\n' +
                         'document.getElementById(\'logout-form\').submit();" class="btn m-btn--pill tn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a> ');
 

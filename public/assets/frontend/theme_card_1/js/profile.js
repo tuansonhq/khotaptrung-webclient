@@ -31,7 +31,7 @@ $(document).ready(function(){
                 }
                 if(data.status == true){
                     $('#info_id').html('<span>'+data.info.id+'</span>')
-                    $('#info_name').html('<span>'+data.info.username+'</span>')
+                    $('#info_name').html('<span>'+data.info.fullname??data.info.username+'</span>')
                     $('#info_balance').html('<span>'+formatNumber(data.info.balance)+ ' VNĐ</span>')
                 }
             },
