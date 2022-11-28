@@ -90,7 +90,7 @@ $(document).ready(function(){
                     let html = '';
                     html += '<div class="d-flex ">';
                     html += '<div class="account-name">';
-                    html += '<div  class="text-right title-color fw-500">'+fn(data.info.username, 12)+'</div>';
+                    html += '<div  class="text-right title-color fw-500">'+fn(data.info.fullname??data.info.username, 12)+'</div>';
                     html += '<div class="account-balance fw-400">Số dư: '+formatNumber(data.info.balance)+'</div>';
                     html += '</div>';
                     html += '<div class="account-avatar c-ml-12">';
@@ -99,7 +99,7 @@ $(document).ready(function(){
                     html += '</div>';
 
                     $('.account-logined').html(html);
-                    $('.account-name-sidebar').html(data.info.username);
+                    $('.account-name-sidebar').html(data.info.fullname??data.info.username);
                     $('.account-balance-sidebar').html('Số dư: <span>'+formatNumber(data.info.balance)+'</span>');
                     $('.account-id-sidebar').html('ID: <span>'+data.info.id+'</span>');
 
@@ -119,7 +119,7 @@ $(document).ready(function(){
                     htmlProfile += '<img class="brs-100" src="/assets/frontend/theme_5/image/nam/avatar.png" alt="">'
                     htmlProfile += '</div>'
                     htmlProfile += '<div class="sidebar-section-info">'
-                    htmlProfile += '<p class="sidebar-section-title c-mb-4 fz-15 fw-500 sidebar-user-name">'+data.info.username+'</p>'
+                    htmlProfile += '<p class="sidebar-section-title c-mb-4 fz-15 fw-500 sidebar-user-name">'+data.info.fullname??data.info.username+'</p>'
                     htmlProfile += '<p class="sidebar-section-info-text c-mb-4 fz-13 fw-500 sidebar-user-balance">Số dư: <span>'+formatNumber(data.info.balance)+'</span></p>'
                     htmlProfile += ' <p class="sidebar-section-info-text mb-0 fz-13 fw-500 sidebar-user-id">ID: <span>'+data.info.id+'</span></p>'
                     htmlProfile += ' </div>'
