@@ -357,7 +357,7 @@
                             </div>
                             @if(\App\Library\AuthCustom::check())
                                 <div
-                                    class="card--attr__value fz-13 fw-500">{{ \App\Library\AuthCustom::user()->username }}</div>
+                                    class="card--attr__value fz-13 fw-500">{{ \App\Library\AuthCustom::getName() }}</div>
                             @else
                             @endif
                         </div>
@@ -435,7 +435,7 @@
                         </div>
                         @if(\App\Library\AuthCustom::check())
                             <div
-                                class="card--attr__value fz-13 fw-500">{{ \App\Library\AuthCustom::user()->username }}</div>
+                                class="card--attr__value fz-13 fw-500">{{ \App\Library\AuthCustom::getName() }}</div>
                         @else
                         @endif
                     </div>

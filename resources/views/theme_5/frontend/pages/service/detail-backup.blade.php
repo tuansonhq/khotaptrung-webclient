@@ -451,7 +451,7 @@
                                 Tài khoản
                             </div>
                             <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)"
-                                                                           class="c-text-primary">{{ @App\Library\AuthCustom::user()->username }}</a>
+                                                                           class="c-text-primary">{{ @App\Library\AuthCustom::getName() }}</a>
                             </div>
                         </div>
                     </div>
@@ -611,7 +611,7 @@
                             Tài khoản
                         </div>
                         <div class="card--attr__value fz-13 fw-500">
-                            <a href="javascript:void(0)" class="c-text-primary">{{ @App\Library\AuthCustom::user()->username }}</a>
+                            <a href="javascript:void(0)" class="c-text-primary">{{ @App\Library\AuthCustom::getName() }}</a>
                         </div>
                     </div>
                 </div>
