@@ -60,7 +60,7 @@
                         </thead>
                         <tbody>
                         @php
-                            $seen= \App\Library\AuthCustom::user()->username;
+                            $seen= \App\Library\AuthCustom::getName();
                         @endphp
                         @php
                             $prev = null;
