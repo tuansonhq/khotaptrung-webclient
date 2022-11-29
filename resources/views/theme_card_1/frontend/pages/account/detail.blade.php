@@ -392,10 +392,10 @@
                                                                         <div class="col-3 col-lg-1 item-nick-lmht">
                                                                             <a href="javascript:void(0)">
                                                                                 <div class="row bs-normal item-nick-lmht__border" style="margin: 0;">
-                                                                                    <div class="col-md-12 item-nick-lmht__border__col" style="position: relative">
+                                                                                    <div class="col-md-12 item-nick-lmht__border__col">
                                                                                         <img class="w-100 item-nick-lmht__border__img lazy" src="https://cdn.upanh.info/{{$skin->thumb}}" alt="{{ $skin->name }}">
                                                                                     </div>
-                                                                                    <div class="col-md-12 text-center" style="padding-right: 0; padding-left: 0;position: absolute">
+                                                                                    <div class="col-md-12 text-center" style="padding-right: 0; padding-left: 0;">
                                                                                         <p class="properties-lol-title" style="padding-top: 8px;margin-bottom: 0">{{ $skin->name }}</p>
                                                                                     </div>
                                                                                 </div>
