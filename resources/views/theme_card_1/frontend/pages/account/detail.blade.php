@@ -170,7 +170,7 @@
                                     <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
                                         <input id="input-search-champ" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
                                         <ul class="sugges_list d-none">
-        
+
                                         </ul>
                                         <button class="submit-search-champ submit--search" type="button"></button>
                                     </div>
@@ -217,7 +217,7 @@
                                                             <ul class="nav nav-tabs pagination pagination-sm js-pagination-handle champion-paginate" data-tab="champion-paginate">
                                                                 @foreach($game_auto_props as $key => $game_auto_prop)
                                                                     @if($key == 'champions' && count($game_auto_props['champions']) > 1)
-                
+
                                                                         @foreach($game_auto_props['champions'] as $key => $arr_champ)
                                                                             @if($key == count($game_auto_props['champions']) - 1)
                                                                                 <li class="page-item disabled hidden-xs dot-last-paginate">
@@ -235,8 +235,8 @@
                                                                                 </li>
                                                                             @endif
                                                                         @endforeach
-                
-                
+
+
                                                                     @endif
                                                                 @endforeach
                                                             </ul>
@@ -271,7 +271,7 @@
                                     <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
                                         <input id="input-search-conpanion" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
                                         <ul class="sugges_list d-none">
-        
+
                                         </ul>
                                         <button class="submit-search-companion submit--search" type="button"></button>
                                     </div>
@@ -284,7 +284,7 @@
                                             <div class="tab-content" id="content_page_companion">
                                                 @foreach($game_auto_props as $key => $game_auto_prop)
                                                     @if($key == 'tftcompanions' && count($game_auto_props['tftcompanions']))
-        
+
                                                         @foreach($game_auto_props['tftcompanions'] as $key => $arr_companions)
                                                             <div class="tab-pane fade {{ !$key ? 'show active' : '' }}" id="tab-companion-{{$key}}" role="tabpanel">
                                                                 <div class="row bs-normal">
@@ -305,8 +305,8 @@
                                                                 </div>
                                                             </div>
                                                         @endforeach
-        
-        
+
+
                                                     @endif
                                                 @endforeach
                                             </div>
@@ -369,7 +369,7 @@
                                     <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
                                         <input id="input-search-skins" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control" autocomplete="off">
                                         <ul class="sugges_list d-none">
-        
+
                                         </ul>
                                         <button class="submit-search-skins submit--search" type="button"></button>
                                     </div>
@@ -383,7 +383,7 @@
 
                                                 @foreach($game_auto_props as $key => $game_auto_prop)
                                                     @if($key == 'skins' && count($game_auto_props['skins']))
-            
+
                                                         @foreach($game_auto_props['skins'] as $key => $arr_skins)
                                                             <div class="tab-pane fade {{ !$key ? 'show active' : '' }}"
                                                                 id="tab-skin-{{$key}}" role="tabpanel">
@@ -392,10 +392,10 @@
                                                                         <div class="col-3 col-lg-1 item-nick-lmht">
                                                                             <a href="javascript:void(0)">
                                                                                 <div class="row bs-normal item-nick-lmht__border" style="margin: 0;">
-                                                                                    <div class="col-md-12 item-nick-lmht__border__col">
+                                                                                    <div class="col-md-12 item-nick-lmht__border__col" style="position: relative">
                                                                                         <img class="w-100 item-nick-lmht__border__img lazy" src="https://cdn.upanh.info/{{$skin->thumb}}" alt="{{ $skin->name }}">
                                                                                     </div>
-                                                                                    <div class="col-md-12 text-center" style="padding-right: 0; padding-left: 0;">
+                                                                                    <div class="col-md-12 text-center" style="padding-right: 0; padding-left: 0;position: absolute">
                                                                                         <p class="properties-lol-title" style="padding-top: 8px;margin-bottom: 0">{{ $skin->name }}</p>
                                                                                     </div>
                                                                                 </div>
@@ -405,8 +405,8 @@
                                                                 </div>
                                                             </div>
                                                         @endforeach
-            
-            
+
+
                                                     @endif
                                                 @endforeach
                                             </div>
@@ -418,7 +418,7 @@
                                                             <ul class="nav nav-tabs pagination pagination-sm js-pagination-handle skin-paginate" data-tab="skin-paginate">
                                                                 @foreach($game_auto_props as $key => $game_auto_prop)
                                                                     @if($key == 'skins' && count($game_auto_props['skins']) > 1)
-                
+
                                                                         @foreach($game_auto_props['skins'] as $key => $arr_skins)
                                                                             @if($key == count($game_auto_props['skins']) - 1)
                                                                                 <li class="page-item disabled hidden-xs dot-last-paginate">
@@ -436,8 +436,8 @@
                                                                                 </li>
                                                                             @endif
                                                                         @endforeach
-                
-                
+
+
                                                                     @endif
                                                                 @endforeach
                                                             </ul>
@@ -454,8 +454,8 @@
                             </div>
                         </div>
                     </div>
-                    
-                @endif  
+
+                @endif
             @endif
 
         @endif
