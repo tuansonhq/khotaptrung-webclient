@@ -327,6 +327,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/nick-free-fire-sieu-re', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlRikaki']);
                 Route::get('/nick-free-fire-sieu-cap', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlRikaki']);
                 Route::get('/free-fire-tam-trung', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlRikaki']);
+                Route::get('/game-acc-free-fire', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlNickFreeGireGiare']);
             });
         });
 
