@@ -113,6 +113,7 @@
             $('.active{{ $data->groups[0]->slug }}').addClass('active');
         })
     </script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/article-detail.js?v={{time()}}"></script>
 @endsection
 
 
