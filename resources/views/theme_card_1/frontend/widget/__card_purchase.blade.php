@@ -68,7 +68,7 @@
 
                 <div class="col-lg-4 col-md-12 col-sm-12 col-12">
                     <div class="tbl_card_discount active hidden-xs d-none d-md-block" id="vt_discount">
-                        <h3 class="text-center text-uppercase">Bảng chiết chi tiết giao dịch</h3>
+                        <h3 class="text-center text-uppercase">Bảng chi tiết giao dịch</h3>
                         <p class="text-center">(Dành cho khách hàng là thành viên của hệ thống)</p>
                         <hr>
                         <table class="info-payment">
