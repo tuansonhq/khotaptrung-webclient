@@ -26,6 +26,12 @@
 {{--                        <span style="float:right" class="m-form__help_acount"><a--}}
 {{--                                href="https://muathegarena.com/password/reset"><i style="font-weight:bold"> Quên mật khẩu </i></a></span>--}}
                     </div>
+                    <div class="checkbox icheck">
+                        <label>
+                            <input type="checkbox" name="remember_token" value="1">
+                            Ghi nhớ
+                        </label>
+                    </div>
                     <div style="margin-top: 35px" class="form-group m-form__group text-center">
                         <button type="submit" class="btn btn-success btn-login">Đăng nhập</button>
                     </div>
