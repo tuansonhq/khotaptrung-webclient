@@ -356,6 +356,10 @@ $(document).ready(function(e) {
                                 }
                                 $totalRevice += parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
                             }
+
+                            $totalRevice = $totalRevice.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                            $totalRevice = $totalRevice.split('').reverse().join('').replace(/^[\.]/,'');
+
                             $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
                         }
                     }
