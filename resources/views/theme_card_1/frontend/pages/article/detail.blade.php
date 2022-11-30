@@ -46,13 +46,16 @@
                             </p>
                         @endif
 
-                        {!! $data->content !!}
+                        <div class="article-content">
+                            {!! $data->content !!}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     @include('frontend.pages.article.widget.__danh__muc')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/article-detail.js?v={{time()}}"></script>
 
 </div>
 @endsection

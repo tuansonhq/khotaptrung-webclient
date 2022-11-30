@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/nouislider/nouislider.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/easy-navigate-toc/public/css/toctoc.css">
 
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/login_modal.css?v={{time()}}">
@@ -445,6 +446,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/style.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/select2/select2.min.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/easy-navigate-toc/public/js/toctoc.js"></script>
 @if(\App\Library\AuthFrontendCustom::check())
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
 @endif
