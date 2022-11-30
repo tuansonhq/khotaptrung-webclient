@@ -190,7 +190,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if($item->payment_type == 13)
+                                    @if($item->payment_type == 13 || $item->payment_type == 12 || $item->payment_type == 11 || $item->payment_type == 14)
                                         @if ($item->status == 0)
                                             <a class="btn btn-xs c-btn-square m-b-10 btn-danger">Giao dịch thất bại</a>
                                         @elseif($item->status == 1 )
