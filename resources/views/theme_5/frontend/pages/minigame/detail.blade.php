@@ -339,15 +339,17 @@
                                     </div>
                                 </div>
                                 <div class="row no-gutters d-none d-lg-flex">
-                                    @if($result->group->params->is_try == 1)
+                                    @if(isset($result->group->params->is_try))
+                                        @if($result->group->params->is_try == 1)
 
-                                        <div class="col-12 col-md-6 c-pr-6">
-                                            @if (!\App\Library\AuthCustom::check())
-                                                <button class="btn secondary w-100" onclick="openLoginModal();">Chơi thử</button>
-                                            @else
-                                                <button id="playerDemo" class="btn secondary w-100 num-play-try">Chơi thử</button>
-                                            @endif
-                                        </div>
+                                            <div class="col-12 col-md-6 c-pr-6">
+                                                @if (!\App\Library\AuthCustom::check())
+                                                    <button class="btn secondary w-100" onclick="openLoginModal();">Chơi thử</button>
+                                                @else
+                                                    <button id="playerDemo" class="btn secondary w-100 num-play-try">Chơi thử</button>
+                                                @endif
+                                            </div>
+                                        @endif
                                     @endif
                                     <div class="col-12 col-md-6 c-pl-6">
                                         @if (!\App\Library\AuthCustom::check())
@@ -360,14 +362,16 @@
                                 <div class="footer-mobile">
 
                                     <div class="row marginauto">
-                                        @if($result->group->params->is_try == 1)
-                                            <div class="col-6 pl-0 c-pr-8">
-                                                @if (!\App\Library\AuthCustom::check())
-                                                    <button class="btn secondary w-100" onclick="openLoginModal();">Chơi thử</button>
-                                                @else
-                                                    <button class="btn secondary w-100 num-play-try">Chơi thử</button>
-                                                @endif
-                                            </div>
+                                        @if(isset($result->group->params->is_try))
+                                            @if($result->group->params->is_try == 1)
+                                                <div class="col-6 pl-0 c-pr-8">
+                                                    @if (!\App\Library\AuthCustom::check())
+                                                        <button class="btn secondary w-100" onclick="openLoginModal();">Chơi thử</button>
+                                                    @else
+                                                        <button class="btn secondary w-100 num-play-try">Chơi thử</button>
+                                                    @endif
+                                                </div>
+                                            @endif
                                         @endif
                                         <div class="col-6 pr-0 c-pl-8">
                                             @if (!\App\Library\AuthCustom::check())
