@@ -18,7 +18,7 @@
                 position: fixed;
                 bottom: 15px;
                 left: 15px;
-                width: 13%;
+                width: 10%;
                 z-index: 1000;
                 cursor: pointer;
             }
@@ -29,7 +29,7 @@
                 width: 30%!important;
             }
             @media only screen and (max-width: 640px) {
-                #bonus_login{width: 50%!important;!important;}
+                #bonus_login{width: 25%!important;!important;}
                 #bonus{width: 50%!important;!important;}
             }
             #bonusModal .modal-body p,#bonusModal .modal-body b{display:inline;color:#000}
@@ -37,8 +37,9 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         @if($data->giatritu > 0 && $data->giatriden > 0)
             @if($data->dangnhap == 0)
-                <a id="bonus_login"  title="Click để nhận thưởng!">
+                <a id="bonus_login"  title="Click để nhận thưởng!" style="position: relative">
                     <img src='{{\App\Library\MediaHelpers::media($data->icon)}}'/>
+                    <img class="remove_gift_bonus" style="width: 24px;height: 24px;position: absolute;top: 0;right: 0" src='/assets/frontend/{{theme('')->theme_key}}/image/closer-red.png'/>
                 </a>
             @else
                 <div id="bonus" title="Click để nhận thưởng!">
@@ -112,6 +113,11 @@
                 window.location.href = '/login';
             })
 
+            $(".remove_gift_bonus").click(function(){
+                $('#bonus_login').remove();
+                $('#bonus').remove();
+            })
+
             $('#bonus').click(function(){
                 if(roll_check){
                     roll_check = false;
@@ -173,7 +179,7 @@
                         }
                     },
                     error: function(){
-                        
+
                     }
                 })
             }
