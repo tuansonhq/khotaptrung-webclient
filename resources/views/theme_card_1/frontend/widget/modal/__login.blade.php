@@ -25,6 +25,12 @@
                             <button type="submit" class="btn btn-primary" id="ctrlloginbtn" tabindex="3"><i class="fa fa-sign-in"></i> Đăng nhập</button>
                             &nbsp;
                         </div>
+                        <div class="checkbox icheck">
+                            <label>
+                                <input type="checkbox" name="remember_token" value="1">
+                                Ghi nhớ
+                            </label>
+                        </div>
                         <div class="text-form text-center">
                             <p>----  Hoặc  ----</p>
                         </div>
