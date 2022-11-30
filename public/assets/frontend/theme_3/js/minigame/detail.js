@@ -18,7 +18,7 @@ $(document).ready(function () {
             },
             success: (data) => {
                 if (data.status == 1) {
-                    console.log(data.data_item)
+
                     $('#data_rotation-detail').html('');
                     $('#data_rotation-detail').html(data.data);
                     $('#data_rotation-detail').removeClass('minigame-add-heard');

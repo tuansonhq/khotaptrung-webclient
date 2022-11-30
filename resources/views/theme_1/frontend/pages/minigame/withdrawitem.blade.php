@@ -79,7 +79,7 @@
                     @endphp
 
                     @if(isset($service))
-                        <input type="hidden" name="server_id" value="{{ $service->id }}">
+                        <input type="hidden" name="service_id" value="{{ $service->id }}">
                         @if(isset($server_data) && isset($server_id) && count($server_data) && count($server_id))
                             @if($service->idkey != 'roblox_buyserver')
                             <div class="form-group row">
@@ -190,7 +190,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if($item->payment_type == 13)
+                                    @if($item->payment_type == 13 || $item->payment_type == 12 || $item->payment_type == 11 || $item->payment_type == 14)
                                         @if ($item->status == 0)
                                             <a class="btn btn-xs c-btn-square m-b-10 btn-danger">Giao dịch thất bại</a>
                                         @elseif($item->status == 1 )
