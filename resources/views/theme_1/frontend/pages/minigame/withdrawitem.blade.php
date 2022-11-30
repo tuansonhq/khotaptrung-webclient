@@ -79,7 +79,7 @@
                     @endphp
 
                     @if(isset($service))
-                        <input type="hidden" name="server_id" value="{{ $service->id }}">
+                        <input type="hidden" name="service_id" value="{{ $service->id }}">
                         @if(isset($server_data) && isset($server_id) && count($server_data) && count($server_id))
                             @if($service->idkey != 'roblox_buyserver')
                             <div class="form-group row">
