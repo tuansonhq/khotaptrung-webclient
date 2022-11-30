@@ -8,7 +8,7 @@
 @section('scripts')
 
 {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/format-currency.js" type="text/javascript"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/service.js?v={{time()}}" type="text/javascript"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/service.js?v={{time()}}" type="text/javascript"></script>
 {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/validate.js" type="text/javascript"></script>--}}
 
 
@@ -538,6 +538,7 @@
 
                                         </div>
                                     </div>
+                                </div>
                             </section>
                         @endif
 
@@ -636,7 +637,7 @@
                                                     <span>Tài khoản</span>
                                                 </div>
                                                 <div class="col-auto left-right background-order-col-right-ct">
-                                                    <small>{{ @App\Library\AuthCustom::user()->username }}</small>
+                                                    <small>{{ @App\Library\AuthCustom::getName() }}</small>
                                                 </div>
                                             </div>
                                         </div>
@@ -769,7 +770,7 @@
                                         <span>Tài khoản</span>
                                     </div>
                                     <div class="col-auto left-right background-order-col-right-ct">
-                                        <small>{{ @App\Library\AuthCustom::user()->username }}</small>
+                                        <small>{{ @App\Library\AuthCustom::getName() }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -862,7 +863,7 @@
         <input id="surplus" type="hidden" value="{{ \App\Library\AuthCustom::user()->balance }}">
     @endif
 {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/cay-thue/cay-thue-detail.js?v={{time()}}"></script>--}}
-    <script src="/js/{{theme('')->theme_key}}/cay-thue/cay-thue-detail.js" type="text/javascript"></script>
+{{--    <script src="/js/{{theme('')->theme_key}}/cay-thue/cay-thue-detail.js" type="text/javascript"></script>--}}
 @endsection
 
 

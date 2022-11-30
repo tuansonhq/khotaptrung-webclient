@@ -1170,7 +1170,11 @@
                             <a class="btn btn-success col-sm-12" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
                         </div>
                         <div class="item_play_category">
-                            <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success">Lịch sử chơi</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a href="#modal-spin-bonus" class="col-sm-12 btn btn-success" data-toggle="modal">Lịch sử chơi</a>
+                            @else
+                                <a href="/login" class="col-sm-12 btn btn-success">Lịch sử chơi</a>
+                            @endif
                         </div>
                         <div class="item_play_category">
                             <a href="#" class="col-sm-12 btn btn-success" data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>

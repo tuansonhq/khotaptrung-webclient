@@ -233,7 +233,6 @@ if (input_params_hide.length){
             break;
         // điền số tiền
         case '7':
-
         function UpdateTotal() {
 
             var price = parseInt(input_pack.val().replace(/\./g, ''));
@@ -263,17 +262,9 @@ if (input_params_hide.length){
                         }
                     }
                 } else {
-                    var s_price = data_params["price"];
                     var s_discount = data_params["discount"];
-                    discount = s_discount[0];
-                    for (let i = 0; i< s_price.length; i++){
-                        if (i){
-                            if (price >= s_price[i]){
-                                discount = s_discount[i];
-                            }
-                        }
-                    }
-                    // discount = s_discount[server_id];
+                    let idx_server_selected = $('select[name="server"]').val() * 1;
+                    discount = s_discount[idx_server_selected];
                     total = price * discount;
                 }
                 total = parseInt(total / 1000 * data_params.input_pack_rate);
@@ -294,7 +285,6 @@ if (input_params_hide.length){
                 $('.total--price').text(`${price_show} VNĐ`);
             }
         }
-
             input_pack.bind('focus keyup', function () {
                 UpdateTotal();
             });

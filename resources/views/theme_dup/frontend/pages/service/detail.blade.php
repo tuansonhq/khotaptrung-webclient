@@ -791,18 +791,9 @@
                 }
             }
             else {
-                var s_price = data["price"];
                 var s_discount = data["discount"];
-                discount = s_discount[0];
-                for (let i = 0; i< s_price.length; i++){
-
-                    if (i > 0){
-                        if (price >= s_price[i]){
-                            discount = s_discount[i];
-                        }
-                    }
-                }
-                // discount = s_discount;
+                let idx_server_selected = $('select.server-filter').val() * 1;
+                discount = s_discount[idx_server_selected];
                 total = price * discount;
             }
 

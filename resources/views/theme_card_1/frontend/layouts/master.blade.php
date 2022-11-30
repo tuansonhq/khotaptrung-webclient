@@ -28,6 +28,7 @@
           href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrapdatepicker/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/tui-date-picker.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/easy-navigate-toc/public/css/toctoc.css">
 
     <!-- <link media="screen" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" /> -->
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style.css?v={{time()}}">
@@ -40,12 +41,15 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/table_of_contents.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.css">
     {{--    js--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/moment/moment.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.umd.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easy-navigate-toc/public/js/toctoc.js"></script>
 
     <script
         src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrapdatepicker/bootstrap-datepicker.min.js"></script>
@@ -99,6 +103,7 @@
 <!--header section work start-->
 @include('frontend.layouts.includes.header')
 
+
 <!--Login Start-->
 <!-- đăng kí -->
 <!-- đăng nhập -->
@@ -139,6 +144,7 @@
         <div class="modal-content panel panel-primary"></div>
     </div>
 </div>
+{{--@include('frontend.widget.modal.__recharge_modal')--}}
 
 @if(Request::is('/') || Request::is('login'))
     @include('frontend.widget.__slider__banner')
@@ -204,7 +210,9 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazysizes.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert/sweetalert.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/main.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/modal-charge.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>
 <script type="text/javascript" src="/assets/frontend/{{theme('')->theme_key}}/js/slick.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
 <button type="button" class="btn btn-danger btn-floating btn-lg ripple-surface" id="btn-back-to-top"
@@ -215,5 +223,19 @@
     <i class="fas fa-arrow-up"></i>
 </button>
 @yield('scripts')
+
+
+<div id="copy"></div>
+<script>
+    $('body').on('click','i.fa-copy',function(e){
+        data = $(this).data('id');
+        let temp = $("<input>");
+        $("body #copy").html(temp);
+        temp.val($.trim(data)).select();
+        document.execCommand("copy");
+        temp.remove();
+        toastr.success('Sao chép thành công!');
+    });
+</script>
 </body>
 </html>

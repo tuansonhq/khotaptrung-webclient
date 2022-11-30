@@ -252,15 +252,15 @@ class MinigameController extends Controller
 
                 } else {
                     logger('minigame: ' . $result_Api->response_data->msg);
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                    return view('frontend.404.404');
                 }
             } else {
                 logger('minigame: ' . $result_Api->response_data->msg);
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                return view('frontend.404.404');
             }
         } catch (\Exception $e) {
             logger($e);
-            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            return view('frontend.404.404');
         }
     }
 
