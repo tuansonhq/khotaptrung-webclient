@@ -70,4 +70,5 @@
 @endsection
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/style.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/article-detail.js?v={{time()}}"></script>
 @endsection

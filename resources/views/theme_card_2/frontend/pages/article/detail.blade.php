@@ -45,7 +45,7 @@
                         <p class="mt-3"><i class="fa fa-calendar mr-1"></i>{{ formatDateTime($data->created_at) }}
 {{--                            <span class="mx-3">|</span> Danh mục : Hướng dẫn--}}
                         </p>
-                        <div class="content-blog-item">
+                        <div class="content-blog-item article-content">
                             {!! $data->content !!}
                         </div>
                     </div>
@@ -57,5 +57,6 @@
             </div>
         </div>
     </div>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/article-detail.js?v={{time()}}"></script>
     @endif
 @endsection
