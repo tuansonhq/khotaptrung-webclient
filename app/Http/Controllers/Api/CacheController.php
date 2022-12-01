@@ -10,7 +10,15 @@ use Spatie\ResponseCache\Facades\ResponseCache;
 class CacheController extends Controller
 {
     public function clearCache(Request $request){
-        $secret_key = config('api.secret_key');
+        $secret_key = '';
+        if (Cache::has('verify_shop')) {
+            $very_shop = Cache::get('verify_shop');
+            if ($very_shop->response_code == 200){
+                $secret_key = $very_shop->response_data->secret_key??null;
+            }
+        } else {
+            $secret_key = config('api.secret_key');
+        }
         $sign = $request->secret_key;
 
         if ($secret_key != $sign){
