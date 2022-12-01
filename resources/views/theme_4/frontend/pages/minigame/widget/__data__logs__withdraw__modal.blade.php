@@ -37,28 +37,29 @@
                             <p>#{{$item->id}}</p>
                         </div>
                         <div class="col-3 history-item-data data-right">
-                            <p>{{$item->price}}</p>
+                            <p> {{ str_replace(',','.',number_format($item->price??'')) }}</p>
                         </div>
                         <div class="col-3 history-item-data data-right">
                             @if($item->payment_type == 13 || $item->payment_type == 12 || $item->payment_type == 11 || $item->payment_type == 14)
                                 @if ($item->status == 0)
-                                    <a class="btn btn-xs c-btn-square m-b-10 btn-danger">Giao dịch thất bại</a>
+                                    <a class="btn btn-sm c-btn-square m-b-10 btn-danger">Giao dịch thất bại</a>
                                 @elseif($item->status == 1 )
-                                    <a class="btn btn-xs c-btn-square m-b-10 btn-warning">Chờ xử lý</a>
+                                    <a class="btn btn-sm  c-btn-square m-b-10 btn-warning">Chờ xử lý</a>
                                 @elseif($item->status == 2 )
-                                    <a class="btn btn-xs c-btn-square m-b-10 btn-warning">Chờ xử lý</a>
+                                    <a class="btn btn-sm  c-btn-square m-b-10 btn-warning">Chờ xử lý</a>
                                 @elseif($item->status == 4 )
-                                    <a class="btn btn-xs c-btn-square m-b-10 btn-success">Hoàn thành</a>
+                                    <a class="btn btn-sm  c-btn-square m-b-10 btn-success">Hoàn thành</a>
                                 @endif
                             @else
                                 @if ($item->status == 0)
-                                    <a class="btn btn-xs c-btn-square m-b-10 btn-warning">{{config('constants.withdraw_status.0')}}</a>
+                                    <a class="btn btn-sm  c-btn-square m-b-10 btn-warning">{{config('constants.withdraw_status.0')}}</a>
                                 @elseif($item->status == 1 )
-                                    <span class="status-success">{{config('constants.withdraw_status.1')}}</span>
+                                    <a class="btn btn-sm  c-btn-square m-b-10 btn-success">{{config('constants.withdraw_status.1')}}</a>
+
                                 @elseif($item->status == 2 )
-                                    <span class="status-failed">{{config('constants.withdraw_status.2')}}</span>
+                                    <a class="btn btn-sm  c-btn-square m-b-10 btn-danger">{{config('constants.withdraw_status.2')}}</a>
                                 @elseif($item->status == 3 )
-                                    <span class="status-failed">{{config('constants.withdraw_status.3')}}</span>
+                                    <a class="btn btn-sm  c-btn-square m-b-10 btn-danger">{{config('constants.withdraw_status.3')}}</a>
                                 @endif
                             @endif
                         </div>

@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>--}}
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/style.css?v=10122021" rel="stylesheet">
     <link href="/assets/frontend/{{theme('')->theme_key}}/css/style_custom.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
@@ -48,7 +48,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/table_of_contents.css">
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/sw2.js"></script>
-
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/moment.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/bootstrap-datetimepicker.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>

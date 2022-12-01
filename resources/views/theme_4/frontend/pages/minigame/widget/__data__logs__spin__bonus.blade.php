@@ -24,7 +24,7 @@
         </div>
     </form>
 </div>
-<div class="section-table-history">
+<div class="section-table-history scroll-default">
     <div class="wrap-table">
         <table>
             <tr>
@@ -72,7 +72,7 @@
     </div>
 </div>
 @if(isset($paginatedItems))
-    <div class="default-paginate pb-3">
+    <div class="default-paginate" style="padding-top: 16px">
         <div class="row marinautooo justify-content-center">
             <div class="col-auto frontend__panigate">
                 <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">

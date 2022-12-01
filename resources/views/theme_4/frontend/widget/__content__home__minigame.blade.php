@@ -1,4 +1,15 @@
 @if(isset($data) && count($data) > 0)
+    <div class="d-flex justify-content-between" style="padding-top: 24px">
+        <div class="main-title">
+            <h1>{{ $title??'Dịch vụ game minigame' }}</h1>
+        </div>
+        <div class="service-search d-none d-lg-block">
+            <div class="input-group p-box">
+                <input type="text" id="txtSearchMinigame" placeholder="Tìm minigame" value="" class="" width="200px">
+                <span class="icon-search"><i class="fas fa-search"></i></span>
+            </div>
+        </div>
+    </div>
 
     <div class="entries">
         <div class="row fix-border fix-border-dich-vu">
@@ -32,6 +43,8 @@
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
                             <h2 class="text-title">{{ $item->title   }}</h2>
+                            <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+
                         </a>
                     </div>
                 @elseif($key < 24)
@@ -43,6 +56,8 @@
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
                             <h2 class="text-title">{{ $item->title   }}</h2>
+                            <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+
                         </a>
                     </div>
                 @elseif($key < 32)
@@ -54,6 +69,8 @@
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
                             <h2 class="text-title">{{ $item->title   }}</h2>
+                            <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+
                         </a>
                     </div>
                 @elseif($key < 40)
@@ -65,6 +82,8 @@
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
                             <h2 class="text-title">{{ $item->title   }}</h2>
+                            <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+
                         </a>
                     </div>
                 @endif
