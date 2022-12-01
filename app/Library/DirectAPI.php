@@ -31,7 +31,7 @@ class DirectAPI{
         }
         if (config('api.config_backup') === true && \Cache::has('verify_shop')) {
             $verify_shop = \Cache::get('verify_shop');
-            if ($verify_shop->response_status == 200){
+            if ($verify_shop->response_code == 200){
                 $data['secret_key'] = $verify_shop->response_data->secret_key??null;
             }
         } else {
