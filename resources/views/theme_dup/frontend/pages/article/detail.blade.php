@@ -68,6 +68,7 @@
         </div>
         @include('frontend.widget.__bai__viet__lien__quan')
     </div>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/article-detail.js?v={{time()}}"></script>
     @endif
 @endsection
 
