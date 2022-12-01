@@ -40,6 +40,15 @@
                 flex-basis: 69%;
             }
         </style>
+    @elseif(theme('')->theme_config->sys_charge_home == 'sys_charge_home_position')
+        <style>
+            .content-banner-card {
+                flex-basis: 29%;
+            }
+            .content-banner-slide {
+                flex-basis: 69%;
+            }
+        </style>
     @else
         <style>
             .content-banner-card {
@@ -68,10 +77,7 @@
             background-color: {{setting('sys_theme_color_primary')}};
             box-shadow: none;
         }
-        .content-banner {
-            background-color: {{setting('sys_theme_color_primary')}};
 
-        }
         .content-items .container{
             background-color: {{setting('sys_theme_color_primary')}};
         }
@@ -123,10 +129,7 @@
             background-color: rgba(0,0,0,0.8) ;
             box-shadow: inset 0px -1px 0px #363636;
         }
-        .content-banner {
-            background-color: rgba(0,0,0,0.8);
 
-        }
         .content-items .container{
             background-color: rgba(0,0,0,0.8);
         }
