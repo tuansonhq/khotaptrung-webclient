@@ -1,4 +1,15 @@
 @if(isset($data) && count($data) > 0)
+<div class="d-flex justify-content-between">
+    <div class="main-title">
+        <h1>{{ $title??'Dịch vụ game' }}</h1>
+    </div>
+    <div class="service-search d-none d-lg-block">
+        <div class="input-group p-box">
+            <input type="text" id="txtSearch" placeholder="Tìm dịch vụ" value="" class="" width="200px">
+            <span class="icon-search"><i class="fas fa-search"></i></span>
+        </div>
+    </div>
+</div>
 
 <div class="entries">
     <div class="row fix-border fix-border-dich-vu">

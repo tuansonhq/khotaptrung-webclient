@@ -45,8 +45,15 @@ function getWithDrawItem(game_type,data_query) {
                     result_data.listgametype.forEach(function (item) {
                         let html = `<option value="${item.parent_id}" ${item.parent_id === game_type * 1 ? 'selected' : ''}>${item.title}</option>`;
                         select_game_type.prepend(html);
+                        var total_price = 0;
+                        if (item.set_number_item){
+                            total_price = item.set_number_item;
+                        }
 
-                        item.parent_id === game_type * 1 ? $('.text--danger').text(`Số vật phẩm hiện có: ${item.set_number_item || 0} ${item.image}`) : '';
+                        total_price = total_price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                        total_price = total_price.split('').reverse().join('').replace(/^[\.]/,'');
+
+                        item.parent_id === game_type * 1 ? $('.text--danger').text(`Số vật phẩm hiện có: ${total_price} ${item.image}`) : '';
                     });
                 }
               //    Chọn gói vật phẩm
