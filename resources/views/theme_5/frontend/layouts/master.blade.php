@@ -53,7 +53,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/change-password.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/range-slider-master/css/rSlider.min.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/service-mobile.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/duong/component-style.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/duong/component-style.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong/components.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/select2/select2.min.css">
 {{--js--}}
