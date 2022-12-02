@@ -44,7 +44,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/table_of_contents.css">
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style-custom.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/duong/component-style.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/duong/component-style.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/select2/select2.min.css">
