@@ -42,7 +42,7 @@
                         <a href="/minigame-{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title">{{ $item->title   }}</h2>
+                            <h2 class="text-title text-left">{{ $item->title   }}</h2>
                             <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
 
                         </a>
@@ -55,7 +55,7 @@
                         <a href="/minigame-{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title">{{ $item->title   }}</h2>
+                            <h2 class="text-title text-left">{{ $item->title   }}</h2>
                             <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
 
                         </a>
@@ -68,7 +68,7 @@
                         <a href="/minigame-{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title">{{ $item->title   }}</h2>
+                            <h2 class="text-title text-left">{{ $item->title   }}</h2>
                             <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
 
                         </a>
@@ -81,7 +81,7 @@
                         <a href="/minigame-{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title">{{ $item->title   }}</h2>
+                            <h2 class="text-title text-left">{{ $item->title   }}</h2>
                             <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
 
                         </a>
