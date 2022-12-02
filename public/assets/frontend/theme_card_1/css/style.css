@@ -1600,7 +1600,7 @@ footer * {
     background: #fff;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
     border-radius: 10px;
-    margin: 45px 0 92px;
+    margin: 24px 0 92px;
     padding: 30px 53px;
 }
 .content_bvct {
@@ -7780,4 +7780,7 @@ label.item-wapper img {
 .p-0{padding: 0}
 #main_home .tg::after {
     transform: rotate(180deg);
+}
+button:focus{
+    outline: none!important;
 }
