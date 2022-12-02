@@ -5,37 +5,45 @@
 @section('content')
 
 <section>
-        <div class="container">
+    <div class="container">
 
-            @include('frontend.widget.__slider__banner')
-            <div class="main-content" style="margin-top: 24px">
-                <div class="d-flex justify-content-between">
-                    <div class="main-title">
-                        <h1>Dịch vụ game</h1>
-                    </div>
-                    <div class="service-search d-none d-lg-block">
-                        <div class="input-group p-box">
-                            <input type="text" id="txtSearch" placeholder="Tìm dịch vụ" value="" class="" width="200px">
-                            <span class="icon-search"><i class="fas fa-search"></i></span>
-                        </div>
-                    </div>
-                </div>
+        @include('frontend.widget.__slider__banner')
+
+        <div class="main-content" style="margin-top: 24px">
+
+            @if(setting('sys_theme_ver_page_build') )
+
+                @php
+                    $dat = explode(',',setting('sys_theme_ver_page_build'));
+                    $data_title = null;
+                    $data_widget = null;
+                    foreach($dat as $key => $it){
+                        if ($key == 0){
+                            $data_title = explode('|',$it);
+                        }else{
+                            $data_widget = explode('|',$it);
+                        }
+                    }
+                @endphp
+                @if(isset($data_widget))
+                    @foreach($data_widget as $key => $value)
+                        @include('frontend.widget.'.$value.'',with(['title'=>$data_title[$key]]))
+                    @endforeach
+                @endif
+            @else
+
+                @include('frontend.widget.__content__home__game')
 
                 @include('frontend.widget.__content__home__dichvu')
 
-                <div class="d-flex justify-content-between" style="padding-top: 24px">
-                    <div class="main-title">
-                        <h1>Danh mục game</h1>
-                    </div>
-                    <div class="service-search d-none d-lg-block">
-                        <div class="input-group p-box">
-                            <input type="text" id="txtSearchNick" placeholder="Tìm danh mục" value="" class="" width="200px">
-                            <span class="icon-search"><i class="fas fa-search"></i></span>
-                        </div>
-                    </div>
-                </div>
+                @include('frontend.widget.__content__home__minigame')
 
-                @include('frontend.widget.__content__home__game')
+            @endif
+{{--            @include('frontend.widget.__content__home__dichvu')--}}
+
+{{--            @include('frontend.widget.__content__home__game')--}}
+
+{{--            @include('frontend.widget.__content__home__minigame')--}}
 
             <div class="article-content content_post ">
                 <div class="special-text">

@@ -449,6 +449,7 @@
                         <div class="item_spin_title">
                             <p>Lượt lật gần đây</p>
                         </div>
+
                         <div class="item_spin_list">
                             <table class="table table-striped">
                                 <thead>
@@ -1933,7 +1934,7 @@
                                         $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
                                         $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
                                         for ($i = 0; $i < gift_revice.length; $i++) {
-                                            $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i]['parrent'].title;
+                                            $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i].title;
                                             if (gift_revice[$i].winbox == 1) {
                                                 $html += " - nhận được: " + gift_revice[$i]['parrent'].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + parseInt(gift_revice[$i]['parrent'].params.value) * (parseInt(xvalueaDD[$i])) + "" + msg_random_bonus[$i] + "</span><br/>";
                                             } else {
@@ -2288,6 +2289,7 @@
                                     }
                                     else
                                     {
+
                                         $("#btnWithdraw").hide();
                                         if(gift_revice.length == 1)
                                         {
