@@ -506,4 +506,5 @@
  /* css image chi tiet tin tuc*/
 .article-content iframe{
     max-width: 100% !important;
+    height: auto;
 }
