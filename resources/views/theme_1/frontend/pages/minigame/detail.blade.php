@@ -449,6 +449,7 @@
                         <div class="item_spin_title">
                             <p>Lượt lật gần đây</p>
                         </div>
+
                         <div class="item_spin_list">
                             <table class="table table-striped">
                                 <thead>

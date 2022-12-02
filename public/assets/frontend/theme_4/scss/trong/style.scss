@@ -70,7 +70,7 @@
                 color: #505050;
             }
             & .nav-link.active {
-                border-bottom: 2px solid #32c5d2;
+                border-bottom: 2px solid rgb(238, 70, 35);
             }
         }
     }
@@ -96,7 +96,7 @@
 }
 .text--danger {
     color: #eb5d68;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     &:empty {
         height: 0;

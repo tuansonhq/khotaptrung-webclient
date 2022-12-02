@@ -188,10 +188,10 @@
                                     Lịch sử quay
                                 </a>
                             @else
-                                <a href="/login" class="btn btn-success button__hover" data-toggle="modal" data-target="#modal-login">
+                                <a href="/login" class="btn btn-success button__hover" data-toggle="modal" data-target="#signin">
                                     Rút Vip
                                 </a>
-                                <a href="/login" class="btn btn-success button__hover" data-toggle="modal" data-target="#modal-login">
+                                <a href="/login" class="btn btn-success button__hover" data-toggle="modal" data-target="#signin">
                                     Lịch sử quay
                                 </a>
                             @endif
@@ -281,19 +281,34 @@
                         <div class="item_play_line"></div>
 
                     </div>
-                    <div class="item_play_dif">
+                    <div class="item_play_dif" style="margin-bottom: 16px">
                         <div class="row" style="position: relative">
                             <div class="col-12 item_play_dif_slide" >
-                                <div class="slick-slider">
-                                    @foreach($groups_other as $item)
-                                        <div class="item image">
-                                            <a href="{{route('getIndex',[$item->slug])}}">
-                                                <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
-                                                <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
-                                            </a>
-                                        </div>
-                                    @endforeach
+
+                                <div class="swiper swiper-container swiper-list-item swiper-service-related overflow-hidden" style="background: none;box-shadow: none">
+                                    <div class=" swiper-wrapper">
+
+                                        @foreach($groups_other as $item)
+
+                                            <div class=" image swiper-slide">
+                                                <a href="{{route('getIndex',[$item->slug])}}">
+                                                    <img style="width: 100%;height: 120px;border-radius: 8px" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title   }}" width="120px">
+                                                    <div>
+                                                        <h3 class="text-title text-left text-limit limit-1">{{ $item->title}}</h3>
+                                                        <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+
+                                                    </div>
+                                                </a>
+
+                                            </div>
+
+                                        @endforeach
+
+                                    </div>
+
+                                    <div class="navigation swiper-list-prev"></div>
+                                    <div class="navigation swiper-list-next"></div>
+
                                 </div>
                             </div>
                         </div>
@@ -407,10 +422,10 @@
                                     Lịch sử lật
                                 </a>
                             @else
-                                <a href="/login" class="btn btn-success button__hover" data-toggle="modal" data-target="#modal-login">
+                                <a href="/login" class="btn btn-success button__hover" data-toggle="modal" data-target="#signin">
                                     Rút Vip
                                 </a>
-                                <a href="/login" class="btn btn-success button__hover" data-toggle="modal" data-target="#modal-login">
+                                <a href="/login" class="btn btn-success button__hover" data-toggle="modal" data-target="#signin">
                                     Lịch sử lật
                                 </a>
                             @endif
@@ -494,20 +509,35 @@
                         <p>Các minigame khác</p>
                         <div class="item_play_line"></div>
                     </div>
-                    <div class="item_play_dif">
+                    <div class="item_play_dif" style="margin-bottom: 16px">
                         <div class="row" style="position: relative">
                             <div class="col-12 item_play_dif_slide" >
-                                <div class="slick-slider">
-                                    @foreach($groups_other as $item)
-                                        <div class="item image">
-                                            <a href="{{route('getIndex',[$item->slug])}}">
-                                                <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
-                                                <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
-                                            </a>
-                                        </div>
-                                    @endforeach
+                                <div class="swiper swiper-container swiper-list-item swiper-service-related overflow-hidden" style="background: none;box-shadow: none">
+                                    <div class=" swiper-wrapper">
+
+                                        @foreach($groups_other as $item)
+
+                                            <div class=" image swiper-slide">
+                                                <a href="{{route('getIndex',[$item->slug])}}">
+                                                    <img style="width: 100%;height: 120px;border-radius: 8px" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title   }}" width="120px">
+                                                    <div>
+                                                        <h3 class="text-title text-left text-limit limit-1">{{ $item->title}}</h3>
+                                                        <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+
+                                                    </div>
+                                                </a>
+
+                                            </div>
+
+                                        @endforeach
+
+                                    </div>
+
+                                    <div class="navigation swiper-list-prev"></div>
+                                    <div class="navigation swiper-list-next"></div>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -611,20 +641,35 @@
                         <div class="item_play_line"></div>
 
                     </div>
-                    <div class="item_play_dif">
+                    <div class="item_play_dif" style="margin-bottom: 16px">
                         <div class="row" style="position: relative">
                             <div class="col-12 item_play_dif_slide" >
-                                <div class="slick-slider">
-                                    @foreach($groups_other as $item)
-                                        <div class="item image">
-                                            <a href="{{route('getIndex',[$item->slug])}}">
-                                                <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
-                                                <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
-                                            </a>
-                                        </div>
-                                    @endforeach
+                                <div class="swiper swiper-container swiper-list-item swiper-service-related overflow-hidden" style="background: none;box-shadow: none">
+                                    <div class=" swiper-wrapper">
+
+                                        @foreach($groups_other as $item)
+
+                                            <div class=" image swiper-slide">
+                                                <a href="{{route('getIndex',[$item->slug])}}">
+                                                    <img style="width: 100%;height: 120px;border-radius: 8px" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title   }}" width="120px">
+                                                    <div>
+                                                        <h3 class="text-title text-left text-limit limit-1">{{ $item->title}}</h3>
+                                                        <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+
+                                                    </div>
+                                                </a>
+
+                                            </div>
+
+                                        @endforeach
+
+                                    </div>
+
+                                    <div class="navigation swiper-list-prev"></div>
+                                    <div class="navigation swiper-list-next"></div>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -732,21 +777,35 @@
                         <div class="item_play_line"></div>
 
                     </div>
-                    <div class="item_play_dif">
+                    <div class="item_play_dif" style="margin-bottom: 16px">
                         <div class="row" style="position: relative">
                             <div class="col-12 item_play_dif_slide" >
-                                <div class="slick-slider">
-                                    @foreach($groups_other as $item)
-                                        <div class="item image">
-                                            <a href="{{route('getIndex',[$item->slug])}}">
-                                                <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
-                                                <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
-                                            </a>
-                                        </div>
-                                    @endforeach
+                                <div class="swiper swiper-container swiper-list-item swiper-service-related overflow-hidden" style="background: none;box-shadow: none">
+                                    <div class=" swiper-wrapper">
+
+                                        @foreach($groups_other as $item)
+
+                                            <div class=" image swiper-slide">
+                                                <a href="{{route('getIndex',[$item->slug])}}">
+                                                    <img style="width: 100%;height: 120px;border-radius: 8px" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title   }}" width="120px">
+                                                    <div>
+                                                        <h3 class="text-title text-left text-limit limit-1">{{ $item->title}}</h3>
+                                                        <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+
+                                                    </div>
+                                                </a>
+
+                                            </div>
+
+                                        @endforeach
+
+                                    </div>
+
+                                    <div class="navigation swiper-list-prev"></div>
+                                    <div class="navigation swiper-list-next"></div>
 
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -891,20 +950,35 @@
                         <p>Các minigame khác</p>
                         <div class="item_play_line"></div>
                     </div>
-                    <div class="item_play_dif">
+                    <div class="item_play_dif" style="margin-bottom: 16px">
                         <div class="row" style="position: relative">
                             <div class="col-12 item_play_dif_slide" >
-                                <div class="slick-slider">
-                                    @foreach($groups_other as $item)
-                                        <div class="item image">
-                                            <a href="{{route('getIndex',[$item->slug])}}">
-                                                <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
-                                                <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
-                                            </a>
-                                        </div>
-                                    @endforeach
+                                <div class="swiper swiper-container swiper-list-item swiper-service-related overflow-hidden" style="background: none;box-shadow: none">
+                                    <div class=" swiper-wrapper">
+
+                                        @foreach($groups_other as $item)
+
+                                            <div class=" image swiper-slide">
+                                                <a href="{{route('getIndex',[$item->slug])}}">
+                                                    <img style="width: 100%;height: 120px;border-radius: 8px" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title   }}" width="120px">
+                                                    <div>
+                                                        <h3 class="text-title text-left text-limit limit-1">{{ $item->title}}</h3>
+                                                        <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+
+                                                    </div>
+                                                </a>
+
+                                            </div>
+
+                                        @endforeach
+
+                                    </div>
+
+                                    <div class="navigation swiper-list-prev"></div>
+                                    <div class="navigation swiper-list-next"></div>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -1012,20 +1086,35 @@
                         <p>Các minigame khác</p>
                         <div class="item_play_line"></div>
                     </div>
-                    <div class="item_play_dif">
+                    <div class="item_play_dif" style="margin-bottom: 16px">
                         <div class="row" style="position: relative">
                             <div class="col-12 item_play_dif_slide" >
-                                <div class="slick-slider">
-                                    @foreach($groups_other as $item)
-                                        <div class="item image">
-                                            <a href="{{route('getIndex',[$item->slug])}}">
-                                                <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
-                                                <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
-                                            </a>
-                                        </div>
-                                    @endforeach
+                                <div class="swiper swiper-container swiper-list-item swiper-service-related overflow-hidden" style="background: none;box-shadow: none">
+                                    <div class=" swiper-wrapper">
+
+                                        @foreach($groups_other as $item)
+
+                                            <div class=" image swiper-slide">
+                                                <a href="{{route('getIndex',[$item->slug])}}">
+                                                    <img style="width: 100%;height: 120px;border-radius: 8px" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title   }}" width="120px">
+                                                    <div>
+                                                        <h3 class="text-title text-left text-limit limit-1">{{ $item->title}}</h3>
+                                                        <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+
+                                                    </div>
+                                                </a>
+
+                                            </div>
+
+                                        @endforeach
+
+                                    </div>
+
+                                    <div class="navigation swiper-list-prev"></div>
+                                    <div class="navigation swiper-list-next"></div>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -1131,7 +1220,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng
+                        <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase button__hover" data-dismiss="modal">Đóng
                         </button>
                     </div>
                 </div>
@@ -1155,7 +1244,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button"
-                            class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase"
+                            class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase button__hover"
                             data-dismiss="modal">Đóng
                     </button>
                 </div>
@@ -1181,7 +1270,7 @@
                     <a href="#" id="btnWithdraw" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill">Rút
                         quà</a>
                     <button type="button"
-                            class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase"
+                            class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase button__hover"
                             data-dismiss="modal">Đóng
                     </button>
                 </div>
@@ -1205,7 +1294,7 @@
                 <div class="modal-footer">
                     <a href="/nap-the" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill">Nạp thẻ</a>
                     <button type="button"
-                            class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase"
+                            class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase button__hover"
                             data-dismiss="modal">Đóng
                     </button>
                 </div>
@@ -1333,7 +1422,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button"
-                            class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase"
+                            class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase button__hover"
                             data-dismiss="modal">Đóng
                     </button>
                 </div>
@@ -1349,6 +1438,11 @@
     @endforeach
     <!-- script -->
 
+
+@endsection
+@section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/modal-rut-vp.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/modal-history-spin-bonus.js?v={{time()}}"></script>
     <script type="text/javascript">
         $( document ).ready(function() {
             $(document).on('scroll',function(){
@@ -1465,6 +1559,7 @@
                 });
 
                 $('body').delegate('.num-play-try', 'click', function () {
+
                     $('#type_play').val('try');
                     play();
                 });
@@ -1491,7 +1586,7 @@
 
                                 if (data.status == 4) {
 
-                                    $('#modal-login').modal('show');
+                                    $('#signin').modal('show');
                                     // location.href = '/login?return_url=' + window.location.href;
                                 } else if (data.status == 3) {
                                     roll_check = true;
@@ -1952,7 +2047,7 @@
                                     $('.boxflip .flip-box-front').removeClass('active');
                                 },1000);
                                 if (data.status == 4) {
-                                    $('#modal-login').modal('show');
+                                    $('#signin').modal('show');
                                     // location.href='/login';
                                 } else if (data.status == 3) {
                                     roll_check = true;
@@ -2433,7 +2528,7 @@
                             type: 'POST',
                             success: function(data) {
                                 if (data.status == 4) {
-                                    $('#modal-login').modal('show');
+                                    $('#signin').modal('show');
                                     // location.href='/login?return_url='+window.location.href;
                                     return;
                                 } else if (data.status == 3) {
@@ -2597,7 +2692,7 @@
                             type: 'POST',
                             success: function(data) {
                                 if (data.status == 4) {
-                                    $('#modal-login').modal('show');
+                                    $('#signin').modal('show');
                                     // location.href='/login';
                                     return;
                                 } else if (data.status == 3) {
@@ -3154,7 +3249,7 @@
                             type: 'POST',
                             success: function(data) {
                                 if (data.status == 4) {
-                                    $('#modal-login').modal('show');
+                                    $('#signin').modal('show');
                                     // location.href='/login?return_url='+window.location.href;
                                     return;
                                 } else if (data.status == 3) {
@@ -3349,7 +3444,7 @@
                             type: 'POST',
                             success: function(data) {
                                 if (data.status == 4) {
-                                    $('#modal-login').modal('show');
+                                    $('#signin').modal('show');
                                     // location.href='/login?return_url='+window.location.href;
                                     return;
                                 } else if (data.status == 3) {
@@ -3973,10 +4068,10 @@
         <script>
             $(document).ready(function(e) {
                 @if(isset($result->group->items) && count($result->group->items)>0)
-                    @foreach($result->group->items as $index=>$item)
-                        $('.gift'+({{$index}}+1)).attr('id',"id"+{{$item->item_id}});
-                        $('.gift'+({{$index}}+1)+' img').attr('src','{{\App\Library\MediaHelpers::media($item->image)}}');
-                    @endforeach
+                @foreach($result->group->items as $index=>$item)
+                $('.gift'+({{$index}}+1)).attr('id',"id"+{{$item->item_id}});
+                $('.gift'+({{$index}}+1)+' img').attr('src','{{\App\Library\MediaHelpers::media($item->image)}}');
+                @endforeach
                 @endif
                 $(".thele").on("click", function(){
                     $("#theleModal").modal('show');
@@ -4048,7 +4143,7 @@
 
                                 if (data.status == 4) {
 
-                                    $('#modal-login').modal('show');
+                                    $('#signin').modal('show');
                                     // location.href='/login?return_url='+window.location.href;
                                     return;
                                 } else if (data.status == 3) {
@@ -4198,7 +4293,7 @@
                             success: function(data) {
 
                                 if (data.status == 4) {
-                                    $('#modal-login').modal('show');
+                                    $('#signin').modal('show');
                                     // location.href='/login?return_url='+window.location.href;
                                     return;
                                 } else if (data.status == 3) {
@@ -4653,7 +4748,7 @@
                             type: 'POST',
                             success: function(data) {
                                 if (data.status == 4) {
-                                    $('#modal-login').modal('show');
+                                    $('#signin').modal('show');
                                     // location.href='/login?return_url='+window.location.href;
                                 } else if (data.status == 3) {
                                     $('#lac_lixi').attr('src',$("#hdImageLD").val());
@@ -5013,8 +5108,45 @@
         @break
         @default
     @endswitch
+    <script>
+        new Swiper('.swiper-list-item', {
+            autoplay: false,
+            updateOnImagesReady: true,
+            watchSlidesVisibility: false,
+            lazyLoadingInPrevNext: false,
+            lazyLoadingOnTransitionStart: false,
+            loop: false,
+            centeredSlides: false,
+            slidesPerView: 5,
+            speed: 800,
+            spaceBetween: 16,
+            freeMode: true,
+            touchMove: true,
+            freeModeSticky:true,
+            grabCursor: true,
+            observer: true,
+            observeParents: true,
+            keyboard: {
+                enabled: true,
+            },
+            breakpoints: {
 
+                992: {
+                    slidesPerView: 5,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
 
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/modal-rut-vp.js?v={{time()}}"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/modal-history-spin-bonus.js?v={{time()}}"></script>
+                480: {
+                    slidesPerView: 1.8,
+                    spaceBetween: 6,
+                }
+            },
+            navigation: {
+                nextEl: ".swiper-list-acc .swiper-list-next",
+                prevEl: ".swiper-list-acc .swiper-list-prev",
+            },
+        });
+    </script>
 @endsection
