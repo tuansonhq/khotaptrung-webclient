@@ -289,7 +289,7 @@
                                         <div class="item image">
                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                 <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left">{{ $item->title   }}</h3>
+                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
                                                 <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
                                             </a>
                                         </div>
@@ -502,7 +502,7 @@
                                         <div class="item image">
                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                 <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left">{{ $item->title   }}</h3>
+                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
                                                 <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
                                             </a>
                                         </div>
@@ -619,7 +619,7 @@
                                         <div class="item image">
                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                 <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left">{{ $item->title   }}</h3>
+                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
                                                 <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
                                             </a>
                                         </div>
@@ -740,7 +740,7 @@
                                         <div class="item image">
                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                 <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left">{{ $item->title   }}</h3>
+                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
                                                 <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
                                             </a>
                                         </div>
@@ -899,7 +899,7 @@
                                         <div class="item image">
                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                 <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left">{{ $item->title   }}</h3>
+                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
                                                 <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
                                             </a>
                                         </div>
@@ -1020,7 +1020,7 @@
                                         <div class="item image">
                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                 <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left">{{ $item->title   }}</h3>
+                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
                                                 <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
                                             </a>
                                         </div>
