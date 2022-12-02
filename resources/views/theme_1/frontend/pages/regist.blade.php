@@ -43,6 +43,7 @@
             var formSubmit = $(this);
             var url = formSubmit.attr('action');
             var btnSubmit = formSubmit.find(':submit');
+            var return_url = url2.searchParams.get('return_url');
             $.ajax({
                 type: "POST",
                 url: url,
