@@ -42,7 +42,7 @@
                         <div class="booking_detail"></div>
                         <div class="wapper-grid profile">
 
-                            <div class="form-group row">
+                            <div class="form-group row" style="margin-top: 16px">
                                 <label class="col-md-3 control-label">
                                     Chọn loại vật phẩm khác:
                                 </label>
