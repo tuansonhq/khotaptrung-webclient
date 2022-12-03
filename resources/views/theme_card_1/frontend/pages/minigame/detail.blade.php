@@ -125,7 +125,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <marquee style="padding: 10px 0">{!!$currentPlayList!!}</marquee>
                         <div class="item_spin">
-                            <a class="ani-zoom" id="start-played">
+                            <a class="ani-zoom c_start-played" id="start-played">
                                 <img src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}">
                             </a>
                             <img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" alt="{{$result->group->title}}" id="rotate-play">
@@ -164,12 +164,22 @@
                         <div class="item_spin_num_play">
                             Giá {{number_format($result->group->price)}}/lượt chơi
                         </div>
-
                         <div class="item_play_try">
-                            @if(isset($result->group->params->is_try) && $result->group->params->is_try == 1)
-                                <a class="btn btn-primary num-play-try">Chơi thử</a>
+                            @if(isset($result->group->params->is_try))
+
+                                @if($result->group->params->is_try == 1)
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#signin" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
+                                @endif
                             @endif
-                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#signin"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
@@ -395,15 +405,21 @@
                         <div class="item_spin_num_play">
                             Giá {{number_format($result->group->price)}}/lượt chơi
                         </div>
-
                         <div class="item_play_try">
                             @if(isset($result->group->params->is_try))
                                 @if($result->group->params->is_try == 1)
-                                    <a class="btn btn-primary num-play-try">Chơi thử</a>
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#signin" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
                                 @endif
                             @endif
-                            <a class="btn btn-success play k_start" id="start-played"><i class="fas fa-bolt"></i> Chơi ngay</a>
-                            <!-- <a class="btn btn-success continue" style="display: none"><i class="fas fa-bolt"></i> Chơi tiếp</a> -->
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#signin"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
@@ -611,27 +627,38 @@
 
                         <div class="item_play_try">
                             @if(isset($result->group->params->is_try))
-
                                 @if($result->group->params->is_try == 1)
-                                    <a class="btn btn-primary num-play-try">Chơi thử</a>
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#signin" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
                                 @endif
                             @endif
-                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#signin"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
                         <div class="item_play_category thele">
-                            <a  class="col-sm-12 btn btn-success">Thể lệ</a>
+                            <a  class="col-sm-12 btn btn-success button__hover">Thể lệ</a>
                         </div>
                         <div class="item_play_category luotquay">
-                            <a class="btn btn-success col-sm-12" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
+                            <a class="btn btn-success col-sm-12 button__hover" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
                         </div>
 
                         <div class="item_play_category">
-                            <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success">Lịch sử trúng vật phẩm</a>
+                            @if(\App\Library\AuthCustom::check())
+                            <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @else
+                                <a href="#" data-toggle="modal" data-target="#signin" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @endif
                         </div>
                         <div class="item_play_category">
-                            <a  class="col-sm-12 btn btn-success"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
+                            <a  class="col-sm-12 btn btn-success button__hover"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
                         </div>
                     </div>
                 </div>
@@ -747,27 +774,38 @@
 
                         <div class="item_play_try">
                             @if(isset($result->group->params->is_try))
-
                                 @if($result->group->params->is_try == 1)
-                                    <a class="btn btn-primary num-play-try">Chơi thử</a>
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#signin" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
                                 @endif
                             @endif
-                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#signin"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
                         <div class="item_play_category thele">
-                            <a  class="col-sm-12 btn btn-success">Thể lệ</a>
+                            <a  class="col-sm-12 btn btn-success button__hover">Thể lệ</a>
                         </div>
                         <div class="item_play_category luotquay">
-                            <a class="btn btn-success col-sm-12" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
+                            <a class="btn btn-success col-sm-12 button__hover" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
                         </div>
 
                         <div class="item_play_category">
-                            <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success">Lịch sử trúng vật phẩm</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @else
+                                <a href="#" data-toggle="modal" data-target="#signin" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @endif
                         </div>
                         <div class="item_play_category">
-                            <a  class="col-sm-12 btn btn-success"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
+                            <a  class="col-sm-12 btn btn-success button__hover"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
                         </div>
                     </div>
                 </div>
@@ -916,12 +954,19 @@
 
                         <div class="item_play_try">
                             @if(isset($result->group->params->is_try))
-
                                 @if($result->group->params->is_try == 1)
-                                    <a class="btn btn-primary num-play-try">Chơi thử</a>
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary c_num-play-try num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#signin" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
                                 @endif
                             @endif
-                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#signin"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
 
@@ -936,8 +981,11 @@
                         </div>
 
                         <div class="item_play_category">
-                            <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success button__hover">Lịch sử chơi trúng vật phẩm</a>
-                        </div>
+                            @if(\App\Library\AuthCustom::check())
+                                <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @else
+                                <a href="#" data-toggle="modal" data-target="#signin" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @endif                        </div>
                         <div class="item_play_category">
                             <a  class="col-sm-12 btn btn-success button__hover"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
                         </div>
@@ -1060,10 +1108,18 @@
                             @if(isset($result->group->params->is_try))
 
                                 @if($result->group->params->is_try == 1)
-                                    <a class="btn btn-primary num-play-try">Chơi thử</a>
+                                    @if(\App\Library\AuthCustom::check())
+                                    <a class="btn btn-primary c_num-play-try num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#signin" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
                                 @endif
                             @endif
-                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                                @if(\App\Library\AuthCustom::check())
+                                    <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                                @else
+                                    <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#signin"><i class="fas fa-bolt"></i> chơi ngay</a>
+                                @endif
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -1074,8 +1130,11 @@
                             <a class="btn btn-success col-sm-12 button__hover" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
                         </div>
                         <div class="item_play_category">
-                            <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success button__hover">Lịch sử chơi</a>
-                        </div>
+                            @if(\App\Library\AuthCustom::check())
+                                <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @else
+                                <a href="#" data-toggle="modal" data-target="#signin" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @endif                        </div>
                         <div class="item_play_category">
                             <a href="#" class="col-sm-12 btn btn-success button__hover" data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
                         </div>

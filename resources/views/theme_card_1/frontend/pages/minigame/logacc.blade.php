@@ -19,7 +19,7 @@
                         <div class="booking_detail"></div>
                         <div class="wapper-grid profile">
 
-                            <div class="row">
+                            <div class="row" style="padding-top: 16px;width: 100%;margin: 0 auto">
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <select name="type" id="type" class="form-control">
@@ -48,46 +48,38 @@
                                 </script>
                             </div>
                             <form action="{{route('getLogAcc',[$group->id])}}" method="get">
-                                <div class="row" style="margin-top: 8px;margin-bottom: 8px">
+                                <div class="row marginauto" style="padding-top: 16px;width: 100%;margin: 0 auto">
 
                                     <div class="form-row mb-3 col-md-4">
-
-                                        <div class="input-group m-b-10 c-square">
-                                            <div class="input-group date date-picker" data-date-format="dd/mm/yyyy"
-                                                 data-rtl="false">
-                                            <span class="input-group-btn">
-                                            <button class="btn default c-btn-square p-l-10 p-r-10" type="button"><i
-                                                    class="fa fa-calendar"></i></button>
-                                            </span>
-                                                <input type="text" class="form-control c-square c-theme started_at" name="started_at"
-                                                       autocomplete="off" placeholder="Từ ngày"
-                                                       value="">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row mb-3 col-md-4">
-                                        <div class="input-group m-b-10 c-square">
-                                            <div class="input-group date date-picker" data-date-format="dd/mm/yyyy"
-                                                 data-rtl="false">
-                                            <span class="input-group-btn">
-                                            <button class="btn default c-btn-square p-l-10 p-r-10" type="button"><i
-                                                    class="fa fa-calendar"></i></button>
-                                            </span>
-                                                <input type="text" class="form-control c-square c-theme ended_at" name="ended_at"
-                                                       autocomplete="off" placeholder="Đến ngày"
-                                                       value="">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row mb-3 col-md-4">
-                                        <div class="input-group date date-picker">
+                                        <div class="input-group mb-2 c-square">
+                                            <div class="input-group date date-picker" data-date-format="dd/mm/yyyy" data-rtl="false">
                                         <span class="input-group-btn">
-                                        <p class="input-group-btn-p">Tên quà:</p>
+                                              <button class="btn default c-btn-square pl-2 pr-2 input-group-addon" type="button">
+                                                  <i class="fa fa-calendar"></i>
+                                              </button>
                                         </span>
+                                                <input type="text" class="form-control c-square c-theme started_at c__input-group-addon" name="started_at" autocomplete="off" placeholder="Từ ngày" value="">
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                            <input type="text" class="form-control input-group-addon" name="gift_name" autocomplete="off" placeholder="Tên quà" value="{{request('gift_name')}}">
+                                    <div class="form-row mb-3 col-md-4" style="display: flex">
+                                        <div class="input-group mb-2 c-square">
+                                            <div class="input-group date date-picker" data-date-format="dd/mm/yyyy" data-rtl="false">
+                                        <span class="input-group-btn">
+                                            <button class="btn default c-btn-square pl-2 pr-2 input-group-addon" type="button">
+                                                <i class="fa fa-calendar"></i>
+                                            </button>
+                                        </span>
+                                                <input type="text" class="form-control c-square c-theme ended_at c__input-group-addon" name="ended_at" autocomplete="off" placeholder="Đến ngày" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row mb-3 col-md-4">
+                                        <div class="input-group mb-2 c-square">
+                                            <span class="input-group-addon" id="basic-addon1">Tên quà:</span>
+                                            <input type="text" class="form-control input-group-addon c__input-group-addon" name="gift_name" autocomplete="off" placeholder="Tên quà" value="{{request('gift_name')}}">
 
                                         </div>
                                     </div>
@@ -114,16 +106,22 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($result->data as $item)
-                                        <tr>
-                                            <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
-                                            <td>{{$item->id}}</td>
-                                            <td>{{$item->item_acc->title}}</td>
-                                            <td>{{$item->item_acc->position}}</td>
-                                            <td>{{$item->item_ref->children[0]->title??""}}</td>
-                                            <td>{{$item->group->title}}</td>
-                                        </tr>
-                                    @endforeach
+                                        @if(isset($result->data) && count($result->data))
+                                            @foreach($result->data as $item)
+                                                <tr>
+                                                    <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
+                                                    <td>{{$item->id}}</td>
+                                                    <td>{{$item->item_acc->title}}</td>
+                                                    <td>{{$item->item_acc->position}}</td>
+                                                    <td>{{$item->item_ref->children[0]->title??""}}</td>
+                                                    <td>{{$item->group->title}}</td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="5">Chưa phát sinh giao dịch</td>
+                                            </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                                 <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie frontend__panigate">
