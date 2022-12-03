@@ -2124,62 +2124,7 @@ td{
 }
 
 /*footer*/
-.footer{
-    background: #000 !important;
-    padding: 20px 0 20px;
-    /*padding-top: 15px;*/
-}
-.footer-advertise{
-    padding: 15px;
-    border: 1px solid #808080;
-    background-color: #373535;
-    border-radius: 5px;
 
-}
-.footer-advertise p{
-    font-size: 14px;
-    color: #2ecc71;
-}
-.footer-advertise p a{
-    font-size: 14px;
-    color: #2ecc71;
-}
-.footer-service table{
-    width: 100%!important;
-    background: transparent;
-}
-.footer-service table tr {
-    color: #fff;
-}
-.footer-service tr:nth-child(odd) {
-    /*background-color: #ffffff !important;*/
-    border-bottom: 0px solid #eee !important;
-}
-.footer-service td img{
-    width: 50px;
-    height: 50px;
-}
-.footer-service td p{
-    text-align: center;
-    font-size: 14px;
-    margin: auto;
-}
-.footer-service td p span{
-    color: #2ecc71;
-}
-
-.footer-service td p a{
-    color: #f1c40f;
-    text-decoration: none;
-}
-.footer-category p a{
-    font-size: 14px;
-    color: #2ecc71;
-}
-.footer-category p:first-child a{
-    color: #f1c40f;
-    text-transform: uppercase;
-}
 
 
 .nav-bar-category-mobile{
