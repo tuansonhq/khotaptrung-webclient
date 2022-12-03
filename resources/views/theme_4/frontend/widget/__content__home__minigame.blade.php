@@ -116,6 +116,36 @@
                     $(this).remove();
                 }
             });
+            $('body').on('click','#btn-expand-minigame-search',function(){
+
+                var pageCurrrent=$(this).data('page-current');
+                var pageMax=$(this).data('page-max');
+                pageCurrrent=pageCurrrent+1;
+                $('.dis-block').each(function (i,elm) {
+                    if (pageCurrrent == 2){
+                        if (i < 16){
+                            $(this).css('display','block');
+                        }
+                    }else if (pageCurrrent == 3){
+                        if (i < 24){
+                            $(this).css('display','block');
+                        }
+                    }else if (pageCurrrent == 4){
+                        if (i < 32){
+                            $(this).css('display','block');
+                        }
+                    }else if (pageCurrrent == 5){
+                        if (i < 40){
+                            $(this).css('display','block');
+                        }
+                    }
+                });
+
+                $(this).data('page-current',pageCurrrent);
+                if(pageCurrrent==pageMax){
+                    $(this).remove();
+                }
+            });
         });
 
     </script>
