@@ -194,7 +194,7 @@
                                 <a href="#modal-withdraw-items" class="btn btn-success button__hover" data-toggle="modal">
                                     Rút Vip
                                 </a>
-                                <a href="#modal-spin-bonus" class="btn btn-success button__hover"  data-toggle="modal">
+                                <a href="#modal-spin-bonus" data-toggle="modal" class="btn btn-success button__hover">
                                     Lịch sử quay
                                 </a>
                             @else
@@ -652,7 +652,7 @@
 
                         <div class="item_play_category">
                             @if(\App\Library\AuthCustom::check())
-                            <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
                             @else
                                 <a href="#" data-toggle="modal" data-target="#signin" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
                             @endif
@@ -799,7 +799,7 @@
 
                         <div class="item_play_category">
                             @if(\App\Library\AuthCustom::check())
-                                <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
                             @else
                                 <a href="#" data-toggle="modal" data-target="#signin" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
                             @endif
@@ -982,7 +982,7 @@
 
                         <div class="item_play_category">
                             @if(\App\Library\AuthCustom::check())
-                                <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
                             @else
                                 <a href="#" data-toggle="modal" data-target="#signin" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
                             @endif                        </div>
@@ -1131,7 +1131,7 @@
                         </div>
                         <div class="item_play_category">
                             @if(\App\Library\AuthCustom::check())
-                                <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
                             @else
                                 <a href="#" data-toggle="modal" data-target="#signin" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
                             @endif                        </div>
