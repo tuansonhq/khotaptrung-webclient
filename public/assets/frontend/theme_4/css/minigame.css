@@ -6261,16 +6261,16 @@ a:hover .__icon.--path__custom:after {
 .fancybox__backdrop {
     background: var(--fancybox-bg, rgba(24, 24, 27, 0.98));
 }
-.num-play-try{
+.c_num-play-try{
     color: #ffffff!important;
 }
-.num-play-try:hover{
+.c_num-play-try:hover{
     color: #ffffff!important;
 }
-#start-played{
+.c_start-played{
     color: #ffffff!important;
 }
-#start-played:hover{
+.c_start-played:hover{
     color: #ffffff!important;
 }
 
