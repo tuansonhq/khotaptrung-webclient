@@ -166,10 +166,20 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if(isset($result->group->params->is_try) && $result->group->params->is_try == 1)
-                                <a class="btn btn-primary num-play-try">Chơi thử</a>
+                            @if(isset($result->group->params->is_try))
+                                @if($result->group->params->is_try == 1)
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#modal-login" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
+                                @endif
                             @endif
-                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#modal-login"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
@@ -384,11 +394,18 @@
                         <div class="item_play_try">
                             @if(isset($result->group->params->is_try))
                                 @if($result->group->params->is_try == 1)
-                                    <a class="btn btn-primary num-play-try">Chơi thử</a>
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#modal-login" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
                                 @endif
                             @endif
-                            <a class="btn btn-success play k_start" id="start-played"><i class="fas fa-bolt"></i> Chơi ngay</a>
-                            <!-- <a class="btn btn-success continue" style="display: none"><i class="fas fa-bolt"></i> Chơi tiếp</a> -->
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#modal-login"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
@@ -581,12 +598,19 @@
 
                         <div class="item_play_try">
                             @if(isset($result->group->params->is_try))
-
                                 @if($result->group->params->is_try == 1)
-                                    <a class="btn btn-primary num-play-try">Chơi thử</a>
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#modal-login" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
                                 @endif
                             @endif
-                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#modal-login"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -598,7 +622,11 @@
                         </div>
 
                         <div class="item_play_category">
-                            <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success">Lịch sử trúng vật phẩm</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @else
+                                <a href="#" data-toggle="modal" data-target="#modal-login" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @endif
                         </div>
                         <div class="item_play_category">
                             <a  class="col-sm-12 btn btn-success"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
@@ -702,12 +730,19 @@
 
                         <div class="item_play_try">
                             @if(isset($result->group->params->is_try))
-
                                 @if($result->group->params->is_try == 1)
-                                    <a class="btn btn-primary num-play-try">Chơi thử</a>
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#modal-login" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
                                 @endif
                             @endif
-                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#modal-login"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -719,7 +754,11 @@
                         </div>
 
                         <div class="item_play_category">
-                            <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success">Lịch sử trúng vật phẩm</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @else
+                                <a href="#" data-toggle="modal" data-target="#modal-login" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @endif
                         </div>
                         <div class="item_play_category">
                             <a  class="col-sm-12 btn btn-success"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
@@ -857,12 +896,19 @@
 
                         <div class="item_play_try">
                             @if(isset($result->group->params->is_try))
-
                                 @if($result->group->params->is_try == 1)
-                                    <a class="btn btn-primary num-play-try">Chơi thử</a>
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#modal-login" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
                                 @endif
                             @endif
-                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#modal-login"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
 
@@ -877,7 +923,11 @@
                         </div>
 
                         <div class="item_play_category">
-                            <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success button__hover">Lịch sử chơi trúng vật phẩm</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @else
+                                <a href="#" data-toggle="modal" data-target="#modal-login" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @endif
                         </div>
                         <div class="item_play_category">
                             <a  class="col-sm-12 btn btn-success button__hover"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
@@ -984,12 +1034,19 @@
 
                         <div class="item_play_try">
                             @if(isset($result->group->params->is_try))
-
                                 @if($result->group->params->is_try == 1)
-                                    <a class="btn btn-primary num-play-try">Chơi thử</a>
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#modal-login" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
                                 @endif
                             @endif
-                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#modal-login"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -1000,7 +1057,11 @@
                             <a class="btn btn-success col-sm-12 button__hover" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
                         </div>
                         <div class="item_play_category">
-                            <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success button__hover">Lịch sử chơi</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @else
+                                <a href="#" data-toggle="modal" data-target="#modal-login" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @endif
                         </div>
                         <div class="item_play_category">
                             <a href="#" class="col-sm-12 btn btn-success button__hover" data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
