@@ -12,7 +12,7 @@
     @endphp
     <div class="d-flex justify-content-between" style="padding-top: 24px; padding-bottom: 16px">
         <div class="main-title">
-            <h2>Dịch vụ game</h2>
+            <h2>{{ $title??'Dịch vụ game' }}</h2>
         </div>
         @if($flag_slide_service == 0)
         <div class="service-search d-none d-lg-block ">
@@ -24,7 +24,7 @@
         @else
             <div class="service-search d-none d-lg-block " style="font-size: 14px;line-height: 24px;font-weight: 600">
                 <div class="input-group p-box">
-                    <a href="/mua-acc" class="dich__vu__home">Xem thêm</a>
+                    <a href="/dich-vu" class="dich__vu__home">Xem thêm</a>
                 </div>
             </div>
         @endif

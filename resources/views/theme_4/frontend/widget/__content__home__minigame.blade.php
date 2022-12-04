@@ -1,17 +1,32 @@
 @if(isset($data) && count($data) > 0)
+
+    @php
+        $total_key_minigame = 8;
+        $flag_slide_minigame = 0;
+        if(setting('sys_theme_minigame_list') != ''){
+            if (setting('sys_theme_minigame_list') > 1){
+                $total_key_minigame = (int)setting('sys_theme_minigame_list')*4;
+            }elseif (setting('sys_theme_minigame_list') == 1){
+                $flag_slide_minigame = 1;
+            }
+        }
+    @endphp
+
     <div class="d-flex justify-content-between" style="padding-top: 24px">
         <div class="main-title">
             <h1>{{ $title??'Dịch vụ game minigame' }}</h1>
         </div>
+        @if($flag_slide_minigame == 0)
         <div class="service-search d-none d-lg-block">
             <div class="input-group p-box">
                 <input type="text" id="txtSearchMinigame" placeholder="Tìm minigame" value="" class="" width="200px">
                 <span class="icon-search"><i class="fas fa-search"></i></span>
             </div>
         </div>
+        @endif
     </div>
-
-    <div class="entries">
+    @if($flag_slide_minigame == 0)
+    <div class="entries" id="minigame__widget">
         <div class="row fix-border fix-border-dich-vu">
 
             <div class="col-md-12 left-right data-nick-search">
@@ -42,7 +57,7 @@
                         <a href="/minigame-{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title text-left">{{ $item->title   }}</h2>
+                            <h2 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h2>
                             <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
 
                         </a>
@@ -55,7 +70,7 @@
                         <a href="/minigame-{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title text-left">{{ $item->title   }}</h2>
+                            <h2 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h2>
                             <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
 
                         </a>
@@ -68,7 +83,7 @@
                         <a href="/minigame-{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title text-left">{{ $item->title   }}</h2>
+                            <h2 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h2>
                             <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
 
                         </a>
@@ -81,7 +96,7 @@
                         <a href="/minigame-{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title text-left">{{ $item->title   }}</h2>
+                            <h2 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h2>
                             <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
 
                         </a>
@@ -108,7 +123,7 @@
                 var pageCurrrent=$(this).data('page-current');
                 var pageMax=$(this).data('page-max');
                 pageCurrrent=pageCurrrent+1;
-                $('.item-page-'+pageCurrrent).fadeIn( "fast", function() {
+                $('#minigame__widget .item-page-'+pageCurrrent).fadeIn( "fast", function() {
                     // Animation complete
                 });
                 $(this).data('page-current',pageCurrrent);
@@ -149,4 +164,23 @@
         });
 
     </script>
+    @else
+        <div class="entries" style="margin-bottom: 0">
+            <div class="slick-slider">
+                @foreach($data as $item)
+
+                    <div class="item image">
+                        <a href="/minigame-{{ $item->slug}}">
+                            <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
+                                 alt="{{ $item->slug   }}" class="entries_item-img">
+                            <h2 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h2>
+                            <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+
+                        </a>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    @endif
 @endif
