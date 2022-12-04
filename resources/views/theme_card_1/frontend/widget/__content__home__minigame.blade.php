@@ -3,15 +3,28 @@
         <div class="main-title">
             <h2>{{ $title??'Dịch vụ game minigame' }}</h2>
         </div>
+        @php
+            $total_key_minigame = 8;
+            $flag_slide_minigame = 0;
+            if(setting('sys_theme_minigame_list') != ''){
+                if (setting('sys_theme_minigame_list') > 1){
+                    $total_key_minigame = (int)setting('sys_theme_minigame_list')*4;
+                }elseif (setting('sys_theme_minigame_list') == 1){
+                    $flag_slide_minigame = 1;
+                }
+            }
+        @endphp
+        @if($flag_slide_minigame == 0)
         <div class="service-search d-none d-lg-block">
             <div class="input-group p-box">
                 <input type="text" id="txtSearchMinigame" placeholder="Tìm minigame" value="" class="" width="200px">
                 <span class="icon-search"><i class="fas fa-search"></i></span>
             </div>
         </div>
+        @endif
     </div>
-
-    <div class="entries">
+    @if($flag_slide_minigame == 0)
+    <div class="entries" id="minigame">
         <div class="row fix-border fix-border-dich-vu">
 
             <div class="col-md-12 left-right data-nick-search">
@@ -29,8 +42,8 @@
                         <a href="/minigame-{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title text-left">{{ $item->title   }}</h2>
-                            <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+                            <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
+                            <p class="text-left" style="margin-bottom: 12px;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
 
                         </a>
                     </div>
@@ -42,7 +55,7 @@
                         <a href="/minigame-{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title text-left">{{ $item->title   }}</h2>
+                            <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
                             <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
 
                         </a>
@@ -55,8 +68,8 @@
                         <a href="/minigame-{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title text-left">{{ $item->title   }}</h2>
-                            <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+                            <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
+                            <p class="text-left" style="margin-bottom: 12px;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
 
                         </a>
                     </div>
@@ -68,8 +81,8 @@
                         <a href="/minigame-{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title text-left">{{ $item->title   }}</h2>
-                            <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+                            <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
+                            <p class="text-left" style="margin-bottom: 12px;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
 
                         </a>
                     </div>
@@ -81,8 +94,8 @@
                         <a href="/minigame-{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title text-left">{{ $item->title   }}</h2>
-                            <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+                            <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
+                            <p class="text-left" style="margin-bottom: 12px;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
 
                         </a>
                     </div>
@@ -185,6 +198,19 @@
                 //$(this).val() // get the current value of the input field.
             });
 
+            $('body').on('click','#btn-expand-minigame',function(){
+                var pageCurrrent=$(this).data('page-current');
+                var pageMax=$(this).data('page-max');
+                pageCurrrent=pageCurrrent+1;
+                $('#minigame .item-page-'+pageCurrrent).fadeIn( "fast", function() {
+                    // Animation complete
+                });
+                $(this).data('page-current',pageCurrrent);
+                if(pageCurrrent==pageMax){
+                    $(this).remove();
+                }
+            });
+
             $('body').on('click','#btn-expand-minigame-search',function(){
 
                 var pageCurrrent=$(this).data('page-current');
@@ -246,4 +272,74 @@
             }
         });
     </script>
+    @else
+        <div class="entries" style="margin-bottom: 0">
+
+            <div class="swiper swiper-container swiper-banner swiper-list-item-minigame overflow-hidden" style="background: none;box-shadow: none">
+                <div class=" swiper-wrapper">
+                    @foreach($data as $item)
+
+                        <div class=" image swiper-slide">
+                            <a href="/minigame-{{ $item->slug}}">
+                                <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
+                                     alt="{{ $item->slug   }}" class="entries_item-img">
+                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
+                                <p class="text-left" style="margin-bottom: 12px;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+
+                            </a>
+
+                        </div>
+
+                    @endforeach
+
+                </div>
+
+                <div class="navigation swiper-list-prev"></div>
+                <div class="navigation swiper-list-next"></div>
+
+            </div>
+        </div>
+        <script>
+            let swiper_list_item_minigame = new Swiper('.swiper-list-item-minigame', {
+                autoplay: false,
+                updateOnImagesReady: true,
+                watchSlidesVisibility: false,
+                lazyLoadingInPrevNext: false,
+                lazyLoadingOnTransitionStart: false,
+                loop: false,
+                centeredSlides: false,
+                slidesPerView: 5,
+                speed: 800,
+                spaceBetween: 16,
+                freeMode: true,
+                touchMove: true,
+                freeModeSticky:true,
+                grabCursor: true,
+                observer: true,
+                observeParents: true,
+                keyboard: {
+                    enabled: true,
+                },
+                breakpoints: {
+
+                    992: {
+                        slidesPerView: 5,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                    },
+
+                    480: {
+                        slidesPerView: 1.8,
+                        spaceBetween: 6,
+                    }
+                },
+                navigation: {
+                    nextEl: '.swiper-list-item-minigame .navigation.swiper-list-next',
+                    prevEl: '.swiper-list-item-minigame .navigation.swiper-list-prev',
+                },
+            });
+        </script>
+    @endif
 @endif
+
