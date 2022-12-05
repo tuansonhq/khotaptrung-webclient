@@ -29,47 +29,48 @@
 
   </div>
 </div>
+<script>
+    new Swiper('.swiper-list-item', {
+        autoplay: false,
+        updateOnImagesReady: true,
+        watchSlidesVisibility: false,
+        lazyLoadingInPrevNext: false,
+        lazyLoadingOnTransitionStart: false,
+        loop: false,
+        centeredSlides: false,
+        slidesPerView: 5,
+        speed: 800,
+        spaceBetween: 16,
+        freeMode: true,
+        touchMove: true,
+        freeModeSticky:true,
+        grabCursor: true,
+        observer: true,
+        observeParents: true,
+        keyboard: {
+            enabled: true,
+        },
+        breakpoints: {
+
+            992: {
+                slidesPerView: 5,
+            },
+            768: {
+                slidesPerView: 3,
+            },
+
+            480: {
+                slidesPerView: 1.8,
+                spaceBetween: 6,
+            }
+        },
+        navigation: {
+            nextEl: ".swiper-list-acc .swiper-list-next",
+            prevEl: ".swiper-list-acc .swiper-list-prev",
+        },
+    });
+</script>
 @endif
 @section('scripts')
-    <script>
-        new Swiper('.swiper-list-item', {
-            autoplay: false,
-            updateOnImagesReady: true,
-            watchSlidesVisibility: false,
-            lazyLoadingInPrevNext: false,
-            lazyLoadingOnTransitionStart: false,
-            loop: false,
-            centeredSlides: false,
-            slidesPerView: 5,
-            speed: 800,
-            spaceBetween: 16,
-            freeMode: true,
-            touchMove: true,
-            freeModeSticky:true,
-            grabCursor: true,
-            observer: true,
-            observeParents: true,
-            keyboard: {
-                enabled: true,
-            },
-            breakpoints: {
 
-                992: {
-                    slidesPerView: 5,
-                },
-                768: {
-                    slidesPerView: 3,
-                },
-
-                480: {
-                    slidesPerView: 1.8,
-                    spaceBetween: 6,
-                }
-            },
-            navigation: {
-                nextEl: ".swiper-list-acc .swiper-list-next",
-                prevEl: ".swiper-list-acc .swiper-list-prev",
-            },
-        });
-    </script>
 @endsection
