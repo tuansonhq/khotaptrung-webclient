@@ -310,7 +310,7 @@
                                     @elseif($slug == 'ban-nick-ngoc-rong' || $slug == 'nick-ngoc-rong-online')
                                         @foreach($auto_properties as $auto_propertie)
                                             @if($auto_propertie->key == 'CAPTURES')
-                            
+
                                             @elseif($auto_propertie->key == 'SERVER')
                                                 <div class="input-group">
                                                     <label class="form-label">
@@ -716,15 +716,12 @@
                 <div class="c-mb-16">
                     <div class="card overflow-hidden detailViewBlock">
                         <div class="card-body c-px-16">
-                            @if(substr($data->custom->content, 1200))
-                                <div class="content-desc hide detailViewBlockContent">
-                                    {!! $data->custom->content !!}
-                                </div>
-                            @else
-                                <div class="content-desc detailViewBlockContent">
-                                    {!! $data->custom->content !!}
-                                </div>
-                            @endif
+                            <div class="content-desc hide detailViewBlockContent">
+                                {!! $data->custom->content !!}
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <span class="see-more" data-content="Xem thêm nội dung"></span>
                         </div>
 
                         <div class="card-footer text-center">
@@ -733,21 +730,22 @@
                     </div>
                 </div>
             @else
+                @if($data->content)
                 <div class="c-mb-16 c-mt-16">
                     <div class="card overflow-hidden detailViewBlock">
                         <div class="card-body c-px-16">
-                            @if(substr($data->content, 1200))
-                                <div class="content-desc hide detailViewBlockContent">
-                                    {!! $data->content !!}
-                                </div>
-                            @else
-                                <div class="content-desc detailViewBlockContent">
-                                    {!! $data->content !!}
-                                </div>
-                            @endif
+                            <div class="content-desc hide detailViewBlockContent">
+
+                                {!! $data->content !!}
+                            </div>
                         </div>
+                        <div class="card-footer text-center">
+                            <span class="see-more" data-content="Xem thêm nội dung"></span>
+                        </div>
+
                     </div>
                 </div>
+                @endif
             @endif
 
         {{--            Dịch vụ khác   --}}
