@@ -1,19 +1,40 @@
 @if(isset($data) && count($data) > 0)
     <!--popup work start here-->
+    @php
+        $total_key_nick = 8;
+        $flag_slide_nick = 0;
+        if(setting('sys_theme_nick_list') != ''){
+            if (setting('sys_theme_nick_list') > 1){
+                $total_key_nick = (int)setting('sys_theme_nick_list')*4;
+            }elseif (setting('sys_theme_nick_list') == 1){
+                $flag_slide_nick = 1;
+            }
+        }
+    @endphp
     <div class="d-flex justify-content-between" style="padding-top: 24px; padding-bottom: 16px">
         <div class="main-title">
             <h2>Danh mục game</h2>
         </div>
+        @if($flag_slide_nick == 0)
         <div class="service-search d-none d-lg-block ">
             <div class="input-group p-box">
                 <input type="text" id="txtSearchNick" placeholder="Tìm danh mục" value="" class="" width="200px">
                 <span class="icon-search"><i class="fas fa-search"></i></span>
             </div>
         </div>
+        @else
+            <div class="service-search d-none d-lg-block " style="font-size: 14px;line-height: 24px;font-weight: 600">
+                <div class="input-group p-box">
+                    <a href="/mua-acc" class="dich__vu__home">Xem thêm</a>
+                </div>
+            </div>
+        @endif
     </div>
 
+    @if($flag_slide_nick == 0)
     <div class="entries">
         <div class="row fix-border fix-border-nick">
+
             <div class="col-md-12 left-right data-nick-search">
                 <span style="color: rgb(238, 70, 35);">Danh mục cần tìm không tồn tại.</span>
             </div>
@@ -29,7 +50,7 @@
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                             <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}"
                                  alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="list-item-img">
-                            <h3 class="text-title text-left">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h3>
+                            <h3 class="text-title text-left text-limit limit-1">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h3>
 
                             @if(isset($item->items_count))
                                 @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
@@ -51,7 +72,7 @@
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                             <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}"
                                  alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="list-item-img">
-                            <h3 class="text-title text-left">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h3>
+                            <h3 class="text-title text-left text-limit limit-1">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h3>
 
                             @if(isset($item->items_count))
                                 @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
@@ -73,7 +94,7 @@
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                             <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}"
                                  alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="list-item-img">
-                            <h3 class="text-title text-left">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h3>
+                            <h3 class="text-title text-left text-limit limit-1">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h3>
 
                             @if(isset($item->items_count))
                                 @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
@@ -95,7 +116,7 @@
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                             <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}"
                                  alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="list-item-img">
-                            <h3 class="text-title text-left">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h3>
+                            <h3 class="text-title text-left text-limit limit-1">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h3>
 
                             @if(isset($item->items_count))
                                 @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
@@ -117,7 +138,7 @@
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                             <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}"
                                  alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="list-item-img">
-                            <h3 class="text-title text-left">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h3>
+                            <h3 class="text-title text-left text-limit limit-1">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h3>
 
                             @if(isset($item->items_count))
                                 @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
@@ -253,4 +274,88 @@
         </div>
 
     </div>
+    @else
+        <div class="entries" style="margin-bottom: 0">
+
+            <div class="swiper swiper-container swiper-list-item swiper-service-related overflow-hidden" style="background: none;box-shadow: none">
+                <div class=" swiper-wrapper">
+                    @foreach($data as $item)
+
+                        <div class=" image swiper-slide">
+                            <a class="swiper-slide__a" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
+                                <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}"
+                                     alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="list-item-img">
+                                <div>
+                                    <h3 class="text-title text-left text-limit limit-1">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h3>
+
+                                    @if(isset($item->items_count))
+                                        @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
+                                            <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }} </p>
+                                        @else
+                                            <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ $item->items_count }} </p>
+                                        @endif
+
+                                    @else
+                                        <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: 0 </p>
+                                    @endif
+                                </div>
+                            </a>
+
+                        </div>
+
+                    @endforeach
+
+                </div>
+
+                <div class="navigation swiper-list-prev"></div>
+                <div class="navigation swiper-list-next"></div>
+
+            </div>
+        </div>
+
+        <script>
+            let swiper_list_item = new Swiper('.swiper-list-item', {
+                autoplay: false,
+                updateOnImagesReady: true,
+                watchSlidesVisibility: false,
+                lazyLoadingInPrevNext: false,
+                lazyLoadingOnTransitionStart: false,
+                loop: false,
+                centeredSlides: false,
+                slidesPerView: 5,
+                speed: 800,
+                spaceBetween: 16,
+                freeMode: true,
+                touchMove: true,
+                freeModeSticky:true,
+                grabCursor: true,
+                observer: true,
+                observeParents: true,
+                keyboard: {
+                    enabled: true,
+                },
+                breakpoints: {
+
+                    992: {
+                        slidesPerView: 5,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                    },
+
+                    480: {
+                        slidesPerView: 1.8,
+                        spaceBetween: 6,
+                    }
+                },
+                navigation: {
+                    nextEl: '.swiper-list-item .navigation.swiper-list-next',
+                    prevEl: '.swiper-list-item .navigation.swiper-list-prev',
+                },
+            });
+        </script>
+    @endif
 @endif
+@section('scripts')
+
+@endsection

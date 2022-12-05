@@ -1,16 +1,35 @@
 @if(isset($data) && count($data) > 0)
-
+    @php
+        $total_key_service = 8;
+        $flag_slide_service = 0;
+        if(setting('sys_theme_service_list') != ''){
+            if (setting('sys_theme_service_list') > 1){
+                $total_key_service = (int)setting('sys_theme_service_list')*4;
+            }elseif (setting('sys_theme_service_list') == 1){
+                $flag_slide_service = 1;
+            }
+        }
+    @endphp
     <div class="d-flex justify-content-between" style="padding-top: 24px; padding-bottom: 16px">
         <div class="main-title">
-            <h2>Dịch vụ game</h2>
+            <h2>{{ $title??'Dịch vụ game' }}</h2>
         </div>
+        @if($flag_slide_service == 0)
         <div class="service-search d-none d-lg-block ">
             <div class="input-group p-box">
                 <input type="text" id="txtSearch" placeholder="Tìm dịch vụ" value="" class="" width="200px">
                 <span class="icon-search"><i class="fas fa-search"></i></span>
             </div>
         </div>
+        @else
+            <div class="service-search d-none d-lg-block " style="font-size: 14px;line-height: 24px;font-weight: 600">
+                <div class="input-group p-box">
+                    <a href="/dich-vu" class="dich__vu__home">Xem thêm</a>
+                </div>
+            </div>
+        @endif
     </div>
+    @if($flag_slide_service == 0)
     <div class="entries">
         <div class="row fix-border fix-border-dich-vu">
 
@@ -29,7 +48,31 @@
                         <a href="/dich-vu/{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="list-item-img">
-                            <h3 class="text-title">{{ $item->title   }}</h3>
+                            <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
+                            @if(isset($item->total_order))
+                                @if($item->params_plus)
+                                    @foreach($item->params_plus as $key => $val)
+                                        @if($key == 'fk_buy')
+                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
+                                        @endif
+                                    @endforeach
+
+                                @else
+                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
+                                @endif
+
+                            @else
+                                @if($item->params_plus)
+                                    @foreach($item->params_plus as $key => $val)
+                                        @if($key == 'fk_buy')
+                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: 0</p>
+                                @endif
+
+                            @endif
                         </a>
                     </div>
                 @elseif($key < 16)
@@ -40,7 +83,31 @@
                         <a href="/dich-vu/{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="list-item-img">
-                            <h3 class="text-title">{{ $item->title   }}</h3>
+                            <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
+                            @if(isset($item->total_order))
+                                @if($item->params_plus)
+                                    @foreach($item->params_plus as $key => $val)
+                                        @if($key == 'fk_buy')
+                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
+                                        @endif
+                                    @endforeach
+
+                                @else
+                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
+                                @endif
+
+                            @else
+                                @if($item->params_plus)
+                                    @foreach($item->params_plus as $key => $val)
+                                        @if($key == 'fk_buy')
+                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: 0</p>
+                                @endif
+
+                            @endif
                         </a>
                     </div>
                 @elseif($key < 24)
@@ -51,7 +118,31 @@
                         <a href="/dich-vu/{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="list-item-img">
-                            <h3 class="text-title">{{ $item->title   }}</h3>
+                            <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
+                            @if(isset($item->total_order))
+                                @if($item->params_plus)
+                                    @foreach($item->params_plus as $key => $val)
+                                        @if($key == 'fk_buy')
+                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
+                                        @endif
+                                    @endforeach
+
+                                @else
+                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
+                                @endif
+
+                            @else
+                                @if($item->params_plus)
+                                    @foreach($item->params_plus as $key => $val)
+                                        @if($key == 'fk_buy')
+                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: 0</p>
+                                @endif
+
+                            @endif
                         </a>
                     </div>
                 @elseif($key < 32)
@@ -62,7 +153,31 @@
                         <a href="/dich-vu/{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="list-item-img">
-                            <h3 class="text-title">{{ $item->title   }}</h3>
+                            <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
+                            @if(isset($item->total_order))
+                                @if($item->params_plus)
+                                    @foreach($item->params_plus as $key => $val)
+                                        @if($key == 'fk_buy')
+                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
+                                        @endif
+                                    @endforeach
+
+                                @else
+                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
+                                @endif
+
+                            @else
+                                @if($item->params_plus)
+                                    @foreach($item->params_plus as $key => $val)
+                                        @if($key == 'fk_buy')
+                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: 0</p>
+                                @endif
+
+                            @endif
                         </a>
                     </div>
                 @elseif($key < 40)
@@ -73,7 +188,31 @@
                         <a href="/dich-vu/{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="list-item-img">
-                            <h3 class="text-title">{{ $item->title   }}</h3>
+                            <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
+                            @if(isset($item->total_order))
+                                @if($item->params_plus)
+                                    @foreach($item->params_plus as $key => $val)
+                                        @if($key == 'fk_buy')
+                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
+                                        @endif
+                                    @endforeach
+
+                                @else
+                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
+                                @endif
+
+                            @else
+                                @if($item->params_plus)
+                                    @foreach($item->params_plus as $key => $val)
+                                        @if($key == 'fk_buy')
+                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: 0</p>
+                                @endif
+
+                            @endif
                         </a>
                     </div>
                 @endif
@@ -195,5 +334,96 @@
         });
 
     </script>
+    @else
+        <div class="entries" style="margin-bottom: 0">
+
+            <div class="swiper swiper-container swiper-banner swiper-list-item-dich-vu overflow-hidden" style="background: none;box-shadow: none">
+                <div class=" swiper-wrapper">
+                    @foreach($data as $item)
+
+                        <div class=" image swiper-slide">
+                            <a href="/dich-vu/{{ $item->slug}}">
+                                <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
+                                     alt="{{ $item->slug   }}" class="list-item-img">
+                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
+                                @if(isset($item->total_order))
+                                    @if($item->params_plus)
+                                        @foreach($item->params_plus as $key => $val)
+                                            @if($key == 'fk_buy')
+                                                <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
+                                            @endif
+                                        @endforeach
+
+                                    @else
+                                        <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
+                                    @endif
+
+                                @else
+                                    @if($item->params_plus)
+                                        @foreach($item->params_plus as $key => $val)
+                                            @if($key == 'fk_buy')
+                                                <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: 0</p>
+                                    @endif
+
+                                @endif
+                            </a>
+
+                        </div>
+
+                    @endforeach
+
+                </div>
+
+                <div class="navigation swiper-list-prev"></div>
+                <div class="navigation swiper-list-next"></div>
+
+            </div>
+        </div>
+        <script>
+            let swiper_list_item_dich_vu = new Swiper('.swiper-list-item-dich-vu', {
+                autoplay: false,
+                updateOnImagesReady: true,
+                watchSlidesVisibility: false,
+                lazyLoadingInPrevNext: false,
+                lazyLoadingOnTransitionStart: false,
+                loop: false,
+                centeredSlides: false,
+                slidesPerView: 5,
+                speed: 800,
+                spaceBetween: 16,
+                freeMode: true,
+                touchMove: true,
+                freeModeSticky:true,
+                grabCursor: true,
+                observer: true,
+                observeParents: true,
+                keyboard: {
+                    enabled: true,
+                },
+                breakpoints: {
+
+                    992: {
+                        slidesPerView: 5,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                    },
+
+                    480: {
+                        slidesPerView: 1.8,
+                        spaceBetween: 6,
+                    }
+                },
+                navigation: {
+                    nextEl: '.swiper-banner .navigation.swiper-list-next',
+                    prevEl: '.swiper-banner .navigation.swiper-list-prev',
+                },
+            });
+        </script>
+    @endif
 @endif
 

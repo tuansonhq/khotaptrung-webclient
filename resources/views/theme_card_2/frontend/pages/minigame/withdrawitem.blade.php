@@ -3,7 +3,7 @@
     <meta name="robots" content="noindex,nofollow" />
 @endsection
 @section('content')
-
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/profile.css">
     @if ($message = Session::get('success'))
         <div class="container">
             <div class="col-md-12">
@@ -27,15 +27,14 @@
         </div>
     @endif
 
-    <section>
+    <div id="profile" style="margin-top: 15px;">
         <div class="container">
-
-            <div class="row user-manager">
-                @include('frontend.widget.__menu_profile')
-
-                <div class="col-12 col-md-8 col-lg-9 site-form " style="min-height: 212.568px;">
-
-                    <div class="menu-content">
+            <div class="row">
+                <div class="col-xl-3 col-md-12 col-sm-12 col-12">
+                    @include('frontend.layouts.includes.menu_profile')
+                </div>
+                <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                    <div class="content-profile" style="min-height: 468px;">
                         <div class="title">
                             <h3>RÚT VẬT PHẨM GAME {{config('constants.game_type.'.$game_type)}}</h3>
                         </div>
@@ -172,71 +171,71 @@
 
                             <table id="charge_recent" class="table table-striped table-custom-res">
                                 <thead>
-                                    <tr>
-                                        <th>Thời gian</th>
-                                        <th>ID</th>
-                                        <th>Số vật phẩm rút</th>
-                                        <th>Ghi chú</th>
-                                        <th>Thông báo</th>
-                                        <th>Trạng thái</th>
-                                        <!-- <th>Thao tác</th> -->
-                                    </tr>
+                                <tr>
+                                    <th>Thời gian</th>
+                                    <th>ID</th>
+                                    <th>Số vật phẩm rút</th>
+                                    <th>Ghi chú</th>
+                                    <th>Thông báo</th>
+                                    <th>Trạng thái</th>
+                                    <!-- <th>Thao tác</th> -->
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    @if($paginatedItems)
-                                        @if(isset($result->withdraw_history->data) && count($result->withdraw_history->data))
+                                @if($paginatedItems)
+                                    @if(isset($result->withdraw_history->data) && count($result->withdraw_history->data))
 
-                                            @foreach($result->withdraw_history->data as $item)
-                                                <tr>
-                                                    <td>{{date('d/m/Y H:i:s', strtotime($item->created_at))}}</td>
-                                                    <td>{{$item->id}}</td>
-                                                    <td>{{$item->price}}</td>
-                                                    <td>{{$item->description}}</td>
-                                                    <td>
-                                                        @if ($item->content != "")
-                                                            <button type="submit" data-msg="{{$item->content}}" class="btn btn-xs c-btn-square m-b-10 btn-success proccess_toggle" rel="{{$item->id}}" >Tiến độ</button>
-                                                        @endif
-                                                    </td>
-
-                                                    <td>
-                                                        @if($item->payment_type == 13 || $item->payment_type == 12 || $item->payment_type == 11 || $item->payment_type == 14)
-                                                            @if ($item->status == 0)
-                                                                <a class="btn btn-sm c-btn-square m-b-10 btn-danger">Giao dịch thất bại</a>
-                                                            @elseif($item->status == 1 )
-                                                                <a class="btn btn-sm c-btn-square m-b-10 btn-warning">Chờ xử lý</a>
-                                                            @elseif($item->status == 2 )
-                                                                <a class="btn btn-sm c-btn-square m-b-10 btn-warning">Chờ xử lý</a>
-                                                            @elseif($item->status == 6 )
-                                                                <a class="btn btn-sm c-btn-square m-b-10 btn-warning">Chờ xử lý</a>
-                                                            @elseif($item->status == 4 )
-                                                                <a class="btn btn-sm c-btn-square m-b-10 btn-success">Hoàn thành</a>
-                                                            @endif
-                                                        @else
-                                                            @if ($item->status == 0)
-                                                                <a class="btn btn-sm c-btn-square m-b-10 btn-warning">{{config('constants.withdraw_status.0')}}</a>
-                                                            @elseif($item->status == 1 )
-                                                                <a class="btn btn-sm c-btn-square m-b-10 btn-success">{{config('constants.withdraw_status.1')}}</a>
-                                                            @elseif($item->status == 2 )
-                                                                <a class="btn btn-sm c-btn-square m-b-10 btn-danger">{{config('constants.withdraw_status.2')}}</a>
-                                                            @elseif($item->status == 3 )
-                                                                <a class="btn btn-sm c-btn-square m-b-10 btn-danger">{{config('constants.withdraw_status.3')}}</a>
-                                                            @endif
-                                                        @endif
-
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @else
+                                        @foreach($result->withdraw_history->data as $item)
                                             <tr>
-                                                <td colspan="6">Hiện tại chưa phát sinh giao dịch</td>
-                                            </tr>
+                                                <td>{{date('d/m/Y H:i:s', strtotime($item->created_at))}}</td>
+                                                <td>{{$item->id}}</td>
+                                                <td>{{$item->price}}</td>
+                                                <td>{{$item->description}}</td>
+                                                <td>
+                                                    @if ($item->content != "")
+                                                        <button type="submit" data-msg="{{$item->content}}" class="btn btn-xs c-btn-square m-b-10 btn-success proccess_toggle" rel="{{$item->id}}" >Tiến độ</button>
+                                                    @endif
+                                                </td>
 
-                                        @endif
+                                                <td>
+                                                    @if($item->payment_type == 13 || $item->payment_type == 12 || $item->payment_type == 11 || $item->payment_type == 14)
+                                                        @if ($item->status == 0)
+                                                            <a class="btn btn-sm c-btn-square m-b-10 btn-danger">Giao dịch thất bại</a>
+                                                        @elseif($item->status == 1 )
+                                                            <a class="btn btn-sm c-btn-square m-b-10 btn-warning">Chờ xử lý</a>
+                                                        @elseif($item->status == 2 )
+                                                            <a class="btn btn-sm c-btn-square m-b-10 btn-warning">Chờ xử lý</a>
+                                                        @elseif($item->status == 6 )
+                                                            <a class="btn btn-sm c-btn-square m-b-10 btn-warning">Chờ xử lý</a>
+                                                        @elseif($item->status == 4 )
+                                                            <a class="btn btn-sm c-btn-square m-b-10 btn-success">Hoàn thành</a>
+                                                        @endif
+                                                    @else
+                                                        @if ($item->status == 0)
+                                                            <a class="btn btn-sm c-btn-square m-b-10 btn-warning">{{config('constants.withdraw_status.0')}}</a>
+                                                        @elseif($item->status == 1 )
+                                                            <a class="btn btn-sm c-btn-square m-b-10 btn-success">{{config('constants.withdraw_status.1')}}</a>
+                                                        @elseif($item->status == 2 )
+                                                            <a class="btn btn-sm c-btn-square m-b-10 btn-danger">{{config('constants.withdraw_status.2')}}</a>
+                                                        @elseif($item->status == 3 )
+                                                            <a class="btn btn-sm c-btn-square m-b-10 btn-danger">{{config('constants.withdraw_status.3')}}</a>
+                                                        @endif
+                                                    @endif
+
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     @else
                                         <tr>
                                             <td colspan="6">Hiện tại chưa phát sinh giao dịch</td>
                                         </tr>
+
                                     @endif
+                                @else
+                                    <tr>
+                                        <td colspan="6">Hiện tại chưa phát sinh giao dịch</td>
+                                    </tr>
+                                @endif
                                 </tbody>
                             </table>
 
@@ -247,11 +246,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
-        </div><!-- /.container -->
-    </section>
+        </div>
+    </div>
 
 <div class="modal fade" id="proccessModal">
     <div class="modal-dialog">
@@ -278,16 +275,5 @@
             }
             $('#proccessModal').modal('show');
         })
-        // $.ajax({
-        //     url: '/withdrawitemajax-{{$game_type}}',
-        //     datatype:'json',
-        //     data:{
-        //         _token: $('meta[name="csrf-token"]').attr('content')
-        //     },
-        //     type: 'post',
-        //     success: function (data) {
-        //         $('.account_sidebar_content').html(data.msg);
-        //     }
-        // })
 </script>
 @endsection

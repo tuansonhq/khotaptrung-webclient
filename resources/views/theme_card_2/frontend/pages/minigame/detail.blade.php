@@ -16,7 +16,7 @@
             <div class="modal-content">
                 <div class="modal-header" style="padding-left: 16px;padding-right: 16px">
                     <h5 class="modal-title">Rút vật phẩm</h5>
-                    <button type="button" class="close" data-dismiss="modal">
+                    <button type="button" class="close" data-dismiss="modal" style="padding-top: 24px;padding-right: 16px">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -68,7 +68,7 @@
                                             </div>
                                         </div>
                                         <div class="form-message"></div>
-                                        <button class="btn btn-primary btn_rutvp c-theme-btn btn-block mt_12" type="submit">Thực hiện</button>
+                                        <button class="btn button__hover btn_rutvp c-theme-btn btn-block mt_12" type="submit">Thực hiện</button>
                                     </form>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
             <div class="modal-content">
                 <div class="modal-header" style="padding-left: 16px;padding-right: 16px">
                     <h5 class="modal-title">Lịch sử quay thưởng</h5>
-                    <button type="button" class="close" data-dismiss="modal">
+                    <button type="button" class="close" data-dismiss="modal" style="padding-top: 24px;padding-right: 16px">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -112,7 +112,7 @@
                 @case('rubywheel')
 
                 <div class="item_play_title">
-                    <h1 style="color: #2F6A7C">{{$result->group->title}}</h1>
+                    <h1>{{$result->group->title}}</h1>
                     <div class="item_play_line"></div>
                 </div>
                 <div class="item_play_online_out">
@@ -125,7 +125,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <marquee style="padding: 10px 0">{!!$currentPlayList!!}</marquee>
                         <div class="item_spin">
-                            <a class="ani-zoom c_start-played" id="start-played">
+                            <a class="ani-zoom" id="start-played">
                                 <img src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}">
                             </a>
                             <img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" alt="{{$result->group->title}}" id="rotate-play">
@@ -169,39 +169,39 @@
 
                                 @if($result->group->params->is_try == 1)
                                     @if(\App\Library\AuthCustom::check())
-                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                        <a class="btn num-play-try c_num-play-try" style="color: #ffffff">Chơi thử</a>
                                     @else
-                                        <a data-toggle="modal" data-target="#signin" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                        <a data-toggle="modal" data-target="#modalLogin" class="btn c_num-play-try" style="color: #ffffff">Chơi thử</a>
                                     @endif
                                 @endif
                             @endif
                             @if(\App\Library\AuthCustom::check())
-                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                                <a class="btn   k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
                             @else
-                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#signin"><i class="fas fa-bolt"></i> chơi ngay</a>
+                                <a class="btn   k_start c_start-played" data-toggle="modal" data-target="#modalLogin"><i class="fas fa-bolt"></i> chơi ngay</a>
                             @endif
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="item_spin_category">
-                            <a href="#" class="btn btn-success thele button__hover" data-toggle="modal" data-target="#theleModal">
+                            <a href="#" class="btn thele button__hover" data-toggle="modal" data-target="#theleModal">
                                 Thể lệ
                             </a>
-                            <a href="#" class="btn btn-success button__hover" data-toggle="modal" data-target="#topquaythuongModal">
+                            <a href="#" class="btn button__hover" data-toggle="modal" data-target="#topquaythuongModal">
                                 Top quay thưởng
                             </a>
                             @if(\App\Library\AuthCustom::check())
-                                <a href="#modal-withdraw-items" class="btn btn-success button__hover" data-toggle="modal">
+                                <a href="#modal-withdraw-items" class="btn   button__hover" data-toggle="modal">
                                     Rút Vip
                                 </a>
-                                <a href="#modal-spin-bonus" data-toggle="modal" class="btn btn-success button__hover">
+                                <a href="#modal-spin-bonus" data-toggle="modal" class="btn   button__hover">
                                     Lịch sử quay
                                 </a>
                             @else
-                                <a href="/login" class="btn btn-success button__hover" data-toggle="modal" data-target="#signin">
+                                <a href="/login" class="btn   button__hover" data-toggle="modal" data-target="#modalLogin">
                                     Rút Vip
                                 </a>
-                                <a href="/login" class="btn btn-success button__hover" data-toggle="modal" data-target="#signin">
+                                <a href="/login" class="btn   button__hover" data-toggle="modal" data-target="#modalLogin">
                                     Lịch sử quay
                                 </a>
                             @endif
@@ -287,7 +287,7 @@
                 </div>
                 @if($groups_other!=null)
                     <div class="item_play_title">
-                        <p style="color: #2F6A7C">Các vòng minigame khác</p>
+                        <p>Các vòng minigame khác</p>
                         <div class="item_play_line"></div>
 
                     </div>
@@ -307,11 +307,11 @@
                                                         </a>
                                                     </div>
                                                     <div class="game-list-title" style="padding-left: 8px;padding-right: 8px">
-                                                        <a class="account_category text-limit limit-1" href="/dich-vu/{{ $item->slug}}">
+                                                        <a class="account_category text-limit limit-1" href="/minigame/{{ $item->slug}}">
                                                             <h3 style="padding-bottom: 0"><strong>{{ $item->title }}</strong></h3>
                                                         </a>
                                                     </div>
-                                                    <div class="game-list-description">
+                                                    <div class="game-list-description" style="padding-bottom: 8px">
                                                         <div class="countime"></div>
                                                         <span class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</span>
                                                     </div>
@@ -342,7 +342,7 @@
                 @case('flip')
 
                 <div class="item_play_title">
-                    <p style="color: #2F6A7C">{{$result->group->title}}</p>
+                    <p>{{$result->group->title}}</p>
                     <div class="item_play_line"></div>
 
                 </div>
@@ -413,39 +413,39 @@
                             @if(isset($result->group->params->is_try))
                                 @if($result->group->params->is_try == 1)
                                     @if(\App\Library\AuthCustom::check())
-                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                        <a class="btn num-play-try c_num-play-try" style="color: #ffffff">Chơi thử</a>
                                     @else
-                                        <a data-toggle="modal" data-target="#signin" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                        <a data-toggle="modal" data-target="#modalLogin" class="btn c_num-play-try" style="color: #ffffff">Chơi thử</a>
                                     @endif
                                 @endif
                             @endif
                             @if(\App\Library\AuthCustom::check())
-                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                                <a class="btn   k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
                             @else
-                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#signin"><i class="fas fa-bolt"></i> chơi ngay</a>
+                                <a class="btn   k_start c_start-played" data-toggle="modal" data-target="#modalLogin"><i class="fas fa-bolt"></i> chơi ngay</a>
                             @endif
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="item_spin_category">
-                            <a href="#" class="btn btn-success thele button__hover" data-toggle="modal" data-target="#theleModal">
+                            <a href="#" class="btn thele button__hover" data-toggle="modal" data-target="#theleModal">
                                 Thể lệ
                             </a>
-                            <a href="#" class="btn btn-success button__hover" data-toggle="modal" data-target="#topquaythuongModal">
+                            <a href="#" class="btn button__hover" data-toggle="modal" data-target="#topquaythuongModal">
                                 Top lật thưởng
                             </a>
                             @if(\App\Library\AuthCustom::check())
-                                <a href="#modal-withdraw-items" class="btn btn-success button__hover" data-toggle="modal">
+                                <a href="#modal-withdraw-items" class="btn   button__hover" data-toggle="modal">
                                     Rút Vip
                                 </a>
-                                <a href="#modal-spin-bonus" class="btn btn-success button__hover" data-toggle="modal">
+                                <a href="#modal-spin-bonus" class="btn   button__hover" data-toggle="modal">
                                     Lịch sử lật
                                 </a>
                             @else
-                                <a href="/login" class="btn btn-success button__hover" data-toggle="modal" data-target="#signin">
+                                <a href="/login" class="btn   button__hover" data-toggle="modal" data-target="#modalLogin">
                                     Rút Vip
                                 </a>
-                                <a href="/login" class="btn btn-success button__hover" data-toggle="modal" data-target="#signin">
+                                <a href="/login" class="btn   button__hover" data-toggle="modal" data-target="#modalLogin">
                                     Lịch sử lật
                                 </a>
                             @endif
@@ -526,7 +526,7 @@
                 </div>
                 @if($groups_other!=null)
                     <div class="item_play_title">
-                        <p style="color: #2F6A7C">Các minigame khác</p>
+                        <p>Các minigame khác</p>
                         <div class="item_play_line"></div>
                     </div>
                     <div class="item_play_dif" style="margin-bottom: 16px">
@@ -545,11 +545,11 @@
                                                         </a>
                                                     </div>
                                                     <div class="game-list-title" style="padding-left: 8px;padding-right: 8px">
-                                                        <a class="account_category text-limit limit-1" href="/dich-vu/{{ $item->slug}}">
+                                                        <a class="account_category text-limit limit-1" href="/minigame/{{ $item->slug}}">
                                                             <h3 style="padding-bottom: 0"><strong>{{ $item->title }}</strong></h3>
                                                         </a>
                                                     </div>
-                                                    <div class="game-list-description">
+                                                    <div class="game-list-description" style="padding-bottom: 8px">
                                                         <div class="countime"></div>
                                                         <span class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</span>
                                                     </div>
@@ -580,7 +580,7 @@
                 @case('slotmachine')
 
                 <div class="item_play_title">
-                    <h1 style="color: #2F6A7C">{{$result->group->title}}</h1>
+                    <h1>{{$result->group->title}}</h1>
                     <div class="item_play_line"></div>
                 </div>
                 <div class="item_play_online_out">
@@ -637,42 +637,42 @@
                             @if(isset($result->group->params->is_try))
                                 @if($result->group->params->is_try == 1)
                                     @if(\App\Library\AuthCustom::check())
-                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                        <a class="btn num-play-try c_num-play-try" style="color: #ffffff">Chơi thử</a>
                                     @else
-                                        <a data-toggle="modal" data-target="#signin" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                        <a data-toggle="modal" data-target="#modalLogin" class="btn c_num-play-try" style="color: #ffffff">Chơi thử</a>
                                     @endif
                                 @endif
                             @endif
                             @if(\App\Library\AuthCustom::check())
-                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                                <a class="btn   k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
                             @else
-                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#signin"><i class="fas fa-bolt"></i> chơi ngay</a>
+                                <a class="btn   k_start c_start-played" data-toggle="modal" data-target="#modalLogin"><i class="fas fa-bolt"></i> chơi ngay</a>
                             @endif
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
                         <div class="item_play_category thele">
-                            <a  class="col-sm-12 btn btn-success button__hover">Thể lệ</a>
+                            <a  class="col-sm-12 btn   button__hover">Thể lệ</a>
                         </div>
                         <div class="item_play_category luotquay">
-                            <a class="btn btn-success col-sm-12 button__hover" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
+                            <a href="#" class="btn col-sm-12 button__hover" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
                         </div>
 
                         <div class="item_play_category">
                             @if(\App\Library\AuthCustom::check())
-                            <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn   button__hover">Lịch sử trúng vật phẩm</a>
                             @else
-                                <a href="#" data-toggle="modal" data-target="#signin" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                                <a href="#" data-toggle="modal" data-target="#modalLogin" class="col-sm-12 btn   button__hover">Lịch sử trúng vật phẩm</a>
                             @endif
                         </div>
                         <div class="item_play_category">
-                            <a  class="col-sm-12 btn btn-success button__hover"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
+                            <a href="#"  class="col-sm-12 btn   button__hover"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
                         </div>
                     </div>
                 </div>
                 @if($groups_other!=null)
                     <div class="item_play_title">
-                        <p style="color: #2F6A7C">Các minigame khác</p>
+                        <p>Các minigame khác</p>
                         <div class="item_play_line"></div>
 
                     </div>
@@ -692,11 +692,11 @@
                                                         </a>
                                                     </div>
                                                     <div class="game-list-title" style="padding-left: 8px;padding-right: 8px">
-                                                        <a class="account_category text-limit limit-1" href="/dich-vu/{{ $item->slug}}">
+                                                        <a class="account_category text-limit limit-1" href="/minigame/{{ $item->slug}}">
                                                             <h3 style="padding-bottom: 0"><strong>{{ $item->title }}</strong></h3>
                                                         </a>
                                                     </div>
-                                                    <div class="game-list-description">
+                                                    <div class="game-list-description" style="padding-bottom: 8px">
                                                         <div class="countime"></div>
                                                         <span class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</span>
                                                     </div>
@@ -727,7 +727,7 @@
                 @case('slotmachine5')
 
                 <div class="item_play_title">
-                    <h1 style="color: #2F6A7C">{{$result->group->title}}</h1>
+                    <h1>{{$result->group->title}}</h1>
                     <div class="item_play_line"></div>
 
                 </div>
@@ -788,42 +788,42 @@
                             @if(isset($result->group->params->is_try))
                                 @if($result->group->params->is_try == 1)
                                     @if(\App\Library\AuthCustom::check())
-                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                        <a class="btn num-play-try c_num-play-try" style="color: #ffffff">Chơi thử</a>
                                     @else
-                                        <a data-toggle="modal" data-target="#signin" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                        <a data-toggle="modal" data-target="#modalLogin" class="btn c_num-play-try" style="color: #ffffff">Chơi thử</a>
                                     @endif
                                 @endif
                             @endif
                             @if(\App\Library\AuthCustom::check())
-                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                                <a class="btn   k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
                             @else
-                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#signin"><i class="fas fa-bolt"></i> chơi ngay</a>
+                                <a class="btn   k_start c_start-played" data-toggle="modal" data-target="#modalLogin"><i class="fas fa-bolt"></i> chơi ngay</a>
                             @endif
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
                         <div class="item_play_category thele">
-                            <a  class="col-sm-12 btn btn-success button__hover">Thể lệ</a>
+                            <a href="#" class="col-sm-12 btn   button__hover">Thể lệ</a>
                         </div>
                         <div class="item_play_category luotquay">
-                            <a class="btn btn-success col-sm-12 button__hover" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
+                            <a href="#" class="btn col-sm-12 button__hover" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
                         </div>
 
                         <div class="item_play_category">
                             @if(\App\Library\AuthCustom::check())
-                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn   button__hover">Lịch sử trúng vật phẩm</a>
                             @else
-                                <a href="#" data-toggle="modal" data-target="#signin" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                                <a href="#" data-toggle="modal" data-target="#modalLogin" class="col-sm-12 btn   button__hover">Lịch sử trúng vật phẩm</a>
                             @endif
                         </div>
                         <div class="item_play_category">
-                            <a  class="col-sm-12 btn btn-success button__hover"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
+                            <a href="#" class="col-sm-12 btn   button__hover"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
                         </div>
                     </div>
                 </div>
                 @if($groups_other!=null)
                     <div class="item_play_title">
-                        <p style="color: #2F6A7C">Các minigame khác</p>
+                        <p>Các minigame khác</p>
                         <div class="item_play_line"></div>
 
                     </div>
@@ -843,11 +843,11 @@
                                                         </a>
                                                     </div>
                                                     <div class="game-list-title" style="padding-left: 8px;padding-right: 8px">
-                                                        <a class="account_category text-limit limit-1" href="/dich-vu/{{ $item->slug}}">
+                                                        <a class="account_category text-limit limit-1" href="/minigame/{{ $item->slug}}">
                                                             <h3 style="padding-bottom: 0"><strong>{{ $item->title }}</strong></h3>
                                                         </a>
                                                     </div>
-                                                    <div class="game-list-description">
+                                                    <div class="game-list-description" style="padding-bottom: 8px">
                                                         <div class="countime"></div>
                                                         <span class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</span>
                                                     </div>
@@ -878,7 +878,7 @@
                 @case('squarewheel')
 
                 <div class="item_play_title">
-                    <h1 style="color: #2F6A7C">{{$result->group->title}}</h1>
+                    <h1>{{$result->group->title}}</h1>
                     <div class="item_play_line"></div>
 
                 </div>
@@ -972,38 +972,38 @@
                             @if(isset($result->group->params->is_try))
                                 @if($result->group->params->is_try == 1)
                                     @if(\App\Library\AuthCustom::check())
-                                        <a class="btn btn-primary c_num-play-try num-play-try">Chơi thử</a>
+                                        <a class="btn c_num-play-try num-play-try" style="color: #ffffff">Chơi thử</a>
                                     @else
-                                        <a data-toggle="modal" data-target="#signin" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                        <a data-toggle="modal" data-target="#modalLogin" class="btn button__hover c_num-play-try" style="color: #ffffff">Chơi thử</a>
                                     @endif
                                 @endif
                             @endif
                             @if(\App\Library\AuthCustom::check())
-                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                                <a class="btn   k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
                             @else
-                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#signin"><i class="fas fa-bolt"></i> chơi ngay</a>
+                                <a class="btn   k_start c_start-played" data-toggle="modal" data-target="#modalLogin"><i class="fas fa-bolt"></i> chơi ngay</a>
                             @endif
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-3 col-sm-12">
                         <div class="item_play_category">
-                            <a href="#" class="btn btn-success thele button__hover" data-toggle="modal" data-target="#theleModal">
+                            <a href="#" class="btn   thele button__hover" data-toggle="modal" data-target="#theleModal">
                                 Thể lệ
                             </a>
                         </div>
                         <div class="item_play_category">
-                            <a class="btn btn-success col-sm-12 button__hover" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
+                            <a href="#" class="btn col-sm-12 button__hover" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
                         </div>
 
                         <div class="item_play_category">
                             @if(\App\Library\AuthCustom::check())
-                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn   button__hover">Lịch sử trúng vật phẩm</a>
                             @else
-                                <a href="#" data-toggle="modal" data-target="#signin" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                                <a href="#" data-toggle="modal" data-target="#modalLogin" class="col-sm-12 btn   button__hover">Lịch sử trúng vật phẩm</a>
                             @endif                        </div>
                         <div class="item_play_category">
-                            <a  class="col-sm-12 btn btn-success button__hover"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
+                            <a href="#" class="col-sm-12 btn   button__hover"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
                         </div>
                     </div>
 
@@ -1011,7 +1011,7 @@
                 </div>
                 @if($groups_other!=null)
                     <div class="item_play_title">
-                        <p style="color: #2F6A7C">Các minigame khác</p>
+                        <p >Các minigame khác</p>
                         <div class="item_play_line"></div>
                     </div>
                     <div class="item_play_dif" style="margin-bottom: 16px">
@@ -1030,11 +1030,11 @@
                                                         </a>
                                                     </div>
                                                     <div class="game-list-title" style="padding-left: 8px;padding-right: 8px">
-                                                        <a class="account_category text-limit limit-1" href="/dich-vu/{{ $item->slug}}">
+                                                        <a class="account_category text-limit limit-1" href="/minigame/{{ $item->slug}}">
                                                             <h3 style="padding-bottom: 0"><strong>{{ $item->title }}</strong></h3>
                                                         </a>
                                                     </div>
-                                                    <div class="game-list-description">
+                                                    <div class="game-list-description" style="padding-bottom: 8px">
                                                         <div class="countime"></div>
                                                         <span class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</span>
                                                     </div>
@@ -1067,7 +1067,7 @@
                 @case('gieoque')
 
                 <div class="item_play_title">
-                    <h1 style="color: #2F6A7C">{{$result->group->title}}</h1>
+                    <h1 >{{$result->group->title}}</h1>
                     <div class="item_play_line"></div>
 
                 </div>
@@ -1129,40 +1129,40 @@
 
                                 @if($result->group->params->is_try == 1)
                                     @if(\App\Library\AuthCustom::check())
-                                    <a class="btn btn-primary c_num-play-try num-play-try">Chơi thử</a>
+                                    <a class="btn c_num-play-try num-play-try" style="color: #ffffff">Chơi thử</a>
                                     @else
-                                        <a data-toggle="modal" data-target="#signin" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                        <a data-toggle="modal" data-target="#modalLogin" class="btn c_num-play-try" style="color: #ffffff">Chơi thử</a>
                                     @endif
                                 @endif
                             @endif
                                 @if(\App\Library\AuthCustom::check())
-                                    <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                                    <a class="btn   k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
                                 @else
-                                    <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#signin"><i class="fas fa-bolt"></i> chơi ngay</a>
+                                    <a class="btn   k_start c_start-played" data-toggle="modal" data-target="#modalLogin"><i class="fas fa-bolt"></i> chơi ngay</a>
                                 @endif
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
                         <div class="item_play_category">
-                            <a href="#" class="col-sm-12 btn btn-success button__hover" data-toggle="modal" data-target="#theleModal">Thể lệ</a>
+                            <a href="#" class="col-sm-12 btn   button__hover" data-toggle="modal" data-target="#theleModal">Thể lệ</a>
                         </div>
                         <div class="item_play_category">
-                            <a class="btn btn-success col-sm-12 button__hover" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
+                            <a href="#" class="btn   col-sm-12 button__hover" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
                         </div>
                         <div class="item_play_category">
                             @if(\App\Library\AuthCustom::check())
-                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn   button__hover">Lịch sử trúng vật phẩm</a>
                             @else
-                                <a href="#" data-toggle="modal" data-target="#signin" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                                <a href="#" data-toggle="modal" data-target="#modalLogin" class="col-sm-12 btn   button__hover">Lịch sử trúng vật phẩm</a>
                             @endif                        </div>
                         <div class="item_play_category">
-                            <a href="#" class="col-sm-12 btn btn-success button__hover" data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
+                            <a href="#" class="col-sm-12 btn   button__hover" data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
                         </div>
                     </div>
                 </div>
                 @if($groups_other!=null)
                     <div class="item_play_title">
-                        <p style="color: #2F6A7C">Các minigame khác</p>
+                        <p >Các minigame khác</p>
                         <div class="item_play_line"></div>
                     </div>
                     <div class="item_play_dif" style="margin-bottom: 16px">
@@ -1181,11 +1181,11 @@
                                                         </a>
                                                     </div>
                                                     <div class="game-list-title" style="padding-left: 8px;padding-right: 8px">
-                                                        <a class="account_category text-limit limit-1" href="/dich-vu/{{ $item->slug}}">
+                                                        <a class="account_category text-limit limit-1" href="/minigame/{{ $item->slug}}">
                                                             <h3 style="padding-bottom: 0"><strong>{{ $item->title }}</strong></h3>
                                                         </a>
                                                     </div>
-                                                    <div class="game-list-description">
+                                                    <div class="game-list-description" style="padding-bottom: 8px">
                                                         <div class="countime"></div>
                                                         <span class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</span>
                                                     </div>
@@ -1229,8 +1229,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
 
-                        <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center;margin: auto;padding-left: 60px">Lượt chơi gần đây</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h5 class="modal-title" style="font-weight: bold;text-transform: uppercase;;text-align: center;">Lượt chơi gần đây</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 24px;padding-right: 16px">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
@@ -1303,7 +1303,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase button__hover" data-dismiss="modal">Đóng
+                        <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase button__hover__close" data-dismiss="modal">Đóng
                         </button>
                     </div>
                 </div>
@@ -1316,10 +1316,10 @@
             <div class="modal-content">
                 <div class="modal-header justify-content-center">
                     <h5 class="modal-title"
-                        style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thể Lệ</h5>
-{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                        <span aria-hidden="true">×</span>--}}
-{{--                    </button>--}}
+                        style="font-weight: bold;text-transform: uppercase;;text-align: center">Thể Lệ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 24px;padding-right: 16px">
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
 
                 <div class="modal-body" style="font-family: helvetica, arial, sans-serif;">
@@ -1327,7 +1327,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button"
-                            class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase button__hover"
+                            class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase button__hover__close"
                             data-dismiss="modal">Đóng
                     </button>
                 </div>
@@ -1339,9 +1339,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"
-                        style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông
+                        style="font-weight: bold;text-transform: uppercase;;text-align: center">Thông
                         báo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 24px;padding-right: 16px">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -1350,10 +1350,10 @@
 
                 </div>
                 <div class="modal-footer">
-                    <a href="#" id="btnWithdraw" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill">Rút
+                    <a href="#modal-withdraw-items" data-toggle="modal" id="btnWithdraw" class="btn m-btn m-btn--custom m-btn--icon c_start-played">Rút
                         quà</a>
                     <button type="button"
-                            class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase button__hover"
+                            class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase button__hover__close"
                             data-dismiss="modal">Đóng
                     </button>
                 </div>
@@ -1365,9 +1365,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"
-                        style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông
+                        style="font-weight: bold;text-transform: uppercase;;text-align: center">Thông
                         báo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 24px;padding-right: 16px">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -1375,9 +1375,9 @@
                     Bạn đã hết lượt chơi. Nạp thẻ để chơi tiếp!
                 </div>
                 <div class="modal-footer">
-                    <a href="/nap-the" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill">Nạp thẻ</a>
+                    <a href="/nap-the" class="btn   m-btn m-btn--custom m-btn--icon m-btn--pill">Nạp thẻ</a>
                     <button type="button"
-                            class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase button__hover"
+                            class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase button__hover__close"
                             data-dismiss="modal">Đóng
                     </button>
                 </div>
@@ -1390,12 +1390,12 @@
             <div class="modal-content">
                 <div class="modal-header justify-content-center">
                     <h5 class="modal-title"
-                        style="font-weight: bold;text-transform: uppercase;color: #ff502e;text-align: center;font-size: 16px">Bảng xếp hạng {{ @$result->group->title }}</h5>
+                        style="font-weight: bold;text-transform: uppercase;;text-align: center;font-size: 16px">Bảng xếp hạng {{ @$result->group->title }}</h5>
 
                     <!--                    <h4 style="text-transform: uppercase;margin: auto; padding-left: 28px;" class="modal-title"><span>Bảng xếp hạng vòng lật</span></h4>-->
-{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                        <span aria-hidden="true">×</span>--}}
-{{--                    </button>--}}
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 24px;padding-right: 16px">
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div id="tap1" class="rank-modal-tab">
@@ -1505,7 +1505,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button"
-                            class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase button__hover"
+                            class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase button__hover__close"
                             data-dismiss="modal">Đóng
                     </button>
                 </div>
@@ -1520,14 +1520,16 @@
         <input type="hidden" id="withdrawruby_{{$item}}" value="{{$key}}">
     @endforeach
     <!-- script -->
-
-
-@endsection
-@section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/modal-rut-vp.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/modal-history-spin-bonus.js?v={{time()}}"></script>
     <script type="text/javascript">
         $( document ).ready(function() {
+
+
+            $("#btnWithdraw").on("click",function(){
+                $('#noticeModal').modal('hide');
+            })
+
             $(document).on('scroll',function(){
                 if($(window).width() > 1024){
                     if ($(this).scrollTop() > 100) {
@@ -1642,7 +1644,7 @@
                 });
 
                 $('body').delegate('.num-play-try', 'click', function () {
-
+                    console.log(11111111111111111111)
                     $('#type_play').val('try');
                     play();
                 });
@@ -1669,7 +1671,7 @@
 
                                 if (data.status == 4) {
 
-                                    $('#signin').modal('show');
+                                    $('#modalLogin').modal('show');
                                     // location.href = '/login?return_url=' + window.location.href;
                                 } else if (data.status == 3) {
                                     roll_check = true;
@@ -2130,7 +2132,7 @@
                                     $('.boxflip .flip-box-front').removeClass('active');
                                 },1000);
                                 if (data.status == 4) {
-                                    $('#signin').modal('show');
+                                    $('#modalLogin').modal('show');
                                     // location.href='/login';
                                 } else if (data.status == 3) {
                                     roll_check = true;
@@ -2611,7 +2613,7 @@
                             type: 'POST',
                             success: function(data) {
                                 if (data.status == 4) {
-                                    $('#signin').modal('show');
+                                    $('#modalLogin').modal('show');
                                     // location.href='/login?return_url='+window.location.href;
                                     return;
                                 } else if (data.status == 3) {
@@ -2775,7 +2777,7 @@
                             type: 'POST',
                             success: function(data) {
                                 if (data.status == 4) {
-                                    $('#signin').modal('show');
+                                    $('#modalLogin').modal('show');
                                     // location.href='/login';
                                     return;
                                 } else if (data.status == 3) {
@@ -3332,7 +3334,7 @@
                             type: 'POST',
                             success: function(data) {
                                 if (data.status == 4) {
-                                    $('#signin').modal('show');
+                                    $('#modalLogin').modal('show');
                                     // location.href='/login?return_url='+window.location.href;
                                     return;
                                 } else if (data.status == 3) {
@@ -3527,7 +3529,7 @@
                             type: 'POST',
                             success: function(data) {
                                 if (data.status == 4) {
-                                    $('#signin').modal('show');
+                                    $('#modalLogin').modal('show');
                                     // location.href='/login?return_url='+window.location.href;
                                     return;
                                 } else if (data.status == 3) {
@@ -4226,7 +4228,7 @@
 
                                 if (data.status == 4) {
 
-                                    $('#signin').modal('show');
+                                    $('#modalLogin').modal('show');
                                     // location.href='/login?return_url='+window.location.href;
                                     return;
                                 } else if (data.status == 3) {
@@ -4376,7 +4378,7 @@
                             success: function(data) {
 
                                 if (data.status == 4) {
-                                    $('#signin').modal('show');
+                                    $('#modalLogin').modal('show');
                                     // location.href='/login?return_url='+window.location.href;
                                     return;
                                 } else if (data.status == 3) {
@@ -4831,7 +4833,7 @@
                             type: 'POST',
                             success: function(data) {
                                 if (data.status == 4) {
-                                    $('#signin').modal('show');
+                                    $('#modalLogin').modal('show');
                                     // location.href='/login?return_url='+window.location.href;
                                 } else if (data.status == 3) {
                                     $('#lac_lixi').attr('src',$("#hdImageLD").val());
@@ -5232,4 +5234,8 @@
             },
         });
     </script>
+
+@endsection
+@section('scripts')
+
 @endsection
