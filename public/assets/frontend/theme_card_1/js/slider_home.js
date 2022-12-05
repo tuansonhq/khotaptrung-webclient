@@ -64,7 +64,7 @@ let swiper_minigame_home = new Swiper('.swiper-minigame-home',{
     watchSlidesVisibility: false,
     lazyLoadingInPrevNext: false,
     lazyLoadingOnTransitionStart: false,
-    slidesPerView: 4.3,
+    slidesPerView: 4,
     speed: 300,
     spaceBetween: 16,
     touchMove: true,
