@@ -331,7 +331,7 @@
                                                         @if($childs->key == 'CAI_TRANG')
                                                             <div class="input-group">
                                                                 <label class="form-label">
-                                                                    CAI TRANG
+                                                                    CẢI TRANG
                                                                 </label>
                                                                 <select name="champions_data" class="select-2-custom w-100" id="">
                                                                     <option value="">--Không chọn--</option>
@@ -345,7 +345,7 @@
                                                         @elseif($childs->key == 'SKILL_PET')
                                                             <div class="input-group">
                                                                 <label class="form-label">
-                                                                    SKILL PET 2
+                                                                    SKILL 2 ĐỆ TỬ
                                                                 </label>
                                                                 <select name="tftmapskins_data" class="select-2-custom w-100" id="">
                                                                     <option value="">--Không chọn--</option>
@@ -361,7 +361,7 @@
 
                                                             <div class="input-group">
                                                                 <label class="form-label">
-                                                                    SKILL PET 3
+                                                                    SKILL 3 ĐỆ TỬ
                                                                 </label>
                                                                 <select name="tftdamageskins_data" class="select-2-custom w-100" id="">
                                                                     <option value="">--Không chọn--</option>
@@ -377,7 +377,7 @@
 
                                                             <div class="input-group">
                                                                 <label class="form-label">
-                                                                    SKILL PET 4
+                                                                    SKILL 4 ĐỆ TỬ
                                                                 </label>
                                                                 <select name="skill_data" class="select-2-custom w-100" id="">
                                                                     <option value="">--Không chọn--</option>
