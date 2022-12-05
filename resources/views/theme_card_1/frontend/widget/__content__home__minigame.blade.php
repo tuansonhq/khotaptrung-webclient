@@ -27,7 +27,7 @@
                 @endif
             </div>
             @if($flag_slide_minigame == 0)
-                <div class="entries" id="minigame">
+                <div class="entries card-list" style="padding-bottom: 16px" id="minigame">
                     <div class="row fix-border fix-border-dich-vu">
 
                         <div class="col-md-12 left-right data-nick-search">
@@ -41,70 +41,171 @@
                                 @php
                                     $index = 1;
                                 @endphp
-                                <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_minigame item-page-1" style="display: block">
-                                    <a href="/minigame-{{ $item->slug}}">
-                                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
-                                             alt="{{ $item->slug   }}" class="entries_item-img">
-                                        <h3 class="text-title text-limit limit-1" style="color: #575757;">{{ $item->title   }}</h3>
-                                        <p class="text-left" style="margin-bottom: 12px;margin-top: 4px;color: #575757;">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
-                                        @if(isset($item->params->percent_sale))
-                                            <span class="oldPrice">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }} đ</span>
-                                        @else
-                                        @endif
-                                        <span class="newPrice">{{ str_replace(',','.',number_format($item->price)) }} đ</span>
-                                    </a>
+                                <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_minigame item-page-1" style="display: block;padding-top: 16px">
+                                    <div class="card">
+                                        <div class="card-body c-p-16 c-p-lg-12 scale-thumb">
+
+                                            <a href="/minigame-{{ $item->slug}}">
+                                                <div class="card-thumb c-mb-8">
+                                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="card-thumb-image">
+                                                </div>
+                                                <div class="card-attr">
+                                                    <div class="text-title fw-700 text-limit limit-1" style="text-align: left">
+                                                        {{ $item->title   }}
+                                                    </div>
+                                                    <div class="info-attr">
+                                                        Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}
+                                                    </div>
+                                                    <div class="price">
+                                                        @if(isset($item->params->percent_sale))
+                                                            <div class="price-current">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                                            <div class="price-old c-mr-8">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }} đ</div>
+                                                            <div class="discount">{{ $item->params->percent_sale }}%</div>
+                                                        @else
+                                                            <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                        </div>
+                                    </div>
                                 </div>
                             @elseif($key < 16)
                                 @php
                                     $index = 2;
                                 @endphp
-                                <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_minigame item-page-2" style="display: none">
-                                    <a href="/minigame-{{ $item->slug}}">
-                                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
-                                             alt="{{ $item->slug   }}" class="entries_item-img">
-                                        <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
-                                        <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+                                <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_minigame item-page-1" style="display: block;padding-top: 16px">
+                                    <div class="card">
+                                        <div class="card-body c-p-16 c-p-lg-12 scale-thumb">
 
-                                    </a>
+                                            <a href="/minigame-{{ $item->slug}}">
+                                                <div class="card-thumb c-mb-8">
+                                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="card-thumb-image">
+                                                </div>
+                                                <div class="card-attr">
+                                                    <div class="text-title fw-700 text-limit limit-1" style="text-align: left">
+                                                        {{ $item->title   }}
+                                                    </div>
+                                                    <div class="info-attr">
+                                                        Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}
+                                                    </div>
+                                                    <div class="price">
+                                                        @if(isset($item->params->percent_sale))
+                                                            <div class="price-current">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                                            <div class="price-old c-mr-8">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }} đ</div>
+                                                            <div class="discount">{{ $item->params->percent_sale }}%</div>
+                                                        @else
+                                                            <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                        </div>
+                                    </div>
                                 </div>
                             @elseif($key < 24)
                                 @php
                                     $index = 3;
                                 @endphp
-                                <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_minigame item-page-3" style="display: none">
-                                    <a href="/minigame-{{ $item->slug}}">
-                                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
-                                             alt="{{ $item->slug   }}" class="entries_item-img">
-                                        <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
-                                        <p class="text-left" style="margin-bottom: 12px;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+                                <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_minigame item-page-1" style="display: block;padding-top: 16px">
+                                    <div class="card">
+                                        <div class="card-body c-p-16 c-p-lg-12 scale-thumb">
 
-                                    </a>
+                                            <a href="/minigame-{{ $item->slug}}">
+                                                <div class="card-thumb c-mb-8">
+                                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="card-thumb-image">
+                                                </div>
+                                                <div class="card-attr">
+                                                    <div class="text-title fw-700 text-limit limit-1" style="text-align: left">
+                                                        {{ $item->title   }}
+                                                    </div>
+                                                    <div class="info-attr">
+                                                        Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}
+                                                    </div>
+                                                    <div class="price">
+                                                        @if(isset($item->params->percent_sale))
+                                                            <div class="price-current">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                                            <div class="price-old c-mr-8">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }} đ</div>
+                                                            <div class="discount">{{ $item->params->percent_sale }}%</div>
+                                                        @else
+                                                            <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                        </div>
+                                    </div>
                                 </div>
                             @elseif($key < 32)
                                 @php
                                     $index = 4;
                                 @endphp
-                                <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_minigame item-page-4" style="display: none">
-                                    <a href="/minigame-{{ $item->slug}}">
-                                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
-                                             alt="{{ $item->slug   }}" class="entries_item-img">
-                                        <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
-                                        <p class="text-left" style="margin-bottom: 12px;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+                                <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_minigame item-page-1" style="display: block;padding-top: 16px">
+                                    <div class="card">
+                                        <div class="card-body c-p-16 c-p-lg-12 scale-thumb">
 
-                                    </a>
+                                            <a href="/minigame-{{ $item->slug}}">
+                                                <div class="card-thumb c-mb-8">
+                                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="card-thumb-image">
+                                                </div>
+                                                <div class="card-attr">
+                                                    <div class="text-title fw-700 text-limit limit-1" style="text-align: left">
+                                                        {{ $item->title   }}
+                                                    </div>
+                                                    <div class="info-attr">
+                                                        Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}
+                                                    </div>
+                                                    <div class="price">
+                                                        @if(isset($item->params->percent_sale))
+                                                            <div class="price-current">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                                            <div class="price-old c-mr-8">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }} đ</div>
+                                                            <div class="discount">{{ $item->params->percent_sale }}%</div>
+                                                        @else
+                                                            <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                        </div>
+                                    </div>
                                 </div>
                             @elseif($key < 40)
                                 @php
                                     $index = 5;
                                 @endphp
-                                <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_minigame item-page-5" style="display: none">
-                                    <a href="/minigame-{{ $item->slug}}">
-                                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
-                                             alt="{{ $item->slug   }}" class="entries_item-img">
-                                        <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
-                                        <p class="text-left" style="margin-bottom: 12px;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+                                <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_minigame item-page-1" style="display: block;padding-top: 16px">
+                                    <div class="card">
+                                        <div class="card-body c-p-16 c-p-lg-12 scale-thumb">
 
-                                    </a>
+                                            <a href="/minigame-{{ $item->slug}}">
+                                                <div class="card-thumb c-mb-8">
+                                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="card-thumb-image">
+                                                </div>
+                                                <div class="card-attr">
+                                                    <div class="text-title fw-700 text-limit limit-1" style="text-align: left">
+                                                        {{ $item->title   }}
+                                                    </div>
+                                                    <div class="info-attr">
+                                                        Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}
+                                                    </div>
+                                                    <div class="price">
+                                                        @if(isset($item->params->percent_sale))
+                                                            <div class="price-current">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                                            <div class="price-old c-mr-8">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }} đ</div>
+                                                            <div class="discount">{{ $item->params->percent_sale }}%</div>
+                                                        @else
+                                                            <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                        </div>
+                                    </div>
                                 </div>
                             @endif
                         @endforeach
@@ -287,40 +388,29 @@
                             @foreach($data as $item)
 
                                 <div class=" image swiper-slide">
-{{--                                    <a href="/minigame-{{ $item->slug}}">--}}
-{{--                                        <img style="height: 138px;border-radius: 8px;width: 100%" src="{{\App\Library\MediaHelpers::media($item->image)}}"--}}
-{{--                                             alt="{{ $item->slug   }}" class="entries_item-img">--}}
-{{--                                        <h3 class="text-title text-limit limit-1" style="color: #575757;">{{ $item->title   }}</h3>--}}
-{{--                                        <p style="margin-bottom: 12px;margin-top: 4px;color: #575757;text-align: center">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>--}}
-{{--                                        <div class="text-center">--}}
-{{--                                            @if(isset($item->params->percent_sale))--}}
-{{--                                                <span class="oldPrice">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }} đ</span>--}}
-{{--                                                <span class="newPrice">{{ str_replace(',','.',number_format($item->price)) }} đ</span>--}}
-{{--                                            @else--}}
-{{--                                                <span class="newPrice" style="margin-left: 0">{{ str_replace(',','.',number_format($item->price)) }} đ</span>--}}
-{{--                                            @endif--}}
-
-{{--                                        </div>--}}
-
-{{--                                    </a>--}}
                                     <div class="card">
                                         <div class="card-body c-p-16 c-p-lg-12 scale-thumb">
 
-                                            <a href="/mua-acc/thu-van-may-lien-quan-vip-2">
+                                            <a href="/minigame-{{ $item->slug}}">
                                                 <div class="card-thumb c-mb-8">
-                                                    <img onerror="imgError(this)" src="//cdn.upanh.info/storage/upload/images/RANDOM-LQ-VIP-2.gif?t=1667532578" alt="" class="card-thumb-image">
+                                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="card-thumb-image">
                                                 </div>
                                                 <div class="card-attr">
                                                     <div class="text-title fw-700 text-limit limit-1" style="text-align: left">
-                                                        Thử Vận May Liên Quân Vip 2
+                                                        {{ $item->title   }}
                                                     </div>
                                                     <div class="info-attr">
-                                                        Số tài khoản: 286
+                                                        Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}
                                                     </div>
                                                     <div class="price">
-                                                        <div class="price-current w-100">38.000đ</div>
-                                                        <div class="price-old c-mr-8">49.000đ</div>
-                                                        <div class="discount">22%</div>
+                                                        @if(isset($item->params->percent_sale))
+                                                            <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                                            <div class="price-old c-mr-8">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }} đ</div>
+                                                            <div class="discount">{{ $item->params->percent_sale }}%</div>
+
+                                                        @else
+                                                            <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </a>
