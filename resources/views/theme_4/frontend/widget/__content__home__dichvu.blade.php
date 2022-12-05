@@ -11,9 +11,17 @@
         }
     @endphp
 <div class="d-flex justify-content-between">
-    <div class="main-title">
-        <h1>{{ $title??'Dịch vụ game' }}</h1>
-    </div>
+
+    @if($flag_slide_service == 0)
+        <div class="main-title">
+            <h1>{{ $title??'Dịch vụ game' }}</h1>
+        </div>
+    @else
+        <div class="main-title" style="margin-bottom: 0;">
+            <h1>{{ $title??'Dịch vụ game' }}</h1>
+        </div>
+    @endif
+
     @if($flag_slide_service == 0)
     <div class="service-search d-none d-lg-block">
         <div class="input-group p-box">
@@ -48,28 +56,28 @@
                         <a href="/dich-vu/{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h2>
+                            <h2 class="text-title text-limit limit-1" style="color: rgb(87, 87, 87)">{{ $item->title   }}</h2>
                             @if(isset($item->total_order))
                                 @if($item->params_plus)
                                     @foreach($item->params_plus as $key => $val)
                                         @if($key == 'fk_buy')
-                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
+                                            <p style="margin-top: 8px;margin-bottom: 0;color: rgb(87, 87, 87)">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
                                         @endif
                                     @endforeach
 
                                 @else
-                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
+                                    <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
                                 @endif
 
                             @else
                                 @if($item->params_plus)
                                     @foreach($item->params_plus as $key => $val)
                                         @if($key == 'fk_buy')
-                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
+                                            <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
                                         @endif
                                     @endforeach
                                 @else
-                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: 0</p>
+                                    <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: 0</p>
                                 @endif
 
                             @endif
@@ -83,28 +91,28 @@
                         <a href="/dich-vu/{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h2>
+                            <h2 class="text-title text-limit limit-1" style="color: rgb(87, 87, 87)">{{ $item->title   }}</h2>
                             @if(isset($item->total_order))
                                 @if($item->params_plus)
                                     @foreach($item->params_plus as $key => $val)
                                         @if($key == 'fk_buy')
-                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
+                                            <p style="margin-top: 8px;margin-bottom: 0;color: rgb(87, 87, 87)">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
                                         @endif
                                     @endforeach
 
                                 @else
-                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
+                                    <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
                                 @endif
 
                             @else
                                 @if($item->params_plus)
                                     @foreach($item->params_plus as $key => $val)
                                         @if($key == 'fk_buy')
-                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
+                                            <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
                                         @endif
                                     @endforeach
                                 @else
-                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: 0</p>
+                                    <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: 0</p>
                                 @endif
 
                             @endif
@@ -118,28 +126,28 @@
                         <a href="/dich-vu/{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h2>
+                            <h2 class="text-title text-limit limit-1" style="color: rgb(87, 87, 87)">{{ $item->title   }}</h2>
                             @if(isset($item->total_order))
                                 @if($item->params_plus)
                                     @foreach($item->params_plus as $key => $val)
                                         @if($key == 'fk_buy')
-                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
+                                            <p style="margin-top: 8px;margin-bottom: 0;color: rgb(87, 87, 87)">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
                                         @endif
                                     @endforeach
 
                                 @else
-                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
+                                    <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
                                 @endif
 
                             @else
                                 @if($item->params_plus)
                                     @foreach($item->params_plus as $key => $val)
                                         @if($key == 'fk_buy')
-                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
+                                            <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
                                         @endif
                                     @endforeach
                                 @else
-                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: 0</p>
+                                    <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: 0</p>
                                 @endif
 
                             @endif
@@ -153,28 +161,28 @@
                         <a href="/dich-vu/{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h2>
+                            <h2 class="text-title text-limit limit-1" style="color: rgb(87, 87, 87)">{{ $item->title   }}</h2>
                             @if(isset($item->total_order))
                                 @if($item->params_plus)
                                     @foreach($item->params_plus as $key => $val)
                                         @if($key == 'fk_buy')
-                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
+                                            <p style="margin-top: 8px;margin-bottom: 0;color: rgb(87, 87, 87)">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
                                         @endif
                                     @endforeach
 
                                 @else
-                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
+                                    <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
                                 @endif
 
                             @else
                                 @if($item->params_plus)
                                     @foreach($item->params_plus as $key => $val)
                                         @if($key == 'fk_buy')
-                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
+                                            <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
                                         @endif
                                     @endforeach
                                 @else
-                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: 0</p>
+                                    <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: 0</p>
                                 @endif
 
                             @endif
@@ -188,28 +196,28 @@
                         <a href="/dich-vu/{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
-                            <h2 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h2>
+                            <h2 class="text-title text-limit limit-1" style="color: rgb(87, 87, 87)">{{ $item->title   }}</h2>
                             @if(isset($item->total_order))
                                 @if($item->params_plus)
                                     @foreach($item->params_plus as $key => $val)
                                         @if($key == 'fk_buy')
-                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
+                                            <p style="margin-top: 8px;margin-bottom: 0;color: rgb(87, 87, 87)">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
                                         @endif
                                     @endforeach
 
                                 @else
-                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
+                                    <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
                                 @endif
 
                             @else
                                 @if($item->params_plus)
                                     @foreach($item->params_plus as $key => $val)
                                         @if($key == 'fk_buy')
-                                            <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
+                                            <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
                                         @endif
                                     @endforeach
                                 @else
-                                    <p style="margin-top: 8px;text-align: left;margin-bottom: 0;">Giao dịch: 0</p>
+                                    <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: 0</p>
                                 @endif
 
                             @endif
@@ -255,17 +263,32 @@
 
                     <div class="item image">
                         <a href="/dich-vu/{{ $item->slug}}">
-                            <img style="width: 100%;height: 120px;border-radius: 8px" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title   }}" width="120px">
-                            <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
-                            @if(isset($item->items_count))
-                                @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
-                                    <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }} </p>
+                            <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
+                                 alt="{{ $item->slug   }}" class="entries_item-img">
+                            <h2 class="text-title text-limit limit-1" style="color: rgb(87, 87, 87)">{{ $item->title   }}</h2>
+                            @if(isset($item->total_order))
+                                @if($item->params_plus)
+                                    @foreach($item->params_plus as $key => $val)
+                                        @if($key == 'fk_buy')
+                                            <p style="margin-top: 8px;margin-bottom: 0;color: rgb(87, 87, 87)">Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
+                                        @endif
+                                    @endforeach
+
                                 @else
-                                    <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ $item->items_count }} </p>
+                                    <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
                                 @endif
 
                             @else
-                                <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: 0 </p>
+                                @if($item->params_plus)
+                                    @foreach($item->params_plus as $key => $val)
+                                        @if($key == 'fk_buy')
+                                            <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <p style="margin-top: 8px;margin-bottom: 0;">Giao dịch: 0</p>
+                                @endif
+
                             @endif
                         </a>
                     </div>
