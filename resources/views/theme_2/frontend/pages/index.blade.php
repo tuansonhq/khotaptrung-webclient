@@ -228,5 +228,5 @@
 <div style="display: none" id="auth">
 {{--    <input type="text" class="auth" value="0">--}}
 </div>
-
+@include('frontend.widget.__bonus')
 @endsection

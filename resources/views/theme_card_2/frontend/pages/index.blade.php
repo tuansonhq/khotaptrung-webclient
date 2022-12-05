@@ -47,7 +47,7 @@
     @endif
 
 </div>
-
+@include('frontend.widget.__bonus')
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard/store_card.js?v={{time()}}"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/config/swiper-slider-conf.js"></script>
 @endsection
