@@ -1886,3 +1886,25 @@ select:focus{
     -webkit-line-clamp: 6;
     line-clamp: 6
 }
+.newPrice {
+    border: 2px solid rgb(238, 70, 35);
+    padding: 5px 15px;
+    color: rgb(238, 70, 35);
+    display: inline;
+    border-radius: 5px;
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 16px;
+}
+.oldPrice {
+    text-decoration: line-through;
+    color: rgb(87, 87, 87);
+    border: 2px solid;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 16px;
+}
