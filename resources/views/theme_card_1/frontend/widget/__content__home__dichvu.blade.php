@@ -29,7 +29,7 @@
                 @else
                     <div class="service-search d-none d-lg-block " style="font-size: 14px;line-height: 24px;font-weight: 600">
                         <div class="input-group p-box">
-                            <a href="/dich-vu" class="dich__vu__home">Xem thêm</a>
+                            <a href="/dich-vu" class="dich__vu__home">Xem tất cả »</a>
                         </div>
                     </div>
                 @endif
@@ -442,7 +442,7 @@
                         centeredSlides: false,
                         slidesPerView: 4,
                         speed: 800,
-                        spaceBetween: 16,
+                        spaceBetween: 0,
                         freeMode: true,
                         touchMove: true,
                         freeModeSticky:true,
