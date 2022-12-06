@@ -30,6 +30,7 @@
             @foreach($data_widget as $key => $value)
                 @include('frontend.widget.'.$value.'',with(['title'=>$data_title[$key]]))
             @endforeach
+                @include('frontend.widget.__intro__text')
         </div>
         @endif
     @else
@@ -92,7 +93,6 @@
             {{--                     Dịch vụ nổi bật--}}
             @include('frontend.widget.__tin__tuc')
             @include('frontend.widget.__abount__us')
-
         </div>
     @endif
 

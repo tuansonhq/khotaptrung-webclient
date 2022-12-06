@@ -780,9 +780,23 @@
         width: 100%;
     }
 }
-
-
-/* css image footer */
-/*#footer img {*/
-/*    max-width: 100%;*/
-/*}*/
+/* css description account*/
+#viewMore a{
+    font-size: 16px !important;
+}
+#viewMore p{
+    font-size: 16px !important;
+}
+#viewMore li{
+    font-size: 16px !important;
+}
+#viewMore strong{
+    font-size: 16px !important;
+}
+/* intro text home*/
+#intro_text_home a {
+    font-size: 16px !important;
+}
+#intro_text_home p {
+    font-size: 16px !important;
+}
