@@ -34,7 +34,7 @@
             </div>
 
             @if($flag_slide_nick == 0)
-                <div class="entries">
+                <div class="entries" style="padding-bottom: 16px">
                     <div class="row marginauto fix-border fix-border-nick">
 
                         <div class="col-md-12 left-right data-nick-search">
