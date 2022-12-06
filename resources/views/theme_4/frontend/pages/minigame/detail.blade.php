@@ -1116,7 +1116,7 @@
                     <div class="item_play_dif">
                         <div class="row" style="position: relative">
                             <div class="col-12 item_play_dif_slide" >
-                                <div class="slick-slider">
+                                <div class="slick-slider-minigame">
                                     @foreach($groups_other as $item)
                                         <div class="item image entries_item" style="padding-bottom: 16px">
                                             <a href="{{route('getIndex',[$item->slug])}}">
