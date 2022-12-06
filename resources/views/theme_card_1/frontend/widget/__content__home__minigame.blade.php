@@ -432,7 +432,7 @@
                         centeredSlides: false,
                         slidesPerView: 4,
                         speed: 800,
-                        spaceBetween: 16,
+                        spaceBetween: 0,
                         freeMode: true,
                         touchMove: true,
                         freeModeSticky:true,
