@@ -186,3 +186,14 @@
     padding-left: 8px;
     padding-right: 8px;
 }
+/* css description account*/
+#viewMore a{
+    font-size: 16px !important;
+}
+/* css intro text*/
+#intro_text_home a {
+    font-size: 16px !important;
+}
+#intro_text_home p {
+    font-size: 16px !important;
+}

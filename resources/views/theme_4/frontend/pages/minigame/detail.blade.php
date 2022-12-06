@@ -166,10 +166,20 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if(isset($result->group->params->is_try) && $result->group->params->is_try == 1)
-                                <a class="btn btn-primary num-play-try">Chơi thử</a>
+                            @if(isset($result->group->params->is_try))
+                                @if($result->group->params->is_try == 1)
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#modal-login" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
+                                @endif
                             @endif
-                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#modal-login"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
@@ -289,7 +299,7 @@
                                         <div class="item image">
                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                 <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left">{{ $item->title   }}</h3>
+                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
                                                 <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
                                             </a>
                                         </div>
@@ -384,11 +394,18 @@
                         <div class="item_play_try">
                             @if(isset($result->group->params->is_try))
                                 @if($result->group->params->is_try == 1)
-                                    <a class="btn btn-primary num-play-try">Chơi thử</a>
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#modal-login" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
                                 @endif
                             @endif
-                            <a class="btn btn-success play k_start" id="start-played"><i class="fas fa-bolt"></i> Chơi ngay</a>
-                            <!-- <a class="btn btn-success continue" style="display: none"><i class="fas fa-bolt"></i> Chơi tiếp</a> -->
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#modal-login"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
@@ -502,7 +519,7 @@
                                         <div class="item image">
                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                 <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left">{{ $item->title   }}</h3>
+                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
                                                 <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
                                             </a>
                                         </div>
@@ -581,12 +598,19 @@
 
                         <div class="item_play_try">
                             @if(isset($result->group->params->is_try))
-
                                 @if($result->group->params->is_try == 1)
-                                    <a class="btn btn-primary num-play-try">Chơi thử</a>
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#modal-login" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
                                 @endif
                             @endif
-                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#modal-login"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -598,7 +622,11 @@
                         </div>
 
                         <div class="item_play_category">
-                            <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success">Lịch sử trúng vật phẩm</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @else
+                                <a href="#" data-toggle="modal" data-target="#modal-login" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @endif
                         </div>
                         <div class="item_play_category">
                             <a  class="col-sm-12 btn btn-success"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
@@ -619,7 +647,7 @@
                                         <div class="item image">
                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                 <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left">{{ $item->title   }}</h3>
+                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
                                                 <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
                                             </a>
                                         </div>
@@ -702,12 +730,19 @@
 
                         <div class="item_play_try">
                             @if(isset($result->group->params->is_try))
-
                                 @if($result->group->params->is_try == 1)
-                                    <a class="btn btn-primary num-play-try">Chơi thử</a>
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#modal-login" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
                                 @endif
                             @endif
-                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#modal-login"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -719,7 +754,11 @@
                         </div>
 
                         <div class="item_play_category">
-                            <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success">Lịch sử trúng vật phẩm</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @else
+                                <a href="#" data-toggle="modal" data-target="#modal-login" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @endif
                         </div>
                         <div class="item_play_category">
                             <a  class="col-sm-12 btn btn-success"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
@@ -740,7 +779,7 @@
                                         <div class="item image">
                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                 <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left">{{ $item->title   }}</h3>
+                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
                                                 <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
                                             </a>
                                         </div>
@@ -857,12 +896,19 @@
 
                         <div class="item_play_try">
                             @if(isset($result->group->params->is_try))
-
                                 @if($result->group->params->is_try == 1)
-                                    <a class="btn btn-primary num-play-try">Chơi thử</a>
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#modal-login" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
                                 @endif
                             @endif
-                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#modal-login"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
 
@@ -877,7 +923,11 @@
                         </div>
 
                         <div class="item_play_category">
-                            <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success button__hover">Lịch sử chơi trúng vật phẩm</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @else
+                                <a href="#" data-toggle="modal" data-target="#modal-login" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @endif
                         </div>
                         <div class="item_play_category">
                             <a  class="col-sm-12 btn btn-success button__hover"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
@@ -899,7 +949,7 @@
                                         <div class="item image">
                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                 <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left">{{ $item->title   }}</h3>
+                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
                                                 <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
                                             </a>
                                         </div>
@@ -984,12 +1034,19 @@
 
                         <div class="item_play_try">
                             @if(isset($result->group->params->is_try))
-
                                 @if($result->group->params->is_try == 1)
-                                    <a class="btn btn-primary num-play-try">Chơi thử</a>
+                                    @if(\App\Library\AuthCustom::check())
+                                        <a class="btn btn-primary num-play-try c_num-play-try">Chơi thử</a>
+                                    @else
+                                        <a data-toggle="modal" data-target="#modal-login" class="btn btn-primary c_num-play-try">Chơi thử</a>
+                                    @endif
                                 @endif
                             @endif
-                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a class="btn btn-success k_start c_start-played" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @else
+                                <a class="btn btn-success k_start c_start-played" data-toggle="modal" data-target="#modal-login"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -1000,7 +1057,11 @@
                             <a class="btn btn-success col-sm-12 button__hover" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
                         </div>
                         <div class="item_play_category">
-                            <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success button__hover">Lịch sử chơi</a>
+                            @if(\App\Library\AuthCustom::check())
+                                <a href="#modal-spin-bonus" data-toggle="modal" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @else
+                                <a href="#" data-toggle="modal" data-target="#modal-login" class="col-sm-12 btn btn-success button__hover">Lịch sử trúng vật phẩm</a>
+                            @endif
                         </div>
                         <div class="item_play_category">
                             <a href="#" class="col-sm-12 btn btn-success button__hover" data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
@@ -1020,7 +1081,7 @@
                                         <div class="item image">
                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                 <img style="width: 100%;height: 120px;border-radius: 8px" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{ $item->title   }}" width="120px">
-                                                <h3 class="text-title text-left">{{ $item->title   }}</h3>
+                                                <h3 class="text-title text-left text-limit limit-1">{{ $item->title   }}</h3>
                                                 <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
                                             </a>
                                         </div>
@@ -1055,9 +1116,9 @@
         <div class="modal fade" id="luotquayModal" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header" style="padding-left: 16px;padding-right: 16px">
 
-                        <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center;margin: auto;padding-left: 60px">Lượt chơi gần đây</h4>
+                        <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;text-align: center;margin: auto;padding-left: 60px">Lượt chơi gần đây</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -1142,12 +1203,12 @@
     <div class="modal fade" id="theleModal" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header justify-content-center">
+                <div class="modal-header" style="padding-left: 16px;padding-right: 16px">
                     <h5 class="modal-title"
-                        style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thể Lệ</h5>
-{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                        <span aria-hidden="true">×</span>--}}
-{{--                    </button>--}}
+                        style="font-weight: bold;text-transform: uppercase;text-align: center">Thể Lệ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
 
                 <div class="modal-body" style="font-family: helvetica, arial, sans-serif;">
@@ -1165,9 +1226,9 @@
     <div class="modal fade" id="noticeModal" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="padding-left: 16px;padding-right: 16px">
                     <h5 class="modal-title"
-                        style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông
+                        style="font-weight: bold;text-transform: uppercase;text-align: center">Thông
                         báo</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
@@ -1178,7 +1239,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <a href="#" id="btnWithdraw" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill">Rút
+                    <a href="#modal-withdraw-items" data-toggle="modal" id="btnWithdraw" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill">Rút
                         quà</a>
                     <button type="button"
                             class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase"
@@ -1191,9 +1252,9 @@
     <div class="modal fade" id="naptheModal" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="padding-left: 16px;padding-right: 16px">
                     <h5 class="modal-title"
-                        style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông
+                        style="font-weight: bold;text-transform: uppercase;text-align: center">Thông
                         báo</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
@@ -1216,9 +1277,9 @@
     <div class="modal fade bd-example-modal-lg" id="topquaythuongModal" role="dialog" aria-hidden="true">
         <div class="modal-dialog " role="document">
             <div class="modal-content">
-                <div class="modal-header justify-content-center">
+                <div class="modal-header" style="padding-right: 16px;padding-left: 16px">
                     <h5 class="modal-title"
-                        style="font-weight: bold;text-transform: uppercase;color: #ff502e;text-align: center;font-size: 16px">Bảng xếp hạng {{ @$result->group->title }}</h5>
+                        style="font-weight: bold;text-transform: uppercase;text-align: center;font-size: 16px">Bảng xếp hạng {{ @$result->group->title }}</h5>
 
                     <!--                    <h4 style="text-transform: uppercase;margin: auto; padding-left: 28px;" class="modal-title"><span>Bảng xếp hạng vòng lật</span></h4>-->
 {{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
@@ -1348,7 +1409,13 @@
         <input type="hidden" id="withdrawruby_{{$item}}" value="{{$key}}">
     @endforeach
     <!-- script -->
-
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            $("#btnWithdraw").on("click", function () {
+                $('#noticeModal').modal('hide');
+            })
+        })
+    </script>
     <script type="text/javascript">
         $( document ).ready(function() {
             $(document).on('scroll',function(){

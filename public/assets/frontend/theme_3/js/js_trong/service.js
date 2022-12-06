@@ -253,7 +253,6 @@ if (input_params_hide.length){
                     var s_price = data_params["price" + server_id];
                     var s_discount = data_params["discount" + server_id];
                     for (var i = 0; i < s_price.length; i++) {
-
                         if (price >= s_price[i] && s_price[i] != null) {
                             current = s_price[i];
                             index = i;
@@ -262,9 +261,12 @@ if (input_params_hide.length){
                         }
                     }
                 } else {
-                    var s_discount = data_params["discount"];
-                    let idx_server_selected = $('select[name="server"]').val() * 1;
-                    discount = s_discount[idx_server_selected];
+                    let s_discount = data_params["discount"];
+                    data_params.price.forEach((price_mark,idx) => {
+                        if (price >= price_mark){
+                            discount = s_discount[idx];
+                        }
+                    })
                     total = price * discount;
                 }
                 total = parseInt(total / 1000 * data_params.input_pack_rate);
