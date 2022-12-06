@@ -188,18 +188,18 @@
 }
 /* css description account*/
 #viewMore a{
-    font-size: 16px !important;
+    font-size: unset;
 }
 #viewMore li{
-    font-size: 16px !important;
+    font-size: unset;
 }
 #viewMore strong{
-    font-size: 16px !important;
+    font-size: unset;
 }
 /* css intro text*/
 #intro_text_home a {
-    font-size: 16px !important;
+    font-size: unset;
 }
 #intro_text_home p {
-    font-size: 16px !important;
+    font-size: unset;
 }
