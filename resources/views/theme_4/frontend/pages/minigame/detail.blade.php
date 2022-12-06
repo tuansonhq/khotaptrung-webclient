@@ -107,6 +107,12 @@
 
     <div class="item_play">
         <div class="container">
+            <nav aria-label="breadcrumb" style="margin-top: 10px;">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="/minigame">Minigame</a></li>
+                </ol>
+            </nav>
 
             @switch($position)
                 @case('rubywheel')
