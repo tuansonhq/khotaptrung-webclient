@@ -190,6 +190,12 @@
 #viewMore a{
     font-size: 16px !important;
 }
+#viewMore li{
+    font-size: 16px !important;
+}
+#viewMore strong{
+    font-size: 16px !important;
+}
 /* css intro text*/
 #intro_text_home a {
     font-size: 16px !important;
