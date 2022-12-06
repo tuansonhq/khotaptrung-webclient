@@ -355,7 +355,7 @@
             @else
                 <div class="entries" style="margin-bottom: 0">
 
-                    <div class="swiper swiper-container swiper-banner swiper-list-item-minigame overflow-hidden" style="background: none;box-shadow: none">
+                    <div class="swiper swiper-container swiper-banne swiper-list-item swiper-list-item-minigame overflow-hidden" style="background: none;box-shadow: none">
                         <div class=" swiper-wrapper" style="padding-bottom: 16px">
                             @foreach($data as $item)
 
