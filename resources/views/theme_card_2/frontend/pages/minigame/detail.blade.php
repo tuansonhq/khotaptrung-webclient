@@ -264,8 +264,10 @@
                                 </tbody>
                             </table>
                         </div>
+                        @if(count($result->log) > 10)
                         <a class="item_spin_list_more"><i class="fas fa-arrow-down"></i> Xem thêm</a>
                         <a  class="item_spin_list_less"><i class="fas fa-arrow-down"></i> Ẩn bớt</a>
+                        @endif
                     </div>
                 </div>
                 @if($groups_other!=null)
@@ -486,8 +488,10 @@
                                 </tbody>
                             </table>
                         </div>
+                        @if(count($result->log) > 10)
                         <a class="item_spin_list_more"><i class="fas fa-arrow-down"></i> Xem thêm</a>
                         <a  class="item_spin_list_less"><i class="fas fa-arrow-down"></i> Ẩn bớt</a>
+                        @endif
                     </div>
                 </div>
                 @if($groups_other!=null)
