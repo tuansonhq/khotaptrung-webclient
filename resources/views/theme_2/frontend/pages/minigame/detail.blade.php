@@ -475,7 +475,7 @@
                                 </a>
                             </div>
                             <div class="col-6 c-pl-5">
-                                <a class="btn primary w-100 withdrawitem_game_type_mobile" href="javascript:void(0)">Rút quà</a>
+                                <a class="btn primary w-100" href="/withdrawitem-{{$result->group->params->game_type}}">Rút quà</a>
                             </div>
                         </div>
                     </div>

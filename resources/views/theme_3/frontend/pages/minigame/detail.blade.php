@@ -377,8 +377,6 @@
                             @break
                             @case('squarewheel')
 
-
-
                             <div class="item_square" style="display: flex; flex-wrap: wrap;">
 
                                 <table id="squaredesktop" class="square">
@@ -777,21 +775,11 @@
                                 @endif
                             </div>
                             <div class="col-6 leaderboard-col">
-                                @if(App\Library\AuthCustom::check())
-                                    <button type="button" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button" data-toggle="modal" data-target="#modal-spin-bonus">Lịch sử quay</button>
-                                @else
-                                    <button type="button" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button" onclick="openLoginModal();">Lịch sử quay</button>
-                                @endif
+                                <button type="button" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button modal__withdraw__spin">Lịch sử quay</button>
                             </div>
                             <div class="col-6 leaderboard-col">
-                                @if(App\Library\AuthCustom::check())
-                                    <button class="button-primary" type="button" data-toggle="modal"
-                                            data-target="#modal-withdraw-items">Rút quà
-                                    </button>
-                                @else
-                                    <button class="button-primary" type="button" onclick="openLoginModal();">Rút quà
-                                    </button>
-                                @endif
+                                <button class="button-primary modal__withdraw__items" type="button" >Rút quà
+                                </button>
                             </div>
                         </div>
                         <div class="leaderboard-header">
@@ -989,10 +977,7 @@
                     <div class="rotation-modal-btn row no-gutters">
                         <div class="col-12">
 
-                            @if(App\Library\AuthCustom::check())
-                            <a onclick="openLoginModal();" data-dismiss="modal" data-toggle="modal"
-                               data-target="#modal-withdraw-items" href="javascript:void(0)" class="btn button-secondary">Rút quà</a>
-                            @endif
+                            <a href="javascript:void(0)" class="btn button-secondary modal__withdraw__items">Rút quà</a>
                         </div>
 
                     </div>
@@ -1142,7 +1127,36 @@
 
         </li>
     </script>
+    <script type="text/javascript">
+        $( document ).ready(function() {
 
+            $('body').on('click', '.modal__withdraw__items', function(e) {
+
+                if (!auth_check) {
+                    $('#loginModal').modal('show');
+                    return
+                }
+
+                $('#modal-withdraw-items').modal('show');
+            })
+
+            $('body').on('click', '.modal__withdraw__spin', function(e) {
+
+                if (!auth_check) {
+                    $('#loginModal').modal('show');
+                    return
+                }
+
+                $('#modal-spin-bonus').modal('show');
+            })
+
+
+
+            $("#btnWithdraw").on("click", function () {
+                $('#noticeModal').modal('hide');
+            })
+        })
+    </script>
     @switch($position)
         @case('rubywheel')
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/rubywheel.js?v={{time()}}"></script>

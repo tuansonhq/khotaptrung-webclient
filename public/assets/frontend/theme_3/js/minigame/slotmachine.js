@@ -81,6 +81,11 @@ $(document).ready(function(e) {
     //Click nút quay
     $('body').delegate('#start-played', 'click', function() {
 
+        if (!auth_check) {
+            $('#loginModal').modal('show');
+            return
+        }
+
         if (roll_check) {
             //fakeLoop();
             roll_check = false;
@@ -101,7 +106,7 @@ $(document).ready(function(e) {
                 type: 'POST',
                 success: function(data) {
                     if (data.status == 4) {
-                        location.href='/login?return_url='+window.location.href;
+                        $('#loginModal').modal('show');
                         return;
                     } else if (data.status == 3) {
                         roll_check = true;
@@ -189,7 +194,7 @@ $(document).ready(function(e) {
                     $('#noticeModal').modal('show');
                     return;
                 }
-                
+
                 var flag_bonus = true;
                 var c_game_type_value = '';
                 if (data.game_type_value){
@@ -241,6 +246,12 @@ $(document).ready(function(e) {
 
 
     $('body').delegate('.num-play-try', 'click', function() {
+
+        if (!auth_check) {
+            $('#loginModal').modal('show');
+            return
+        }
+
         if (roll_check) {
             //fakeLoop();
             roll_check = false;
@@ -261,7 +272,7 @@ $(document).ready(function(e) {
                 type: 'POST',
                 success: function(data) {
                     if (data.status == 4) {
-                        location.href='/login';
+                        $('#loginModal').modal('show');
                         return;
                     } else if (data.status == 3) {
                         $('#naptheModal').modal('show')
@@ -516,7 +527,7 @@ $(document).ready(function(e) {
                             $html += "<span>Tổng cộng: " + parseInt(gift_revice[0]["parrent"].params.value) * (parseInt(xvalueaDD[0])) + "</span>";
                         }
                     }
-                    
+
                 } else {
 
                     if (!flag_bonus) {//trường hợp bonus.
@@ -588,7 +599,7 @@ $(document).ready(function(e) {
                 } else {
 
                     if (!flag_bonus) {//trường hợp bonus.
-                        
+
                         $totalRevice = 0;
                         $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
                         $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
@@ -629,7 +640,7 @@ $(document).ready(function(e) {
 
                             $totalRevice += parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + parseInt(value_gif_bonus[$i]);
                         }
-                        
+
                         $html += "<span><b>Tổng cộng: " + $totalRevice + "</b></span>";
                     }
                 }
