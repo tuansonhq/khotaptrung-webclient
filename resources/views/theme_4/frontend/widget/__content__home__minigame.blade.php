@@ -39,7 +39,7 @@
         @endif
     </div>
     @if($flag_slide_minigame == 0)
-        <div class="entries" id="minigame__widget">
+        <div class="entries" id="minigame__widget" style="padding-bottom: 16px">
             <div class="row fix-border fix-border-dich-vu">
 
                 <div class="col-md-12 left-right data-nick-search">
@@ -143,7 +143,7 @@
                 @endforeach
 
                 @if(count($data) > 8)
-                <button id="btn-expand-minigame" class="expand-button" data-page-current="1" data-page-max="{{ $index }}">Xem thêm minigame</button>
+                <button id="btn-expand-minigame" class="expand-button_c" data-page-current="1" data-page-max="{{ $index }}">Xem thêm</button>
                 @endif
             </div>
 

@@ -94,6 +94,7 @@ $(document).ready(function(){
                     console.log('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
                 }
                 if(data.status == true){
+
                     auth_check = true;
 
                     $(window).resize(function() {
