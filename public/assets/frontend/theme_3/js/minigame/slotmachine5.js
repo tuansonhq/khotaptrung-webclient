@@ -58,8 +58,18 @@ $(document).ready(function(e) {
     $('body').delegate('#start-played', 'click', function() {
 
         if (!auth_check) {
-            $('#loginModal').modal('show');
-            return
+            let width = $(window).width();
+            if ( width > 1200 ) {
+                $('#loginModal').modal('show');
+                setTimeout(() => {
+                    $('#loginModal #modal-login-container').removeClass('right-panel-active');
+                }, 200);
+                return
+            } else {
+                $('.mobile-auth').toggleClass('mobile-auth-show');
+                $('.menu-category-mobile').removeClass('menu-category-mobile_show');
+                return
+            }
         }
 
         if (roll_check) {
@@ -264,8 +274,18 @@ $(document).ready(function(e) {
     $('body').delegate('.num-play-try', 'click', function() {
 
         if (!auth_check) {
-            $('#loginModal').modal('show');
-            return
+            let width = $(window).width();
+            if ( width > 1200 ) {
+                $('#loginModal').modal('show');
+                setTimeout(() => {
+                    $('#loginModal #modal-login-container').removeClass('right-panel-active');
+                }, 200);
+                return
+            } else {
+                $('.mobile-auth').toggleClass('mobile-auth-show');
+                $('.menu-category-mobile').removeClass('menu-category-mobile_show');
+                return
+            }
         }
 
         if (roll_check) {
@@ -288,8 +308,18 @@ $(document).ready(function(e) {
                 type: 'POST',
                 success: function(data) {
                     if (data.status == 4) {
-                        $('#loginModal').modal('show');
-                        return;
+                        let width = $(window).width();
+                        if ( width > 1200 ) {
+                            $('#loginModal').modal('show');
+                            setTimeout(() => {
+                                $('#loginModal #modal-login-container').removeClass('right-panel-active');
+                            }, 200);
+                            return
+                        } else {
+                            $('.mobile-auth').toggleClass('mobile-auth-show');
+                            $('.menu-category-mobile').removeClass('menu-category-mobile_show');
+                            return
+                        }
                     } else if (data.status == 3) {
                         $('#naptheModal').modal('show')
                         return;

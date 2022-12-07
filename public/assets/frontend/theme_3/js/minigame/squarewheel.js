@@ -200,8 +200,18 @@ $(document).ready(function(e) {
     $('body').delegate('.num-play-try', 'click', function() {
 
         if (!auth_check) {
-            $('#loginModal').modal('show');
-            return
+            let width = $(window).width();
+            if ( width > 1200 ) {
+                $('#loginModal').modal('show');
+                setTimeout(() => {
+                    $('#loginModal #modal-login-container').removeClass('right-panel-active');
+                }, 200);
+                return
+            } else {
+                $('.mobile-auth').toggleClass('mobile-auth-show');
+                $('.menu-category-mobile').removeClass('menu-category-mobile_show');
+                return
+            }
         }
 
         if (roll_check) {
