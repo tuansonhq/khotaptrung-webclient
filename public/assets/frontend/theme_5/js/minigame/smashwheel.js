@@ -94,7 +94,24 @@ $(document).ready(function(e) {
                 type: 'POST',
                 success: function(data) {
                     if (data.status == 4) {
-                        location.href='/login?return_url='+window.location.href;
+                        let width = $(window).width();
+                        setTimeout(function(){
+                            if ( width > 1200 ) {
+                                $('#loginModal').modal('show');
+                                setTimeout(() => {
+                                    $('#loginModal #modal-login-container').removeClass('right-panel-active');
+                                }, 200);
+
+                                return;
+                            } else {
+                                $('.mobile-auth-form #formLoginMobile').css('display', 'flex');
+                                $('.mobile-auth-form #formRegisterMobile').css('display', 'none');
+                                $('.mobile-auth .head-mobile h1').text('Đăng nhập');
+                                $('.mobile-auth').css('transform', 'translateX(0)');
+
+                                return;
+                            }
+                        }, 0);
                     } else if (data.status == 3) {
                         $('#lac_lixi').attr('src',$("#hdImageLD").val());
                         roll_check = true;
