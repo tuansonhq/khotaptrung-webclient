@@ -324,16 +324,16 @@
                                         <select class="rotation-inputs-select" name="type" id="numrolllop">
                                             <option value="1">Mua X1/{{$result->group->price/1000}}k 1 lần quay</option>
                                             @if($result->group->params->price_sticky_3 > 0))
-                                            <option value="3">Mua X3/{{$result->group->params->price_sticky_3/1000}}k 1 lần quay</option>
+                                            <option value="3">Mua X3/{{$result->group->params->price_sticky_3/1000}}k 3 lần quay</option>
                                             @endif
                                             @if($result->group->params->price_sticky_5 > 0))
-                                            <option value="5">Mua X5/{{$result->group->params->price_sticky_5/1000}}k 1 lần quay</option>
+                                            <option value="5">Mua X5/{{$result->group->params->price_sticky_5/1000}}k 5 lần quay</option>
                                             @endif
                                             @if($result->group->params->price_sticky_7 > 0))
-                                            <option value="7">Mua X7/{{$result->group->params->price_sticky_7/1000}}k 1 lần quay</option>
+                                            <option value="7">Mua X7/{{$result->group->params->price_sticky_7/1000}}k 7 lần quay</option>
                                             @endif
                                             @if($result->group->params->price_sticky_10 > 0))
-                                            <option value="10">Mua X10/{{$result->group->params->price_sticky_10/1000}}k 1 lần quay</option>
+                                            <option value="10">Mua X10/{{$result->group->params->price_sticky_10/1000}}k 10 lần quay</option>
                                             @endif
                                         </select>
                                     </div>
