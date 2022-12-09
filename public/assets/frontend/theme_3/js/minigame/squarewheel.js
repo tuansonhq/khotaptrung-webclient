@@ -45,8 +45,17 @@ $(document).ready(function(e) {
     $('body').delegate('#start-played', 'click', function() {
 
         if (!auth_check) {
-            $('#loginModal').modal('show');
-            return
+            let width = $(window).width();
+            if ( width > 1200 ) {
+                $('#loginModal').modal('show');
+                $('#loginModal #modal-login-container').removeClass('right-panel-active');
+                return
+            } else {
+                $('.mobile-auth').toggleClass('mobile-auth-show');
+                $('.menu-category-mobile').removeClass('menu-category-mobile_show');
+                return
+            }
+
         }
 
         if (roll_check) {
@@ -72,7 +81,16 @@ $(document).ready(function(e) {
                 type: 'POST',
                 success: function(data) {
                     if (data.status == 4) {
-                        $('#loginModal').modal('show');
+                        let width = $(window).width();
+                        if ( width > 1200 ) {
+                            $('#loginModal').modal('show');
+                            $('#loginModal #modal-login-container').removeClass('right-panel-active');
+                            return
+                        } else {
+                            $('.mobile-auth').toggleClass('mobile-auth-show');
+                            $('.menu-category-mobile').removeClass('menu-category-mobile_show');
+                            return
+                        }
                     } else if (data.status == 3) {
                         clearTimeout(runtime);
                         roll_check = true;
@@ -203,9 +221,7 @@ $(document).ready(function(e) {
             let width = $(window).width();
             if ( width > 1200 ) {
                 $('#loginModal').modal('show');
-                setTimeout(() => {
-                    $('#loginModal #modal-login-container').removeClass('right-panel-active');
-                }, 200);
+                $('#loginModal #modal-login-container').removeClass('right-panel-active');
                 return
             } else {
                 $('.mobile-auth').toggleClass('mobile-auth-show');

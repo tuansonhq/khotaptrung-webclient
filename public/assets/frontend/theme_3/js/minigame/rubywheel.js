@@ -35,9 +35,7 @@ $(document).ready(function(e) {
             let width = $(window).width();
             if ( width > 1200 ) {
                 $('#loginModal').modal('show');
-                setTimeout(() => {
-                    $('#loginModal #modal-login-container').removeClass('right-panel-active');
-                }, 200);
+                $('#loginModal #modal-login-container').removeClass('right-panel-active');
                 return
             } else {
                 $('.mobile-auth').toggleClass('mobile-auth-show');
@@ -56,9 +54,7 @@ $(document).ready(function(e) {
             let width = $(window).width();
             if ( width > 1200 ) {
                 $('#loginModal').modal('show');
-                setTimeout(() => {
-                    $('#loginModal #modal-login-container').removeClass('right-panel-active');
-                }, 200);
+                $('#loginModal #modal-login-container').removeClass('right-panel-active');
                 return
             } else {
                 $('.mobile-auth').toggleClass('mobile-auth-show');
@@ -95,9 +91,7 @@ $(document).ready(function(e) {
                         let width = $(window).width();
                         if ( width > 1200 ) {
                             $('#loginModal').modal('show');
-                            setTimeout(() => {
-                                $('#loginModal #modal-login-container').removeClass('right-panel-active');
-                            }, 200);
+                            $('#loginModal #modal-login-container').removeClass('right-panel-active');
                             return
                         } else {
                             $('.mobile-auth').toggleClass('mobile-auth-show');
