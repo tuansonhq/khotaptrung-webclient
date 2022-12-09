@@ -458,6 +458,10 @@
 
 
 /* chi tiet tin tuc */
+.--custom.content-detail a{
+    font-size: unset;
+}
+
 .breadcrum--list {
     display: flex;
     list-style: none;
@@ -568,6 +572,7 @@
         border-radius: 0;
     }
 }
+
 
 .successful-service {
     font-family: 'Roboto';
@@ -780,9 +785,23 @@
         width: 100%;
     }
 }
-
-
-/* css image footer */
-/*#footer img {*/
-/*    max-width: 100%;*/
-/*}*/
+/* css description account*/
+#viewMore a{
+    font-size: unset;
+}
+#viewMore p{
+    font-size: unset;
+}
+#viewMore li{
+    font-size: unset;
+}
+#viewMore strong{
+    font-size: unset;
+}
+/* intro text home*/
+#intro_text_home a {
+    font-size: unset;
+}
+#intro_text_home p {
+    font-size: unset;
+}

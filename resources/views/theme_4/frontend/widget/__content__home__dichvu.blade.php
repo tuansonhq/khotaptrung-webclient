@@ -23,7 +23,7 @@
     @endif
 
     @if($flag_slide_service == 0)
-    <div class="service-search d-none d-lg-block">
+    <div class="service-search d-none d-lg-block" style="padding-top: 24px;">
         <div class="input-group p-box">
             <input type="text" id="txtSearch" placeholder="Tìm dịch vụ" value="" class="" width="200px">
             <span class="icon-search"><i class="fas fa-search"></i></span>
@@ -32,13 +32,13 @@
     @else
         <div class="service-search d-none d-lg-block " style="font-size: 14px;line-height: 24px;font-weight: 600">
             <div class="input-group p-box">
-                <a href="/dich-vu" class="dich__vu__home">Xem thêm</a>
+                <a href="/dich-vu" class="dich__vu__home">Xem tất cả »</a>
             </div>
         </div>
     @endif
 </div>
     @if($flag_slide_service == 0)
-        <div class="entries" id="service__widget">
+        <div class="entries" id="service__widget" style="padding-bottom: 16px">
             <div class="row fix-border fix-border-dich-vu">
 
                 <div class="col-md-12 left-right data-service-search">
@@ -226,9 +226,9 @@
                 @endif
                 @endforeach
 
-
-                <button id="btn-expand-serivce" class="expand-button" data-page-current="1" data-page-max="{{ $index }}">Xem thêm dịch vụ</button>
-
+                @if(count($data) > 8)
+                <button id="btn-expand-serivce" class="expand-button_c" data-page-current="1" data-page-max="{{ $index }}">Xem thêm</button>
+                @endif
             </div>
 
 
@@ -261,7 +261,7 @@
             <div class="slick-slider">
                 @foreach($data as $item)
 
-                    <div class="item image">
+                    <div class="item image entries_item" style="padding-bottom: 16px">
                         <a href="/dich-vu/{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">

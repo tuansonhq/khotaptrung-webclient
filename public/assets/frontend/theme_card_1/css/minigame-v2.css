@@ -29,7 +29,7 @@ input[type="text"] {
 }
 :root{
     --primary-color: #f25922;
-    --text-black-color: #1B1D29;
+    --text-black-color: #575757;
     --primary-text: #434657;
     --primary-border: 8px;
     --border-0: 0;
@@ -133,18 +133,33 @@ a:hover{
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
-    color: var(--text-black-color);
+    color: #575757;
 }
 .text-title{
     font-size: 24px;
     font-weight: 700;
-    color: #1B1D29;
+    color: #575757;
     margin: auto;
     line-height: 150%;
 }
+.card-attr .text-title{
+    margin-top: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #575757;
+    line-height: 150%;
+}
+.c__text-title{
+    font-size: 15px;
+    font-weight: 700;
+    color: #575757;
+    margin: auto;
+    line-height: 150%;
+}
+
 .block-other-nick .text-title{
     font-size: 20px;
-    color: var(--primary-text);
+    color: #575757;
     overflow: hidden;
     -webkit-line-clamp: 1;
     display: -webkit-box;
@@ -154,7 +169,7 @@ a:hover{
 .text-title span{
     font-size: 24px;
     font-weight: 700;
-    color: #1B1D29;
+    color: #575757;
     margin: auto;
 }
 .text-view-more{
@@ -188,11 +203,11 @@ a:hover{
     color: #7D7D7D;
 }
 .select-form .option.focus:hover, .select-form .option.selected.focus:hover {
-    color: var(--text-black-color);
+    color: #575757;
 }
 .select-form .option:hover{
     background-color: #F3F3F7;
-    color: var(--text-black-color);
+    color: #575757;
 }
 
 
@@ -202,7 +217,7 @@ a:hover{
     border-radius: var(--primary-border);
 }
 .text-form{
-    color: var(--primary-text);
+    color: #575757;
     font-weight: 600;
 
 
@@ -267,7 +282,7 @@ a:hover{
 .wallet-card-content{
     font-size: 14px;
     line-height: 150%;
-    color: var(--primary-text);
+    color: #575757;
 }
 .wallet-card-name{
     font-weight: 600
@@ -276,7 +291,7 @@ a:hover{
     font-weight: 400;
 }
 .wallet-card-title{
-    color: var(--primary-text);
+    color: #575757;
     font-weight: 600;
     font-size: 14px;
     line-height: 150%;
@@ -301,12 +316,12 @@ a:hover{
     float: left;
     margin-left: 25px;
     font-size: 12px;
-    color: var(--primary-text);
+    color: #575757;
     font-weight: 600;
 }
 .top-navigation li a{
 
-    color: var(--primary-text);
+    color: #575757;
 
 }
 .top-navigation li img{
@@ -367,7 +382,7 @@ header nav.heading .header-container{
 
 .item-about-title{
     font-size: 12px;
-    color: var(--primary-text);
+    color: #575757;
     font-weight: 600;
     margin: auto 4px;
 }
@@ -407,7 +422,7 @@ header nav.heading .header-container{
 }
 
 .account-name{
-    color: #1B1D29;
+    color: #575757;
     font-weight: 600;
     font-size: 12px;
 }
@@ -499,7 +514,7 @@ header nav.heading .header-container{
 .account-menu_child a{
     font-weight: 400;
     font-size: 14px;
-    color: var(--primary-text);
+    color: #575757;
     line-height: 21px;
     width: 100%;
     transition: .2s;
@@ -567,13 +582,13 @@ header nav.heading .header-container{
     width: 100%;
     height: 100%;
     font-size: 12px;
-    color: var(--primary-text);
+    color: #575757;
     font-weight: 400;
     text-align: center;
 }
 .menu-category li a{
 
-    color: var(--primary-text);
+    color: #575757;
     transition: .2s;
     width: 100%;
     height: 100%;
@@ -643,7 +658,7 @@ header nav.heading .header-container{
 }
 .menu-category-mobile ul li a span{
     margin-left: 12px;
-    color: #1B1D29;
+    color: #575757;
     font-weight: 500;
     font-size: 14px;
 }
@@ -1136,7 +1151,7 @@ header nav.heading .header-container{
 }
 
 .box-list-service>p,.top-list p,.top-list p span{
-    color: var(--text-black-color);
+    color: #575757;
     font-size: 18px;
     font-weight: 700;
 }
@@ -1169,7 +1184,7 @@ header nav.heading .header-container{
     width: 24px;
 }
 .item-service a{
-    color: var(--primary-text);
+    color: #575757;
     font-weight: 400;
     text-decoration: none   ;
     transition: .2s;
@@ -1205,14 +1220,14 @@ header nav.heading .header-container{
 
 .top-name{
     padding: 0 30px 0 10px;
-    color: var(--primary-text);
+    color: #575757;
     font-weight: 400;
     word-break: break-word;
     flex: 1;
     font-size: 14px;
 }
 .top-amount{
-    color: var(--primary-text);
+    color: #575757;
     font-size: 14px;
 }
 .item-top ul li{
@@ -1248,7 +1263,7 @@ header nav.heading .header-container{
 
 }
 .timer div {
-    background: var(--text-black-color);
+    background: #575757;
     color: #fff;
     border-radius: 5px;
     font-size: 14px;
@@ -1376,7 +1391,7 @@ header nav.heading .header-container{
 }
 
 .item-product__box-name{
-    color: var(--text-black-color);
+    color: #575757;
     font-size: 16px;
     padding-bottom: 4px;
     font-weight: 600;
@@ -1430,7 +1445,7 @@ header nav.heading .header-container{
     display: inline-block;
     font-size: 18px;
     font-weight: 600;
-    color: var(--text-black-color);
+    color: #575757;
     line-height:150%;
 }
 
@@ -1691,7 +1706,7 @@ header nav.heading .header-container{
     margin-top: 0.75rem;
     font-weight: 600;
     line-height: 150%;
-    color: var(--primary-text);
+    color: #575757;
     transition: .2s;
 }
 
@@ -1712,7 +1727,7 @@ header nav.heading .header-container{
 .check-radio-form label p{
     line-height: 56px;
     text-align: center;
-    color: var(--primary-text);
+    color: #575757;
     font-weight: 600;
     font-size: 16px;
 }
@@ -1793,7 +1808,7 @@ header nav.heading .header-container{
 .item-nick-name{
     margin-top: 1rem;
     font-size: 16px;
-    color: var(--primary-text);
+    color: #575757;
     text-align: center;
     font-weight: 600;
     padding: 0 8px;
@@ -1869,7 +1884,7 @@ header nav.heading .header-container{
 .list-intro-content{
     font-size: 14px;
     font-weight: 400;
-    color: var(--text-black-color);
+    color: #575757;
     line-height: 150%;
     margin-top: 8px;
 }
@@ -3479,7 +3494,7 @@ img.lazy {
     width: 72%;
 }
 .search-input input {
-    color: var(--text-black-color);
+    color: #575757;
     font-size: 16px;
     border: 0;
     /*margin-top: 60px;*/
@@ -3527,7 +3542,7 @@ img.lazy {
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
-    color: var(--primary-text);
+    color: #575757;
 
 }
 .search-show-more{
@@ -4183,7 +4198,7 @@ img.lazy {
     .breadcrumb-mobile p {
         font-weight: 700;
         font-size: 18px;
-        color: #1B1D29;
+        color: #575757;
         margin-bottom: 0;
     }
 }
@@ -4264,7 +4279,7 @@ img.lazy {
     border-color: #BCBFD6;
     border-radius: 8px;
     background: #FBFBFD;
-    color: #1B1D29;
+    color: #575757;
 }
 
 .input-primary::placeholder {
@@ -4289,7 +4304,7 @@ img.lazy {
     border-color: #BCBFD6;
     border-radius: 8px;
     background: #FBFBFD;
-    color: #1B1D29;
+    color: #575757;
 }
 
 .textarea-primary::placeholder {
@@ -4336,7 +4351,7 @@ img.lazy {
 .rotation-modal-header .modal-title {
     font-weight: 700;
     font-size: 20px;
-    color: #1B1D29;
+    color: #575757;
 }
 
 .rotation-modal-header button {
@@ -4406,7 +4421,7 @@ section{
 
 }
 .menu-container-ct li a{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -4486,7 +4501,7 @@ section{
     padding-right: 0;
 }
 .body-header-col-ct h3{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 24px;
@@ -4495,7 +4510,7 @@ section{
     margin-bottom: 0;
 }
 .body-header-col-ct h1{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 24px;
@@ -4517,7 +4532,7 @@ section{
 
 .body-title-ct span,
 .body-search-ct span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -4570,7 +4585,7 @@ section{
     appearance: none;
 }
 .input-search-ct::placeholder{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -4590,7 +4605,7 @@ section{
 .input-search-ct:active, .input-search-ct:focus {
     border-color: #f25922;
     background: #F3F3F7;
-    color: #1B1D29;
+    color: #575757;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -4623,7 +4638,7 @@ section{
     outline: none!important;
 }
 .input-search-log-ct::placeholder{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -4640,7 +4655,7 @@ section{
 .input-search-log-ct:active, .input-search-log-ct:focus {
     border-color: #f25922;
     background: #F3F3F7;
-    color: #1B1D29;
+    color: #575757;
     box-shadow: none !important;
     outline: none!important;
 }
@@ -4791,7 +4806,7 @@ section{
     padding-top: 16px;
 }
 .body-detail-col-span-ct span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -4803,7 +4818,7 @@ section{
     padding-top: 8px;
 }
 .body-detail-account-col-span-ct span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -4821,7 +4836,7 @@ section{
 }
 
 .body-detail-account-small-span-ct small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -4834,7 +4849,7 @@ section{
     padding-right: 8px;
 }
 .footer-row-ct span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -4842,7 +4857,7 @@ section{
     color: #434657;
 }
 .footer-row-ct-title span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -4853,7 +4868,7 @@ section{
     padding-top: 24px;
 }
 .footer-row-col-ct p{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -4866,7 +4881,7 @@ section{
     overflow: hidden;
 }
 .footer-row-ct .view-more,.footer-row-ct .view-less{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -4955,7 +4970,7 @@ section{
     padding-right: 8px;
 }
 .body-title-detail-select-ct span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -4968,7 +4983,7 @@ section{
 }
 
 .body-title-detail-span-ct span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -5059,7 +5074,7 @@ section{
     list-style: none;
 }
 .body-title-detail-span-ct li{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -5083,7 +5098,7 @@ section{
     border: 1px solid #DCDEE9;
     border-radius: 8px;
     padding-left: 8px;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -5099,13 +5114,13 @@ section{
 .input-defautf-ct:active, .input-defautf-ct:focus {
     border-color: #f25922;
     background-color: #FFFFFF;
-    color: #1B1D29;
+    color: #575757;
     outline: none!important;
     box-shadow: none!important;
 }
 
 .input-defautf-ct::placeholder{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -5122,7 +5137,7 @@ section{
     margin-left: auto;
 }
 .body-title-detail-span-ct small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
@@ -5138,7 +5153,7 @@ section{
     padding: 12px 24px;
     width: 100%;
     height: 48px;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-size: 16px;
     line-height: 150%;
@@ -5162,7 +5177,7 @@ section{
     padding: 12px 24px;
     width: 100%;
     height: 48px;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-size: 16px;
     line-height: 150%;
@@ -5186,7 +5201,7 @@ section{
     padding: 12px 24px;
     width: 100%;
     height: 48px;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-size: 16px;
     line-height: 150%;
@@ -5212,7 +5227,7 @@ section{
     padding: 12px 24px;
     width: 100%;
     height: 48px;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-size: 16px;
     line-height: 150%;
@@ -5221,7 +5236,7 @@ section{
 .button-default-modal-ct span{
     color: #FFFFFF;
     font-weight: 600;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-size: 16px;
     line-height: 150%;
@@ -5246,7 +5261,7 @@ section{
     padding-right: 0;
 }
 .body-header-col-km-left-ct span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -5257,7 +5272,7 @@ section{
     margin-left: auto;
 }
 .body-header-col-km-right-ct a{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -5311,7 +5326,7 @@ section{
     margin-top: 20px;
 }
 .body-header-col-km-left-ct small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -5322,7 +5337,7 @@ section{
     margin-left: 4px;
 }
 .error-ct small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -5355,7 +5370,7 @@ section{
     border-bottom: none!important;
 }
 .modal-header-success-row-ct span {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -5408,7 +5423,7 @@ section{
     padding-top: 24px;
 }
 .modal-body-span-success-ct span {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -5416,7 +5431,7 @@ section{
     color: #434657;
 }
 .modal-body-span-success-ct small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -5462,7 +5477,7 @@ section{
 .modal-footer-success-row-not-ct a{
     padding: 12px 16px;
     line-height: 48px;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -5498,7 +5513,7 @@ section{
 .modal-footer-success-row-ct a{
     padding: 12px 24px;
     line-height: 48px;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -5514,7 +5529,7 @@ section{
     overflow: hidden;
 }
 .show-detail-service-ct .view-more,.show-detail-service-ct .view-less{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -5562,7 +5577,7 @@ section{
 
 
 .show-detail-caythue-ct .view-more,.show-detail-caythue-ct .view-less{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -5620,7 +5635,7 @@ section{
     overflow: hidden;
 }
 .show-detail-napgame-ct .view-more,.show-detail-napgame-ct .view-less{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -5652,7 +5667,7 @@ section{
     text-decoration: none;
 }
 .napgamekhac span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -5688,18 +5703,18 @@ section{
     padding: 16px 16px 0 16px;
 }
 .modal-header-order-ct span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
     line-height: 150%;
-    color: #1B1D29;
+    color: #575757;
 }
 .order-errors{
     padding-top: 8px;
 }
 .order-errors small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -5707,12 +5722,12 @@ section{
     color: #DA4343;
 }
 .modal-header-nick-ct span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 150%;
-    color: #1B1D29;
+    color: #575757;
 }
 
 .modal-body-order-ct{
@@ -5755,7 +5770,7 @@ section{
     padding: 12px;
 }
 .background-order-col-left-ct span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -5767,7 +5782,7 @@ section{
 }
 
 .background-order-col-right-ct small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -5776,7 +5791,7 @@ section{
 }
 
 .background-nick-col-top-ct small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -5785,7 +5800,7 @@ section{
 }
 
 .background-nick-select-left-ct small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -5803,15 +5818,15 @@ section{
     padding-top: 16px;
 }
 .background-nick-col-right-ct small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 150%;
-    color: #1B1D29;
+    color: #575757;
 }
 .title-order-ct span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -5835,7 +5850,7 @@ section{
 }
 
 .background-order-col-right-ct span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -5868,15 +5883,15 @@ section{
     float: left;
 }
 .body-detail-account-small-span-ct .fist-li-account{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
     line-height: 150%;
-    color: #1B1D29;
+    color: #575757;
 }
 .body-detail-account-small-span-ct .second-li-account{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -5886,7 +5901,7 @@ section{
     text-decoration-line: line-through;
 }
 .body-detail-account-small-span-ct .three-li-account{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
@@ -6000,7 +6015,7 @@ section{
 .nick-findter li{
     list-style: none;
     float: left;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -6102,7 +6117,7 @@ section{
 .prepend-nick a{
     background: #F3F3F7;
     border-radius: 100px;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
@@ -6129,7 +6144,7 @@ section{
     margin-left: 8px;
 }
 .item-sort-nick-label span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -6290,7 +6305,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     margin: 0 4px;
     background: #FFFFFF;
     border-radius: 4px;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -6609,16 +6624,16 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding: 12px 16px 16px 16px;
 }
 .gallery-right-top-header span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 150%;
-    color: #1B1D29;
+    color: #575757;
 }
 
 .gallery-right-top-header small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -6630,12 +6645,12 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding: 8px 16px;
 }
 .gallery-right-top-title span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 150%;
-    color: #1B1D29;
+    color: #575757;
 }
 .gallery-right-top-body-black{
     background: #FBFBFD;
@@ -6659,7 +6674,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding: 8px 16px;
 }
 .gallery-right-top-body-span span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -6668,7 +6683,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .gallery-right-top-body-span small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -6693,7 +6708,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding-top: 34px;
 }
 .gallery-footer-fisrt-li{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -6703,7 +6718,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     text-decoration-line: line-through;
 }
 .gallery-footer-two-li{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 32px;
@@ -6716,7 +6731,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     line-height: 48px;
 }
 .gallery-footer-three-li span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
@@ -6731,7 +6746,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding-bottom: 16px;
 }
 .gallery-footer-bottom span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -6769,7 +6784,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     color: #FFFFFF;
 }
 .nick-detail-button a{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -6790,7 +6805,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     list-style: none;
 }
 .nick-detail-button small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -6798,7 +6813,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     color: #434657;
 }
 .nick-detail-button span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -6818,7 +6833,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding-top: 16px;
 }
 .title-tra-gop span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -6830,7 +6845,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding-top: 20px;
 }
 .title-tra-gop-success span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -6845,7 +6860,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     border: 1px solid #DCDEE9;
     border-radius: 8px;
     padding-left: 12px;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -6862,12 +6877,12 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 .input-modal-defautf-ct:active, .input-modal-defautf-ct:focus {
     border-color: #f25922;
     background: #F3F3F7;
-    color: #1B1D29;
+    color: #575757;
     outline: none;
     box-shadow: none;
 }
 .input-modal-defautf-ct-play::placeholder{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -6882,7 +6897,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .title-tra-gop small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -6894,7 +6909,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     text-align: center;
 }
 .title-tra-gop-body span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -6902,7 +6917,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     color: #434657;
 }
 .tragop-order-body-row-ct li{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -7027,7 +7042,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding-top: 24px;
 }
 .theme-404-title span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 32px;
@@ -7039,7 +7054,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 .theme-404-content small,
 .theme-404-body small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -7057,20 +7072,20 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding: 16px;
 }
 .nav-bar-parent-title span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 150%;
-    color: #1B1D29;
+    color: #575757;
 }
 .nav-bar-article-title span {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
     line-height: 150%;
-    color: #1B1D29;
+    color: #575757;
 }
 .nav-bar-child{
     padding-left: 16px;
@@ -7087,7 +7102,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 
 .nav-bar-child span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -7099,7 +7114,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding-right: 0;
 }
 .nav-bar-log-top-body-col span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -7136,12 +7151,12 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     border-radius: 8px;
 }
 .logs-title span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 150%;
-    color: #1B1D29;
+    color: #575757;
 }
 .logs-search{
     padding-top: 24px;
@@ -7175,17 +7190,17 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     border-top: none;
     border-bottom: 1px solid #BCBFD6;
     padding: 12px;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
     line-height: 150%;
-    color: #1B1D29;
+    color: #575757;
     white-space: nowrap;
 }
 .logs-table .table tr{
     padding: 12px;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -7260,7 +7275,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 .footer-row-ct .content-video-in span{
     margin-bottom: 8px;
-    font-family: 'Open Sans';
+
     font-style: normal!important;
     font-weight: 400!important;
     font-size: 14px!important;
@@ -7269,7 +7284,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 .show-detail-service-ct .content-video-in span{
     margin-bottom: 8px;
-    font-family: 'Open Sans';
+
     font-style: normal!important;
     font-weight: 400!important;
     font-size: 14px!important;
@@ -7278,7 +7293,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 .show-detail-service-ct .content-video-in p{
     margin-bottom: 8px;
-    font-family: 'Open Sans';
+
     font-style: normal!important;
     font-weight: 400!important;
     font-size: 14px!important;
@@ -7287,7 +7302,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 .show-detail-caythue-ct .content-video-in p{
     margin-bottom: 8px;
-    font-family: 'Open Sans';
+
     font-style: normal!important;
     font-weight: 400!important;
     font-size: 14px!important;
@@ -7297,7 +7312,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 .show-detail-caythue-ct-fix .content-video-in p{
     margin-bottom: 8px;
-    font-family: 'Open Sans';
+
     font-style: normal!important;
     font-weight: 400!important;
     font-size: 14px!important;
@@ -7307,7 +7322,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 .show-detail-caythue-ct .content-video-in span{
     margin-bottom: 8px;
-    font-family: 'Open Sans';
+
     font-style: normal!important;
     font-weight: 400!important;
     font-size: 14px!important;
@@ -7317,7 +7332,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 .show-detail-caythue-ct-fix .content-video-in span{
     margin-bottom: 8px;
-    font-family: 'Open Sans';
+
     font-style: normal!important;
     font-weight: 400!important;
     font-size: 14px!important;
@@ -7327,7 +7342,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 .footer-row-ct .content-video-in p{
     margin-bottom: 8px;
-    font-family: 'Open Sans';
+
     font-style: normal!important;
     font-weight: 400!important;
     font-size: 14px!important;
@@ -7336,7 +7351,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 .show-detail-napgame-ct .content-video-in p{
     margin-bottom: 8px;
-    font-family: 'Open Sans';
+
     font-style: normal!important;
     font-weight: 400!important;
     font-size: 14px!important;
@@ -7345,7 +7360,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 .show-detail-napgame-ct .content-video-in span{
     margin-bottom: 8px;
-    font-family: 'Open Sans';
+
     font-style: normal!important;
     font-weight: 400!important;
     font-size: 14px!important;
@@ -7388,7 +7403,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 .table-logs .badge-danger{
     border-color: #DA4343;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -7400,7 +7415,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 .table-logs .badge-warning{
     border-color:  #FFA940;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -7411,7 +7426,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 .table-logs .badge-success{
     border-color:  #30CD60;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -7425,7 +7440,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 .delete-account p{
     margin-bottom: 0;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -7436,7 +7451,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding-top: 12px;
 }
 .small-logs-tra-gop small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -7450,7 +7465,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding-top: 16px;
 }
 .span-logs-tra-gop span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -7478,7 +7493,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding-bottom: 16px;
 }
 .text-profile-default span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -7487,7 +7502,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .text-profile-default small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -7505,12 +7520,12 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .change-password-row span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 150%;
-    color: #1B1D29;
+    color: #575757;
 }
 .change-password-first{
     padding-top: 32px;
@@ -7536,7 +7551,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding-bottom: 22px;
 }
 #table-notdata td span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -7552,7 +7567,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .footer-copy span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -7564,7 +7579,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding: 16px 0;
 }
 .footer-copy small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -7597,7 +7612,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     object-fit: cover;
 }
 .footer-default-body-row span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -7606,7 +7621,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .footer-default-body-row small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -7639,7 +7654,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .footer-default-two-row h4{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -7648,7 +7663,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     margin-bottom: 0;
 }
 .footer-default-foor-row h4{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -7687,7 +7702,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     width: 12px;
 }
 .footer-default-two-row ul li a{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -7696,7 +7711,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .footer-default-foor-row li a{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
@@ -8047,7 +8062,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .chat-box-col span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -8056,7 +8071,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .chat-box-col small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -8074,7 +8089,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding: 8px 12px;
 }
 .header-chat span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -8083,7 +8098,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .header-chat small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -8103,7 +8118,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     border-top-right-radius: 8px;
 }
 .body-chat-title span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -8112,7 +8127,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .body-chat-content small{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -8121,7 +8136,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .body-chat-content span{
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -8182,7 +8197,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .textarea-default {
-    font-family: 'Open Sans';
+
     color: #A7ABC3;
     width: 100%;
     height: 100px;
@@ -9491,31 +9506,31 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     }
 
     .banner-mobile-span h3 {
-        font-family: 'Open Sans';
+
         font-style: normal;
         font-weight: 700 !important;
         font-size: 18px !important;
         line-height: 150% !important;
-        color: #1B1D29;
+        color: #575757;
         margin-bottom: 0;
     }
     .banner-mobile-span h1{
-        font-family: 'Open Sans';
+
         font-style: normal;
         font-weight: 700!important;
         font-size: 18px!important;
         line-height: 150%!important;
-        color: #1B1D29;
+        color: #575757;
         margin-bottom: 0;
     }
 
     .banner-mobile-span p{
-        font-family: 'Open Sans';
+
         font-style: normal;
         font-weight: 700!important;
         font-size: 18px!important;
         line-height: 150%!important;
-        color: #1B1D29;
+        color: #575757;
         margin-bottom: 0;
     }
     .modal-footer-success-row-not-ct a {
@@ -9891,7 +9906,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
         padding: 12px 12px 16px 12px;
     }
     .thong-tin-tra-gop-mobile span{
-        font-family: 'Open Sans';
+
         font-style: normal;
         font-weight: 700;
         font-size: 14px;
@@ -10517,7 +10532,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
         padding: 12px 12px 16px 12px;
     }
     .thong-tin-tra-gop-mobile span{
-        font-family: 'Open Sans';
+
         font-style: normal;
         font-weight: 700;
         font-size: 14px;
@@ -10834,31 +10849,31 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     }
 
     .banner-mobile-span h3{
-        font-family: 'Open Sans';
+
         font-style: normal;
         font-weight: 700!important;
         font-size: 18px!important;
         line-height: 150%!important;
-        color: #1B1D29;
+        color: #575757;
         margin-bottom: 0;
     }
     .banner-mobile-span h1{
-        font-family: 'Open Sans';
+
         font-style: normal;
         font-weight: 700!important;
         font-size: 18px!important;
         line-height: 150%!important;
-        color: #1B1D29;
+        color: #575757;
         margin-bottom: 0;
     }
 
     .banner-mobile-span p{
-        font-family: 'Open Sans';
+
         font-style: normal;
         font-weight: 700!important;
         font-size: 18px!important;
         line-height: 150%!important;
-        color: #1B1D29;
+        color: #575757;
         margin-bottom: 0;
     }
     .banner-mobile-row-ct{
@@ -11188,7 +11203,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .breadcrum--item .breadcrum--link {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -11216,7 +11231,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     --primary-color: #f25922;
     border-radius: 12px;
     border: none;
-    font-family: 'Open Sans';
+
     min-height: 1rem;
 }
 
@@ -11231,7 +11246,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 .card .card--header .card--header__title h4 {
     margin: 0;
-    color: #1B1D29;
+    color: #575757;
     font-weight: 700;
     font-size: 24px;
 }
@@ -11278,7 +11293,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 #content-store-card .card--header__title h4 {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 24px;
@@ -11313,7 +11328,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 #content-store-card .tab--title {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -11392,7 +11407,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 #content-store-card .nav-tabs .nav-item .nav-link {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -11413,7 +11428,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 #content-store-card .card--amount .card--amount__title,
 #content-store-card .discount .discount--title,
 #content-store-card .price--total .price--total__title {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -11445,7 +11460,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 #content-store-card .deno__item .deno__value span {
     margin: auto;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -11496,7 +11511,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 #content-store-card .card--amount__group .input--amount {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -11511,7 +11526,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 #content-store-card .discount .discount--value {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
@@ -11520,7 +11535,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 #content-store-card .price--total .price--total__value {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
@@ -11530,19 +11545,19 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 /*Mô tả thẻ*/
 #content-store-card .card--desc__title {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     padding: 0 4px 16px;
     line-height: 1.5;
-    color: #1B1D29;
+    color: #575757;
 }
 
 #content-store-card .card--desc__content {
     position: relative;
     padding: 12px 4px;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -11559,7 +11574,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 .js-toggle-content .view-more,
 .js-toggle-content .view-less {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -11601,7 +11616,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 .dialog .dialog--header .dialog--header__title {
 
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -11617,7 +11632,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .dialog .dialog--content .dialog--content__title {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -11678,7 +11693,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .modal .card__detail .card--info .card--info__name {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -11688,7 +11703,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .modal .card__detail .card--info .card--info__value {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -11725,7 +11740,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .modal .card--gray .card__message {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     margin-bottom: 12px;
@@ -11745,7 +11760,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .card--gray .card--attr .card--attr__name {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -11759,7 +11774,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .card--gray .card--attr .card--attr__value {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -11769,7 +11784,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .card__detail .card--gray .card--attr__name {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -11780,7 +11795,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 .card__detail .card--gray .card--attr__value {
     display: flex;
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -11791,7 +11806,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .card--gray .card--attr__total .card--attr__name {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -11801,7 +11816,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .card--gray .card--attr__total .card--attr__value {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -11975,7 +11990,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .card.--custom .card--header .card--header__title {
-    color: #1B1D29;
+    color: #575757;
     font-weight: 700;
     font-size: 20px;
     margin: 0;
@@ -12026,7 +12041,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .card--rise .card__attr .card--value__attr {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -12035,7 +12050,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 .card--rise .card__attr .card__info {
     margin-left: 8px;
-    color: #1B1D29;
+    color: #575757;
 }
 
 .card--rise .card--rise__title {
@@ -12044,7 +12059,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .card--rise .card--rise__title .order__id {
-    color: #1B1D29;
+    color: #575757;
     font-size: 16px;
 }
 
@@ -12064,7 +12079,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 .card--rise .order__attr .order--value__attr a {
     max-width: 45%;
     font-weight: 600;
-    color: #1B1D29;
+    color: #575757;
     text-align: right;
 }
 
@@ -12124,13 +12139,13 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .text--sm__title {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     margin-bottom: 12px;
     line-height: 150%;
-    color: #1B1D29;
+    color: #575757;
 }
 
 .text--primary {
@@ -12147,7 +12162,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     line-height: 24px;
 }
 .textarea--content {
-    font-family: 'Open Sans';
+
     color: #A7ABC3;
     width: 100%;
     height: 100px;
@@ -12248,7 +12263,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .label--checkbox__input {
-    font-family: 'Open Sans';
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -12282,7 +12297,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .article--slider .article--title {
-    color: #1B1D29;
+    color: #575757;
     font-weight: 600;
     font-size: 28px;
     line-height: 1.5;
@@ -12470,7 +12485,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .acc-related--info-name a {
-    color: var(--text-black-color);
+    color: #575757;
     font-size: 16px;
     margin-bottom: 4px;
     font-weight: 700;
@@ -12493,7 +12508,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 .acc-related--info-price {
     font-weight: 600;
     font-size: 18px;
-    color: #1B1D29;
+    color: #575757;
     margin-bottom: 4px;
 }
 
@@ -12543,9 +12558,9 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 /* End New layout article detail */
 
 #article--detail {
-    font-family: 'Open Sans';
+
     font-style: normal;
-    color: #1B1D29;
+    color: #575757;
 }
 
 #article--detail .article--title {
@@ -12703,7 +12718,7 @@ a:hover .__icon.--path__custom:after {
 #new-article-update .article .article--title__link {
     font-weight: 600;
     font-size: 20px;
-    color: #1B1D29;
+    color: #575757;
 }
 
 /*Dịch vụ */
@@ -12804,9 +12819,9 @@ a:hover .__icon.--path__custom:after {
 .table-custom table th,
 .table-custom table td {
     text-align: center;
-    font-family: 'Open Sans';
+
     font-style: normal;
-    color: #1B1D29;
+    color: #575757;
     font-size: 14px;
     line-height: 1.5;
 }
@@ -12941,7 +12956,7 @@ a:hover .__icon.--path__custom:after {
     font-weight: 700 !important;
     font-size: 18px !important;
     line-height: 150% !important;
-    color: #1B1D29;
+    color: #575757;
 }
 
 .h-0 {
@@ -12976,7 +12991,7 @@ a:hover .__icon.--path__custom:after {
     font-weight: 700;
     font-size: 24px;
     line-height: 1.5;
-    color: #1B1D29;
+    color: #575757;
 }
 
 #rechargeModal .modal-header .close {
@@ -13022,7 +13037,7 @@ a:hover .__icon.--path__custom:after {
 
 #rechargeModal .nav-tabs .nav-link:not(.active):hover {
     border-color: transparent transparent #DCDEE9 transparent;
-    color: #1B1D29;
+    color: #575757;
 }
 
 #rechargeModal .modal-body {
@@ -13271,7 +13286,7 @@ a:hover .__icon.--path__custom:after {
     font-weight: 700;
     font-size: 24px;
     line-height: 1.5;
-    color: #1B1D29;
+    color: #575757;
 }
 
 #modal-withdraw-items .close,
@@ -13455,7 +13470,7 @@ a:hover .__icon.--path__custom:after {
 }
 /*Text*/
 .t-color-title {
-    color: #1B1D29;
+    color: #575757;
 }
 .t-sub-1 {
     font-weight: 700;
@@ -13569,7 +13584,7 @@ a:hover .__icon.--path__custom:after {
     font-weight: 600;
     font-size: 14px;
     line-height: 1.5;
-    color: #1B1D29;
+    color: #575757;
     padding-top: 12px;
     padding-bottom: 12px;
 }
@@ -13848,13 +13863,13 @@ input.calendar-right {
 
     .card--mobile__title p,
     .step .step--header .step--header__title {
-        font-family: 'Open Sans';
+
         font-style: normal;
         font-weight: 700;
         font-size: 18px;
         line-height: 150%;
         text-align: center;
-        color: #1B1D29;
+        color: #575757;
         margin: auto;
         padding: 6.5px;
     }
@@ -13913,7 +13928,7 @@ input.calendar-right {
     }
 
     .step--content .step--content__title {
-        font-family: 'Open Sans';
+
         font-style: normal;
         font-weight: 600;
         font-size: 14px;
@@ -13923,7 +13938,7 @@ input.calendar-right {
     }
 
     .step--content .card--gray.card__notify .card__message {
-        font-family: 'Open Sans';
+
         font-style: normal;
         font-weight: 400;
         font-size: 12px;
@@ -14085,7 +14100,7 @@ input.calendar-right {
         border: 1px solid #82869E;
         border-radius: 8px;
         padding: 6px 15px;
-        font-family: 'Open Sans';
+
         font-style: normal;
         font-weight: 400;
         font-size: 12px;

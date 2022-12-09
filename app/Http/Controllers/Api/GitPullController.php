@@ -29,9 +29,23 @@ class GitPullController extends Controller
             ], 200);
         }
 
+//        $command_one ='git switch master 2>&1';
+//
+//        $output_one = shell_exec($command_one);
+
         $command ='git pull https://'.$token.'@github.com/tannm2611/khotaptrung-webclient.git '.$brand.' 2>&1';
 
         $output = shell_exec($command);
+
+        $string_error = "Your local changes to the following files would be overwritten by merge";
+        $string_error2 = "The following untracked working tree files would be overwritten by merge";
+
+        if (is_numeric(strpos($output,$string_error)) || is_numeric(strpos($output,$string_error2))){
+            $reset_hard = "git reset --hard origin/master 2>&1";
+            shell_exec($reset_hard);
+            $command ='git pull https://'.$token.'@github.com/tannm2611/khotaptrung-webclient.git '.$brand.' 2>&1';
+            $output = shell_exec($command);
+        }
 
         \Artisan::call('cache:clear');
         \Artisan::call('config:cache');

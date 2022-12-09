@@ -485,7 +485,7 @@
                             @case('gieoque')
 
                             <div class="rotation">
-                                <div class="rotation-button rotation-button-quanhuy" {{ \App\Library\AuthCustom::check() ?  'id=start-played' : 'onclick=openLoginModal();'}}>
+                                <div class="rotation-button rotation-button-quanhuy" id="start-played">
 
                                     <img onerror="imgError(this)"
 
@@ -585,27 +585,15 @@
                                     @if(isset($result->group->params->is_try))
                                         @if($result->group->params->is_try == 1)
                                             <div class="col-4 button-col">
-                                                @if(App\Library\AuthCustom::check())
-                                                    <button id="playerDemo" class="button-secondary button-demo num-play-try">Chơi thử</button>
-                                                @else
-                                                    <button type="button" class="button-secondary button-demo" data-toggle="modal" data-target="#signin">Chơi thử</button>
-                                                @endif
+                                                <button id="playerDemo" class="button-secondary button-demo num-play-try">Chơi thử</button>
                                             </div>
                                         @endif
                                     @endif
-                                    @if (App\Library\AuthCustom::check())
                                         <div class="col-8 button-rainbow button-col" style="--bg-color: #ecf0f1">
                                             <button id="start-played" class="button-primary button-play play b_button">Quay
                                                 ngay
                                             </button>
                                         </div>
-                                    @else
-                                        <div class="col-6 button-rainbow button-col" style="--bg-color: #ecf0f1">
-                                            <button type="button" class="button-primary button-play b_button"
-                                                    data-toggle="modal" data-target="#signin">Quay ngay
-                                            </button>
-                                        </div>
-                                    @endif
                                 </div>
                             </div>
                             {{--                                <div class="b_item button-rainbow" style="--bg-color: #ecf0f1">--}}
@@ -784,21 +772,12 @@
                                 @endif
                             </div>
                             <div class="col-6 leaderboard-col">
-                                @if(App\Library\AuthCustom::check())
-                                    <button type="button" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button" data-toggle="modal" data-target="#modal-spin-bonus">Lịch sử quay</button>
-                                @else
-                                    <button type="button" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button" data-toggle="modal" data-target="#signin">Lịch sử quay</button>
-                                @endif
+                                <button type="button" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button modal_spin_bonus">Lịch sử quay</button>
+
                             </div>
                             <div class="col-6 leaderboard-col">
-                                @if(App\Library\AuthCustom::check())
-                                    <button class="button-primary" type="button" data-toggle="modal"
-                                            data-target="#modal-withdraw-items">Rút quà
-                                    </button>
-                                @else
-                                    <button class="button-primary" type="button" data-toggle="modal" data-target="#signin">Rút quà
-                                    </button>
-                                @endif
+                                <button class="button-primary modal_withdraw_items" type="button" >Rút quà
+                                </button>
                             </div>
                         </div>
                         <div class="leaderboard-header">
@@ -909,58 +888,72 @@
 
                 </div>
                 <div class="box-product minigame-detail_swiper">
-                    <div class="swiper-container list-minigame list-product">
-                        <div class="swiper-wrapper">
-                            @foreach($groups_other as $key => $item)
-                                <div class="swiper-slide">
-                                    <a href="{{route('getIndex',[$item->slug])}}">
-                                        <div class="item-product__box-img">
+                    <div class="swiper swiper-container swiper-banne swiper-list-item list-minigame swiper-list-item-minigame overflow-hidden" style="background: none;box-shadow: none">
+                        <div class=" swiper-wrapper" style="padding-bottom: 16px">
+                            @foreach($groups_other as $item)
 
-                                            <img onerror="imgError(this)"
-                                                 src="{{ \App\Library\MediaHelpers::media($item->image) }}"
-                                                 alt="{{$item->title}}">
-
-                                        </div>
-                                        <div class="item-product__box-content">
-
-
-                                            <div class="item-product__box-name limit-1">
-                                                {{$item->title}}
+                                <div class="list-item image swiper-slide">
+                                    <a href="/minigame-{{ $item->slug}}">
+                                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
+                                             alt="{{ $item->slug   }}" class="entries_item-img list-item-img">
+                                        <div class="card-attr">
+                                            <div class="text-title fw-700 text-limit limit-1">
+                                                {{ $item->title   }}
                                             </div>
-                                            <div class="item-product__box-sale">
-                                                Đã
-                                                bán: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}
+                                            <div class="info-attr">
+                                                Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}
                                             </div>
-                                            <div class="item-product__box-price">
-
-                                                <div class="special-price">{{number_format($item->price)}} đ</div>
-
+                                            <div class="price">
                                                 @if(isset($item->params->percent_sale))
-                                                    <div
-                                                        class="old-price">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }}
-                                                        đ
-                                                    </div>
+                                                    <div class="price-current">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                                    <div class="price-old c-mr-8">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }} đ</div>
+                                                    <div class="discount">{{ $item->params->percent_sale }}%</div>
                                                 @else
-                                                @endif
-                                                @if(isset($item->params->percent_sale))
-                                                    <div class="item-product__sticker-percent">
-                                                        -{{number_format($item->params->percent_sale)}}%
-                                                    </div>
+                                                    <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
                                                 @endif
                                             </div>
-
                                         </div>
                                     </a>
+                                    {{--                                    <div class="card">--}}
+                                    {{--                                        <div class="card-body c-p-16 c-p-lg-12 scale-thumb">--}}
+
+                                    {{--                                            <a href="/minigame-{{ $item->slug}}">--}}
+                                    {{--                                                <div class="card-thumb c-mb-8">--}}
+                                    {{--                                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="card-thumb-image">--}}
+                                    {{--                                                </div>--}}
+                                    {{--                                                <div class="card-attr">--}}
+                                    {{--                                                    <div class="text-title fw-700 text-limit limit-1" style="text-align: left">--}}
+                                    {{--                                                        {{ $item->title   }}--}}
+                                    {{--                                                    </div>--}}
+                                    {{--                                                    <div class="info-attr">--}}
+                                    {{--                                                        Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}--}}
+                                    {{--                                                    </div>--}}
+                                    {{--                                                    <div class="price">--}}
+                                    {{--                                                        @if(isset($item->params->percent_sale))--}}
+                                    {{--                                                            <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }} đ</div>--}}
+                                    {{--                                                            <div class="price-old c-mr-8">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }} đ</div>--}}
+                                    {{--                                                            <div class="discount">{{ $item->params->percent_sale }}%</div>--}}
+
+                                    {{--                                                        @else--}}
+                                    {{--                                                            <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }} đ</div>--}}
+                                    {{--                                                        @endif--}}
+                                    {{--                                                    </div>--}}
+                                    {{--                                                </div>--}}
+                                    {{--                                            </a>--}}
+
+                                    {{--                                        </div>--}}
+                                    {{--                                    </div>--}}
                                 </div>
+
                             @endforeach
+
                         </div>
+
+                        <div class="navigation swiper-list-prev"></div>
+                        <div class="navigation swiper-list-next"></div>
+
                     </div>
-                    <div class="swiper-button-prev">
-                        <img src="./assets/frontend/theme_3/image/swiper-prev.svg" alt="">
-                    </div>
-                    <div class="swiper-button-next">
-                        <img src="./assets/frontend/theme_3/image/swiper-next.svg" alt="">
-                    </div>
+
                 </div>
             </div>
         @endif
@@ -997,8 +990,7 @@
                         <div class="col-12">
 
                             @if(App\Library\AuthCustom::check())
-                                <a data-toggle="modal" data-target="#signin" data-dismiss="modal" data-toggle="modal"
-                                   data-target="#modal-withdraw-items" href="javascript:void(0)" class="btn button-secondary">Rút quà</a>
+                                <a href="javascript:void(0)" class="btn button-secondary modal_withdraw_items">Rút quà</a>
                             @endif
                         </div>
 
@@ -1088,6 +1080,8 @@
     <input type="hidden" id="image_static"
            value="{{ @\App\Library\MediaHelpers::media($result->group->params->image_static) }}">
     <input type="hidden" id="count_item" value="{{count($result->group->items)}}">
+
+
     <!-- script -->
     <script id="history-template" type="text/x-handlebars-template">
         <tr>
@@ -1148,6 +1142,36 @@
             </div>
 
         </li>
+    </script>
+
+    <script type="text/javascript">
+        $( document ).ready(function() {
+
+            $('body').on('click', '.modal_withdraw_items', function(e) {
+
+                if (!auth_check) {
+                    $('#signin').modal('show');
+                    return
+                }
+
+                $('#modal-withdraw-items').modal('show');
+            })
+
+            $('body').on('click', '.modal_spin_bonus', function(e) {
+                if (!auth_check) {
+                    $('#signin').modal('show');
+                    return
+                }
+
+                $('#modal-spin-bonus').modal('show');
+            })
+
+
+
+            $("#btnWithdraw").on("click", function () {
+                $('#noticeModal').modal('hide');
+            })
+        })
     </script>
 
     @switch($position)

@@ -33,18 +33,18 @@
         @else
             <div class="service-search d-none d-lg-block " style="font-size: 14px;line-height: 24px;font-weight: 600">
                 <div class="input-group p-box">
-                    <a href="/minigame" class="dich__vu__home">Xem thêm</a>
+                    <a href="/minigame" class="dich__vu__home">Xem tất cả »</a>
                 </div>
             </div>
         @endif
     </div>
     @if($flag_slide_minigame == 0)
-        <div class="entries" id="minigame__widget">
-            <div class="row fix-border fix-border-dich-vu">
+        <div class="entries" id="minigame__widget" style="padding-bottom: 16px">
+            <div class="row fix-border">
 
-                <div class="col-md-12 left-right data-nick-search">
-                    <span style="color: rgb(238, 70, 35);">Minigame cần tìm không tồn tại.</span>
-                </div>
+{{--                <div class="col-md-12 left-right data_minigame_search">--}}
+{{--                    <span style="color: rgb(238, 70, 35);">Minigame cần tìm không tồn tại.</span>--}}
+{{--                </div>--}}
                 @php
                     $index = 0;
                 @endphp
@@ -142,9 +142,9 @@
                     @endif
                 @endforeach
 
-
-                <button id="btn-expand-minigame" class="expand-button" data-page-current="1" data-page-max="{{ $index }}">Xem thêm minigame</button>
-
+                @if(count($data) > 8)
+                <button id="btn-expand-minigame" class="expand-button_c" data-page-current="1" data-page-max="{{ $index }}">Xem thêm</button>
+                @endif
             </div>
 
 
@@ -162,7 +162,7 @@
                     var pageMax=$(this).data('page-max');
                     pageCurrrent=pageCurrrent+1;
                     $('#minigame__widget .item-page-'+pageCurrrent).fadeIn( "fast", function() {
-                        // Animation complete
+
                     });
                     $(this).data('page-current',pageCurrrent);
                     if(pageCurrrent==pageMax){
@@ -174,7 +174,7 @@
                     var pageCurrrent=$(this).data('page-current');
                     var pageMax=$(this).data('page-max');
                     pageCurrrent=pageCurrrent+1;
-                    $('.dis-block').each(function (i,elm) {
+                    $('#minigame__widget .dis-block').each(function (i,elm) {
                         if (pageCurrrent == 2){
                             if (i < 16){
                                 $(this).css('display','block');
@@ -199,6 +199,8 @@
                         $(this).remove();
                     }
                 });
+
+
             });
 
         </script>
@@ -207,7 +209,7 @@
             <div class="slick-slider">
                 @foreach($data as $item)
 
-                    <div class="item image">
+                    <div class="item image entries_item" style="padding-bottom: 16px">
                         <a href="/minigame-{{ $item->slug}}">
                             <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                  alt="{{ $item->slug   }}" class="entries_item-img">
