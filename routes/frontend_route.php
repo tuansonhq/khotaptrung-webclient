@@ -218,7 +218,9 @@ Route::get('/406', function ()
                         $output = shell_exec($command);
 
                         $string_error = "Your local changes to the following files would be overwritten by merge";
-                        if (is_numeric(strpos($output,$string_error))){
+                        $string_error2 = "The following untracked working tree files would be overwritten by merge";
+
+                        if (is_numeric(strpos($output,$string_error)) || is_numeric(strpos($output,$string_error2))){
                             $reset_hard = "git reset --hard origin/master 2>&1";
                             shell_exec($reset_hard);
                             $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git master 2>&1';
@@ -289,12 +291,6 @@ Route::get('/406', function ()
 
                 });
 
-                Route::group(['middleware' => ['intend']], function () {
-
-                    Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])->name('getIndex');
-
-                });
-
                 //minigame
                 Route::group(['middleware' => ['doNotCacheResponse']], function (){
 
@@ -316,7 +312,6 @@ Route::get('/406', function ()
                     Route::post('/bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'postBonusLogin'])->name('postBonusLogin');
                     Route::get('/bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'getBonusLogin'])->name('getBonusLogin');
 
-
                     Route::get('/service-mobile', function ()
                     {
                         return view('frontend.layouts.includes.list-mobile');
@@ -330,6 +325,12 @@ Route::get('/406', function ()
                     Route::get('/nick-free-fire-sieu-cap', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlRikaki']);
                     Route::get('/free-fire-tam-trung', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlRikaki']);
                     Route::get('/game-acc-free-fire', [\App\Http\Controllers\Frontend\RedirectUrl::class , 'redirectUrlNickFreeGireGiare']);
+                });
+
+                Route::group(['middleware' => ['intend']], function () {
+
+                    Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])->name('getIndex');
+
                 });
             });
 
